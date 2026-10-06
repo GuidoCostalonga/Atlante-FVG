@@ -19,6 +19,7 @@ filtrabili per provincia, per comune, per testo e colonna per colonna.
 | `dati/_punti_0.txt` | Punti della mappa dei servizi (farmacie, guardie mediche, residenze per anziani, fermate, accessi a internet, impianti dei rifiuti, stazioni meteo) già proiettati sul disegno della mappa |
 | `dati/_tpl_0.txt` | Rete degli autobus TPL FVG (Trasporto pubblico locale del Friuli Venezia Giulia): fermate con il loro comune e percorsi con il tracciato stradale (semplificato a 8 metri), già proiettati sul disegno della mappa |
 | `scripts/aggiorna_autobus.py` | Aggiornamento automatico della rete degli autobus |
+| `c/<comune>/index.html` | Una pagina per comune, solo per l'anteprima nelle condivisioni (titolo e residenti del comune): rimanda subito a `?comune=<comune>`. Creata da `scripts/pagine_comuni.py`, insieme a `sitemap.xml` e `robots.txt` |
 | `scripts/aggiorna_dati.py` | Aggiornamento automatico dei dati aperti regionali che cambiano spesso |
 | `.github/workflows/aggiorna-dati.yml` | Esegue l'aggiornamento ogni lunedì e pubblica le novità |
 | `favicon.ico`, `favicon-32.png`, `icona-192.png`, `apple-touch-icon.png` | Icona del sito (la cartina del logo) per le schede del browser e per la schermata Home dei telefoni |
@@ -29,6 +30,13 @@ filtrabili per provincia, per comune, per testo e colonna per colonna.
 Ogni file di dati contiene le righe del foglio (`rows`) e, quando il foglio ha una colonna
 del comune, l'indice del comune collegato a ciascuna riga (`k`), nello stesso ordine dei
 comuni del foglio «Comuni».
+
+## Collegamento diretto a un comune
+
+Ogni comune ha il suo indirizzo: `https://atlantefvg.it/?comune=roveredo-in-piano` apre la pagina con il comune già
+scelto nel filtro e la sua scheda aperta. Quando si sceglie un comune, l'indirizzo nella barra del browser si aggiorna da
+solo. Il pulsante «Condividi il comune» nella scheda manda invece `https://atlantefvg.it/c/roveredo-in-piano/`, che
+mostra nell'anteprima di WhatsApp il nome e i residenti del comune e poi apre la stessa scheda.
 
 ## Fonti e data
 
