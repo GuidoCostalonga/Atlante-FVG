@@ -4,9 +4,10 @@ Pagina pubblicata su [costalonga.org/Atlante-FVG](https://costalonga.org/Atlante
 
 I 215 comuni del Friuli Venezia Giulia comune per comune: popolazione, amministratori,
 Terzo settore, sport, cultura, servizi sanitari, scuole, turismo, redditi e ambiente.
-Con le mappe dei comuni (circa 20 indicatori e 15 cartine dell'Annuario) e delle regioni
-d'Italia (24 cartine), e l'archivio completo: 127 fogli e 353.985 righe, con tutte le
-colonne, filtrabili per provincia, per comune, per testo e colonna per colonna.
+Con le mappe dei comuni (oltre 30 indicatori, 15 cartine dell'Annuario e 8 strati di servizi),
+la mappa delle regioni d'Italia (24 cartine), il confronto fra quattro comuni, la scheda di
+ogni comune stampabile in PDF e l'archivio completo: 136 fogli e quasi 450.000 righe,
+filtrabili per provincia, per comune, per testo e colonna per colonna.
 
 ## Come è fatta
 
@@ -15,6 +16,9 @@ colonne, filtrabili per provincia, per comune, per testo e colonna per colonna.
 | `index.html` | La pagina: HTML, stile e programma in un solo file, con i dati riassuntivi dei comuni incorporati |
 | `dati/*.txt` | Un file per foglio del database (i fogli più grandi sono divisi in parti). Ogni file è JSON compresso con gzip e codificato in base64; la pagina lo scarica e lo decomprime solo quando il foglio viene aperto |
 | `dati/_mappe_0.txt` | Confini di comuni, province, regione e regioni italiane, con le classi delle 41 cartine dell'Annuario (stessa codifica degli altri file) |
+| `dati/_punti_0.txt` | Punti della mappa dei servizi (farmacie, guardie mediche, residenze per anziani, fermate, accessi a internet, impianti dei rifiuti, stazioni meteo) già proiettati sul disegno della mappa |
+| `scripts/aggiorna_dati.py` | Aggiornamento automatico dei dati aperti regionali che cambiano spesso |
+| `.github/workflows/aggiorna-dati.yml` | Esegue l'aggiornamento ogni lunedì e pubblica le novità |
 | `.nojekyll` | Dice a GitHub Pages di servire i file così come sono |
 
 Ogni file di dati contiene le righe del foglio (`rows`) e, quando il foglio ha una colonna
@@ -29,6 +33,32 @@ FVG, anagrafe regionale degli amministratori locali, elenco RUNTS (Registro unic
 del Terzo settore), ISTAT (Istituto nazionale di statistica) e altre. Ogni foglio, nella
 pagina, riporta la propria fonte e la data di consultazione. È una fotografia a quella data,
 non un collegamento in tempo reale.
+
+## Altre fonti aggiunte il 6 ottobre 2026
+
+| Contenuto | Fonte | Fogli |
+|---|---|---|
+| Rischio idrogeologico per comune: frane (2024) e alluvioni (2020), con residenti, famiglie, edifici, imprese e beni culturali esposti | ISPRA, piattaforma IdroGEO | `Rischio_idrogeologico_ISPRA` |
+| Rendiconti comunali 2018-2023: spese per missione, programma e titolo; entrate per titolo e tipologia (84 comuni) | Portale dei dati aperti della Regione FVG | `Bilanci_rendiconto_spese`, `Bilanci_rendiconto_entrate`, `Bilanci_comunali_sintesi` |
+| Elezioni regionali 2023: liste, presidente, affluenza | Portale dei dati aperti della Regione FVG | `Elezioni_regionali_2023_*` |
+| Elezioni europee 2024 e Camera 2022 per comune | Ministero dell'interno, Eligendo | `Elezioni_europee_2024`, `Elezioni_camera_2022` |
+
+Nei rendiconti alcune viste regionali ripetono le stesse righe (una, intitolata a Ragogna, contiene i dati di
+Roveredo in Piano): i doppioni sono tolti tenendo una riga per anno, comune e voce di bilancio.
+
+## Aggiornamento automatico
+
+Ogni lunedì `scripts/aggiorna_dati.py` riscarica dal portale dei dati aperti della Regione 18 fogli che cambiano
+spesso (farmacie, guardie mediche, residenze per anziani, accessi a internet, turismo, siti inquinati, elezioni
+comunali 2026, patrimonio regionale, strutture ricettive), ricollega le righe ai comuni, toglie i contatti dei privati,
+ricalcola conteggi e punti della mappa e pubblica solo se qualcosa è cambiato. Se un foglio non si scarica o cambia
+struttura resta com'è. Si può avviare a mano da Actions, «Aggiorna i dati aperti», «Run workflow».
+
+## Dati personali
+
+Dall'archivio sono tolti telefoni, email, PEC, siti, indirizzi, partite IVA e nomi dei rappresentanti legali di
+associazioni, imprese e strutture ricettive. Restano i nomi di enti e imprese come iscritti nei registri pubblici e
+i dati di amministratori, uffici e servizi pubblici.
 
 ## Seconda fonte: «Regione FVG Dati»
 
