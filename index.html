@@ -109,7 +109,8 @@ tailwind.config = {
       <label for="ricerca" class="sr-only">Cerca un comune o un sindaco</label>
       <div class="relative">
         <i data-lucide="search" class="w-4 h-4 text-pietra-700 absolute left-3 top-1/2 -translate-y-1/2"></i>
-        <input id="ricerca" type="search" placeholder="Cerca comune, sindaco o codice ISTAT" class="w-full pl-9 pr-3 py-2 text-sm rounded-lg bg-pietra-50 border border-pietra-200 focus:border-primario-500 focus:outline-none">
+        <input id="ricerca" type="search" autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls="ricSugg" aria-expanded="false" placeholder="Cerca comune, sindaco o codice ISTAT" class="w-full pl-9 pr-3 py-2 text-sm rounded-lg bg-pietra-50 border border-pietra-200 focus:border-primario-500 focus:outline-none">
+        <div id="ricSugg" role="listbox" aria-label="Comuni trovati" class="absolute z-50 left-0 right-0 top-full mt-1 bg-white border border-pietra-200 rounded-lg shadow-lg max-h-80 overflow-y-auto" hidden></div>
       </div>
     </div>
     <div class="flex items-center gap-1 sm:gap-3 shrink-0">
@@ -645,8 +646,9 @@ function renderizzaTabella(lista) {
 function filtraRegistro() {
   const q = document.getElementById('ricerca').value.trim().toLowerCase();
   const pv = terr.pv, el = document.getElementById('fEl').value;
+  const parole = normRic(q).split(' ').filter(Boolean);
   const lista = datiRegistro.filter(c => (!pv || c.pv === pv) && (terr.com < 0 || c.id === MAN.istat[terr.com]) && (!el || String(c.el) === el) &&
-    (!q || [c.n, c.ml, c.sin, c.id].some(x => String(x || '').toLowerCase().includes(q))));
+    (!parole.length || parole.every(w => testoRic(c).includes(w))));
   const { k, dir } = ordine;
   lista.sort((a, b) => {
     const x = a[k], y = b[k];
@@ -656,6 +658,54 @@ function filtraRegistro() {
   renderizzaTabella(lista);
 }
 ['ricerca', 'fEl'].forEach(id => document.getElementById(id).addEventListener('input', filtraRegistro));
+
+/* Ricerca in alto: suggerimenti per nome del comune, sindaco (in qualsiasi ordine) o codice ISTAT */
+function normRic(s) { return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); }
+const CACHE_RIC = new Map();
+function testoRic(c) { if (!CACHE_RIC.has(c)) CACHE_RIC.set(c, normRic([c.n, c.ml, c.sin, c.id].join(' '))); return CACHE_RIC.get(c); }
+const nomeProprio = s => String(s || '').toLowerCase().replace(/(^|[\s'-])(\p{L})/gu, (m, p, l) => p + l.toUpperCase());
+const inpRic = document.getElementById('ricerca'), boxRic = document.getElementById('ricSugg');
+let risRic = [], selRic = -1;
+function cercaComuni(q) {
+  const parole = normRic(q).split(' ').filter(Boolean); if (!parole.length) return [];
+  const qn = parole.join(' ');
+  return datiRegistro.filter(c => parole.every(w => testoRic(c).includes(w))).map(c => {
+    const nome = normRic(c.n + ' ' + (c.ml || '')), sin = normRic(c.sin);
+    const perNome = parole.every(w => nome.includes(w)), perSin = !perNome && parole.every(w => sin.includes(w));
+    return { c, perSin, punti: nome.startsWith(qn) ? 0 : perNome ? 1 : perSin ? 2 : 3 };
+  }).sort((a, b) => a.punti - b.punti || a.c.n.localeCompare(b.c.n, 'it')).slice(0, 8);
+}
+function mostraRic() {
+  const q = inpRic.value.trim(); risRic = q ? cercaComuni(q) : []; selRic = risRic.length ? 0 : -1;
+  boxRic.hidden = !q; inpRic.setAttribute('aria-expanded', String(!boxRic.hidden));
+  if (!q) return;
+  boxRic.innerHTML = risRic.length ? risRic.map((r, i) => `<button type="button" role="option" id="ric${i}" class="sceltaRic w-full flex items-start gap-2 text-left px-3 py-2 hover:bg-pietra-100 ${i === selRic ? 'bg-pietra-100' : ''}" data-i="${i}">
+      <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0 text-accento-600"></i>
+      <span class="min-w-0"><span class="block text-sm font-semibold text-primario-800">${esc(r.c.n)} <span class="font-normal text-pietra-700">(${r.c.pv})</span></span>
+      <span class="block text-[12px] text-pietra-700">${r.c.sin ? `${r.perSin ? '<b class="text-pietra-900">' : ''}Sindaco: ${esc(nomeProprio(r.c.sin))}${r.perSin ? '</b>' : ''} · ` : ''}codice ISTAT ${esc(r.c.id)}</span></span></button>`).join('')
+    : '<div class="px-3 py-2 text-sm text-pietra-700">Nessun comune trovato. Si può cercare per nome del comune, per nome e cognome del sindaco o per codice ISTAT.</div>';
+  if (selRic >= 0) inpRic.setAttribute('aria-activedescendant', 'ric' + selRic); else inpRic.removeAttribute('aria-activedescendant');
+  lucide.createIcons();
+}
+function scegliRic(i) {
+  const r = risRic[i]; if (!r) return;
+  const k = MAN.istat.indexOf(r.c.id);
+  inpRic.value = ''; boxRic.hidden = true; inpRic.setAttribute('aria-expanded', 'false'); inpRic.blur();
+  impostaTerritorio(r.c.pv, k); apriDettaglio(r.c.id);
+}
+inpRic.addEventListener('input', mostraRic);
+inpRic.addEventListener('focus', () => { if (inpRic.value.trim()) mostraRic(); });
+inpRic.addEventListener('keydown', e => {
+  if (boxRic.hidden || !risRic.length) { if (e.key === 'Escape') boxRic.hidden = true; return; }
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); selRic = (selRic + (e.key === 'ArrowDown' ? 1 : risRic.length - 1)) % risRic.length;
+    boxRic.querySelectorAll('.sceltaRic').forEach((b, i) => b.classList.toggle('bg-pietra-100', i === selRic)); inpRic.setAttribute('aria-activedescendant', 'ric' + selRic);
+    boxRic.querySelector('#ric' + selRic).scrollIntoView({ block: 'nearest' }); }
+  else if (e.key === 'Enter') { e.preventDefault(); scegliRic(Math.max(0, selRic)); }
+  else if (e.key === 'Escape') { boxRic.hidden = true; inpRic.setAttribute('aria-expanded', 'false'); }
+});
+boxRic.addEventListener('mousedown', e => e.preventDefault());
+boxRic.addEventListener('click', e => { const b = e.target.closest('.sceltaRic'); if (b) scegliRic(Number(b.dataset.i)); });
+document.addEventListener('click', e => { if (!boxRic.hidden && !boxRic.contains(e.target) && e.target !== inpRic) { boxRic.hidden = true; inpRic.setAttribute('aria-expanded', 'false'); } });
 document.getElementById('btnReset').addEventListener('click', () => {
   document.getElementById('ricerca').value = ''; document.getElementById('fEl').value = '';
   ordine = { k: 'p25', dir: -1 }; filtraRegistro(); mostraToast('Filtri azzerati');
@@ -677,6 +727,8 @@ function riga(et, val, nota) {
 function box(tit, icona, righe) {
   return `<div class="rounded-xl border border-pietra-200 bg-pietra-50 p-4 min-w-0"><div class="flex items-center gap-2 font-patriarcale font-bold text-sm text-primario-800 mb-2"><i data-lucide="${icona}" class="w-4 h-4 text-accento-600"></i>${tit}</div><div class="text-sm">${righe}</div></div>`;
 }
+// «30/01/2025» → «30 gennaio 2025»; altri formati restano come sono
+const dataEstesa = d => { const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(String(d || '').trim()); return m ? `${Number(m[1])} ${['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'][Number(m[2]) - 1]} ${m[3]}` : (d ?? ''); };
 function apriDettaglio(id) {
   const c = datiRegistro.find(x => x.id === id); if (!c) return;
   const dens = c.km ? c.p25 / c.km : null;
@@ -687,7 +739,7 @@ function apriDettaglio(id) {
   let h = `<p class="text-sm text-pietra-800 leading-relaxed">${esc(c.n)} conta <b class="num">${fmt(c.p25)}</b> residenti al 31 dicembre 2025 (${segno(c.var)}% sull'anno precedente) su ${fmt1(c.km)} chilometri quadrati. Il prossimo rinnovo del consiglio comunale indicato dalla fonte è nel <b>${c.el}</b>.</p>`;
   h += `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
   h += box('Popolazione', 'users', riga('Residenti 2025', fmt(c.p25)) + riga('Residenti 2024', fmt(c.p24)) + riga('Maschi e femmine', `${fmt(c.m)} · ${fmt(c.f)}`) + riga('Superficie', fmt1(c.km) + ' km²') + riga('Densità', dens ? fmt1(dens) + ' ab./km²' : ''));
-  h += box('Amministrazione', 'landmark', riga('Sindaco in anagrafe', esc(titolo(c.sin)), 'anagrafe aggiornata al ' + esc(c.agg)) + riga('Incarichi registrati', fmt(c.inc), 'sindaco, giunta e consiglio') + riga('Prossime elezioni', c.el ?? ''));
+  h += box('Amministrazione', 'landmark', riga('Sindaco in anagrafe', esc(titolo(c.sin)), 'anagrafe aggiornata al ' + esc(dataEstesa(c.agg))) + riga('Incarichi registrati', fmt(c.inc), 'sindaco, giunta e consiglio') + riga('Prossime elezioni', c.el ?? ''));
   h += box('Comunità e Terzo settore', 'hand-heart', riga('Enti iscritti al RUNTS', fmt(c.ru)) + riga('Associazioni di promozione sociale', fmt(c.aps)) + riga('Organizzazioni di volontariato', fmt(c.odv)) + riga('Gruppi di protezione civile', fmt(c.pc), 'elenco regionale del 2015'));
   h += box('Servizi', 'heart-pulse', riga('Farmacie', fmt(c.fa)) + riga('Istituti scolastici con sede', fmt(c.sc), 'statali di lingua italiana, 2026/27') + riga('Residenze per anziani', fmt(c.rsa), c.rsa ? fmt(c.rpl) + ' posti letto' : ''));
   h += box('Turismo 2025', 'luggage', riga('Arrivi', fmt(c.ar)) + riga('Presenze', fmt(c.pr)) + riga('Quota di presenze straniere', c.pr ? fmt1(c.prs / c.pr * 100) + '%' : 'nessuna presenza registrata'));
@@ -737,7 +789,7 @@ function apriDettaglio(id) {
     Popolazione e superficie: Annuario statistico regionale 2026, tavola 19.2. Sindaco e incarichi: anagrafe pubblica degli amministratori locali della Regione FVG. Terzo settore: elenco RUNTS del Ministero del lavoro, 5 ottobre 2026. Farmacie, residenze per anziani, turismo, siti inquinati, redditi e protezione civile: portale dei dati aperti della Regione FVG. Scuole: Ufficio scolastico regionale, elenco 2026/27. Rischio idrogeologico: ISPRA, IdroGEO. Bilanci: rendiconti pubblicati dalla Regione FVG. Elezioni: Regione FVG e Ministero dell'interno (Eligendo). Dati aggiuntivi: banca dati «Regione FVG Dati» del 16 settembre 2026. Acquisizione complessiva: 5 e 6 ottobre 2026.</div>`;
   document.getElementById('mCorpo').innerHTML = h;
   schedaTesto = [`${c.n} (${c.pv}) · codice ISTAT ${c.id}`, `Residenti al 31 dicembre 2025: ${fmt(c.p25)} (${segno(c.var)}% sul 2024)`, `Superficie: ${fmt1(c.km)} km²`,
-    `Sindaco in anagrafe: ${titolo(c.sin)} (aggiornamento ${c.agg})`, `Prossime elezioni: ${c.el}`, `Enti RUNTS: ${fmt(c.ru)}`, `Farmacie: ${fmt(c.fa)} · Istituti scolastici: ${fmt(c.sc)} · Residenze per anziani: ${fmt(c.rsa)}`,
+    `Sindaco in anagrafe: ${titolo(c.sin)} (anagrafe aggiornata al ${dataEstesa(c.agg)})`, `Prossime elezioni: ${c.el}`, `Enti RUNTS: ${fmt(c.ru)}`, `Farmacie: ${fmt(c.fa)} · Istituti scolastici: ${fmt(c.sc)} · Residenze per anziani: ${fmt(c.rsa)}`,
     `Turismo 2025: ${fmt(c.ar)} arrivi, ${fmt(c.pr)} presenze`, `Reddito imponibile medio 2017: ${c.irm ? fmt(c.irm) + ' euro' : 'n.d.'}`, `Siti inquinati censiti: ${fmt(c.si)} (${fmt(c.sia)} con istruttoria in atto)`,
     'Fonte: Database Friuli Venezia Giulia, acquisizione del 5 ottobre 2026'].join('\n');
   document.getElementById('modale').hidden = false;
