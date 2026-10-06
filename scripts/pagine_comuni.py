@@ -19,7 +19,8 @@ PAGINE = [('mappe', 'Mappe', 'Oltre trenta indicatori comune per comune, le cart
           ('autobus', 'Autobus', 'Linee, fermate e arrivi in tempo reale degli autobus del Friuli Venezia Giulia, con la mappa delle vie.'),
           ('ambiente', 'Allerte meteo e qualità dell\'aria', 'Allerta meteo di oggi e di domani e qualità dell\'aria delle centraline del Friuli Venezia Giulia.'),
           ('comuni', 'I 215 comuni', 'Il registro dei 215 comuni: residenti, sindaci, servizi, elezioni.'),
-          ('archivio', 'Archivio dati', 'Tutti i fogli del database dei comuni del Friuli Venezia Giulia, filtrabili per comune.')]
+          ('archivio', 'Archivio dati', 'Tutti i fogli del database dei comuni del Friuli Venezia Giulia, filtrabili per comune.'),
+          ('metodo', 'Metodo e fonti', 'Versioni, date di aggiornamento, fonti, copertura e avvertenze sui dati dell\'Atlante dei comuni del Friuli Venezia Giulia.')]
 
 
 def slug(nome):

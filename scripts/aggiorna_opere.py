@@ -28,7 +28,7 @@ FOGLIO = 'Opere_pubbliche_OpenCUP'
 DETTAGLIO = 'https://www.opencup.gov.it/portale/web/opencup/dettaglio-opendata-nord-est'
 UA = {'User-Agent': 'AtlanteFVG/1.0 (+https://atlantefvg.it/)'}
 RIGHE_PER_FILE = 20000
-COLONNE = ['Comune', 'CUP', 'Descrizione', 'Anno della decisione', 'Stato', 'Costo (euro)', 'Finanziamento (euro)', 'Settore',
+COLONNE = ['Comune', 'CUP', 'Descrizione', 'Anno della decisione', 'Stato', 'Costo previsto (euro)', 'Finanziamento previsto (euro)', 'Settore',
            'Categoria', 'Copertura finanziaria', 'Soggetto titolare', 'Comuni coinvolti', 'Data del CUP']
 MESI = {'JAN': '01', 'FEB': '02', 'MAR': '03', 'APR': '04', 'MAY': '05', 'JUN': '06', 'JUL': '07', 'AUG': '08', 'SEP': '09', 'OCT': '10', 'NOV': '11', 'DEC': '12'}
 
