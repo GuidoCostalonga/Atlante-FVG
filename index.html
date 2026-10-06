@@ -46,6 +46,8 @@ tailwind.config = {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <style>
+  /* pagine: ogni sezione appartiene a una pagina, le altre restano nascoste */
+  .pagina-nascosta { display: none !important; }
   /* Impianto araldico chiaro, scelto come unico tema: fondo carta puntinata, cornici dorate, blu istituzionale. */
   :root { color-scheme: light; --fondo:#F8F7F4; --testo:#202226; }
   html, body { background-color: var(--fondo); color: var(--testo); }
@@ -135,8 +137,11 @@ tailwind.config = {
 
 <main class="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-6">
 
+  <!-- Navigazione fra le pagine -->
+  <nav id="navPagine" aria-label="Pagine dell'Atlante" class="-mt-2 -mx-4 px-4 flex gap-1.5 overflow-x-auto pb-1"></nav>
+
   <!-- 3. Banner di sezione -->
-  <section class="rounded-2xl bg-gradient-to-r from-primario-900 to-primario-700 text-white p-6 cornice-oro flex flex-wrap items-end justify-between gap-4">
+  <section id="intro" class="rounded-2xl bg-gradient-to-r from-primario-900 to-primario-700 text-white p-6 cornice-oro flex flex-wrap items-end justify-between gap-4">
     <div class="min-w-0 max-w-3xl">
       <div class="text-[11px] uppercase tracking-[0.2em] text-accento-300">Monitoraggio territoriale</div>
       <h1 class="font-patriarcale font-black text-2xl sm:text-3xl mt-1">Il Friuli Venezia Giulia, comune per comune</h1>
@@ -148,24 +153,24 @@ tailwind.config = {
   </section>
 
   <!-- Filtro territoriale: vale per il registro e per tutto l'archivio -->
-  <section id="filtro" class="bg-white rounded-xl cornice-oro p-4 flex flex-wrap items-end gap-3 scroll-mt-32 md:scroll-mt-24" aria-label="Filtro territoriale">
-    <div class="flex items-center gap-2 text-primario-800 mr-2">
+  <section id="filtro" class="bg-white rounded-xl cornice-oro p-3 sm:p-4 flex flex-wrap items-end gap-2 sm:gap-3 scroll-mt-32 md:scroll-mt-24" aria-label="Filtro territoriale">
+    <div class="hidden md:flex items-center gap-2 text-primario-800 mr-2">
       <i data-lucide="map-pin" class="w-5 h-5 text-accento-600"></i>
       <div><div class="font-patriarcale font-bold text-sm">Filtro territoriale</div><div class="text-[11px] text-pietra-700">Vale per il registro dei comuni e per tutti i fogli dell'archivio</div></div>
     </div>
-    <div class="flex flex-col gap-1">
+    <div class="flex flex-col gap-1 flex-1 min-w-[7.5rem] sm:flex-none">
       <label for="gProv" class="text-[10px] uppercase tracking-wider text-pietra-700">Provincia</label>
-      <select id="gProv" class="text-sm border border-pietra-200 rounded-lg px-2 py-2 bg-pietra-50">
+      <select id="gProv" class="text-sm border border-pietra-200 rounded-lg px-2 py-2 bg-pietra-50 w-full">
         <option value="">Tutte le province</option><option value="UD">Udine</option><option value="PN">Pordenone</option><option value="GO">Gorizia</option><option value="TS">Trieste</option>
       </select>
     </div>
-    <div class="flex flex-col gap-1 min-w-0 flex-1 sm:flex-none sm:w-72">
+    <div class="flex flex-col gap-1 min-w-[10rem] flex-[2] sm:flex-none sm:w-72">
       <label for="gCom" class="text-[10px] uppercase tracking-wider text-pietra-700">Comune</label>
       <select id="gCom" class="text-sm border border-pietra-200 rounded-lg px-2 py-2 bg-pietra-50 w-full"></select>
     </div>
-    <button id="btnSchedaCom" class="inline-flex items-center gap-2 text-sm bg-primario-700 hover:bg-primario-800 text-white rounded-lg px-4 py-2 disabled:opacity-40 disabled:cursor-not-allowed" disabled><i data-lucide="file-text" class="w-4 h-4"></i>Apri la scheda del comune</button>
-    <button id="btnTerrReset" class="inline-flex items-center gap-1 text-sm text-primario-700 border border-primario-200 rounded-lg px-3 py-2 hover:bg-primario-50"><i data-lucide="x-circle" class="w-4 h-4"></i>Togli il filtro</button>
-    <div id="terrStato" class="text-xs text-pietra-700 basis-full"></div>
+    <button id="btnSchedaCom" class="inline-flex items-center gap-2 text-sm bg-primario-700 hover:bg-primario-800 text-white rounded-lg px-4 py-2 disabled:opacity-40 disabled:cursor-not-allowed" disabled><i data-lucide="file-text" class="w-4 h-4"></i><span class="sm:hidden">Scheda</span><span class="hidden sm:inline">Apri la scheda del comune</span></button>
+    <button id="btnTerrReset" class="inline-flex items-center gap-1 text-sm text-primario-700 border border-primario-200 rounded-lg px-3 py-2 hover:bg-primario-50" aria-label="Togli il filtro"><i data-lucide="x-circle" class="w-4 h-4"></i><span class="hidden sm:inline">Togli il filtro</span></button>
+    <div id="terrStato" class="text-[11px] sm:text-xs text-pietra-700 basis-full"></div>
   </section>
 
   <!-- 4. Indicatori principali -->
@@ -220,6 +225,12 @@ tailwind.config = {
         <div class="flex flex-col gap-3 mt-3" id="listaCariche"></div>
       </div>
     </div>
+  </section>
+
+  <!-- Pagina iniziale: le altre pagine -->
+  <section id="esplora" class="scroll-mt-32 md:scroll-mt-24">
+    <h2 class="font-patriarcale font-bold text-lg text-primario-800 mb-3">Esplora l'Atlante</h2>
+    <div id="esploraPagine" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
   </section>
 
   <!-- Mappe -->
@@ -922,10 +933,54 @@ const NOME_COM = MAN.istat.map(id => (datiRegistro.find(c => c.id === id) || {})
 const slugCom = n => String(n || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 const SLUG_COM = NOME_COM.map(slugCom);
 const COMUNE_INIZIALE = SLUG_COM.indexOf(slugCom(new URLSearchParams(location.search).get('comune')));
-function aggiornaIndirizzo() {
-  try { const u = new URL(location.href); if (terr.com >= 0) u.searchParams.set('comune', SLUG_COM[terr.com]); else u.searchParams.delete('comune');
-    history.replaceState(null, '', u.pathname + u.search + u.hash); } catch (e) { /* indirizzo non modificabile: si prosegue */ }
+function indirizzoAttuale() {
+  const u = new URL(location.href);
+  if (terr.com >= 0) u.searchParams.set('comune', SLUG_COM[terr.com]); else u.searchParams.delete('comune');
+  if (paginaCorrente && paginaCorrente !== 'inizio') u.searchParams.set('pagina', paginaCorrente); else u.searchParams.delete('pagina');
+  u.hash = ''; return u.pathname + u.search;
 }
+function aggiornaIndirizzo(nuova) {
+  try { history[nuova ? 'pushState' : 'replaceState']({ pagina: paginaCorrente }, '', indirizzoAttuale()); } catch (e) { /* indirizzo non modificabile: si prosegue */ }
+}
+/* Pagine: la pagina è una sola, ma mostra un gruppo di sezioni alla volta; il filtro territoriale resta sempre visibile */
+const PAGINE = [
+  { id: 'inizio', t: 'Inizio', i: 'house', sez: ['intro', 'panoramica', 'grafici', 'esplora'], d: 'I numeri principali della regione e delle quattro province.' },
+  { id: 'mappe', t: 'Mappe', i: 'map', sez: ['mappe'], d: 'Oltre trenta indicatori comune per comune, le cartine dell\'Annuario e i servizi sul territorio.' },
+  { id: 'confronto', t: 'Confronto', i: 'columns-3', sez: ['confronto'], d: 'Quattro comuni fianco a fianco, indicatore per indicatore.' },
+  { id: 'autobus', t: 'Autobus', i: 'bus', sez: ['trasporti'], d: 'Linee, fermate e arrivi in tempo reale, con la mappa delle vie.' },
+  { id: 'ambiente', t: 'Allerte e aria', i: 'cloud-sun', sez: ['ambiente'], d: 'Allerta meteo di oggi e di domani e qualità dell\'aria delle centraline.' },
+  { id: 'comuni', t: 'Comuni', i: 'list', sez: ['registro'], d: 'Il registro dei 215 comuni: residenti, sindaci, servizi, elezioni.' },
+  { id: 'archivio', t: 'Archivio dati', i: 'database', sez: ['archivio'], d: 'Tutti i fogli del database, filtrabili per comune e colonna per colonna.' }
+];
+const SEZ_PAG = Object.fromEntries(PAGINE.flatMap(p => p.sez.map(z => [z, p.id])));
+let paginaCorrente = null;
+const PAGINA_INIZIALE = (() => { const q = new URLSearchParams(location.search).get('pagina'); return PAGINE.some(p => p.id === q) ? q : 'inizio'; })();
+function vaiPagina(id, { nuova = true, scorri = true } = {}) {
+  if (!PAGINE.some(p => p.id === id)) id = 'inizio';
+  const cambia = id !== paginaCorrente; paginaCorrente = id;
+  PAGINE.forEach(p => p.sez.forEach(z => { const el = document.getElementById(z); if (el) el.classList.toggle('pagina-nascosta', p.id !== id); }));
+  document.querySelectorAll('.vaiPagina').forEach(b => { const on = b.dataset.p === id; b.setAttribute('aria-current', on ? 'page' : 'false');
+    b.className = 'vaiPagina shrink-0 inline-flex items-center gap-1.5 text-sm rounded-full px-3 py-1.5 border ' + (on ? 'bg-primario-700 border-primario-700 text-white font-semibold' : 'bg-white border-pietra-200 text-primario-800 hover:bg-primario-50'); });
+  const pg = PAGINE.find(p => p.id === id);
+  const att = document.querySelector(`#navPagine .vaiPagina[data-p="${id}"]`); if (att && att.scrollIntoView) att.scrollIntoView({ block: 'nearest', inline: 'center' });
+  document.title = id === 'inizio' ? 'Atlante FVG: i comuni del Friuli Venezia Giulia' : `${pg.t} · Atlante FVG`;
+  if (cambia && !avvioInCorso) aggiornaIndirizzo(nuova);
+  if (scorri && cambia) scrollTo({ top: 0 });
+  // le mappe e i grafici nascosti si ridisegnano quando tornano visibili
+  if (id === 'autobus' && typeof TPL !== 'undefined' && TPL) { tpApplicaVB(); }
+  if (id === 'mappe' && typeof GEO !== 'undefined' && GEO) applicaVB();
+}
+function disegnaPagine() {
+  document.getElementById('navPagine').innerHTML = PAGINE.map(p => `<a href="?pagina=${p.id}" class="vaiPagina" data-p="${p.id}"><i data-lucide="${p.i}" class="w-4 h-4"></i>${esc(p.t)}</a>`).join('');
+  document.getElementById('esploraPagine').innerHTML = PAGINE.filter(p => p.id !== 'inizio').map(p => `<a href="?pagina=${p.id}" class="vaiPagina2 group rounded-xl bg-white cornice-oro p-4 flex items-start gap-3 hover:bg-primario-50" data-p="${p.id}">
+    <span class="w-10 h-10 rounded-lg bg-primario-700 text-white flex items-center justify-center shrink-0"><i data-lucide="${p.i}" class="w-5 h-5"></i></span>
+    <span class="min-w-0"><span class="block font-patriarcale font-bold text-primario-800">${esc(p.t)}</span><span class="block text-[13px] text-pietra-700 leading-snug">${esc(p.d)}</span></span></a>`).join('');
+}
+document.addEventListener('click', e => {
+  const a = e.target.closest('.vaiPagina, .vaiPagina2'); if (!a || e.ctrlKey || e.metaKey || e.shiftKey) return;
+  e.preventDefault(); vaiPagina(a.dataset.p);
+});
+addEventListener('popstate', () => { const q = new URLSearchParams(location.search).get('pagina') || 'inizio'; vaiPagina(q, { nuova: false }); });
 const linkComune = k => `https://atlantefvg.it/c/${SLUG_COM[k]}/`;
 const terr = { pv: '', com: -1 };
 const selCom = document.getElementById('gCom'), selProv = document.getElementById('gProv');
@@ -1019,7 +1074,7 @@ async function caricaFoglio(f) {
 
 async function apriFoglio(id, scorri) {
   const f = FOGLI.find(x => x.id === id); if (!f) return;
-  if (scorri) document.getElementById('archivio').scrollIntoView({ behavior: 'smooth' });
+  if (scorri) scorriA('archivio');
   corrente = null; filtriCol = {}; ordA = { j: -1, dir: 1 }; pagina = 0;
   document.getElementById('cercaRighe').value = '';
   disegnaTesta(f);
@@ -1533,7 +1588,11 @@ function apriMenu(on) { menuEl.hidden = !on; btnMenu.setAttribute('aria-expanded
 btnMenu.addEventListener('click', e => { e.stopPropagation(); apriMenu(menuEl.hidden); });
 document.addEventListener('click', e => { if (!menuEl.hidden && !menuEl.contains(e.target) && !btnMenu.contains(e.target)) apriMenu(false); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menuEl.hidden) { apriMenu(false); btnMenu.focus(); } });
-function scorriA(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+function scorriA(id) {
+  const p = SEZ_PAG[id];
+  if (p && p !== paginaCorrente) { vaiPagina(p); if (PAGINE.find(x => x.id === p).sez[0] === id) return; }
+  const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 async function attendiMappe() { for (let n = 0; n < 100 && !GEO; n++) await new Promise(r => setTimeout(r, 100)); return !!GEO; }
 async function vaiMappa(livello, ind, strato) {
   scorriA('mappe');
@@ -2094,6 +2153,8 @@ function mostraToast(msg) {
   tToast = setTimeout(() => t.classList.add('translate-y-4', 'opacity-0'), 3000);
 }
 
+disegnaPagine();
+vaiPagina(PAGINA_INIZIALE, { nuova: false, scorri: false });
 inizializzaGrafico();
 impostaTerritorio('', -1);
 apriFoglio('Comuni');
@@ -2102,5 +2163,6 @@ disegnaConfronto();
 disegnaMenu();
 lucide.createIcons();
 avvioInCorso = false;
+aggiornaIndirizzo(false);
 if (COMUNE_INIZIALE >= 0) { impostaTerritorio(PV_COM[COMUNE_INIZIALE], COMUNE_INIZIALE); apriDettaglio(MAN.istat[COMUNE_INIZIALE]); }
 </script>
