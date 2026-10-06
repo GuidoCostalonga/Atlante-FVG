@@ -38,6 +38,21 @@ scelto nel filtro e la sua scheda aperta. Quando si sceglie un comune, l'indiriz
 solo. Il pulsante «Condividi il comune» nella scheda manda invece `https://atlantefvg.it/c/roveredo-in-piano/`, che
 mostra nell'anteprima di WhatsApp il nome e i residenti del comune e poi apre la stessa scheda.
 
+## Trasparenza dei dati
+
+- **Metodo e fonti** (`?pagina=metodo`): versioni e date di aggiornamento di ogni gruppo di dati, come leggere zero, dato non
+  disponibile, non applicabile e non aggiornato, i tre tipi di collegamento ai comuni, la copertura dei bilanci, le fonti con i
+  collegamenti alla documentazione originale e tutte le avvertenze.
+- Sotto la barra delle pagine una riga indica lo **stato dei dati**: versione dell'archivio e ultimo aggiornamento automatico
+  nelle pagine statistiche, ultima lettura e stato del servizio (attivo, in attesa, non risponde) nelle pagine in tempo reale.
+- Sotto ogni mappa: fonte con collegamento, periodo, unità e copertura (comuni con il dato su 215).
+- **Collegamenti ai comuni**: certo (codice ISTAT), ricostruito (nome del comune o indirizzo), nel testo (da verificare,
+  escluso dai conteggi della scheda e del filtro).
+- **Sindaci**: nel registro e nella scheda c'è la data di aggiornamento dell'anagrafe; se è ferma da oltre due anni rispetto
+  all'acquisizione del 5 ottobre 2026 il dato è segnato «DA VERIFICARE».
+- **Bilanci**: per ogni comune gli anni dei rendiconti di spesa e di entrata pubblicati (`EXTRA.E[i].bil`); dove manca il
+  rendiconto la pagina scrive «non pubblicato», non zero.
+
 ## Fonti e data
 
 I dati vengono dal file «Database Friuli Venezia Giulia», acquisito il 5 ottobre 2026 da
