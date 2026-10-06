@@ -36,7 +36,8 @@ comuni del foglio «Comuni».
 Ogni comune ha il suo indirizzo: `https://atlantefvg.it/?comune=roveredo-in-piano` apre la pagina con il comune già
 scelto nel filtro e la sua scheda aperta. Quando si sceglie un comune, l'indirizzo nella barra del browser si aggiorna da
 solo. Il pulsante «Condividi il comune» nella scheda manda invece `https://atlantefvg.it/c/roveredo-in-piano/`, che
-mostra nell'anteprima di WhatsApp il nome e i residenti del comune e poi apre la stessa scheda.
+mostra nell'anteprima di WhatsApp il nome e i residenti del comune e apre una pagina con i dati principali e il
+pulsante per la scheda completa.
 Se l'indirizzo indica anche una pagina (`?pagina=mappe&comune=sacile`), il comune resta scelto nel filtro ma la scheda
 non si apre da sola.
 
@@ -59,6 +60,26 @@ decimale, UTF-8) ed **Excel** (libreria SheetJS caricata solo al clic). Si scari
 ogni riga porta tre colonne finali con fonte, periodo dei dati e condizioni di riutilizzo; nel file Excel le stesse
 informazioni stanno nel foglio «Informazioni». Riutilizzo: vale la licenza della fonte; per i dati aperti della Regione le
 licenze in uso sono IODL 2.0 e CC BY 4.0 (verificato sul catalogo regionale il 6 ottobre 2026).
+
+## Motori di ricerca e prestazioni
+
+- **Pagine statiche** generate da `scripts/pagine_comuni.py`, leggibili senza eseguire il programma della pagina:
+  `c/<comune>/` (dati principali con la fonte di ogni riga, percorso, comuni di taglia simile), `provincia/<nome>/`
+  (elenco dei comuni) e una pagina per argomento (`mappe/`, `confronto/`, `autobus/`, `ambiente/`, `comuni/`,
+  `archivio/`, `metodo/`) con il pulsante che apre la pagina interattiva. Non rimandano più da sole all'Atlante.
+- Ogni pagina ha titolo e descrizione propri, un solo H1, indirizzo canonico, percorso (breadcrumb) e dati strutturati
+  schema.org: `BreadcrumbList` ovunque, `Dataset` su `archivio/` (senza licenza unica, che le fonti non hanno),
+  `WebSite` sulla pagina principale. Gli indirizzi con parametri (`?comune=`, `?pagina=`, filtri) hanno come canonico
+  `https://atlantefvg.it/`: si indicizzano le pagine statiche, non le combinazioni di filtri.
+- `sitemap.xml` con 227 indirizzi e data dell'ultimo aggiornamento dei dati; `robots.txt` senza esclusioni.
+- **Stile e icone compilati** dentro `index.html` con `scripts/compila_stile.js` (Tailwind CSS 3.4.19, Lucide 0.469:
+  solo le 111 icone usate). Chart.js si scarica solo al primo grafico. Misura su telefono simulato (Pixel 7, rete 4G
+  lenta, processore rallentato quattro volte): spostamenti del layout da 0,405 a 0, tempo bloccato da circa 5 a circa
+  1,3 secondi. Dopo una modifica allo stile: `npm i --no-save tailwindcss@3.4.19 lucide@0.469.0` e
+  `node scripts/compila_stile.js`.
+- **Controlli dopo il rilascio**: `scripts/controlla_rilascio.py` (flusso «Controlli dopo il rilascio», a ogni
+  pubblicazione e ogni martedì) verifica reindirizzamenti da http e www, sitemap, titoli e descrizioni unici, H1,
+  canonici, dati strutturati, collegamenti interni, file di dati e servizi esterni.
 
 ## Accessibilità e movimento
 
