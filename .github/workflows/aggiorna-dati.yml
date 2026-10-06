@@ -33,6 +33,9 @@ jobs:
       - name: Scarica e prepara la rete degli autobus
         run: python scripts/aggiorna_autobus.py | tee -a esito.txt
 
+      - name: Rigenera le pagine dei comuni per le condivisioni
+        run: python scripts/pagine_comuni.py | tee -a esito.txt
+
       - name: Pubblica se qualcosa è cambiato
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -43,7 +46,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html dati
+          git add index.html dati c sitemap.xml robots.txt
           git commit -m "Aggiorna i dati aperti regionali del $(date +%d/%m/%Y)" -m "$(cat esito.txt)"
           git push
           # chiede a GitHub Pages di ripubblicare il sito
