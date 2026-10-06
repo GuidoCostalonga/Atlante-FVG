@@ -1,6 +1,6 @@
 # Atlante dei Comuni del Friuli Venezia Giulia
 
-Pagina pubblicata su [costalonga.org/Atlante-FVG](https://costalonga.org/Atlante-FVG/).
+Pagina pubblicata su [atlantefvg.it](https://atlantefvg.it/). Il vecchio indirizzo costalonga.org/Atlante-FVG rimanda qui.
 
 I 215 comuni del Friuli Venezia Giulia comune per comune: popolazione, amministratori,
 Terzo settore, sport, cultura, servizi sanitari, scuole, turismo, redditi e ambiente.
@@ -21,6 +21,7 @@ filtrabili per provincia, per comune, per testo e colonna per colonna.
 | `scripts/aggiorna_autobus.py` | Aggiornamento automatico della rete degli autobus |
 | `scripts/aggiorna_dati.py` | Aggiornamento automatico dei dati aperti regionali che cambiano spesso |
 | `.github/workflows/aggiorna-dati.yml` | Esegue l'aggiornamento ogni lunedì e pubblica le novità |
+| `CNAME` | Dominio della pagina, atlantefvg.it |
 | `.nojekyll` | Dice a GitHub Pages di servire i file così come sono |
 
 Ogni file di dati contiene le righe del foglio (`rows`) e, quando il foglio ha una colonna

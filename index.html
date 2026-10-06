@@ -1401,7 +1401,7 @@ btnSu.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 
 /* ===== Trasporto pubblico ===== */
 const BUSONE = 'https://proxy.busone.app/TPLFVG/gtfs-rt/';
-const BUSONE_H = { 'X-BusOne-Client': 'Atlante dei Comuni FVG (https://costalonga.org/Atlante-FVG/)', 'X-BusOne-Use': 'nonprofit' };
+const BUSONE_H = { 'X-BusOne-Client': 'Atlante dei Comuni FVG (https://atlantefvg.it/)', 'X-BusOne-Use': 'nonprofit' };
 const TP_FX = [0.9981337794975602, -0.07416881054833876, 87284.31391544109], TP_FY = [-0.0731952954966455, -0.9967836423904924, 5175818.401653809];
 function tpXY(lat, lon) {
   const a = 6378137, f = 1 / 298.257223563, k0 = 0.9996, e2 = f * (2 - f), ep2 = e2 / (1 - e2), rad = Math.PI / 180;
