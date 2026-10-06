@@ -1415,7 +1415,7 @@ function tpXY(lat, lon) {
 let TPL = null, tpVb = null, tpVb0 = null, tpSel = null, tpMezziOn = false, tpVeicoli = [], tpArrivi = null, tpOraRT = 0, tpTimer = null;
 const svgT = document.getElementById('svgTpl'), tipT = document.getElementById('tipTpl'), panT = document.getElementById('tpPannello');
 const tpNorm = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
-const tpTitolo = s => s.toLowerCase().replace(/(^|[\s'(./-])([a-zàèéìòù])/g, (m, p, c) => p + c.toUpperCase()).replace(/ (In|Di|De|Del|Della|Dei|Al|Alla|Sul|Sulla|Da|E|La|Le|Lo)(?= )/g, m => m.toLowerCase());
+const tpTitolo = s => s.toLowerCase().replace(/(^|[\s'(./-])([a-zàèéìòù])/g, (m, p, c) => p + c.toUpperCase()).replace(/ (In|Di|De|Del|Della|Dei|Al|Alla|Sul|Sulla|Da|E|La|Le|Lo)(?= )/g, m => m.toLowerCase()).replace(/\b(Ii|Iii|Iv|Vi|Vii|Viii|Ix|Xi|Xii|Xiii|Xiv|Xv|Xvi|Xvii|Xviii|Xix|Xx|Xxi|Xxii|Xxiii|Xxiv|Xxv)\b/g, m => m.toUpperCase());
 // nomi tutti maiuscoli o con il paese in maiuscolo davanti («ROVEREDO IN PIANO piazza Roma»): solo l'iniziale maiuscola
 const tpCap = s => (s = s.replace(/\s+/g, ' ').trim(), !/[a-z]/.test(s)) ? tpTitolo(s) : s.replace(/^((?:[A-ZÀÈÉÌÒÙ'.]+ )+)(?=[a-z(]|[A-Z][a-z])/, m => tpTitolo(m.trim()) + ' ');
 const tpBase = j => TPL.percorsi[j][8].replace(/^[^:]*:/, '').replace(/[AREI]$/, '');
