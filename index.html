@@ -294,6 +294,7 @@ tailwind.config = {
             <button class="zoomTpl w-8 h-8 bg-white border border-pietra-200 rounded-md text-primario-800 hover:bg-pietra-100" data-z="reset" aria-label="Vista iniziale"><i data-lucide="maximize" class="w-4 h-4 mx-auto"></i></button>
           </div>
           <div id="tipTpl" class="absolute pointer-events-none bg-primario-900 text-white text-xs rounded-md px-2.5 py-1.5 border border-accento-500 shadow-lg max-w-[16rem]" hidden></div>
+          <div id="tpAttrib" class="absolute bottom-1 left-1 bg-white/85 rounded px-1.5 py-0.5 text-[10px] text-pietra-800" hidden>Vie: © <a class="underline" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">contributori di OpenStreetMap</a></div>
           <div id="statoTpl" class="absolute inset-0 flex items-center justify-center text-sm text-pietra-700">Caricamento della rete…</div>
         </div>
         <p class="text-[11px] text-pietra-700 leading-relaxed" id="notaTpl"></p>
@@ -458,7 +459,7 @@ tailwind.config = {
       <li><b>Rischio idrogeologico.</b> Indicatori ISPRA (Istituto superiore per la protezione e la ricerca ambientale) della piattaforma IdroGEO, scaricati il 6 ottobre 2026: frane dalla mosaicatura 2024 con la popolazione del censimento 2021, alluvioni dalla mosaicatura 2020 con la popolazione del censimento 2011. Sono stime sulle carte dei Piani di assetto idrogeologico, non la misura del rischio della singola casa.</li>
       <li><b>Bilanci comunali.</b> Rendiconti 2018-2023 pubblicati dalla Regione sul portale dei dati aperti, una vista per ente. Alcune viste ripetono le stesse righe (una, intitolata a Ragogna, contiene i dati di Roveredo in Piano): i doppioni sono stati tolti tenendo una riga per anno, comune e voce di bilancio. Le entrate sono pubblicate per 84 comuni.</li>
       <li><b>Elezioni.</b> Regionali 2023 dal portale dei dati aperti della Regione; europee 2024 e Camera 2022 dagli open data Eligendo del Ministero dell'interno. Le percentuali di lista sono calcolate sui voti validi alle liste.</li>
-      <li><b>Autobus.</b> Linee e fermate vengono dai dati GTFS (formato aperto per gli orari del trasporto pubblico) di TPL FVG (Trasporto pubblico locale del Friuli Venezia Giulia), redistribuiti gratuitamente per usi non commerciali da BusOne (busone.app), versione del 6 ottobre 2026. Per ogni linea è disegnato il percorso più frequente. Arrivi e posizione dei mezzi sono letti al momento dal flusso in tempo reale: compaiono solo le corse già partite dal capolinea. Gli orari programmati pubblicati sul Punto di accesso nazionale ai dati sulla mobilità risultano scaduti (TPL FVG al 31 agosto 2026, Trenitalia al 13 giugno 2026): per questo la pagina non riporta l'orario completo né i treni e rimanda a tplfvg.it. Le fermate sono assegnate al comune in base alla posizione: 214 restano senza comune perché si trovano in Veneto o in Slovenia oppure, lungo la costa, appena fuori dal confine disegnato.</li>
+      <li><b>Autobus.</b> Linee e fermate vengono dai dati GTFS (formato aperto per gli orari del trasporto pubblico) di TPL FVG (Trasporto pubblico locale del Friuli Venezia Giulia), redistribuiti gratuitamente per usi non commerciali da BusOne (busone.app) e aggiornati ogni lunedì: la data della versione in uso è indicata sotto la mappa degli autobus. Per ogni linea è disegnato il percorso più frequente. Arrivi e posizione dei mezzi sono letti al momento dal flusso in tempo reale: compaiono solo le corse già partite dal capolinea. Gli orari programmati pubblicati sul Punto di accesso nazionale ai dati sulla mobilità risultano scaduti (TPL FVG al 31 agosto 2026, Trenitalia al 13 giugno 2026): per questo la pagina non riporta l'orario completo né i treni e rimanda a tplfvg.it. Le fermate sono assegnate al comune in base alla posizione: alcune restano senza comune perché si trovano in Veneto o in Slovenia oppure, lungo la costa, appena fuori dal confine disegnato.</li>
       <li><b>Collegamento ai comuni.</b> Le righe sono collegate al comune per codice ISTAT o per nome. Le righe intestate a frazioni, a voci «NON DEFINITO» o a località fuori regione restano senza comune. Nei fogli senza colonna del comune il filtro cerca il nome nel testo: può includere righe che nominano il comune per altri motivi, per esempio una via intitolata a quel comune.</li>
     </ol>
   </div>
@@ -1439,7 +1440,7 @@ function tpGruppo(i) { const f = TPL.fermate[i]; return TPL.fermate.map((g, k) =
 function tpPunti(j) { const p = TPL.percorsi[j]; if (p[6]) return p[6].join(' '); return p[5].map(i => TPL.fermate[i][0] + ' ' + TPL.fermate[i][1]).join(' '); }
 function tpDisegnaBase() {
   const W = GEO.w, H = GEO.h; tpVb0 = { x: -W * 0.03, y: -H * 0.03, w: W * 1.06, h: H * 1.06 }; tpVb = { ...tpVb0 };
-  let h = '<g>' + GEO.comuni.map(c => `<path class="tpCom" data-i="${c.c}" d="${pathDa(c.r)}" fill="#F7F4EE" stroke="#E2DCCF" stroke-width="0.5" vector-effect="non-scaling-stroke"></path>`).join('');
+  let h = '<g>' + GEO.comuni.map(c => `<path class="tpCom" data-i="${c.c}" d="${pathDa(c.r)}" fill="#F7F4EE" stroke="#E2DCCF" stroke-width="0.5" vector-effect="non-scaling-stroke"></path>`).join('') + '</g><g id="tpVie" style="filter: saturate(0.25) brightness(1.04)"></g><g>';
   h += GEO.province.map(p => `<path d="${pathDa(p.r)}" fill="none" stroke="#9AA7B4" stroke-width="1" vector-effect="non-scaling-stroke"></path>`).join('');
   h += `<path d="${pathDa(GEO.regione.r)}" fill="none" stroke="#07213A" stroke-width="1.6" vector-effect="non-scaling-stroke"></path><path id="tpComSel" fill="#FBEFD3" fill-opacity="0.7" stroke="#B8860B" stroke-width="2" vector-effect="non-scaling-stroke" d=""></path></g>`;
   h += '<g id="tpRete">' + TPL.percorsi.map((p, j) => p[5].length ? `<polyline points="${tpPunti(j)}" fill="none" stroke="#${p[2]}" stroke-opacity="0.45" stroke-width="1" vector-effect="non-scaling-stroke" stroke-linejoin="round"></polyline>` : '').join('') + '</g>';
@@ -1450,9 +1451,55 @@ function tpDisegnaBase() {
 function tpApplicaVB() {
   svgT.setAttribute('viewBox', `${tpVb.x} ${tpVb.y} ${tpVb.w} ${tpVb.h}`);
   const r = tpVb.w / 300, g = document.getElementById('tpFermateG'); if (!g) return;
-  g.style.display = tpVb.w < tpVb0.w / 5 ? '' : 'none';
+  const vicino = tpVb.w < tpVb0.w / 5;
+  g.style.display = vicino ? '' : 'none';
+  clearTimeout(tpTimerVie); tpTimerVie = setTimeout(tpDisegnaVie, 120);
   g.querySelectorAll('circle').forEach(c => c.setAttribute('r', r * 0.9));
   svgT.querySelectorAll('.tpR').forEach(c => c.setAttribute('r', r * Number(c.dataset.k || 1)));
+}
+// mappa stradale sotto la rete: tasselli di OpenStreetMap agganciati al disegno con una trasformazione affine per tassello
+let tpTimerVie = null, tpVieOn = null; const tpTasselli = new Map();
+const TP_VIE_DA = 1 / 5; // le vie compaiono sotto un quinto della larghezza iniziale
+function tpLatLon(x, y) { // inversa numerica di tpXY (metodo di Newton)
+  let la = 46.1, lo = 13; const h = 1e-4;
+  for (let n = 0; n < 6; n++) {
+    const [fx, fy] = tpXY(la, lo), [ax, ay] = tpXY(la + h, lo), [bx, by] = tpXY(la, lo + h);
+    const a = (ax - fx) / h, c = (ay - fy) / h, b = (bx - fx) / h, d = (by - fy) / h, det = a * d - b * c, ex = x - fx, ey = y - fy;
+    la += (d * ex - b * ey) / det; lo += (a * ey - c * ex) / det;
+  }
+  return [la, lo];
+}
+const tpTile2Lon = (x, z) => x / 2 ** z * 360 - 180;
+const tpTile2Lat = (y, z) => { const n = Math.PI - 2 * Math.PI * y / 2 ** z; return 180 / Math.PI * Math.atan(Math.sinh(n)); };
+function tpDisegnaVie() {
+  const g = document.getElementById('tpVie'), att = document.getElementById('tpAttrib'); if (!g || !TPL) return;
+  const on = tpVb.w < tpVb0.w * TP_VIE_DA;
+  svgT.querySelectorAll('.tpCom').forEach(p => p.setAttribute('fill-opacity', on ? '0' : '1'));
+  document.getElementById('tpComSel').setAttribute('fill-opacity', on ? '0.12' : '0.7');
+  att.hidden = !on;
+  if (tpVieOn !== on) { tpVieOn = on; svgT.querySelectorAll('#tpRete polyline').forEach(l => { l.setAttribute('stroke-width', on ? '3' : '1'); l.setAttribute('stroke-opacity', on ? '0.8' : '0.45'); }); }
+  if (!on) { g.style.display = 'none'; return; }
+  g.style.display = '';
+  const box = svgT.getBoundingClientRect(), M = svgT.getScreenCTM(); if (!M || !box.width) return;
+  const inv = M.inverse(), pt = svgT.createSVGPoint(), angoli = [[box.left, box.top], [box.right, box.top], [box.left, box.bottom], [box.right, box.bottom]].map(([cx, cy]) => { pt.x = cx; pt.y = cy; const q = pt.matrixTransform(inv); return tpLatLon(q.x, q.y); });
+  const la0 = Math.min(...angoli.map(a => a[0])), la1 = Math.max(...angoli.map(a => a[0])), lo0 = Math.min(...angoli.map(a => a[1])), lo1 = Math.max(...angoli.map(a => a[1]));
+  const mpp = (tpVb.w / box.width) * Math.max(1, (tpVb.h / tpVb.w) / (box.height / box.width)); // metri per pixel sullo schermo
+  const z = Math.max(8, Math.min(19, Math.round(Math.log2(156543.03 * Math.cos((la0 + la1) / 2 * Math.PI / 180) / mpp))));
+  const tx = lo => Math.floor((lo + 180) / 360 * 2 ** z), ty = la => { const r = la * Math.PI / 180; return Math.floor((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * 2 ** z); };
+  const x0 = tx(lo0), x1 = tx(lo1), y0 = ty(la1), y1 = ty(la0);
+  if ((x1 - x0 + 1) * (y1 - y0 + 1) > 80) return;
+  const voluti = new Set();
+  for (let x = x0; x <= x1; x++) for (let y = y0; y <= y1; y++) {
+    const k = `${z}/${x}/${y}`; voluti.add(k); if (tpTasselli.has(k)) continue;
+    const [ax, ay] = tpXY(tpTile2Lat(y, z), tpTile2Lon(x, z)), [bx, by] = tpXY(tpTile2Lat(y, z), tpTile2Lon(x + 1, z)), [cx, cy] = tpXY(tpTile2Lat(y + 1, z), tpTile2Lon(x, z));
+    const im = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+    im.setAttribute('href', `https://tile.openstreetmap.org/${k}.png`);
+    im.setAttribute('width', '1.004'); im.setAttribute('height', '1.004'); im.setAttribute('preserveAspectRatio', 'none');
+    im.setAttribute('transform', `matrix(${bx - ax} ${by - ay} ${cx - ax} ${cy - ay} ${ax} ${ay})`);
+    tpTasselli.set(k, im);
+  }
+  [...tpTasselli.keys()].forEach(k => { if (!voluti.has(k)) { tpTasselli.get(k).remove(); tpTasselli.delete(k); } });
+  voluti.forEach(k => { const im = tpTasselli.get(k); if (im.parentNode !== g) g.appendChild(im); });
 }
 function tpZoomA(x0, y0, x1, y1) {
   const W = Math.max(x1 - x0, tpVb0.w / 25) * 1.25, H = Math.max(y1 - y0, tpVb0.h / 25) * 1.25, box = svgT.getBoundingClientRect();
@@ -1460,7 +1507,7 @@ function tpZoomA(x0, y0, x1, y1) {
   tpVb = { x: (x0 + x1) / 2 - w / 2, y: (y0 + y1) / 2 - hh / 2, w, h: hh }; tpApplicaVB();
 }
 function tpZoom(f, cx, cy) {
-  const nw = Math.min(tpVb0.w * 1.5, Math.max(tpVb0.w / 120, tpVb.w * f)), k = nw / tpVb.w;
+  const nw = Math.min(tpVb0.w * 1.5, Math.max(tpVb0.w / 400, tpVb.w * f)), k = nw / tpVb.w;
   cx = cx ?? tpVb.x + tpVb.w / 2; cy = cy ?? tpVb.y + tpVb.h / 2;
   tpVb = { x: cx - (cx - tpVb.x) * k, y: cy - (cy - tpVb.y) * k, w: tpVb.w * k, h: tpVb.h * k }; tpApplicaVB();
 }
@@ -1506,10 +1553,10 @@ document.querySelectorAll('.zoomTpl').forEach(b => b.addEventListener('click', (
 // selezione: linea o fermata
 function tpDisegnaSel() {
   const g = document.getElementById('tpSelG'); let h = '';
-  document.getElementById('tpRete').setAttribute('opacity', tpSel && tpSel.tipo === 'linea' ? '0.35' : '1');
+  document.getElementById('tpRete').setAttribute('opacity', tpSel && tpSel.tipo === 'linea' ? '0.25' : '1');
   if (tpSel && tpSel.tipo === 'linea') {
     const p = TPL.percorsi[tpSel.j];
-    h += `<polyline points="${tpPunti(tpSel.j)}" fill="none" stroke="#ffffff" stroke-width="7" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"></polyline><polyline points="${tpPunti(tpSel.j)}" fill="none" stroke="#${p[2]}" stroke-width="4" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"></polyline>`;
+    h += `<polyline points="${tpPunti(tpSel.j)}" fill="none" stroke="#07213A" stroke-width="8" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"></polyline><polyline points="${tpPunti(tpSel.j)}" fill="none" stroke="#${p[2]}" stroke-width="5" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"></polyline>`;
     h += p[5].map((i, n) => `<circle class="tpR" data-k="${n === 0 || n === p[5].length - 1 ? 1.6 : 1}" cx="${TPL.fermate[i][0]}" cy="${TPL.fermate[i][1]}" r="1" fill="#ffffff" stroke="#07213A" stroke-width="1.5" vector-effect="non-scaling-stroke"></circle>`).join('');
   }
   if (tpSel && tpSel.tipo === 'fermata') {
@@ -1626,7 +1673,7 @@ function tpPannello(soloAggiorna) {
     } else {
       const top = [...TP_FAM.values()].map(l => l[0]).sort((a, b) => TPL.percorsi[b][7] - TPL.percorsi[a][7]).slice(0, 12);
       h += `<div class="rounded-xl border border-pietra-200 bg-pietra-50 p-3"><div class="font-patriarcale font-bold text-primario-800">La rete TPL FVG</div><div class="grid grid-cols-2 gap-2 mt-2"><div><div class="text-xl font-bold text-primario-800 num">${fmt(TP_FAM.size)}</div><div class="text-[11px] text-pietra-700">linee (andata e ritorno contate una volta)</div></div><div><div class="text-xl font-bold text-primario-800 num">${fmt(TPL.fermate.filter(f => f[5].length).length)}</div><div class="text-[11px] text-pietra-700">fermate servite</div></div></div></div>`;
-      h += `<ul class="text-[13px] text-pietra-800 flex flex-col gap-1.5 list-disc pl-5"><li>Scrivi nel riquadro di ricerca il nome di una fermata, di una via o di una linea.</li><li>Oppure scegli un comune nel filtro territoriale in alto: qui compaiono le sue linee e le sue fermate.</li><li>Ingrandendo la mappa compaiono le fermate: toccane una per vedere gli autobus in arrivo.</li></ul>`;
+      h += `<ul class="text-[13px] text-pietra-800 flex flex-col gap-1.5 list-disc pl-5"><li>Scrivi nel riquadro di ricerca il nome di una fermata, di una via o di una linea.</li><li>Oppure scegli un comune nel filtro territoriale in alto: qui compaiono le sue linee e le sue fermate.</li><li>Ingrandendo la mappa compaiono le vie e le fermate: toccane una per vedere gli autobus in arrivo.</li></ul>`;
       h += `<div class="flex flex-col gap-1"><div class="text-[10px] uppercase tracking-wider text-pietra-700">Linee con più corse</div><div class="flex flex-col">${top.map(tpCardLinea).join('')}</div></div>`;
     }
     if (tpMezziOn) h += `<div class="rounded-lg bg-pietra-50 border border-pietra-200 px-3 py-2 text-[13px]">${tpOraRT ? `<b>${fmt(tpVeicoli.length)}</b> mezzi in viaggio adesso sulla mappa. Toccane uno per vedere la sua linea.` : 'Ricerca dei mezzi in viaggio…'}</div>` + statoRT;
@@ -1678,9 +1725,11 @@ function tpTerritorio() {
   tpPannello();
 }
 async function avviaTrasporti() {
-  document.getElementById('notaTpl').innerHTML = 'Linee e fermate: dati GTFS (formato aperto per gli orari del trasporto pubblico) di TPL FVG, redistribuiti da <a class="underline" href="https://busone.app" target="_blank" rel="noopener">BusOne</a>, versione del 6 ottobre 2026. Arrivi e mezzi in viaggio: flusso in tempo reale di TPL FVG tramite BusOne, letto dal tuo browser al momento. Il tempo reale vede solo le corse già partite. Mancano i treni: gli orari ufficiali pubblicati sul Punto di accesso nazionale ai dati sulla mobilità sono scaduti (Trenitalia al 13 giugno 2026). Per gli orari completi fa fede il sito <a class="underline" href="https://tplfvg.it" target="_blank" rel="noopener">tplfvg.it</a>.';
+  document.getElementById('notaTpl').innerHTML = 'Linee e fermate: dati GTFS (formato aperto per gli orari del trasporto pubblico) di TPL FVG, redistribuiti da <a class="underline" href="https://busone.app" target="_blank" rel="noopener">BusOne</a><span id="tpVers"></span>, aggiornati ogni lunedì. Arrivi e mezzi in viaggio: flusso in tempo reale di TPL FVG tramite BusOne, letto dal tuo browser al momento. Il tempo reale vede solo le corse già partite. Ingrandendo, sotto le linee compare la mappa delle vie di OpenStreetMap, scaricata dal tuo browser. Mancano i treni: gli orari ufficiali pubblicati sul Punto di accesso nazionale ai dati sulla mobilità sono scaduti (Trenitalia al 13 giugno 2026). Per gli orari completi fa fede il sito <a class="underline" href="https://tplfvg.it" target="_blank" rel="noopener">tplfvg.it</a>.';
   if (!(await attendiMappe())) { document.getElementById('statoTpl').textContent = 'Mappa non disponibile.'; return; }
   try { TPL = await scaricaJSON('dati/_tpl_0.txt'); } catch (err) { document.getElementById('statoTpl').textContent = 'Rete dei trasporti non disponibile: ' + err.message; return; }
+  const v = /^(\d{4})(\d{2})(\d{2})/.exec(TPL.versione || '');
+  if (v) document.getElementById('tpVers').textContent = `, versione del ${Number(v[3])} ${['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'][Number(v[2]) - 1]} ${v[1]}`;
   tpIndici(); tpDisegnaBase(); document.getElementById('statoTpl').hidden = true; tpTerritorio();
 }
 
