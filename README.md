@@ -74,6 +74,16 @@ Ingrandendo la mappa degli autobus compare sotto le linee la mappa delle vie di
 [OpenStreetMap](https://www.openstreetmap.org/copyright) (© contributori di OpenStreetMap), scaricata dal browser di
 chi visita la pagina. Ogni riquadro della mappa è agganciato al disegno con le stesse coordinate delle fermate.
 
+## Opere pubbliche
+
+Dai dati aperti [OpenCUP](https://www.opencup.gov.it) (Presidenza del Consiglio dei ministri, DIPE, licenza CC BY 4.0),
+archivio del Nord Est aggiornato ogni mese. `scripts/aggiorna_opere.py` lo scarica (circa 900 MB), lo legge senza estrarlo
+e tiene solo i lavori pubblici (natura 03) localizzati in Friuli Venezia Giulia. Produce il foglio `Opere_pubbliche_OpenCUP`
+(una riga per progetto e comune) e, per ogni comune in `const EXTRA`, il riepilogo della scheda e della mappa: progetti decisi
+negli ultimi cinque anni, costo previsto e costo per abitante (solo progetti localizzati nel solo comune), i sei più grandi.
+Il flusso `.github/workflows/aggiorna-opere.yml` lo esegue il 4 di ogni mese. I dati non distinguono i progetti PNRR: il
+portale Italia Domani non è raggiungibile dai server dell'aggiornamento automatico, che sono fuori dall'Italia.
+
 ## Allerte meteo e qualità dell'aria
 
 Sono lette al momento dal browser di chi visita la pagina, senza passare dal repository.
