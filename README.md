@@ -74,6 +74,20 @@ Ingrandendo la mappa degli autobus compare sotto le linee la mappa delle vie di
 [OpenStreetMap](https://www.openstreetmap.org/copyright) (© contributori di OpenStreetMap), scaricata dal browser di
 chi visita la pagina. Ogni riquadro della mappa è agganciato al disegno con le stesse coordinate delle fermate.
 
+## Allerte meteo e qualità dell'aria
+
+Sono lette al momento dal browser di chi visita la pagina, senza passare dal repository.
+
+| Contenuto | Fonte | Aggiornamento |
+|---|---|---|
+| Allerta di oggi e di domani per le quattro zone del Friuli Venezia Giulia (idrogeologica, idraulica, temporali) | Bollettino di criticità nazionale del Dipartimento della Protezione civile, [pcm-dpc/DPC-Bollettini-Criticita-Idrogeologica-Idraulica](https://github.com/pcm-dpc/DPC-Bollettini-Criticita-Idrogeologica-Idraulica), file `files/all/latest_all.zip` (licenza CC BY 4.0) | Ogni giorno verso le 16 |
+| PM10, PM2,5, biossido di azoto e ozono per centralina | ARPA FVG sul portale dei dati aperti della Regione (dataset `qp5k-6pvm`, `d63p-pqpr`, `ke9b-p6z2`, `7vnx-28uy`) | Dati validati, circa una settimana di ritardo |
+
+Dal bollettino la pagina scarica solo l'indice dell'archivio e le due tabelle delle zone (poche decine di KB) con richieste
+parziali; se il browser non le permette, scarica l'archivio intero (4,6 MB). La zona d'allerta di ogni comune è fissata
+nella pagina (`ZONA_COM`) secondo gli elenchi dei comuni del bollettino del 6 ottobre 2026: 45 comuni nella zona A,
+61 nella B, 102 nella C, 7 nella D.
+
 ## Aggiornamento automatico
 
 Ogni lunedì `scripts/aggiorna_dati.py` riscarica dal portale dei dati aperti della Regione 18 fogli che cambiano
