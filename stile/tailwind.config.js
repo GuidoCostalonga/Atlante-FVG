@@ -11,7 +11,7 @@ module.exports = {
       verde: { 50: '#EEF7F1', 600: '#2F7D4F', 700: '#24613D' }
     },
     fontFamily: {
-      patriarcale: ['Cinzel', 'Georgia', 'serif'],
+      patriarcale: ['"Source Serif 4"', 'Georgia', 'serif'],
       sans: ['"Plus Jakarta Sans"', 'system-ui', 'Segoe UI', 'sans-serif']
     }
   } }
