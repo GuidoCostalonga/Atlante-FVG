@@ -231,7 +231,8 @@ def pagina_argomento(nome, titolo, descr, testi, db, man):
         else:
             corpo += f'<p>Nessuna correzione registrata finora. Il registro è attivo dal {e(data_estesa(reg["inizio"]))}.</p>\n'
         corpo += ('<h2>Statistiche di visita e privacy</h2>\n<p>L\'Atlante conta le visite con <a href="https://www.goatcounter.com/help/privacy">GoatCounter</a>, che non usa cookie né altri sistemi di memoria nel browser e non conserva l\'indirizzo IP né identificativi di chi visita. Si contano in forma aggregata le pagine viste e l\'uso di ricerca, filtri, confronto e download, oltre agli errori di caricamento; per la ricerca solo il fatto che un comune è stato scelto, non il testo scritto. I dati stanno su server di Hetzner Online in Finlandia e in Germania e non sono ceduti a terzi. Non essendoci cookie né tracciamento delle persone, non viene chiesto il consenso.</p>\n'
-                  f'<p>Chi scrive a {POSTA} comunica il proprio indirizzo di posta: serve solo a rispondere alla segnalazione.</p>\n')
+                  f'<p>Chi scrive a {POSTA} comunica il proprio indirizzo di posta: serve solo a rispondere alla segnalazione.</p>\n'
+                  f'<p>Titolare del trattamento: Guido Costalonga. Per qualsiasi richiesta sui dati: <a href="mailto:{POSTA}">{POSTA}</a>.</p>\n')
     if nome == 'archivio':
         fogli = man['manifest']
         corpo += f'<h2>I {len(fogli)} fogli dell\'archivio</h2>\n<div class="riquadro"><table><thead><tr><th scope="col">Foglio</th><th scope="col">Ambito</th><th scope="col" style="text-align:right">Righe</th><th scope="col">Fonte</th></tr></thead><tbody>'
