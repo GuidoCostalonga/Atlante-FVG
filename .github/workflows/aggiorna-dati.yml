@@ -1,16 +1,28 @@
-name: Aggiorna i dati aperti
+name: Aggiorna i dati
 
-# Ogni lunedì alle 5:17 (ora UTC) riscarica dal portale dei dati aperti della Regione FVG
-# i fogli che cambiano spesso e da BusOne la rete degli autobus TPL FVG, poi pubblica le novità.
-# Si può avviare anche a mano da Actions.
+# Ogni lunedì alle 5:17 (ora UTC) aggiorna un quarto delle fonti, a rotazione: in quattro settimane
+# tutto il sito è aggiornato. Il gruppo lo sceglie scripts/aggiorna_dati.py contando le settimane:
+#   1 anagrafe degli amministratori, servizi, elezioni comunali, patrimonio
+#   2 turismo e strutture ricettive, agricoltura
+#   3 commercio, economia, veicoli
+#   4 rifiuti, meteo, mobilità, opere pubbliche OpenCUP e controllo delle fonti da aggiornare a mano
+# La rete degli autobus si controlla ogni settimana: gli orari cambiano in date precise e il file
+# si riscrive solo se cambiano fermate o percorsi.
+# Si può avviare anche a mano da Actions, scegliendo il gruppo o tutti.
 on:
   schedule:
     - cron: '17 5 * * 1'
   workflow_dispatch:
+    inputs:
+      gruppo:
+        description: 'Gruppo da aggiornare (1, 2, 3, 4 oppure tutti); vuoto = gruppo della settimana'
+        required: false
+        default: ''
 
 permissions:
   contents: write
   pages: write
+  issues: write
 
 concurrency:
   group: aggiorna-dati
@@ -19,7 +31,7 @@ concurrency:
 jobs:
   aggiorna:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v5
 
@@ -27,27 +39,60 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Scarica e prepara i dati
-        run: python scripts/aggiorna_dati.py | tee esito.txt
+      - name: Sceglie il gruppo
+        id: gruppo
+        env:
+          SCELTO: ${{ github.event.inputs.gruppo }}
+        run: |
+          if [ "$SCELTO" = "tutti" ]; then g=tutti
+          elif [[ "$SCELTO" =~ ^[1-4]$ ]]; then g=$SCELTO
+          else g=$(python scripts/aggiorna_dati.py --quale-gruppo); fi
+          echo "gruppo=$g" >> "$GITHUB_OUTPUT"
+          echo "Gruppo da aggiornare: $g" | tee esito.txt
+
+      - name: Scarica e prepara i dati del gruppo
+        run: |
+          if [ "${{ steps.gruppo.outputs.gruppo }}" = "tutti" ]; then opz=--tutti; else opz="--gruppo ${{ steps.gruppo.outputs.gruppo }}"; fi
+          python scripts/aggiorna_dati.py $opz | tee -a esito.txt
 
       - name: Scarica e prepara la rete degli autobus
         run: python scripts/aggiorna_autobus.py | tee -a esito.txt
 
-      - name: Rigenera le pagine dei comuni per le condivisioni
+      - name: Scarica e prepara le opere pubbliche (gruppo 4)
+        if: steps.gruppo.outputs.gruppo == '4' || steps.gruppo.outputs.gruppo == 'tutti'
+        run: python scripts/aggiorna_opere.py | tee -a esito.txt
+
+      - name: Controlla le fonti da aggiornare a mano (gruppo 4)
+        if: steps.gruppo.outputs.gruppo == '4' || steps.gruppo.outputs.gruppo == 'tutti'
+        run: python scripts/controlla_fonti.py | tee -a esito.txt
+
+      - name: Segnala su GitHub le fonti da aggiornare a mano
+        if: hashFiles('fonti_da_aggiornare.md') != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          [ -s fonti_da_aggiornare.md ] || exit 0
+          titolo="Fonti da aggiornare a mano"
+          numero=$(gh issue list --state open --search "\"$titolo\" in:title" --json number --jq '.[0].number')
+          if [ -n "$numero" ]; then gh issue comment "$numero" --body-file fonti_da_aggiornare.md
+          else gh issue create --title "$titolo" --body-file fonti_da_aggiornare.md; fi
+
+      - name: Rigenera le pagine statiche
         run: python scripts/pagine_comuni.py | tee -a esito.txt
 
       - name: Pubblica se qualcosa è cambiato
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git diff --quiet; then
+          rm -f fonti_da_aggiornare.md
+          git add -A index.html dati c provincia sitemap.xml robots.txt mappe confronto autobus ambiente comuni archivio metodo
+          if git diff --cached --quiet; then
             echo "Nessuna novità da pubblicare."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html dati c provincia sitemap.xml robots.txt mappe confronto autobus ambiente comuni archivio metodo
-          git commit -m "Aggiorna i dati aperti regionali del $(date +%d/%m/%Y)" -m "$(cat esito.txt)"
+          git commit -m "Aggiorna i dati del gruppo ${{ steps.gruppo.outputs.gruppo }} del $(date +%d/%m/%Y)" -m "$(cat esito.txt)"
           git push
           # chiede a GitHub Pages di ripubblicare il sito
           curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \

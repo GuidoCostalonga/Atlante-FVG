@@ -1,10 +1,9 @@
 name: Aggiorna le opere pubbliche
 
-# Il 4 di ogni mese alle 3:41 (ora UTC) riscarica da OpenCUP i lavori pubblici del Friuli Venezia Giulia
-# (OpenCUP li aggiorna una volta al mese) e pubblica le novità. Si può avviare anche a mano da Actions.
+# Riscarica da OpenCUP i lavori pubblici del Friuli Venezia Giulia e pubblica le novità.
+# In automatico le opere si aggiornano con il gruppo 4 del flusso «Aggiorna i dati» (una volta
+# ogni quattro settimane); questo flusso serve per avviarle a mano da Actions.
 on:
-  schedule:
-    - cron: '41 3 4 * *'
   workflow_dispatch:
 
 permissions:
