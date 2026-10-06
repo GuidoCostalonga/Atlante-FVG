@@ -83,7 +83,7 @@ licenze in uso sono IODL 2.0 e CC BY 4.0 (verificato sul catalogo regionale il 6
 
 ## Segnalazioni, correzioni e statistiche
 
-- **Segnala un errore**: nella scheda di ogni comune, sotto le mappe, nel confronto, nel dettaglio di ogni riga
+- **Segnala un errore** (per posta o via WhatsApp al +39 328 369 2227): nella scheda di ogni comune, sotto le mappe, nel confronto, nel dettaglio di ogni riga
   dell'archivio, nella pagina Metodo e in fondo a ogni pagina statica. Apre un messaggio per `info@atlantefvg.it` con
   l'indirizzo della pagina (filtri compresi), il dato di cui si parla e la versione dei dati.
 - **Registro delle correzioni**: `dati/correzioni.json`, mostrato in Metodo e fonti (pagina interattiva e `metodo/`).
