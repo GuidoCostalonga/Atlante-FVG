@@ -37,6 +37,38 @@ Ogni comune ha il suo indirizzo: `https://atlantefvg.it/?comune=roveredo-in-pian
 scelto nel filtro e la sua scheda aperta. Quando si sceglie un comune, l'indirizzo nella barra del browser si aggiorna da
 solo. Il pulsante «Condividi il comune» nella scheda manda invece `https://atlantefvg.it/c/roveredo-in-piano/`, che
 mostra nell'anteprima di WhatsApp il nome e i residenti del comune e poi apre la stessa scheda.
+Se l'indirizzo indica anche una pagina (`?pagina=mappe&comune=sacile`), il comune resta scelto nel filtro ma la scheda
+non si apre da sola.
+
+## Ricerche condivisibili e download
+
+L'indirizzo conserva il comune (o la provincia), la pagina e i filtri della pagina aperta, così chi riceve il collegamento
+vede la stessa vista. Il pulsante «Condividi questa vista» copia l'indirizzo, «Azzera tutti i filtri» riporta tutto
+allo stato iniziale.
+
+| Parametro | Pagina | Esempio |
+|---|---|---|
+| `comune`, `provincia` | tutte | `comune=roveredo-in-piano`, `provincia=PN` |
+| `livello`, `indicatore` | mappe | `livello=regioni`, `indicatore=tribAb` |
+| `confronta`, `mostra` | confronto | `confronta=udine,pordenone`, `mostra=rapporto` (oppure `assoluti`) |
+| `voto`, `ordina` | comuni | `voto=2027`, `ordina=-p25` |
+| `foglio`, `cerca`, `colonne` | archivio | `foglio=Farmacie&cerca=comunale&colonne={"2":{"sel":"206"}}` |
+
+Registro, tabella della mappa, confronto e fogli dell'archivio si scaricano in **CSV** (virgola come separatore, punto
+decimale, UTF-8) ed **Excel** (libreria SheetJS caricata solo al clic). Si scaricano solo le righe filtrate. Nel CSV
+ogni riga porta tre colonne finali con fonte, periodo dei dati e condizioni di riutilizzo; nel file Excel le stesse
+informazioni stanno nel foglio «Informazioni». Riutilizzo: vale la licenza della fonte; per i dati aperti della Regione le
+licenze in uso sono IODL 2.0 e CC BY 4.0 (verificato sul catalogo regionale il 6 ottobre 2026).
+
+## Accessibilità e movimento
+
+- Fuoco da tastiera ben visibile (bordo blu scuro e alone dorato); intestazioni del registro ordinabili anche con Invio.
+- Tabelle con intestazioni di riga e di colonna; sul telefono la prima colonna di registro e confronto resta ferma.
+- Ogni mappa ha accanto la tabella con gli stessi valori; i grafici hanno un testo alternativo con i loro numeri.
+- Animazioni brevi solo all'apertura di menu, schede e sezioni; i grafici si animano solo la prima volta; con la
+  preferenza di sistema «movimento ridotto» non si muove nulla.
+- Caricamento (rotella), assenza di dati (icona informativa) ed errore (triangolo rosso) hanno tre aspetti diversi.
+- Controllo automatico con axe-core 4.10 sulle pagine principali: nessuna violazione grave o critica al 6 ottobre 2026.
 
 ## Trasparenza dei dati
 

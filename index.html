@@ -68,10 +68,27 @@ tailwind.config = {
   th[data-ord] { cursor: pointer; user-select: none; }
   th[data-ord]:hover { color: #0E4273; }
   tbody tr { cursor: pointer; }
-  :focus-visible { outline: 2px solid #D8973C; outline-offset: 2px; }
+  /* fuoco ben visibile su ogni fondo: bordo blu scuro con alone dorato */
+  :focus-visible { outline: 3px solid #0B3359 !important; outline-offset: 2px; box-shadow: 0 0 0 5px #F7D678 !important; }
   .pulsa { animation: pulsa 2s ease-in-out infinite; }
   @keyframes pulsa { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
-  @media (prefers-reduced-motion: reduce) { .pulsa { animation: none } * { transition: none !important } }
+  /* movimento: aperture brevi, aggiornamenti evidenziati con discrezione, nessun effetto continuo */
+  @keyframes compari { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
+  @keyframes scompari { to { opacity: 0; transform: translateY(4px) } }
+  @keyframes aggiornato { from { background-color: #FCEBB9 } to { background-color: transparent } }
+  @keyframes gira { to { transform: rotate(360deg) } }
+  .compari { animation: compari .18s ease-out both; }
+  .scompari { animation: scompari .12s ease-in both !important; }
+  .aggiornato { animation: aggiornato .9s ease-out; }
+  details[open] > :not(summary) { animation: compari .18s ease-out both; }
+  details > summary { cursor: pointer; }
+  .rotella { display: inline-block; width: 14px; height: 14px; border: 2px solid #B6D4EE; border-top-color: #155E9E; border-radius: 50%; animation: gira .8s linear infinite; flex-shrink: 0; }
+  /* tabelle larghe sul telefono: la prima colonna resta ferma mentre si scorre di lato */
+  .tab-ferma tbody th:first-child, .tab-ferma tbody td:first-child, .tab-ferma thead th:first-child { position: sticky; left: 0; z-index: 1; background: #ffffff; }
+  .tab-ferma thead th:first-child { background: #F4F1EA; z-index: 3; }
+  .tab-ferma tbody tr.gruppo th { position: static; background: #F0F6FB; }
+  @media (pointer: coarse) { button, select, input[type="search"], .vaiPagina { min-height: 40px; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
   #toast { transition: transform .3s ease, opacity .3s ease; }
   @media print {
     @page { size: A4; margin: 12mm; }
@@ -142,15 +159,22 @@ tailwind.config = {
   <div id="statoDati" class="-mt-4 text-[11px] text-pietra-700 flex flex-wrap items-center gap-x-3 gap-y-1" aria-live="polite"></div>
 
   <!-- 3. Banner di sezione -->
-  <section id="intro" class="rounded-2xl bg-gradient-to-r from-primario-900 to-primario-700 text-white p-6 cornice-oro flex flex-wrap items-end justify-between gap-4">
-    <div class="min-w-0 max-w-3xl">
+  <section id="intro" class="rounded-2xl bg-gradient-to-r from-primario-900 to-primario-700 text-white p-5 sm:p-8 cornice-oro">
+    <div class="max-w-3xl">
       <div class="text-[11px] uppercase tracking-[0.2em] text-accento-300">Monitoraggio territoriale</div>
-      <h1 class="font-patriarcale font-black text-2xl sm:text-3xl mt-1">Il Friuli Venezia Giulia, comune per comune</h1>
-      <p class="text-primario-100 text-sm mt-2 leading-relaxed">Popolazione, amministratori, Terzo settore, sport, cultura, servizi sanitari, scuole, turismo, redditi e ambiente per tutti i 215 comuni, con le mappe del territorio e l'archivio completo dei dati. Fonti: database regionale acquisito il 5 ottobre 2026 e banca dati «Regione FVG Dati» del 16 settembre 2026. Ogni dato riporta l'anno della propria fonte.</p>
+      <h1 class="font-patriarcale font-black text-2xl sm:text-4xl mt-1">Il Friuli Venezia Giulia, comune per comune</h1>
+      <p class="text-primario-100 text-sm sm:text-base mt-2 leading-relaxed">I dati pubblici dei 215 comuni in un solo posto: popolazione, amministratori, servizi, bilanci, opere pubbliche, elezioni, ambiente e trasporti, ciascuno con la sua fonte e la sua data.</p>
     </div>
-    <button id="btnCopiaTabella" class="inline-flex items-center gap-2 bg-accento-500 hover:bg-accento-600 text-primario-900 font-semibold text-sm rounded-lg px-4 py-2.5 shrink-0">
-      <i data-lucide="clipboard-copy" class="w-4 h-4"></i>Copia la tabella per Excel
-    </button>
+    <div class="mt-5 max-w-2xl">
+      <label for="ricercaHome" class="block text-sm font-semibold text-accento-200 mb-1.5">Cerca il tuo comune</label>
+      <div class="relative">
+        <i data-lucide="search" class="w-5 h-5 text-pietra-700 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+        <input id="ricercaHome" type="search" autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls="ricSuggHome" aria-expanded="false" placeholder="Nome del comune, del sindaco o codice ISTAT" class="w-full pl-11 pr-4 py-3.5 text-base rounded-xl bg-white text-pietra-900 border-2 border-accento-400 focus:outline-none">
+        <div id="ricSuggHome" role="listbox" aria-label="Comuni trovati" class="compari absolute z-20 left-0 right-0 top-full mt-1 bg-white text-pietra-900 border border-pietra-200 rounded-lg shadow-lg max-h-80 overflow-y-auto" hidden></div>
+      </div>
+    </div>
+    <nav class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-3" id="percorsi" aria-label="I tre percorsi principali"></nav>
+    <p class="text-primario-100 text-[11px] mt-4 leading-relaxed max-w-3xl">Fonti: database regionale acquisito il 5 ottobre 2026 e banca dati «Regione FVG Dati» del 16 settembre 2026. Ogni dato riporta l'anno della propria fonte.</p>
   </section>
 
   <!-- Filtro territoriale: vale per il registro e per tutto l'archivio -->
@@ -171,7 +195,9 @@ tailwind.config = {
     </div>
     <button id="btnSchedaCom" class="inline-flex items-center gap-2 text-sm bg-primario-700 hover:bg-primario-800 text-white rounded-lg px-4 py-2 disabled:opacity-40 disabled:cursor-not-allowed" disabled><i data-lucide="file-text" class="w-4 h-4"></i><span class="sm:hidden">Scheda</span><span class="hidden sm:inline">Apri la scheda del comune</span></button>
     <button id="btnTerrReset" class="inline-flex items-center gap-1 text-sm text-primario-700 border border-primario-200 rounded-lg px-3 py-2 hover:bg-primario-50" aria-label="Togli il filtro"><i data-lucide="x-circle" class="w-4 h-4"></i><span class="hidden sm:inline">Togli il filtro</span></button>
-    <div id="terrStato" class="text-[11px] sm:text-xs text-pietra-700 basis-full"></div>
+    <button id="btnAzzeraTutto" class="inline-flex items-center gap-1 text-sm text-primario-700 border border-primario-200 rounded-lg px-3 py-2 hover:bg-primario-50" aria-label="Azzera tutti i filtri"><i data-lucide="rotate-ccw" class="w-4 h-4"></i><span class="sm:hidden">Azzera</span><span class="hidden sm:inline">Azzera tutti i filtri</span></button>
+    <button id="btnCondividiVista" class="inline-flex items-center gap-1 text-sm text-primario-700 border border-primario-200 rounded-lg px-3 py-2 hover:bg-primario-50" aria-label="Condividi questa vista con i filtri scelti"><i data-lucide="link" class="w-4 h-4"></i><span class="sm:hidden">Condividi</span><span class="hidden sm:inline">Condividi questa vista</span></button>
+    <div id="terrStato" class="text-[11px] sm:text-xs text-pietra-700 basis-full" aria-live="polite"></div>
   </section>
 
   <!-- 4. Indicatori principali -->
@@ -206,14 +232,14 @@ tailwind.config = {
           <h2 class="font-patriarcale font-bold text-lg text-primario-800" id="titoloGrafico">Residenti per provincia</h2>
           <p class="text-xs text-pietra-700" id="notaGrafico"></p>
         </div>
-        <div class="flex flex-wrap gap-1 bg-pietra-100 p-1 rounded-lg" role="tablist">
+        <div class="flex flex-wrap gap-1 bg-pietra-100 p-1 rounded-lg" role="group" aria-label="Grafico da mostrare">
           <button class="vista px-3 py-1.5 text-xs font-semibold rounded-md" data-vista="pop">Residenti</button>
           <button class="vista px-3 py-1.5 text-xs font-semibold rounded-md" data-vista="runts">Terzo settore</button>
           <button class="vista px-3 py-1.5 text-xs font-semibold rounded-md" data-vista="turAnni">Turismo per anno</button>
           <button class="vista px-3 py-1.5 text-xs font-semibold rounded-md" data-vista="turTop">Primi 10 comuni</button>
         </div>
       </div>
-      <div class="relative mt-4" style="height: 300px"><canvas id="grafico" aria-label="Grafico" role="img"></canvas></div>
+      <div class="relative mt-4" style="height: 300px"><canvas id="grafico" aria-label="Grafico" role="img"><p id="graficoTesto"></p></canvas></div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-5 pt-4 border-t border-pietra-200" id="indicatoriRapidi"></div>
     </div>
     <div class="bg-white rounded-xl p-5 cornice-oro min-w-0">
@@ -230,7 +256,7 @@ tailwind.config = {
 
   <!-- Pagina iniziale: le altre pagine -->
   <section id="esplora" class="scroll-mt-32 md:scroll-mt-24">
-    <h2 class="font-patriarcale font-bold text-lg text-primario-800 mb-3">Esplora l'Atlante</h2>
+    <h2 class="font-patriarcale font-bold text-lg text-primario-800 mb-3">Altre pagine</h2>
     <div id="esploraPagine" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
   </section>
 
@@ -242,7 +268,7 @@ tailwind.config = {
         <h2 class="font-patriarcale font-bold text-lg text-primario-800">Il territorio a colpo d'occhio</h2>
         <p class="text-xs text-pietra-700 max-w-3xl">Scegli un indicatore: ogni comune si colora secondo il suo valore. Tocca un comune per sceglierlo nel filtro territoriale e aprirne la scheda. Con la rotella o i pulsanti ingrandisci, trascinando ti sposti.</p>
       </div>
-      <div class="flex flex-wrap gap-1 bg-pietra-100 p-1 rounded-lg" role="tablist" aria-label="Livello della mappa">
+      <div class="flex flex-wrap gap-1 bg-pietra-100 p-1 rounded-lg" role="group" aria-label="Livello della mappa">
         <button class="livMappa px-3 py-1.5 text-xs font-semibold rounded-md" data-liv="comuni">Comuni del FVG</button>
         <button class="livMappa px-3 py-1.5 text-xs font-semibold rounded-md" data-liv="regioni">Regioni d'Italia</button>
       </div>
@@ -263,9 +289,16 @@ tailwind.config = {
             <button class="zoomMappa w-8 h-8 bg-white border border-pietra-200 rounded-md text-primario-800 hover:bg-pietra-100" data-z="reset" aria-label="Vista iniziale"><i data-lucide="maximize" class="w-4 h-4 mx-auto"></i></button>
           </div>
           <div id="tipMappa" class="absolute pointer-events-none bg-primario-900 text-white text-xs rounded-md px-2.5 py-1.5 border border-accento-500 shadow-lg" hidden></div>
-          <div id="statoMappa" class="absolute inset-0 flex items-center justify-center text-sm text-pietra-700">Caricamento della mappa…</div>
+          <div id="statoMappa" class="absolute inset-0 flex items-center justify-center gap-2 text-sm text-pietra-700" role="status"><span class="rotella" aria-hidden="true"></span>Caricamento della mappa…</div>
         </div>
         <p id="notaMappa" class="text-[11px] text-pietra-700 leading-relaxed"></p>
+        <details id="tabMappa" class="rounded-xl border border-pietra-200 bg-white">
+          <summary class="px-3 py-2.5 text-sm font-semibold text-primario-800 flex flex-wrap items-center justify-between gap-2"><span class="inline-flex items-center gap-2"><i data-lucide="table" class="w-4 h-4 text-accento-600"></i>Tabella dei valori della mappa</span><span class="text-[11px] font-normal text-pietra-700">la stessa informazione della mappa, comune per comune</span></summary>
+          <div class="px-3 pb-3 flex flex-col gap-2">
+            <div class="flex flex-wrap items-center gap-2"><span class="inline-flex items-center rounded-lg border border-primario-200 overflow-hidden" role="group" aria-label="Scarica i dati"><span class="text-xs text-pietra-700 px-2 py-2 bg-pietra-50 border-r border-primario-200 inline-flex items-center gap-1"><i data-lucide="download" class="w-3.5 h-3.5"></i>Scarica</span><button class="scarica text-sm text-primario-700 font-semibold px-3 py-2 hover:bg-primario-50" data-t="mappa" data-f="csv">CSV</button><button class="scarica text-sm text-primario-700 font-semibold px-3 py-2 hover:bg-primario-50 border-l border-primario-200" data-t="mappa" data-f="xlsx">Excel</button></span></div>
+            <div class="overflow-auto max-h-[420px] border border-pietra-200 rounded-lg"><table class="w-full text-xs tab-ferma"><caption class="sr-only" id="tmDidascalia"></caption><thead class="bg-pietra-100 text-pietra-800 sticky top-0 z-10" id="tmTesta"></thead><tbody id="tmCorpo" class="divide-y divide-pietra-100"></tbody></table></div>
+          </div>
+        </details>
         <div id="boxStrati" class="rounded-xl border border-pietra-200 bg-pietra-50 p-3">
           <div class="flex flex-wrap items-baseline justify-between gap-2"><div class="font-patriarcale font-bold text-sm text-primario-800">Servizi sulla mappa</div><div class="text-[11px] text-pietra-700">Spunta uno o più strati: ogni punto è un servizio, passaci sopra per leggerne il nome.</div></div>
           <div id="strati" class="mt-2 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-1.5 text-xs"></div>
@@ -291,12 +324,22 @@ tailwind.config = {
       <div class="flex flex-wrap gap-2">
         <button id="btnCfVicini" class="inline-flex items-center gap-1 text-sm text-primario-700 border border-primario-200 rounded-lg px-3 py-2 hover:bg-primario-50"><i data-lucide="users" class="w-4 h-4"></i>Comuni di taglia simile</button>
         <button id="btnCfCopia" class="inline-flex items-center gap-2 text-sm bg-accento-500 hover:bg-accento-600 text-primario-900 font-semibold rounded-lg px-3 py-2"><i data-lucide="clipboard-copy" class="w-4 h-4"></i>Copia per Excel</button>
+        <span class="inline-flex items-center rounded-lg border border-primario-200 overflow-hidden" role="group" aria-label="Scarica i dati"><span class="text-xs text-pietra-700 px-2 py-2 bg-pietra-50 border-r border-primario-200 inline-flex items-center gap-1"><i data-lucide="download" class="w-3.5 h-3.5"></i>Scarica</span><button class="scarica text-sm text-primario-700 font-semibold px-3 py-2 hover:bg-primario-50" data-t="confronto" data-f="csv">CSV</button><button class="scarica text-sm text-primario-700 font-semibold px-3 py-2 hover:bg-primario-50 border-l border-primario-200" data-t="confronto" data-f="xlsx">Excel</button></span>
       </div>
     </div>
     <div class="p-4 sm:p-5 flex flex-col gap-4">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-2" id="cfSel"></div>
-      <div class="overflow-x-auto"><table class="w-full text-sm min-w-[640px]"><thead id="cfTesta" class="bg-pietra-100 text-pietra-800"></thead><tbody id="cfCorpo" class="divide-y divide-pietra-100"></tbody></table></div>
-      <p class="text-[11px] text-pietra-700">Fonti: quelle indicate per ciascun indicatore nella sezione Mappe. Le celle vuote indicano un dato non disponibile.</p>
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-[10px] uppercase tracking-wider text-pietra-700" id="cfVistaEt">Mostra</span>
+        <div class="flex flex-wrap gap-1 bg-pietra-100 p-1 rounded-lg" role="group" aria-labelledby="cfVistaEt" id="cfVista">
+          <button class="cfV px-3 py-1.5 text-xs font-semibold rounded-md" data-v="tutti">Tutti gli indicatori</button>
+          <button class="cfV px-3 py-1.5 text-xs font-semibold rounded-md" data-v="rapporto">Per abitante, medie e percentuali</button>
+          <button class="cfV px-3 py-1.5 text-xs font-semibold rounded-md" data-v="assoluti">Valori assoluti</button>
+        </div>
+      </div>
+      <p class="text-[12px] text-pietra-800 leading-relaxed">Ogni riga mette a confronto i comuni sullo stesso periodo, scritto sotto il nome dell'indicatore. Fra una riga e l'altra il periodo può cambiare: le righe con dati anteriori al 2025 sono segnate <span class="inline-block rounded border border-accento-300 bg-accento-50 text-accento-700 text-[10px] font-semibold px-1">periodo meno recente</span>. Per confrontare comuni di taglia diversa conviene guardare i valori per abitante.</p>
+      <div class="overflow-x-auto"><table class="w-full text-sm min-w-[640px] tab-ferma"><caption class="sr-only" id="cfDidascalia">Confronto fra comuni</caption><thead id="cfTesta" class="bg-pietra-100 text-pietra-800"></thead><tbody id="cfCorpo" class="divide-y divide-pietra-100"></tbody></table></div>
+      <p class="text-[11px] text-pietra-700">Fonti: quelle indicate per ciascun indicatore nella pagina Mappe e in Metodo e fonti. «n.d.» indica un dato non disponibile, non uno zero.</p>
     </div>
   </section>
 
@@ -327,7 +370,7 @@ tailwind.config = {
           </div>
           <div id="tipTpl" class="absolute pointer-events-none bg-primario-900 text-white text-xs rounded-md px-2.5 py-1.5 border border-accento-500 shadow-lg max-w-[16rem]" hidden></div>
           <div id="tpAttrib" class="absolute bottom-1 left-1 bg-white/85 rounded px-1.5 py-0.5 text-[10px] text-pietra-800" hidden>Vie: © <a class="underline" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">contributori di OpenStreetMap</a></div>
-          <div id="statoTpl" class="absolute inset-0 flex items-center justify-center text-sm text-pietra-700">Caricamento della rete…</div>
+          <div id="statoTpl" class="absolute inset-0 flex items-center justify-center gap-2 text-sm text-pietra-700" role="status"><span class="rotella" aria-hidden="true"></span>Caricamento della rete…</div>
         </div>
         <p class="text-[11px] text-pietra-700 leading-relaxed" id="notaTpl"></p>
       </div>
@@ -346,8 +389,8 @@ tailwind.config = {
       <!-- Allerte -->
       <div class="min-w-0 flex flex-col gap-3">
         <div class="flex flex-wrap items-end justify-between gap-2">
-          <div><div class="text-[11px] text-pietra-700" id="alEmesso">Lettura del bollettino…</div></div>
-          <div class="flex gap-1 bg-pietra-100 p-1 rounded-lg" role="tablist" aria-label="Giorno dell'allerta">
+          <div><div class="text-[11px] text-pietra-700" id="alEmesso" role="status"><span class="inline-flex items-center gap-2"><span class="rotella" aria-hidden="true"></span>Lettura del bollettino…</span></div></div>
+          <div class="flex gap-1 bg-pietra-100 p-1 rounded-lg" role="group" aria-label="Giorno dell'allerta">
             <button class="alGiorno px-3 py-1.5 text-xs font-semibold rounded-md" data-g="today">Oggi</button>
             <button class="alGiorno px-3 py-1.5 text-xs font-semibold rounded-md" data-g="tomorrow">Domani</button>
           </div>
@@ -374,8 +417,8 @@ tailwind.config = {
       <!-- Aria -->
       <div class="min-w-0 flex flex-col gap-3">
         <div class="flex flex-wrap items-end justify-between gap-2">
-          <div><div class="text-[11px] text-pietra-700" id="arData">Lettura delle centraline…</div></div>
-          <div class="flex flex-wrap gap-1 bg-pietra-100 p-1 rounded-lg" role="tablist" aria-label="Inquinante">
+          <div><div class="text-[11px] text-pietra-700" id="arData" role="status"><span class="inline-flex items-center gap-2"><span class="rotella" aria-hidden="true"></span>Lettura delle centraline…</span></div></div>
+          <div class="flex flex-wrap gap-1 bg-pietra-100 p-1 rounded-lg" role="group" aria-label="Inquinante">
             <button class="arInq px-2.5 py-1.5 text-xs font-semibold rounded-md" data-i="pm10">PM10</button>
             <button class="arInq px-2.5 py-1.5 text-xs font-semibold rounded-md" data-i="pm25">PM2,5</button>
             <button class="arInq px-2.5 py-1.5 text-xs font-semibold rounded-md" data-i="no2">Biossido di azoto</button>
@@ -390,7 +433,7 @@ tailwind.config = {
           <div id="arPannello" class="flex flex-col gap-2 text-sm min-w-0"></div>
         </div>
         <div id="arLegenda" class="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-pietra-800"></div>
-        <div id="arGraficoBox" class="rounded-xl border border-pietra-200 p-3" hidden><div class="text-[12px] font-semibold text-primario-800" id="arGraficoTit"></div><div class="relative mt-2" style="height: 180px"><canvas id="arGrafico"></canvas></div></div>
+        <div id="arGraficoBox" class="rounded-xl border border-pietra-200 p-3" hidden><div class="text-[12px] font-semibold text-primario-800" id="arGraficoTit"></div><div class="relative mt-2" style="height: 180px"><canvas id="arGrafico" role="img" aria-label="Andamento della qualità dell'aria nella centralina scelta"></canvas></div></div>
         <p class="text-[11px] text-pietra-700 leading-relaxed" id="arNota"></p>
       </div>
     </div>
@@ -409,20 +452,23 @@ tailwind.config = {
           <option value="">Prossime elezioni: tutte</option><option value="2027">Al voto nel 2027</option><option value="2028">Al voto nel 2028</option><option value="2029">Al voto nel 2029</option><option value="2030">Al voto nel 2030</option><option value="2031">Al voto nel 2031</option>
         </select>
         <button id="btnReset" class="inline-flex items-center gap-1 text-sm text-primario-700 border border-primario-200 rounded-lg px-3 py-2 hover:bg-primario-50"><i data-lucide="rotate-ccw" class="w-4 h-4"></i>Azzera</button>
+        <button id="btnCopiaTabella" class="inline-flex items-center gap-2 bg-accento-500 hover:bg-accento-600 text-primario-900 font-semibold text-sm rounded-lg px-3 py-2"><i data-lucide="clipboard-copy" class="w-4 h-4"></i>Copia per Excel</button>
+        <span class="inline-flex items-center rounded-lg border border-primario-200 overflow-hidden" role="group" aria-label="Scarica i dati"><span class="text-xs text-pietra-700 px-2 py-2 bg-pietra-50 border-r border-primario-200 inline-flex items-center gap-1"><i data-lucide="download" class="w-3.5 h-3.5"></i>Scarica</span><button class="scarica text-sm text-primario-700 font-semibold px-3 py-2 hover:bg-primario-50" data-t="registro" data-f="csv">CSV</button><button class="scarica text-sm text-primario-700 font-semibold px-3 py-2 hover:bg-primario-50 border-l border-primario-200" data-t="registro" data-f="xlsx">Excel</button></span>
       </div>
     </div>
     <div class="overflow-auto max-h-[560px]">
-      <table class="w-full text-sm min-w-[760px]">
+      <table class="w-full text-sm min-w-[760px] tab-ferma">
+        <caption class="sr-only">Registro dei comuni del Friuli Venezia Giulia: tocca un'intestazione per ordinare, una riga per aprire la scheda</caption>
         <thead class="bg-pietra-100 uppercase font-patriarcale text-[11px] text-pietra-800 tracking-wide sticky top-0 z-10">
           <tr>
-            <th class="text-left px-4 py-3" data-ord="n">Comune</th>
-            <th class="text-left px-3 py-3" data-ord="pv">Prov.</th>
-            <th class="text-right px-3 py-3" data-ord="p25">Residenti 2025</th>
-            <th class="text-right px-3 py-3" data-ord="var">Var. sul 2024</th>
-            <th class="text-left px-3 py-3" data-ord="sin">Sindaco in anagrafe</th>
-            <th class="text-right px-3 py-3" data-ord="ru">Enti RUNTS</th>
-            <th class="text-right px-3 py-3" data-ord="pr">Presenze 2025</th>
-            <th class="text-center px-3 py-3" data-ord="el">Prossimo voto</th>
+            <th scope="col" class="text-left px-4 py-3" data-ord="n">Comune</th>
+            <th scope="col" class="text-left px-3 py-3" data-ord="pv">Prov.</th>
+            <th scope="col" class="text-right px-3 py-3" data-ord="p25">Residenti 2025</th>
+            <th scope="col" class="text-right px-3 py-3" data-ord="var">Var. sul 2024</th>
+            <th scope="col" class="text-left px-3 py-3" data-ord="sin">Sindaco in anagrafe</th>
+            <th scope="col" class="text-right px-3 py-3" data-ord="ru">Enti RUNTS</th>
+            <th scope="col" class="text-right px-3 py-3" data-ord="pr">Presenze 2025</th>
+            <th scope="col" class="text-center px-3 py-3" data-ord="el">Prossimo voto</th>
           </tr>
         </thead>
         <tbody id="corpoTabella" class="divide-y divide-pietra-100"></tbody>
@@ -444,6 +490,7 @@ tailwind.config = {
       </div>
       <div class="text-xs text-pietra-700 num" id="archTot"></div>
     </div>
+    <p class="px-5 pt-3 text-[11px] text-pietra-700 leading-relaxed">I download contengono solo le righe filtrate e, in ogni file, fonte, data dei dati e condizioni di riutilizzo. Riutilizzo: vale la licenza della fonte di ciascun foglio; per i dati aperti della Regione le licenze in uso sono la IODL 2.0 (Italian Open Data License) e la CC BY 4.0 (Creative Commons Attribuzione). Citare sempre la fonte e l'Atlante FVG.</p>
     <div class="grid grid-cols-1 lg:grid-cols-[18rem_minmax(0,1fr)]">
       <!-- elenco dei fogli -->
       <aside class="border-b lg:border-b-0 lg:border-r border-pietra-200 p-4 min-w-0">
@@ -467,6 +514,7 @@ tailwind.config = {
           <button id="btnFiltriCol" class="inline-flex items-center gap-2 text-sm border border-primario-200 text-primario-700 rounded-lg px-3 py-2 hover:bg-primario-50" aria-expanded="false"><i data-lucide="sliders-horizontal" class="w-4 h-4"></i>Filtri per colonna <span id="nFiltri" class="num"></span></button>
           <button id="btnAzzeraArch" class="inline-flex items-center gap-1 text-sm text-primario-700 border border-primario-200 rounded-lg px-3 py-2 hover:bg-primario-50"><i data-lucide="rotate-ccw" class="w-4 h-4"></i>Azzera</button>
           <button id="btnCopiaFoglio" class="inline-flex items-center gap-2 text-sm bg-accento-500 hover:bg-accento-600 text-primario-900 font-semibold rounded-lg px-3 py-2"><i data-lucide="clipboard-copy" class="w-4 h-4"></i>Copia per Excel</button>
+          <span class="inline-flex items-center rounded-lg border border-primario-200 overflow-hidden" role="group" aria-label="Scarica i dati"><span class="text-xs text-pietra-700 px-2 py-2 bg-pietra-50 border-r border-primario-200 inline-flex items-center gap-1"><i data-lucide="download" class="w-3.5 h-3.5"></i>Scarica</span><button class="scarica text-sm text-primario-700 font-semibold px-3 py-2 hover:bg-primario-50" data-t="archivio" data-f="csv">CSV</button><button class="scarica text-sm text-primario-700 font-semibold px-3 py-2 hover:bg-primario-50 border-l border-primario-200" data-t="archivio" data-f="xlsx">Excel</button></span>
         </div>
         <label class="flex items-center gap-2 text-xs text-pietra-800" id="rigaUsaTerr"><input type="checkbox" id="usaTerr" class="accent-primario-700" checked><span id="usaTerrTesto">Applica il filtro territoriale</span></label>
         <div id="pannelloFiltri" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 bg-pietra-50 border border-pietra-200 rounded-xl p-4" hidden></div>
@@ -611,6 +659,23 @@ const fmt1 = n => n == null ? '' : Number(n).toLocaleString('it-IT', { minimumFr
 const segno = n => (n > 0 ? '+' : n < 0 ? '−' : '') + fmt1(Math.abs(n));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
 const titolo = s => String(s || '').toLowerCase().replace(/(^|[\s'’])(\p{L})/gu, (m, a, b) => a + b.toUpperCase());
+/* Movimento e stati: chi chiede movimento ridotto vede tutto fermo; caricamento, assenza di dati ed errore hanno tre aspetti diversi */
+const MOTO_RIDOTTO = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+const caricaHTML = t => `<span class="inline-flex items-center gap-2" role="status"><span class="rotella" aria-hidden="true"></span>${t}</span>`;
+const erroreHTML = t => `<span class="inline-flex items-start gap-2 text-enfasi-700" role="alert"><i data-lucide="triangle-alert" class="w-4 h-4 shrink-0 mt-0.5"></i><span>${t}</span></span>`;
+const vuotoHTML = t => `<span class="inline-flex items-start gap-2 text-pietra-700"><i data-lucide="info" class="w-4 h-4 shrink-0 mt-0.5"></i><span>${t}</span></span>`;
+function mostra(el) { if (!el) return; clearTimeout(el._chiudi); el.querySelectorAll('.scompari').forEach(x => x.classList.remove('scompari')); el.classList.remove('scompari'); el.hidden = false; }
+function nascondi(el, parte) {
+  if (!el || el.hidden) return; const p = parte || el;
+  if (MOTO_RIDOTTO) { el.hidden = true; return; }
+  p.classList.add('scompari'); clearTimeout(el._chiudi);
+  el._chiudi = setTimeout(() => { el.hidden = true; p.classList.remove('scompari'); }, 120);
+}
+if (window.Chart) { Chart.defaults.font.family = '"Plus Jakarta Sans", system-ui, sans-serif'; Chart.defaults.color = '#52565E'; if (MOTO_RIDOTTO) Chart.defaults.animation = false; }
+function segnalaAggiornato(...ids) {
+  if (MOTO_RIDOTTO || typeof avvioInCorso === 'undefined' || avvioInCorso) return;
+  ids.forEach(id => { const el = document.getElementById(id); if (!el) return; el.classList.remove('aggiornato'); void el.offsetWidth; el.classList.add('aggiornato'); });
+}
 
 /* Orologio */
 function aggiornaOrologio() {
@@ -660,7 +725,7 @@ const car = Object.entries(DB.meta.cariche).sort((a, b) => b[1] - a[1]).slice(0,
 barre('listaCariche', car.map(([k, v]) => [CAR[k] || k, v]), Object.values(DB.meta.cariche).reduce((s, x) => s + x, 0), '#155E9E');
 
 /* Grafico */
-let grafico;
+let grafico, graficoInAttesa = false;
 function ottieniDatiGrafico(tipo) {
   if (tipo === 'pop') {
     return { titolo: 'Residenti per provincia', nota: 'Popolazione al 31 dicembre 2025, tavola 19.2 dell\'Annuario statistico regionale 2026.',
@@ -681,8 +746,10 @@ function ottieniDatiGrafico(tipo) {
 }
 function inizializzaGrafico() {
   Chart.defaults.font.family = '"Plus Jakarta Sans", system-ui, sans-serif';
+  if (MOTO_RIDOTTO) Chart.defaults.animation = false;
   Chart.defaults.color = '#52565E';
   // Chart.js misura le etichette una volta sola: si disegna quando il carattere della pagina è arrivato, altrimenti i numeri dell'asse escono tagliati
+  if (grafico || graficoInAttesa) return; graficoInAttesa = true;
   const disegna = () => { if (grafico) return; grafico = new Chart(document.getElementById('grafico'), { type: 'bar', data: { labels: [], datasets: [] }, options: { maintainAspectRatio: false } }); cambiaVistaGrafico('pop'); };
   if (document.fonts && document.fonts.load) Promise.race([document.fonts.load('400 12px "Plus Jakarta Sans"'), new Promise(r => setTimeout(r, 3000))]).then(disegna, disegna); else disegna();
 }
@@ -692,7 +759,7 @@ function cambiaVistaGrafico(tipo) {
   document.querySelectorAll('.vista').forEach(b => {
     const on = b.dataset.vista === tipo;
     b.className = 'vista px-3 py-1.5 text-xs font-semibold rounded-md ' + (on ? 'bg-primario-700 text-white shadow' : 'text-pietra-700 hover:bg-white');
-    b.setAttribute('aria-selected', on);
+    b.setAttribute('aria-pressed', String(on));
   });
   document.getElementById('titoloGrafico').textContent = g.titolo;
   document.getElementById('notaGrafico').textContent = g.nota;
@@ -700,7 +767,7 @@ function cambiaVistaGrafico(tipo) {
   const asseCategorie = { stacked: !!g.stack, grid: { display: false } };
   grafico.data = { labels: g.labels, datasets: g.datasets };
   grafico.options = {
-    indexAxis: g.orizz ? 'y' : 'x', maintainAspectRatio: false, animation: { duration: 400 },
+    indexAxis: g.orizz ? 'y' : 'x', maintainAspectRatio: false, animation: grafico._visto || MOTO_RIDOTTO ? false : { duration: 400 },
     plugins: {
       legend: { display: !!g.stack, position: 'bottom', labels: { boxWidth: 12, usePointStyle: true } },
       tooltip: { backgroundColor: '#07213A', borderColor: '#D8973C', borderWidth: 1, padding: 10, titleFont: { family: 'Cinzel', weight: '700' },
@@ -708,7 +775,10 @@ function cambiaVistaGrafico(tipo) {
     },
     scales: g.orizz ? { x: asseValori, y: asseCategorie } : { x: asseCategorie, y: asseValori }
   };
-  grafico.update();
+  grafico.update(); grafico._visto = true;
+  // alternativa testuale: gli stessi valori del grafico, in parole
+  const testo = g.titolo + '. ' + g.datasets.map(d => (d.label ? d.label + ': ' : '') + g.labels.map((l, k) => l + ' ' + fmt(d.data[k])).join(', ')).join('; ') + '.';
+  document.getElementById('grafico').setAttribute('aria-label', testo); document.getElementById('graficoTesto').textContent = testo;
 }
 document.querySelectorAll('.vista').forEach(b => b.addEventListener('click', () => cambiaVistaGrafico(b.dataset.vista)));
 
@@ -750,6 +820,8 @@ function filtraRegistro() {
     return dir * ((x ?? -Infinity) - (y ?? -Infinity));
   });
   renderizzaTabella(lista);
+  if (!lista.length) document.getElementById('corpoTabella').innerHTML = `<tr><td colspan="8" class="px-4 py-6 text-sm">${vuotoHTML('Nessun comune corrisponde ai filtri scelti.')}</td></tr>`;
+  segnalaAggiornato('conteggio'); ricordaStato();
 }
 ['ricerca', 'fEl'].forEach(id => document.getElementById(id).addEventListener('input', filtraRegistro));
 
@@ -758,8 +830,6 @@ function normRic(s) { return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g
 const CACHE_RIC = new Map();
 function testoRic(c) { if (!CACHE_RIC.has(c)) CACHE_RIC.set(c, normRic([c.n, c.ml, c.sin, c.id].join(' '))); return CACHE_RIC.get(c); }
 const nomeProprio = s => String(s || '').toLowerCase().replace(/(^|[\s'-])(\p{L})/gu, (m, p, l) => p + l.toUpperCase());
-const inpRic = document.getElementById('ricerca'), boxRic = document.getElementById('ricSugg');
-let risRic = [], selRic = -1;
 function cercaComuni(q) {
   const parole = normRic(q).split(' ').filter(Boolean); if (!parole.length) return [];
   const qn = parole.join(' ');
@@ -769,41 +839,49 @@ function cercaComuni(q) {
     return { c, perSin, punti: nome.startsWith(qn) ? 0 : perNome ? 1 : perSin ? 2 : 3 };
   }).sort((a, b) => a.punti - b.punti || a.c.n.localeCompare(b.c.n, 'it')).slice(0, 8);
 }
-function mostraRic() {
-  const q = inpRic.value.trim(); risRic = q ? cercaComuni(q) : []; selRic = risRic.length ? 0 : -1;
-  boxRic.hidden = !q; inpRic.setAttribute('aria-expanded', String(!boxRic.hidden));
-  if (!q) return;
-  boxRic.innerHTML = risRic.length ? risRic.map((r, i) => `<button type="button" role="option" id="ric${i}" class="sceltaRic w-full flex items-start gap-2 text-left px-3 py-2 hover:bg-pietra-100 ${i === selRic ? 'bg-pietra-100' : ''}" data-i="${i}">
-      <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0 text-accento-600"></i>
-      <span class="min-w-0"><span class="block text-sm font-semibold text-primario-800">${esc(r.c.n)} <span class="font-normal text-pietra-700">(${r.c.pv})</span></span>
-      <span class="block text-[12px] text-pietra-700">${r.c.sin ? `${r.perSin ? '<b class="text-pietra-900">' : ''}Sindaco: ${esc(nomeProprio(r.c.sin))}${r.perSin ? '</b>' : ''} · ` : ''}codice ISTAT ${esc(r.c.id)}</span></span></button>`).join('')
-    : '<div class="px-3 py-2 text-sm text-pietra-700">Nessun comune trovato. Si può cercare per nome del comune, per nome e cognome del sindaco o per codice ISTAT.</div>';
-  if (selRic >= 0) inpRic.setAttribute('aria-activedescendant', 'ric' + selRic); else inpRic.removeAttribute('aria-activedescendant');
-  lucide.createIcons();
+function collegaRicerca(inpRic, boxRic, pref) {
+  let risRic = [], selRic = -1;
+  const chiudi = () => { boxRic.hidden = true; inpRic.setAttribute('aria-expanded', 'false'); };
+  function mostraRic() {
+    const q = inpRic.value.trim(); risRic = q ? cercaComuni(q) : []; selRic = risRic.length ? 0 : -1;
+    boxRic.hidden = !q; inpRic.setAttribute('aria-expanded', String(!boxRic.hidden));
+    if (!q) return;
+    boxRic.innerHTML = risRic.length ? risRic.map((r, i) => `<button type="button" role="option" id="${pref}${i}" aria-selected="${i === selRic}" class="sceltaRic w-full flex items-start gap-2 text-left px-3 py-2 hover:bg-pietra-100 ${i === selRic ? 'bg-pietra-100' : ''}" data-i="${i}">
+        <i data-lucide="map-pin" class="w-4 h-4 mt-0.5 shrink-0 text-accento-600"></i>
+        <span class="min-w-0"><span class="block text-sm font-semibold text-primario-800">${esc(r.c.n)} <span class="font-normal text-pietra-700">(${r.c.pv})</span></span>
+        <span class="block text-[12px] text-pietra-700">${r.c.sin ? `${r.perSin ? '<b class="text-pietra-900">' : ''}Sindaco: ${esc(nomeProprio(r.c.sin))}${r.perSin ? '</b>' : ''} · ` : ''}codice ISTAT ${esc(r.c.id)}</span></span></button>`).join('')
+      : '<div class="px-3 py-2 text-sm text-pietra-700">Nessun comune trovato. Si può cercare per nome del comune, per nome e cognome del sindaco o per codice ISTAT.</div>';
+    if (selRic >= 0) inpRic.setAttribute('aria-activedescendant', pref + selRic); else inpRic.removeAttribute('aria-activedescendant');
+    lucide.createIcons();
+  }
+  function scegliRic(i) {
+    const r = risRic[i]; if (!r) return;
+    const k = MAN.istat.indexOf(r.c.id);
+    inpRic.value = ''; chiudi(); inpRic.blur();
+    if (inpRic.id === 'ricerca') filtraRegistro();
+    impostaTerritorio(r.c.pv, k); apriDettaglio(r.c.id);
+  }
+  inpRic.addEventListener('input', mostraRic);
+  inpRic.addEventListener('focus', () => { if (inpRic.value.trim()) mostraRic(); });
+  inpRic.addEventListener('keydown', e => {
+    if (boxRic.hidden || !risRic.length) { if (e.key === 'Escape') chiudi(); return; }
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); selRic = (selRic + (e.key === 'ArrowDown' ? 1 : risRic.length - 1)) % risRic.length;
+      boxRic.querySelectorAll('.sceltaRic').forEach((b, i) => { b.classList.toggle('bg-pietra-100', i === selRic); b.setAttribute('aria-selected', String(i === selRic)); }); inpRic.setAttribute('aria-activedescendant', pref + selRic);
+      boxRic.querySelector('#' + pref + selRic).scrollIntoView({ block: 'nearest' }); }
+    else if (e.key === 'Enter') { e.preventDefault(); scegliRic(Math.max(0, selRic)); }
+    else if (e.key === 'Escape') chiudi();
+  });
+  boxRic.addEventListener('mousedown', e => e.preventDefault());
+  boxRic.addEventListener('click', e => { const b = e.target.closest('.sceltaRic'); if (b) scegliRic(Number(b.dataset.i)); });
+  document.addEventListener('click', e => { if (!boxRic.hidden && !boxRic.contains(e.target) && e.target !== inpRic) chiudi(); });
 }
-function scegliRic(i) {
-  const r = risRic[i]; if (!r) return;
-  const k = MAN.istat.indexOf(r.c.id);
-  inpRic.value = ''; boxRic.hidden = true; inpRic.setAttribute('aria-expanded', 'false'); inpRic.blur();
-  impostaTerritorio(r.c.pv, k); apriDettaglio(r.c.id);
-}
-inpRic.addEventListener('input', mostraRic);
-inpRic.addEventListener('focus', () => { if (inpRic.value.trim()) mostraRic(); });
-inpRic.addEventListener('keydown', e => {
-  if (boxRic.hidden || !risRic.length) { if (e.key === 'Escape') boxRic.hidden = true; return; }
-  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); selRic = (selRic + (e.key === 'ArrowDown' ? 1 : risRic.length - 1)) % risRic.length;
-    boxRic.querySelectorAll('.sceltaRic').forEach((b, i) => b.classList.toggle('bg-pietra-100', i === selRic)); inpRic.setAttribute('aria-activedescendant', 'ric' + selRic);
-    boxRic.querySelector('#ric' + selRic).scrollIntoView({ block: 'nearest' }); }
-  else if (e.key === 'Enter') { e.preventDefault(); scegliRic(Math.max(0, selRic)); }
-  else if (e.key === 'Escape') { boxRic.hidden = true; inpRic.setAttribute('aria-expanded', 'false'); }
-});
-boxRic.addEventListener('mousedown', e => e.preventDefault());
-boxRic.addEventListener('click', e => { const b = e.target.closest('.sceltaRic'); if (b) scegliRic(Number(b.dataset.i)); });
-document.addEventListener('click', e => { if (!boxRic.hidden && !boxRic.contains(e.target) && e.target !== inpRic) { boxRic.hidden = true; inpRic.setAttribute('aria-expanded', 'false'); } });
+collegaRicerca(document.getElementById('ricerca'), document.getElementById('ricSugg'), 'ric');
+collegaRicerca(document.getElementById('ricercaHome'), document.getElementById('ricSuggHome'), 'ricH');
 document.getElementById('btnReset').addEventListener('click', () => {
   document.getElementById('ricerca').value = ''; document.getElementById('fEl').value = '';
   ordine = { k: 'p25', dir: -1 }; filtraRegistro(); mostraToast('Filtri azzerati');
 });
+document.querySelectorAll('th[data-ord]').forEach(th => { th.tabIndex = 0; th.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); th.click(); } }); });
 document.querySelectorAll('th[data-ord]').forEach(th => th.addEventListener('click', () => {
   const k = th.dataset.ord;
   ordine = ordine.k === k ? { k, dir: -ordine.dir } : { k, dir: ['n', 'pv', 'sin'].includes(k) ? 1 : -1 };
@@ -878,10 +956,10 @@ function apriDettaglio(id) {
       <p class="mt-2 text-[11px] text-pietra-700 leading-relaxed">Costo previsto alla decisione, non spesa effettiva. Nei totali entrano solo i progetti localizzati in questo comune${x.opRMulti ? `; altri ${fmt(x.opRMulti)} progetti decisi dal ${da} riguardano anche altri comuni e non sono sommati` : ''}. In OpenCUP risultano ancora aperti ${fmt(x.opA)} progetti di ogni anno.</p>
       <button class="apriFoglioCom mt-1 inline-flex items-center gap-1 text-sm text-primario-700 hover:underline" data-f="Opere_pubbliche_OpenCUP"><i data-lucide="table" class="w-4 h-4"></i>Apri l'elenco completo delle opere</button></div>`;
   }
-  h += `<div class="rounded-xl border border-pietra-200 p-4 min-w-0"><div class="font-patriarcale font-bold text-sm text-primario-800">Residenti dal 2002 al 2026</div><div class="text-[11px] text-pietra-700">Popolazione al 1° gennaio, ISTAT (ricostruzione intercensuaria fino al 2019)</div><div class="relative mt-2" style="height:190px"><canvas id="gSerieCom"></canvas></div></div>`;
+  h += `<div class="rounded-xl border border-pietra-200 p-4 min-w-0"><div class="font-patriarcale font-bold text-sm text-primario-800">Residenti dal 2002 al 2026</div><div class="text-[11px] text-pietra-700">Popolazione al 1° gennaio, ISTAT (ricostruzione intercensuaria fino al 2019)</div><div class="relative mt-2" style="height:190px"><canvas id="gSerieCom" role="img" aria-label="Residenti del comune dal 2002 al 2026"></canvas></div></div>`;
   h += `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div class="rounded-xl border border-pietra-200 p-4 min-w-0"><div class="font-patriarcale font-bold text-sm text-primario-800">Presenze turistiche per anno</div><div class="text-[11px] text-pietra-700">2022 a 2025, strutture ricettive del comune</div><div class="relative mt-2" style="height:170px"><canvas id="gTurCom"></canvas></div></div>
-    <div class="rounded-xl border border-pietra-200 p-4 min-w-0"><div class="font-patriarcale font-bold text-sm text-primario-800">Raccolta differenziata</div><div class="text-[11px] text-pietra-700">Percentuale sul totale dei rifiuti urbani, 1998 a 2017</div><div class="relative mt-2" style="height:170px"><canvas id="gRdCom"></canvas></div></div>
+    <div class="rounded-xl border border-pietra-200 p-4 min-w-0"><div class="font-patriarcale font-bold text-sm text-primario-800">Presenze turistiche per anno</div><div class="text-[11px] text-pietra-700">2022 a 2025, strutture ricettive del comune</div><div class="relative mt-2" style="height:170px"><canvas id="gTurCom" role="img" aria-label="Presenze turistiche del comune per anno"></canvas></div></div>
+    <div class="rounded-xl border border-pietra-200 p-4 min-w-0"><div class="font-patriarcale font-bold text-sm text-primario-800">Raccolta differenziata</div><div class="text-[11px] text-pietra-700">Percentuale sul totale dei rifiuti urbani, 1998 a 2017</div><div class="relative mt-2" style="height:170px"><canvas id="gRdCom" role="img" aria-label="Raccolta differenziata del comune per anno"></canvas></div></div>
   </div>`;
   const fogliTutti = FOGLI.filter(f => CONT[f.id] && CONT[f.id][ci]).map(f => [f, CONT[f.id][ci]]);
   const fogliCom = fogliTutti.filter(([f]) => tipoColl(f) !== 'testo'), fogliTesto = fogliTutti.filter(([f]) => tipoColl(f) === 'testo');
@@ -902,7 +980,7 @@ function apriDettaglio(id) {
     `Sindaco in anagrafe: ${titolo(c.sin)} (anagrafe aggiornata al ${dataEstesa(c.agg)})`, `Prossime elezioni: ${c.el}`, `Enti RUNTS: ${fmt(c.ru)}`, `Farmacie: ${fmt(c.fa)} · Istituti scolastici: ${fmt(c.sc)} · Residenze per anziani: ${fmt(c.rsa)}`,
     `Turismo 2025: ${fmt(c.ar)} arrivi, ${fmt(c.pr)} presenze`, `Reddito imponibile medio 2017: ${c.irm ? fmt(c.irm) + ' euro' : 'n.d.'}`, `Siti inquinati censiti: ${fmt(c.si)} (${fmt(c.sia)} con istruttoria in atto)`,
     'Fonte: Database Friuli Venezia Giulia, acquisizione del 5 ottobre 2026'].join('\n');
-  document.getElementById('modale').hidden = false;
+  mostra(document.getElementById('modale'));
   graficiScheda(ci);
   document.querySelectorAll('.apriFoglioCom').forEach(b => b.addEventListener('click', () => {
     impostaTerritorio(c.pv, ci); chiudiModale(); apriFoglio(b.dataset.f, true);
@@ -910,9 +988,11 @@ function apriDettaglio(id) {
   lucide.createIcons();
   document.getElementById('btnChiudiX').focus();
 }
-let gTur, gRd, gSerie;
+let gTur, gRd, gSerie, graficiSchedaVisti = false;
 function graficiScheda(ci) {
   if (gTur) gTur.destroy(); if (gRd) gRd.destroy(); if (gSerie) gSerie.destroy();
+  // le animazioni dei grafici solo alla prima scheda aperta
+  const animaPrima = Chart.defaults.animation; if (graficiSchedaVisti) Chart.defaults.animation = false; graficiSchedaVisti = true;
   const se = X(ci).serie || [];
   gSerie = new Chart(document.getElementById('gSerieCom'), { type: 'line', data: { labels: EXTRA.anniSerie, datasets: [{ data: se, borderColor: '#155E9E', backgroundColor: 'rgba(21,94,158,.10)', fill: true, pointRadius: 2, tension: .2 }] },
     options: { maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { backgroundColor: '#07213A', borderColor: '#D8973C', borderWidth: 1, callbacks: { label: z => fmt(z.parsed.y) + ' residenti' } } }, scales: { x: { grid: { display: false } }, y: { grid: { color: '#E6E0D4' }, ticks: { callback: v => fmt(v) } } } } });
@@ -922,8 +1002,13 @@ function graficiScheda(ci) {
     scales: { x: { grid: { display: false } }, y: { beginAtZero: true, max: pct ? 100 : undefined, grid: { color: '#E6E0D4' }, ticks: { callback: v => pct ? v + '%' : fmt(v) } } } });
   gTur = new Chart(document.getElementById('gTurCom'), { type: 'bar', data: { labels: anniT, datasets: [{ data: anniT.map(a => t[a] ?? null), backgroundColor: '#155E9E', borderRadius: 3 }] }, options: opz(false) });
   gRd = new Chart(document.getElementById('gRdCom'), { type: 'line', data: { labels: anniR, datasets: [{ data: anniR.map(a => r[a]), borderColor: '#2F7D4F', backgroundColor: 'rgba(47,125,79,.12)', fill: true, pointRadius: 2, tension: .2 }] }, options: opz(true) });
+  Chart.defaults.animation = animaPrima;
+  const nome = NOME_COM[ci], parole = (et, ls, vs, suf) => et + ' di ' + nome + ': ' + ls.map((l, k) => l + ' ' + (vs[k] == null ? 'dato non disponibile' : fmt(vs[k]) + suf)).join(', ') + '.';
+  document.getElementById('gSerieCom').setAttribute('aria-label', parole('Residenti', EXTRA.anniSerie, se, ''));
+  document.getElementById('gTurCom').setAttribute('aria-label', parole('Presenze turistiche', anniT, anniT.map(a => t[a]), ''));
+  document.getElementById('gRdCom').setAttribute('aria-label', parole('Raccolta differenziata', anniR, anniR.map(a => r[a] == null ? null : Math.round(r[a] * 10) / 10), '%'));
 }
-function chiudiModale() { ['modale', 'rigaModale'].forEach(id => document.getElementById(id).hidden = true); }
+function chiudiModale() { ['modale', 'rigaModale'].forEach(id => { const el = document.getElementById(id); nascondi(el, el.firstElementChild); }); }
 ['btnChiudi', 'btnChiudiX', 'btnChiudiRiga', 'btnChiudiRigaX'].forEach(id => document.getElementById(id).addEventListener('click', chiudiModale));
 ['modale', 'rigaModale'].forEach(id => document.getElementById(id).addEventListener('click', e => { if (e.target.id === id) chiudiModale(); }));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') chiudiModale(); });
@@ -964,23 +1049,37 @@ const NOME_COM = MAN.istat.map(id => (datiRegistro.find(c => c.id === id) || {})
 const slugCom = n => String(n || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 const SLUG_COM = NOME_COM.map(slugCom);
 const COMUNE_INIZIALE = SLUG_COM.indexOf(slugCom(new URLSearchParams(location.search).get('comune')));
+const PARAM0 = new URLSearchParams(location.search);
+// parametri dell'indirizzo: comune o provincia, pagina, e i filtri della pagina aperta, così una ricerca si condivide così com'è
+const PARAMETRI = ['comune', 'provincia', 'pagina', 'livello', 'indicatore', 'confronta', 'mostra', 'voto', 'foglio', 'cerca', 'colonne', 'ordina'];
 function indirizzoAttuale() {
-  const u = new URL(location.href);
-  if (terr.com >= 0) u.searchParams.set('comune', SLUG_COM[terr.com]); else u.searchParams.delete('comune');
-  if (paginaCorrente && paginaCorrente !== 'inizio') u.searchParams.set('pagina', paginaCorrente); else u.searchParams.delete('pagina');
+  const u = new URL(location.href), p = u.searchParams;
+  PARAMETRI.forEach(k => p.delete(k));
+  if (terr.com >= 0) p.set('comune', SLUG_COM[terr.com]); else if (terr.pv) p.set('provincia', terr.pv);
+  if (paginaCorrente && paginaCorrente !== 'inizio') p.set('pagina', paginaCorrente);
+  if (paginaCorrente === 'mappe') { if (livMappa !== 'comuni') p.set('livello', livMappa); if (indCorr !== 'p25' || livMappa !== 'comuni') p.set('indicatore', indCorr); }
+  if (paginaCorrente === 'confronto') { const s = cfScelti.filter(i => i >= 0); if (s.length) p.set('confronta', s.map(i => SLUG_COM[i]).join(',')); if (cfVista !== 'tutti') p.set('mostra', cfVista); }
+  if (paginaCorrente === 'comuni') { const v = document.getElementById('fEl').value; if (v) p.set('voto', v); if (ordine.k !== 'p25' || ordine.dir !== -1) p.set('ordina', (ordine.dir < 0 ? '-' : '') + ordine.k); }
+  if (paginaCorrente === 'archivio' && corrente) {
+    p.set('foglio', corrente.f.id);
+    const q = document.getElementById('cercaRighe').value.trim(); if (q) p.set('cerca', q);
+    if (Object.keys(filtriCol).length) p.set('colonne', JSON.stringify(filtriCol));
+  }
   u.hash = ''; return u.pathname + u.search;
 }
+let tStato;
+function ricordaStato() { if (typeof avvioInCorso === 'undefined' || avvioInCorso) return; clearTimeout(tStato); tStato = setTimeout(() => aggiornaIndirizzo(false), 250); }
 function aggiornaIndirizzo(nuova) {
   try { history[nuova ? 'pushState' : 'replaceState']({ pagina: paginaCorrente }, '', indirizzoAttuale()); } catch (e) { /* indirizzo non modificabile: si prosegue */ }
 }
 /* Pagine: la pagina è una sola, ma mostra un gruppo di sezioni alla volta; il filtro territoriale resta sempre visibile */
 const PAGINE = [
-  { id: 'inizio', t: 'Inizio', i: 'house', sez: ['intro', 'panoramica', 'grafici', 'esplora'], d: 'I numeri principali della regione e delle quattro province.' },
+  { id: 'inizio', t: 'Inizio', i: 'house', sez: ['intro', 'panoramica', 'esplora'], d: 'La ricerca del comune, i numeri principali della regione e i tre percorsi: esplorare, confrontare, consultare e scaricare.' },
   { id: 'mappe', t: 'Mappe', i: 'map', sez: ['mappe'], d: 'Oltre trenta indicatori comune per comune, le cartine dell\'Annuario e i servizi sul territorio.' },
   { id: 'confronto', t: 'Confronto', i: 'columns-3', sez: ['confronto'], d: 'Quattro comuni fianco a fianco, indicatore per indicatore.' },
   { id: 'autobus', t: 'Autobus', i: 'bus', vivo: true, sez: ['trasporti'], d: 'Linee, fermate e arrivi in tempo reale, con la mappa delle vie.' },
   { id: 'ambiente', t: 'Allerte e aria', i: 'cloud-sun', vivo: true, sez: ['allerte', 'aria'], d: 'Allerta meteo di oggi e di domani e qualità dell\'aria delle centraline.' },
-  { id: 'comuni', t: 'Comuni', i: 'list', sez: ['registro'], d: 'Il registro dei 215 comuni: residenti, sindaci, servizi, elezioni.' },
+  { id: 'comuni', t: 'Comuni', i: 'list', sez: ['grafici', 'registro'], d: 'Il registro dei 215 comuni: residenti, sindaci, servizi, elezioni, con i riepiloghi per provincia.' },
   { id: 'archivio', t: 'Archivio dati', i: 'database', sez: ['archivio'], d: 'Tutti i fogli del database, filtrabili per comune e colonna per colonna.' },
   { id: 'metodo', t: 'Metodo e fonti', i: 'book-open', sez: ['metodo'], d: 'Versioni, date di aggiornamento, fonti, copertura e avvertenze sui dati.' }
 ];
@@ -1002,14 +1101,22 @@ function vaiPagina(id, { nuova = true, scorri = true } = {}) {
   disegnaStato();
   if (id === 'metodo') disegnaMetodo();
   if (scorri && cambia) scrollTo({ top: 0 });
+  if (cambia && !avvioInCorso && !MOTO_RIDOTTO) pg.sez.forEach(z => { const el = document.getElementById(z); if (el) { el.classList.remove('compari'); void el.offsetWidth; el.classList.add('compari'); } });
+  if (id === 'comuni') inizializzaGrafico();
   // le mappe e i grafici nascosti si ridisegnano quando tornano visibili
   if (id === 'autobus' && typeof TPL !== 'undefined' && TPL) { tpApplicaVB(); }
   if (id === 'mappe' && typeof GEO !== 'undefined' && GEO) applicaVB();
 }
+const PERCORSI = [['mappe', 'map', 'Esplora', 'Le mappe dei 215 comuni: oltre trenta indicatori, le cartine dell\'Annuario e i servizi sul territorio.'],
+  ['confronto', 'columns-3', 'Confronta', 'Fino a quattro comuni fianco a fianco, con i valori assoluti separati da quelli per abitante.'],
+  ['archivio', 'database', 'Consulta e scarica', 'Tutti i fogli del database, da filtrare e scaricare in CSV ed Excel con fonte e data.']];
 function disegnaPagine() {
   document.getElementById('navPagine').innerHTML = ORDINE_NAV.map(id => { if (id === '|') return '<span class="shrink-0 w-px self-stretch bg-pietra-300 mx-1" aria-hidden="true"></span>'; const p = PAGINE.find(x => x.id === id);
     return `<a href="?pagina=${p.id}" class="vaiPagina" data-p="${p.id}"><i data-lucide="${p.i}" class="w-4 h-4"></i>${esc(p.t)}${p.vivo ? '<span class="w-1.5 h-1.5 rounded-full bg-verde-600" title="in tempo reale"></span>' : ''}</a>`; }).join('');
-  document.getElementById('esploraPagine').innerHTML = PAGINE.filter(p => p.id !== 'inizio').map(p => `<a href="?pagina=${p.id}" class="vaiPagina2 group rounded-xl bg-white cornice-oro p-4 flex items-start gap-3 hover:bg-primario-50" data-p="${p.id}">
+  document.getElementById('percorsi').innerHTML = PERCORSI.map(([id, i, t, d]) => `<a href="?pagina=${id}" class="vaiPagina2 group rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 p-4 flex items-start gap-3" data-p="${id}">
+    <span class="w-10 h-10 rounded-lg bg-accento-500 text-primario-900 flex items-center justify-center shrink-0"><i data-lucide="${i}" class="w-5 h-5"></i></span>
+    <span class="min-w-0"><span class="block font-patriarcale font-bold text-white text-lg">${esc(t)}</span><span class="block text-[13px] text-primario-100 leading-snug">${esc(d)}</span></span></a>`).join('');
+  document.getElementById('esploraPagine').innerHTML = PAGINE.filter(p => !['inizio', ...PERCORSI.map(x => x[0])].includes(p.id)).map(p => `<a href="?pagina=${p.id}" class="vaiPagina2 group rounded-xl bg-white cornice-oro p-4 flex items-start gap-3 hover:bg-primario-50" data-p="${p.id}">
     <span class="w-10 h-10 rounded-lg bg-primario-700 text-white flex items-center justify-center shrink-0"><i data-lucide="${p.i}" class="w-5 h-5"></i></span>
     <span class="min-w-0"><span class="block font-patriarcale font-bold text-primario-800">${esc(p.t)}</span><span class="block text-[13px] text-pietra-700 leading-snug">${esc(p.d)}</span></span></a>`).join('');
 }
@@ -1105,10 +1212,25 @@ function impostaTerritorio(pv, com) {
   if (typeof ambienteAvviato !== 'undefined') aggiornaAmbiente();
   if (!avvioInCorso) aggiornaIndirizzo();
   if (typeof cfScelti !== 'undefined' && terr.com >= 0 && !cfScelti.includes(terr.com)) { const k = cfScelti.indexOf(-1); if (k >= 0) { cfScelti[k] = terr.com; disegnaConfronto(); } }
+  segnalaAggiornato('terrStato', 'infoMappa');
 }
 selProv.addEventListener('change', () => impostaTerritorio(selProv.value, -1));
 selCom.addEventListener('change', () => impostaTerritorio(terr.pv, Number(selCom.value)));
 document.getElementById('btnTerrReset').addEventListener('click', () => impostaTerritorio('', -1));
+function azzeraTutto() {
+  document.getElementById('ricerca').value = ''; document.getElementById('fEl').value = ''; ordine = { k: 'p25', dir: -1 };
+  cfScelti = [-1, -1, -1, -1]; cfVista = 'tutti';
+  document.getElementById('cercaFoglio').value = ''; document.getElementById('soloConDati').checked = false; document.getElementById('usaTerr').checked = true;
+  filtriCol = {}; ordA = { j: -1, dir: 1 }; document.getElementById('cercaRighe').value = ''; if (corrente) disegnaPannelloFiltri();
+  impostaTerritorio('', -1); disegnaConfronto(); ricordaStato();
+  mostraToast('Tutti i filtri azzerati');
+}
+document.getElementById('btnAzzeraTutto').addEventListener('click', azzeraTutto);
+document.getElementById('btnCondividiVista').addEventListener('click', async () => {
+  aggiornaIndirizzo(false); const url = location.href;
+  if (navigator.share) { try { await navigator.share({ title: document.title, url }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
+  try { await navigator.clipboard.writeText(url); mostraToast('Collegamento copiato: chi lo apre vede la stessa pagina con gli stessi filtri'); } catch (e) { prompt('Copia il collegamento', url); }
+});
 document.getElementById('btnSchedaCom').addEventListener('click', () => { if (terr.com >= 0) apriDettaglio(MAN.istat[terr.com]); });
 
 /* ===== Archivio completo ===== */
@@ -1174,20 +1296,22 @@ async function caricaFoglio(f) {
   return obj;
 }
 
-async function apriFoglio(id, scorri) {
+async function apriFoglio(id, scorri, stato) {
   const f = FOGLI.find(x => x.id === id); if (!f) return;
   if (scorri) scorriA('archivio');
   corrente = null; filtriCol = {}; ordA = { j: -1, dir: 1 }; pagina = 0;
   document.getElementById('cercaRighe').value = '';
   disegnaTesta(f);
   document.getElementById('aTesta').innerHTML = ''; document.getElementById('aCorpo').innerHTML = '';
-  document.getElementById('fStato').innerHTML = `<span class="inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-accento-500 pulsa"></span>Caricamento di ${fmt(f.righe)} righe in corso${f.files.length > 1 ? ' (foglio grande, può richiedere alcuni secondi)' : ''}…</span>`;
+  document.getElementById('fStato').innerHTML = caricaHTML(`Caricamento di ${fmt(f.righe)} righe in corso${f.files.length > 1 ? ' (foglio grande, può richiedere alcuni secondi)' : ''}…`);
   try {
     const o = await caricaFoglio(f);
     corrente = o;
+    if (stato) { document.getElementById('cercaRighe').value = stato.cerca || ''; filtriCol = stato.colonne || {}; }
     disegnaElencoFogli(); disegnaPannelloFiltri(); applicaFiltriArchivio(true);
+    if (Object.keys(filtriCol).length) { document.getElementById('pannelloFiltri').hidden = false; document.getElementById('btnFiltriCol').setAttribute('aria-expanded', 'true'); }
   } catch (e) {
-    document.getElementById('fStato').innerHTML = `<span class="text-enfasi-600">Il foglio non si è caricato (${esc(e.message)}). Ricarica la pagina e riprova.</span>`;
+    document.getElementById('fStato').innerHTML = erroreHTML(`Il foglio non si è caricato (${esc(e.message)}). Ricarica la pagina e riprova.`); lucide.createIcons();
   }
 }
 function disegnaTesta(f) {
@@ -1223,6 +1347,8 @@ function disegnaPannelloFiltri() {
     return `<div class="min-w-0"><label for="${id}" class="block text-[11px] font-semibold text-pietra-800 truncate" title="${esc(c)}">${esc(c)}</label>
       <input id="${id}" data-j="${j}" data-t="txt" type="search" placeholder="contiene…" class="filtroCol w-full text-sm border border-pietra-200 rounded-lg px-2 py-1.5 bg-white"></div>`;
   }).join('');
+  // i valori dei filtri già scelti (anche da un collegamento condiviso) tornano nelle caselle
+  Object.entries(filtriCol).forEach(([j, c]) => Object.entries(c).forEach(([t, v]) => { const el = document.querySelector(`#pannelloFiltri .filtroCol[data-j="${j}"][data-t="${t}"]`); if (el) el.value = String(v); }));
   aggiornaNumFiltri();
 }
 let tArch;
@@ -1288,7 +1414,7 @@ function applicaFiltriArchivio(azzeraPagina) {
   else if (usa && pv) stato = k ? `Righe dei comuni della provincia di <b>${NOMI_PROV[pv]}</b>.` : 'Questo foglio non ha una colonna del comune: il filtro della provincia non si applica.';
   document.getElementById('fStato').innerHTML = stato;
   document.getElementById('rigaUsaTerr').hidden = !(terr.com >= 0 || terr.pv);
-  disegnaTabellaArchivio();
+  disegnaTabellaArchivio(); segnalaAggiornato('aConteggio'); ricordaStato();
 }
 const ALLINEA_DX = i => i.num;
 function cella(v, i) {
@@ -1302,12 +1428,13 @@ function disegnaTabellaArchivio() {
   const per = Number(document.getElementById('perPagina').value);
   const pagine = Math.max(1, Math.ceil(vista.length / per));
   pagina = Math.min(pagina, pagine - 1);
-  document.getElementById('aTesta').innerHTML = '<tr><th class="px-2 py-2 text-left font-semibold text-pietra-700">N.</th>' + f.cols.map((c, j) =>
-    `<th class="px-2 py-2 font-semibold whitespace-nowrap ${ALLINEA_DX(info[j]) ? 'text-right' : 'text-left'}"><button class="ordCol hover:text-primario-700" data-j="${j}" aria-sort="${ordA.j === j ? (ordA.dir > 0 ? 'ascending' : 'descending') : 'none'}">${esc(c)}${ordA.j === j ? (ordA.dir > 0 ? ' ▲' : ' ▼') : ''}</button></th>`).join('') + '</tr>';
+  document.getElementById('aTesta').innerHTML = '<tr><th scope="col" class="px-2 py-2 text-left font-semibold text-pietra-700">N.</th>' + f.cols.map((c, j) =>
+    `<th scope="col" aria-sort="${ordA.j === j ? (ordA.dir > 0 ? 'ascending' : 'descending') : 'none'}" class="px-2 py-2 font-semibold whitespace-nowrap ${ALLINEA_DX(info[j]) ? 'text-right' : 'text-left'}"><button class="ordCol hover:text-primario-700" data-j="${j}">${esc(c)}${ordA.j === j ? (ordA.dir > 0 ? ' ▲' : ' ▼') : ''}</button></th>`).join('') + '</tr>';
   const fetta = vista.slice(pagina * per, pagina * per + per);
   document.getElementById('aCorpo').innerHTML = fetta.length ? fetta.map(i => `<tr class="rigaArch hover:bg-accento-50 cursor-pointer" data-i="${i}" tabindex="0"><td class="px-2 py-1.5 align-top text-pietra-700 num">${i + 1}</td>` +
     rows[i].map((v, j) => `<td class="px-2 py-1.5 align-top ${ALLINEA_DX(info[j]) ? 'text-right num' : ''} max-w-[22rem]">${cella(v, info[j])}</td>`).join('') + '</tr>').join('')
-    : `<tr><td class="px-4 py-6 text-sm text-pietra-700" colspan="${f.cols.length + 1}">Nessuna riga corrisponde ai filtri scelti.</td></tr>`;
+    : `<tr><td class="px-4 py-6 text-sm" colspan="${f.cols.length + 1}">${vuotoHTML(rows.length ? 'Nessuna riga corrisponde ai filtri scelti.' : 'Il foglio non contiene righe.')}</td></tr>`;
+  if (!fetta.length) lucide.createIcons();
   document.getElementById('aConteggio').textContent = `${fmt(vista.length)} righe su ${fmt(rows.length)}`;
   document.getElementById('pagInfo').textContent = `pagina ${fmt(pagina + 1)} di ${fmt(pagine)}`;
   document.getElementById('pagPrec').disabled = pagina === 0;
@@ -1337,7 +1464,7 @@ function apriRiga(i) {
   document.getElementById('rCorpo').innerHTML = (k ? `<dt class="text-pietra-700 font-semibold">Comune collegato</dt><dd class="text-primario-800 font-semibold">${coll ? esc(coll) : '<span class="text-pietra-700 font-normal">nessuno (frazione, voce non definita o fuori regione)</span>'}</dd>` : '') +
     f.cols.map((c, j) => {
       const v = r[j];
-      const s = v === null || v === '' ? '<span class="text-pietra-300">vuoto</span>'
+      const s = v === null || v === '' ? '<span class="text-pietra-700 italic">vuoto</span>'
         : typeof v === 'string' && /^https?:\/\/\S+$/.test(v) ? `<a class="text-primario-600 underline break-all" href="${esc(v)}" target="_blank" rel="noopener">${esc(v)}</a>`
         : `<span class="${corrente.info[j].geom || String(v).length > 300 ? 'block max-h-48 overflow-y-auto text-xs font-mono break-all' : 'break-words'}">${esc(typeof v === 'number' ? String(v).replace('.', ',') : v)}</span>`;
       return `<dt class="text-pietra-700 sm:border-b border-pietra-100 pb-1 break-words">${esc(c)}</dt><dd class="text-pietra-900 border-b border-pietra-100 pb-1 min-w-0 num">${s}</dd>`;
@@ -1348,7 +1475,7 @@ function apriRiga(i) {
     const b = document.createElement('button'); b.className = 'extra inline-flex items-center gap-2 text-sm bg-accento-500 hover:bg-accento-600 text-primario-900 font-semibold rounded-lg px-4 py-2';
     b.textContent = 'Apri il foglio ' + nomeFoglio(r[0]); b.onclick = () => { chiudiModale(); apriFoglio(r[0], true); }; az.prepend(b);
   }
-  document.getElementById('rigaModale').hidden = false;
+  mostra(document.getElementById('rigaModale'));
   document.getElementById('btnChiudiRigaX').focus();
 }
 const aCorpo = document.getElementById('aCorpo');
@@ -1385,7 +1512,7 @@ const PERIODO = { p25: '31 dicembre 2025', var: 'dal 31 dicembre 2024 al 31 dice
   fa: 'elenco del 4 ottobre 2026', ruPm: 'elenco del 5 ottobre 2026', volPct: 'schede al 16 settembre 2026', frPopPct: 'mosaicatura 2024, residenti al censimento 2021', frArea: 'mosaicatura 2024',
   idPopPct: 'mosaicatura 2020, residenti al censimento 2011', idArea: 'mosaicatura 2020', spCorrAb: 'rendiconto 2023', invAb: 'rendiconto 2023', tribAb: 'rendiconto 2023',
   affR23: 'elezioni regionali del 2 e 3 aprile 2023', primaR23: 'elezioni regionali del 2 e 3 aprile 2023', affE24: 'elezioni europee dell\'8 e 9 giugno 2024', primaE24: 'elezioni europee dell\'8 e 9 giugno 2024',
-  affC22: 'elezioni politiche del 25 settembre 2022', primaC22: 'elezioni politiche del 25 settembre 2022', el: 'anagrafe aggiornata comune per comune' };
+  pefAb: 'piani economico finanziari 2024 e 2025', sportPm: 'registro al 16 settembre 2026', affC22: 'elezioni politiche del 25 settembre 2022', primaC22: 'elezioni politiche del 25 settembre 2022', el: 'anagrafe aggiornata comune per comune' };
 function metaIndicatore(ind) {
   const ok = MAN.istat.filter((_, i) => { const v = ind.f(i); return v !== null && v !== undefined && v !== '' && v !== '-' && !(typeof v === 'number' && !isFinite(v)); }).length;
   const per = ind.id === 'opRAb' || ind.id === 'opR' ? `progetti decisi dal ${A_OP}, dati al ${D_OP}` : PERIODO[ind.id], url = linkFonte(ind.fonte);
@@ -1540,7 +1667,28 @@ function coloraMappa() {
       (livMappa === 'regioni' ? `<div class="mt-3 text-pietra-800">Friuli Venezia Giulia: <b>${esc(s.lab(idFVG()))}</b></div>` : '');
   }
   infoMappa();
+  svgM.setAttribute('aria-label', `Mappa ${livMappa === 'comuni' ? 'dei comuni del Friuli Venezia Giulia' : 'delle regioni d\'Italia'}: ${s.t}. Gli stessi valori sono nella tabella sotto la mappa.`);
+  if (document.getElementById('tabMappa').open) tabellaMappa();
+  segnalaAggiornato('legenda'); ricordaStato();
 }
+// tabella equivalente alla mappa: righe per comune (o regione), valore o classe, dal più alto al più basso
+function righeMappa() {
+  const s = serieCorrente(), ids = livMappa === 'comuni' ? MAN.istat.map((_, i) => i) : GEO.italia.regioni.map(r => r.id);
+  const nome = id => livMappa === 'comuni' ? NOME_COM[id] : nomeReg((GEO.italia.regioni.find(r => r.id === id) || {}).name || id);
+  const righe = ids.map(id => ({ id, nome: nome(id), pv: livMappa === 'comuni' ? PV_COM[id] : '', v: s.val(id), lab: s.lab(id) }));
+  if (s.tipo === 'num') righe.sort((a, b) => (a.v === null) - (b.v === null) || (b.v ?? 0) - (a.v ?? 0) || a.nome.localeCompare(b.nome, 'it'));
+  else righe.sort((a, b) => a.nome.localeCompare(b.nome, 'it'));
+  return { s, righe };
+}
+function tabellaMappa() {
+  const { s, righe } = righeMappa(), com = livMappa === 'comuni';
+  document.getElementById('tmDidascalia').textContent = s.t;
+  document.getElementById('tmTesta').innerHTML = `<tr>${s.tipo === 'num' ? '<th scope="col" class="px-2 py-2 text-right">Pos.</th>' : ''}<th scope="col" class="px-2 py-2 text-left">${com ? 'Comune' : 'Regione'}</th>${com ? '<th scope="col" class="px-2 py-2 text-left">Prov.</th>' : ''}<th scope="col" class="px-2 py-2 text-right">${esc(s.tipo === 'num' ? s.ind.u : s.tipo === 'cartina' ? 'Classe' : 'Valore')}</th></tr>`;
+  let pos = 0;
+  document.getElementById('tmCorpo').innerHTML = righe.map(r => `<tr class="${com && r.id === terr.com ? 'bg-accento-100 font-semibold' : ''}">${s.tipo === 'num' ? `<td class="px-2 py-1 text-right num text-pietra-700">${r.v === null ? '' : ++pos}</td>` : ''}<th scope="row" class="px-2 py-1 text-left font-normal">${com ? `<button class="vaiCom underline-offset-2 hover:underline text-left" data-i="${r.id}">${esc(r.nome)}</button>` : esc(r.nome)}</th>${com ? `<td class="px-2 py-1">${r.pv}</td>` : ''}<td class="px-2 py-1 text-right num">${r.v === null ? '<i class="text-pietra-700">dato non disponibile</i>' : esc(s.tipo === 'num' ? s.lab(r.id).replace(' ' + s.ind.u, '') : r.lab)}</td></tr>`).join('');
+}
+document.getElementById('tabMappa').addEventListener('toggle', e => { if (e.target.open && GEO) tabellaMappa(); });
+document.getElementById('tmCorpo').addEventListener('click', e => { const b = e.target.closest('.vaiCom'); if (b) { const i = Number(b.dataset.i); impostaTerritorio(PV_COM[i], i); } });
 const idFVG = () => (GEO.italia.regioni.find(r => /Friuli|^FVG$/.test(r.name)) || {}).id;
 const nomeReg = n => n === 'FVG' ? 'Friuli Venezia Giulia' : n;
 function evidenzia() {
@@ -1575,7 +1723,7 @@ function popolaIndicatori() {
 }
 function cambiaLivello(l) {
   livMappa = l;
-  document.querySelectorAll('.livMappa').forEach(b => { const on = b.dataset.liv === l; b.className = 'livMappa px-3 py-1.5 text-xs font-semibold rounded-md ' + (on ? 'bg-primario-700 text-white shadow' : 'text-pietra-700 hover:bg-white'); b.setAttribute('aria-selected', String(on)); });
+  document.querySelectorAll('.livMappa').forEach(b => { const on = b.dataset.liv === l; b.className = 'livMappa px-3 py-1.5 text-xs font-semibold rounded-md ' + (on ? 'bg-primario-700 text-white shadow' : 'text-pietra-700 hover:bg-white'); b.setAttribute('aria-pressed', String(on)); });
   if (!GEO) return;
   popolaIndicatori(); disegnaBase(); coloraMappa(); if (PUNTI) disegnaStrati();
 }
@@ -1638,21 +1786,39 @@ function disegnaStrati() {
 }
 document.getElementById('strati').addEventListener('change', e => { const c = e.target.closest('.stratoChk'); if (!c) return; const li = Number(c.dataset.l); c.checked ? stratiOn.add(li) : stratiOn.delete(li); disegnaStrati(); });
 /* ===== Confronto ===== */
-const CF_RIGHE = [['p25'], ['var'], ['dens'], ['etaMed'], ['vecch'], ['strPct'], ['tNat'], ['prev50'], ['red24'], ['redVar'], ['pefAb'], ['prAb'], ['fa'], ['ruPm'], ['volPct'], ['sportPm'], ['frPopPct'], ['idPopPct'], ['spCorrAb'], ['invAb'], ['tribAb'], ['affR23'], ['primaR23'], ['affE24'], ['primaE24'], ['affC22'], ['primaC22']].map(([id]) => IND_COM.find(x => x.id === id));
+// gruppi del confronto: i valori assoluti crescono con la taglia del comune, quelli per abitante e le percentuali no
+const CF_GRUPPI = [
+  { id: 'assoluti', t: 'Valori assoluti', d: 'Conteggi e totali: crescono con la dimensione del comune, quindi da soli non dicono chi sta meglio.', righe: ['p25', 'pr', 'fa', 'opR'] },
+  { id: 'rapporto', t: 'Valori per abitante e medie', d: 'Rapportati alla popolazione o medi: si confrontano anche fra comuni di taglia diversa.', righe: ['dens', 'etaMed', 'red24', 'prAb', 'ruPm', 'volPct', 'sportPm', 'pefAb', 'opRAb', 'spCorrAb', 'invAb', 'tribAb'] },
+  { id: 'rapporto', t: 'Percentuali, tassi e indici', d: '', righe: ['var', 'vecch', 'strPct', 'tNat', 'prev50', 'redVar', 'frPopPct', 'idPopPct'] },
+  { id: 'elezioni', t: 'Elezioni', d: 'Ogni elezione ha la sua data, scritta nel nome della riga.', righe: ['affR23', 'primaR23', 'affE24', 'primaE24', 'affC22', 'primaC22'] }
+].map(g => ({ ...g, righe: g.righe.map(id => IND_COM.find(x => x.id === id)).filter(Boolean) }));
+const CF_RIGHE = CF_GRUPPI.flatMap(g => g.righe);
+const periodoInd = ind => ind.id === 'opRAb' || ind.id === 'opR' ? `progetti decisi dal ${A_OP}, dati al ${D_OP}` : PERIODO[ind.id] || '';
+// anno di riferimento più recente nel periodo (una previsione conta per l'anno di base)
+const annoRif = ind => { const y = (periodoInd(ind).replace(/previsione al \d{4}/, '').match(/\d{4}/g) || []).map(Number); return y.length ? Math.max(...y) : null; };
+let cfVista = 'tutti';
 let cfScelti = [-1, -1, -1, -1];
 function opzioniComuni(v) { return '<option value="-1">Scegli un comune</option>' + MAN.istat.map((_, i) => i).sort((a, b) => NOME_COM[a].localeCompare(NOME_COM[b], 'it')).map(i => `<option value="${i}" ${i === v ? 'selected' : ''}>${esc(NOME_COM[i])} (${PV_COM[i]})</option>`).join(''); }
 const fmtInd = (ind, v) => v === null || v === undefined ? '' : (ind.cat ? esc(v) : Number(v).toLocaleString('it-IT', { minimumFractionDigits: ind.d, maximumFractionDigits: ind.d }) + (ind.u === '%' ? '%' : ''));
 function disegnaConfronto() {
   document.getElementById('cfSel').innerHTML = cfScelti.map((v, k) => `<label class="flex flex-col gap-1 min-w-0"><span class="text-[10px] uppercase tracking-wider text-pietra-700">Comune ${k + 1}</span><select class="cfS text-sm border border-pietra-200 rounded-lg px-2 py-2 bg-pietra-50 w-full" data-k="${k}">${opzioniComuni(v)}</select></label>`).join('');
   const sc = cfScelti.filter(i => i >= 0);
-  document.getElementById('cfTesta').innerHTML = '<tr><th class="text-left px-3 py-2 font-patriarcale text-[11px] uppercase">Indicatore</th>' + sc.map(i => `<th class="text-right px-3 py-2 font-patriarcale text-[11px] uppercase">${esc(NOME_COM[i])}</th>`).join('') + '</tr>';
-  if (!sc.length) { document.getElementById('cfCorpo').innerHTML = '<tr><td class="px-3 py-4 text-pietra-700">Scegli almeno un comune qui sopra, oppure usa il filtro territoriale.</td></tr>'; return; }
-  document.getElementById('cfCorpo').innerHTML = CF_RIGHE.map(ind => {
+  document.querySelectorAll('.cfV').forEach(b => { const on = b.dataset.v === cfVista; b.className = 'cfV px-3 py-1.5 text-xs font-semibold rounded-md ' + (on ? 'bg-primario-700 text-white shadow' : 'text-pietra-700 hover:bg-white'); b.setAttribute('aria-pressed', String(on)); });
+  document.getElementById('cfDidascalia').textContent = sc.length ? 'Confronto fra ' + sc.map(i => NOME_COM[i]).join(', ') : 'Confronto fra comuni';
+  document.getElementById('cfTesta').innerHTML = '<tr><th scope="col" class="text-left px-3 py-2 font-patriarcale text-[11px] uppercase">Indicatore</th>' + sc.map(i => `<th scope="col" class="text-right px-3 py-2 font-patriarcale text-[11px] uppercase">${esc(NOME_COM[i])}</th>`).join('') + '</tr>';
+  ricordaStato();
+  if (!sc.length) { document.getElementById('cfCorpo').innerHTML = `<tr><td class="px-3 py-4">${vuotoHTML('Scegli almeno un comune qui sopra, oppure usa il filtro territoriale.')}</td></tr>`; lucide.createIcons(); return; }
+  const gruppi = CF_GRUPPI.filter(g => cfVista === 'tutti' || g.id === cfVista);
+  document.getElementById('cfCorpo').innerHTML = gruppi.map(g => `<tr class="gruppo"><th scope="colgroup" colspan="${sc.length + 1}" class="text-left px-3 py-2 bg-primario-50"><span class="font-patriarcale font-bold text-primario-800 text-[13px]">${esc(g.t)}</span>${g.d ? `<span class="block font-normal text-[11px] text-pietra-700">${esc(g.d)}</span>` : ''}</th></tr>` + g.righe.map(ind => {
     const vals = sc.map(i => { const v = ind.f(i); return v === undefined || (typeof v === 'number' && !isFinite(v)) ? null : v; });
     const nums = vals.filter(v => typeof v === 'number'); const mx = Math.max(...nums), mn = Math.min(...nums);
-    return `<tr><td class="px-3 py-2"><div class="text-pietra-900">${esc(ind.t)}</div><div class="text-[11px] text-pietra-700">${ind.cat ? '' : esc(ind.u)}</div></td>` + vals.map(v => `<td class="px-3 py-2 text-right num ${!ind.cat && nums.length > 1 && v === mx ? 'bg-accento-100 font-semibold' : ''} ${!ind.cat && nums.length > 1 && v === mn && mn !== mx ? 'bg-primario-50' : ''}">${v === null ? '<i class="text-pietra-700 font-normal" title="dato non disponibile">n.d.</i>' : fmtInd(ind, v)}</td>`).join('') + '</tr>';
-  }).join('');
+    const per = periodoInd(ind), a = annoRif(ind), vecchio = g.id !== 'elezioni' && a !== null && a < 2025;
+    return `<tr><th scope="row" class="px-3 py-2 text-left font-normal"><div class="text-pietra-900">${esc(ind.t)}</div><div class="text-[11px] text-pietra-700">${ind.cat ? '' : esc(ind.u) + (per ? ' · ' : '')}${per ? esc(per) : ''}${vecchio ? ' <span class="inline-block rounded border border-accento-300 bg-accento-50 text-accento-700 text-[10px] font-semibold px-1">periodo meno recente</span>' : ''}</div></th>` + vals.map(v => `<td class="px-3 py-2 text-right num ${!ind.cat && nums.length > 1 && v === mx ? 'bg-accento-100 font-semibold' : ''} ${!ind.cat && nums.length > 1 && v === mn && mn !== mx ? 'bg-primario-50' : ''}">${v === null ? '<i class="text-pietra-700 font-normal" title="dato non disponibile">n.d.</i>' : fmtInd(ind, v)}</td>`).join('') + '</tr>';
+  }).join('')).join('');
+  segnalaAggiornato('cfCorpo');
 }
+document.getElementById('cfVista').addEventListener('click', e => { const b = e.target.closest('.cfV'); if (!b) return; cfVista = b.dataset.v; disegnaConfronto(); });
 document.getElementById('cfSel').addEventListener('change', e => { const s = e.target.closest('.cfS'); if (!s) return; cfScelti[Number(s.dataset.k)] = Number(s.value); disegnaConfronto(); });
 document.getElementById('btnCfVicini').addEventListener('click', () => {
   const base = cfScelti.find(i => i >= 0) ?? (terr.com >= 0 ? terr.com : -1);
@@ -1663,7 +1829,7 @@ document.getElementById('btnCfVicini').addEventListener('click', () => {
 });
 document.getElementById('btnCfCopia').addEventListener('click', () => {
   const sc = cfScelti.filter(i => i >= 0); if (!sc.length) return;
-  const t = [['Indicatore', 'Unità', ...sc.map(i => NOME_COM[i])].join('\t'), ...CF_RIGHE.map(ind => [ind.t, ind.cat ? '' : ind.u, ...sc.map(i => { const v = ind.f(i); return v === null || v === undefined ? '' : (typeof v === 'number' ? String(v).replace('.', ',') : v); })].join('\t'))].join('\n');
+  const t = [['Indicatore', 'Unità', 'Periodo', ...sc.map(i => NOME_COM[i]), 'Fonte'].join('\t'), ...CF_RIGHE.map(ind => [ind.t, ind.cat ? '' : ind.u, periodoInd(ind), ...sc.map(i => { const v = ind.f(i); return v === null || v === undefined ? 'n.d.' : (typeof v === 'number' ? String(v).replace('.', ',') : v); }), ind.fonte].join('\t'))].join('\n');
   copia(t, 'Confronto copiato: incolla in Excel');
 });
 
@@ -1671,9 +1837,9 @@ async function avviaMappe() {
   try {
     GEO = await scaricaJSON('dati/_mappe_0.txt');
     document.getElementById('statoMappa').hidden = true;
-    cambiaLivello('comuni');
+    cambiaLivello(livMappa);
     scaricaJSON('dati/_punti_0.txt').then(p => { PUNTI = p; stratiOn.add(0); disegnaStrati(); }).catch(() => {});
-  } catch (e) { document.getElementById('statoMappa').textContent = 'La mappa non si è caricata: ricarica la pagina.'; }
+  } catch (e) { document.getElementById('statoMappa').innerHTML = erroreHTML('La mappa non si è caricata: ricarica la pagina.'); lucide.createIcons(); }
 }
 
 /* ===== Menu per argomenti ===== */
@@ -1699,7 +1865,7 @@ function disegnaMenu() {
   lucide.createIcons();
 }
 const menuEl = document.getElementById('menuArgomenti'), btnMenu = document.getElementById('btnMenu');
-function apriMenu(on) { menuEl.hidden = !on; btnMenu.setAttribute('aria-expanded', String(on)); document.getElementById('frecciaMenu').style.transform = on ? 'rotate(180deg)' : ''; }
+function apriMenu(on) { if (on) mostra(menuEl); else nascondi(menuEl); btnMenu.setAttribute('aria-expanded', String(on)); document.getElementById('frecciaMenu').style.transform = on ? 'rotate(180deg)' : ''; }
 btnMenu.addEventListener('click', e => { e.stopPropagation(); apriMenu(menuEl.hidden); });
 document.addEventListener('click', e => { if (!menuEl.hidden && !menuEl.contains(e.target) && !btnMenu.contains(e.target)) apriMenu(false); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menuEl.hidden) { apriMenu(false); btnMenu.focus(); } });
@@ -2069,8 +2235,8 @@ function tpTerritorio() {
 }
 async function avviaTrasporti() {
   document.getElementById('notaTpl').innerHTML = 'Linee e fermate: dati GTFS (formato aperto per gli orari del trasporto pubblico) di TPL FVG, redistribuiti da <a class="underline" href="https://busone.app" target="_blank" rel="noopener">BusOne</a><span id="tpVers"></span>, aggiornati ogni lunedì. Arrivi e mezzi in viaggio: flusso in tempo reale di TPL FVG tramite BusOne, letto dal tuo browser al momento. Il tempo reale vede solo le corse già partite. Ingrandendo, sotto le linee compare la mappa delle vie di OpenStreetMap, scaricata dal tuo browser. Mancano i treni: gli orari ufficiali pubblicati sul Punto di accesso nazionale ai dati sulla mobilità sono scaduti (Trenitalia al 13 giugno 2026). Per gli orari completi fa fede il sito <a class="underline" href="https://tplfvg.it" target="_blank" rel="noopener">tplfvg.it</a>.';
-  if (!(await attendiMappe())) { document.getElementById('statoTpl').textContent = 'Mappa non disponibile.'; return; }
-  try { TPL = await scaricaJSON('dati/_tpl_0.txt'); } catch (err) { document.getElementById('statoTpl').textContent = 'Rete dei trasporti non disponibile: ' + err.message; return; }
+  if (!(await attendiMappe())) { document.getElementById('statoTpl').innerHTML = erroreHTML('Mappa non disponibile: ricarica la pagina.'); lucide.createIcons(); return; }
+  try { TPL = await scaricaJSON('dati/_tpl_0.txt'); } catch (err) { document.getElementById('statoTpl').innerHTML = erroreHTML(esc('Rete dei trasporti non disponibile: ' + err.message)); lucide.createIcons(); return; }
   const v = /^(\d{4})(\d{2})(\d{2})/.exec(TPL.versione || '');
   if (v) document.getElementById('tpVers').textContent = `, versione del ${Number(v[3])} ${['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'][Number(v[2]) - 1]} ${v[1]}`;
   tpIndici(); tpDisegnaBase(); document.getElementById('statoTpl').hidden = true; tpTerritorio();
@@ -2144,11 +2310,11 @@ function disegnaAllerte() {
   note.innerHTML = 'Fonte: <a class="underline" href="https://github.com/pcm-dpc/DPC-Bollettini-Criticita-Idrogeologica-Idraulica" target="_blank" rel="noopener">bollettino di criticità nazionale</a> del Dipartimento della Protezione civile, che riporta le valutazioni del Centro funzionale della Regione; si aggiorna ogni giorno verso le 16. Per gli avvisi ufficiali e i comportamenti da tenere fa fede il sito della <a class="underline" href="https://www.protezionecivile.fvg.it" target="_blank" rel="noopener">Protezione civile del Friuli Venezia Giulia</a>.';
   document.getElementById('alLegenda').innerHTML = LIV_AL.map((l, k) => `<span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-sm border border-pietra-300" style="background:${l.col}"></span>${l.t}</span>`).join('');
   if (!AL) return;
-  if (AL.errore) { document.getElementById('alEmesso').textContent = 'Bollettino non disponibile in questo momento (' + AL.errore + '). Gli avvisi ufficiali restano sul sito della Protezione civile della Regione.'; STATO.allerte = { s: 'errore', t: 'il bollettino non risponde' }; disegnaStato(); return; }
+  if (AL.errore) { document.getElementById('alEmesso').innerHTML = erroreHTML(esc('Bollettino non disponibile in questo momento (' + AL.errore + '). Gli avvisi ufficiali restano sul sito della Protezione civile della Regione.')); lucide.createIcons(); STATO.allerte = { s: 'errore', t: 'il bollettino non risponde' }; disegnaStato(); return; }
   const d0 = AL.emesso.d, d1 = new Date(d0.getTime() + 864e5);
   document.getElementById('alEmesso').textContent = `Bollettino emesso il ${giornoIt(d0)} alle ${AL.emesso.ora}. Livelli per il ${giornoIt(alGiorno === 'today' ? d0 : d1)}.`;
   STATO.allerte = { s: 'ok', t: `bollettino del ${giornoIt(d0)} delle ${AL.emesso.ora}, letto alle ${oraIt(new Date())}` }; disegnaStato();
-  document.querySelectorAll('.alGiorno').forEach(b => { const on = b.dataset.g === alGiorno; b.textContent = giornoIt(b.dataset.g === 'today' ? d0 : d1).replace(/ \d{4}$/, ''); b.className = 'alGiorno px-3 py-1.5 text-xs font-semibold rounded-md ' + (on ? 'bg-primario-700 text-white shadow' : 'text-pietra-700 hover:bg-white'); b.hidden = !AL[b.dataset.g]; });
+  document.querySelectorAll('.alGiorno').forEach(b => { const on = b.dataset.g === alGiorno; b.textContent = giornoIt(b.dataset.g === 'today' ? d0 : d1).replace(/ \d{4}$/, ''); b.setAttribute('aria-pressed', String(on)); b.className = 'alGiorno px-3 py-1.5 text-xs font-semibold rounded-md ' + (on ? 'bg-primario-700 text-white shadow' : 'text-pietra-700 hover:bg-white'); b.hidden = !AL[b.dataset.g]; });
   const Z = AL[alGiorno] || {};
   if (GEO) {
     const svg = document.getElementById('svgAllerte'), sel = terr.com;
@@ -2201,13 +2367,13 @@ async function caricaAria(k) {
   return (ARIA[k] = { ultimo: new Date(ultimo.slice(0, 10) + 'T00:00:00Z'), anno, staz });
 }
 async function disegnaAria() {
-  document.querySelectorAll('.arInq').forEach(b => { const on = b.dataset.i === arInq; b.className = 'arInq px-2.5 py-1.5 text-xs font-semibold rounded-md ' + (on ? 'bg-primario-700 text-white shadow' : 'text-pietra-700 hover:bg-white'); });
+  document.querySelectorAll('.arInq').forEach(b => { const on = b.dataset.i === arInq; b.setAttribute('aria-pressed', String(on)); b.className = 'arInq px-2.5 py-1.5 text-xs font-semibold rounded-md ' + (on ? 'bg-primario-700 text-white shadow' : 'text-pietra-700 hover:bg-white'); });
   const k0 = arInq, q = INQ[k0];
   document.getElementById('arNota').innerHTML = `Valori della ${q.misura}, in µg/m³ (microgrammi per metro cubo). ${q.limT} Riferimento: decreto legislativo 13 agosto 2010, n. 155. Fonte: ARPA FVG (Agenzia regionale per la protezione dell'ambiente), dati validati pubblicati sul <a class="underline" href="https://www.dati.friuliveneziagiulia.it" target="_blank" rel="noopener">portale dei dati aperti della Regione</a>; i valori più recenti sono sul <a class="underline" href="https://www.arpa.fvg.it/temi/temi/aria/" target="_blank" rel="noopener">sito di ARPA FVG</a>.`;
   document.getElementById('arLegenda').innerHTML = etichetteAria(q).map((t, i) => `<span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-full" style="background:${COL_ARIA[i]}"></span>${t} µg/m³</span>`).join('');
   let A;
   try { if (!(await attendiMappe())) throw new Error('mappa non disponibile'); A = await caricaAria(arInq); }
-  catch (e) { document.getElementById('arData').textContent = 'Dati non disponibili in questo momento (' + (e.message || e) + ').'; STATO.aria = { s: 'errore', t: 'il portale dei dati aperti non risponde' }; disegnaStato(); return; }
+  catch (e) { document.getElementById('arData').innerHTML = erroreHTML(esc('Dati non disponibili in questo momento (' + (e.message || e) + ').')); lucide.createIcons(); STATO.aria = { s: 'errore', t: 'il portale dei dati aperti non risponde' }; disegnaStato(); return; }
   if (arInq !== k0) return;
   const piuVecchio = A.staz.reduce((m, s) => s.data < m ? s.data : m, A.ultimo);
   document.getElementById('arData').textContent = `Ultimi valori validati di ${A.staz.length} centraline: ${+piuVecchio === +A.ultimo ? giornoIt(A.ultimo) : 'dal ' + giornoIt(piuVecchio) + ' al ' + giornoIt(A.ultimo)}. Ogni valore ha accanto la sua data.`;
@@ -2263,6 +2429,64 @@ function avviaAmbiente() {
   if ('IntersectionObserver' in window) { const io = new IntersectionObserver(v => { if (v.some(x => x.isIntersecting)) { io.disconnect(); via(); } }, { rootMargin: '800px' }); io.observe(sez); } else via();
 }
 
+/* Download dei risultati filtrati: CSV standard (virgola, punto decimale, UTF-8) ed Excel con un foglio «Informazioni» */
+const OGGI = new Date().toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Rome' });
+const RIUSO = 'Vale la licenza della fonte indicata; per i dati aperti della Regione FVG le licenze in uso sono la IODL 2.0 (Italian Open Data License) e la CC BY 4.0 (Creative Commons Attribuzione). Citare la fonte e l\'Atlante FVG (atlantefvg.it).';
+function tabellaDaScaricare(t) {
+  if (t === 'registro') return { nome: 'registro-comuni', titolo: 'Registro dei comuni del Friuli Venezia Giulia',
+    int: ['Codice ISTAT', 'Comune', 'Provincia', 'Residenti al 31 dicembre 2025', 'Residenti al 31 dicembre 2024', 'Superficie (km²)', 'Sindaco in anagrafe', 'Aggiornamento anagrafe', 'Anno delle prossime elezioni comunali', 'Enti RUNTS', 'Farmacie', 'Istituti scolastici', 'Residenze per anziani', 'Arrivi 2025', 'Presenze 2025'],
+    righe: listaCorrente.map(c => [c.id, c.n, c.pv, c.p25, c.p24, c.km, titolo(c.sin), c.agg, c.el, c.ru, c.fa, c.sc, c.rsa, c.ar, c.pr]),
+    fonte: 'Annuario statistico regionale 2026 (residenti), anagrafe regionale degli amministratori locali, elenco RUNTS (Registro unico nazionale del Terzo settore) del 5 ottobre 2026, portale dei dati aperti della Regione FVG: dettaglio nella pagina https://atlantefvg.it/metodo/',
+    data: 'database regionale acquisito il 5 ottobre 2026', filtri: document.getElementById('terrStato').textContent };
+  if (t === 'mappa') {
+    const { s, righe } = righeMappa(), com = livMappa === 'comuni';
+    return { nome: 'mappa-' + slugCom(s.t).slice(0, 50), titolo: s.t,
+      int: com ? ['Codice ISTAT', 'Comune', 'Provincia', s.tipo === 'num' ? s.t + ' (' + s.ind.u + ')' : s.tipo === 'cartina' ? 'Classe' : s.t] : ['Regione', 'Classe'],
+      righe: righe.map(r => com ? [MAN.istat[r.id], r.nome, r.pv, s.tipo === 'num' ? r.v : r.v === null ? '' : r.lab] : [r.nome, r.lab]),
+      fonte: s.tipo === 'cartina' ? `«Regione in cifre 2026», ${s.c.code}, tramite ${F_RFVG}` : s.ind.fonte,
+      data: s.tipo === 'cartina' ? 'Regione in cifre 2026' : periodoInd(s.ind), filtri: '' };
+  }
+  if (t === 'confronto') {
+    const sc = cfScelti.filter(i => i >= 0), g = CF_GRUPPI.filter(x => cfVista === 'tutti' || x.id === cfVista);
+    return { nome: 'confronto-' + sc.map(i => SLUG_COM[i]).join('-').slice(0, 80), titolo: 'Confronto fra ' + sc.map(i => NOME_COM[i]).join(', '),
+      int: ['Gruppo', 'Indicatore', 'Unità', 'Periodo', ...sc.map(i => NOME_COM[i]), 'Fonte'],
+      righe: g.flatMap(x => x.righe.map(ind => [x.t, ind.t, ind.cat ? '' : ind.u, periodoInd(ind), ...sc.map(i => { const v = ind.f(i); return v === undefined || v === null || (typeof v === 'number' && !isFinite(v)) ? '' : v; }), ind.fonte])),
+      fonte: 'indicata riga per riga nella colonna «Fonte»', data: 'indicata riga per riga nella colonna «Periodo»', filtri: '', vuoti: sc.length === 0 };
+  }
+  if (t === 'archivio' && corrente) {
+    const { f, rows } = corrente;
+    return { nome: 'archivio-' + slugCom(f.id).slice(0, 60), titolo: nomeFoglio(f.id), int: f.cols, righe: vista.map(i => rows[i]),
+      fonte: f.fonte || 'Database Friuli Venezia Giulia', data: f.cons ? 'consultazione del ' + (isoIt(f.cons) || f.cons) : 'database regionale acquisito il 5 ottobre 2026',
+      filtri: [document.getElementById('fStato').textContent, document.getElementById('cercaRighe').value.trim() ? 'testo cercato: ' + document.getElementById('cercaRighe').value.trim() : '', Object.keys(filtriCol).length ? Object.keys(filtriCol).length + ' filtri per colonna' : ''].filter(Boolean).join(' · ') };
+  }
+  return null;
+}
+const csvCella = v => { if (v === null || v === undefined) return ''; const s = String(v); return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+function salvaFile(nome, blob) { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = nome; a.textContent = nome; a.hidden = true; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }
+let xlsxPronto = null;
+function caricaXLSX() {
+  return xlsxPronto = xlsxPronto || new Promise((ok, ko) => { const s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js'; s.onload = () => ok(window.XLSX); s.onerror = () => { xlsxPronto = null; ko(new Error('libreria Excel non raggiungibile')); }; document.head.appendChild(s); });
+}
+async function scarica(t, formato) {
+  const d = tabellaDaScaricare(t);
+  if (!d || d.vuoti) { mostraToast(t === 'archivio' ? 'Apri prima un foglio' : 'Scegli prima almeno un comune'); return; }
+  const info = [['Atlante FVG', 'https://atlantefvg.it/'], ['Tabella', d.titolo], ['Pagina', location.href], ['Filtri applicati', d.filtri || 'nessuno'], ['Righe', d.righe.length], ['Fonte', d.fonte], ['Periodo o data dei dati', d.data], ['Scaricato il', OGGI], ['Riutilizzo', RIUSO], ['Dati non disponibili', 'celle vuote: dato non disponibile, non zero']];
+  if (formato === 'csv') {
+    // fonte, data e riutilizzo in tre colonne in fondo a ogni riga: restano attaccati ai dati anche se il file viaggia da solo
+    const testo = [[...d.int, 'Fonte', 'Periodo o data dei dati', 'Riutilizzo'], ...d.righe.map(r => [...r, d.fonte, d.data, RIUSO])].map(r => r.map(csvCella).join(',')).join('\r\n');
+    salvaFile(d.nome + '.csv', new Blob(['\ufeff' + testo + '\r\n'], { type: 'text/csv;charset=utf-8' }));
+  } else {
+    let X2; try { mostraToast('Preparazione del file Excel…'); X2 = await caricaXLSX(); } catch (e) { mostraToast('Il file Excel non si può preparare adesso: scarica il CSV, che Excel apre lo stesso'); return; }
+    const wb = X2.utils.book_new();
+    X2.utils.book_append_sheet(wb, X2.utils.aoa_to_sheet([d.int, ...d.righe.map(r => r.map(v => v === null || v === undefined ? '' : typeof v === 'string' && v.length > 32000 ? v.slice(0, 32000) + '… (testo troncato: limite di Excel)' : v))]), 'Dati');
+    const wi = X2.utils.aoa_to_sheet([['Voce', 'Valore'], ...info]); wi['!cols'] = [{ wch: 26 }, { wch: 110 }];
+    X2.utils.book_append_sheet(wb, wi, 'Informazioni');
+    X2.writeFile(wb, d.nome + '.xlsx', { compression: true });
+  }
+  mostraToast(`${fmt(d.righe.length)} righe scaricate in ${formato === 'csv' ? 'CSV' : 'Excel'}`);
+}
+document.addEventListener('click', e => { const b = e.target.closest('.scarica'); if (b) scarica(b.dataset.t, b.dataset.f); });
+
 /* Avviso */
 let tToast;
 function mostraToast(msg) {
@@ -2273,16 +2497,34 @@ function mostraToast(msg) {
   tToast = setTimeout(() => t.classList.add('translate-y-4', 'opacity-0'), 3000);
 }
 
+// stato iniziale dai parametri dell'indirizzo (collegamenti condivisi): i valori non validi si ignorano
+(() => {
+  const p = PARAM0;
+  if (/^20\d\d$/.test(p.get('voto') || '') && [...document.getElementById('fEl').options].some(o => o.value === p.get('voto'))) document.getElementById('fEl').value = p.get('voto');
+  const o = /^(-?)([a-zA-Z0-9]+)$/.exec(p.get('ordina') || ''); if (o && document.querySelector(`th[data-ord="${o[2]}"]`)) ordine = { k: o[2], dir: o[1] ? -1 : 1 };
+  const cf = (p.get('confronta') || '').split(',').map(s => SLUG_COM.indexOf(s)).filter((i, k, a) => i >= 0 && a.indexOf(i) === k).slice(0, 4);
+  if (cf.length) cfScelti = [...cf, -1, -1, -1, -1].slice(0, 4);
+  if (['tutti', 'assoluti', 'rapporto', 'elezioni'].includes(p.get('mostra'))) cfVista = p.get('mostra');
+  if (p.get('livello') === 'regioni') livMappa = 'regioni';
+  if (p.get('indicatore')) indCorr = p.get('indicatore').slice(0, 40);
+})();
+const FOGLIO_INIZIALE = (() => {
+  const id = PARAM0.get('foglio'); if (!id || !FOGLI.some(f => f.id === id)) return ['Comuni'];
+  let colonne = {}; try { const c = JSON.parse(PARAM0.get('colonne') || '{}'); if (c && typeof c === 'object') Object.entries(c).forEach(([j, v]) => { if (/^\d+$/.test(j) && v && typeof v === 'object') { const x = {}; ['sel', 'txt'].forEach(k => { if (typeof v[k] === 'string') x[k] = v[k]; }); ['min', 'max'].forEach(k => { if (typeof v[k] === 'number' && isFinite(v[k])) x[k] = v[k]; }); if (Object.keys(x).length) colonne[j] = x; } }); } catch (e) { colonne = {}; }
+  return [id, false, { cerca: (PARAM0.get('cerca') || '').slice(0, 200), colonne }];
+})();
+['#modale > div', '#rigaModale > div', '#menuArgomenti', '#pannelloFiltri', '#ricSugg'].forEach(q => { const el = document.querySelector(q); if (el) el.classList.add('compari'); });
+document.getElementById('fEl').addEventListener('change', ricordaStato);
 disegnaPagine();
 vaiPagina(PAGINA_INIZIALE, { nuova: false, scorri: false });
-inizializzaGrafico();
-impostaTerritorio('', -1);
-apriFoglio('Comuni');
+impostaTerritorio(/^(UD|PN|GO|TS)$/.test(PARAM0.get('provincia') || '') ? PARAM0.get('provincia') : '', -1);
+apriFoglio(...FOGLIO_INIZIALE);
 avviaMappe(); avviaTrasporti(); avviaAmbiente();
 disegnaConfronto();
 disegnaMenu();
 lucide.createIcons();
 avvioInCorso = false;
 aggiornaIndirizzo(false);
-if (COMUNE_INIZIALE >= 0) { impostaTerritorio(PV_COM[COMUNE_INIZIALE], COMUNE_INIZIALE); apriDettaglio(MAN.istat[COMUNE_INIZIALE]); }
+// con il solo comune nell'indirizzo si apre la sua scheda; con una pagina indicata il comune resta scelto nel filtro
+if (COMUNE_INIZIALE >= 0) { impostaTerritorio(PV_COM[COMUNE_INIZIALE], COMUNE_INIZIALE); if (!PARAM0.get('pagina')) apriDettaglio(MAN.istat[COMUNE_INIZIALE]); }
 </script>
