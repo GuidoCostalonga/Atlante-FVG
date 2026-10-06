@@ -1,4 +1,27 @@
-<title>Atlante dei Comuni FVG</title>
+<!doctype html>
+<html lang="it">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atlante FVG: i comuni del Friuli Venezia Giulia</title>
+<meta name="description" content="I 215 comuni del Friuli Venezia Giulia in un'unica pagina: popolazione, amministratori, servizi, bilanci, elezioni, mappe e autobus in tempo reale. Dati da fonti pubbliche.">
+<meta name="theme-color" content="#0B3359">
+<link rel="canonical" href="https://atlantefvg.it/">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icona-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Atlante FVG">
+<meta property="og:url" content="https://atlantefvg.it/">
+<meta property="og:title" content="Atlante FVG: i 215 comuni del Friuli Venezia Giulia">
+<meta property="og:description" content="I 215 comuni del Friuli Venezia Giulia in un'unica pagina: popolazione, amministratori, servizi, bilanci, elezioni, mappe e autobus in tempo reale. Dati da fonti pubbliche.">
+<meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo Atlante FVG con la scritta: i 215 comuni del Friuli Venezia Giulia">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
@@ -566,10 +589,12 @@ function ottieniDatiGrafico(tipo) {
 function inizializzaGrafico() {
   Chart.defaults.font.family = '"Plus Jakarta Sans", system-ui, sans-serif';
   Chart.defaults.color = '#52565E';
-  grafico = new Chart(document.getElementById('grafico'), { type: 'bar', data: { labels: [], datasets: [] }, options: {} });
-  cambiaVistaGrafico('pop');
+  // Chart.js misura le etichette una volta sola: si disegna quando il carattere della pagina è arrivato, altrimenti i numeri dell'asse escono tagliati
+  const disegna = () => { if (grafico) return; grafico = new Chart(document.getElementById('grafico'), { type: 'bar', data: { labels: [], datasets: [] }, options: { maintainAspectRatio: false } }); cambiaVistaGrafico('pop'); };
+  if (document.fonts && document.fonts.load) Promise.race([document.fonts.load('400 12px "Plus Jakarta Sans"'), new Promise(r => setTimeout(r, 3000))]).then(disegna, disegna); else disegna();
 }
 function cambiaVistaGrafico(tipo) {
+  if (!grafico) return;
   const g = ottieniDatiGrafico(tipo);
   document.querySelectorAll('.vista').forEach(b => {
     const on = b.dataset.vista === tipo;

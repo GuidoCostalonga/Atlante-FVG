@@ -21,6 +21,8 @@ filtrabili per provincia, per comune, per testo e colonna per colonna.
 | `scripts/aggiorna_autobus.py` | Aggiornamento automatico della rete degli autobus |
 | `scripts/aggiorna_dati.py` | Aggiornamento automatico dei dati aperti regionali che cambiano spesso |
 | `.github/workflows/aggiorna-dati.yml` | Esegue l'aggiornamento ogni lunedì e pubblica le novità |
+| `favicon.ico`, `favicon-32.png`, `icona-192.png`, `apple-touch-icon.png` | Icona del sito (la cartina del logo) per le schede del browser e per la schermata Home dei telefoni |
+| `anteprima.jpg` | Immagine di anteprima (1200 × 630) mostrata da WhatsApp, Facebook e dagli altri social quando si condivide il collegamento |
 | `CNAME` | Dominio della pagina, atlantefvg.it |
 | `.nojekyll` | Dice a GitHub Pages di servire i file così come sono |
 
