@@ -1,0 +1,28 @@
+{
+ "https://idrogeo.isprambiente.it/app/": {
+  "Content-Length": "11423",
+  "Last-Modified": "Mon, 28 Sep 2026 19:22:34 GMT"
+ },
+ "https://servizi.lavoro.gov.it/runts/it-it/Lista-enti": {},
+ "https://servizi.lavoro.gov.it/runts/it-it/Ricerca-enti": {},
+ "https://usrfvg.regione.fvg.it/export/sites/default/it/home/menu/uffici/Direzione/allegati-direzione/allegati-direzione-2026/ELENCO-scuole-2026-2027.xlsx": {
+  "Content-Length": "35713",
+  "ETag": "W/\"35713-1790154039000\"",
+  "Last-Modified": "Wed, 23 Sep 2026 09:00:39 GMT"
+ },
+ "https://www.coni.it/it/registro-societa-sportive/home/registro-2-0/registro.html": {
+  "Last-Modified": "Tue, 06 Oct 2026 20:27:40 GMT"
+ },
+ "https://www.consiglio.regione.fvg.it/pagineinterne/Portale/HomeConsiglieri.aspx": {},
+ "https://www.fidal.it/mappa.php?regione=FVG": {},
+ "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv": {
+  "Content-Length": "1126843",
+  "ETag": "\"65b38a82-1131bb:dtagent10345260810170330MNHI:dtagent10345260810170330MNHI\"",
+  "Last-Modified": "Fri, 26 Jan 2024 10:33:36 GMT"
+ },
+ "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip": {
+  "Content-Length": "19543332",
+  "ETag": "W/\"19543332-1789562303000\"",
+  "Last-Modified": "Wed, 16 Sep 2026 12:38:23 GMT"
+ }
+}

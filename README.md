@@ -181,12 +181,30 @@ nella pagina (`ZONA_COM`) secondo gli elenchi dei comuni del bollettino del 6 ot
 
 ## Aggiornamento automatico
 
-Ogni lunedì `scripts/aggiorna_dati.py` riscarica dal portale dei dati aperti della Regione 18 fogli che cambiano
-spesso (farmacie, guardie mediche, residenze per anziani, accessi a internet, turismo, siti inquinati, elezioni
-comunali 2026, patrimonio regionale, strutture ricettive), ricollega le righe ai comuni, toglie i contatti dei privati,
-ricalcola conteggi e punti della mappa. Subito dopo `scripts/aggiorna_autobus.py` riscarica da BusOne la rete degli
-autobus e riscrive `dati/_tpl_0.txt` solo se fermate o percorsi sono cambiati. Si pubblica solo se qualcosa è cambiato. Se un foglio non si scarica o cambia
-struttura resta com'è. Si può avviare a mano da Actions, «Aggiorna i dati aperti», «Run workflow».
+Ogni lunedì il flusso «Aggiorna i dati» aggiorna **un quarto delle fonti a rotazione**: in quattro settimane tutto ciò
+che si può riscaricare in automatico è aggiornato. Il gruppo lo sceglie `scripts/aggiorna_dati.py`, contando le
+settimane da lunedì 5 gennaio 2026 (`--quale-gruppo` lo stampa; `--gruppo N`, `--tutti` e `--prova` per le prove).
+
+| Gruppo | Fonti |
+|---|---|
+| 1 | Anagrafe regionale degli amministratori (amministratori, enti locali, elezioni; nel registro sindaco, data di aggiornamento, prossime elezioni, incarichi), farmacie, parafarmacie, guardie mediche, residenze per anziani, accessi a internet, siti inquinati, protezione civile, elezioni comunali 2024, 2025 e 2026, patrimonio regionale, partecipate |
+| 2 | Turismo comunale (con arrivi, presenze e serie per anno del registro e della scheda), strutture ricettive, agriturismi, fattorie didattiche, operatori biologici |
+| 3 | Commercio di 13 comuni, centri commerciali, commercio ambulante, redditi IRPEF, lavoro, scambi con l'estero, veicoli |
+| 4 | Rifiuti, stazioni e sensori meteo, ciclovie, piste ciclabili, rete viaria, opere pubbliche OpenCUP e controllo delle fonti da aggiornare a mano |
+
+- 55 fogli del portale dei dati aperti della Regione e 3 dell'anagrafe degli amministratori: lo script tiene solo le
+  colonne già pubblicate, così i contatti dei privati restano fuori anche se la fonte li aggiunge; ricollega le righe ai
+  comuni (anche quelli fusi o scritti in forma abbreviata), ricalcola conteggi, totali del registro e punti della mappa.
+  Prova del 6 ottobre 2026: tutti i 58 fogli si ricostruiscono identici dalla fonte, salvo 10 righe che ora risultano
+  collegate al loro comune.
+- La rete degli autobus (`scripts/aggiorna_autobus.py`) si controlla ogni lunedì, perché gli orari cambiano in date
+  precise; il file si riscrive solo se cambiano fermate o percorsi.
+- Fonti da aggiornare a mano (Annuario statistico, scuole, ISTAT, ISPRA, CONI, RUNTS, FIDAL, Consiglio regionale):
+  `scripts/controlla_fonti.py`, nel gruppo 4, confronta data e versione dichiarate dal sito con quelle salvate in
+  `dati/fonti_manuali.json` e, se sono cambiate, apre o aggiorna su GitHub la segnalazione «Fonti da aggiornare a mano».
+  RUNTS, FIDAL e Consiglio regionale non dichiarano né data né versione: vanno controllati a vista.
+- Si pubblica solo se qualcosa è cambiato. Se un foglio non si scarica o cambia struttura resta com'è e l'esito lo
+  segnala. Si può avviare a mano da Actions, «Aggiorna i dati», «Run workflow», scegliendo il gruppo o «tutti».
 
 ## Dati personali
 
