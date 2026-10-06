@@ -20,7 +20,7 @@ USCITA = RADICE / 'dati' / '_tpl_0.txt'
 MAPPE = RADICE / 'dati' / '_mappe_0.txt'
 GTFS = 'https://proxy.busone.app/TPLFVG/gtfs.zip'
 # BusOne chiede di identificarsi: si dichiara la pagina e l'uso senza scopo di lucro
-INTESTAZIONI = {'User-Agent': 'AtlanteFVG/1.0 (+https://costalonga.org/Atlante-FVG/)', 'X-BusOne-Client': 'Atlante dei Comuni FVG (https://costalonga.org/Atlante-FVG/)', 'X-BusOne-Use': 'nonprofit'}
+INTESTAZIONI = {'User-Agent': 'AtlanteFVG/1.0 (+https://atlantefvg.it/)', 'X-BusOne-Client': 'Atlante dei Comuni FVG (https://atlantefvg.it/)', 'X-BusOne-Use': 'nonprofit'}
 # tolleranza in metri nella semplificazione dei tracciati: abbastanza fine da seguire le vie ingrandendo la mappa
 TOLLERANZA = 8
 FILE_GTFS = ['routes.txt', 'trips.txt', 'stops.txt', 'stop_times.txt', 'shapes.txt', 'feed_info.txt']
