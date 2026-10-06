@@ -35,9 +35,9 @@ PAGINE = [
      ['Le linee del trasporto pubblico locale, le fermate di ogni comune e gli arrivi in tempo reale, con i mezzi in viaggio sulla mappa delle vie.',
       'Gli orari di ogni linea, fermata per fermata e giorno per giorno, sono nella pagina Orari degli autobus.',
       'Fonte: TPL FVG tramite BusOne, rete aggiornata ogni lunedì e arrivi letti al momento.']),
-    ('ambiente', 'Allerte meteo e qualità dell\'aria', 'Allerta meteo di oggi e di domani e qualità dell\'aria delle centraline del Friuli Venezia Giulia.',
-     ['L\'allerta idrogeologica, idraulica e per temporali di oggi e di domani nelle quattro zone d\'allerta, dal bollettino del Dipartimento della Protezione civile.',
-      'Gli ultimi valori validati di PM10, PM2,5, biossido di azoto e ozono delle centraline dell\'ARPA FVG (Agenzia regionale per la protezione dell\'ambiente), ognuno con la sua data.']),
+    ('ambiente', 'Allerte meteo e qualità dell\'aria', 'Allerta meteo di oggi e di domani, letta al momento, e ultimi dati validati della qualità dell\'aria delle centraline del Friuli Venezia Giulia.',
+     ['Allerte attuali: l\'allerta idrogeologica, idraulica e per temporali di oggi e di domani nelle quattro zone d\'allerta, letta al momento dal bollettino del Dipartimento della Protezione civile.',
+      'Qualità dell\'aria, ultimi dati disponibili: medie giornaliere validate di PM10, PM2,5, biossido di azoto e ozono delle centraline dell\'ARPA FVG (Agenzia regionale per la protezione dell\'ambiente). Arrivano con circa una settimana di ritardo: descrivono i giorni scorsi, non l\'aria di oggi, e ognuna ha la sua data.']),
     ('comuni', 'I 215 comuni del Friuli Venezia Giulia', 'Elenco dei 215 comuni del Friuli Venezia Giulia per provincia, con residenti, sindaci, servizi e prossime elezioni.',
      ['Il registro dei 215 comuni: residenti, sindaco in anagrafe con la data di aggiornamento, enti del Terzo settore, presenze turistiche e anno delle prossime elezioni comunali.']),
     ('archivio', 'Archivio dei dati dei comuni', 'Tutti i fogli del database dei comuni del Friuli Venezia Giulia, consultabili riga per riga e scaricabili in CSV ed Excel con fonte e data.',
@@ -242,6 +242,9 @@ def pagina_argomento(nome, titolo, descr, testi, db, man):
         corpo += ('<h2>Statistiche di visita e privacy</h2>\n<p>L\'Atlante conta le visite con <a href="https://www.goatcounter.com/help/privacy">GoatCounter</a>, che non usa cookie né altri sistemi di memoria nel browser e non conserva l\'indirizzo IP né identificativi di chi visita. Si contano in forma aggregata le pagine viste e l\'uso di ricerca, filtri, confronto e download, oltre agli errori di caricamento; per la ricerca solo il fatto che un comune è stato scelto, non il testo scritto. I dati stanno su server di Hetzner Online in Finlandia e in Germania e non sono ceduti a terzi. Non essendoci cookie né tracciamento delle persone, non viene chiesto il consenso.</p>\n'
                   f'<p>Chi scrive a {POSTA} comunica il proprio indirizzo di posta; chi usa WhatsApp comunica il proprio numero di telefono, e il messaggio passa dal servizio WhatsApp di Meta. Indirizzo e numero servono solo a rispondere alla segnalazione.</p>\n'
                   f'<p>Titolare del trattamento: Guido Costalonga. Per qualsiasi richiesta sui dati: <a href="mailto:{POSTA}">{POSTA}</a>.</p>\n')
+        m = re.search(r'<script type="text/html" id="testoAvvertenze">\s*(.*?)\s*</script>', (RADICE / 'index.html').read_text(encoding='utf-8'), re.S)
+        if m:
+            corpo += '<h2>Avvertenze</h2>\n' + re.sub(r' class="[^"]*"', '', m.group(1)).replace(' target="_blank" rel="noopener"', '') + '\n'
     if nome == 'archivio':
         fogli = man['manifest']
         corpo += f'<h2>I {len(fogli)} fogli dell\'archivio</h2>\n<div class="riquadro"><table><thead><tr><th scope="col">Foglio</th><th scope="col">Ambito</th><th scope="col" style="text-align:right">Righe</th><th scope="col">Fonte</th></tr></thead><tbody>'
