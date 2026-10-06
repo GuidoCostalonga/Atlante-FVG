@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Orari degli autobus TPL FVG · Atlante FVG</title>
+<meta name="description" content="Orari programmati di tutte le linee TPL FVG del Friuli Venezia Giulia: partenze da ogni fermata, giorno per giorno, e percorso completo di ogni corsa.">
+<link rel="canonical" href="https://atlantefvg.it/orari/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<meta name="theme-color" content="#0B3359">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Atlante FVG">
+<meta property="og:url" content="https://atlantefvg.it/orari/">
+<meta property="og:title" content="Orari degli autobus TPL FVG · Atlante FVG">
+<meta property="og:description" content="Partenze da ogni fermata, giorno per giorno, per tutte le linee TPL FVG.">
+<meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Atlante FVG","item":"https://atlantefvg.it/"},{"@type":"ListItem","position":2,"name":"Autobus","item":"https://atlantefvg.it/autobus/"},{"@type":"ListItem","position":3,"name":"Orari","item":"https://atlantefvg.it/orari/"}]}</script>
+<script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../pagine.css">
+<style>
+  .scelte { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 768px) { .scelte { grid-template-columns: minmax(0, 2fr) minmax(0, 2fr) minmax(0, 1fr); } }
+  .cerca-linea { position: relative; }
+  .elenco-linee { position: absolute; z-index: 20; left: 0; right: 0; top: 100%; margin-top: 4px; background: #fff; border: 1px solid var(--linea); border-radius: 12px; box-shadow: 0 8px 24px rgba(11,51,89,.14); max-height: 22rem; overflow-y: auto; padding: 4px; }
+  .elenco-linee button { width: 100%; display: flex; align-items: center; gap: 10px; text-align: left; min-height: 48px; padding: 6px 8px; border: 0; background: none; border-radius: 8px; font: inherit; color: var(--testo); cursor: pointer; }
+  .elenco-linee button:hover, .elenco-linee button[aria-selected="true"] { background: var(--blu-tenue); }
+  .numero { display: inline-flex; align-items: center; justify-content: center; min-width: 2.6rem; padding: 2px 6px; border-radius: 6px; font-weight: 700; font-size: 14px; font-variant-numeric: tabular-nums; flex: 0 0 auto; }
+  .scelta-linea { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .partenze { display: grid; grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr)); gap: 6px; margin-top: 12px; }
+  .partenze button { min-height: 44px; border: 1px solid #CBD8E6; background: #fff; border-radius: 10px; font: inherit; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--blu); cursor: pointer; }
+  .partenze button:hover { background: var(--blu-tenue); }
+  .partenze button.passata { color: #6B7078; border-color: #E4DDCD; background: #FAF9F6; font-weight: 500; }
+  .partenze button.prossima { background: var(--blu); color: #fff; border-color: var(--blu); }
+  .partenze button[aria-pressed="true"] { outline: 3px solid var(--oro); outline-offset: 1px; }
+  .fasce { display: flex; flex-direction: column; gap: 14px; }
+  .fascia h3 { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--testo-3); text-transform: uppercase; letter-spacing: .08em; }
+  .corsa ol { list-style: none; margin: 10px 0 0; padding: 0; border-left: 3px solid var(--linea); }
+  .corsa li { display: flex; gap: 12px; padding: 6px 0 6px 12px; position: relative; }
+  .corsa li::before { content: ""; position: absolute; left: -7px; top: 13px; width: 11px; height: 11px; border-radius: 50%; background: #fff; border: 2px solid var(--blu-chiaro); }
+  .corsa li.qui { font-weight: 700; }
+  .corsa li.qui::before { background: var(--oro); border-color: var(--oro); }
+  .corsa time { min-width: 3.2rem; font-variant-numeric: tabular-nums; color: var(--blu); font-weight: 600; }
+  .corsa .comune { color: var(--testo-3); font-size: 13px; }
+</style>
+</head>
+<body>
+<header class="testata"><div class="testata-dentro">
+  <a class="marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="113" height="40"></a>
+  <nav class="voci" aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus</a><a href="../orari/" aria-current="page">Orari</a><a href="../meteo/">Meteo</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo</a>
+  </nav>
+  <details class="menu-mob"><summary>Menu</summary><nav aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/" aria-current="page">Orari degli autobus</a><a href="../meteo/">Meteo</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo e fonti</a>
+  </nav></details>
+</div></header>
+
+<main class="contenuto">
+  <nav class="percorso" aria-label="Percorso"><a href="../">Atlante FVG</a> › <a href="../?pagina=autobus">Autobus</a> › Orari</nav>
+  <section class="intro">
+    <h1>Orari degli autobus TPL FVG</h1>
+    <p>Orari programmati di tutte le linee urbane ed extraurbane: scegli la linea, la direzione, il giorno e la fermata. Per gli arrivi in tempo reale e i mezzi in viaggio usa la pagina <a href="../?pagina=autobus">Autobus</a>.</p>
+    <p class="nota" id="validita"><span class="rotella" aria-hidden="true"></span> Lettura degli orari…</p>
+  </section>
+
+  <section class="riquadro" aria-labelledby="titoloScelte">
+    <h2 id="titoloScelte" class="sr-only">Scegli linea, direzione, giorno e fermata</h2>
+    <div class="scelte">
+      <div class="cerca-linea">
+        <label class="etichetta" for="linea">Linea</label>
+        <input id="linea" class="campo" type="search" autocomplete="off" placeholder="Numero o nome, per esempio P13 o Maniago" role="combobox" aria-autocomplete="list" aria-controls="elencoLinee" aria-expanded="false">
+        <div id="elencoLinee" class="elenco-linee" role="listbox" aria-label="Linee trovate" hidden></div>
+      </div>
+      <div>
+        <label class="etichetta" for="percorso">Direzione e percorso</label>
+        <select id="percorso" class="campo" disabled><option>Scegli prima una linea</option></select>
+      </div>
+      <div>
+        <label class="etichetta" for="giorno">Giorno</label>
+        <input id="giorno" class="campo" type="date">
+      </div>
+    </div>
+    <div style="margin-top:12px">
+      <label class="etichetta" for="fermata">Fermata</label>
+      <select id="fermata" class="campo" disabled><option>Scegli prima una linea</option></select>
+    </div>
+  </section>
+
+  <section class="riquadro" id="risultato" aria-live="polite" hidden>
+    <div class="scelta-linea" id="testaRisultato"></div>
+    <div id="partenze"></div>
+  </section>
+
+  <section class="riquadro corsa" id="corsa" hidden aria-live="polite"></section>
+
+  <p class="nota">Fonte: dati GTFS (formato aperto per gli orari del trasporto pubblico) di TPL FVG, tramite <a href="https://busone.app" target="_blank" rel="noopener">BusOne</a>; aggiornati ogni lunedì. Gli orari sono quelli programmati: scioperi, deviazioni e ritardi non compaiono qui. Per comunicazioni ufficiali fa fede <a href="https://tplfvg.it" target="_blank" rel="noopener">tplfvg.it</a>.
+    Hai trovato un errore? <a id="segnala" href="mailto:info@atlantefvg.it">Segnalalo per posta</a> oppure <a id="segnalaWa" href="https://wa.me/393283692227" target="_blank" rel="noopener">via WhatsApp</a>.</p>
+</main>
+
+<footer class="piede"><div class="piede-dentro">
+  <div><strong>Atlante FVG</strong><br>I comuni del Friuli Venezia Giulia, con fonte e data di ogni dato.</div>
+  <div><a href="../">Pagina iniziale</a> · <a href="../?pagina=autobus">Autobus in tempo reale</a> · <a href="../meteo/">Meteo</a> · <a href="../?pagina=metodo">Metodo e fonti</a></div>
+</div></footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  const GIORNI = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
+  const dataIt = d => `${+d.slice(6, 8) === 1 ? '1°' : +d.slice(6, 8)} ${MESI[+d.slice(4, 6) - 1]} ${d.slice(0, 4)}`;
+  const giornoIt = d => { const g = new Date(+d.slice(0, 4), +d.slice(4, 6) - 1, +d.slice(6, 8)); return GIORNI[g.getDay()] + ' ' + dataIt(d); };
+  const ora = m => { const h = Math.floor(m / 60), mm = m % 60; return `${String(h % 24).padStart(2, '0')}:${String(mm).padStart(2, '0')}${h >= 24 ? ' (+1)' : ''}`; };
+  // nomi delle fermate: quelli tutti in maiuscolo diventano leggibili
+  const nomeFermata = s => /[a-z]/.test(s) ? s : s.toLowerCase().replace(/(^|[\s'(./-])([a-zàèéìòù])/g, (m, p, c) => p + c.toUpperCase()).replace(/ (Di|De|Del|Della|Dei|Al|Alla|Da|E|La|Le|In)(?= )/g, m => m.toLowerCase());
+  async function carica(p) {
+    const r = await fetch(p); if (!r.ok) throw new Error('HTTP ' + r.status);
+    const bin = atob((await r.text()).trim()), buf = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+    return JSON.parse(await new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'))).text());
+  }
+  let IND, GRUPPI = [], linea = null, R = null, fermataSel = null, corsaSel = null;
+  const bitAttivo = (s, gi) => { const b = atob(IND.servizi[s]); return gi >= 0 && (b.charCodeAt(gi >> 3) >> (gi & 7)) & 1; };
+  const oggiStr = () => { const d = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Rome' })); return `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`; };
+  const isoDa = d => `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6, 8)}`;
+
+  // le linee con lo stesso codice di percorso a meno della direzione (A, R, I, E) formano un gruppo
+  function raggruppa() {
+    const m = new Map();
+    IND.linee.forEach((l, i) => { const base = l[8].replace(/[AREI]$/, ''); if (!m.has(base)) m.set(base, []); m.get(base).push(i); });
+    GRUPPI = [...m.values()].map(ix => ix.sort((a, b) => IND.linee[b][6] - IND.linee[a][6]));
+    GRUPPI.sort((a, b) => String(IND.linee[a[0]][0]).localeCompare(String(IND.linee[b[0]][0]), 'it', { numeric: true }) || IND.linee[a[0]][1].localeCompare(IND.linee[b[0]][1], 'it'));
+  }
+  const badge = i => { const l = IND.linee[i]; return `<span class="numero" style="background:#${l[2]};color:#${l[3]}">${esc(l[0] || '—')}</span>`; };
+  const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+  // ricerca della linea
+  const inp = $('linea'), box = $('elencoLinee'); let ris = [], sel = -1;
+  function mostraElenco() {
+    const q = norm(inp.value.trim()), parole = q.split(/\s+/).filter(Boolean);
+    ris = !q ? [] : GRUPPI.filter(g => { const l = IND.linee[g[0]], t = norm(l[0] + ' ' + g.map(i => IND.linee[i][1] + ' ' + IND.linee[i][7]).join(' ')); return parole.every(w => t.includes(w)); })
+      .sort((a, b) => (norm(IND.linee[b[0]][0]) === q) - (norm(IND.linee[a[0]][0]) === q)).slice(0, 30);
+    sel = ris.length ? 0 : -1;
+    box.hidden = !q; inp.setAttribute('aria-expanded', String(!box.hidden));
+    box.innerHTML = ris.length ? ris.map((g, k) => `<button type="button" role="option" id="lin${k}" aria-selected="${k === sel}" data-k="${k}">${badge(g[0])}<span>${esc(IND.linee[g[0]][1])}</span></button>`).join('')
+      : '<div class="nota" style="padding:8px">Nessuna linea trovata: prova con il numero (per esempio «P13») o con il nome di un paese.</div>';
+  }
+  function scegliGruppo(g, pref, fermataPref) {
+    linea = g; box.hidden = true; inp.setAttribute('aria-expanded', 'false');
+    const l0 = IND.linee[g[0]]; inp.value = `${l0[0]} ${l0[1]}`.trim();
+    $('percorso').disabled = false;
+    $('percorso').innerHTML = g.map(i => `<option value="${i}">verso ${esc(nomeFermata(IND.linee[i][7] || IND.linee[i][1]))} · ${IND.linee[i][6]} corse</option>`).join('');
+    if (pref != null && g.includes(pref)) $('percorso').value = String(pref);
+    caricaPercorso(fermataPref);
+  }
+  inp.addEventListener('input', mostraElenco);
+  inp.addEventListener('focus', () => { if (inp.value.trim() && !linea) mostraElenco(); });
+  inp.addEventListener('keydown', e => {
+    if (box.hidden || !ris.length) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); sel = (sel + (e.key === 'ArrowDown' ? 1 : ris.length - 1)) % ris.length; box.querySelectorAll('button').forEach((b, k) => b.setAttribute('aria-selected', String(k === sel))); inp.setAttribute('aria-activedescendant', 'lin' + sel); box.querySelector('#lin' + sel).scrollIntoView({ block: 'nearest' }); }
+    else if (e.key === 'Enter') { e.preventDefault(); scegliGruppo(ris[Math.max(0, sel)]); }
+    else if (e.key === 'Escape') { box.hidden = true; inp.setAttribute('aria-expanded', 'false'); }
+  });
+  inp.addEventListener('input', () => { linea = null; });
+  box.addEventListener('mousedown', e => e.preventDefault());
+  box.addEventListener('click', e => { const b = e.target.closest('button[data-k]'); if (b) scegliGruppo(ris[+b.dataset.k]); });
+  document.addEventListener('click', e => { if (!box.hidden && !box.contains(e.target) && e.target !== inp) box.hidden = true; });
+
+  async function caricaPercorso(fermataPref) {
+    const i = +$('percorso').value, l = IND.linee[i];
+    $('fermata').disabled = true; $('fermata').innerHTML = '<option>Lettura degli orari…</option>';
+    try { R = await carica('../dati/orari/' + l[5]); } catch (e) { $('partenze').innerHTML = '<p class="errore">Gli orari di questa linea non si sono caricati: ricarica la pagina.</p>'; $('risultato').hidden = false; return; }
+    // fermate nell'ordine del percorso più frequente, poi quelle servite solo da altre corse
+    const conta = R.s.map((_, k) => R.c.filter(c => c[0] === k).length), princ = conta.indexOf(Math.max(...conta));
+    const ordine = [...R.s[princ]]; R.s.forEach(s => s.forEach(f => { if (!ordine.includes(f)) ordine.push(f); }));
+    $('fermata').innerHTML = ordine.map(f => `<option value="${f}">${esc(nomeFermata(IND.fermate[f][0]))}</option>`).join('');
+    $('fermata').disabled = false;
+    if (fermataPref != null && ordine.includes(fermataPref)) $('fermata').value = String(fermataPref);
+    fermataSel = +$('fermata').value; corsaSel = null; $('corsa').hidden = true;
+    mostraPartenze(); ricorda();
+  }
+  $('percorso').addEventListener('change', () => caricaPercorso(fermataSel));
+  $('fermata').addEventListener('change', () => { fermataSel = +$('fermata').value; corsaSel = null; $('corsa').hidden = true; mostraPartenze(); ricorda(); });
+  $('giorno').addEventListener('change', () => { corsaSel = null; $('corsa').hidden = true; mostraPartenze(); ricorda(); });
+
+  const orariCorsa = c => { const t = [c[2]]; for (let k = 3; k < c.length; k++) t.push(t[t.length - 1] + c[k]); return t; };
+  function mostraPartenze() {
+    if (!R) return;
+    const i = +$('percorso').value, l = IND.linee[i], d = $('giorno').value.replace(/-/g, ''), gi = IND.giorni.indexOf(d);
+    $('testaRisultato').innerHTML = `${badge(i)}<div><h2 style="font-size:1.25rem">${esc(nomeFermata(IND.fermate[fermataSel][0]))}</h2><div class="nota">verso ${esc(nomeFermata(l[7] || l[1]))} · ${d ? esc(giornoIt(d)) : ''}</div></div>`;
+    $('risultato').hidden = false;
+    if (gi < 0) { $('partenze').innerHTML = `<p class="avviso">Per questo giorno non ci sono orari pubblicati: i dati coprono dal ${esc(dataIt(IND.giorni[0]))} al ${esc(dataIt(IND.giorni[IND.giorni.length - 1]))}.</p>`; return; }
+    const part = [];
+    R.c.forEach((c, k) => { if (!bitAttivo(c[1], gi)) return; const s = R.s[c[0]], p = s.indexOf(fermataSel); if (p < 0) return; part.push({ k, m: orariCorsa(c)[p], capolinea: p === s.length - 1 }); });
+    part.sort((a, b) => a.m - b.m);
+    if (!part.length) {
+      // primo giorno successivo in cui la linea passa dalla fermata, secondo il calendario della fonte
+      let dopo = -1;
+      for (let g = gi + 1; g < IND.giorni.length && dopo < 0; g++) if (R.c.some(c => bitAttivo(c[1], g) && R.s[c[0]].includes(fermataSel))) dopo = g;
+      $('partenze').innerHTML = '<p class="avviso">Secondo il calendario della fonte, in questo giorno nessuna corsa di questa linea passa dalla fermata scelta.'
+        + (dopo >= 0 ? ` <button type="button" class="btn btn-secondario" id="vaiDopo" style="margin-top:8px">Vedi ${esc(giornoIt(IND.giorni[dopo]))}</button>` : '') + '</p>';
+      if (dopo >= 0) $('vaiDopo').addEventListener('click', () => { $('giorno').value = isoDa(IND.giorni[dopo]); $('giorno').dispatchEvent(new Event('change')); });
+      return;
+    }
+    const adesso = (() => { if (d !== oggiStr()) return null; const n = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Rome' })); return n.getHours() * 60 + n.getMinutes(); })();
+    const prossima = adesso == null ? -1 : part.findIndex(p => p.m >= adesso);
+    const fasce = [['Notte e mattina presto', 0, 360], ['Mattina', 360, 720], ['Pomeriggio', 720, 1080], ['Sera', 1080, 4000]];
+    $('partenze').innerHTML = `<p class="nota" style="margin:8px 0 0">${part.length} ${part.length === 1 ? 'passaggio' : 'passaggi'}${prossima >= 0 ? ` · prossimo alle <b>${ora(part[prossima].m)}</b>` : adesso != null ? ' · per oggi non ci sono altre corse' : ''}. Tocca un orario per vedere tutte le fermate della corsa.</p><div class="fasce">` +
+      fasce.map(([t, a, b]) => { const pp = part.filter(p => p.m >= a && p.m < b); return pp.length ? `<div class="fascia"><h3>${t}</h3><div class="partenze">${pp.map(p => { const j = part.indexOf(p); return `<button type="button" data-k="${p.k}" aria-pressed="false" class="${j === prossima ? 'prossima' : adesso != null && p.m < adesso ? 'passata' : ''}" aria-label="Corsa delle ${ora(p.m)}${p.capolinea ? ', arrivo al capolinea' : ''}">${ora(p.m)}${p.capolinea ? '<span aria-hidden="true">*</span>' : ''}</button>`; }).join('')}</div></div>` : ''; }).join('') + '</div>' +
+      (part.some(p => p.capolinea) ? '<p class="nota" style="margin-top:8px">* arrivo al capolinea.</p>' : '');
+  }
+  $('partenze').addEventListener('click', e => {
+    const b = e.target.closest('button[data-k]'); if (!b) return;
+    document.querySelectorAll('#partenze button[aria-pressed="true"]').forEach(x => x.setAttribute('aria-pressed', 'false')); b.setAttribute('aria-pressed', 'true');
+    const c = R.c[+b.dataset.k], s = R.s[c[0]], t = orariCorsa(c), l = IND.linee[+$('percorso').value];
+    $('corsa').innerHTML = `<h2 style="font-size:1.15rem">Corsa delle ${ora(t[s.indexOf(fermataSel)])} da ${esc(nomeFermata(IND.fermate[fermataSel][0]))}</h2><p class="nota">Partenza dal capolinea alle ${ora(t[0])}, arrivo alle ${ora(t[t.length - 1])} · ${s.length} fermate · verso ${esc(nomeFermata(l[7] || l[1]))}</p>
+      <ol>${s.map((f, k) => `<li class="${f === fermataSel ? 'qui' : ''}"><time>${ora(t[k])}</time><span>${esc(nomeFermata(IND.fermate[f][0]))}${IND.fermate[f][1] >= 0 && IND.comuni ? ` <span class="comune">· ${esc(IND.comuni[IND.fermate[f][1]] || '')}</span>` : ''}</span></li>`).join('')}</ol>`;
+    $('corsa').hidden = false; $('corsa').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  });
+
+  // indirizzo condivisibile: ?percorso=<codice>&fermata=<numero>&giorno=<AAAA-MM-GG>
+  function ricorda() {
+    const u = new URL(location.href); if (linea) { u.searchParams.set('percorso', IND.linee[+$('percorso').value][8]); u.searchParams.set('fermata', String(fermataSel)); }
+    if ($('giorno').value && $('giorno').value.replace(/-/g, '') !== oggiStr()) u.searchParams.set('giorno', $('giorno').value); else u.searchParams.delete('giorno');
+    try { history.replaceState(null, '', u.pathname + u.search); } catch (e) { /* indirizzo non modificabile */ }
+    const testo = `Segnalazione di errore sull'Atlante FVG\nPagina: ${location.href}\nDato segnalato: orari della linea ${inp.value}\n\nChe cosa non torna: `;
+    $('segnala').href = 'mailto:info@atlantefvg.it?subject=' + encodeURIComponent('Segnalazione di errore: orari ' + inp.value) + '&body=' + encodeURIComponent(testo);
+    $('segnalaWa').href = 'https://wa.me/393283692227?text=' + encodeURIComponent(testo);
+  }
+
+  (async () => {
+    try { IND = await carica('../dati/orari/indice.txt'); } catch (e) { $('validita').innerHTML = '<span class="errore" style="display:block">Gli orari non si sono caricati: ricarica la pagina.</span>'; return; }
+    raggruppa();
+    const g = IND.giorni, oggi = oggiStr();
+    $('validita').textContent = `Orari validi dal ${dataIt(g[0])} al ${dataIt(g[g.length - 1])} · ${GRUPPI.length} linee · versione dei dati ${IND.versione.slice(0, 8).replace(/^(\d{4})(\d{2})(\d{2})$/, (m, a, b, c) => dataIt(a + b + c))}.`;
+    $('giorno').min = isoDa(g[0]); $('giorno').max = isoDa(g[g.length - 1]);
+    const q = new URLSearchParams(location.search);
+    const gq = (q.get('giorno') || '').replace(/-/g, '');
+    $('giorno').value = isoDa(g.includes(gq) ? gq : g.includes(oggi) ? oggi : g[0]);
+    const p = q.get('percorso'), i = p ? IND.linee.findIndex(l => l[8] === p) : -1;
+    if (i >= 0) scegliGruppo(GRUPPI.find(x => x.includes(i)), i, q.get('fermata') !== null ? +q.get('fermata') : null);
+    else { const ql = q.get('linea'); if (ql) { inp.value = ql; mostraElenco(); } }
+  })();
+})();
+</script>
+</body>
+</html>

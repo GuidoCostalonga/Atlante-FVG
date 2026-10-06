@@ -170,13 +170,41 @@ redistribuiti gratuitamente per usi non commerciali da [BusOne](https://busone.a
 compare sotto la mappa.
 Per ogni linea e direzione è disegnato il percorso più frequente. Gli arrivi alla fermata e la posizione dei mezzi
 sono letti dal browser di chi visita la pagina, al momento, dal flusso in tempo reale di TPL FVG tramite BusOne:
-compaiono solo le corse già partite dal capolinea. Gli orari programmati pubblicati sul Punto di accesso nazionale
-ai dati sulla mobilità risultano scaduti (TPL FVG al 31 agosto 2026, Trenitalia al 13 giugno 2026): per questo la
-pagina non riporta l'orario completo né i treni e rimanda a [tplfvg.it](https://tplfvg.it).
+compaiono solo le corse già partite dal capolinea. Gli orari completi delle linee sono nella pagina
+[Orari](https://atlantefvg.it/orari/), descritta più sotto; i treni non sono compresi.
 
 Ingrandendo la mappa degli autobus compare sotto le linee la mappa delle vie di
 [OpenStreetMap](https://www.openstreetmap.org/copyright) (© contributori di OpenStreetMap), scaricata dal browser di
 chi visita la pagina. Ogni riquadro della mappa è agganciato al disegno con le stesse coordinate delle fermate.
+
+## Orari degli autobus
+
+La pagina `orari/` mostra l'orario programmato di ogni linea TPL FVG: si sceglie la linea, la direzione, il giorno e la
+fermata e si leggono le partenze, con la prossima evidenziata e il dettaglio di ogni corsa fermata per fermata.
+Dalla pagina Autobus ci si arriva con «Orari delle linee» e, per la linea scelta, con «Orari di questa linea».
+
+I dati vengono dallo stesso GTFS di TPL FVG distribuito da BusOne. `scripts/aggiorna_orari.py` lo scarica ogni lunedì
+insieme alla rete degli autobus e scrive `dati/orari/indice.txt` (validità, calendario dei servizi giorno per giorno,
+fermate con il loro comune, linee) e un file per percorso in `dati/orari/`, chiamato con il codice del percorso; riscrive
+solo i file cambiati e toglie quelli dei percorsi soppressi. Se il download fallisce o il GTFS sembra incompleto (meno di
+100 linee o di 10.000 corse), gli orari restano quelli di prima. La fonte ripete alcune corse identiche: se ne tiene una.
+Nella versione del 6 ottobre 2026 gli orari valgono dal 5 ottobre 2026 al 31 gennaio 2027. Per i giorni fuori da questo
+periodo la pagina non mostra orari e rimanda a [tplfvg.it](https://tplfvg.it).
+
+## Meteo e Catasto
+
+Due applicazioni già pubblicate su costalonga.org sono portate nell'Atlante con la sua grafica; contenuti, fonti e
+funzioni restano quelli dell'originale.
+
+| Pagina | Origine | Come si aggiorna |
+|---|---|---|
+| `meteo/`: previsioni dei 215 comuni, collegata dalla scheda di ogni comune e dalla pagina delle allerte | repository `GuidoCostalonga/meteo` | `python scripts/porta_meteo.py <index.html della pagina Meteo FVG>` |
+| `catasto/`: foglio e particella sulla mappa, con la cartografia dell'Agenzia delle Entrate | repository `GuidoCostalonga/catasto-map` (solo la parte che gira nel browser) | `python scripts/porta_catasto.py <cartella del repository catasto-map>` |
+
+I due programmi sostituiscono intestazione, colori e caratteri, cambiano indirizzi e anteprime in atlantefvg.it e
+si fermano con un errore se l'originale cambia nei punti da adattare. Il catasto passa dal proxy Cloudflare
+`catasto-map-proxy`, che deve avere `https://atlantefvg.it` fra le origini ammesse (`ALLOWED_ORIGINS`): senza, la mappa
+si vede ma l'identificazione della particella non risponde.
 
 ## Opere pubbliche
 
