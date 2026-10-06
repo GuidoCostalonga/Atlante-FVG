@@ -81,6 +81,19 @@ licenze in uso sono IODL 2.0 e CC BY 4.0 (verificato sul catalogo regionale il 6
   pubblicazione e ogni martedì) verifica reindirizzamenti da http e www, sitemap, titoli e descrizioni unici, H1,
   canonici, dati strutturati, collegamenti interni, file di dati e servizi esterni.
 
+## Segnalazioni, correzioni e statistiche
+
+- **Segnala un errore**: nella scheda di ogni comune, sotto le mappe, nel confronto, nel dettaglio di ogni riga
+  dell'archivio, nella pagina Metodo e in fondo a ogni pagina statica. Apre un messaggio per `info@atlantefvg.it` con
+  l'indirizzo della pagina (filtri compresi), il dato di cui si parla e la versione dei dati.
+- **Registro delle correzioni**: `dati/correzioni.json`, mostrato in Metodo e fonti (pagina interattiva e `metodo/`).
+  Per ogni dato corretto si aggiunge una voce con `data` (AAAA-MM-GG), `dato`, `prima`, `dopo`, `fonte` (indirizzo
+  completo), poi si rigenerano le pagine con `python scripts/pagine_comuni.py`.
+- **Statistiche** con GoatCounter (`guidocostalonga.goatcounter.com`): niente cookie, nessun indirizzo IP conservato.
+  Pagine viste (`/?pagina=...` e indirizzi delle pagine statiche) ed eventi: `ricerca/comune-scelto` (mai il testo
+  scritto), `filtro/...`, `mappa/<indicatore>`, `confronto/<n>-comuni`, `archivio/<foglio>`, `download/<tabella>/<formato>`,
+  `condividi/vista`, `segnala-errore/<dove>`, `errore/caricamento`, `errore/programma`. L'informativa è in Metodo e fonti.
+
 ## Accessibilità e movimento
 
 - Fuoco da tastiera ben visibile (bordo blu scuro e alone dorato); intestazioni del registro ordinabili anche con Invio.
