@@ -1,0 +1,25 @@
+# Controlli sul sito pubblicato dopo ogni rilascio: reindirizzamenti, sitemap, titoli, canonici,
+# dati strutturati, collegamenti interni e file di dati. Il riepilogo è nella pagina del lavoro.
+name: Controlli dopo il rilascio
+
+on:
+  page_build:
+  schedule:
+    - cron: '17 6 * * 2'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  controlli:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Attende che la pubblicazione sia visibile
+        run: sleep 60
+      - name: Controlla il sito
+        run: python scripts/controlla_rilascio.py https://atlantefvg.it
