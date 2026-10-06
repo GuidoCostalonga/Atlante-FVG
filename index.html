@@ -1433,7 +1433,9 @@ function tpIndici() {
   TPL.percorsi.forEach((p, j) => { if (!p[5].length) return; const b = tpBase(j); if (!TP_FAM.has(b)) TP_FAM.set(b, []); TP_FAM.get(b).push(j); });
   TP_FAM.forEach(l => l.sort((a, b) => TPL.percorsi[b][7] - TPL.percorsi[a][7]));
 }
-const tpFamiglie = js => { const v = new Map(); js.forEach(j => { if (TPL.percorsi[j][5].length) { const b = tpBase(j); if (!v.has(b)) v.set(b, TP_FAM.get(b)[0]); } }); return [...v.values()].sort((a, b) => collator.compare(TPL.percorsi[a][0], TPL.percorsi[b][0])); };
+// stesso numero e stesso nome (varianti con codici diversi, per esempio PA03 e PF03): una sola voce, quella con più corse
+const tpUnici = js => { const v = new Map(); js.forEach(j => { const p = TPL.percorsi[j], k = p[0] + '|' + tpNorm(p[1]); if (!v.has(k) || TPL.percorsi[v.get(k)][7] < p[7]) v.set(k, j); }); return [...v.values()]; };
+const tpFamiglie = js => { const v = new Map(); js.forEach(j => { if (TPL.percorsi[j][5].length) { const b = tpBase(j); if (!v.has(b)) v.set(b, TP_FAM.get(b)[0]); } }); return tpUnici([...v.values()]).sort((a, b) => collator.compare(TPL.percorsi[a][0], TPL.percorsi[b][0])); };
 // fermate con lo stesso nome entro 300 metri (i due lati della strada)
 function tpGruppo(i) { const f = TPL.fermate[i]; return TPL.fermate.map((g, k) => k).filter(k => { const g = TPL.fermate[k]; return g[2] === f[2] && Math.hypot(g[0] - f[0], g[1] - f[1]) < 300; }); }
 
@@ -1671,8 +1673,8 @@ function tpPannello(soloAggiorna) {
         h += `<div class="flex flex-col gap-1"><div class="text-[10px] uppercase tracking-wider text-pietra-700">Fermate (tocca per gli arrivi)</div><div class="flex flex-col max-h-60 overflow-y-auto">${nomi.map(i => `<button class="tpFermata text-left text-[13px] px-2 py-1 rounded hover:bg-pietra-100" data-i="${i}">${esc(tpCap(TPL.fermate[i][2]))}</button>`).join('')}</div></div>`;
       }
     } else {
-      const top = [...TP_FAM.values()].map(l => l[0]).sort((a, b) => TPL.percorsi[b][7] - TPL.percorsi[a][7]).slice(0, 12);
-      h += `<div class="rounded-xl border border-pietra-200 bg-pietra-50 p-3"><div class="font-patriarcale font-bold text-primario-800">La rete TPL FVG</div><div class="grid grid-cols-2 gap-2 mt-2"><div><div class="text-xl font-bold text-primario-800 num">${fmt(TP_FAM.size)}</div><div class="text-[11px] text-pietra-700">linee (andata e ritorno contate una volta)</div></div><div><div class="text-xl font-bold text-primario-800 num">${fmt(TPL.fermate.filter(f => f[5].length).length)}</div><div class="text-[11px] text-pietra-700">fermate servite</div></div></div></div>`;
+      const top = tpUnici([...TP_FAM.values()].map(l => l[0])).sort((a, b) => TPL.percorsi[b][7] - TPL.percorsi[a][7]).slice(0, 12);
+      h += `<div class="rounded-xl border border-pietra-200 bg-pietra-50 p-3"><div class="font-patriarcale font-bold text-primario-800">La rete TPL FVG</div><div class="grid grid-cols-2 gap-2 mt-2"><div><div class="text-xl font-bold text-primario-800 num">${fmt(tpUnici([...TP_FAM.values()].map(l => l[0])).length)}</div><div class="text-[11px] text-pietra-700">linee (andata e ritorno contate una volta)</div></div><div><div class="text-xl font-bold text-primario-800 num">${fmt(TPL.fermate.filter(f => f[5].length).length)}</div><div class="text-[11px] text-pietra-700">fermate servite</div></div></div></div>`;
       h += `<ul class="text-[13px] text-pietra-800 flex flex-col gap-1.5 list-disc pl-5"><li>Scrivi nel riquadro di ricerca il nome di una fermata, di una via o di una linea.</li><li>Oppure scegli un comune nel filtro territoriale in alto: qui compaiono le sue linee e le sue fermate.</li><li>Ingrandendo la mappa compaiono le vie e le fermate: toccane una per vedere gli autobus in arrivo.</li></ul>`;
       h += `<div class="flex flex-col gap-1"><div class="text-[10px] uppercase tracking-wider text-pietra-700">Linee con più corse</div><div class="flex flex-col">${top.map(tpCardLinea).join('')}</div></div>`;
     }
@@ -1692,7 +1694,7 @@ panT.addEventListener('click', e => {
 const tpCerca = document.getElementById('tpCerca'), tpSugg = document.getElementById('tpSugg');
 function tpRisultati(q) {
   const n = tpNorm(q.trim()); if (!n) return [];
-  const linee = [...TP_FAM.values()].map(l => l[0]).filter(j => tpNorm(TPL.percorsi[j][0]) === n || tpNorm(TPL.percorsi[j][0]).startsWith(n) || (n.length > 2 && tpNorm(TPL.percorsi[j][1]).includes(n)))
+  const linee = tpUnici([...TP_FAM.values()].map(l => l[0])).filter(j => tpNorm(TPL.percorsi[j][0]) === n || tpNorm(TPL.percorsi[j][0]).startsWith(n) || (n.length > 2 && tpNorm(TPL.percorsi[j][1]).includes(n)))
     .sort((a, b) => (tpNorm(TPL.percorsi[b][0]) === n) - (tpNorm(TPL.percorsi[a][0]) === n) || collator.compare(TPL.percorsi[a][0], TPL.percorsi[b][0])).slice(0, 6).map(j => ({ t: 'l', j }));
   if (n.length < 3) return linee;
   const visti = new Set(), ferm = [];
