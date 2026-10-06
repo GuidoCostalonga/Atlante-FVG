@@ -323,6 +323,56 @@ tailwind.config = {
     </div>
   </section>
 
+  <!-- Allerte e qualità dell'aria -->
+  <section id="ambiente" class="bg-white rounded-xl cornice-oro min-w-0 scroll-mt-32 md:scroll-mt-24">
+    <div class="p-5 border-b border-pietra-200">
+      <div class="text-[11px] uppercase tracking-[0.2em] text-accento-700">Ambiente, oggi</div>
+      <h2 class="font-patriarcale font-bold text-lg text-primario-800">Allerte meteo e qualità dell'aria</h2>
+      <p class="text-xs text-pietra-700 max-w-3xl">Dati letti al momento dalle fonti ufficiali. Scegli un comune nel filtro territoriale in alto per vedere la sua zona d'allerta e le centraline dell'aria più vicine.</p>
+    </div>
+    <div class="p-4 sm:p-5 grid grid-cols-1 xl:grid-cols-2 gap-5">
+      <!-- Allerte -->
+      <div class="min-w-0 flex flex-col gap-3">
+        <div class="flex flex-wrap items-end justify-between gap-2">
+          <div><div class="font-patriarcale font-bold text-primario-800">Allerta meteo di protezione civile</div><div class="text-[11px] text-pietra-700" id="alEmesso">Lettura del bollettino…</div></div>
+          <div class="flex gap-1 bg-pietra-100 p-1 rounded-lg" role="tablist" aria-label="Giorno dell'allerta">
+            <button class="alGiorno px-3 py-1.5 text-xs font-semibold rounded-md" data-g="today">Oggi</button>
+            <button class="alGiorno px-3 py-1.5 text-xs font-semibold rounded-md" data-g="tomorrow">Domani</button>
+          </div>
+        </div>
+        <div id="alComune" class="rounded-lg border border-pietra-200 bg-pietra-50 px-3 py-2 text-sm" hidden></div>
+        <div class="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-3">
+          <div class="relative rounded-xl border border-pietra-200 bg-primario-50 overflow-hidden aspect-[4/3]"><svg id="svgAllerte" class="w-full h-full" role="img" aria-label="Mappa delle zone d'allerta"></svg></div>
+          <div id="alZone" class="flex flex-col gap-2 text-sm"></div>
+        </div>
+        <div id="alLegenda" class="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-pietra-800"></div>
+        <p class="text-[11px] text-pietra-700 leading-relaxed" id="alNota"></p>
+      </div>
+      <!-- Aria -->
+      <div class="min-w-0 flex flex-col gap-3">
+        <div class="flex flex-wrap items-end justify-between gap-2">
+          <div><div class="font-patriarcale font-bold text-primario-800">Qualità dell'aria</div><div class="text-[11px] text-pietra-700" id="arData">Lettura delle centraline…</div></div>
+          <div class="flex flex-wrap gap-1 bg-pietra-100 p-1 rounded-lg" role="tablist" aria-label="Inquinante">
+            <button class="arInq px-2.5 py-1.5 text-xs font-semibold rounded-md" data-i="pm10">PM10</button>
+            <button class="arInq px-2.5 py-1.5 text-xs font-semibold rounded-md" data-i="pm25">PM2,5</button>
+            <button class="arInq px-2.5 py-1.5 text-xs font-semibold rounded-md" data-i="no2">Biossido di azoto</button>
+            <button class="arInq px-2.5 py-1.5 text-xs font-semibold rounded-md" data-i="o3">Ozono</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-3">
+          <div class="relative rounded-xl border border-pietra-200 bg-primario-50 overflow-hidden aspect-[4/3]">
+            <svg id="svgAria" class="w-full h-full" role="img" aria-label="Mappa delle centraline della qualità dell'aria"></svg>
+            <div id="tipAria" class="absolute pointer-events-none bg-primario-900 text-white text-xs rounded-md px-2 py-1 border border-accento-500 shadow-lg max-w-[14rem]" hidden></div>
+          </div>
+          <div id="arPannello" class="flex flex-col gap-2 text-sm min-w-0"></div>
+        </div>
+        <div id="arLegenda" class="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-pietra-800"></div>
+        <div id="arGraficoBox" class="rounded-xl border border-pietra-200 p-3" hidden><div class="text-[12px] font-semibold text-primario-800" id="arGraficoTit"></div><div class="relative mt-2" style="height: 180px"><canvas id="arGrafico"></canvas></div></div>
+        <p class="text-[11px] text-pietra-700 leading-relaxed" id="arNota"></p>
+      </div>
+    </div>
+  </section>
+
   <!-- 6. Tabella dei comuni -->
   <section id="registro" class="bg-white rounded-xl cornice-oro min-w-0 scroll-mt-32 md:scroll-mt-24">
     <div class="p-5 flex flex-wrap items-end justify-between gap-3 border-b border-pietra-200">
@@ -482,6 +532,8 @@ tailwind.config = {
       <li><b>Bilanci comunali.</b> Rendiconti 2018-2023 pubblicati dalla Regione sul portale dei dati aperti, una vista per ente. Alcune viste ripetono le stesse righe (una, intitolata a Ragogna, contiene i dati di Roveredo in Piano): i doppioni sono stati tolti tenendo una riga per anno, comune e voce di bilancio. Le entrate sono pubblicate per 84 comuni.</li>
       <li><b>Elezioni.</b> Regionali 2023 dal portale dei dati aperti della Regione; europee 2024 e Camera 2022 dagli open data Eligendo del Ministero dell'interno. Le percentuali di lista sono calcolate sui voti validi alle liste.</li>
       <li><b>Autobus.</b> Linee e fermate vengono dai dati GTFS (formato aperto per gli orari del trasporto pubblico) di TPL FVG (Trasporto pubblico locale del Friuli Venezia Giulia), redistribuiti gratuitamente per usi non commerciali da BusOne (busone.app) e aggiornati ogni lunedì: la data della versione in uso è indicata sotto la mappa degli autobus. Per ogni linea è disegnato il percorso più frequente. Arrivi e posizione dei mezzi sono letti al momento dal flusso in tempo reale: compaiono solo le corse già partite dal capolinea. Gli orari programmati pubblicati sul Punto di accesso nazionale ai dati sulla mobilità risultano scaduti (TPL FVG al 31 agosto 2026, Trenitalia al 13 giugno 2026): per questo la pagina non riporta l'orario completo né i treni e rimanda a tplfvg.it. Le fermate sono assegnate al comune in base alla posizione: alcune restano senza comune perché si trovano in Veneto o in Slovenia oppure, lungo la costa, appena fuori dal confine disegnato.</li>
+      <li><b>Allerte meteo.</b> La sezione «Allerte e aria» legge al momento il bollettino di criticità nazionale del Dipartimento della Protezione civile (pubblicato ogni giorno verso le 16, licenza CC BY 4.0), che riporta per le quattro zone d'allerta del Friuli Venezia Giulia le valutazioni del Centro funzionale regionale. Ogni comune è assegnato alla sua zona secondo gli elenchi del bollettino. Per gli avvisi ufficiali fa fede il sito della Protezione civile della Regione, che al 6 ottobre 2026 non pubblica i propri avvisi in un formato leggibile dalla pagina.</li>
+      <li><b>Qualità dell'aria.</b> Medie giornaliere delle centraline di ARPA FVG (Agenzia regionale per la protezione dell'ambiente) dal portale dei dati aperti della Regione: sono dati validati e arrivano con circa una settimana di ritardo. Il comune di ogni centralina è ricavato dalle sue coordinate. I valori di riferimento sono quelli del decreto legislativo 13 agosto 2010, n. 155.</li>
       <li><b>Collegamento ai comuni.</b> Le righe sono collegate al comune per codice ISTAT o per nome. Le righe intestate a frazioni, a voci «NON DEFINITO» o a località fuori regione restano senza comune. Nei fogli senza colonna del comune il filtro cerca il nome nel testo: può includere righe che nominano il comune per altri motivi, per esempio una via intitolata a quel comune.</li>
     </ol>
   </div>
@@ -881,6 +933,7 @@ function impostaTerritorio(pv, com) {
   filtraRegistro(); disegnaElencoFogli(); if (corrente) applicaFiltriArchivio(true);
   if (typeof GEO !== 'undefined' && GEO) coloraMappa();
   if (typeof TPL !== 'undefined' && TPL) tpTerritorio();
+  if (typeof ambienteAvviato !== 'undefined') aggiornaAmbiente();
   if (!avvioInCorso) aggiornaIndirizzo();
   if (typeof cfScelti !== 'undefined' && terr.com >= 0 && !cfScelti.includes(terr.com)) { const k = cfScelti.indexOf(-1); if (k >= 0) { cfScelti[k] = terr.com; disegnaConfronto(); } }
 }
@@ -1435,13 +1488,13 @@ async function avviaMappe() {
 }
 
 /* ===== Menu per argomenti ===== */
-const SEZIONI = [['panoramica', 'Panoramica', 'gauge'], ['mappe', 'Mappe', 'map'], ['confronto', 'Confronto', 'columns-3'], ['trasporti', 'Autobus', 'bus'], ['registro', 'Registro dei comuni', 'list'], ['archivio', 'Archivio completo', 'database'], ['scheda', 'Scheda del comune', 'file-text'], ['avvertenze', 'Avvertenze sui dati', 'bell']];
+const SEZIONI = [['panoramica', 'Panoramica', 'gauge'], ['mappe', 'Mappe', 'map'], ['confronto', 'Confronto', 'columns-3'], ['trasporti', 'Autobus', 'bus'], ['ambiente', 'Allerte e aria', 'cloud-sun'], ['registro', 'Registro dei comuni', 'list'], ['archivio', 'Archivio completo', 'database'], ['scheda', 'Scheda del comune', 'file-text'], ['avvertenze', 'Avvertenze sui dati', 'bell']];
 // voce: ['m', indicatore, etichetta] mappa dei comuni · ['r', cartina, etichetta] mappa d'Italia · ['s', strato, etichetta] servizio sulla mappa · ['t', foglio, etichetta] tabella · ['x', sezione o pulsante, etichetta] trasporti
 const TEMI = [
   { t: 'Popolazione', i: 'users', v: [['m', 'p25', 'Residenti'], ['m', 'etaMed', 'Età media'], ['m', 'strPct', 'Stranieri residenti'], ['m', 'prev50', 'Popolazione al 2050'], ['t', 'Comuni', 'Anagrafe dei comuni'], ['t', 'RC26_Int_19_1', 'Età e struttura per comune'], ['t', 'RC26_Int_19_3', 'Bilancio demografico 2025'], ['t', 'RC26_Int_19_4', 'Residenti dal 2002 al 2026']] },
   { t: 'Amministrazione ed elezioni', i: 'landmark', v: [['m', 'el', 'Prossime elezioni comunali'], ['m', 'primaR23', 'Lista più votata, regionali 2023'], ['m', 'affE24', 'Affluenza, europee 2024'], ['t', 'Amministratori_locali', 'Sindaci, giunte e consigli'], ['t', 'Elezioni_regionali_2023_liste', 'Regionali 2023, liste'], ['t', 'Elezioni_europee_2024', 'Europee 2024'], ['t', 'Elezioni_camera_2022', 'Politiche 2022, Camera'], ['t', 'Elezioni_comunali_2026', 'Comunali 2026']] },
   { t: 'Bilanci e redditi', i: 'wallet', v: [['m', 'spCorrAb', 'Spesa corrente per abitante'], ['m', 'invAb', 'Investimenti per abitante'], ['m', 'red24', 'Reddito medio 2024'], ['t', 'Bilanci_comunali_sintesi', 'Bilanci 2018-2023, sintesi'], ['t', 'Bilanci_rendiconto_spese', 'Rendiconti, spese'], ['t', 'Bilanci_rendiconto_entrate', 'Rendiconti, entrate'], ['t', 'RC26_Int_13_1', 'Redditi IRPEF 2024']] },
-  { t: 'Territorio, ambiente e rischio', i: 'mountain', v: [['m', 'frPopPct', 'Residenti esposti a frane'], ['m', 'idPopPct', 'Residenti esposti ad alluvioni'], ['m', 'Cart. 2.5', 'Zone sismiche'], ['m', 'Cart. 2.4', 'Raccolta differenziata'], ['t', 'Rischio_idrogeologico_ISPRA', 'Rischio idrogeologico, tutti i dati'], ['t', 'Siti_inquinati_2025', 'Siti inquinati'], ['t', 'RC26_Int_2_1', 'Costo del servizio rifiuti'], ['t', 'Rifiuti_comunali', 'Rifiuti per comune']] },
+  { t: 'Territorio, ambiente e rischio', i: 'mountain', v: [['x', 'ambiente', 'Allerta meteo e qualità dell\'aria, oggi'], ['m', 'frPopPct', 'Residenti esposti a frane'], ['m', 'idPopPct', 'Residenti esposti ad alluvioni'], ['m', 'Cart. 2.5', 'Zone sismiche'], ['m', 'Cart. 2.4', 'Raccolta differenziata'], ['t', 'Rischio_idrogeologico_ISPRA', 'Rischio idrogeologico, tutti i dati'], ['t', 'Siti_inquinati_2025', 'Siti inquinati'], ['t', 'RC26_Int_2_1', 'Costo del servizio rifiuti'], ['t', 'Rifiuti_comunali', 'Rifiuti per comune']] },
   { t: 'Servizi e salute', i: 'heart-pulse', v: [['s', 'farmacie', 'Farmacie sulla mappa'], ['s', 'guardie', 'Guardie mediche sulla mappa'], ['s', 'rsa', 'Residenze per anziani sulla mappa'], ['m', 'fa', 'Farmacie per comune'], ['t', 'Farmacie', 'Elenco delle farmacie'], ['t', 'Residenze_anziani', 'Residenze per anziani'], ['t', 'Scuole_2026_27', 'Scuole 2026/27']] },
   { t: 'Terzo settore, sport e cultura', i: 'hand-heart', v: [['m', 'ruPm', 'Enti del Terzo settore'], ['m', 'volPct', 'Volontari'], ['m', 'sportPm', 'Società sportive'], ['t', 'RUNTS_FVG', 'Registro del Terzo settore'], ['t', 'Sport_CONI_2026', 'Società sportive CONI'], ['t', 'Associazioni_culturali_2026', 'Associazioni culturali'], ['t', 'Protezione_civile', 'Protezione civile']] },
   { t: 'Economia e turismo', i: 'briefcase', v: [['m', 'pr', 'Presenze turistiche'], ['m', 'prAb', 'Presenze per abitante'], ['m', 'Cart. 4.2', 'Transazioni immobiliari'], ['t', 'Turismo_comunale', 'Movimento turistico mensile'], ['t', 'Alberghi_RTA', 'Alberghi'], ['t', 'Agriturismi_2017', 'Agriturismi'], ['t', 'Commercio_Udine', 'Commercio di Udine']] },
@@ -1487,7 +1540,7 @@ document.getElementById('menuTemi').addEventListener('click', e => {
   if (k === 'm') vaiMappa('comuni', id);
   else if (k === 'r') vaiMappa('regioni', id);
   else if (k === 's') vaiMappa('comuni', null, id);
-  else if (k === 'x') { scorriA('trasporti'); if (id === 'tpLive' && !tpMezziOn) document.getElementById('tpLive').click(); }
+  else if (k === 'x') { scorriA(id === 'tpLive' ? 'trasporti' : id); if (id === 'tpLive' && !tpMezziOn) document.getElementById('tpLive').click(); }
   else apriFoglio(id, true);
 });
 const btnSu = document.getElementById('btnSu');
@@ -1830,6 +1883,188 @@ async function avviaTrasporti() {
   tpIndici(); tpDisegnaBase(); document.getElementById('statoTpl').hidden = true; tpTerritorio();
 }
 
+/* ===== Allerte meteo e qualità dell'aria ===== */
+// zona d'allerta di ogni comune, nell'ordine di MAN.istat (A…D = Friu-A…Friu-D), dagli elenchi dei comuni del bollettino nazionale del 6 ottobre 2026
+const ZONA_COM = 'CBBCBCBCCCCBCCCCCCCBBCCBCCCBCCCBBBBCCBBBBCBCBCCBCCBCCCCBCBCCCBCBCCCBCBCCBCCCCBCCBCBCBBCCBBBCCCCCCBBCCCBBCBBBBCBBCCBBCBCCCCCBBBCBBCCBCBCCDCCCCCCCCCCCCCCCCCCCCCCDDDDDDAAAAAAAAABAAAABAAAAAAAAAAAABAAAAAAAAAAAAAAAABBAAAA';
+const ZONE_AL = { A: 'Bacino del Livenza e del Lemene', B: 'Bacino montano del Tagliamento e del Torre', C: "Bacino dell'Isonzo e Pianura di Udine e Gorizia", D: 'Bacino di Levante / Carso' };
+const DPC_ZIP = 'https://raw.githubusercontent.com/pcm-dpc/DPC-Bollettini-Criticita-Idrogeologica-Idraulica/master/files/all/latest_all.zip';
+const LIV_AL = [{ t: 'Nessuna allerta', col: '#DCEBDF', txt: '#24613D' }, { t: 'Allerta gialla', col: '#F2D13A', txt: '#4A3D00' }, { t: 'Allerta arancione', col: '#E8892B', txt: '#3D1F00' }, { t: 'Allerta rossa', col: '#C1292E', txt: '#FFFFFF' }];
+const livAl = s => { const u = String(s || '').toUpperCase(); return u.includes('ROSSA') ? 3 : u.includes('ARANCIONE') ? 2 : u.includes('GIALLA') ? 1 : u.includes('NESSUNA') ? 0 : -1; };
+const MESI_IT = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+const giornoIt = d => `${d.getUTCDate()} ${MESI_IT[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+const chipAl = (k, cls = '') => k < 0 ? '<span class="text-pietra-700">non indicata</span>' : `<span class="inline-block rounded px-1.5 py-0.5 text-[11px] font-semibold ${cls}" style="background:${LIV_AL[k].col};color:${LIV_AL[k].txt}">${LIV_AL[k].t}</span>`;
+let AL = null, alGiorno = null, ARIA = {}, arInq = 'pm10', arStaz = null, arGraf = null;
+
+// Legge da un archivio zip remoto solo l'indice e i file scelti, con richieste parziali; se non è possibile scarica l'archivio intero
+async function zipRemoto(url, scegli) {
+  let tutto = null;
+  const intero = async () => { if (!tutto) tutto = new Uint8Array(await (await fetch(url, { cache: 'no-store' })).arrayBuffer()); return tutto; };
+  const leggi = async (a, b) => {
+    if (!tutto) { try { const r = await fetch(url, { headers: { Range: `bytes=${a}-${b}` }, cache: 'no-store' }); if (r.status === 206) return new Uint8Array(await r.arrayBuffer()); } catch (e) { /* si scarica tutto */ } }
+    return (await intero()).subarray(a, b + 1);
+  };
+  let dim = 0;
+  try { dim = Number((await fetch(url, { method: 'HEAD', cache: 'no-store' })).headers.get('content-length')) || 0; } catch (e) { dim = 0; }
+  if (!dim) dim = (await intero()).length;
+  const coda = await leggi(Math.max(0, dim - 66000), dim - 1), dv = new DataView(coda.buffer, coda.byteOffset, coda.byteLength);
+  let e = -1; for (let i = coda.length - 22; i >= 0; i--) if (dv.getUint32(i, true) === 0x06054b50) { e = i; break; }
+  if (e < 0) throw new Error('archivio non leggibile');
+  const nVoci = dv.getUint16(e + 10, true), cdDim = dv.getUint32(e + 12, true), cdOff = dv.getUint32(e + 16, true);
+  const cd = await leggi(cdOff, cdOff + cdDim - 1), cv = new DataView(cd.buffer, cd.byteOffset, cd.byteLength), voci = [];
+  for (let k = 0, p = 0; k < nVoci; k++) {
+    const nl = cv.getUint16(p + 28, true), el = cv.getUint16(p + 30, true), cl = cv.getUint16(p + 32, true);
+    voci.push({ nome: new TextDecoder().decode(cd.subarray(p + 46, p + 46 + nl)), metodo: cv.getUint16(p + 10, true), comp: cv.getUint32(p + 20, true), off: cv.getUint32(p + 42, true) });
+    p += 46 + nl + el + cl;
+  }
+  const out = {};
+  for (const v of voci.filter(v => scegli(v.nome))) {
+    const bl = await leggi(v.off, Math.min(dim - 1, v.off + 30 + 600 + v.comp)), bv = new DataView(bl.buffer, bl.byteOffset, bl.byteLength);
+    const ini = 30 + bv.getUint16(26, true) + bv.getUint16(28, true), dati = bl.slice(ini, ini + v.comp);
+    out[v.nome] = v.metodo === 0 ? dati : new Uint8Array(await new Response(new Blob([dati]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer());
+  }
+  return out;
+}
+function leggiDbf(b) {
+  const dv = new DataView(b.buffer, b.byteOffset, b.byteLength), n = dv.getUint32(4, true), hl = dv.getUint16(8, true), rl = dv.getUint16(10, true), dec = new TextDecoder('windows-1252'), campi = [];
+  for (let o = 32; b[o] !== 0x0D && o < hl; o += 32) campi.push([dec.decode(b.subarray(o, o + 11)).split('\0')[0], b[o + 16]]);
+  const righe = [];
+  for (let i = 0; i < n; i++) { let p = hl + i * rl + 1; const r = {}; for (const [nm, ln] of campi) { r[nm] = dec.decode(b.subarray(p, p + ln)).trim(); p += ln; } righe.push(r); }
+  return righe;
+}
+async function caricaAllerte() {
+  try {
+    const f = await zipRemoto(DPC_ZIP, n => /_(today|tomorrow)\.dbf$/.test(n)), al = {};
+    for (const [nome, b] of Object.entries(f)) {
+      const m = /(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})_(today|tomorrow)\.dbf$/.exec(nome); if (!m) continue;
+      al.emesso = { d: new Date(Date.UTC(+m[1], m[2] - 1, +m[3])), ora: m[4] + ':' + m[5] };
+      al[m[6]] = {}; leggiDbf(b).filter(r => /^Friu-[A-D]$/.test(r.Zona_all)).forEach(r => { al[m[6]][r.Zona_all.slice(-1)] = r; });
+    }
+    if (!al.today || Object.keys(al.today).length < 4) throw new Error('zone del Friuli Venezia Giulia non trovate nel bollettino');
+    AL = al;
+    const oggi = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Rome' }), d0 = AL.emesso.d.toISOString().slice(0, 10);
+    alGiorno = oggi > d0 && AL.tomorrow ? 'tomorrow' : 'today';
+  } catch (e) { AL = { errore: e.message || String(e) }; }
+  disegnaAllerte();
+}
+function disegnaAllerte() {
+  const note = document.getElementById('alNota');
+  note.innerHTML = 'Fonte: <a class="underline" href="https://github.com/pcm-dpc/DPC-Bollettini-Criticita-Idrogeologica-Idraulica" target="_blank" rel="noopener">bollettino di criticità nazionale</a> del Dipartimento della Protezione civile, che riporta le valutazioni del Centro funzionale della Regione; si aggiorna ogni giorno verso le 16. Per gli avvisi ufficiali e i comportamenti da tenere fa fede il sito della <a class="underline" href="https://www.protezionecivile.fvg.it" target="_blank" rel="noopener">Protezione civile del Friuli Venezia Giulia</a>.';
+  document.getElementById('alLegenda').innerHTML = LIV_AL.map((l, k) => `<span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-sm border border-pietra-300" style="background:${l.col}"></span>${l.t}</span>`).join('');
+  if (!AL) return;
+  if (AL.errore) { document.getElementById('alEmesso').textContent = 'Bollettino non disponibile in questo momento (' + AL.errore + ').'; return; }
+  const d0 = AL.emesso.d, d1 = new Date(d0.getTime() + 864e5);
+  document.getElementById('alEmesso').textContent = `Bollettino emesso il ${giornoIt(d0)} alle ${AL.emesso.ora}`;
+  document.querySelectorAll('.alGiorno').forEach(b => { const on = b.dataset.g === alGiorno; b.textContent = giornoIt(b.dataset.g === 'today' ? d0 : d1).replace(/ \d{4}$/, ''); b.className = 'alGiorno px-3 py-1.5 text-xs font-semibold rounded-md ' + (on ? 'bg-primario-700 text-white shadow' : 'text-pietra-700 hover:bg-white'); b.hidden = !AL[b.dataset.g]; });
+  const Z = AL[alGiorno] || {};
+  if (GEO) {
+    const svg = document.getElementById('svgAllerte'), sel = terr.com;
+    svg.setAttribute('viewBox', `${-GEO.w * 0.02} ${-GEO.h * 0.02} ${GEO.w * 1.04} ${GEO.h * 1.04}`);
+    let h = GEO.comuni.map(c => { const k = livAl((Z[ZONA_COM[c.c]] || {}).Criticita); return `<path d="${pathDa(c.r)}" fill="${k >= 0 ? LIV_AL[k].col : '#EEE'}" stroke="#ffffff" stroke-width="0.4" vector-effect="non-scaling-stroke"><title>${esc(NOME_COM[c.c])}: zona ${ZONA_COM[c.c]}</title></path>`; }).join('');
+    h += `<path d="${pathDa(GEO.regione.r)}" fill="none" stroke="#07213A" stroke-width="1.4" vector-effect="non-scaling-stroke"></path>`;
+    if (sel >= 0) { const c = GEO.comuni.find(x => x.c === sel); if (c) h += `<path d="${pathDa(c.r)}" fill="none" stroke="#07213A" stroke-width="2.5" vector-effect="non-scaling-stroke"></path>`; }
+    svg.innerHTML = h;
+  }
+  const RIS = [['Idrogeo', 'Idrogeologico'], ['Idraulico', 'Idraulico'], ['Temporali', 'Temporali']];
+  document.getElementById('alZone').innerHTML = 'ABCD'.split('').map(z => { const r = Z[z] || {}, k = livAl(r.Criticita);
+    return `<div class="rounded-lg border ${terr.com >= 0 && ZONA_COM[terr.com] === z ? 'border-primario-700 ring-1 ring-primario-700' : 'border-pietra-200'} p-2"><div class="flex items-start justify-between gap-2"><div class="min-w-0"><div class="text-[10px] uppercase tracking-wider text-pietra-700">Zona ${z}</div><div class="text-[13px] font-semibold text-primario-800 leading-snug">${esc(ZONE_AL[z])}</div></div>${chipAl(k, 'shrink-0')}</div>
+      ${k > 0 ? `<div class="mt-1 text-[11px] text-pietra-800">${RIS.map(([f, t]) => `${t}: ${esc(LIV_AL[Math.max(0, livAl(r[f]))].t.toLowerCase())}`).join(' · ')}</div>` : ''}</div>`; }).join('');
+  const bx = document.getElementById('alComune');
+  if (terr.com >= 0) { const z = ZONA_COM[terr.com], k = livAl((Z[z] || {}).Criticita); bx.hidden = false;
+    bx.innerHTML = `<b>${esc(NOME_COM[terr.com])}</b> è nella zona d'allerta ${z}, ${esc(ZONE_AL[z])}: ${chipAl(k)}`; }
+  else bx.hidden = true;
+}
+document.querySelectorAll('.alGiorno').forEach(b => b.addEventListener('click', () => { if (!AL || AL.errore) return; alGiorno = b.dataset.g; disegnaAllerte(); }));
+
+// Qualità dell'aria: dati giornalieri ARPA FVG sul portale dei dati aperti della Regione (validati, con circa una settimana di ritardo)
+const SODA = 'https://www.dati.friuliveneziagiulia.it/resource/';
+const INQ = {
+  pm10: { id: 'qp5k-6pvm', campo: 'media_giornaliera', t: 'PM10', misura: 'media del giorno', lim: 50, soglie: [25, 50], limT: 'Valore limite giornaliero: 50 µg/m³, da non superare più di 35 volte in un anno.', conta: 'giorni oltre 50' },
+  pm25: { id: 'd63p-pqpr', campo: 'media_giornaliera', t: 'PM2,5', misura: 'media del giorno', lim: null, soglie: [10, 25], limT: 'Per il PM2,5 la legge fissa solo un valore limite annuale (25 µg/m³), non giornaliero: i colori servono solo a confrontare le centraline.' },
+  no2: { id: 'ke9b-p6z2', campo: 'media_oraria_max', t: 'biossido di azoto', misura: 'media oraria più alta del giorno', lim: 200, soglie: [100, 200], limT: 'Valore limite orario: 200 µg/m³, da non superare più di 18 volte in un anno.', conta: 'giorni oltre 200' },
+  o3: { id: '7vnx-28uy', campo: 'media_mobile_8h_max', t: 'ozono', misura: 'media su 8 ore più alta del giorno', lim: 120, soglie: [60, 120], limT: 'Valore obiettivo: 120 µg/m³ sulla media di 8 ore, da non superare più di 25 giorni l\'anno come media su tre anni.', conta: 'giorni oltre 120' }
+};
+const COL_ARIA = ['#6FA882', '#E3B448', '#C1292E'];
+const classeAria = (q, v) => v == null ? -1 : v <= q.soglie[0] ? 0 : v <= q.soglie[1] ? 1 : 2;
+const etichetteAria = q => [`fino a ${q.soglie[0]}`, `da ${q.soglie[0]} a ${q.soglie[1]}`, q.lim ? `oltre il limite di ${q.lim}` : `oltre ${q.soglie[1]}`];
+async function soda(id, par) { const r = await fetch(SODA + id + '.json?' + new URLSearchParams(par)); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }
+const sqlTesto = s => "'" + String(s).replace(/'/g, "''") + "'";
+function comuneDelPunto(x, y) {
+  const dentro = (r) => { let c = false; for (let i = 0, j = r.length / 2 - 1; i < r.length / 2; j = i++) { const xi = r[2 * i], yi = r[2 * i + 1], xj = r[2 * j], yj = r[2 * j + 1]; if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) c = !c; } return c; };
+  const g = GEO.comuni.find(c => { let n = 0; c.r.forEach(r => { if (dentro(r)) n++; }); return n % 2 === 1; }); return g ? g.c : -1;
+}
+async function caricaAria(k) {
+  if (ARIA[k]) return ARIA[k];
+  const q = INQ[k];
+  const ultimo = (await soda(q.id, { $select: 'max(data_misura) as d' }))[0].d;
+  const righe = await soda(q.id, { $where: `data_misura='${ultimo}'`, $limit: 500 });
+  const anno = ultimo.slice(0, 4);
+  const oltre = q.lim ? await soda(q.id, { $select: 'ubicazione, count(*) as n', $where: `data_misura>='${anno}-01-01' AND ${q.campo}>${q.lim}`, $group: 'ubicazione', $limit: 500 }) : [];
+  const nOltre = Object.fromEntries(oltre.map(r => [r.ubicazione, Number(r.n)]));
+  const staz = righe.filter(r => r.latitudine && r.longitudine).map(r => { const [x, y] = tpXY(Number(r.latitudine), Number(r.longitudine)), v = r[q.campo] != null && r[q.campo] !== '' ? Number(r[q.campo]) : null;
+    return { nome: r.ubicazione, x, y, v, insuff: /^(true|vero)$/i.test(r.dati_insuff || ''), com: comuneDelPunto(x, y), oltre: nOltre[r.ubicazione] || 0 }; });
+  return (ARIA[k] = { ultimo: new Date(ultimo.slice(0, 10) + 'T00:00:00Z'), anno, staz });
+}
+async function disegnaAria() {
+  document.querySelectorAll('.arInq').forEach(b => { const on = b.dataset.i === arInq; b.className = 'arInq px-2.5 py-1.5 text-xs font-semibold rounded-md ' + (on ? 'bg-primario-700 text-white shadow' : 'text-pietra-700 hover:bg-white'); });
+  const k0 = arInq, q = INQ[k0];
+  document.getElementById('arNota').innerHTML = `Valori della ${q.misura}, in µg/m³ (microgrammi per metro cubo). ${q.limT} Riferimento: decreto legislativo 13 agosto 2010, n. 155. Fonte: ARPA FVG (Agenzia regionale per la protezione dell'ambiente), dati validati pubblicati sul <a class="underline" href="https://www.dati.friuliveneziagiulia.it" target="_blank" rel="noopener">portale dei dati aperti della Regione</a>; i valori più recenti sono sul <a class="underline" href="https://www.arpa.fvg.it/temi/temi/aria/" target="_blank" rel="noopener">sito di ARPA FVG</a>.`;
+  document.getElementById('arLegenda').innerHTML = etichetteAria(q).map((t, i) => `<span class="inline-flex items-center gap-1"><span class="w-3 h-3 rounded-full" style="background:${COL_ARIA[i]}"></span>${t} µg/m³</span>`).join('');
+  let A;
+  try { if (!(await attendiMappe())) throw new Error('mappa non disponibile'); A = await caricaAria(arInq); }
+  catch (e) { document.getElementById('arData').textContent = 'Dati non disponibili in questo momento (' + (e.message || e) + ').'; return; }
+  if (arInq !== k0) return;
+  document.getElementById('arData').textContent = `Ultimo giorno pubblicato: ${giornoIt(A.ultimo)} · ${A.staz.length} centraline`;
+  const svg = document.getElementById('svgAria'), r0 = GEO.w / 60;
+  svg.setAttribute('viewBox', `${-GEO.w * 0.02} ${-GEO.h * 0.02} ${GEO.w * 1.04} ${GEO.h * 1.04}`);
+  let h = GEO.comuni.map(c => `<path d="${pathDa(c.r)}" fill="${c.c === terr.com ? '#F7D678' : '#F7F4EE'}" stroke="#E2DCCF" stroke-width="0.4" vector-effect="non-scaling-stroke"></path>`).join('');
+  h += `<path d="${pathDa(GEO.regione.r)}" fill="none" stroke="#07213A" stroke-width="1.4" vector-effect="non-scaling-stroke"></path>`;
+  h += A.staz.map((s, i) => { const k = classeAria(q, s.v); return `<circle class="arPunto cursor-pointer" data-i="${i}" cx="${s.x.toFixed(0)}" cy="${s.y.toFixed(0)}" r="${s.nome === arStaz ? r0 * 1.5 : r0}" fill="${k < 0 ? '#BBB' : COL_ARIA[k]}" stroke="${s.nome === arStaz ? '#07213A' : '#ffffff'}" stroke-width="${s.nome === arStaz ? 2.5 : 1.2}" vector-effect="non-scaling-stroke"></circle>`; }).join('');
+  svg.innerHTML = h;
+  // pannello: centraline vicine al comune scelto, oppure sintesi regionale
+  const riga = s => { const k = classeAria(q, s.v); return `<button class="arScelta w-full text-left flex items-center gap-2 rounded-lg border ${s.nome === arStaz ? 'border-primario-700' : 'border-pietra-200'} px-2 py-1.5 hover:bg-pietra-50" data-n="${esc(s.nome)}"><span class="w-3 h-3 rounded-full shrink-0" style="background:${k < 0 ? '#BBB' : COL_ARIA[k]}"></span><span class="min-w-0 flex-1"><span class="block text-[13px] leading-snug">${esc(s.nome)}</span>${q.lim ? `<span class="block text-[11px] text-pietra-700">${s.oltre ? `${s.oltre} ${s.oltre === 1 ? 'giorno' : 'giorni'} oltre ${q.lim} nel ${A.anno}` : `nessun giorno oltre ${q.lim} nel ${A.anno}`}</span>` : ''}${s.dist != null ? `<span class="block text-[11px] text-pietra-700">${s.dist ? `a ${fmt1(s.dist / 1000)} km` : 'nel comune'}</span>` : ''}</span><span class="shrink-0 font-bold num text-primario-800">${s.v == null ? '·' : fmt(s.v)}</span></button>`; };
+  let p = '';
+  if (terr.com >= 0) {
+    const c = GEO.comuni.find(x => x.c === terr.com), xs = c.r.flatMap(r => r.filter((v, i) => i % 2 === 0)), ys = c.r.flatMap(r => r.filter((v, i) => i % 2 === 1)), cx = (Math.min(...xs) + Math.max(...xs)) / 2, cy = (Math.min(...ys) + Math.max(...ys)) / 2;
+    const vic = A.staz.map(s => ({ ...s, dist: s.com === terr.com ? 0 : Math.hypot(s.x - cx, s.y - cy) })).sort((a, b) => a.dist - b.dist).slice(0, 3);
+    p += `<div class="text-[12px] text-pietra-800">Centraline più vicine a <b>${esc(NOME_COM[terr.com])}</b>, ${giornoIt(A.ultimo)}:</div>` + vic.map(riga).join('');
+    if (!arStaz && vic[0]) { arStaz = vic[0].nome; }
+  } else {
+    const val = A.staz.filter(s => s.v != null), mx = val.slice().sort((a, b) => b.v - a.v)[0], oltreOggi = q.lim ? val.filter(s => s.v > q.lim).length : null;
+    p += `<div class="rounded-lg bg-pietra-50 border border-pietra-200 p-2 text-[13px]">${q.lim ? (oltreOggi ? `<b>${oltreOggi}</b> ${oltreOggi === 1 ? 'centralina oltre' : 'centraline oltre'} il limite il ${giornoIt(A.ultimo)}.` : `Nessuna centralina oltre il limite il ${giornoIt(A.ultimo)}.`) : ''} ${mx ? `Valore più alto: <b>${fmt(mx.v)}</b> µg/m³ a ${esc(mx.nome)}.` : ''}</div>`;
+    p += '<div class="text-[12px] text-pietra-700">Scegli un comune nel filtro in alto, oppure tocca una centralina sulla mappa per vederne l\'andamento.</div>';
+    if (q.lim) { const top = A.staz.filter(s => s.oltre).sort((a, b) => b.oltre - a.oltre).slice(0, 3); if (top.length) p += `<div class="text-[12px] text-pietra-800">Più giorni oltre il limite nel ${A.anno}:</div>` + top.map(riga).join(''); }
+  }
+  document.getElementById('arPannello').innerHTML = p;
+  disegnaGraficoAria();
+}
+async function disegnaGraficoAria() {
+  const box = document.getElementById('arGraficoBox'), q = INQ[arInq], A = ARIA[arInq];
+  if (!arStaz || !A) { box.hidden = true; return; }
+  const da = new Date(A.ultimo.getTime() - 89 * 864e5).toISOString().slice(0, 10);
+  let righe;
+  try { righe = await soda(q.id, { $where: `ubicazione=${sqlTesto(arStaz)} AND data_misura>='${da}'`, $order: 'data_misura', $limit: 200 }); } catch (e) { box.hidden = true; return; }
+  const et = righe.map(r => { const d = new Date(r.data_misura.slice(0, 10) + 'T00:00:00Z'); return `${d.getUTCDate()} ${MESI_IT[d.getUTCMonth()].slice(0, 3)}`; }), val = righe.map(r => r[q.campo] === '' || r[q.campo] == null ? null : Number(r[q.campo]));
+  box.hidden = false; document.getElementById('arGraficoTit').textContent = `${q.t === 'PM10' || q.t === 'PM2,5' ? q.t : q.t[0].toUpperCase() + q.t.slice(1)} a ${arStaz}, ultimi 90 giorni (µg/m³)`;
+  const ds = [{ data: val, borderColor: '#155E9E', backgroundColor: 'rgba(21,94,158,.10)', fill: true, pointRadius: 0, borderWidth: 1.5, spanGaps: true, tension: 0.2 }];
+  if (q.lim) ds.push({ data: val.map(() => q.lim), borderColor: '#C1292E', borderDash: [5, 4], borderWidth: 1.2, pointRadius: 0, fill: false, label: 'limite' });
+  if (arGraf) arGraf.destroy();
+  arGraf = new Chart(document.getElementById('arGrafico'), { type: 'line', data: { labels: et, datasets: ds }, options: { maintainAspectRatio: false, animation: false, plugins: { legend: { display: false }, tooltip: { backgroundColor: '#07213A', callbacks: { label: c => c.dataset.label === 'limite' ? `limite ${q.lim}` : fmt(c.parsed.y) + ' µg/m³' } } }, scales: { x: { grid: { display: false }, ticks: { maxTicksLimit: 6 } }, y: { beginAtZero: true, grid: { color: '#E6E0D4' } } } } });
+}
+document.querySelectorAll('.arInq').forEach(b => b.addEventListener('click', () => { arInq = b.dataset.i; disegnaAria(); }));
+document.getElementById('arPannello').addEventListener('click', e => { const b = e.target.closest('.arScelta'); if (b) { arStaz = b.dataset.n; disegnaAria(); } });
+const svgAria = document.getElementById('svgAria'), tipAria = document.getElementById('tipAria');
+svgAria.addEventListener('click', e => { const c = e.target.closest('.arPunto'); const A = ARIA[arInq]; if (c && A) { arStaz = A.staz[Number(c.dataset.i)].nome; disegnaAria(); } });
+svgAria.addEventListener('mousemove', e => { const c = e.target.closest('.arPunto'), A = ARIA[arInq]; if (!c || !A) { tipAria.hidden = true; return; } const s = A.staz[Number(c.dataset.i)], box = svgAria.parentElement.getBoundingClientRect();
+  tipAria.innerHTML = `<b>${esc(s.nome)}</b><br>${s.v == null ? 'dato non disponibile' : fmt(s.v) + ' µg/m³'}`; tipAria.style.left = Math.min(e.clientX - box.left + 10, box.width - 160) + 'px'; tipAria.style.top = (e.clientY - box.top + 10) + 'px'; tipAria.hidden = false; });
+svgAria.addEventListener('mouseleave', () => { tipAria.hidden = true; });
+function aggiornaAmbiente() { if (!ambienteAvviato) return; arStaz = null; disegnaAllerte(); disegnaAria(); }
+let ambienteAvviato = false;
+function avviaAmbiente() {
+  const via = async () => { if (ambienteAvviato) return; ambienteAvviato = true; disegnaAllerte(); await attendiMappe(); caricaAllerte(); disegnaAria(); };
+  const sez = document.getElementById('ambiente');
+  if ('IntersectionObserver' in window) { const io = new IntersectionObserver(v => { if (v.some(x => x.isIntersecting)) { io.disconnect(); via(); } }, { rootMargin: '800px' }); io.observe(sez); } else via();
+}
+
 /* Avviso */
 let tToast;
 function mostraToast(msg) {
@@ -1843,7 +2078,7 @@ function mostraToast(msg) {
 inizializzaGrafico();
 impostaTerritorio('', -1);
 apriFoglio('Comuni');
-avviaMappe(); avviaTrasporti();
+avviaMappe(); avviaTrasporti(); avviaAmbiente();
 disegnaConfronto();
 disegnaMenu();
 lucide.createIcons();
