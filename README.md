@@ -17,7 +17,8 @@ filtrabili per provincia, per comune, per testo e colonna per colonna.
 | `dati/*.txt` | Un file per foglio del database (i fogli più grandi sono divisi in parti). Ogni file è JSON compresso con gzip e codificato in base64; la pagina lo scarica e lo decomprime solo quando il foglio viene aperto |
 | `dati/_mappe_0.txt` | Confini di comuni, province, regione e regioni italiane, con le classi delle 41 cartine dell'Annuario (stessa codifica degli altri file) |
 | `dati/_punti_0.txt` | Punti della mappa dei servizi (farmacie, guardie mediche, residenze per anziani, fermate, accessi a internet, impianti dei rifiuti, stazioni meteo) già proiettati sul disegno della mappa |
-| `dati/_tpl_0.txt` | Rete degli autobus TPL FVG (Trasporto pubblico locale del Friuli Venezia Giulia): 7.855 fermate con il loro comune e 687 percorsi con il tracciato stradale semplificato, già proiettati sul disegno della mappa |
+| `dati/_tpl_0.txt` | Rete degli autobus TPL FVG (Trasporto pubblico locale del Friuli Venezia Giulia): fermate con il loro comune e percorsi con il tracciato stradale (semplificato a 8 metri), già proiettati sul disegno della mappa |
+| `scripts/aggiorna_autobus.py` | Aggiornamento automatico della rete degli autobus |
 | `scripts/aggiorna_dati.py` | Aggiornamento automatico dei dati aperti regionali che cambiano spesso |
 | `.github/workflows/aggiorna-dati.yml` | Esegue l'aggiornamento ogni lunedì e pubblica le novità |
 | `.nojekyll` | Dice a GitHub Pages di servire i file così come sono |
@@ -50,19 +51,25 @@ Roveredo in Piano): i doppioni sono tolti tenendo una riga per anno, comune e vo
 ## Autobus
 
 Linee e fermate vengono dai dati GTFS (formato aperto per gli orari del trasporto pubblico) di TPL FVG,
-redistribuiti gratuitamente per usi non commerciali da [BusOne](https://busone.app), versione del 6 ottobre 2026.
+redistribuiti gratuitamente per usi non commerciali da [BusOne](https://busone.app); la data della versione in uso
+compare sotto la mappa.
 Per ogni linea e direzione è disegnato il percorso più frequente. Gli arrivi alla fermata e la posizione dei mezzi
 sono letti dal browser di chi visita la pagina, al momento, dal flusso in tempo reale di TPL FVG tramite BusOne:
 compaiono solo le corse già partite dal capolinea. Gli orari programmati pubblicati sul Punto di accesso nazionale
 ai dati sulla mobilità risultano scaduti (TPL FVG al 31 agosto 2026, Trenitalia al 13 giugno 2026): per questo la
 pagina non riporta l'orario completo né i treni e rimanda a [tplfvg.it](https://tplfvg.it).
 
+Ingrandendo la mappa degli autobus compare sotto le linee la mappa delle vie di
+[OpenStreetMap](https://www.openstreetmap.org/copyright) (© contributori di OpenStreetMap), scaricata dal browser di
+chi visita la pagina. Ogni riquadro della mappa è agganciato al disegno con le stesse coordinate delle fermate.
+
 ## Aggiornamento automatico
 
 Ogni lunedì `scripts/aggiorna_dati.py` riscarica dal portale dei dati aperti della Regione 18 fogli che cambiano
 spesso (farmacie, guardie mediche, residenze per anziani, accessi a internet, turismo, siti inquinati, elezioni
 comunali 2026, patrimonio regionale, strutture ricettive), ricollega le righe ai comuni, toglie i contatti dei privati,
-ricalcola conteggi e punti della mappa e pubblica solo se qualcosa è cambiato. Se un foglio non si scarica o cambia
+ricalcola conteggi e punti della mappa. Subito dopo `scripts/aggiorna_autobus.py` riscarica da BusOne la rete degli
+autobus e riscrive `dati/_tpl_0.txt` solo se fermate o percorsi sono cambiati. Si pubblica solo se qualcosa è cambiato. Se un foglio non si scarica o cambia
 struttura resta com'è. Si può avviare a mano da Actions, «Aggiorna i dati aperti», «Run workflow».
 
 ## Dati personali
