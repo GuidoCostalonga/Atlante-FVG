@@ -5,7 +5,7 @@ Pagina pubblicata su [costalonga.org/Atlante-FVG](https://costalonga.org/Atlante
 I 215 comuni del Friuli Venezia Giulia comune per comune: popolazione, amministratori,
 Terzo settore, sport, cultura, servizi sanitari, scuole, turismo, redditi e ambiente.
 Con le mappe dei comuni (oltre 30 indicatori, 15 cartine dell'Annuario e 8 strati di servizi),
-la mappa delle regioni d'Italia (24 cartine), il confronto fra quattro comuni, la scheda di
+la mappa delle regioni d'Italia (24 cartine), la mappa degli autobus con linee, fermate e arrivi in tempo reale, il confronto fra quattro comuni, la scheda di
 ogni comune stampabile in PDF e l'archivio completo: 136 fogli e quasi 450.000 righe,
 filtrabili per provincia, per comune, per testo e colonna per colonna.
 
@@ -17,6 +17,7 @@ filtrabili per provincia, per comune, per testo e colonna per colonna.
 | `dati/*.txt` | Un file per foglio del database (i fogli più grandi sono divisi in parti). Ogni file è JSON compresso con gzip e codificato in base64; la pagina lo scarica e lo decomprime solo quando il foglio viene aperto |
 | `dati/_mappe_0.txt` | Confini di comuni, province, regione e regioni italiane, con le classi delle 41 cartine dell'Annuario (stessa codifica degli altri file) |
 | `dati/_punti_0.txt` | Punti della mappa dei servizi (farmacie, guardie mediche, residenze per anziani, fermate, accessi a internet, impianti dei rifiuti, stazioni meteo) già proiettati sul disegno della mappa |
+| `dati/_tpl_0.txt` | Rete degli autobus TPL FVG (Trasporto pubblico locale del Friuli Venezia Giulia): 7.855 fermate con il loro comune e 687 percorsi con il tracciato stradale semplificato, già proiettati sul disegno della mappa |
 | `scripts/aggiorna_dati.py` | Aggiornamento automatico dei dati aperti regionali che cambiano spesso |
 | `.github/workflows/aggiorna-dati.yml` | Esegue l'aggiornamento ogni lunedì e pubblica le novità |
 | `.nojekyll` | Dice a GitHub Pages di servire i file così come sono |
@@ -45,6 +46,16 @@ non un collegamento in tempo reale.
 
 Nei rendiconti alcune viste regionali ripetono le stesse righe (una, intitolata a Ragogna, contiene i dati di
 Roveredo in Piano): i doppioni sono tolti tenendo una riga per anno, comune e voce di bilancio.
+
+## Autobus
+
+Linee e fermate vengono dai dati GTFS (formato aperto per gli orari del trasporto pubblico) di TPL FVG,
+redistribuiti gratuitamente per usi non commerciali da [BusOne](https://busone.app), versione del 6 ottobre 2026.
+Per ogni linea e direzione è disegnato il percorso più frequente. Gli arrivi alla fermata e la posizione dei mezzi
+sono letti dal browser di chi visita la pagina, al momento, dal flusso in tempo reale di TPL FVG tramite BusOne:
+compaiono solo le corse già partite dal capolinea. Gli orari programmati pubblicati sul Punto di accesso nazionale
+ai dati sulla mobilità risultano scaduti (TPL FVG al 31 agosto 2026, Trenitalia al 13 giugno 2026): per questo la
+pagina non riporta l'orario completo né i treni e rimanda a [tplfvg.it](https://tplfvg.it).
 
 ## Aggiornamento automatico
 

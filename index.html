@@ -268,6 +268,40 @@ tailwind.config = {
     </div>
   </section>
 
+  <!-- Trasporto pubblico -->
+  <section id="trasporti" class="bg-white rounded-xl cornice-oro min-w-0 scroll-mt-32 md:scroll-mt-24">
+    <div class="p-5 border-b border-pietra-200 flex flex-wrap items-end justify-between gap-3">
+      <div class="min-w-0">
+        <div class="text-[11px] uppercase tracking-[0.2em] text-accento-700">Trasporto pubblico</div>
+        <h2 class="font-patriarcale font-bold text-lg text-primario-800">Autobus: linee, fermate e arrivi in tempo reale</h2>
+        <p class="text-xs text-pietra-700 max-w-3xl">Cerca una fermata o una linea, oppure tocca la mappa. Per ogni fermata vedi le linee che ci passano e gli autobus in arrivo; per ogni linea, il percorso e tutte le fermate in ordine.</p>
+      </div>
+      <button id="tpLive" class="inline-flex items-center gap-2 text-sm border border-primario-200 text-primario-700 rounded-lg px-3 py-2 hover:bg-primario-50" aria-pressed="false"><span class="w-2.5 h-2.5 rounded-full bg-pietra-300" id="tpLiveDot"></span>Mezzi in viaggio adesso</button>
+    </div>
+    <div class="p-4 sm:p-5 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_22rem] gap-5">
+      <div class="min-w-0 flex flex-col gap-3">
+        <div class="relative">
+          <label for="tpCerca" class="sr-only">Cerca una fermata o una linea</label>
+          <i data-lucide="search" class="w-4 h-4 text-pietra-700 absolute left-3 top-1/2 -translate-y-1/2"></i>
+          <input id="tpCerca" type="search" autocomplete="off" placeholder="Cerca una fermata (es. «Roveredo») o una linea (es. «P10»)" class="w-full pl-9 pr-3 py-2 text-sm rounded-lg bg-pietra-50 border border-pietra-200 focus:border-primario-500 focus:outline-none">
+          <div id="tpSugg" class="absolute z-20 left-0 right-0 top-full mt-1 bg-white border border-pietra-200 rounded-lg shadow-lg max-h-72 overflow-y-auto" hidden></div>
+        </div>
+        <div class="relative rounded-xl border border-pietra-200 bg-primario-50 overflow-hidden" style="height: min(68vh, 560px)">
+          <svg id="svgTpl" class="w-full h-full touch-none select-none" role="img" aria-label="Mappa del trasporto pubblico"></svg>
+          <div class="absolute top-2 right-2 flex flex-col gap-1">
+            <button class="zoomTpl w-8 h-8 bg-white border border-pietra-200 rounded-md text-primario-800 font-bold hover:bg-pietra-100" data-z="in" aria-label="Ingrandisci">+</button>
+            <button class="zoomTpl w-8 h-8 bg-white border border-pietra-200 rounded-md text-primario-800 font-bold hover:bg-pietra-100" data-z="out" aria-label="Riduci">−</button>
+            <button class="zoomTpl w-8 h-8 bg-white border border-pietra-200 rounded-md text-primario-800 hover:bg-pietra-100" data-z="reset" aria-label="Vista iniziale"><i data-lucide="maximize" class="w-4 h-4 mx-auto"></i></button>
+          </div>
+          <div id="tipTpl" class="absolute pointer-events-none bg-primario-900 text-white text-xs rounded-md px-2.5 py-1.5 border border-accento-500 shadow-lg max-w-[16rem]" hidden></div>
+          <div id="statoTpl" class="absolute inset-0 flex items-center justify-center text-sm text-pietra-700">Caricamento della rete…</div>
+        </div>
+        <p class="text-[11px] text-pietra-700 leading-relaxed" id="notaTpl"></p>
+      </div>
+      <aside id="tpPannello" class="min-w-0 flex flex-col gap-3 text-sm"></aside>
+    </div>
+  </section>
+
   <!-- 6. Tabella dei comuni -->
   <section id="registro" class="bg-white rounded-xl cornice-oro min-w-0 scroll-mt-32 md:scroll-mt-24">
     <div class="p-5 flex flex-wrap items-end justify-between gap-3 border-b border-pietra-200">
@@ -416,7 +450,7 @@ tailwind.config = {
       <li><b>Amministratori.</b> L'anagrafe regionale è aggiornata da ciascun comune in date diverse: il sindaco indicato può non essere quello in carica. Ogni scheda riporta la data di aggiornamento.</li>
       <li><b>Anni diversi.</b> Redditi IRPEF (Imposta sul reddito delle persone fisiche): anno d'imposta 2017. Associazioni di protezione civile: elenco del 2015. Siti inquinati: censimento 2025. Turismo: anno 2025.</li>
       <li><b>Province.</b> La legge regionale 14 luglio 2026, n. 7, istituisce le Province e sopprime gli Enti di decentramento regionale: le sigle provinciali sono quelle delle fonti ISTAT.</li>
-      <li><b>Non esaustività.</b> Il database è una prima raccolta ampia di dati pubblici, non un censimento universale. È una fotografia al 5 ottobre 2026, non un collegamento in tempo reale.</li>
+      <li><b>Non esaustività.</b> Il database è una prima raccolta ampia di dati pubblici, non un censimento universale. È una fotografia al 5 ottobre 2026, non un collegamento in tempo reale: fanno eccezione gli arrivi e i mezzi in viaggio della sezione Autobus.</li>
       <li><b>Anno dei rifiuti comunali.</b> Nel foglio Rifiuti_comunali del file Excel l'anno è memorizzato come numero decimale (1,998 al posto di 1998, per un separatore delle migliaia letto come virgola). Nell'archivio è mostrato come anno intero; tutti gli altri valori sono quelli del file.</li>
       <li><b>Banca dati «Regione FVG Dati» (16 settembre 2026).</b> Ne sono stati aggiunti solo i contenuti assenti dall'archivio: le integrazioni ISTAT, MEF (Ministero dell'economia e delle finanze) e AUSIR (Autorità unica per i servizi idrici e i rifiuti), tre tavole dell'Annuario mancanti, le società sportive del Registro CONI, le associazioni culturali, i dati di dettaglio del RUNTS, il glossario, le cartine e i confini per le mappe. Le altre 293 tavole e grafici dell'Annuario erano già nei fogli C26 e non sono stati duplicati. Alcuni elenchi (PEF dei rifiuti, associazioni culturali) sono elaborazioni dell'utente su fonti pubbliche: le voci incerte sono marcate <span class="da-verificare">DA VERIFICARE</span>.</li>
       <li><b>Cartine.</b> Le classi delle cartine dell'Annuario sono state lette dall'immagine pubblicata: pochi comuni restano non determinabili. Sulla mappa i colori sono ridisegnati, classi ed etichette sono quelle originali. Due elenchi del RUNTS convivono: l'elenco ufficiale del 5 ottobre (3.594 enti) e l'estrazione del 16 settembre (3.551 enti, con volontari, dipendenti e recapiti).</li>
@@ -424,6 +458,7 @@ tailwind.config = {
       <li><b>Rischio idrogeologico.</b> Indicatori ISPRA (Istituto superiore per la protezione e la ricerca ambientale) della piattaforma IdroGEO, scaricati il 6 ottobre 2026: frane dalla mosaicatura 2024 con la popolazione del censimento 2021, alluvioni dalla mosaicatura 2020 con la popolazione del censimento 2011. Sono stime sulle carte dei Piani di assetto idrogeologico, non la misura del rischio della singola casa.</li>
       <li><b>Bilanci comunali.</b> Rendiconti 2018-2023 pubblicati dalla Regione sul portale dei dati aperti, una vista per ente. Alcune viste ripetono le stesse righe (una, intitolata a Ragogna, contiene i dati di Roveredo in Piano): i doppioni sono stati tolti tenendo una riga per anno, comune e voce di bilancio. Le entrate sono pubblicate per 84 comuni.</li>
       <li><b>Elezioni.</b> Regionali 2023 dal portale dei dati aperti della Regione; europee 2024 e Camera 2022 dagli open data Eligendo del Ministero dell'interno. Le percentuali di lista sono calcolate sui voti validi alle liste.</li>
+      <li><b>Autobus.</b> Linee e fermate vengono dai dati GTFS (formato aperto per gli orari del trasporto pubblico) di TPL FVG (Trasporto pubblico locale del Friuli Venezia Giulia), redistribuiti gratuitamente per usi non commerciali da BusOne (busone.app), versione del 6 ottobre 2026. Per ogni linea è disegnato il percorso più frequente. Arrivi e posizione dei mezzi sono letti al momento dal flusso in tempo reale: compaiono solo le corse già partite dal capolinea. Gli orari programmati pubblicati sul Punto di accesso nazionale ai dati sulla mobilità risultano scaduti (TPL FVG al 31 agosto 2026, Trenitalia al 13 giugno 2026): per questo la pagina non riporta l'orario completo né i treni e rimanda a tplfvg.it. Le fermate sono assegnate al comune in base alla posizione: 214 restano senza comune perché si trovano in Veneto o in Slovenia oppure, lungo la costa, appena fuori dal confine disegnato.</li>
       <li><b>Collegamento ai comuni.</b> Le righe sono collegate al comune per codice ISTAT o per nome. Le righe intestate a frazioni, a voci «NON DEFINITO» o a località fuori regione restano senza comune. Nei fogli senza colonna del comune il filtro cerca il nome nel testo: può includere righe che nominano il comune per altri motivi, per esempio una via intitolata a quel comune.</li>
     </ol>
   </div>
@@ -750,6 +785,7 @@ function impostaTerritorio(pv, com) {
     : terr.pv ? `Filtro attivo: provincia di <b>${NOMI_PROV[terr.pv]}</b>.` : 'Nessun filtro territoriale: vedi tutta la regione.';
   filtraRegistro(); disegnaElencoFogli(); if (corrente) applicaFiltriArchivio(true);
   if (typeof GEO !== 'undefined' && GEO) coloraMappa();
+  if (typeof TPL !== 'undefined' && TPL) tpTerritorio();
   if (typeof cfScelti !== 'undefined' && terr.com >= 0 && !cfScelti.includes(terr.com)) { const k = cfScelti.indexOf(-1); if (k >= 0) { cfScelti[k] = terr.com; disegnaConfronto(); } }
 }
 selProv.addEventListener('change', () => impostaTerritorio(selProv.value, -1));
@@ -1303,8 +1339,8 @@ async function avviaMappe() {
 }
 
 /* ===== Menu per argomenti ===== */
-const SEZIONI = [['panoramica', 'Panoramica', 'gauge'], ['mappe', 'Mappe', 'map'], ['confronto', 'Confronto', 'columns-3'], ['registro', 'Registro dei comuni', 'list'], ['archivio', 'Archivio completo', 'database'], ['scheda', 'Scheda del comune', 'file-text'], ['avvertenze', 'Avvertenze sui dati', 'bell']];
-// voce: ['m', indicatore, etichetta] mappa dei comuni · ['r', cartina, etichetta] mappa d'Italia · ['s', strato, etichetta] servizio sulla mappa · ['t', foglio, etichetta] tabella
+const SEZIONI = [['panoramica', 'Panoramica', 'gauge'], ['mappe', 'Mappe', 'map'], ['confronto', 'Confronto', 'columns-3'], ['trasporti', 'Autobus', 'bus'], ['registro', 'Registro dei comuni', 'list'], ['archivio', 'Archivio completo', 'database'], ['scheda', 'Scheda del comune', 'file-text'], ['avvertenze', 'Avvertenze sui dati', 'bell']];
+// voce: ['m', indicatore, etichetta] mappa dei comuni · ['r', cartina, etichetta] mappa d'Italia · ['s', strato, etichetta] servizio sulla mappa · ['t', foglio, etichetta] tabella · ['x', sezione o pulsante, etichetta] trasporti
 const TEMI = [
   { t: 'Popolazione', i: 'users', v: [['m', 'p25', 'Residenti'], ['m', 'etaMed', 'Età media'], ['m', 'strPct', 'Stranieri residenti'], ['m', 'prev50', 'Popolazione al 2050'], ['t', 'Comuni', 'Anagrafe dei comuni'], ['t', 'RC26_Int_19_1', 'Età e struttura per comune'], ['t', 'RC26_Int_19_3', 'Bilancio demografico 2025'], ['t', 'RC26_Int_19_4', 'Residenti dal 2002 al 2026']] },
   { t: 'Amministrazione ed elezioni', i: 'landmark', v: [['m', 'el', 'Prossime elezioni comunali'], ['m', 'primaR23', 'Lista più votata, regionali 2023'], ['m', 'affE24', 'Affluenza, europee 2024'], ['t', 'Amministratori_locali', 'Sindaci, giunte e consigli'], ['t', 'Elezioni_regionali_2023_liste', 'Regionali 2023, liste'], ['t', 'Elezioni_europee_2024', 'Europee 2024'], ['t', 'Elezioni_camera_2022', 'Politiche 2022, Camera'], ['t', 'Elezioni_comunali_2026', 'Comunali 2026']] },
@@ -1313,10 +1349,10 @@ const TEMI = [
   { t: 'Servizi e salute', i: 'heart-pulse', v: [['s', 'farmacie', 'Farmacie sulla mappa'], ['s', 'guardie', 'Guardie mediche sulla mappa'], ['s', 'rsa', 'Residenze per anziani sulla mappa'], ['m', 'fa', 'Farmacie per comune'], ['t', 'Farmacie', 'Elenco delle farmacie'], ['t', 'Residenze_anziani', 'Residenze per anziani'], ['t', 'Scuole_2026_27', 'Scuole 2026/27']] },
   { t: 'Terzo settore, sport e cultura', i: 'hand-heart', v: [['m', 'ruPm', 'Enti del Terzo settore'], ['m', 'volPct', 'Volontari'], ['m', 'sportPm', 'Società sportive'], ['t', 'RUNTS_FVG', 'Registro del Terzo settore'], ['t', 'Sport_CONI_2026', 'Società sportive CONI'], ['t', 'Associazioni_culturali_2026', 'Associazioni culturali'], ['t', 'Protezione_civile', 'Protezione civile']] },
   { t: 'Economia e turismo', i: 'briefcase', v: [['m', 'pr', 'Presenze turistiche'], ['m', 'prAb', 'Presenze per abitante'], ['m', 'Cart. 4.2', 'Transazioni immobiliari'], ['t', 'Turismo_comunale', 'Movimento turistico mensile'], ['t', 'Alberghi_RTA', 'Alberghi'], ['t', 'Agriturismi_2017', 'Agriturismi'], ['t', 'Commercio_Udine', 'Commercio di Udine']] },
-  { t: 'Trasporti e connessioni', i: 'bus', v: [['s', 'fermate', 'Fermate degli autobus sulla mappa'], ['s', 'wifi', 'Accessi gratuiti a internet'], ['t', 'GTFS_linee', 'Linee degli autobus'], ['t', 'GTFS_fermate', 'Fermate'], ['t', 'Piste_ciclabili', 'Piste ciclabili'], ['t', 'Rete_viaria', 'Rete stradale']] },
+  { t: 'Trasporti e connessioni', i: 'bus', v: [['x', 'trasporti', 'Linee, fermate e arrivi degli autobus'], ['x', 'tpLive', 'Mezzi in viaggio adesso'], ['s', 'wifi', 'Accessi gratuiti a internet'], ['t', 'Piste_ciclabili', 'Piste ciclabili'], ['t', 'Rete_viaria', 'Rete stradale']] },
   { t: 'Il Friuli Venezia Giulia in Italia', i: 'flag', v: [['r', 'Cart. 13.1', 'PIL per abitante'], ['r', 'Cart. 11.2', 'Disoccupazione'], ['r', 'Cart. 12.1', 'Turismo'], ['r', 'Cart. 16.1', 'Salute'], ['t', 'Cartine_regionali_2026', 'Tutte le cartine regionali'], ['t', 'C26_22_confrontiinternazio', 'Confronti internazionali'], ['t', 'Glossario_Annuario_2026', 'Glossario']] }
 ];
-const ICONA_VOCE = { m: 'map', r: 'map', s: 'map-pin', t: 'table' };
+const ICONA_VOCE = { m: 'map', r: 'map', s: 'map-pin', t: 'table', x: 'bus' };
 function disegnaMenu() {
   document.getElementById('menuSezioni').innerHTML = '<span class="text-[11px] uppercase tracking-wider text-pietra-700 mr-1">Vai a</span>' + SEZIONI.map(([id, t, ic]) => `<button class="vaiSez inline-flex items-center gap-1.5 text-sm border border-primario-200 text-primario-800 rounded-full px-3 py-1.5 hover:bg-primario-50" data-s="${id}"><i data-lucide="${ic}" class="w-4 h-4"></i>${t}</button>`).join('');
   const esiste = (k, id) => k === 't' ? FOGLI.some(f => f.id === id) : true;
@@ -1355,11 +1391,298 @@ document.getElementById('menuTemi').addEventListener('click', e => {
   if (k === 'm') vaiMappa('comuni', id);
   else if (k === 'r') vaiMappa('regioni', id);
   else if (k === 's') vaiMappa('comuni', null, id);
+  else if (k === 'x') { scorriA('trasporti'); if (id === 'tpLive' && !tpMezziOn) document.getElementById('tpLive').click(); }
   else apriFoglio(id, true);
 });
 const btnSu = document.getElementById('btnSu');
 addEventListener('scroll', () => { btnSu.hidden = scrollY < 900; }, { passive: true });
 btnSu.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ===== Trasporto pubblico ===== */
+const BUSONE = 'https://proxy.busone.app/TPLFVG/gtfs-rt/';
+const BUSONE_H = { 'X-BusOne-Client': 'Atlante dei Comuni FVG (https://costalonga.org/Atlante-FVG/)', 'X-BusOne-Use': 'nonprofit' };
+const TP_FX = [0.9981337794975602, -0.07416881054833876, 87284.31391544109], TP_FY = [-0.0731952954966455, -0.9967836423904924, 5175818.401653809];
+function tpXY(lat, lon) {
+  const a = 6378137, f = 1 / 298.257223563, k0 = 0.9996, e2 = f * (2 - f), ep2 = e2 / (1 - e2), rad = Math.PI / 180;
+  const la = lat * rad, lo = lon * rad, lo0 = 15 * rad;
+  const N = a / Math.sqrt(1 - e2 * Math.sin(la) ** 2), T = Math.tan(la) ** 2, C = ep2 * Math.cos(la) ** 2, A = Math.cos(la) * (lo - lo0);
+  const M = a * ((1 - e2 / 4 - 3 * e2 ** 2 / 64 - 5 * e2 ** 3 / 256) * la - (3 * e2 / 8 + 3 * e2 ** 2 / 32 + 45 * e2 ** 3 / 1024) * Math.sin(2 * la) + (15 * e2 ** 2 / 256 + 45 * e2 ** 3 / 1024) * Math.sin(4 * la) - (35 * e2 ** 3 / 3072) * Math.sin(6 * la));
+  const E = k0 * N * (A + (1 - T + C) * A ** 3 / 6 + (5 - 18 * T + T * T + 72 * C - 58 * ep2) * A ** 5 / 120) + 500000;
+  const Nn = k0 * (M + N * Math.tan(la) * (A * A / 2 + (5 - T + 9 * C + 4 * C * C) * A ** 4 / 24 + (61 - 58 * T + T * T + 600 * C - 330 * ep2) * A ** 6 / 720));
+  return [TP_FX[0] * E + TP_FX[1] * Nn + TP_FX[2], TP_FY[0] * E + TP_FY[1] * Nn + TP_FY[2]];
+}
+let TPL = null, tpVb = null, tpVb0 = null, tpSel = null, tpMezziOn = false, tpVeicoli = [], tpArrivi = null, tpOraRT = 0, tpTimer = null;
+const svgT = document.getElementById('svgTpl'), tipT = document.getElementById('tipTpl'), panT = document.getElementById('tpPannello');
+const tpNorm = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const tpTitolo = s => s.toLowerCase().replace(/(^|[\s'(./-])([a-zàèéìòù])/g, (m, p, c) => p + c.toUpperCase()).replace(/ (In|Di|De|Del|Della|Dei|Al|Alla|Sul|Sulla|Da|E|La|Le|Lo)(?= )/g, m => m.toLowerCase());
+// nomi tutti maiuscoli o con il paese in maiuscolo davanti («ROVEREDO IN PIANO piazza Roma»): solo l'iniziale maiuscola
+const tpCap = s => (s = s.replace(/\s+/g, ' ').trim(), !/[a-z]/.test(s)) ? tpTitolo(s) : s.replace(/^((?:[A-ZÀÈÉÌÒÙ'.]+ )+)(?=[a-z(]|[A-Z][a-z])/, m => tpTitolo(m.trim()) + ' ');
+const tpBase = j => TPL.percorsi[j][8].replace(/^[^:]*:/, '').replace(/[AREI]$/, '');
+const tpOra = t => new Date(t * 1000).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome' });
+const tpTipo = j => ({ 2: 'Tram', 4: 'Battello' })[TPL.percorsi[j][4]] || 'Autobus';
+function tpBadge(j, cls = '') { const p = TPL.percorsi[j]; return `<span class="inline-flex items-center justify-center min-w-[2.2rem] px-1.5 py-0.5 rounded-md text-xs font-bold num ${cls}" style="background:#${p[2]};color:#${p[3]}">${esc(p[0])}</span>`; }
+const tpFine = j => { const s = TPL.percorsi[j][5]; return s.length ? tpCap(TPL.fermate[s[s.length - 1]][2]) : ''; };
+const tpNomeCom = i => { const k = TPL.fermate[i][3]; return k >= 0 ? NOME_COM[k] : 'fuori regione'; };
+// raggruppamenti calcolati una volta
+let TP_STOP = null, TP_ROUTE = null, TP_FAM = null;
+function tpIndici() {
+  TP_STOP = new Map(TPL.fermate.map((f, i) => [f[4], i]));
+  TP_ROUTE = new Map(TPL.percorsi.map((p, j) => [p[8], j]));
+  TP_FAM = new Map();
+  TPL.percorsi.forEach((p, j) => { if (!p[5].length) return; const b = tpBase(j); if (!TP_FAM.has(b)) TP_FAM.set(b, []); TP_FAM.get(b).push(j); });
+  TP_FAM.forEach(l => l.sort((a, b) => TPL.percorsi[b][7] - TPL.percorsi[a][7]));
+}
+const tpFamiglie = js => { const v = new Map(); js.forEach(j => { if (TPL.percorsi[j][5].length) { const b = tpBase(j); if (!v.has(b)) v.set(b, TP_FAM.get(b)[0]); } }); return [...v.values()].sort((a, b) => collator.compare(TPL.percorsi[a][0], TPL.percorsi[b][0])); };
+// fermate con lo stesso nome entro 300 metri (i due lati della strada)
+function tpGruppo(i) { const f = TPL.fermate[i]; return TPL.fermate.map((g, k) => k).filter(k => { const g = TPL.fermate[k]; return g[2] === f[2] && Math.hypot(g[0] - f[0], g[1] - f[1]) < 300; }); }
+
+function tpPunti(j) { const p = TPL.percorsi[j]; if (p[6]) return p[6].join(' '); return p[5].map(i => TPL.fermate[i][0] + ' ' + TPL.fermate[i][1]).join(' '); }
+function tpDisegnaBase() {
+  const W = GEO.w, H = GEO.h; tpVb0 = { x: -W * 0.03, y: -H * 0.03, w: W * 1.06, h: H * 1.06 }; tpVb = { ...tpVb0 };
+  let h = '<g>' + GEO.comuni.map(c => `<path class="tpCom" data-i="${c.c}" d="${pathDa(c.r)}" fill="#F7F4EE" stroke="#E2DCCF" stroke-width="0.5" vector-effect="non-scaling-stroke"></path>`).join('');
+  h += GEO.province.map(p => `<path d="${pathDa(p.r)}" fill="none" stroke="#9AA7B4" stroke-width="1" vector-effect="non-scaling-stroke"></path>`).join('');
+  h += `<path d="${pathDa(GEO.regione.r)}" fill="none" stroke="#07213A" stroke-width="1.6" vector-effect="non-scaling-stroke"></path><path id="tpComSel" fill="#FBEFD3" fill-opacity="0.7" stroke="#B8860B" stroke-width="2" vector-effect="non-scaling-stroke" d=""></path></g>`;
+  h += '<g id="tpRete">' + TPL.percorsi.map((p, j) => p[5].length ? `<polyline points="${tpPunti(j)}" fill="none" stroke="#${p[2]}" stroke-opacity="0.45" stroke-width="1" vector-effect="non-scaling-stroke" stroke-linejoin="round"></polyline>` : '').join('') + '</g>';
+  h += '<g id="tpFermateG" style="display:none">' + TPL.fermate.map((f, i) => f[5].length ? `<circle cx="${f[0]}" cy="${f[1]}" r="20" fill="#ffffff" stroke="#07213A" stroke-width="1" vector-effect="non-scaling-stroke"></circle>` : '').join('') + '</g>';
+  h += '<g id="tpSelG"></g><g id="tpMezziG"></g>';
+  svgT.innerHTML = h; tpApplicaVB();
+}
+function tpApplicaVB() {
+  svgT.setAttribute('viewBox', `${tpVb.x} ${tpVb.y} ${tpVb.w} ${tpVb.h}`);
+  const r = tpVb.w / 300, g = document.getElementById('tpFermateG'); if (!g) return;
+  g.style.display = tpVb.w < tpVb0.w / 5 ? '' : 'none';
+  g.querySelectorAll('circle').forEach(c => c.setAttribute('r', r * 0.9));
+  svgT.querySelectorAll('.tpR').forEach(c => c.setAttribute('r', r * Number(c.dataset.k || 1)));
+}
+function tpZoomA(x0, y0, x1, y1) {
+  const W = Math.max(x1 - x0, tpVb0.w / 25) * 1.25, H = Math.max(y1 - y0, tpVb0.h / 25) * 1.25, box = svgT.getBoundingClientRect();
+  const asp = box.width && box.height ? box.width / box.height : 1, w = Math.max(W, H * asp), hh = w / asp;
+  tpVb = { x: (x0 + x1) / 2 - w / 2, y: (y0 + y1) / 2 - hh / 2, w, h: hh }; tpApplicaVB();
+}
+function tpZoom(f, cx, cy) {
+  const nw = Math.min(tpVb0.w * 1.5, Math.max(tpVb0.w / 120, tpVb.w * f)), k = nw / tpVb.w;
+  cx = cx ?? tpVb.x + tpVb.w / 2; cy = cy ?? tpVb.y + tpVb.h / 2;
+  tpVb = { x: cx - (cx - tpVb.x) * k, y: cy - (cy - tpVb.y) * k, w: tpVb.w * k, h: tpVb.h * k }; tpApplicaVB();
+}
+function tpSvgPt(e) { const p = svgT.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; const q = p.matrixTransform(svgT.getScreenCTM().inverse()); return [q.x, q.y]; }
+function tpVicina(e, px) {
+  const [x, y] = tpSvgPt(e), r = svgT.getBoundingClientRect(), lim = px * Math.max(tpVb.w / r.width, tpVb.h / r.height);
+  let best = -1, d0 = lim;
+  const cand = tpSel && tpSel.tipo === 'linea' && tpVb.w >= tpVb0.w / 5 ? TPL.percorsi[tpSel.j][5] : TPL.fermate.map((f, i) => i);
+  cand.forEach(i => { const f = TPL.fermate[i]; if (!f[5].length) return; const d = Math.hypot(f[0] - x, f[1] - y); if (d < d0) { d0 = d; best = i; } });
+  return best;
+}
+function tpVeicoloVicino(e, px) {
+  const [x, y] = tpSvgPt(e), r = svgT.getBoundingClientRect(), lim = px * Math.max(tpVb.w / r.width, tpVb.h / r.height);
+  let best = null, d0 = lim; tpVeicoliVisibili().forEach(v => { const d = Math.hypot(v.x - x, v.y - y); if (d < d0) { d0 = d; best = v; } }); return best;
+}
+function tpSuggerimento(e, html) { const box = svgT.parentElement.getBoundingClientRect(); tipT.innerHTML = html; tipT.style.left = Math.min(e.clientX - box.left + 12, box.width - 220) + 'px'; tipT.style.top = (e.clientY - box.top + 12) + 'px'; tipT.hidden = false; }
+let tpTrasc = null, tpMosso = false;
+svgT.addEventListener('pointerdown', e => { if (!TPL) return; tpTrasc = { x: e.clientX, y: e.clientY, vb: { ...tpVb } }; tpMosso = false; svgT.setPointerCapture(e.pointerId); });
+svgT.addEventListener('pointermove', e => {
+  if (!TPL) return;
+  if (tpTrasc) {
+    const dx = e.clientX - tpTrasc.x, dy = e.clientY - tpTrasc.y; if (Math.abs(dx) + Math.abs(dy) > 4) tpMosso = true;
+    if (tpMosso) { const r = svgT.getBoundingClientRect(), sc = Math.max(tpVb.w / r.width, tpVb.h / r.height); tpVb.x = tpTrasc.vb.x - dx * sc; tpVb.y = tpTrasc.vb.y - dy * sc; tpApplicaVB(); tipT.hidden = true; return; }
+  }
+  if (e.pointerType !== 'mouse') return;
+  const v = tpVeicoloVicino(e, 9);
+  if (v) { tpSuggerimento(e, `${tpBadge(v.j)} <b>${esc(tpTipo(v.j))} verso ${esc(v.verso)}</b>${v.ritardo !== null ? '<br>' + esc(tpTestoRitardo(v.ritardo)) : ''}`); return; }
+  const i = tpVicina(e, 10);
+  if (i < 0) { tipT.hidden = true; return; }
+  const f = TPL.fermate[i], ls = tpFamiglie(f[5]);
+  tpSuggerimento(e, `<b>${esc(tpCap(f[2]))}</b><br>${esc(tpNomeCom(i))} · ${ls.length === 1 ? '1 linea' : ls.length + ' linee'}<br><span class="flex flex-wrap gap-1 mt-1">${ls.slice(0, 12).map(j => tpBadge(j)).join('')}${ls.length > 12 ? ' …' : ''}</span>`);
+});
+svgT.addEventListener('pointerleave', () => { tipT.hidden = true; });
+svgT.addEventListener('pointerup', e => {
+  const t = tpTrasc; tpTrasc = null; if (!t || tpMosso || !TPL) return;
+  const v = tpVeicoloVicino(e, 12); if (v) { tpScegliLinea(v.j, false); return; }
+  const i = tpVicina(e, 14); if (i >= 0) { tpScegliFermata(i, false); return; }
+  if (tpVb.w > tpVb0.w / 5) { const [x, y] = tpSvgPt(e); tpZoom(1 / 2.5, x, y); }
+});
+svgT.addEventListener('wheel', e => { if (!TPL) return; e.preventDefault(); const [x, y] = tpSvgPt(e); tpZoom(e.deltaY > 0 ? 1.2 : 1 / 1.2, x, y); }, { passive: false });
+document.querySelectorAll('.zoomTpl').forEach(b => b.addEventListener('click', () => { if (!TPL) return; const z = b.dataset.z; if (z === 'reset') { tpVb = { ...tpVb0 }; tpApplicaVB(); } else tpZoom(z === 'in' ? 1 / 1.6 : 1.6); }));
+
+// selezione: linea o fermata
+function tpDisegnaSel() {
+  const g = document.getElementById('tpSelG'); let h = '';
+  document.getElementById('tpRete').setAttribute('opacity', tpSel && tpSel.tipo === 'linea' ? '0.35' : '1');
+  if (tpSel && tpSel.tipo === 'linea') {
+    const p = TPL.percorsi[tpSel.j];
+    h += `<polyline points="${tpPunti(tpSel.j)}" fill="none" stroke="#ffffff" stroke-width="7" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"></polyline><polyline points="${tpPunti(tpSel.j)}" fill="none" stroke="#${p[2]}" stroke-width="4" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"></polyline>`;
+    h += p[5].map((i, n) => `<circle class="tpR" data-k="${n === 0 || n === p[5].length - 1 ? 1.6 : 1}" cx="${TPL.fermate[i][0]}" cy="${TPL.fermate[i][1]}" r="1" fill="#ffffff" stroke="#07213A" stroke-width="1.5" vector-effect="non-scaling-stroke"></circle>`).join('');
+  }
+  if (tpSel && tpSel.tipo === 'fermata') {
+    tpGruppo(tpSel.i).forEach(i => { const f = TPL.fermate[i]; h += `<circle class="tpR" data-k="3" cx="${f[0]}" cy="${f[1]}" r="1" fill="#B8860B" fill-opacity="0.35" stroke="#B8860B" stroke-width="2" vector-effect="non-scaling-stroke"></circle><circle class="tpR" data-k="1.3" cx="${f[0]}" cy="${f[1]}" r="1" fill="#07213A" stroke="#ffffff" stroke-width="1.5" vector-effect="non-scaling-stroke"></circle>`; });
+  }
+  g.innerHTML = h; tpApplicaVB();
+}
+function tpScegliLinea(j, zoomare = true) {
+  tpSel = { tipo: 'linea', j }; tpDisegnaSel();
+  if (zoomare) { const s = TPL.percorsi[j][5].map(i => TPL.fermate[i]); tpZoomA(Math.min(...s.map(f => f[0])), Math.min(...s.map(f => f[1])), Math.max(...s.map(f => f[0])), Math.max(...s.map(f => f[1]))); }
+  tpPannello(); tpAggiornaRT(false);
+}
+function tpScegliFermata(i, zoomare = true) {
+  tpSel = { tipo: 'fermata', i }; tpDisegnaSel();
+  if (zoomare) { const f = TPL.fermate[i], d = tpVb0.w / 40; tpZoomA(f[0] - d, f[1] - d, f[0] + d, f[1] + d); }
+  tpArrivi = null; tpPannello(); tpAggiornaRT(true);
+}
+
+// tempo reale
+async function tpScaricaRT(nome) { const r = await fetch(BUSONE + nome + '.json', { headers: BUSONE_H, cache: 'no-store' }); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }
+const tpServeRT = () => tpMezziOn || (tpSel && (tpSel.tipo === 'fermata' || tpSel.tipo === 'linea'));
+async function tpAggiornaRT(arrivi) {
+  clearTimeout(tpTimer); if (!TPL || !tpServeRT()) return;
+  const voglioArrivi = arrivi || (tpSel && tpSel.tipo === 'fermata');
+  try {
+    const [vp, tu] = await Promise.all([tpScaricaRT('vehicle-positions'), voglioArrivi ? tpScaricaRT('trip-updates') : null]);
+    tpOraRT = (vp.header && vp.header.timestamp) || Math.floor(Date.now() / 1000);
+    const ultima = new Map();
+    if (tu) tu.entity.forEach(e => { const u = e.trip_update; if (!u || !u.stop_time_update || !u.stop_time_update.length) return; ultima.set(u.trip.trip_id, u.stop_time_update[u.stop_time_update.length - 1].stop_id); });
+    tpVeicoli = vp.entity.map(e => e.vehicle).filter(v => v && v.position && TP_ROUTE.has(v.trip && v.trip.route_id)).map(v => {
+      const [x, y] = tpXY(v.position.latitude, v.position.longitude), j = TP_ROUTE.get(v.trip.route_id);
+      return { x, y, j, trip: v.trip.trip_id || '', verso: tpFine(j), ritardo: null };
+    });
+    if (tu) {
+      const rit = new Map();
+      tu.entity.forEach(e => { const u = e.trip_update; if (!u) return; const s = (u.stop_time_update || []).find(s => ((s.arrival || s.departure || {}).time || 0) >= tpOraRT - 30); if (s) rit.set(u.trip.trip_id, (s.arrival || s.departure).delay ?? null); });
+      tpVeicoli.forEach(v => { if (rit.has(v.trip)) v.ritardo = rit.get(v.trip); });
+    }
+    if (tu && tpSel && tpSel.tipo === 'fermata') {
+      const ids = new Set(tpGruppo(tpSel.i).map(i => TPL.fermate[i][4])), lista = [];
+      tu.entity.forEach(e => {
+        const u = e.trip_update; if (!u || !u.stop_time_update) return;
+        const j = TP_ROUTE.get(u.trip.route_id); if (j === undefined) return;
+        const n = u.stop_time_update.length;
+        u.stop_time_update.forEach((s, k) => {
+          if (!ids.has(s.stop_id)) return; const ev = s.arrival || s.departure; if (!ev || !ev.time || ev.time < tpOraRT - 30) return;
+          if (k === n - 1 && ids.has(s.stop_id) && n > 1) { lista.push({ j, t: ev.time, rit: ev.delay ?? null, verso: null, capolinea: true }); return; }
+          const fin = TP_STOP.get(u.stop_time_update[n - 1].stop_id);
+          lista.push({ j, t: ev.time, rit: ev.delay ?? null, verso: fin !== undefined ? tpCap(TPL.fermate[fin][2]) : tpFine(j), capolinea: false });
+        });
+      });
+      tpArrivi = lista.sort((a, b) => a.t - b.t);
+    }
+    tpErroreRT = '';
+  } catch (err) { tpErroreRT = 'Il servizio del tempo reale non risponde in questo momento (' + err.message + '). Riprovo tra poco.'; }
+  tpDisegnaMezzi(); tpPannello(true);
+  if (tpServeRT()) tpTimer = setTimeout(() => { if (document.visibilityState === 'visible') tpAggiornaRT(false); else tpTimer = setTimeout(() => tpAggiornaRT(false), 30000); }, 30000);
+}
+let tpErroreRT = '';
+const tpVeicoliVisibili = () => tpMezziOn ? tpVeicoli : tpSel && tpSel.tipo === 'linea' ? tpVeicoli.filter(v => tpBase(v.j) === tpBase(tpSel.j)) : [];
+function tpDisegnaMezzi() {
+  const g = document.getElementById('tpMezziG'); if (!g) return;
+  g.innerHTML = tpVeicoliVisibili().map(v => { const p = TPL.percorsi[v.j]; return `<circle class="tpR" data-k="2.2" cx="${v.x.toFixed(0)}" cy="${v.y.toFixed(0)}" r="1" fill="#${p[2]}" stroke="#07213A" stroke-width="1.5" vector-effect="non-scaling-stroke"></circle>`; }).join('');
+  tpApplicaVB();
+  document.getElementById('tpLiveDot').className = 'w-2.5 h-2.5 rounded-full ' + (tpMezziOn ? (tpErroreRT ? 'bg-enfasi-600' : 'bg-verde-600 animate-pulse') : 'bg-pietra-300');
+}
+function tpTestoRitardo(d) { if (d === null || d === undefined) return 'orario previsto'; const m = Math.round(d / 60); return Math.abs(m) < 1 ? 'in orario' : m > 0 ? `${m} min di ritardo` : `${-m} min di anticipo`; }
+function tpChipRitardo(d) {
+  if (d === null || d === undefined) return '';
+  const m = Math.round(d / 60);
+  if (m > 90 || m < -15) return ''; // valore anomalo trasmesso dal mezzo: si mostra solo l'orario
+  if (Math.abs(m) < 1) return '<span class="text-[11px] px-1.5 py-0.5 rounded bg-verde-50 text-verde-700">in orario</span>';
+  return m > 0 ? `<span class="text-[11px] px-1.5 py-0.5 rounded ${m >= 5 ? 'bg-enfasi-50 text-enfasi-700' : 'bg-accento-100 text-accento-700'}">+${m} min</span>` : `<span class="text-[11px] px-1.5 py-0.5 rounded bg-primario-100 text-primario-800">${-m} min in anticipo</span>`;
+}
+document.getElementById('tpLive').addEventListener('click', () => {
+  if (!TPL) return; tpMezziOn = !tpMezziOn; const b = document.getElementById('tpLive'); b.setAttribute('aria-pressed', String(tpMezziOn));
+  b.classList.toggle('bg-primario-50', tpMezziOn);
+  if (tpMezziOn) tpAggiornaRT(false); else { tpDisegnaMezzi(); tpPannello(true); }
+});
+
+// pannello laterale
+const tpCardLinea = j => `<button class="tpLinea flex items-center gap-2 text-left w-full px-2 py-1.5 rounded-md hover:bg-pietra-100" data-j="${j}">${tpBadge(j, 'shrink-0')}<span class="min-w-0 text-[13px] leading-snug">${esc(tpCap(TPL.percorsi[j][1]))}</span></button>`;
+const TP_ORARI = '<a class="inline-flex items-center gap-1 text-primario-700 underline" href="https://tplfvg.it" target="_blank" rel="noopener">tplfvg.it<i data-lucide="external-link" class="w-3 h-3"></i></a>';
+function tpPannello(soloAggiorna) {
+  if (!TPL) return;
+  let h = '';
+  const statoRT = tpErroreRT ? `<p class="text-[12px] text-enfasi-700">${esc(tpErroreRT)}</p>` : tpOraRT ? `<p class="text-[11px] text-pietra-700">Dati in tempo reale aggiornati alle ${tpOra(tpOraRT)}; si aggiornano da soli ogni 30 secondi.</p>` : '';
+  if (tpSel && tpSel.tipo === 'linea') {
+    const j = tpSel.j, p = TPL.percorsi[j], fam = TP_FAM.get(tpBase(j)), viaggio = tpVeicoli.filter(v => tpBase(v.j) === tpBase(j));
+    h += `<div class="flex items-start gap-2">${tpBadge(j, 'text-sm shrink-0 mt-0.5')}<div class="min-w-0"><div class="font-patriarcale font-bold text-primario-800 leading-snug">${esc(tpCap(p[1]))}</div><div class="text-[12px] text-pietra-700">${esc(tpTipo(j))} · ${fmt(p[5].length)} fermate · da ${esc(tpNomeCom(p[5][0]))} a ${esc(tpNomeCom(p[5][p[5].length - 1]))}</div></div><button class="tpChiudi ml-auto shrink-0 text-pietra-700 hover:text-primario-800" aria-label="Chiudi"><i data-lucide="x" class="w-4 h-4"></i></button></div>`;
+    if (fam.length > 1) h += `<div class="flex flex-col gap-1"><div class="text-[10px] uppercase tracking-wider text-pietra-700">Direzione</div><div class="flex flex-wrap gap-1">${fam.map(k => `<button class="tpLinea text-[12px] rounded-full border px-2.5 py-1 ${k === j ? 'bg-primario-700 text-white border-primario-700' : 'border-pietra-200 hover:bg-pietra-100'}" data-j="${k}">verso ${esc(tpFine(k))}</button>`).join('')}</div></div>`;
+    h += `<div class="rounded-lg bg-pietra-50 border border-pietra-200 px-3 py-2 text-[13px]">${tpOraRT ? (viaggio.length ? `<b>${viaggio.length === 1 ? '1 mezzo' : viaggio.length + ' mezzi'}</b> di questa linea in viaggio adesso: li vedi sulla mappa.` : 'Nessun mezzo di questa linea in viaggio in questo momento.') : 'Controllo dei mezzi in viaggio…'}</div>`;
+    h += `<ol class="relative flex flex-col max-h-[26rem] overflow-y-auto pr-1">${p[5].map((i, n) => `<li class="relative pl-6"><span class="absolute left-[9px] ${n === 0 ? 'top-1/2' : 'top-0'} ${n === p[5].length - 1 ? 'h-1/2' : 'bottom-0'} w-1" style="background:#${p[2]}"></span><span class="absolute left-[5px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white border-2 border-primario-900"></span><button class="tpFermata w-full text-left py-1 px-1 rounded hover:bg-pietra-100" data-i="${i}"><span class="block text-[13px] leading-snug ${n === 0 || n === p[5].length - 1 ? 'font-semibold' : ''}">${esc(tpCap(TPL.fermate[i][2]))}</span><span class="block text-[11px] text-pietra-700">${esc(tpNomeCom(i))}</span></button></li>`).join('')}</ol>`;
+    h += `<p class="text-[11px] text-pietra-700">Percorso più frequente della linea. Alcune corse possono saltare fermate o fare deviazioni. Orari completi: ${TP_ORARI}.</p>` + statoRT;
+  } else if (tpSel && tpSel.tipo === 'fermata') {
+    const i = tpSel.i, f = TPL.fermate[i], gr = tpGruppo(i), ls = tpFamiglie(gr.flatMap(k => TPL.fermate[k][5]));
+    h += `<div class="flex items-start gap-2"><i data-lucide="map-pin" class="w-5 h-5 text-accento-600 shrink-0 mt-0.5"></i><div class="min-w-0"><div class="font-patriarcale font-bold text-primario-800 leading-snug">${esc(tpCap(f[2]))}</div><div class="text-[12px] text-pietra-700">${esc(tpNomeCom(i))}${gr.length > 1 ? ` · ${gr.length} fermate con questo nome, sui due lati della strada` : ''}</div></div><button class="tpChiudi ml-auto shrink-0 text-pietra-700 hover:text-primario-800" aria-label="Chiudi"><i data-lucide="x" class="w-4 h-4"></i></button></div>`;
+    h += `<div class="flex flex-col gap-1"><div class="text-[10px] uppercase tracking-wider text-pietra-700">Linee che passano qui</div><div class="flex flex-wrap gap-1">${ls.map(j => `<button class="tpLinea" data-j="${j}" title="${esc(tpCap(TPL.percorsi[j][1]))}">${tpBadge(j)}</button>`).join('')}</div></div>`;
+    h += '<div class="rounded-xl border border-primario-200 overflow-hidden"><div class="bg-primario-900 text-white px-3 py-2 flex items-center justify-between"><span class="font-patriarcale font-bold text-sm">In arrivo</span><span class="text-[11px] text-accento-200">tempo reale</span></div>';
+    if (!tpArrivi) h += `<div class="px-3 py-3 text-[13px] text-pietra-700">${tpErroreRT ? esc(tpErroreRT) : 'Caricamento degli arrivi…'}</div>`;
+    else if (!tpArrivi.length) h += `<div class="px-3 py-3 text-[13px] text-pietra-800">Nessun mezzo già in viaggio è atteso a questa fermata. Il tempo reale vede solo le corse partite dal capolinea: per le prossime partenze consulta l'orario su ${TP_ORARI}.</div>`;
+    else h += '<ul class="divide-y divide-pietra-100">' + tpArrivi.slice(0, 12).map(a => { const min = Math.max(0, Math.round((a.t - Math.max(tpOraRT, Date.now() / 1000)) / 60)); return `<li><button class="tpLinea w-full text-left flex items-center gap-2 px-3 py-2 hover:bg-pietra-50" data-j="${a.j}">${tpBadge(a.j, 'shrink-0')}<span class="min-w-0 flex-1"><span class="block text-[13px] leading-snug">${a.capolinea ? 'Termina qui' : 'verso ' + esc(a.verso)}</span><span class="flex items-center gap-1.5 mt-0.5"><span class="text-[11px] text-pietra-700 num">ore ${tpOra(a.t)}</span>${tpChipRitardo(a.rit)}</span></span><span class="shrink-0 text-right"><span class="block font-bold text-primario-800 num leading-none">${min < 1 ? 'ora' : min}</span><span class="block text-[10px] text-pietra-700">${min < 1 ? 'in arrivo' : 'min'}</span></span></button></li>`; }).join('') + '</ul>';
+    h += '</div>' + statoRT + `<p class="text-[11px] text-pietra-700">Gli orari tengono già conto del ritardo comunicato dal mezzo. Per l'orario completo della fermata: ${TP_ORARI}.</p>`;
+  } else {
+    if (terr.com >= 0) {
+      const fs = TPL.fermate.map((f, i) => i).filter(i => TPL.fermate[i][3] === terr.com && TPL.fermate[i][5].length), ls = tpFamiglie(fs.flatMap(i => TPL.fermate[i][5]));
+      const nomi = [...new Map(fs.map(i => [TPL.fermate[i][2], i])).values()].sort((a, b) => collator.compare(TPL.fermate[a][2], TPL.fermate[b][2]));
+      h += `<div><div class="text-[10px] uppercase tracking-wider text-accento-700">Comune scelto nel filtro</div><div class="font-patriarcale font-bold text-primario-800">${esc(NOME_COM[terr.com])}</div><div class="text-[12px] text-pietra-700">${fmt(fs.length)} fermate · ${ls.length === 1 ? '1 linea' : fmt(ls.length) + ' linee'}</div></div>`;
+      if (!fs.length) h += '<p class="text-[13px] text-pietra-800">Nessuna fermata delle linee TPL FVG risulta in questo comune.</p>';
+      else {
+        h += `<div class="flex flex-col gap-1"><div class="text-[10px] uppercase tracking-wider text-pietra-700">Linee</div><div class="flex flex-col max-h-60 overflow-y-auto">${ls.map(tpCardLinea).join('')}</div></div>`;
+        h += `<div class="flex flex-col gap-1"><div class="text-[10px] uppercase tracking-wider text-pietra-700">Fermate (tocca per gli arrivi)</div><div class="flex flex-col max-h-60 overflow-y-auto">${nomi.map(i => `<button class="tpFermata text-left text-[13px] px-2 py-1 rounded hover:bg-pietra-100" data-i="${i}">${esc(tpCap(TPL.fermate[i][2]))}</button>`).join('')}</div></div>`;
+      }
+    } else {
+      const top = [...TP_FAM.values()].map(l => l[0]).sort((a, b) => TPL.percorsi[b][7] - TPL.percorsi[a][7]).slice(0, 12);
+      h += `<div class="rounded-xl border border-pietra-200 bg-pietra-50 p-3"><div class="font-patriarcale font-bold text-primario-800">La rete TPL FVG</div><div class="grid grid-cols-2 gap-2 mt-2"><div><div class="text-xl font-bold text-primario-800 num">${fmt(TP_FAM.size)}</div><div class="text-[11px] text-pietra-700">linee (andata e ritorno contate una volta)</div></div><div><div class="text-xl font-bold text-primario-800 num">${fmt(TPL.fermate.filter(f => f[5].length).length)}</div><div class="text-[11px] text-pietra-700">fermate servite</div></div></div></div>`;
+      h += `<ul class="text-[13px] text-pietra-800 flex flex-col gap-1.5 list-disc pl-5"><li>Scrivi nel riquadro di ricerca il nome di una fermata, di una via o di una linea.</li><li>Oppure scegli un comune nel filtro territoriale in alto: qui compaiono le sue linee e le sue fermate.</li><li>Ingrandendo la mappa compaiono le fermate: toccane una per vedere gli autobus in arrivo.</li></ul>`;
+      h += `<div class="flex flex-col gap-1"><div class="text-[10px] uppercase tracking-wider text-pietra-700">Linee con più corse</div><div class="flex flex-col">${top.map(tpCardLinea).join('')}</div></div>`;
+    }
+    if (tpMezziOn) h += `<div class="rounded-lg bg-pietra-50 border border-pietra-200 px-3 py-2 text-[13px]">${tpOraRT ? `<b>${fmt(tpVeicoli.length)}</b> mezzi in viaggio adesso sulla mappa. Toccane uno per vedere la sua linea.` : 'Ricerca dei mezzi in viaggio…'}</div>` + statoRT;
+  }
+  const sc = panT.querySelector('ol, ul.divide-y'); const top0 = soloAggiorna && sc ? sc.scrollTop : 0;
+  panT.innerHTML = h; lucide.createIcons();
+  if (top0) { const s2 = panT.querySelector('ol, ul.divide-y'); if (s2) s2.scrollTop = top0; }
+}
+panT.addEventListener('click', e => {
+  const l = e.target.closest('.tpLinea'); if (l) { tpScegliLinea(Number(l.dataset.j)); return; }
+  const f = e.target.closest('.tpFermata'); if (f) { tpScegliFermata(Number(f.dataset.i)); return; }
+  if (e.target.closest('.tpChiudi')) { tpSel = null; tpArrivi = null; tpDisegnaSel(); tpDisegnaMezzi(); tpPannello(); }
+});
+
+// ricerca
+const tpCerca = document.getElementById('tpCerca'), tpSugg = document.getElementById('tpSugg');
+function tpRisultati(q) {
+  const n = tpNorm(q.trim()); if (!n) return [];
+  const linee = [...TP_FAM.values()].map(l => l[0]).filter(j => tpNorm(TPL.percorsi[j][0]) === n || tpNorm(TPL.percorsi[j][0]).startsWith(n) || (n.length > 2 && tpNorm(TPL.percorsi[j][1]).includes(n)))
+    .sort((a, b) => (tpNorm(TPL.percorsi[b][0]) === n) - (tpNorm(TPL.percorsi[a][0]) === n) || collator.compare(TPL.percorsi[a][0], TPL.percorsi[b][0])).slice(0, 6).map(j => ({ t: 'l', j }));
+  if (n.length < 3) return linee;
+  const visti = new Set(), ferm = [];
+  TPL.fermate.forEach((f, i) => {
+    if (!f[5].length) return; const com = f[3] >= 0 ? NOME_COM[f[3]] : '';
+    if (!tpNorm(f[2] + ' ' + com).includes(n) && !n.split(/\s+/).every(w => tpNorm(f[2] + ' ' + com).includes(w))) return;
+    const k = f[2] + '|' + f[3]; if (visti.has(k)) return; visti.add(k); ferm.push({ t: 'f', i });
+  });
+  ferm.sort((a, b) => (tpNorm(TPL.fermate[b.i][2]).startsWith(n)) - (tpNorm(TPL.fermate[a.i][2]).startsWith(n)) || collator.compare(TPL.fermate[a.i][2], TPL.fermate[b.i][2]));
+  return linee.concat(ferm.slice(0, 20));
+}
+tpCerca.addEventListener('input', () => {
+  if (!TPL) return; const r = tpRisultati(tpCerca.value);
+  tpSugg.innerHTML = r.length ? r.map(x => x.t === 'l'
+    ? `<button class="tpScelta w-full flex items-center gap-2 text-left px-3 py-2 hover:bg-pietra-100" data-t="l" data-v="${x.j}">${tpBadge(x.j, 'shrink-0')}<span class="min-w-0 text-[13px] truncate">${esc(tpCap(TPL.percorsi[x.j][1]))}</span></button>`
+    : `<button class="tpScelta w-full flex items-center gap-2 text-left px-3 py-2 hover:bg-pietra-100" data-t="f" data-v="${x.i}"><i data-lucide="map-pin" class="w-4 h-4 text-accento-600 shrink-0"></i><span class="min-w-0"><span class="block text-[13px] truncate">${esc(tpCap(TPL.fermate[x.i][2]))}</span><span class="block text-[11px] text-pietra-700">${esc(tpNomeCom(x.i))}</span></span></button>`).join('')
+    : `<div class="px-3 py-2 text-[13px] text-pietra-700">${tpCerca.value.trim().length < 3 ? 'Scrivi almeno tre lettere per cercare una fermata.' : 'Nessuna fermata o linea trovata.'}</div>`;
+  tpSugg.hidden = !tpCerca.value.trim(); lucide.createIcons();
+});
+tpSugg.addEventListener('click', e => { const b = e.target.closest('.tpScelta'); if (!b) return; tpSugg.hidden = true; tpCerca.value = ''; if (b.dataset.t === 'l') tpScegliLinea(Number(b.dataset.v)); else tpScegliFermata(Number(b.dataset.v)); });
+tpCerca.addEventListener('keydown', e => { if (e.key === 'Enter') { const b = tpSugg.querySelector('.tpScelta'); if (b) b.click(); } if (e.key === 'Escape') tpSugg.hidden = true; });
+document.addEventListener('click', e => { if (!tpSugg.hidden && !tpSugg.contains(e.target) && e.target !== tpCerca) tpSugg.hidden = true; });
+
+// filtro territoriale
+function tpTerritorio() {
+  if (!TPL) return;
+  const c = terr.com >= 0 ? GEO.comuni.find(x => x.c === terr.com) : null;
+  document.getElementById('tpComSel').setAttribute('d', c ? pathDa(c.r) : '');
+  if (c) { tpSel = null; tpArrivi = null; tpDisegnaSel(); tpDisegnaMezzi(); const xs = c.r.flatMap(r => r.filter((v, k) => k % 2 === 0)), ys = c.r.flatMap(r => r.filter((v, k) => k % 2 === 1)); tpZoomA(Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)); }
+  tpPannello();
+}
+async function avviaTrasporti() {
+  document.getElementById('notaTpl').innerHTML = 'Linee e fermate: dati GTFS (formato aperto per gli orari del trasporto pubblico) di TPL FVG, redistribuiti da <a class="underline" href="https://busone.app" target="_blank" rel="noopener">BusOne</a>, versione del 6 ottobre 2026. Arrivi e mezzi in viaggio: flusso in tempo reale di TPL FVG tramite BusOne, letto dal tuo browser al momento. Il tempo reale vede solo le corse già partite. Mancano i treni: gli orari ufficiali pubblicati sul Punto di accesso nazionale ai dati sulla mobilità sono scaduti (Trenitalia al 13 giugno 2026). Per gli orari completi fa fede il sito <a class="underline" href="https://tplfvg.it" target="_blank" rel="noopener">tplfvg.it</a>.';
+  if (!(await attendiMappe())) { document.getElementById('statoTpl').textContent = 'Mappa non disponibile.'; return; }
+  try { TPL = await scaricaJSON('dati/_tpl_0.txt'); } catch (err) { document.getElementById('statoTpl').textContent = 'Rete dei trasporti non disponibile: ' + err.message; return; }
+  tpIndici(); tpDisegnaBase(); document.getElementById('statoTpl').hidden = true; tpTerritorio();
+}
 
 /* Avviso */
 let tToast;
@@ -1374,7 +1697,7 @@ function mostraToast(msg) {
 inizializzaGrafico();
 impostaTerritorio('', -1);
 apriFoglio('Comuni');
-avviaMappe();
+avviaMappe(); avviaTrasporti();
 disegnaConfronto();
 disegnaMenu();
 lucide.createIcons();
