@@ -15,7 +15,7 @@ l'anteprima nelle condivisioni (WhatsApp, Facebook e simili) e dati strutturati 
 I dati vengono dalle righe `const DB = ...;` e `const MAN = ...;` di index.html.
 Usa solo la libreria standard di Python.
 """
-import datetime, html, json, re, shutil, unicodedata
+import datetime, html, json, re, shutil, unicodedata, urllib.parse
 from pathlib import Path
 
 RADICE = Path(__file__).resolve().parent.parent
@@ -48,6 +48,13 @@ PAGINE = [
 ICONA_PAG = {'mappe': 'Esplora le mappe', 'confronto': 'Apri il confronto', 'autobus': 'Apri gli autobus', 'ambiente': 'Apri allerte e aria', 'comuni': 'Apri il registro dei comuni', 'archivio': 'Apri l\'archivio', 'metodo': 'Apri Metodo e fonti'}
 
 e = html.escape
+POSTA = 'info@atlantefvg.it'
+
+
+def segnala(url, titolo):
+    corpo = f'Pagina: {url}\nDato segnalato: \n\nChe cosa non torna:\n\n\nValore corretto e fonte, se li conosci:\n\n'
+    q = urllib.parse.urlencode({'subject': f'Segnalazione di errore: {titolo}', 'body': corpo}, quote_via=urllib.parse.quote)
+    return e(f'mailto:{POSTA}?{q}')
 
 
 def slug(nome):
@@ -124,6 +131,7 @@ def pagina_html(percorso, titolo, descr, briciole, corpo, extra_ld=None):
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 {ld_txt}{STILE}
 </head>
 <body>
@@ -132,7 +140,7 @@ def pagina_html(percorso, titolo, descr, briciole, corpo, extra_ld=None):
 <nav class="percorso" aria-label="Percorso"><ol>{bric}</ol></nav>
 {corpo}
 </main>
-<footer>Atlante FVG raccoglie dati pubblici con la loro fonte e la loro data. Per come sono trattati i dati vedi <a href="{su}metodo/">Metodo e fonti</a>. Pagine: <a href="{su}mappe/">Mappe</a> · <a href="{su}confronto/">Confronto</a> · <a href="{su}comuni/">Comuni</a> · <a href="{su}archivio/">Archivio</a> · <a href="{su}autobus/">Autobus</a> · <a href="{su}ambiente/">Allerte e aria</a>.</footer>
+<footer><p><a href="{segnala(url, titolo)}">Segnala un errore in questa pagina</a> (si apre un messaggio per {POSTA} con l'indirizzo della pagina già scritto).</p>Atlante FVG raccoglie dati pubblici con la loro fonte e la loro data. Per come sono trattati i dati vedi <a href="{su}metodo/">Metodo e fonti</a>. Pagine: <a href="{su}mappe/">Mappe</a> · <a href="{su}confronto/">Confronto</a> · <a href="{su}comuni/">Comuni</a> · <a href="{su}archivio/">Archivio</a> · <a href="{su}autobus/">Autobus</a> · <a href="{su}ambiente/">Allerte e aria</a>.</footer>
 </body>
 </html>
 """
@@ -214,6 +222,16 @@ def pagina_argomento(nome, titolo, descr, testi, db, man):
         for pv, n in PROVINCE.items():
             cc = sorted((c for c in db['c'] if c['pv'] == pv), key=lambda c: c['n'])
             corpo += f'<h2><a href="../provincia/{slug(n)}/">Provincia di {e(n)}</a>: {len(cc)} comuni</h2>\n<ul class="elenco">' + ''.join(f'<li><a href="../c/{slug(c["n"])}/">{e(c["n"])}</a></li>' for c in cc) + '</ul>\n'
+    if nome == 'metodo':
+        reg = json.loads((RADICE / 'dati' / 'correzioni.json').read_text(encoding='utf-8'))
+        corpo += (f'<h2>Segnalazioni e registro delle correzioni</h2>\n<p>Un dato sbagliato si segnala con «Segnala un errore» (nella scheda di ogni comune, sotto le mappe, nel confronto, nelle righe dell\'archivio) oppure scrivendo a <a href="mailto:{POSTA}">{POSTA}</a>. Ogni segnalazione si controlla sulla fonte ufficiale; un dato si corregge solo se la fonte lo conferma.</p>\n')
+        if reg['voci']:
+            corpo += '<div class="riquadro"><table><thead><tr><th scope="col">Data</th><th scope="col">Dato</th><th scope="col">Prima</th><th scope="col">Dopo</th><th scope="col">Fonte</th></tr></thead><tbody>' + ''.join(
+                f'<tr><td>{e(data_estesa(v["data"]))}</td><td>{e(v["dato"])}</td><td>{e(v["prima"])}</td><td>{e(v["dopo"])}</td><td class="fonte">{e(v["fonte"])}</td></tr>' for v in reg['voci']) + '</tbody></table></div>\n'
+        else:
+            corpo += f'<p>Nessuna correzione registrata finora. Il registro è attivo dal {e(data_estesa(reg["inizio"]))}.</p>\n'
+        corpo += ('<h2>Statistiche di visita e privacy</h2>\n<p>L\'Atlante conta le visite con <a href="https://www.goatcounter.com/help/privacy">GoatCounter</a>, che non usa cookie né altri sistemi di memoria nel browser e non conserva l\'indirizzo IP né identificativi di chi visita. Si contano in forma aggregata le pagine viste e l\'uso di ricerca, filtri, confronto e download, oltre agli errori di caricamento; per la ricerca solo il fatto che un comune è stato scelto, non il testo scritto. I dati stanno su server di Hetzner Online in Finlandia e in Germania e non sono ceduti a terzi. Non essendoci cookie né tracciamento delle persone, non viene chiesto il consenso.</p>\n'
+                  f'<p>Chi scrive a {POSTA} comunica il proprio indirizzo di posta: serve solo a rispondere alla segnalazione.</p>\n')
     if nome == 'archivio':
         fogli = man['manifest']
         corpo += f'<h2>I {len(fogli)} fogli dell\'archivio</h2>\n<div class="riquadro"><table><thead><tr><th scope="col">Foglio</th><th scope="col">Ambito</th><th scope="col" style="text-align:right">Righe</th><th scope="col">Fonte</th></tr></thead><tbody>'
