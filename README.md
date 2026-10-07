@@ -286,8 +286,10 @@ duplicati. Le classi delle cartine sono state lette dall'immagine pubblicata.
 
 ## Avvertenze
 
-- Totale dei residenti al 31 dicembre 2025: la tavola 19.2 dell'Annuario dà 1.193.496, la
-  sintesi «Regione in cifre 2026» dà 1.194.496. *DA VERIFICARE*: la pagina usa la tavola.
+- Totale dei residenti al 31 dicembre 2025: 1.193.496, uguale nel volume «Regione in cifre 2026»
+  (tavole 1.1 e 19.2), nella somma dei 215 comuni e nel bilancio demografico mensile ISTAT 2025
+  (dato provvisorio, letto il 6 ottobre 2026 su https://demo.istat.it/app/?i=D7B&l=it). Il 1.194.496 compare
+  solo nella «Sintesi dei dati» di cinque pagine del 21 settembre 2026 e non trova riscontro.
 - Nel foglio Rifiuti_comunali del file originale l'anno è memorizzato come decimale
   (1,998 al posto di 1998; 2 al posto di 2000): la pagina lo mostra come anno intero.
 - Le righe intestate a comuni poi fusi sono attribuite al comune attuale; quelle intestate a
