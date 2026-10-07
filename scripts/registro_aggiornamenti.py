@@ -114,7 +114,8 @@ def main():
             continue
         h, data, autore, titolo, corpo = (blocco.strip('\n').split('\x1f') + [''] * 5)[:5]
         titolo = re.sub(r'\s*\(#\d+\)$', '', titolo.strip())
-        corpo = '\n'.join(l for l in corpo.strip().splitlines() if not re.match(r'^(Co-Authored-By|Claude-Session|🤖|https://claude\.ai)', l.strip())).strip()
+        # restano fuori le firme tecniche dei commit (coautore, sessione, generatore)
+        corpo = '\n'.join(l for l in corpo.strip().splitlines() if not re.match(r'^(co-authored-by|claude-session|🤖|https://claude\.ai|generated with)', l.strip(), re.I)).strip()
         file_toccati = git('show', '--pretty=format:', '--name-only', h).split()
         tipo = tipo_di(titolo, autore, corpo)
         # un commit che porta file di dati nuovi o cambiati è «nuovi dati», anche se è stato fatto a mano
