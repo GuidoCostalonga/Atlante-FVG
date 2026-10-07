@@ -198,6 +198,16 @@ solo i file cambiati e toglie quelli dei percorsi soppressi. Se il download fall
 Nella versione del 6 ottobre 2026 gli orari valgono dal 5 ottobre 2026 al 31 gennaio 2027. Per i giorni fuori da questo
 periodo la pagina non mostra orari e rimanda a [tplfvg.it](https://tplfvg.it).
 
+## Stradario
+
+La pagina `stradario/` è la versione regionale della «Mappa di Roveredo in Piano» di costalonga.org: mappa stradale
+(OpenStreetMap) e satellitare (Esri) di tutto il Friuli Venezia Giulia, ricerca di vie, piazze e luoghi con il
+geocodificatore Photon (dati OpenStreetMap, limitato ai confini della regione, senza le fermate dell'autobus), scelta
+rapida di uno dei 215 comuni, posizione del telefono e collegamento condivisibile. Aperta con `?comune=<nome>` parte già
+centrata sul comune con il segnaposto e il cartellino; un punto scelto resta nell'indirizzo come `#latitudine,longitudine,zoom`.
+`scripts/genera_stradario.py` la genera prendendo i comuni, con le coordinate, dalla pagina Meteo. Mappa e ricerca sono
+scaricate dal browser di chi visita la pagina; la posizione, se richiesta, resta sul dispositivo.
+
 ## Meteo e Catasto
 
 Due applicazioni già pubblicate su costalonga.org sono portate nell'Atlante con la sua grafica; contenuti, fonti e

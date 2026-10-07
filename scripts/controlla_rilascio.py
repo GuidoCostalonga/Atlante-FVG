@@ -14,7 +14,7 @@ Esce con codice 1 se trova errori. In GitHub Actions scrive il riepilogo nella p
 Usa solo la libreria standard di Python.
 Uso: python scripts/controlla_rilascio.py [indirizzo del sito]
 """
-import concurrent.futures as cf, html.parser, json, os, re, sys, urllib.error, urllib.parse, urllib.request
+import time, concurrent.futures as cf, html.parser, json, os, re, sys, urllib.error, urllib.parse, urllib.request
 
 SITO = (sys.argv[1] if len(sys.argv) > 1 else 'https://atlantefvg.it').rstrip('/')
 UA = {'User-Agent': 'AtlanteFVG-controlli/1.0 (+https://atlantefvg.it/)'}
@@ -26,15 +26,20 @@ class SenzaRedirect(urllib.request.HTTPRedirectHandler):
         return None
 
 
-def apri(url, segui=True, metodo='GET'):
+def apri(url, segui=True, metodo='GET', tentativi=3):
+    # nel minuto dopo la pubblicazione la rete di GitHub Pages risponde a volte 503 a un singolo file: si riprova
     op = urllib.request.build_opener() if segui else urllib.request.build_opener(SenzaRedirect)
-    try:
-        r = op.open(urllib.request.Request(url, headers=UA, method=metodo), timeout=30)
-        return r.status, r.headers, r.read() if metodo == 'GET' else b'', r.geturl()
-    except urllib.error.HTTPError as e:
-        return e.code, e.headers, b'', url
-    except Exception as e:  # rete, certificati, tempo scaduto
-        return 0, {}, str(e).encode(), url
+    for k in range(tentativi):
+        try:
+            r = op.open(urllib.request.Request(url, headers=UA, method=metodo), timeout=30)
+            return r.status, r.headers, r.read() if metodo == 'GET' else b'', r.geturl()
+        except urllib.error.HTTPError as e:
+            if e.code < 500 or k == tentativi - 1:
+                return e.code, e.headers, b'', url
+        except Exception as e:  # rete, certificati, tempo scaduto
+            if k == tentativi - 1:
+                return 0, {}, str(e).encode(), url
+        time.sleep(5 * (k + 1))
 
 
 class Pagina(html.parser.HTMLParser):
