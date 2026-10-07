@@ -69,7 +69,13 @@ Prova dei percorsi: `SITE=<cartella del sito> CHROMIUM=<chrome> node prove/perco
 
 ## Dossier del comune in PDF
 
-Nella scheda di ogni comune il pulsante «Dossier completo in PDF» apre la stampa del browser con un documento A4 pronto da salvare: tutti gli indicatori dell'Atlante, ciascuno con valore del comune, mediana regionale, posto fra i comuni che hanno il dato (1° = valore più alto, non necessariamente il migliore), periodo e fonte; le opere pubbliche più grandi con le quote di copertura; i grafici delle serie storiche come immagini (con la scheda aperta); una nota su come leggerlo. Non si scarica nulla da server e non si usano librerie: il documento è costruito nel browser (`costruisciDossier` nel modello) e stampato con il suo stile `@media print`. Il dossier porta la data del giorno e dice che non è un atto ufficiale. Prova: `node prove/dossier.js` (genera anche un PDF di controllo).
+Nella scheda di ogni comune il pulsante «Crea dossier PDF» apre una finestra di scelta e poi la stampa del browser («Salva come PDF»). Si scelgono gli argomenti (popolazione, economia e redditi, bilancio comunale, turismo, associazioni e Terzo settore, servizi, opere pubbliche, elezioni, rischio idrogeologico), fino a tre comuni di confronto (proposti quelli già nel confronto, altrimenti i tre della provincia con popolazione più vicina), le medie della provincia e della regione e i grafici.
+
+Il documento è in A4 con testo selezionabile, pagine numerate («pagina N di M» nel piè di pagina), tabelle che non si spezzano fra le righe e intestazioni ripetute. Per ogni indicatore: valore del comune, comuni di confronto, medie territoriali, posto in regione, periodo e fonte; poi le opere più grandi, le liste più votate, i grafici a barre (comune, confronto, medie) e le serie storiche della scheda; in coda fonti, periodi e note di metodo. «n.d.» è un dato non disponibile, «0» un valore pari a zero, «non calc.» una media che i dati non permettono di calcolare correttamente.
+
+**Medie territoriali.** Non sono mai la media semplice dei valori comunali: la regola di ogni indicatore sta nella tabella `AGG` del modello (somma per i totali; numeratore totale su denominatore totale per rapporti e percentuali; media ponderata con il peso indicato, per esempio i contribuenti per il reddito medio o i residenti al 1° gennaio 2024 per la spesa per abitante). Le ponderazioni che sono un'approssimazione lo dichiarano nella nota. Gli indicatori senza regola (affluenze, variazione del reddito, previsioni ISTAT) restano «non calc.». Le stesse medie sono usate dal confronto.
+
+Prova: `node prove/dossier.js` (apre le opzioni, esclude un argomento, genera il PDF di controllo e verifica confronto, medie, note e ritorno alla pagina normale).
 
 ## Ricerche condivisibili e download
 
