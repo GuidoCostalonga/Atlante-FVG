@@ -90,6 +90,14 @@ Nella pagina Confronto, oltre alla tabella dei sei comuni:
 
 Prova: `node prove/confronto.js`.
 
+## Serie storiche e mappe nel tempo
+
+- **Scheda del comune**: il grafico dei residenti 2002-2026 ha i selettori «Dal» e «Al» e mostra la variazione assoluta e percentuale dell'intervallo scelto; il grafico dei conti riporta la variazione della spesa corrente per abitante fra il primo e l'ultimo rendiconto disponibile. Gli anni senza dato non sono stimati né interpolati. Per i comuni nati da fusioni (Campolongo Tapogliano, Rivignano Teor, Valvasone Arzene, Fiumicello Villa Vicentina, Treppo Ligosullo) e per Sappada, passata dal Veneto nel 2017, la scheda dice che la serie è ricostruita dalla fonte sui confini attuali (tabella `FUSIONI`).
+- **Mappe**: due indicatori nuovi, «Residenti al 1° gennaio (anno scelto)» e «Variazione dei residenti fra due anni», con i selettori dell'anno in mappa e dell'anno di confronto, lo scambio dei due anni e il passaggio alla mappa della variazione. Con «Stesse soglie per i due anni» (opzione predefinita) le classi della legenda sono calcolate sui valori di tutti e due gli anni, così le due mappe si confrontano a colpo d'occhio; si può togliere. Lo stato è nell'indirizzo (`anno`, `anno2`, `soglie=libere`).
+- La sola serie con definizione e territorio comparabili per tutti i 215 comuni è quella dei residenti (Annuario 2026, tavola 19.4, ricostruzione intercensuaria ISTAT fino al 2019). Le altre serie della scheda (rendiconti 2018-2023, presenze 2022-2025, raccolta differenziata 1998-2017, opere per anno) restano grafici per comune, senza mappa per anno.
+
+Prova: `node prove/serie.js`.
+
 ## Ricerche condivisibili e download
 
 L'indirizzo conserva il comune (o la provincia), la pagina e i filtri della pagina aperta, così chi riceve il collegamento
