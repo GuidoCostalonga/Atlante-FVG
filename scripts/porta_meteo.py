@@ -95,6 +95,10 @@ def main():
     t = sostituisci(t, r'<header class="barra" id="barra">.*?</header>', TESTATA, regex=True)
     fonti = re.search(r'<div class="coda">\s*<div class="dentro">\s*<p>(.*?)</p>', t, re.S).group(1)
     t = sostituisci(t, r'<footer>.*?</footer>', PIEDE.replace('FONTI', fonti), regex=True)
+    # comuni a portata di mano: i quattro capoluoghi, da ovest a est; all'apertura si parte da Udine
+    t = sostituisci(t, r'<button class="city" data-c="Roveredo in Piano">Roveredo in Piano</button>\s*<button class="city" data-c="Pordenone">Pordenone</button>\s*<button class="city" data-c="Trieste">Trieste</button>',
+                    '<button class="city" data-c="Pordenone">Pordenone</button>\n    <button class="city" data-c="Udine">Udine</button>\n    <button class="city" data-c="Gorizia">Gorizia</button>\n    <button class="city" data-c="Trieste">Trieste</button>', regex=True)
+    t = sostituisci(t, "let active='Roveredo in Piano',", "let active='Udine',")
     # niente riferimenti rimasti alla testata originale (lo script dell'originale la cerca per l'ombra allo scorrimento)
     t = t.replace("document.getElementById('barra')", "document.querySelector('.atl-testata')")
     out = RADICE / 'meteo' / 'index.html'

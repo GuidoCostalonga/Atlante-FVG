@@ -480,8 +480,9 @@ h1,h2,h3,h4,.titolo,.titolo-pagina{font-family:"Source Serif 4",Georgia,serif;le
 
   <nav class="scelta" aria-label="Seleziona il comune">
     <span class="picker"><select id="comune" aria-label="Scegli un comune del Friuli Venezia Giulia"></select></span>
-    <button class="city" data-c="Roveredo in Piano">Roveredo in Piano</button>
     <button class="city" data-c="Pordenone">Pordenone</button>
+    <button class="city" data-c="Udine">Udine</button>
+    <button class="city" data-c="Gorizia">Gorizia</button>
     <button class="city" data-c="Trieste">Trieste</button>
   </nav>
   <div class="condividi">
@@ -626,7 +627,7 @@ const slug=n=>n.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[
 const PER_SLUG=new Map(COMUNI.map(c=>[slug(c[0]),c[0]]));
 const comune=nome=>{const c=INDICE.get(nome);return c&&{name:c[0],prov:PROV[c[1]],lat:c[2],lon:c[3],istat:c[4],slug:slug(c[0])}};
 const WX={0:['Sereno','☀️'],1:['Prevalentemente sereno','🌤️'],2:['Parzialmente nuvoloso','⛅'],3:['Coperto','☁️'],45:['Nebbia','🌫️'],48:['Nebbia con brina','🌫️'],51:['Pioviggine debole','🌦️'],53:['Pioviggine','🌦️'],55:['Pioviggine intensa','🌧️'],61:['Pioggia debole','🌦️'],63:['Pioggia','🌧️'],65:['Pioggia intensa','🌧️'],71:['Neve debole','🌨️'],73:['Neve','🌨️'],75:['Neve intensa','❄️'],80:['Rovesci deboli','🌦️'],81:['Rovesci','🌧️'],82:['Rovesci forti','⛈️'],95:['Temporale','⛈️'],96:['Temporale con grandine','⛈️'],99:['Forte temporale','⛈️']};
-const MODELS=['icon_seamless','ecmwf_ifs025','meteofrance_seamless'];let active='Roveredo in Piano',timer,lastData,selectedDay=0;
+const MODELS=['icon_seamless','ecmwf_ifs025','meteofrance_seamless'];let active='Udine',timer,lastData,selectedDay=0;
 const $=s=>document.querySelector(s), round=n=>Math.round(n), wx=c=>WX[c]||['Variabile','🌥️'];
 function api(c,model='best_match'){const h='temperature_2m,apparent_temperature,relative_humidity_2m,precipitation_probability,weather_code,wind_speed_10m';const d='weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max';return `https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m&hourly=${h}&daily=${d}&timezone=Europe%2FRome&forecast_days=7&models=${model}`}
 async function json(url){const r=await fetch(url);if(!r.ok)throw Error(r.status);return r.json()}
