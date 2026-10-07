@@ -8,6 +8,14 @@ contributive», offerto dalla stessa pagina, si legge a parte e diventa il campo
 non una classificazione dell'Atlante. Nessun altro dato è dedotto: non si indovinano destinatari, importi o requisiti. Una scadenza del 1° gennaio 1970, che la
 Regione usa come segnaposto, vale «scadenza non indicata».
 
+Per ogni voce con pagina sul sito della Regione si legge anche la pagina stessa (`dettaglio`): il testo, i campi con
+etichetta che la struttura ha scritto («Destinatari», «Attività finanziabile», «Modalità e termini di presentazione
+della domanda», «Requisiti», «Spese ammissibili», «Dotazione», «Contributo», «Riferimenti normativi»), gli allegati con
+il formato e la data in cui la pagina è stata letta (`verificato`). Le etichette variano da bando a bando e molti non ne
+hanno: in quel caso i campi restano vuoti e la pagina dell'Atlante lo dice. Da titolo e campi si ricavano, con regole
+di parole chiave dichiarate nella pagina, i destinatari indicativi, il settore (dalla struttura regionale) e il tipo
+(bando con domanda, atto o esito, avviso): sono classificazioni dell'Atlante, segnate come tali.
+
 Il file si riscrive solo se l'elenco cambia (la data `ultima_variazione` è quella del cambiamento). Se la lettura fallisce o
 sembra incompleta, i dati di prima restano. Usa solo la libreria standard di Python; fra una richiesta e l'altra aspetta.
 Uso: python scripts/aggiorna_bandi.py [cartella con le pagine già scaricate: elenco_N.html, contributi_N.html]
@@ -23,6 +31,24 @@ RICERCA = ELENCO + 'ricerca.jsp'
 UA = {'User-Agent': 'AtlanteFVG/1.0 (+https://atlantefvg.it/; info@atlantefvg.it)'}
 MAX_PAGINE = 40
 PAUSA = 0.8
+# etichette dei campi che le strutture scrivono nel testo del bando, ricondotte a chiavi comuni
+CAMPI = [('destinatari', r'^(destinatari|destinatari del contributo|beneficiari|beneficiari del contributo|soggetti beneficiari|soggetti ammessi|a chi (è|e) rivolto|chi può (partecipare|presentare))'),
+         ('attivita', r'^(attivit[àa] finanziabil[ei]|oggetto|finalit[àa]|interventi (finanziabili|ammissibili)|iniziative (finanziabili|ammissibili)|cosa finanzia)'),
+         ('requisiti', r'^(requisiti|requisiti di (ammissibilit[àa]|partecipazione|accesso)|condizioni)'),
+         ('spese', r'^(spese ammissibili|spese finanziabili|costi ammissibili)'),
+         ('dotazione', r'^(dotazione|dotazione finanziaria|risorse( disponibili| finanziarie)?|stanziamento|fondi disponibili)'),
+         ('contributo', r'^(contributo|importo del contributo|misura del contributo|intensit[àa] (del contributo|di aiuto)|importo massimo|entit[àa] del contributo)'),
+         ('modalita', r'^(modalit[àa] e termini.*|modalit[àa] di presentazione.*|termin[ei] (di |per la )?presentazione.*|presentazione delle domande|scadenza|come (presentare|partecipare).*)'),
+         ('norme', r'^(riferimenti normativi|normativa( di riferimento)?|base giuridica)')]
+# strutture regionali ricondotte a un settore (etichette dell'Atlante, mostrate come tali)
+SETTORI = [('Salute e sociale', r'salute|sociali|disabilit'), ('Lavoro, formazione e istruzione', r'lavoro|formazione|istruzione|famiglia|impiego|collocamento'), ('Cultura e sport', r'cultura|sport'),
+           ('Ambiente ed energia', r'ambiente|energia|sostenibil'), ('Agricoltura, foreste e pesca', r'agro|agricol|forest|ittic|rurale|ERSA'), ('Attività produttive e turismo', r'attivit.* produttive|turismo|commercio|cooperazione'),
+           ('Infrastrutture, territorio e trasporti', r'infrastrutture|territorio|motorizzazione|trasport|lavori pubblici|edilizia'), ('Autonomie locali e sicurezza', r'autonomie locali|funzione pubblica|sicurezza|immigrazione|protezione civile'),
+           ('Finanze, patrimonio e organizzazione', r'finanze|patrimonio|demanio|sistemi informativi|generale|gabinetto|segretariato')]
+DESTINATARI = [('comuni', r'\bcomun[ei]\b|enti locali|amministrazioni comunali|unioni'), ('enti', r'enti pubblici|aziende sanitarie|asu|università|scuole|istituti|ater|consorzi|enti del servizio sanitario|pubbliche amministrazioni|camere di commercio'),
+               ('associazioni', r'associazion|terzo settore|\bets\b|\bodv\b|\baps\b|volontariato|organizzazioni|fondazion|pro loco|cooperative sociali|parrocchi|enti religiosi|comitati'),
+               ('imprese', r'impres|\bpmi\b|aziend|operatori economici|liberi professionisti|società|ditte|esercizi|attività economiche|agricoltori|imprenditori|start'),
+               ('cittadini', r'cittadin|persone fisiche|famigli|privati|residenti|nuclei|studenti|lavoratori|disoccupati|giovani|anziani|donne|genitori|persone con disabilit|candidati|laureati|medici')]
 
 
 def scarica(url, dati=None):
@@ -53,6 +79,63 @@ def data_iso(s):
 def direzione(s):
     # la fonte scrive una volta «disabilita'» senza accento: stessa struttura, stessa voce
     return re.sub(r"disabilita'", 'disabilità', s)
+
+
+def testo_pulito(frag):
+    s = re.sub(r'<(br|/p|/li|/div|/h\d)[^>]*>', '\n', frag)
+    s = html.unescape(re.sub(r'<[^>]+>', ' ', s))
+    return re.sub(r'\n\s*\n+', '\n', re.sub(r'[ \t\xa0]+', ' ', s)).strip()
+
+
+def dettaglio(t, letto):
+    """Dettaglio di una pagina di bando: testo, campi con etichetta, allegati, servizio, tag della Regione."""
+    d = {'verificato': letto, 'campi': {}, 'allegati': [], 'testo': ''}
+    m = re.search(r'<div class="box-descrizione">(.*?)<div class="box-documentazione"|<div class="box-descrizione">(.*?)</div>\s*</div>', t, re.S)
+    frag = (m.group(1) or m.group(2)) if m else ''
+    d['testo'] = testo_pulito(frag)[:4000]
+    for p in re.findall(r'<p>(.*?)</p>', frag, re.S):
+        tp = testo_pulito(p)
+        mm = re.match(r'^([^:\n]{3,80}):\s*(.+)$', tp, re.S)
+        if not mm:
+            continue
+        etichetta, valore = mm.group(1).strip(), mm.group(2).strip()
+        for chiave, rx in CAMPI:
+            if re.match(rx, etichetta, re.I) and chiave not in d['campi']:
+                d['campi'][chiave] = valore[:1500]; break
+    for a in re.finditer(r'<a class="file blank" href="([^"]+)"[^>]*>(.*?)</a>(?:&nbsp;|\s)*\[formato \.(\w+)\]', t, re.S):
+        href = html.unescape(a.group(1)); d['allegati'].append({'titolo': testo_pulito(a.group(2))[:200], 'url': href if href.startswith('http') else SITO + href, 'formato': a.group(3).lower()})
+    sv = re.search(r'<div class="box-campo">(.*?)</div>', t, re.S)
+    if sv:
+        righe = [r for r in testo_pulito(sv.group(1)).split('\n') if r.strip() and not r.startswith('<!--')]
+        if len(righe) > 1:
+            d['servizio'] = righe[1][:160]
+    d['tag'] = sorted(set(re.findall(r'data-tag-servizio="([^"]+)"', t)))
+    return d
+
+
+def classifica(v):
+    """Classificazioni dell'Atlante, da parole chiave dichiarate: destinatari indicativi, settore dalla struttura, tipo dal titolo."""
+    c = v.get('dettaglio', {}).get('campi', {})
+    base = c.get('destinatari') or ''
+    fonte_dest = 'campo' if base else 'titolo'
+    testo = (base or (v['titolo'] + ' ' + c.get('attivita', '') + ' ' + c.get('requisiti', ''))).lower()
+    dest = [k for k, rx in DESTINATARI if re.search(rx, testo)]
+    if v['sezione'] in ('cpi', 'cm'):
+        dest = ['cittadini'] if 'cittadini' in dest or not dest else dest; fonte_dest = 'sezione'
+    settore = next((s for s, rx in SETTORI if re.search(rx, (v['direzione'] or '').lower())), 'Altro')
+    if v['sezione'] in ('cpi', 'cm'):
+        settore = 'Lavoro, formazione e istruzione'
+    tl = v['titolo'].lower()
+    if v['sezione'] in ('cpi', 'cm') and not re.search(r'graduatori|esit[oi]\b|elenco', tl):
+        tipo = 'bando'  # offerte e selezioni dei Centri per l'impiego: si presenta candidatura
+    elif re.search(r'graduatori|esit[oi]\b|elenco (dei |degli |delle )?(beneficiar|ammess|idone|esclus|domande)|decreto di approvazione|approvazione (della graduatoria|degli elenchi|dell.elenco)|riparto|liquidazion|\bnomin[ae]\b|designazion|rendicontazion|proroga dei termini di rendicont', tl):
+        tipo = 'atto'
+    elif re.search(r'\bbando\b|avviso pubblico|manifestazione d.interesse|concessione di contribut|contributi (per|a sostegno|a favore|alle|ai|agli)|finanziament|domand[ae]\b|candidatur|selezione|iscrizion|invito|sportello|procedura|concorso', tl) or 'contributi' in (v.get('dettaglio', {}).get('tag') or []):
+        tipo = 'bando'
+    else:
+        tipo = 'avviso'
+    comuni = []
+    return {'destinatari': dest, 'destinatariDa': fonte_dest, 'settore': settore, 'tipo': tipo}
 
 
 def voci(t):
@@ -124,6 +207,21 @@ def leggi(cartella=None):
         for v in contrib:
             if v['id'] in mancano:
                 visti.add(v['id']); v['contributi'] = True; v['sezione'] = 'regione'; risultato.append(v)
+    oggi = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=2))).date().isoformat()
+    for v in risultato:
+        if v.get('sito'):  # pagina su un altro sito della Regione: non si legge, ma la voce si classifica lo stesso
+            v['dettaglio'] = {'verificato': oggi, 'campi': {}, 'allegati': [], 'testo': '', 'esterno': True}
+            v.update(classifica(v)); continue
+        if cartella:
+            f = Path(cartella) / ('bando_' + hashlib.sha1(v['id'].encode()).hexdigest()[:12] + '.html')
+            pagina = f.read_text(encoding='utf-8') if f.exists() else ''
+        else:
+            try:
+                pagina = scarica(v['url']); time.sleep(PAUSA)
+            except Exception as e:
+                pagina = ''
+        v['dettaglio'] = dettaglio(pagina, oggi) if pagina else {'verificato': None, 'campi': {}, 'allegati': [], 'testo': '', 'nonLetta': True}
+        v.update(classifica(v))
     risultato.sort(key=lambda v: (v['pubblicato'], v['id']), reverse=True)
     return risultato
 
@@ -139,7 +237,9 @@ def main():
     if len(nuove) < 20 or (prima and len(nuove) < prima * 0.4):
         print(f'Bandi: elenco sospetto ({len(nuove)} voci, prima {prima}). Restano quelli di prima.')
         return 0
-    if vecchio and vecchio['voci'] == nuove:
+    def senza_data(voci):
+        return [{k: ({kk: vv for kk, vv in v['dettaglio'].items() if kk != 'verificato'} if k == 'dettaglio' else val) for k, val in v.items()} for v in voci]
+    if vecchio and senza_data(vecchio['voci']) == senza_data(nuove):
         print(f'Bandi: nessuna variazione ({len(nuove)} voci, {sum(v["contributi"] for v in nuove)} con misure contributive).')
         return 0
     oggi = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=2))).date().isoformat()

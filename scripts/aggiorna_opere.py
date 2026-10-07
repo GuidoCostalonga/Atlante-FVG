@@ -258,6 +258,8 @@ def main():
     m_man, _ = riga_js(testo, 'MAN')
     testo = testo[:m_man.start(1)] + json.dumps(man, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + testo[m_man.end(1):]
     PAGINA.write_text(testo, encoding='utf-8')
+    # la pagina Opere (osservatorio) legge da qui data dei dati, file e colonne
+    (DATI / 'opere_meta.json').write_text(json.dumps({'aggiornati': aggiornati, 'annoRecenti': anno_rif - 4, 'righe': len(righe), 'files': files, 'cols': COLONNE, 'fonte': voce['fonte'], 'consultazione': voce['cons']}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     attivi_tot = sum(1 for p in progetti.values() if p['stato'] == 'ATTIVO' and p['com'] in indice)
     print(f'Opere pubbliche: {n_cup} progetti, {len(righe)} righe per comune, {attivi_tot} attivi; dati OpenCUP aggiornati al {aggiornati}.')
 

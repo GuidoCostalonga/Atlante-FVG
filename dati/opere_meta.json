@@ -1,0 +1,28 @@
+{
+ "aggiornati": "2026-10-01",
+ "annoRecenti": 2022,
+ "righe": 63817,
+ "files": [
+  "dati/Opere_pubbliche_OpenCUP_0.txt",
+  "dati/Opere_pubbliche_OpenCUP_1.txt",
+  "dati/Opere_pubbliche_OpenCUP_2.txt",
+  "dati/Opere_pubbliche_OpenCUP_3.txt"
+ ],
+ "cols": [
+  "Comune",
+  "CUP",
+  "Descrizione",
+  "Anno della decisione",
+  "Stato",
+  "Costo previsto (euro)",
+  "Finanziamento previsto (euro)",
+  "Settore",
+  "Categoria",
+  "Copertura finanziaria",
+  "Soggetto titolare",
+  "Comuni coinvolti",
+  "Data del CUP"
+ ],
+ "fonte": "OpenCUP, Presidenza del Consiglio dei ministri (DIPE), open data Nord Est aggiornati al 2026-10-01, licenza CC BY 4.0",
+ "consultazione": "2026-10-06"
+}
