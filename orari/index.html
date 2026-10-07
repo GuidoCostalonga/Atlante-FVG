@@ -48,6 +48,20 @@
   .corsa li.qui::before { background: var(--oro); border-color: var(--oro); }
   .corsa time { min-width: 3.2rem; font-variant-numeric: tabular-nums; color: var(--blu); font-weight: 600; }
   .corsa .comune { color: var(--testo-3); font-size: 13px; }
+  .mappa-box { margin-top: 12px; }
+  #mappa { height: 320px; border-radius: 12px; border: 1px solid var(--linea); background: #EDE9DF; touch-action: pan-x pan-y; }
+  #mappa.trascina { touch-action: none; }
+  @media (min-width: 768px) { #mappa { height: 400px; } }
+  .leaflet-container { font-family: var(--sans); font-size: 13px; }
+  .leaflet-container a { color: var(--blu-medio); }
+  .leaflet-popup-content { margin: 10px 12px; line-height: 1.4; }
+  .leaflet-popup-content b { color: var(--blu); }
+  .leaflet-control-zoom a { width: 36px; height: 36px; line-height: 36px; font-size: 20px; color: var(--blu); }
+  .mappa-avviso { position: absolute; inset: 0; z-index: 500; display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px; background: rgba(247,244,236,.85); color: var(--blu); font-weight: 600; font-size: 14px; border-radius: 12px; pointer-events: none; opacity: 0; transition: opacity .2s; }
+  .mappa-avviso.visibile { opacity: 1; }
+  .linee-fermata { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .linee-fermata button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 12px 6px 6px; border: 1px solid #CBD8E6; background: #fff; border-radius: 10px; font: inherit; font-size: 14px; color: var(--testo); cursor: pointer; text-align: left; }
+  .linee-fermata button:hover { background: var(--blu-tenue); }
 </style>
 </head>
 <body>
@@ -90,7 +104,14 @@
       <label class="etichetta" for="fermata">Fermata</label>
       <select id="fermata" class="campo" disabled><option>Scegli prima una linea</option></select>
     </div>
+    <div class="mappa-box" id="mappaBox" hidden>
+      <span class="etichetta">Oppure tocca la fermata di partenza sulla mappa</span>
+      <div style="position:relative"><div id="mappa" role="region" aria-label="Mappa delle fermate del percorso scelto: un tocco su una fermata la sceglie come partenza"></div><div class="mappa-avviso" id="mappaAvviso" aria-hidden="true">Usa due dita per muovere la mappa</div></div>
+      <p class="nota" id="mappaNota">La fermata scelta è in oro, il capolinea è l'ultima del tratto. Sul telefono la mappa si muove e si ingrandisce con due dita; un dito scorre la pagina. Sfondo: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© contributori di OpenStreetMap</a>, scaricato dal tuo browser.</p>
+    </div>
   </section>
+
+  <section class="riquadro" id="daFermata" hidden aria-live="polite"></section>
 
   <section class="riquadro" id="risultato" aria-live="polite" hidden>
     <div class="scelta-linea" id="testaRisultato"></div>
@@ -129,6 +150,9 @@
   const bitAttivo = (s, gi) => { const b = atob(IND.servizi[s]); return gi >= 0 && (b.charCodeAt(gi >> 3) >> (gi & 7)) & 1; };
   const oggiStr = () => { const d = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Rome' })); return `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`; };
   const isoDa = d => `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6, 8)}`;
+
+  // una fermata si indica nell'indirizzo con il suo codice (lo stesso della pagina Autobus) o, nei vecchi collegamenti, con il numero progressivo
+  const indiceFermata = v => { if (v == null || v === '') return null; if (/^\d+$/.test(v) && !IND.fermate.some(f => f[2] === v)) return +v; const i = IND.fermate.findIndex(f => f[2] === v); return i >= 0 ? i : null; };
 
   // le linee con lo stesso codice di percorso a meno della direzione (A, R, I, E) formano un gruppo
   function raggruppa() {
@@ -183,10 +207,70 @@
     $('fermata').disabled = false;
     if (fermataPref != null && ordine.includes(fermataPref)) $('fermata').value = String(fermataPref);
     fermataSel = +$('fermata').value; corsaSel = null; $('corsa').hidden = true;
+    $('daFermata').hidden = true;
     mostraPartenze(); ricorda();
+    disegnaMappa(ordine, R.s[princ]).catch(e => { $('mappaBox').hidden = true; });
   }
   $('percorso').addEventListener('change', () => caricaPercorso(fermataSel));
-  $('fermata').addEventListener('change', () => { fermataSel = +$('fermata').value; corsaSel = null; $('corsa').hidden = true; mostraPartenze(); ricorda(); });
+  $('fermata').addEventListener('change', () => { fermataSel = +$('fermata').value; corsaSel = null; $('corsa').hidden = true; mostraPartenze(); ricorda(); evidenziaFermata(true); });
+
+  /* ---------- mappa delle fermate (Leaflet, caricato solo quando serve) ---------- */
+  let L_, mappa, strato, punti = {};
+  const coarse = matchMedia('(pointer: coarse)').matches;
+  function caricaLeaflet() {
+    if (L_) return Promise.resolve(L_);
+    return new Promise((ris, err) => {
+      const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css'; document.head.appendChild(css);
+      const s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js'; s.onload = () => { L_ = window.L; ris(L_); }; s.onerror = () => err(new Error('Leaflet non caricato')); document.head.appendChild(s);
+    });
+  }
+  async function disegnaMappa(ordine, principale) {
+    const L = await caricaLeaflet();
+    $('mappaBox').hidden = false;
+    if (!mappa) {
+      mappa = L.map('mappa', { zoomControl: true, attributionControl: false, dragging: !coarse, tap: false, zoomSnap: .5 });
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, crossOrigin: true }).addTo(mappa);
+      strato = L.layerGroup().addTo(mappa);
+      // sul telefono: un dito scorre la pagina, due dita muovono la mappa
+      if (coarse) {
+        const el = $('mappa'), avv = $('mappaAvviso'); let t1;
+        el.addEventListener('touchstart', e => { if (e.touches.length >= 2) { mappa.dragging.enable(); el.classList.add('trascina'); avv.classList.remove('visibile'); } else { clearTimeout(t1); t1 = setTimeout(() => avv.classList.add('visibile'), 350); } }, { passive: true });
+        el.addEventListener('touchmove', e => { if (e.touches.length < 2) { clearTimeout(t1); avv.classList.add('visibile'); } }, { passive: true });
+        el.addEventListener('touchend', e => { clearTimeout(t1); if (e.touches.length < 2) { mappa.dragging.disable(); el.classList.remove('trascina'); } setTimeout(() => avv.classList.remove('visibile'), 700); }, { passive: true });
+      }
+    }
+    strato.clearLayers(); punti = {};
+    const pos = f => { const q = IND.fermate[f]; return q[3] != null ? [q[3], q[4]] : null; };
+    const tratto = principale.map(pos).filter(Boolean);
+    if (tratto.length > 1) L.polyline(tratto, { color: '#' + (IND.linee[+$('percorso').value][2] || '155E9E'), weight: 4, opacity: .85 }).addTo(strato);
+    const limiti = [];
+    ordine.forEach((f, k) => {
+      const q = pos(f); if (!q) return; limiti.push(q);
+      const m = L.circleMarker(q, { radius: 7, color: '#0B3359', weight: 2, fillColor: '#fff', fillOpacity: 1 }).addTo(strato);
+      m.bindTooltip(`${esc(nomeFermata(IND.fermate[f][0]))}${k === ordine.length - 1 || f === principale[principale.length - 1] ? ' · capolinea' : ''}`, { direction: 'top', offset: [0, -6] });
+      m.on('click', () => { $('fermata').value = String(f); $('fermata').dispatchEvent(new Event('change')); });
+      punti[f] = m;
+    });
+    if (limiti.length) mappa.fitBounds(limiti, { padding: [24, 24] });
+    evidenziaFermata(false);
+  }
+  function evidenziaFermata(centra) {
+    if (!mappa) return;
+    Object.entries(punti).forEach(([f, m]) => { const sel = +f === fermataSel; m.setStyle({ radius: sel ? 10 : 7, fillColor: sel ? '#D8973C' : '#fff', color: sel ? '#7A4E0C' : '#0B3359', weight: sel ? 3 : 2 }); if (sel) m.bringToFront(); });
+    const m = punti[fermataSel]; if (m && centra && !mappa.getBounds().contains(m.getLatLng())) mappa.panTo(m.getLatLng());
+  }
+
+  /* ---------- arrivo da una fermata (dalla pagina Autobus): si sceglie la linea fra quelle che vi passano ---------- */
+  function mostraLineeFermata(fi) {
+    const f = IND.fermate[fi], gruppi = [];
+    (f[5] || []).forEach(i => { const g = GRUPPI.find(x => x.includes(i)); if (g && !gruppi.some(x => x[0] === g)) gruppi.push([g, i]); });
+    gruppi.sort((a, b) => String(IND.linee[a[0][0]][0]).localeCompare(String(IND.linee[b[0][0]][0]), 'it', { numeric: true }));
+    const box = $('daFermata');
+    box.innerHTML = `<h2 style="font-size:1.25rem">Partenze da ${esc(nomeFermata(f[0]))}</h2><p class="nota">${f[1] >= 0 && IND.comuni ? esc(IND.comuni[f[1]]) + ' · ' : ''}${gruppi.length === 1 ? 'una linea passa' : gruppi.length + ' linee passano'} da questa fermata: scegli quella che ti interessa.</p>`
+      + (gruppi.length ? `<div class="linee-fermata">${gruppi.map(([g, i], k) => `<button type="button" data-k="${k}">${badge(i)}<span>${esc(IND.linee[i][1])}<br><span class="nota">verso ${esc(nomeFermata(IND.linee[i][7] || IND.linee[i][1]))}</span></span></button>`).join('')}</div>` : '<p class="avviso">Nessuna linea con orari pubblicati passa da questa fermata.</p>');
+    box.hidden = false;
+    box.querySelectorAll('button[data-k]').forEach(b => b.addEventListener('click', () => { const [g, i] = gruppi[+b.dataset.k]; scegliGruppo(g, i, fi); $('risultato').scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
+  }
   $('giorno').addEventListener('change', () => { corsaSel = null; $('corsa').hidden = true; mostraPartenze(); ricorda(); });
 
   const orariCorsa = c => { const t = [c[2]]; for (let k = 3; k < c.length; k++) t.push(t[t.length - 1] + c[k]); return t; };
@@ -224,9 +308,9 @@
     $('corsa').hidden = false; $('corsa').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
   });
 
-  // indirizzo condivisibile: ?percorso=<codice>&fermata=<numero>&giorno=<AAAA-MM-GG>
+  // indirizzo condivisibile: ?percorso=<codice>&fermata=<codice della fermata>&giorno=<AAAA-MM-GG>
   function ricorda() {
-    const u = new URL(location.href); if (linea) { u.searchParams.set('percorso', IND.linee[+$('percorso').value][8]); u.searchParams.set('fermata', String(fermataSel)); }
+    const u = new URL(location.href); if (linea) { u.searchParams.set('percorso', IND.linee[+$('percorso').value][8]); u.searchParams.set('fermata', IND.fermate[fermataSel][2] || String(fermataSel)); }
     if ($('giorno').value && $('giorno').value.replace(/-/g, '') !== oggiStr()) u.searchParams.set('giorno', $('giorno').value); else u.searchParams.delete('giorno');
     try { history.replaceState(null, '', u.pathname + u.search); } catch (e) { /* indirizzo non modificabile */ }
     const testo = `Segnalazione di errore sull'Atlante FVG\nPagina: ${location.href}\nDato segnalato: orari della linea ${inp.value}\n\nChe cosa non torna: `;
@@ -244,7 +328,9 @@
     const gq = (q.get('giorno') || '').replace(/-/g, '');
     $('giorno').value = isoDa(g.includes(gq) ? gq : g.includes(oggi) ? oggi : g[0]);
     const p = q.get('percorso'), i = p ? IND.linee.findIndex(l => l[8] === p) : -1;
-    if (i >= 0) scegliGruppo(GRUPPI.find(x => x.includes(i)), i, q.get('fermata') !== null ? +q.get('fermata') : null);
+    const fq = indiceFermata(q.get('fermata'));
+    if (i >= 0) scegliGruppo(GRUPPI.find(x => x.includes(i)), i, fq);
+    else if (fq != null) mostraLineeFermata(fq);
     else { const ql = q.get('linea'); if (ql) { inp.value = ql; mostraElenco(); } }
   })();
 })();

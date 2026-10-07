@@ -3,7 +3,8 @@
 
 Dal GTFS (formato aperto degli orari del trasporto pubblico) di TPL FVG pubblicato da BusOne scrive:
 - dati/orari/indice.txt: versione e validità, giorni coperti, calendario dei servizi (un bit per giorno),
-  fermate (nome e comune), linee (numero, nome, colori, tipo, file, numero di corse);
+  fermate (nome, comune, codice della fermata, latitudine, longitudine, linee che vi passano),
+  linee (numero, nome, colori, tipo, file, numero di corse, capolinea, codice del percorso);
 - dati/orari/<codice del percorso>.txt: per ogni percorso le sequenze di fermate e le corse
   [sequenza, servizio, partenza in minuti dalla mezzanotte, minuti fra una fermata e la successiva...].
 
@@ -98,7 +99,11 @@ def costruisci(apri):
     def fid(s):
         if s not in FIX:
             FIX[s] = len(FERMATE); st = stops.get(s, {})
-            FERMATE.append([st.get('stop_name', s), comune.get(s, -1)])
+            try:
+                lat, lon = round(float(st['stop_lat']), 5), round(float(st['stop_lon']), 5)
+            except (KeyError, ValueError):
+                lat = lon = None
+            FERMATE.append([st.get('stop_name', s), comune.get(s, -1), s, lat, lon, []])
         return FIX[s]
     per_rotta = collections.defaultdict(list)
     for t in trips:
@@ -113,6 +118,9 @@ def costruisci(apri):
         for t in ts:
             p = sorted(passaggi[t['trip_id']])
             chiave = tuple(fid(s) for _, s, _ in p)
+            for f in chiave:
+                if len(linee) not in FERMATE[f][5]:
+                    FERMATE[f][5].append(len(linee))
             if chiave not in SQX:
                 SQX[chiave] = len(seq); seq.append(list(chiave))
             orari = [m for _, _, m in p]
