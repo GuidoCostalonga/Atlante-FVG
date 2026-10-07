@@ -148,8 +148,10 @@ I dati vengono dal file «Database Friuli Venezia Giulia», acquisito il 5 ottob
 fonti pubbliche: Annuario statistico regionale 2026, portale dei dati aperti della Regione
 FVG, anagrafe regionale degli amministratori locali, elenco RUNTS (Registro unico nazionale
 del Terzo settore), ISTAT (Istituto nazionale di statistica) e altre. Ogni foglio, nella
-pagina, riporta la propria fonte e la data di consultazione. È una fotografia a quella data,
-non un collegamento in tempo reale.
+pagina, riporta la propria fonte e la data di consultazione. L'archivio statistico è una raccolta
+di dati con date di riferimento diverse. Arrivi degli autobus e bollettini di allerta vengono
+consultati al momento; i dati sulla qualità dell'aria sono medie giornaliere validate, pubblicate
+con ritardo.
 
 ## Altre fonti aggiunte il 6 ottobre 2026
 
