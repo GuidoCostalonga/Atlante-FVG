@@ -191,6 +191,9 @@ con ritardo.
 | Rendiconti comunali 2018-2023: spese per missione, programma e titolo; entrate per titolo e tipologia (84 comuni) | Portale dei dati aperti della Regione FVG | `Bilanci_rendiconto_spese`, `Bilanci_rendiconto_entrate`, `Bilanci_comunali_sintesi` |
 | Elezioni regionali 2023: liste, presidente, affluenza | Portale dei dati aperti della Regione FVG | `Elezioni_regionali_2023_*` |
 | Elezioni europee 2024 e Camera 2022 per comune | Ministero dell'interno, Eligendo | `Elezioni_europee_2024`, `Elezioni_camera_2022` |
+| Radon nelle scuole e in altri luoghi (1.394 punti, stato del radon per ciascuno), parchi e giardini del patrimonio culturale (226), rifugi alpini escursionistici (44, senza gli indirizzi di posta elettronica). Aggiunti l'8 ottobre 2026, licenza IODL (Italian Open Data License) | Portale dei dati aperti della Regione FVG (ARPA FVG, SIRPAC, Direzione attività produttive) | `Radon_scuole_ARPA`, `Parchi_e_giardini`, `Rifugi_alpini` |
+
+I tre fogli dell'8 ottobre si aggiornano con la rotazione settimanale (gruppi 1, 4 e 2). Si può aggiornare un solo foglio, o più separati da virgola, con `python scripts/aggiorna_dati.py --foglio Nome1,Nome2` (con `--prova` non scrive nulla). Prova: `node prove/fogli.js`.
 
 Nei rendiconti alcune viste regionali ripetono le stesse righe (una, intitolata a Ragogna, contiene i dati di
 Roveredo in Piano): i doppioni sono tolti tenendo una riga per anno, comune e voce di bilancio.
