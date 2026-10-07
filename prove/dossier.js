@@ -19,7 +19,7 @@ let fall = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALLITA ') + m)
   ok(await p.evaluate(() => window.__stampe) === 1, 'la stampa parte una volta');
   const t = await p.evaluate(() => document.getElementById('dossier').innerText);
   ok(/Roveredo in Piano/.test(t) && /Provincia di Pordenone/.test(t), 'intestazione del dossier');
-  ok(/Media FVG/.test(t) && /Media provincia di Pordenone/.test(t) && /\d+° su \d+/.test(t), 'medie territoriali e posto in regione');
+  ok(/Media FVG/.test(t) && /Media prov\. di Pordenone/.test(t) && /\d+° su \d+/.test(t), 'medie territoriali e posto in regione');
   ok(!/Rischio idrogeologico/.test(t.split('Fonti, periodi')[0]), 'argomento escluso non compare');
   const simili = await p.evaluate(() => similiA(SLUG_COM.indexOf('roveredo-in-piano'), 3).map(i => NOME_COM[i])); ok(simili.every(n => t.includes(n)), 'comuni di confronto nelle colonne: ' + simili.join(', '));
   ok(/non calc\./.test(t) && /n\.d\./.test(t), 'distinzione fra non calcolabile e non disponibile');
