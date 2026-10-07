@@ -1,0 +1,1078 @@
+{
+ "fonte": "Nominatim (OpenStreetMap), ricerca per indirizzo; dati © OpenStreetMap contributors, ODbL",
+ "generato": "2026-10-07",
+ "nota": "Posizione ricavata dall'indirizzo dell'elenco regionale 2026/27: approssimata e da verificare; le scuole non trovate hanno coordinate nulle.",
+ "scuole": {
+  "GOIC800006": {
+   "lat": 45.956181,
+   "lon": 13.474748,
+   "precisione": "place",
+   "riconosciuto": "21, Viale Roma, Monte, Cormons / Krmin, Cormons, Gorizia, Friuli-Venezia Giulia, 34071, Italia",
+   "cercato": "VIALE ROMA 21, Cormons, Friuli Venezia Giulia"
+  },
+  "GOIC801002": {
+   "lat": 45.918322,
+   "lon": 13.465453,
+   "precisione": "road",
+   "riconosciuto": "Via Roma, Mariano del Friuli, Gorizia, Friuli-Venezia Giulia, 34070, Italia",
+   "cercato": "VIA ROMA, N.9, Mariano Del Friuli, Friuli Venezia Giulia"
+  },
+  "GOIC80300N": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIALE O. COSULICH, 1, Monfalcone, Friuli Venezia Giulia"
+  },
+  "GOIC80400D": {
+   "lat": 45.809356,
+   "lon": 13.516796,
+   "precisione": "amenity",
+   "riconosciuto": "Scuola Secondaria di 1° Grado \"Giovanni Randaccio\", 10, Via Canaletto, Anconetta, Monfalcone, Gorizia, Friuli-Venezia Giulia, 34074, Italia",
+   "cercato": "VIA CANALETTO 10, Monfalcone, Friuli Venezia Giulia"
+  },
+  "GOIC805009": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA G. D' ANNUNZIO N. 18, Ronchi Dei Legionari, Friuli Venezia Giulia"
+  },
+  "GOIC807001": {
+   "lat": 45.803518,
+   "lon": 13.504336,
+   "precisione": "amenity",
+   "riconosciuto": "Scuola dell'Infanzia Gianni Rodari, 1, Piazzale UNICEF, Bistrigna, Staranzano, Gorizia, Friuli-Venezia Giulia, 34079, Italia",
+   "cercato": "PIAZZALE UNICEF 1, Staranzano, Friuli Venezia Giulia"
+  },
+  "GOIC813008": {
+   "lat": 45.937174,
+   "lon": 13.619874,
+   "precisione": "place",
+   "riconosciuto": "9, Via Pietro Mascagni, Sant'Anna / Sveta Ana, Gorizia, Friuli-Venezia Giulia, 34170, Italia",
+   "cercato": "VIA MASCAGNI, 9, Gorizia, Friuli Venezia Giulia"
+  },
+  "GOIC814004": {
+   "lat": 45.943761,
+   "lon": 13.617213,
+   "precisione": "amenity",
+   "riconosciuto": "Scuola Secondaria di 1° grado \"V. LOCCHI\", 2, Largo Giordano Culiat, Studenec / Studenitz, Piazzutta / Placuta, Gorizia, Friuli-Venezia Giulia, 34170, Italia",
+   "cercato": "LARGO CULIAT, 2, Gorizia, Friuli Venezia Giulia"
+  },
+  "GOIC81500X": {
+   "lat": 45.813634,
+   "lon": 13.449838,
+   "precisione": "place",
+   "riconosciuto": "16, Via Antonio Gramsci, Pieris, San Canzian d'Isonzo, Gorizia, Friuli-Venezia Giulia, 34075, Italia",
+   "cercato": "VIA GRAMSCI, 16, San Canzian D'Isonzo, Friuli Venezia Giulia"
+  },
+  "GOIC81600Q": {
+   "lat": 45.893982,
+   "lon": 13.4941,
+   "precisione": "place",
+   "riconosciuto": "22, Via Roma, Borgo Viola, Gradisca d'Isonzo, Gorizia, Friuli-Venezia Giulia, 34072, Italia",
+   "cercato": "VIA ROMA, 22, Gradisca D'Isonzo, Friuli Venezia Giulia"
+  },
+  "GOIS001006": {
+   "lat": 45.94855,
+   "lon": 13.619012,
+   "precisione": "place",
+   "riconosciuto": "11, Viale Venti Settembre, Piazzutta / Placuta, Piuma / Pevma, Gorizia, Friuli-Venezia Giulia, 34170, Italia",
+   "cercato": "VIALE XX SETTEMBRE 11, Gorizia, Friuli Venezia Giulia"
+  },
+  "GOIS006009": {
+   "lat": 45.893387,
+   "lon": 13.496765,
+   "precisione": "place",
+   "riconosciuto": "9, Via Roma, Località Saleti, Gradisca d'Isonzo, Gorizia, Friuli-Venezia Giulia, 34072, Italia",
+   "cercato": "VIA ROMA, 9, Gradisca D'Isonzo, Friuli Venezia Giulia"
+  },
+  "GOIS007005": {
+   "lat": 45.948415,
+   "lon": 13.623517,
+   "precisione": "place",
+   "riconosciuto": "22, Via Italico Brass, Studenec / Studenitz, Piazzutta / Placuta, Piuma / Pevma, Gorizia, Friuli-Venezia Giulia, 34170, Italia",
+   "cercato": "VIA ITALICO BRASS, 22, Gorizia, Friuli Venezia Giulia"
+  },
+  "GOIS00900R": {
+   "lat": 45.807195,
+   "lon": 13.536735,
+   "precisione": "place",
+   "riconosciuto": "8, Via Giacomo Matteotti, Monfalcone, Gorizia, Friuli-Venezia Giulia, 34074, Italia",
+   "cercato": "VIA MATTEOTTI 8, Monfalcone, Friuli Venezia Giulia"
+  },
+  "GOIS01100R": {
+   "lat": 45.802934,
+   "lon": 13.541513,
+   "precisione": "amenity",
+   "riconosciuto": "ISIS Sandro Pertini, 56, Via Arrigo Boito, Monfalcone, Gorizia, Friuli-Venezia Giulia, 34074, Italia",
+   "cercato": "VIA ARRIGO BOITO 56, Monfalcone, Friuli Venezia Giulia"
+  },
+  "GOIS01200L": {
+   "lat": 45.935249,
+   "lon": 13.618978,
+   "precisione": "amenity",
+   "riconosciuto": "ISIS Galilei - Cossar, 22, Via Giacomo Puccini, Sant'Anna / Sveta Ana, Gorizia, Friuli-Venezia Giulia, 34170, Italia",
+   "cercato": "VIA PUCCINI, 22, Gorizia, Friuli Venezia Giulia"
+  },
+  "GOMM04000N": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA S. AMBROGIO 60, Monfalcone, Friuli Venezia Giulia"
+  },
+  "PNIC80800P": {
+   "lat": 46.069539,
+   "lon": 12.590711,
+   "precisione": "place",
+   "riconosciuto": "1, Via Stretta, Ornedo, Aviano, Pordenone, Friuli-Venezia Giulia, 33081, Italia",
+   "cercato": "VIA STRETTA, 1, Aviano, Friuli Venezia Giulia"
+  },
+  "PNIC80900E": {
+   "lat": 45.84317,
+   "lon": 12.878862,
+   "precisione": "building",
+   "riconosciuto": "9, Via Roma, Borgo Rivis, Saccudello, Suzzolins, Cordovado, Pordenone, Friuli-Venezia Giulia, 33075, Italia",
+   "cercato": "VIA ROMA, 9, Cordovado, Friuli Venezia Giulia"
+  },
+  "PNIC81100E": {
+   "lat": 45.98272,
+   "lon": 12.571004,
+   "precisione": "place",
+   "riconosciuto": "265, Via Anello del Sole, Quartiere Satellite, Talmasson, Villadolt, Fontanafredda, Pordenone, Friuli-Venezia Giulia, 33074, Italia",
+   "cercato": "VIA ANELLO DEL SOLE 265, Fontanafredda, Friuli Venezia Giulia"
+  },
+  "PNIC81200A": {
+   "lat": 46.153059,
+   "lon": 12.657918,
+   "precisione": "building",
+   "riconosciuto": "Istituto Comprensivo \" Padre David Maria Turoldo\", 32, Via Stazione, Grizzo, Montereale Valcellina, Pordenone, Friuli-Venezia Giulia, 33086, Italia",
+   "cercato": "VIA STAZIONE, 32, Montereale Valcellina, Friuli Venezia Giulia"
+  },
+  "PNIC813006": {
+   "lat": 46.190917,
+   "lon": 12.869874,
+   "precisione": "road",
+   "riconosciuto": "Via Roma, Borgata Deana, Laves, Usago, Travesio, Pordenone, Friuli-Venezia Giulia, 33090, Italia",
+   "cercato": "VIA ROMA, N.12/A, Travesio, Friuli Venezia Giulia"
+  },
+  "PNIC81500T": {
+   "lat": 45.88601,
+   "lon": 12.704965,
+   "precisione": "place",
+   "riconosciuto": "3, Via capitano Giuseppe Monticco, Località Casette, Azzano Decimo, Comunità Sile, Pordenone, Friuli-Venezia Giulia, 33082, Italia",
+   "cercato": "VIA CAPITANO MONTICCO, 3, Azzano Decimo, Friuli Venezia Giulia"
+  },
+  "PNIC81600N": {
+   "lat": 45.965383,
+   "lon": 12.44428,
+   "precisione": "amenity",
+   "riconosciuto": "Istituto Compensivo \"Andrfea Zanzotto\", 77, Via Guglielmo Marconi, Càneva, Caneva, Pordenone, Friuli-Venezia Giulia, 33070, Italia",
+   "cercato": "VIA MARCONI, 77, Caneva, Friuli Venezia Giulia"
+  },
+  "PNIC818009": {
+   "lat": 45.929025,
+   "lon": 12.732306,
+   "precisione": "amenity",
+   "riconosciuto": "Scuola Secondaria di Primo Grado \"Dante Alighieri\", 57, Piazza Guglielmo Marconi, Fiume Piccolo, Fiume Veneto, Pordenone, Friuli-Venezia Giulia, 33080, Italia",
+   "cercato": "P.ZZA MARCONI,57, Fiume Veneto, Friuli Venezia Giulia"
+  },
+  "PNIC819005": {
+   "lat": 45.963691,
+   "lon": 12.775046,
+   "precisione": "amenity",
+   "riconosciuto": "Istituto Comprensivo Zoppola, 31, Via Giardini, Orcenico Inferiore, Zoppola, Pordenone, Friuli-Venezia Giulia, 33080, Italia",
+   "cercato": "VIA GIARDINI, 31, Zoppola, Friuli Venezia Giulia"
+  },
+  "PNIC822001": {
+   "lat": 45.957892,
+   "lon": 12.636226,
+   "precisione": "road",
+   "riconosciuto": "Via Cartiera, Rorai Piccolo, Porcia, Pordenone, Friuli-Venezia Giulia, 33080, Italia",
+   "cercato": "VIA CARTIERA N. 20, Porcia, Friuli Venezia Giulia"
+  },
+  "PNIC82300R": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA DON A. COJAZZI, 1, Roveredo In Piano, Friuli Venezia Giulia"
+  },
+  "PNIC826008": {
+   "lat": 46.109203,
+   "lon": 12.901414,
+   "precisione": "amenity",
+   "riconosciuto": "Istituto Comprensivo Spilimbergo, 4, Via Duca d'Aosta, Istrago, Spilimbergo, Pordenone, Friuli-Venezia Giulia, 33097, Italia",
+   "cercato": "VIA DUCA D'AOSTA 4, Spilimbergo, Friuli Venezia Giulia"
+  },
+  "PNIC827004": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA G. MAZZINI,120, Cordenons, Friuli Venezia Giulia"
+  },
+  "PNIC82800X": {
+   "lat": 46.167965,
+   "lon": 12.706087,
+   "precisione": "building",
+   "riconosciuto": "48, Via Dante Alighieri, Maniagolibero, Maniago, Pordenone, Friuli-Venezia Giulia, 33085, Italia",
+   "cercato": "VIA DANTE 48, Maniago, Friuli Venezia Giulia"
+  },
+  "PNIC82900Q": {
+   "lat": 45.91332,
+   "lon": 12.852424,
+   "precisione": "amenity",
+   "riconosciuto": "Istituto Comprensivo \"Margherita Hack\", 21, Via Stazione, Borgo San Lorenzo, Borgo Fabbria, San Vito al Tagliamento, Pordenone, Friuli-Venezia Giulia, 33078, It",
+   "cercato": "VIA STAZIONE, 21, San Vito Al Tagliamento, Friuli Venezia Giulia"
+  },
+  "PNIC83000X": {
+   "lat": 45.942163,
+   "lon": 12.671153,
+   "precisione": "building",
+   "riconosciuto": "Istituto Comprensivo Sud, 37, Via Carlo Goldoni, San Gregorio, Villanova, Pordenone, Friuli-Venezia Giulia, 33170, Italia",
+   "cercato": "VIA GOLDONI, 37, Pordenone, Friuli Venezia Giulia"
+  },
+  "PNIC83100Q": {
+   "lat": 46.173815,
+   "lon": 12.918479,
+   "precisione": "road",
+   "riconosciuto": "Via generale Antonio Cantore, Valeriano, Pinzano al Tagliamento, Pordenone, Friuli-Venezia Giulia, 33094, Italia",
+   "cercato": "VIA GENERAL CANTORE 35, Pordenone, Friuli Venezia Giulia"
+  },
+  "PNIC83200G": {
+   "lat": 45.963596,
+   "lon": 12.655902,
+   "precisione": "building",
+   "riconosciuto": "Istituto Comprensivo Pordenone Centro, 4, Via Gaspare Gozzi, San Giorgio, Rorai Grande, Pordenone, Friuli-Venezia Giulia, 33170, Italia",
+   "cercato": "VIA GOZZI, 4, Pordenone, Friuli Venezia Giulia"
+  },
+  "PNIC83300B": {
+   "lat": 45.963661,
+   "lon": 12.637719,
+   "precisione": "building",
+   "riconosciuto": "Istituto Comprensivo Rorai \"Cappuccini\", 22, Via Maggiore, Rorai Grande, Pordenone, Friuli-Venezia Giulia, 33170, Italia",
+   "cercato": "VIA MAGGIORE, 22, Pordenone, Friuli Venezia Giulia"
+  },
+  "PNIC834007": {
+   "lat": 45.957502,
+   "lon": 12.506988,
+   "precisione": "building",
+   "riconosciuto": "56, Viale Pietro Zancanaro, Villorba, San Liberale, Sacile, Pordenone, Friuli-Venezia Giulia, 33077, Italia",
+   "cercato": "VIALE ZANCANARO 56, Sacile, Friuli Venezia Giulia"
+  },
+  "PNIC835003": {
+   "lat": 45.998351,
+   "lon": 12.857008,
+   "precisione": "place",
+   "riconosciuto": "53, Via Sant'Elena, Molinuzzo, Valvasone, Valvasone Arzene, Pordenone, Friuli-Venezia Giulia, 33098, Italia",
+   "cercato": "VIA SANT'ELENA 53, Valvasone-Arzene, Friuli Venezia Giulia"
+  },
+  "PNIC83600V": {
+   "lat": 45.902806,
+   "lon": 12.533029,
+   "precisione": "road",
+   "riconosciuto": "Via Galileo Galilei, Maron, Brugnera, Pordenone, Friuli-Venezia Giulia, 33070, Italia",
+   "cercato": "VIA GALILEI N. 5, Brugnera, Friuli Venezia Giulia"
+  },
+  "PNIC83700P": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA G.B. COSSETTI, 22, Chions, Friuli Venezia Giulia"
+  },
+  "PNIS001004": {
+   "lat": 46.085911,
+   "lon": 12.869165,
+   "precisione": "road",
+   "riconosciuto": "Piazza Maestri del lavoro d'Italia, Barbeano, Spilimbergo, Pordenone, Friuli-Venezia Giulia, 33097, Italia",
+   "cercato": "PIAZZA MAESTRI DEL LAVORO N. 2, Pordenone, Friuli Venezia Giulia"
+  },
+  "PNIS00200X": {
+   "lat": 45.957977,
+   "lon": 12.508397,
+   "precisione": "building",
+   "riconosciuto": "Sede Centrale - I.S.I.S Pujati, 58, Viale Pietro Zancanaro, Villorba, San Liberale, Sacile, Pordenone, Friuli-Venezia Giulia, 33077, Italia",
+   "cercato": "VIALE ZANCANARO 58, Sacile, Friuli Venezia Giulia"
+  },
+  "PNIS00300Q": {
+   "lat": 46.158523,
+   "lon": 12.703469,
+   "precisione": "amenity",
+   "riconosciuto": "Biblioteca d'Istituto, 7, Via Udine, Maniagolibero, Maniago, Pordenone, Friuli-Venezia Giulia, 33085, Italia",
+   "cercato": "VIA UDINE 7, Maniago, Friuli Venezia Giulia"
+  },
+  "PNIS00400G": {
+   "lat": 46.105956,
+   "lon": 12.908816,
+   "precisione": "road",
+   "riconosciuto": "Via degli Alpini, Spilimbergo, Pordenone, Friuli-Venezia Giulia, 33097, Italia",
+   "cercato": "VIA DEGLI ALPINI, 1, Spilimbergo, Friuli Venezia Giulia"
+  },
+  "PNIS006007": {
+   "lat": 45.959397,
+   "lon": 12.515615,
+   "precisione": "road",
+   "riconosciuto": "Via Stadio, Borgo Prati di Santa Croce, San Liberale, Sacile, Pordenone, Friuli-Venezia Giulia, 33077, Italia",
+   "cercato": "VIA STADIO N. 9, Sacile, Friuli Venezia Giulia"
+  },
+  "PNIS007003": {
+   "lat": 45.91777,
+   "lon": 12.855258,
+   "precisione": "place",
+   "riconosciuto": "9, Via Brigata Osoppo, Borgo Castello, Boreana, San Vito al Tagliamento, Pordenone, Friuli-Venezia Giulia, 33078, Italia",
+   "cercato": "VIA BRIGATA OSOPPO 9, San Vito Al Tagliamento, Friuli Venezia Giulia"
+  },
+  "PNIS00800V": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA G. FERRARIS, 2, Pordenone, Friuli Venezia Giulia"
+  },
+  "PNIS00900P": {
+   "lat": 45.964278,
+   "lon": 12.656671,
+   "precisione": "place",
+   "riconosciuto": "46a, Via Antonio Molinari, San Giorgio, Rorai Grande, Pordenone, Friuli-Venezia Giulia, 33170, Italia",
+   "cercato": "VIA MOLINARI, 46/A, Pordenone, Friuli Venezia Giulia"
+  },
+  "PNIS01200E": {
+   "lat": 45.964529,
+   "lon": 12.661339,
+   "precisione": "place",
+   "riconosciuto": "2, Via Fontane, San Giorgio, Torre, Pordenone, Friuli-Venezia Giulia, 33170, Italia",
+   "cercato": "VIA FONTANE 2, Pordenone, Friuli Venezia Giulia"
+  },
+  "PNMM164001": {
+   "lat": 45.965987,
+   "lon": 12.660923,
+   "precisione": "building",
+   "riconosciuto": "Scuola Secondaria di Primo Grado \"CPIA 1\", 2, Via Interna, San Antonio, Pordenone, Friuli-Venezia Giulia, 33170, Italia",
+   "cercato": "VIA INTERNA 2, Pordenone, Friuli Venezia Giulia"
+  },
+  "PNPS010008": {
+   "lat": 45.970365,
+   "lon": 12.662603,
+   "precisione": "place",
+   "riconosciuto": "12, Via Interna, San Antonio, Pordenone, Friuli-Venezia Giulia, 33170, Italia",
+   "cercato": "VIA INTERNA, 12, Pordenone, Friuli Venezia Giulia"
+  },
+  "PNPS090005": {
+   "lat": 45.912704,
+   "lon": 12.855647,
+   "precisione": "road",
+   "riconosciuto": "Via Patriarcato, Borgo Castello, Borgo Taliano, San Vito al Tagliamento, Pordenone, Friuli-Venezia Giulia, 33078, Italia",
+   "cercato": "VIA PATRIARCATO N.24, San Vito Al Tagliamento, Friuli Venezia Giulia"
+  },
+  "PNSD020009": {
+   "lat": 45.981493,
+   "lon": 12.697677,
+   "precisione": "building",
+   "riconosciuto": "Liceo Artistico Statale \"E.Galvani\", 34, Via Sclavons, Romans di Sotto, Sclavons, Cordenons, Pordenone, Friuli-Venezia Giulia, 22084, Italia",
+   "cercato": "VIA SCLAVONS, 34, Cordenons, Friuli Venezia Giulia"
+  },
+  "PNTF01000A": {
+   "lat": 45.969023,
+   "lon": 12.662485,
+   "precisione": "road",
+   "riconosciuto": "Via Interna, San Antonio, Pordenone, Friuli-Venezia Giulia, 33170, Italia",
+   "cercato": "VIA INTERNA N.7, Pordenone, Friuli Venezia Giulia"
+  },
+  "TSIC800002": {
+   "lat": 45.771572,
+   "lon": 13.637348,
+   "precisione": "town",
+   "riconosciuto": "Sistiana / Sesljan, Duino Aurisina / Devin - Nabrežina, Trieste, Friuli-Venezia Giulia, 34011, Italia",
+   "cercato": "SISTIANA 225, Duino-Aurisina, Friuli Venezia Giulia"
+  },
+  "TSIC80100T": {
+   "lat": 45.643698,
+   "lon": 13.787523,
+   "precisione": "place",
+   "riconosciuto": "28, Via Casimiro Donadoni, Perugino, Barriera Vecchia, Barriera Vecchia-San Giacomo, Trieste, Friuli-Venezia Giulia, 34141, Italia",
+   "cercato": "VIA DONADONI 28, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC80200N": {
+   "lat": 45.638088,
+   "lon": 13.827231,
+   "precisione": "amenity",
+   "riconosciuto": "Istituto Comprensivo \"Iqbal Masih\", 32, Via Carlo Forlanini, Melara, San Giovanni-Chiadino-Rozzol, Longera / Lonjer, Trieste, Friuli-Venezia Giulia, 34139, Ital",
+   "cercato": "VIA FORLANINI 32, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC80300D": {
+   "lat": 45.641688,
+   "lon": 13.806316,
+   "precisione": "place",
+   "riconosciuto": "61, Strada di Rozzol, Rion del Re, Rozzol / Rocol, San Giovanni-Chiadino-Rozzol, Longera / Lonjer, Trieste, Friuli-Venezia Giulia, 34139, Italia",
+   "cercato": "STRADA DI ROZZOL 61, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC804009": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA G. D'ANNUNZIO 48, Muggia, Friuli Venezia Giulia"
+  },
+  "TSIC806001": {
+   "lat": 45.684165,
+   "lon": 13.801419,
+   "precisione": "road",
+   "riconosciuto": "Via di Basovizza, Sottomonte, Altipiano Est, Banne / Bani, Trieste, Friuli-Venezia Giulia, 34127, Italia",
+   "cercato": "VIA DI BASOVIZZA N. 5, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC80700R": {
+   "lat": 45.619245,
+   "lon": 13.822732,
+   "precisione": "amenity",
+   "riconosciuto": "Istituto Comprensivo \"Giancarlo Roli\", 15, Via Sergio Forti, Borgo San Sergio, Servola-Chiarbola-Valmaura-Borgo San Sergio, Trieste, Friuli-Venezia Giulia, 3414",
+   "cercato": "VIA SERGIO FORTI 15, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC80800L": {
+   "lat": 45.654461,
+   "lon": 13.777844,
+   "precisione": "place",
+   "riconosciuto": "7, Via Giustiniano, Borgo Teresiano, Città Nuova-Barriera Nuova-San Vito-Città Vecchia, Conconello / Ferlugi, Trieste, Friuli-Venezia Giulia, 34133, Italia",
+   "cercato": "VIA GIUSTINIANO 7, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC81000L": {
+   "lat": 45.630375,
+   "lon": 13.78055,
+   "precisione": "amenity",
+   "riconosciuto": "Scuola Primaria \"Domenico Lovisato\", 15, Via Italo Svevo, Sottoservola, Chiarbola, Servola-Chiarbola-Valmaura-Borgo San Sergio, Trieste, Friuli-Venezia Giulia, ",
+   "cercato": "VIA ITALO SVEVO 15, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC81100C": {
+   "lat": 45.625174,
+   "lon": 13.79683,
+   "precisione": "building",
+   "riconosciuto": "ISTITUTO COMPRENSIVO VALMAURA TRIESTE, 5, Salita di Zugnano, Valmaura, Servola-Chiarbola-Valmaura-Borgo San Sergio, Trieste, Friuli-Venezia Giulia, 34148, Itali",
+   "cercato": "SALITA DI ZUGNANO 5, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC812008": {
+   "lat": 45.655418,
+   "lon": 13.789951,
+   "precisione": "place",
+   "riconosciuto": "8, Via dei Cunicoli, Scoglietto, San Cilino, Roiano-Gretta-Barcola-Cologna-Scorcola, Conconello / Ferlugi, Trieste, Friuli-Venezia Giulia, 34126, Italia",
+   "cercato": "VIA DEI CUNICOLI 8, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC813004": {
+   "lat": 45.652294,
+   "lon": 13.781891,
+   "precisione": "place",
+   "riconosciuto": "26, Viale Venti Settembre, Barriera Nuova, Città Nuova-Barriera Nuova-San Vito-Città Vecchia, Opicina / Opčine, Trieste, Friuli-Venezia Giulia, 34125, Italia",
+   "cercato": "VIALE XX SETTEMBRE 26, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC81500Q": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA G.RINALDO CARLI 1, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC821003": {
+   "lat": 45.666778,
+   "lon": 13.76593,
+   "precisione": "amenity",
+   "riconosciuto": "Scuola Primaria Umberto Saba, 34/2, Salita di Gretta, Cisternone, Gretta / Greta, Roiano-Gretta-Barcola-Cologna-Scorcola, Opicina / Opčine, Trieste, Friuli-Vene",
+   "cercato": "SALITA DI GRETTA 34/2, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIS001002": {
+   "lat": 45.642996,
+   "lon": 13.774931,
+   "precisione": "place",
+   "riconosciuto": "3, Via Paolo Veronese, Montuzza, San Giacomo / Sveti Jakob, Barriera Vecchia-San Giacomo, Trieste, Friuli-Venezia Giulia, 34144, Italia",
+   "cercato": "VIA VERONESE 3, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIS00200T": {
+   "lat": 45.647404,
+   "lon": 13.764672,
+   "precisione": "building",
+   "riconosciuto": "Istituto Tecnico Nautico \"Tomaso di Savoia\", 1, Piazza Attilio Hortis, Borgo Giuseppino, San Vito, Città Nuova-Barriera Nuova-San Vito-Città Vecchia, Trieste, F",
+   "cercato": "PIAZZA HORTIS 1, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIS00400D": {
+   "lat": 45.65438,
+   "lon": 13.777034,
+   "precisione": "place",
+   "riconosciuto": "3, Via Giustiniano, Borgo Teresiano, Città Nuova-Barriera Nuova-San Vito-Città Vecchia, Conconello / Ferlugi, Trieste, Friuli-Venezia Giulia, 34133, Italia",
+   "cercato": "VIA GIUSTINIANO 3, Trieste, Friuli Venezia Giulia"
+  },
+  "TSMM042005": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA C. BATTISTI 27, Trieste, Friuli Venezia Giulia"
+  },
+  "TSPC02000N": {
+   "lat": 45.643999,
+   "lon": 13.790631,
+   "precisione": "place",
+   "riconosciuto": "74, Via Domenico Rossetti, Perugino, Barriera Vecchia, Barriera Vecchia-San Giacomo, Trieste, Friuli-Venezia Giulia, 34139, Italia",
+   "cercato": "VIA ROSSETTI 74, Trieste, Friuli Venezia Giulia"
+  },
+  "TSPS02000R": {
+   "lat": 45.644657,
+   "lon": 13.791868,
+   "precisione": "place",
+   "riconosciuto": "4, Via Goffredo Mameli, Perugino, Barriera Vecchia, Barriera Vecchia-San Giacomo, Trieste, Friuli-Venezia Giulia, 34139, Italia",
+   "cercato": "VIA MAMELI, 4, Trieste, Friuli Venezia Giulia"
+  },
+  "TSPS03000B": {
+   "lat": 45.643504,
+   "lon": 13.77586,
+   "precisione": "place",
+   "riconosciuto": "1, Via Paolo Veronese, Montuzza, San Giacomo / Sveti Jakob, Barriera Vecchia-San Giacomo, Trieste, Friuli-Venezia Giulia, 34144, Italia",
+   "cercato": "VIA VERONESE 1, Trieste, Friuli Venezia Giulia"
+  },
+  "TSSD01000L": {
+   "lat": 45.6407,
+   "lon": 13.770761,
+   "precisione": "place",
+   "riconosciuto": "2, Via di Calvola, Campi Elisi, Città Nuova-Barriera Nuova-San Vito-Città Vecchia, Trieste, Friuli-Venezia Giulia, 34143, Italia",
+   "cercato": "VIA DI CALVOLA 2, Trieste, Friuli Venezia Giulia"
+  },
+  "TSTE03000P": {
+   "lat": 45.661268,
+   "lon": 13.78663,
+   "precisione": "building",
+   "riconosciuto": "I.T.S. \"Grazia Deledda - Max Fabiani\", 48, Via Monte San Gabriele, Case degli Americani, Cologna, Roiano-Gretta-Barcola-Cologna-Scorcola, Conconello / Ferlugi, ",
+   "cercato": "VIA MONTE SAN GABRIELE 48, Trieste, Friuli Venezia Giulia"
+  },
+  "TSTF010008": {
+   "lat": 45.659162,
+   "lon": 13.787937,
+   "precisione": "amenity",
+   "riconosciuto": "Biblioteca dell'Istituto tecnico industriale Alessandro Volta, 1, Via Monte Grappa, Case degli Americani, Cologna, Roiano-Gretta-Barcola-Cologna-Scorcola, Conco",
+   "cercato": "VIA MONTE GRAPPA 1, Trieste, Friuli Venezia Giulia"
+  },
+  "UDIC80900E": {
+   "lat": 46.516837,
+   "lon": 12.869856,
+   "precisione": "place",
+   "riconosciuto": "49a, Via Roma, Maranzanis, Comeglians, Udine, Friuli-Venezia Giulia, 33023, Italia",
+   "cercato": "VIA ROMA 49/A, Comeglians, Friuli Venezia Giulia"
+  },
+  "UDIC81200A": {
+   "lat": 46.527645,
+   "lon": 13.015919,
+   "precisione": "place",
+   "riconosciuto": "42, Via Roma, Rivo, Paluzza, Udine, Friuli-Venezia Giulia, 33026, Italia",
+   "cercato": "VIA ROMA 42, Paluzza, Friuli Venezia Giulia"
+  },
+  "UDIC81600N": {
+   "lat": 45.686739,
+   "lon": 13.122909,
+   "precisione": "amenity",
+   "riconosciuto": "Scuola Secondaria di Primo Grado \"Giosuè Carducci\", 98, Viale Europa, Lignano Pineta, Lignano Sabbiadoro, Udine, Friuli-Venezia Giulia, 33054, Italia",
+   "cercato": "VIALE EUROPA, 98, Lignano Sabbiadoro, Friuli Venezia Giulia"
+  },
+  "UDIC81700D": {
+   "lat": 46.121552,
+   "lon": 13.177806,
+   "precisione": "place",
+   "riconosciuto": "2, Piazzale Martiri delle Foibe, Marolins, Zampis, Pagnacco, Udine, Friuli-Venezia Giulia, 33010, Italia",
+   "cercato": "PIAZZALE MARTIRI DELLE FOIBE, 2, Pagnacco, Friuli Venezia Giulia"
+  },
+  "UDIC818009": {
+   "lat": 46.107226,
+   "lon": 13.117432,
+   "precisione": "road",
+   "riconosciuto": "Via Castello di Villalta, Casali Crapiz, Villalta, Fagagna, Udine, Friuli-Venezia Giulia, 33034, Italia",
+   "cercato": "VIA CASTELLO N.1, Fagagna, Friuli Venezia Giulia"
+  },
+  "UDIC819005": {
+   "lat": 46.019673,
+   "lon": 12.981753,
+   "precisione": "road",
+   "riconosciuto": "Via Martiri della Libertà, Coderno, Sedegliano, Udine, Friuli-Venezia Giulia, 33039, Italia",
+   "cercato": "VIA MARTIRI DELLA LIBERTA 19, Sedegliano, Friuli Venezia Giulia"
+  },
+  "UDIC820009": {
+   "lat": 46.15204,
+   "lon": 13.212437,
+   "precisione": "place",
+   "riconosciuto": "20, Via Volontari della Libertà, Villaggio Parma, Case Tonini, Laipacco, Tricesimo, Udine, Friuli-Venezia Giulia, 33019, Italia",
+   "cercato": "VIA VOLONTARI LIBERTA' 20, Tricesimo, Friuli Venezia Giulia"
+  },
+  "UDIC82300R": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA DELLA MAINA N.29, Ampezzo, Friuli Venezia Giulia"
+  },
+  "UDIC826008": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "PIAZZA ZANFAGNINI, 2, Pavia Di Udine, Friuli Venezia Giulia"
+  },
+  "UDIC827004": {
+   "lat": 46.132268,
+   "lon": 13.352803,
+   "precisione": "cemetery",
+   "riconosciuto": "Cimitero di Faedis, Campeglio, Faedis, Udine, Friuli-Venezia Giulia, 33040, Italia",
+   "cercato": "FAEDIS, Faedis, Friuli Venezia Giulia"
+  },
+  "UDIC82900Q": {
+   "lat": 46.101051,
+   "lon": 13.213503,
+   "precisione": "place",
+   "riconosciuto": "3, Via Giuseppe Mazzini, Feletto Umberto, Colugna, Tavagnacco, Udine, Friuli-Venezia Giulia, 33010, Italia",
+   "cercato": "VIA MAZZINI 3, Tavagnacco, Friuli Venezia Giulia"
+  },
+  "UDIC83000X": {
+   "lat": 46.215074,
+   "lon": 13.215986,
+   "precisione": "place",
+   "riconosciuto": "56, Viale Giacomo Matteotti, Tarcento, Borc Vena, Segnacco, Tarcento, Udine, Friuli-Venezia Giulia, 33017, Italia",
+   "cercato": "VIALE MATTEOTTI, 56, Tarcento, Friuli Venezia Giulia"
+  },
+  "UDIC83100Q": {
+   "lat": 46.037135,
+   "lon": 13.379416,
+   "precisione": "place",
+   "riconosciuto": "17, Via Mercato Vecchio, Orsaria, Premariacco, Udine, Friuli-Venezia Giulia, 33040, Italia",
+   "cercato": "VIA MERCATO VECCHIO, 17, Premariacco, Friuli Venezia Giulia"
+  },
+  "UDIC83200G": {
+   "lat": 45.895367,
+   "lon": 13.236151,
+   "precisione": "place",
+   "riconosciuto": "2, Via Venezia, Molini di Mezzo, Fauglis, Gonars, Udine, Friuli-Venezia Giulia, 33050, Italia",
+   "cercato": "VIA VENEZIA, 2, Gonars, Friuli Venezia Giulia"
+  },
+  "UDIC835003": {
+   "lat": 45.777637,
+   "lon": 12.999621,
+   "precisione": "place",
+   "riconosciuto": "35, Viale Stazione, Sabbionera, Latisanotta, Latisana, Udine, Friuli-Venezia Giulia, 33053, Italia",
+   "cercato": "VIALE STAZIONE, 35, Latisana, Friuli Venezia Giulia"
+  },
+  "UDIC83700P": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA G.  DA UDINE, 7, San Giorgio Di Nogaro, Friuli Venezia Giulia"
+  },
+  "UDIC84100A": {
+   "lat": 46.075642,
+   "lon": 13.207889,
+   "precisione": "building",
+   "riconosciuto": "Scuola Elementare Statale \"Rodari\", 13, Via Val di Resia, San Domenico, Villaggio del Sole, Rizzi, Udine, Friuli-Venezia Giulia, 33100, Italia",
+   "cercato": "VIA VAL DI RESIA 13, Udine, Friuli Venezia Giulia"
+  },
+  "UDIC842006": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA F. PETRARCA, 19, Udine, Friuli Venezia Giulia"
+  },
+  "UDIC843002": {
+   "lat": 46.054382,
+   "lon": 13.248663,
+   "precisione": "amenity",
+   "riconosciuto": "Biblioteca della Quarta Circoscrizione \"Udine Sud\", 21, Via Pradamano, Borgo Aquileia, Baldasseria Media, Laipacco, Udine, Friuli-Venezia Giulia, 33100, Italia",
+   "cercato": "VIA PRADAMANO, 21, Udine, Friuli Venezia Giulia"
+  },
+  "UDIC84400T": {
+   "lat": 46.069646,
+   "lon": 13.232613,
+   "precisione": "amenity",
+   "riconosciuto": "Scuola Secondaria di I Grado Statale Giovanni Ellero, 1, Via Divisione Julia, Borgo di San Lazzaro, San Marco, Paderno, Udine, Friuli-Venezia Giulia, 33100, Ita",
+   "cercato": "VIA DIVISIONE JULIA 1, Udine, Friuli Venezia Giulia"
+  },
+  "UDIC84500N": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "CENTRO STUDI - VIA LIBERTA', 13, Trasaghis, Friuli Venezia Giulia"
+  },
+  "UDIC84600D": {
+   "lat": 45.818291,
+   "lon": 13.390467,
+   "precisione": "road",
+   "riconosciuto": "Via Duca d'Aosta, Borgo Candeletis, Villa Vicentina, Fiumicello Villa Vicentina, Udine, Friuli-Venezia Giulia, 33050, Italia",
+   "cercato": "VIA DUCA D'AOSTA 24, Fiumicello Villa Vicentina, Friuli Venezia Giulia"
+  },
+  "UDIC847009": {
+   "lat": 45.829517,
+   "lon": 13.333221,
+   "precisione": "road",
+   "riconosciuto": "Via Udine, Rotonda del Taglio, Cervignano del Friuli, Udine, Friuli-Venezia Giulia, 33052, Italia",
+   "cercato": "VIA UDINE 37, Cervignano Del Friuli, Friuli Venezia Giulia"
+  },
+  "UDIC848005": {
+   "lat": 45.992328,
+   "lon": 13.373316,
+   "precisione": "amenity",
+   "riconosciuto": "Scuola Primaria \"Via Libertà\", 25, Via Libertà, Borc Foràn, Case, Manzano, Udine, Friuli-Venezia Giulia, 33044, Italia",
+   "cercato": "VIA LIBERTA' 25, Manzano, Friuli Venezia Giulia"
+  },
+  "UDIC849001": {
+   "lat": 45.959207,
+   "lon": 12.98252,
+   "precisione": "amenity",
+   "riconosciuto": "Scuola Primaria \"Giovanni Battista Candotti\", 14, Via Friuli, Codroipo, Udine, Friuli-Venezia Giulia, 33033, Italia",
+   "cercato": "VIA FRIULI, 14, Codroipo, Friuli Venezia Giulia"
+  },
+  "UDIC851001": {
+   "lat": 46.091838,
+   "lon": 13.422681,
+   "precisione": "road",
+   "riconosciuto": "Via Udine, Grupignano, Cividale del Friuli, Udine, Friuli-Venezia Giulia, 33043, Italia",
+   "cercato": "VIA UDINE 15/2, Cividale Del Friuli, Friuli Venezia Giulia"
+  },
+  "UDIC85200R": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIALE KENNEDY, 11, San Daniele Del Friuli, Friuli Venezia Giulia"
+  },
+  "UDIC85300L": {
+   "lat": 46.273299,
+   "lon": 13.133887,
+   "precisione": "place",
+   "riconosciuto": "45, Via dei Pioppi, Piovega, Maniaglia, Gemona del Friuli, Udine, Friuli-Venezia Giulia, 33013, Italia",
+   "cercato": "VIA DEI PIOPPI, 45, Gemona Del Friuli, Friuli Venezia Giulia"
+  },
+  "UDIC85400C": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA C. BATTISTI 10, Tolmezzo, Friuli Venezia Giulia"
+  },
+  "UDIC855008": {
+   "lat": 45.989643,
+   "lon": 13.200599,
+   "precisione": "road",
+   "riconosciuto": "Via Quinto Novara, Terenzano, Pozzuolo del Friuli, Udine, Friuli-Venezia Giulia, 33050, Italia",
+   "cercato": "VIA V  NOVARA 10/C, Pozzuolo Del Friuli, Friuli Venezia Giulia"
+  },
+  "UDIC856004": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA L. DA VINCI, 23, Pasian Di Prato, Friuli Venezia Giulia"
+  },
+  "UDIC85700X": {
+   "lat": 46.063237,
+   "lon": 13.230232,
+   "precisione": "amenity",
+   "riconosciuto": "Scuola primaria Quattro Novembre, 6, Via Luigi Magrini, Borgo Poscolle, Cormôr Alto, Udine, Friuli-Venezia Giulia, 33100, Italia",
+   "cercato": "VIA MAGRINI, 6, Udine, Friuli Venezia Giulia"
+  },
+  "UDIC85800Q": {
+   "lat": 45.675799,
+   "lon": 13.107664,
+   "precisione": "place",
+   "riconosciuto": "1, Via Venticinque Aprile, Lignano Pineta, Lignano Sabbiadoro, Udine, Friuli-Venezia Giulia, 33054, Italia",
+   "cercato": "VIA XXV APRILE, 1, Udine, Friuli Venezia Giulia"
+  },
+  "UDIC85900G": {
+   "lat": 45.805361,
+   "lon": 13.082422,
+   "precisione": "building",
+   "riconosciuto": "Scuola Secondaria di Primo Grado Cavour, 20, Via Roma, Casali Zuccola, Baredo, Palazzolo dello Stella, Udine, Friuli-Venezia Giulia, 33056, Italia",
+   "cercato": "VIA ROMA 20, Palazzolo Dello Stella, Friuli Venezia Giulia"
+  },
+  "UDIC86000Q": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIALE G. SCHIRATTI, 1, Majano, Friuli Venezia Giulia"
+  },
+  "UDIC86100G": {
+   "lat": 45.958159,
+   "lon": 13.142665,
+   "precisione": "amenity",
+   "riconosciuto": "Biblioteca comunale Elena Bellavitis, 5b, Via delle Scuole, Santa Maria di Sclaunicco, Lestizza, Udine, Friuli-Venezia Giulia, 33050, Italia",
+   "cercato": "VIA DELLE SCUOLE, 5, Lestizza, Friuli Venezia Giulia"
+  },
+  "UDIC86200B": {
+   "lat": 45.904177,
+   "lon": 13.309006,
+   "precisione": "place",
+   "riconosciuto": "3, Via Dante Alighieri, Taglio, San Marco, Palmanova, Udine, Friuli-Venezia Giulia, 33057, Italia",
+   "cercato": "VIA DANTE, 3, Palmanova, Friuli Venezia Giulia"
+  },
+  "UDIS00400G": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA G.BOTTARI N.10, Latisana, Friuli Venezia Giulia"
+  },
+  "UDIS006007": {
+   "lat": 46.285854,
+   "lon": 13.125278,
+   "precisione": "place",
+   "riconosciuto": "7, Via Battiferro, Gois, Ospedaletto, Gemona del Friuli, Udine, Friuli-Venezia Giulia, 33013, Italia",
+   "cercato": "VIA BATTIFERRO 7, Gemona Del Friuli, Friuli Venezia Giulia"
+  },
+  "UDIS007003": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA ISTITUTO TECNICO AGRARIO 42 CORTE 1, Cividale Del Friuli, Friuli Venezia Giulia"
+  },
+  "UDIS00900P": {
+   "lat": 46.504141,
+   "lon": 13.576923,
+   "precisione": "place",
+   "riconosciuto": "62, Via Vittorio Veneto, Tarvisio, Udine, Friuli-Venezia Giulia, 33018, Italia",
+   "cercato": "VIA VITTORIO VENETO, 62, Tarvisio, Friuli Venezia Giulia"
+  },
+  "UDIS01100P": {
+   "lat": 45.955931,
+   "lon": 12.977733,
+   "precisione": "road",
+   "riconosciuto": "Via Circonvallazione Sud, Casali Barazzat, Codroipo, Udine, Friuli-Venezia Giulia, 33033, Italia",
+   "cercato": "VIA CIRCONVALLAZIONE SUD N.29, Codroipo, Friuli Venezia Giulia"
+  },
+  "UDIS01200E": {
+   "lat": 46.158161,
+   "lon": 13.011679,
+   "precisione": "place",
+   "riconosciuto": "4, Piazzale Quattro Novembre, Borgo Repudio, San Daniele del Friuli, Udine, Friuli-Venezia Giulia, 33038, Italia",
+   "cercato": "IV NOVEMBRE 4, San Daniele Del Friuli, Friuli Venezia Giulia"
+  },
+  "UDIS01300A": {
+   "lat": 45.824798,
+   "lon": 13.345103,
+   "precisione": "place",
+   "riconosciuto": "41, Via Monsignor Angelo Ramazzotti, Località Vìui, Cervignano del Friuli, Udine, Friuli-Venezia Giulia, 33052, Italia",
+   "cercato": "VIA RAMAZZOTTI, 41, Cervignano Del Friuli, Friuli Venezia Giulia"
+  },
+  "UDIS014006": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA A. MORO, 30, Tolmezzo, Friuli Venezia Giulia"
+  },
+  "UDIS01600T": {
+   "lat": 46.068618,
+   "lon": 13.219757,
+   "precisione": "building",
+   "riconosciuto": "I.S.I.S. \"Arturo Malignani\", 10, Viale Leonardo da Vinci, Borgo di San Lazzaro, San Domenico, Villaggio del Sole, Cormôr Alto, Udine, Friuli-Venezia Giulia, 331",
+   "cercato": "VIALE LEONARDO DA VINCI 10, Udine, Friuli Venezia Giulia"
+  },
+  "UDIS01700N": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIALE MONSIGNOR NOGARA SNC, Udine, Friuli Venezia Giulia"
+  },
+  "UDIS01800D": {
+   "lat": 46.283067,
+   "lon": 13.125796,
+   "precisione": "road",
+   "riconosciuto": "Via Praviolai, Praviolai, Ospedaletto, Gemona del Friuli, Udine, Friuli-Venezia Giulia, 33013, Italia",
+   "cercato": "VIA PRAVIOLAI N.18, Gemona Del Friuli, Friuli Venezia Giulia"
+  },
+  "UDIS019009": {
+   "lat": 46.401018,
+   "lon": 13.006952,
+   "precisione": "road",
+   "riconosciuto": "Via Ampezzo, Caneva, Tolmezzo, Udine, Friuli-Venezia Giulia, 33028, Italia",
+   "cercato": "VIA AMPEZZO N. 18, Tolmezzo, Friuli Venezia Giulia"
+  },
+  "UDIS021009": {
+   "lat": 46.069295,
+   "lon": 13.242413,
+   "precisione": "place",
+   "riconosciuto": "60a, Viale Armando Diaz, Borgo Pracchiuso, San Marco, Paderno, Udine, Friuli-Venezia Giulia, 33100, Italia",
+   "cercato": "VIALE ARMANDO DIAZ 60/A, Udine, Friuli Venezia Giulia"
+  },
+  "UDMM098007": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIA A.DIAZ 60, Udine, Friuli Venezia Giulia"
+  },
+  "UDPC010005": {
+   "lat": 46.066425,
+   "lon": 13.239205,
+   "precisione": "place",
+   "riconosciuto": "26, Piazza Primo Maggio, Borgo Pracchiuso, Udine, Friuli-Venezia Giulia, 33100, Italia",
+   "cercato": "PIAZZA I MAGGIO 26, Udine, Friuli Venezia Giulia"
+  },
+  "UDPM010009": {
+   "lat": 46.067039,
+   "lon": 13.228659,
+   "precisione": "road",
+   "riconosciuto": "Via Pier Silverio Leicht, Borgo Villalta, Cormôr Alto, Udine, Friuli-Venezia Giulia, 33100, Italia",
+   "cercato": "VIA PIER SILVERIO LEICHT, Udine, Friuli Venezia Giulia"
+  },
+  "UDPS010008": {
+   "lat": 46.067855,
+   "lon": 13.223554,
+   "precisione": "amenity",
+   "riconosciuto": "Liceo Scientifico Statale Giovanni Marinelli, 4, Viale Leonardo da Vinci, Borgo di San Lazzaro, San Domenico, Villaggio del Sole, Cormôr Alto, Udine, Friuli-Ven",
+   "cercato": "VIALE LEONARDO DA VINCI, 4, Udine, Friuli Venezia Giulia"
+  },
+  "UDPS05000P": {
+   "lat": 46.070965,
+   "lon": 13.241947,
+   "precisione": "place",
+   "riconosciuto": "25, Via Planis, Borgo Pracchiuso, San Marco, Paderno, Udine, Friuli-Venezia Giulia, 33100, Italia",
+   "cercato": "VIA PLANIS, 25, Udine, Friuli Venezia Giulia"
+  },
+  "UDRI040009": {
+   "lat": 46.230975,
+   "lon": 13.174038,
+   "precisione": "place",
+   "riconosciuto": "6, Via Alessandro Manzoni, Borgo Cignini, Billerio, Magnano in Riviera, Udine, Friuli-Venezia Giulia, 33010, Italia",
+   "cercato": "VIA MANZONI 6, Udine, Friuli Venezia Giulia"
+  },
+  "UDSD01000P": {
+   "lat": 46.06708,
+   "lon": 13.235455,
+   "precisione": "place",
+   "riconosciuto": "12b, Piazza Primo Maggio, Borgo Gemona, San Marco, Udine, Friuli-Venezia Giulia, 33100, Italia",
+   "cercato": "PIAZZA I MAGGIO 12/B, Udine, Friuli Venezia Giulia"
+  },
+  "UDTD010004": {
+   "lat": 46.067193,
+   "lon": 13.223904,
+   "precisione": "amenity",
+   "riconosciuto": "Istituto Tecnico Commerciale ITC Antonio Zanon, 7, Piazzale Gio Batta Cavedalis, Borgo di San Lazzaro, San Marco, Cormôr Alto, Udine, Friuli-Venezia Giulia, 331",
+   "cercato": "PIAZZALE CAVEDALIS 7, Udine, Friuli Venezia Giulia"
+  },
+  "UDTL01000E": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "VIALE MONS. NOGARA, 2, Udine, Friuli Venezia Giulia"
+  },
+  "UDVC01000C": {
+   "lat": null,
+   "lon": null,
+   "precisione": null,
+   "riconosciuto": null,
+   "cercato": "P.TTA CHIAROTTINI, 8, Cividale Del Friuli, Friuli Venezia Giulia"
+  },
+  "UDVE01000B": {
+   "lat": 46.067877,
+   "lon": 13.235218,
+   "precisione": "place",
+   "riconosciuto": "20, Via Giovanni da Udine, Borgo Gemona, San Marco, Cormôr Alto, Udine, Friuli-Venezia Giulia, 33100, Italia",
+   "cercato": "VIA GIOVANNI DA UDINE 20, Udine, Friuli Venezia Giulia"
+  },
+  "GOIC81100L": {
+   "lat": 45.84559,
+   "lon": 13.5398,
+   "precisione": "place",
+   "riconosciuto": "1, Piazza San Martino / Trg svetega Martina, Doberdò del Lago / Doberdob, Doberdò del Lago, Gorizia, Friuli-Venezia Giulia, 34070, Italia",
+   "cercato": "PIAZZA SAN MARTINO 1, Doberdo' Del Lago, Friuli Venezia Giulia"
+  },
+  "GOIC81200C": {
+   "lat": 45.935456,
+   "lon": 13.627512,
+   "precisione": "road",
+   "riconosciuto": "Via dei Grabizio, San Rocco / Podturn, Gorizia, Friuli-Venezia Giulia, 34170, Italia",
+   "cercato": "VIA DEI GRABIZIO 38, Gorizia, Friuli Venezia Giulia"
+  },
+  "GOIS002002": {
+   "lat": 45.936162,
+   "lon": 13.617742,
+   "precisione": "building",
+   "riconosciuto": "DIZ / ISIS Gregorčič-Trubar, TZ / IT Cankar-Vega-Zois, 14, Via Giacomo Puccini, Sant'Anna / Sveta Ana, Gorizia, Friuli-Venezia Giulia, 34170, Italia",
+   "cercato": "VIA PUCCINI 14, Gorizia, Friuli Venezia Giulia"
+  },
+  "GOIS00400N": {
+   "lat": 45.936162,
+   "lon": 13.617742,
+   "precisione": "building",
+   "riconosciuto": "DIZ / ISIS Gregorčič-Trubar, TZ / IT Cankar-Vega-Zois, 14, Via Giacomo Puccini, Sant'Anna / Sveta Ana, Gorizia, Friuli-Venezia Giulia, 34170, Italia",
+   "cercato": "VIA PUCCINI 14, Gorizia, Friuli Venezia Giulia"
+  },
+  "TSIC81600G": {
+   "lat": 45.643791,
+   "lon": 13.778066,
+   "precisione": "place",
+   "riconosciuto": "12, Via Luigi Frausin, Montuzza, San Giacomo / Sveti Jakob, Barriera Vecchia-San Giacomo, Trieste, Friuli-Venezia Giulia, 34137, Italia",
+   "cercato": "VIA FRAUSIN 12, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC81700B": {
+   "lat": 45.657584,
+   "lon": 13.806019,
+   "precisione": "amenity",
+   "riconosciuto": "Večstopenjska šola Vladimirja Bartola / Istituto Comprensivo Vladimir Bartol, 4, Via del Caravaggio, Borgo San Pelagio, San Giovanni / Sveti Ivan, San Giovanni-",
+   "cercato": "VIA CARAVAGGIO 4, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC818007": {
+   "lat": 45.685873,
+   "lon": 13.788465,
+   "precisione": "amenity",
+   "riconosciuto": "Scuola Primaria Attilio De Grassi, 2, Piazzale Monte Re / Nanoški trg, Sottomonte, Altipiano Est, Opicina / Opčine, Trieste, Friuli-Venezia Giulia, 34151, Itali",
+   "cercato": "PIAZZALE MONTE RE 2, Trieste, Friuli Venezia Giulia"
+  },
+  "TSIC819003": {
+   "lat": 45.753971,
+   "lon": 13.659333,
+   "precisione": "village",
+   "riconosciuto": "Aurisina Cave / Nabrežina Kamnolomi, Duino Aurisina / Devin - Nabrežina, Trieste, Friuli-Venezia Giulia, 34011, Italia",
+   "cercato": "AURISINA CAVE 85, Duino-Aurisina, Friuli Venezia Giulia"
+  },
+  "TSIC820007": {
+   "lat": 45.601162,
+   "lon": 13.857053,
+   "precisione": "building",
+   "riconosciuto": "Istituto Comprensivo Statale Josip Pangerc/ Večstopenjska šola Josip Pangerc, 210, San Dorligo della Valle / Dolina, Trieste, Friuli-Venezia Giulia, 34018, Ital",
+   "cercato": "DOLINA 210, San Dorligo Della Valle-Dolina, Friuli Venezia Giulia"
+  },
+  "TSIS00300N": {
+   "lat": 45.657885,
+   "lon": 13.801942,
+   "precisione": "amenity",
+   "riconosciuto": "DTZ / ISIS \"Jožef Stefan\", 7, Piazzale Luigi Canestrini, Borgo Fedrigovez / Fedrigovec, San Giovanni / Sveti Ivan, San Giovanni-Chiadino-Rozzol, Conconello / Fe",
+   "cercato": "PIAZZALE CANESTRINI 7, Trieste, Friuli Venezia Giulia"
+  },
+  "TSPM02000T": {
+   "lat": 45.657584,
+   "lon": 13.806019,
+   "precisione": "amenity",
+   "riconosciuto": "Večstopenjska šola Vladimirja Bartola / Istituto Comprensivo Vladimir Bartol, 4, Via del Caravaggio, Borgo San Pelagio, San Giovanni / Sveti Ivan, San Giovanni-",
+   "cercato": "VIA CARAVAGGIO 4, Trieste, Friuli Venezia Giulia"
+  },
+  "TSPS010006": {
+   "lat": 45.653972,
+   "lon": 13.804278,
+   "precisione": "amenity",
+   "riconosciuto": "Znanstveni licej Franceta Prešerna / Liceo Scientifico France Prešeren, 13/1, Strada di Guardiella, Borgo San Pelagio, San Giovanni / Sveti Ivan, San Giovanni-C",
+   "cercato": "STRADA DI GUARDIELLA 13/1, Trieste, Friuli Venezia Giulia"
+  },
+  "TSTD030007": {
+   "lat": 45.657819,
+   "lon": 13.801877,
+   "precisione": "place",
+   "riconosciuto": "7, Piazzale Luigi Canestrini, Borgo Fedrigovez / Fedrigovec, San Giovanni / Sveti Ivan, San Giovanni-Chiadino-Rozzol, Conconello / Ferlugi, Trieste, Friuli-Vene",
+   "cercato": "PIAZZALE CANESTRINI 7, Trieste, Friuli Venezia Giulia"
+  },
+  "UDIC834007": {
+   "lat": 46.123413,
+   "lon": 13.484734,
+   "precisione": "place",
+   "riconosciuto": "9, Viale Azzida, Oculis / Nokula, Azzida / Ažla, San Pietro al Natisone, Udine, Friuli-Venezia Giulia, 33049, Italia",
+   "cercato": "VIALE AZZIDA, 9, San Pietro Al Natisone, Friuli Venezia Giulia"
+  }
+ }
+}

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finanziamenti regionali · Atlante FVG</title>
+<meta name="description" content="Archivio dei contributi e dei vantaggi economici concessi dalla Regione Friuli Venezia Giulia e dagli enti del territorio, dall'Amministrazione trasparente: ricerca per ente, comune, beneficiario, settore, anno e atto, con importi concessi ed erogati, atto, norma e CUP.">
+<link rel="canonical" href="https://atlantefvg.it/finanziamenti/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<meta name="theme-color" content="#0B3359">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Atlante FVG">
+<meta property="og:url" content="https://atlantefvg.it/finanziamenti/">
+<meta property="og:title" content="Finanziamenti regionali · Atlante FVG">
+<meta property="og:description" content="Contributi e vantaggi economici concessi in Friuli Venezia Giulia, dall'Amministrazione trasparente regionale.">
+<meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Atlante FVG","item":"https://atlantefvg.it/"},{"@type":"ListItem","position":2,"name":"Finanziamenti","item":"https://atlantefvg.it/finanziamenti/"}]}</script>
+<script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../pagine.css">
+<style>
+  .filtri { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 768px) { .filtri { grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); align-items: end; } }
+  .cerca { position: relative; }
+  .cerca .campo { padding-left: 40px; padding-right: 44px; }
+  .cerca .lente { position: absolute; left: 12px; top: 50%; margin-top: 11px; transform: translateY(-50%); color: var(--testo-3); pointer-events: none; }
+  .cerca .x { position: absolute; right: 2px; bottom: 2px; width: 44px; height: 44px; border: 0; background: none; border-radius: 10px; color: var(--testo-3); cursor: pointer; font-size: 18px; line-height: 1; }
+  .scelte-extra { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 12px; align-items: center; }
+  .scelte-extra label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; cursor: pointer; }
+  .scelte-extra input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--blu-chiaro); }
+  .esito { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+  .elenco { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .opera { background: var(--carta); border: 1px solid var(--linea); border-radius: 14px; padding: 14px 16px; display: grid; grid-template-columns: 1fr; gap: 6px 16px; }
+  @media (min-width: 768px) { .opera { grid-template-columns: minmax(0, 1fr) 11rem; } .opera .costo { text-align: right; } }
+  .opera h2 { font-family: var(--serif); font-size: 1.02rem; line-height: 1.3; font-weight: 600; margin: 0; }
+  .opera h2 a { color: var(--blu); text-decoration: none; } .opera h2 a:hover { text-decoration: underline; }
+  .opera .meta { font-size: 13px; color: var(--testo-2); }
+  .opera .costo b { font-family: var(--serif); font-size: 1.15rem; color: var(--blu); display: block; }
+  .opera .costo span { font-size: 12px; color: var(--testo-3); }
+  .badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 700; border: 1px solid transparent; }
+  .b-attivo { background: #E9F4EC; color: #1F5E3A; border-color: #B8D9C4; } .b-chiuso { background: #EEE9DD; color: #52565E; border-color: var(--linea); } .b-altro { background: var(--blu-tenue); color: var(--blu); border-color: #CBD8E6; } .b-multi { background: #FEF8E3; color: #7A4E0C; border-color: #E8C77E; }
+  .riga-badge { display: flex; flex-wrap: wrap; gap: 6px; }
+  .scheda { background: var(--carta); border: 1px solid var(--linea); border-radius: 14px; padding: 18px 20px; }
+  .scheda h1 { font-size: 1.35rem; line-height: 1.3; }
+  .campi { display: grid; grid-template-columns: 1fr; gap: 6px 16px; font-size: 14px; margin: 12px 0; }
+  @media (min-width: 768px) { .campi { grid-template-columns: 13rem minmax(0, 1fr); } }
+  .campi dt { color: var(--testo-3); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; padding-top: 2px; }
+  .campi dd { margin: 0; color: var(--testo-2); } .campi dd.vuoto-campo { color: var(--testo-3); font-style: italic; }
+  .campi dd b { color: var(--testo); }
+  .tot { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+  @media (min-width: 768px) { .tot { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .tot div { background: var(--carta); border: 1px solid var(--linea); border-radius: 12px; padding: 10px 12px; }
+  .tot b { display: block; font-family: var(--serif); font-size: 1.2rem; color: var(--blu); } .tot span { font-size: 12px; color: var(--testo-3); }
+  .vuoto { text-align: center; padding: 28px 16px; }
+  .pagine { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin-top: 12px; }
+  .mese { display: inline-flex; gap: 6px; align-items: center; }
+  .tab { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .tab th, .tab td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--linea); vertical-align: top; }
+  .tab th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--testo-3); }
+  .tab td.n, .tab th.n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .scorri { overflow: auto; border: 1px solid var(--linea); border-radius: 10px; background: var(--carta); }
+  .avviso-stato { font-size: 13px; color: var(--testo-2); background: #FEF8E3; border: 1px solid #E8C77E; border-radius: 10px; padding: 8px 12px; }
+</style>
+</head>
+
+<body>
+<header class="testata"><div class="testata-dentro">
+  <a class="marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="113" height="40"></a>
+  <nav class="voci" aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus</a><a href="../orari/">Orari</a><a href="../bandi/">Bandi</a><a href="../meteo/">Meteo</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo</a>
+  </nav>
+  <details class="menu-mob"><summary>Menu</summary><nav aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../bandi/">Bandi e avvisi</a><a href="../meteo/">Meteo</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo e fonti</a>
+  </nav></details>
+</div></header>
+
+<main class="contenuto">
+  <nav class="percorso" aria-label="Percorso"><a href="../">Atlante FVG</a> › Finanziamenti</nav>
+  <section class="intro">
+    <h1>Finanziamenti regionali: atti di concessione</h1>
+    <p>I contributi, le sovvenzioni e gli altri vantaggi economici concessi dalla Regione Friuli Venezia Giulia e dagli enti che pubblicano nella sua Amministrazione trasparente (Comuni, aziende sanitarie, ERSA, FVG Plus, Consiglio regionale e altri), atto per atto: beneficiario, ente, finalità, importo concesso ed erogato, norma, estremi dell'atto, CUP. Si cerca per ente, comune, beneficiario, settore, anno e atto.</p>
+    <p class="nota" id="fonte">Lettura dell'archivio in corso…</p>
+  </section>
+
+  <section class="riquadro" aria-labelledby="titoloFiltri">
+    <h2 id="titoloFiltri" class="sr-only">Cerca negli atti di concessione</h2>
+    <div class="filtri">
+      <div class="cerca">
+        <label class="etichetta" for="q">Beneficiario, oggetto, atto o CUP</label>
+        <svg class="lente" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" class="campo" type="search" autocomplete="off" placeholder="Per esempio: pro loco, scuola, 51648" aria-describedby="esito">
+        <button type="button" class="x" id="cancella" aria-label="Cancella la ricerca" hidden>×</button>
+      </div>
+      <div><label class="etichetta" for="ente">Ente che ha concesso</label><select id="ente" class="campo"></select></div>
+      <div><label class="etichetta" for="da">Pubblicati da</label><select id="da" class="campo"></select></div>
+      <div><label class="etichetta" for="a">a</label><select id="a" class="campo"></select></div>
+    </div>
+    <div class="filtri" style="margin-top:12px">
+      <div><label class="etichetta" for="comune">Comune (territorio con criterio documentato)</label><select id="comune" class="campo"></select></div>
+      <div><label class="etichetta" for="settore">Settore (indicativo)</label><select id="settore" class="campo"></select></div>
+      <div><label class="etichetta" for="fase">Fase</label><select id="fase" class="campo"><option value="">Tutte</option><option value="concesso">Con importo concesso</option><option value="erogato">Con importo erogato</option></select></div>
+      <div><label class="etichetta" for="benef">Tipo di beneficiario</label><select id="benef" class="campo"><option value="">Tutti</option><option value="persona giuridica">Enti, imprese, associazioni</option><option value="persona fisica">Persone fisiche</option></select></div>
+    </div>
+    <div class="scelte-extra">
+      <label>Raggruppa <select id="vista" class="campo" style="min-height:40px;width:auto;display:inline-block;margin-left:6px"><option value="atti">Nessun raggruppamento: un rigo per beneficiario e atto</option><option value="beneficiario">Per beneficiario</option><option value="ente">Per ente</option><option value="comune">Per comune</option><option value="anno">Per anno</option><option value="settore">Per settore</option></select></label>
+      <label>Ordine <select id="ordine" class="campo" style="min-height:40px;width:auto;display:inline-block;margin-left:6px"><option value="data">Più recenti</option><option value="importo">Importo concesso più alto</option></select></label>
+    </div>
+  </section>
+
+  <div class="tot" id="totali"></div>
+  <p class="nota" id="criterio"></p>
+  <div class="esito" style="margin-top:12px">
+    <h2 id="titoloElenco">Risultati</h2>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="nota" id="esito" role="status" aria-live="polite"></span><button type="button" class="btn btn-secondario" id="scaricaCsv">Scarica CSV</button><button type="button" class="btn btn-secondario" id="copiaLink">Copia link</button></div>
+  </div>
+  <div id="risultati"></div>
+  <div class="pagine" id="pagine"></div>
+  <div class="riquadro vuoto" id="vuoto" hidden><p id="vuotoTesto"></p><button type="button" class="btn btn-primario" id="azzera">Cancella i filtri</button></div>
+
+  <section class="riquadro" style="margin-top:16px" aria-labelledby="titoloMetodo">
+    <h2 id="titoloMetodo">Come leggere questi dati</h2>
+    <p class="nota"><b>Fonte.</b> Amministrazione trasparente della Regione Autonoma Friuli Venezia Giulia, sezione «Concessione e attribuzione di vantaggi economici» (articoli 26 e 27 del decreto legislativo 33/2013; articolo 7 della legge regionale 7/2014, che fa pubblicare anche gli atti fino a mille euro). L'Atlante esporta il CSV ufficiale per intervallo di date di pubblicazione, ogni settimana, rileggendo gli ultimi quaranta giorni perché gli atti arrivano e si aggiornano con ritardo. L'archivio parte dal 1° gennaio 2024.</p>
+    <p class="nota"><b>Fasi.</b> La fonte pubblica l'importo <i>concesso</i> (vantaggio economico) e, quando c'è, l'importo <i>erogato</i>; non pubblica stanziamenti o impegni, e l'Atlante non li deduce. I totali sommano separatamente concessi ed erogati, solo fra importi dello stesso tipo e sulle righe filtrate; una riga è un beneficiario in un atto, e gli atti con più beneficiari sono collegati dai loro estremi, così non si contano due volte.</p>
+    <p class="nota"><b>Territorio.</b> Un comune è attribuito solo con un criterio scritto accanto: l'ente che ha concesso è il Comune stesso; il CUP è localizzato in quel comune in OpenCUP (se in più comuni, l'importo non è ripartito); il comune è nominato nell'oggetto dell'atto. Non si usa mai la sede del beneficiario. Gli atti della Regione senza comune restano «ambito regionale o non indicato».</p>
+    <p class="nota"><b>Persone fisiche.</b> Per le persone fisiche nome e codice fiscale non sono ripubblicati: restano ente, finalità e importo. Il settore è una classificazione indicativa dell'Atlante, da parole chiave nell'ente, nella struttura e nell'oggetto. Per il dettaglio ufficiale di un atto usa il collegamento «Cerca sul portale», che apre la ricerca della Regione con numero e anno dell'atto. <span id="segnala"></span></p>
+    <div id="controlli" class="nota"></div>
+  </section>
+</main>
+
+<footer class="piede"><div class="piede-dentro">
+  <div><strong>Atlante FVG</strong><br>I comuni del Friuli Venezia Giulia, con fonte e data di ogni dato.</div>
+  <div><a href="../">Pagina iniziale</a> · <a href="https://amministrazionetrasparente.regione.fvg.it/AmministrazioneTrasparente/ricerca.html" target="_blank" rel="noopener">Amministrazione trasparente della Regione</a> · <a href="../?pagina=metodo">Metodo e fonti</a></div>
+</div></footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  const dataIt = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} ${MESI[+m[2] - 1]} ${m[1]}` : (iso || ''); };
+  const meseIt = m => `${MESI[+m.slice(5, 7) - 1]} ${m.slice(0, 4)}`;
+  const euro = v => v === null || v === undefined ? 'n.d.' : Number(v).toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' euro';
+  const euroBreve = v => v === null || v === undefined ? 'n.d.' : Math.abs(v) >= 1e6 ? (v / 1e6).toLocaleString('it-IT', { maximumFractionDigits: 1 }) + ' mln euro' : Number(v).toLocaleString('it-IT', { maximumFractionDigits: 0 }) + ' euro';
+  const frase = s => s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : '';
+  const PER_PAGINA = 50;
+  let IDX = null, COMUNI = [], RIGHE = [], COL = {}, MESI_CARICATI = new Set(), ST = { q: '', ente: '', da: '', a: '', comune: '', settore: '', fase: '', benef: '', vista: 'atti', ordine: 'data', pag: 1 };
+  async function scaricaJSON(p) { const r = await fetch(p); if (!r.ok) throw new Error('HTTP ' + r.status); let testo = (await r.text()).trim(); if (testo[0] !== '{') { const bin = atob(testo), buf = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i); testo = await new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'))).text(); } return JSON.parse(testo); }
+  const slugDiIstat = istat => { const c = COMUNI.find(x => x.id === istat); return c ? c.slug : ''; };
+  function leggiURL() { const p = new URLSearchParams(location.search); ST.q = p.get('q') || ''; ST.ente = p.get('ente') || ''; ST.da = p.get('da') || ''; ST.a = p.get('a') || ''; ST.comune = p.get('comune') || ''; ST.settore = p.get('settore') || ''; ST.fase = p.get('fase') || ''; ST.benef = p.get('benef') || ''; ST.vista = ['atti', 'beneficiario', 'ente', 'comune', 'anno', 'settore'].includes(p.get('vista')) ? p.get('vista') : 'atti'; ST.ordine = p.get('ordine') === 'importo' ? 'importo' : 'data'; ST.pag = Math.max(1, +p.get('pag') || 1); }
+  function indirizzo() { const u = new URL(location.href), p = u.searchParams; ['q', 'ente', 'da', 'a', 'comune', 'settore', 'fase', 'benef', 'vista', 'ordine', 'pag'].forEach(k => p.delete(k)); Object.entries({ q: ST.q.trim(), ente: ST.ente, da: ST.da, a: ST.a, comune: ST.comune, settore: ST.settore, fase: ST.fase, benef: ST.benef }).forEach(([k, v]) => { if (v) p.set(k, v); }); if (ST.vista !== 'atti') p.set('vista', ST.vista); if (ST.ordine !== 'data') p.set('ordine', ST.ordine); if (ST.pag > 1) p.set('pag', String(ST.pag)); return u.pathname + (p.toString() ? '?' + p.toString() : ''); }
+  const mesiTutti = () => Object.keys(IDX.mesi).sort();
+  function mesiScelti() { const m = mesiTutti(); return m.filter(x => (!ST.da || x >= ST.da) && (!ST.a || x <= ST.a)); }
+  async function carica() {
+    const da = mesiScelti().filter(m => !MESI_CARICATI.has(m)); if (!da.length) return;
+    $('esito').textContent = `Lettura di ${da.length} mesi…`;
+    const parti = await Promise.all(da.map(m => scaricaJSON(`../dati/fin/${m}.txt`).then(d => { COL = Object.fromEntries(d.cols.map((c, k) => [c, k])); return d.rows; }).catch(() => [])));
+    parti.forEach(p => RIGHE.push(...p)); da.forEach(m => MESI_CARICATI.add(m));
+  }
+  const g = (r, k) => r[COL[k]];
+  function filtra() {
+    const parole = norm(ST.q).split(/\s+/).filter(Boolean), mesi = new Set(mesiScelti());
+    return RIGHE.filter(r => mesi.has(g(r, 'pubblicato').slice(0, 7)) && (!ST.ente || g(r, 'ente') === ST.ente) && (!ST.comune || slugDiIstat(g(r, 'comuneIstat')) === ST.comune) && (!ST.settore || g(r, 'settore') === ST.settore)
+      && (!ST.fase || (ST.fase === 'concesso' ? g(r, 'concesso') !== null : g(r, 'erogato') !== null)) && (!ST.benef || (g(r, 'tipoBeneficiario') || '').toLowerCase() === ST.benef)
+      && parole.every(w => norm([g(r, 'beneficiario'), g(r, 'oggetto'), g(r, 'numeroAtto'), g(r, 'annoAtto'), g(r, 'cup'), g(r, 'cf'), g(r, 'struttura'), g(r, 'progetto')].join(' ')).includes(w)));
+  }
+  const linkPortale = r => { const n = g(r, 'numeroAtto'), a = g(r, 'annoAtto'); return n && a ? `https://amministrazionetrasparente.regione.fvg.it/AmministrazioneTrasparente/ricerca.html?numeroAtto=${encodeURIComponent(n)}&annoAtto=${encodeURIComponent(a)}&codiceGruppo=VANTAGGIO&frontEnd=ente&pStr=0&stins=P&ordinamentoSel=1&numPerPaginaSel=10&operazione=vai` : ''; };
+  function rigaAtto(r) {
+    const terr = g(r, 'territorio'), crit = g(r, 'territorioCriterio'), sl = slugDiIstat(g(r, 'comuneIstat')), lp = linkPortale(r), la = g(r, 'linkAtto'), lb = g(r, 'linkBando');
+    return `<li class="opera"><div><div class="riga-badge">${g(r, 'concesso') !== null ? '<span class="badge b-attivo">concesso</span>' : ''}${g(r, 'erogato') !== null ? '<span class="badge b-altro">erogato</span>' : ''}<span class="badge b-chiuso">${esc(g(r, 'tipoBeneficiario') || 'beneficiario non indicato')}</span>${g(r, 'cup') ? `<span class="badge b-multi">CUP</span>` : ''}</div>
+      <h2>${esc(g(r, 'beneficiario') || 'Beneficiario non indicato')}</h2>
+      <div class="meta">${esc(frase(g(r, 'oggetto') || '') || 'Finalità non indicata')}</div>
+      <div class="meta">Ente: <b>${esc(frase(g(r, 'ente')))}</b>${g(r, 'struttura') ? ' · ' + esc(frase(g(r, 'struttura'))) : ''}</div>
+      <div class="meta">Territorio: ${sl ? `<a href="../c/${sl}/">${esc(terr)}</a>` : esc(terr)} <span class="nota">(${esc(crit)})</span> · settore indicativo: ${esc(g(r, 'settore'))}</div>
+      <div class="meta">Atto ${g(r, 'numeroAtto') ? `n. <b>${esc(g(r, 'numeroAtto'))}</b>/${esc(g(r, 'annoAtto') || '')}` : '<i>estremi non pubblicati</i>'} · pubblicato il ${dataIt(g(r, 'pubblicato'))}${g(r, 'aggiornato') && g(r, 'aggiornato') !== g(r, 'pubblicato') ? ' · aggiornato il ' + dataIt(g(r, 'aggiornato')) : ''}${g(r, 'tipoAtto') ? ' · ' + esc(frase(g(r, 'tipoAtto'))) : ''}${g(r, 'norma') ? ' · norma: ' + esc(g(r, 'norma')) : ''}${g(r, 'cup') ? ` · CUP <a href="../opere/?cup=${encodeURIComponent(g(r, 'cup'))}">${esc(g(r, 'cup'))}</a>` : ''}${g(r, 'modalita') ? ' · individuazione: ' + esc(frase(g(r, 'modalita'))) : ''}</div>
+      <div class="meta">${lp ? `<a href="${esc(lp)}" target="_blank" rel="noopener">Cerca sul portale</a>` : ''}${la ? ` · <a href="${esc(la)}" target="_blank" rel="noopener">Atto di concessione</a>` : ''}${lb ? ` · <a href="${esc(lb)}" target="_blank" rel="noopener">Bando</a>` : ''}</div></div>
+      <div class="costo"><b>${euro(g(r, 'concesso'))}</b><span>concesso</span>${g(r, 'erogato') !== null ? `<b style="font-size:1rem;margin-top:4px">${euro(g(r, 'erogato'))}</b><span>erogato</span>` : ''}</div></li>`;
+  }
+  function raggruppa(l, chiave) {
+    const m = new Map();
+    l.forEach(r => { const k = chiave === 'beneficiario' ? (g(r, 'tipoBeneficiario') || '').toLowerCase() === 'persona fisica' ? 'Persone fisiche (nomi non ripubblicati)' : (g(r, 'beneficiario') + (g(r, 'cf') ? ' · ' + g(r, 'cf') : '')) : chiave === 'anno' ? g(r, 'pubblicato').slice(0, 4) : chiave === 'comune' ? g(r, 'territorio') : g(r, chiave);
+      const o = m.get(k) || { k, righe: 0, atti: new Set(), concesso: 0, erogato: 0, enti: new Set(), comuni: new Set() }; o.righe++; o.atti.add(g(r, 'atto')); o.concesso += g(r, 'concesso') || 0; o.erogato += g(r, 'erogato') || 0; o.enti.add(g(r, 'ente')); o.comuni.add(g(r, 'territorio')); m.set(k, o); });
+    return [...m.values()].sort((a, b) => ST.ordine === 'importo' ? b.concesso - a.concesso : b.righe - a.righe);
+  }
+  function disegna() {
+    const l = filtra(); if (ST.ordine === 'importo') l.sort((a, b) => (g(b, 'concesso') || 0) - (g(a, 'concesso') || 0)); else l.sort((a, b) => g(b, 'pubblicato').localeCompare(g(a, 'pubblicato')));
+    const conc = l.filter(r => g(r, 'concesso') !== null), erog = l.filter(r => g(r, 'erogato') !== null), atti = new Set(l.map(r => g(r, 'atto')));
+    $('totali').innerHTML = `<div><b>${l.length.toLocaleString('it-IT')}</b><span>righe (beneficiario in un atto)</span></div><div><b>${atti.size.toLocaleString('it-IT')}</b><span>atti distinti</span></div><div><b>${euroBreve(conc.reduce((s, r) => s + g(r, 'concesso'), 0))}</b><span>importi concessi (${conc.length.toLocaleString('it-IT')} righe)</span></div><div><b>${euroBreve(erog.reduce((s, r) => s + g(r, 'erogato'), 0))}</b><span>importi erogati (${erog.length.toLocaleString('it-IT')} righe)</span></div>`;
+    $('criterio').textContent = `Criterio di conteggio: i totali sommano solo importi dello stesso tipo (concessi fra loro, erogati fra loro) sulle righe filtrate; le righe senza importo non entrano. Mesi considerati: ${mesiScelti().length ? meseIt(mesiScelti()[0]) + ' – ' + meseIt(mesiScelti()[mesiScelti().length - 1]) : 'nessuno'}.`;
+    const box = $('risultati');
+    if (ST.vista === 'atti') {
+      const pagine = Math.max(1, Math.ceil(l.length / PER_PAGINA)); if (ST.pag > pagine) ST.pag = pagine;
+      box.innerHTML = `<ul class="elenco">${l.slice((ST.pag - 1) * PER_PAGINA, ST.pag * PER_PAGINA).map(rigaAtto).join('')}</ul>`;
+      $('pagine').innerHTML = pagine > 1 ? `<button type="button" class="btn btn-secondario" data-p="${ST.pag - 1}" ${ST.pag === 1 ? 'disabled' : ''}>Pagina precedente</button><span class="nota">${ST.pag} / ${pagine}</span><button type="button" class="btn btn-secondario" data-p="${ST.pag + 1}" ${ST.pag === pagine ? 'disabled' : ''}>Pagina successiva</button>` : '';
+      $('esito').textContent = `${l.length.toLocaleString('it-IT')} righe${pagine > 1 ? ` · pagina ${ST.pag} di ${pagine}` : ''}`;
+    } else {
+      const gr = raggruppa(l, ST.vista); $('pagine').innerHTML = '';
+      const et = { beneficiario: 'Beneficiario', ente: 'Ente', comune: 'Territorio', anno: 'Anno di pubblicazione', settore: 'Settore (indicativo)' }[ST.vista];
+      box.innerHTML = `<div class="scorri"><table class="tab"><thead><tr><th scope="col">${et}</th><th scope="col" class="n">Righe</th><th scope="col" class="n">Atti</th><th scope="col" class="n">Concesso</th><th scope="col" class="n">Erogato</th>${ST.vista !== 'ente' ? '<th scope="col" class="n">Enti</th>' : ''}</tr></thead><tbody>${gr.slice(0, 500).map(o => `<tr><td>${esc(o.k || 'non indicato')}</td><td class="n">${o.righe.toLocaleString('it-IT')}</td><td class="n">${o.atti.size.toLocaleString('it-IT')}</td><td class="n">${euro(o.concesso)}</td><td class="n">${o.erogato ? euro(o.erogato) : '—'}</td>${ST.vista !== 'ente' ? `<td class="n">${o.enti.size}</td>` : ''}</tr>`).join('')}</tbody></table></div>${gr.length > 500 ? `<p class="nota">Mostrati i primi 500 gruppi su ${gr.length}: restringi i filtri.</p>` : ''}`;
+      $('esito').textContent = `${gr.length.toLocaleString('it-IT')} gruppi da ${l.length.toLocaleString('it-IT')} righe`;
+    }
+    $('vuoto').hidden = l.length > 0; if (!l.length) $('vuotoTesto').textContent = 'Nessun atto corrisponde ai filtri.';
+    $('cancella').hidden = !ST.q; try { history.replaceState(null, '', indirizzo()); } catch (e) { /* indirizzo non modificabile */ }
+  }
+  function opzioni() {
+    const mesi = mesiTutti(); const opt = (sel, vuoto) => `<option value="">${vuoto}</option>` + mesi.map(m => `<option value="${m}" ${m === sel ? 'selected' : ''}>${meseIt(m)}</option>`).join('');
+    $('da').innerHTML = opt(ST.da, 'Primo mese disponibile'); $('a').innerHTML = opt(ST.a, 'Ultimo mese disponibile');
+    const enti = Object.entries(IDX.enti).sort((a, b) => b[1].righe - a[1].righe); $('ente').innerHTML = '<option value="">Tutti gli enti</option>' + enti.map(([e, v]) => `<option value="${esc(e)}" ${e === ST.ente ? 'selected' : ''}>${esc(frase(e))} (${v.righe.toLocaleString('it-IT')})</option>`).join('');
+    const cc = new Map(); RIGHE.forEach(r => { const sl = slugDiIstat(g(r, 'comuneIstat')); if (sl) cc.set(sl, (cc.get(sl) || 0) + 1); });
+    $('comune').innerHTML = '<option value="">Tutti</option>' + [...cc.entries()].map(([sl, n]) => [COMUNI.find(c => c.slug === sl), n]).filter(([c]) => c).sort((a, b) => a[0].n.localeCompare(b[0].n, 'it')).map(([c, n]) => `<option value="${esc(c.slug)}" ${c.slug === ST.comune ? 'selected' : ''}>${esc(c.n)} (${n})</option>`).join('');
+    $('settore').innerHTML = '<option value="">Tutti</option>' + Object.entries(IDX.settori).sort((a, b) => b[1].righe - a[1].righe).map(([s, v]) => `<option value="${esc(s)}" ${s === ST.settore ? 'selected' : ''}>${esc(s)} (${v.righe.toLocaleString('it-IT')})</option>`).join('');
+    $('q').value = ST.q; $('fase').value = ST.fase; $('benef').value = ST.benef; $('vista').value = ST.vista; $('ordine').value = ST.ordine;
+  }
+  async function aggiorna() { await carica(); opzioni(); disegna(); }
+  $('q').addEventListener('input', e => { ST.q = e.target.value; ST.pag = 1; disegna(); });
+  $('cancella').addEventListener('click', () => { ST.q = ''; $('q').value = ''; ST.pag = 1; disegna(); $('q').focus(); });
+  ['ente', 'comune', 'settore', 'fase', 'benef', 'vista', 'ordine'].forEach(k => $(k).addEventListener('change', e => { ST[k] = e.target.value; ST.pag = 1; disegna(); }));
+  ['da', 'a'].forEach(k => $(k).addEventListener('change', e => { ST[k] = e.target.value; ST.pag = 1; aggiorna(); }));
+  $('pagine').addEventListener('click', e => { const b = e.target.closest('button[data-p]'); if (!b) return; ST.pag = +b.dataset.p; disegna(); $('titoloElenco').scrollIntoView(); });
+  $('azzera').addEventListener('click', () => { ST = { q: '', ente: '', da: '', a: '', comune: '', settore: '', fase: '', benef: '', vista: 'atti', ordine: 'data', pag: 1 }; aggiorna(); });
+  $('scaricaCsv').addEventListener('click', () => {
+    const l = filtra(), cols = Object.keys(COL); const cella = v => { const s = v === null || v === undefined ? '' : String(v); return /[",\r\n;]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+    const righe = [[...cols, 'Fonte'].join(','), ...l.map(r => [...r, 'Amministrazione trasparente Regione FVG, letta il ' + IDX.generato].map(cella).join(','))];
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿' + righe.join('\r\n')], { type: 'text/csv;charset=utf-8' })); a.download = 'finanziamenti-fvg.csv'; document.body.appendChild(a); a.click(); a.remove();
+  });
+  $('copiaLink').addEventListener('click', async () => { const url = location.origin + indirizzo(); try { await navigator.clipboard.writeText(url); $('copiaLink').textContent = 'Link copiato'; setTimeout(() => $('copiaLink').textContent = 'Copia link', 2000); } catch (e) { prompt('Copia il collegamento', url); } });
+  window.addEventListener('popstate', () => { leggiURL(); aggiorna(); });
+  (async () => {
+    try {
+      IDX = await (await fetch('../dati/finanziamenti_indice.json')).json(); COMUNI = await (await fetch('../dati/comuni_slug.json')).json();
+      leggiURL();
+      const mesi = mesiTutti(); if (!ST.da && !ST.a && mesi.length > 12) ST.da = mesi[mesi.length - 12]; // di partenza gli ultimi dodici mesi
+      const ul = IDX.ultimaLettura || {};
+      $('fonte').innerHTML = `Fonte: <a href="${esc(IDX.fonte)}" target="_blank" rel="noopener">Amministrazione trasparente della Regione Friuli Venezia Giulia</a>, atti di concessione di vantaggi economici. Archivio di ${IDX.totali.righe.toLocaleString('it-IT')} righe e ${IDX.totali.atti.toLocaleString('it-IT')} atti, da ${meseIt(mesi[0])} a ${meseIt(mesi[mesi.length - 1])}; ultima lettura della fonte il ${dataIt(ul.data)}${ul.esito && ul.esito !== 'letta' ? ` <span class="errore">(${esc(ul.esito)})</span>` : ''}.${(IDX.mesiMancanti || []).length ? ` <span class="errore">Mesi senza dati perché il portale non ha risposto alle richieste: ${IDX.mesiMancanti.map(meseIt).join(', ')}. Le finestre mancanti vengono ritentate agli aggiornamenti successivi.</span>` : ''}`;
+      $('controlli').innerHTML = `<b>Controlli dell'ultima lettura.</b> Righe lette dalla fonte: ${(IDX.controlli.righeLetteGrezze || 0).toLocaleString('it-IT')}; righe identiche scartate: ${(IDX.controlli.duplicatiScartati || 0).toLocaleString('it-IT')}; righe con problemi (importo non numerico, data mancante, estremi assenti): ${(IDX.controlli.erroriLettura || 0).toLocaleString('it-IT')}${IDX.errori && IDX.errori.length ? ` <details class="piu"><summary>Vedi il registro degli errori (${IDX.errori.length})</summary><ul>${IDX.errori.slice(0, 50).map(e => `<li>${esc(e.tipo)}: ${esc(e.ente || '')} ${esc(e.atto || e.beneficiario || '')} ${esc(e.valore || e.pubblicato || '')}</li>`).join('')}</ul></details>` : ''}.${(IDX.finanziamentiNonScaricate || IDX.finestreNonScaricate || []).length ? ` Finestre di date non scaricate (portale non raggiungibile): ${(IDX.finestreNonScaricate || []).length}.` : ''}`;
+      const u = 'mailto:info@atlantefvg.it?subject=' + encodeURIComponent('Segnalazione di errore: finanziamenti') + '&body=' + encodeURIComponent('Pagina: ' + location.href + '\nAtto o beneficiario:\n\nChe cosa non torna:\n');
+      $('segnala').innerHTML = `Hai trovato un errore? <a href="${u}">Segnalalo per posta</a> oppure <a href="https://wa.me/393283692227?text=${encodeURIComponent('Segnalazione di errore sull\'Atlante FVG: pagina Finanziamenti')}" target="_blank" rel="noopener">via WhatsApp</a>.`;
+      await aggiorna();
+    } catch (e) { $('fonte').innerHTML = '<span class="errore" style="display:block">L\'archivio non si è caricato: ricarica la pagina o consulta direttamente <a href="https://amministrazionetrasparente.regione.fvg.it/AmministrazioneTrasparente/ricerca.html" target="_blank" rel="noopener">l\'Amministrazione trasparente della Regione</a>.</span>'; }
+  })();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Servizi sul territorio · Atlante FVG</title>
+<meta name="description" content="Farmacie, parafarmacie, guardie mediche, residenze per anziani, scuole e fermate degli autobus del Friuli Venezia Giulia su una sola mappa, con fonte e data di ogni dato, ricerca per comune, indirizzo o punto scelto e distanza in linea d'aria.">
+<link rel="canonical" href="https://atlantefvg.it/servizi/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<meta name="theme-color" content="#0B3359">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Atlante FVG">
+<meta property="og:url" content="https://atlantefvg.it/servizi/">
+<meta property="og:title" content="Servizi sul territorio · Atlante FVG">
+<meta property="og:description" content="I servizi del Friuli Venezia Giulia su una mappa, con fonte, data e distanza dal punto scelto.">
+<meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Atlante FVG","item":"https://atlantefvg.it/"},{"@type":"ListItem","position":2,"name":"Servizi sul territorio","item":"https://atlantefvg.it/servizi/"}]}</script>
+<script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../pagine.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  .leaflet-container { font-family: var(--sans); font-size: 13px; }
+  .leaflet-bar { border: 1px solid var(--linea) !important; border-radius: 10px !important; box-shadow: 0 2px 8px rgba(11,51,89,.12) !important; overflow: hidden; }
+  .leaflet-bar a { width: 44px !important; height: 44px !important; line-height: 44px !important; }
+  .leaflet-popup-content { margin: 12px 14px; line-height: 1.45; }
+  .leaflet-popup-content b { font-family: var(--serif); font-size: 15px; color: var(--blu); display: block; margin-bottom: 2px; }
+  .disposizione { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .disposizione > * { min-width: 0; }
+  .punto-scelto, .vicini li, .vicini li b { overflow-wrap: anywhere; }
+  @media (min-width: 1024px) { .disposizione { grid-template-columns: minmax(0, 1fr) 24rem; align-items: start; } }
+  #mappa { height: 62vh; min-height: 380px; border-radius: 14px; border: 1px solid var(--linea); background: #e9eef3; }
+  .cat { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cat label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; border-radius: 999px; border: 1px solid #CBD8E6; background: #fff; font-size: 14px; cursor: pointer; }
+  .cat input { width: 18px; height: 18px; accent-color: var(--blu-chiaro); }
+  .pallino { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.25); }
+  .cerca { position: relative; }
+  .cerca .campo { padding-left: 40px; padding-right: 44px; }
+  .cerca .lente { position: absolute; left: 12px; top: 50%; margin-top: 11px; transform: translateY(-50%); color: var(--testo-3); pointer-events: none; }
+  .suggerimenti { list-style: none; margin: 4px 0 0; padding: 0; border: 1px solid var(--linea); border-radius: 10px; background: #fff; max-height: 16rem; overflow: auto; }
+  .suggerimenti li button { display: block; width: 100%; text-align: left; padding: 10px 12px; min-height: 44px; border: 0; border-bottom: 1px solid var(--linea); background: none; font: inherit; font-size: 14px; cursor: pointer; }
+  .suggerimenti li button:hover { background: var(--blu-tenue); }
+  .vicini { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .vicini li { background: var(--carta); border: 1px solid var(--linea); border-radius: 12px; padding: 10px 12px; font-size: 13.5px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; }
+  .vicini li b { font-family: var(--serif); color: var(--blu); }
+  .vicini .dist { text-align: right; font-weight: 700; color: var(--testo); white-space: nowrap; }
+  .vicini .dist span { display: block; font-weight: 400; font-size: 11px; color: var(--testo-3); }
+  .vicini .fonte-p { grid-column: 1 / -1; font-size: 11.5px; color: var(--testo-3); }
+  .azioni { display: flex; flex-wrap: wrap; gap: 8px; }
+  .punto-scelto { font-size: 13px; color: var(--testo-2); background: #FEF8E3; border: 1px solid #E8C77E; border-radius: 10px; padding: 8px 12px; }
+  .dv { color: #7E1317; font-style: italic; font-size: 12px; }
+</style>
+</head>
+
+
+<body>
+<header class="testata"><div class="testata-dentro">
+  <a class="marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="113" height="40"></a>
+  <nav class="voci" aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus</a><a href="../orari/">Orari</a><a href="../bandi/">Bandi</a><a href="../meteo/">Meteo</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo</a>
+  </nav>
+  <details class="menu-mob"><summary>Menu</summary><nav aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../bandi/">Bandi e avvisi</a><a href="../meteo/">Meteo</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo e fonti</a>
+  </nav></details>
+</div></header>
+
+<main class="contenuto">
+  <nav class="percorso" aria-label="Percorso"><a href="../">Atlante FVG</a> › Servizi sul territorio</nav>
+  <section class="intro">
+    <h1>Servizi sul territorio</h1>
+    <p>Farmacie, parafarmacie, guardie mediche, residenze per anziani, scuole statali e fermate degli autobus su una sola mappa. Scegli un comune, cerca un indirizzo, tocca un punto sulla mappa oppure usa la tua posizione: l'elenco a fianco mostra i servizi più vicini con la distanza in linea d'aria, la fonte e la data di ogni dato.</p>
+    <p class="nota" id="fonte">Lettura dei dati in corso…</p>
+  </section>
+
+  <section class="riquadro" aria-labelledby="titoloFiltri">
+    <h2 id="titoloFiltri" class="sr-only">Che cosa mostrare e da dove</h2>
+    <div class="cat" id="categorie" role="group" aria-label="Categorie di servizi"></div>
+    <div class="filtri" style="margin-top:12px;display:grid;grid-template-columns:1fr;gap:12px">
+      <div class="cerca">
+        <label class="etichetta" for="q">Indirizzo o luogo (in Friuli Venezia Giulia)</label>
+        <svg class="lente" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" class="campo" type="search" autocomplete="off" placeholder="Per esempio: via Roma 10, Pordenone" aria-describedby="statoCerca" aria-controls="suggerimenti" role="combobox" aria-expanded="false">
+        <ul id="suggerimenti" class="suggerimenti" role="listbox" hidden></ul>
+        <p id="statoCerca" class="nota" role="status" aria-live="polite"></p>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end">
+        <div><label class="etichetta" for="comune">Oppure scegli un comune</label><select id="comune" class="campo"></select></div>
+        <button type="button" class="btn btn-secondario" id="posizione" title="La posizione del dispositivo viene chiesta solo quando premi questo pulsante">Usa la mia posizione</button>
+      </div>
+    </div>
+    <p class="nota" style="margin-top:8px">Puoi anche toccare un punto qualsiasi sulla mappa: diventa il punto di partenza delle distanze. La posizione del dispositivo è chiesta solo premendo «Usa la mia posizione» e resta sul tuo apparecchio.</p>
+  </section>
+
+  <div class="disposizione" style="margin-top:14px">
+    <div>
+      <div id="mappa" role="region" aria-label="Mappa dei servizi"></div>
+      <p class="nota" style="margin-top:6px">Mappa stradale: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© contributori di OpenStreetMap</a>. I punti sono quelli pubblicati dalle fonti indicate.</p>
+    </div>
+    <aside aria-labelledby="titoloVicini">
+      <div class="punto-scelto" id="puntoScelto" hidden></div>
+      <div class="esito" style="margin-top:8px"><h2 id="titoloVicini" style="font-size:1.1rem">Servizi più vicini</h2><span class="nota" id="esito" role="status" aria-live="polite"></span></div>
+      <p class="nota" id="notaDistanze">Scegli un comune, un indirizzo o un punto sulla mappa per vedere le distanze.</p>
+      <ul class="vicini" id="vicini"></ul>
+      <div class="azioni" style="margin-top:8px"><button type="button" class="btn btn-secondario" id="copiaLink">Copia link</button><button type="button" class="btn btn-secondario" id="piu" hidden>Mostra altri</button></div>
+    </aside>
+  </div>
+
+  <section class="riquadro" style="margin-top:16px" aria-labelledby="titoloMetodo">
+    <h2 id="titoloMetodo">Fonti e limiti</h2>
+    <div id="fonti" class="nota"></div>
+    <p class="nota" style="margin-top:8px"><b>Distanze.</b> Sono in linea d'aria, dal punto scelto al servizio: non sono percorsi stradali né tempi di viaggio, che non vengono mostrati perché non c'è un servizio di calcolo integrato. Per gli autobus, la fermata rimanda alla pagina Orari con le partenze. <b>Posizione del dispositivo.</b> Viene chiesta al browser solo dopo aver premuto il pulsante e non viene inviata all'Atlante. <span id="segnala"></span></p>
+  </section>
+</main>
+
+<footer class="piede"><div class="piede-dentro">
+  <div><strong>Atlante FVG</strong><br>I comuni del Friuli Venezia Giulia, con fonte e data di ogni dato.</div>
+  <div><a href="../">Pagina iniziale</a> · <a href="../orari/">Orari degli autobus</a> · <a href="../stradario/">Stradario</a> · <a href="../?pagina=metodo">Metodo e fonti</a></div>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  const dataIt = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} ${MESI[+m[2] - 1]} ${m[1]}` : ''; };
+  const COLORI = { farmacie: '#C1292E', parafarmacie: '#E07A5F', guardie: '#7B2CBF', rsa: '#D8973C', scuole: '#2F7D4F', fermate: '#155E9E' };
+  const BOX = [12.3, 45.55, 13.95, 46.7];
+  let D = null, COMUNI = [], mappa, strato, attive = new Set(['farmacie', 'guardie', 'rsa', 'scuole', 'fermate']), punto = null, puntoEt = '', segnaposto = null, mostraN = 20, ST = {};
+  const dist = (a, b, c, d) => { const R = 6371000, p = Math.PI / 180, x = (c - a) * p, y = (d - b) * p, s = Math.sin(x / 2) ** 2 + Math.cos(a * p) * Math.cos(c * p) * Math.sin(y / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(s)); };
+  const fmtDist = m => m < 1000 ? Math.round(m / 10) * 10 + ' m' : (m / 1000).toLocaleString('it-IT', { maximumFractionDigits: 1 }) + ' km';
+  const slugDi = n => { const c = COMUNI.find(x => x.n === n); return c ? c.slug : ''; };
+  function leggiURL() { const p = new URLSearchParams(location.search); if (p.get('cat')) attive = new Set(p.get('cat').split(',').filter(c => COLORI[c])); const m = /^(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/.exec(p.get('punto') || ''); if (m) { punto = [+m[1], +m[2]]; puntoEt = p.get('et') || 'Punto scelto'; } ST.comune = p.get('comune') || ''; }
+  function indirizzo() { const u = new URL(location.href), p = u.searchParams; ['cat', 'punto', 'et', 'comune'].forEach(k => p.delete(k)); if (attive.size !== 5 || !attive.has('farmacie')) p.set('cat', [...attive].join(',')); if (punto && puntoEt !== 'La mia posizione') { p.set('punto', punto.map(v => v.toFixed(5)).join(',')); if (puntoEt && puntoEt !== 'Punto scelto') p.set('et', puntoEt.slice(0, 80)); } if (ST.comune) p.set('comune', ST.comune); return u.pathname + (p.toString() ? '?' + p.toString() : ''); }
+  const catDi = id => D.categorie.find(c => c.id === id);
+  function popup(p, d) {
+    const c = catDi(p[0]), x = p[6] || {}; let h = `<b>${esc(p[3])}</b><div>${esc(c.nome)}${p[4] ? ' · ' + esc(p[4]) : ''}${p[5] ? ' · <a href="../c/' + esc(p[5]) + '/">' + esc((COMUNI.find(k => k.slug === p[5]) || {}).n || p[5]) + '</a>' : ''}</div>`;
+    if (x.telefono) h += `<div>Telefono: ${esc(x.telefono)}</div>`; if (x.orari) h += `<div>Orari: ${esc(x.orari)}</div>`; if (x.azienda) h += `<div>${esc(x.azienda)}</div>`;
+    if (x.tipologia || x.posti) h += `<div>${esc(x.tipologia || '')}${x.posti ? ' · ' + esc(x.posti) + ' posti letto' : ''}</div>`;
+    if (x.daVerificare) h += `<div class="dv">Posizione ricavata dall'indirizzo (OpenStreetMap), da verificare</div>`;
+    if (p[0] === 'fermate') h += `<div><a href="../orari/?fermata=${encodeURIComponent(x.id)}">Orari delle partenze da questa fermata</a>${x.linee ? ' · ' + x.linee + ' linee' : ''}</div>`;
+    if (d !== undefined) h += `<div><b style="font-family:inherit;font-size:13px;display:inline">${fmtDist(d)}</b> in linea d'aria dal punto scelto</div>`;
+    h += `<div style="font-size:11px;color:#54616f;margin-top:4px">Fonte: ${esc(c.fonte)}${c.consultazione ? ', consultata il ' + dataIt(c.consultazione) : ''}</div>`;
+    return h;
+  }
+  function disegnaPunti() {
+    if (strato) strato.remove(); strato = L.layerGroup();
+    const b = mappa.getBounds().pad(0.2), z = mappa.getZoom();
+    D.punti.forEach(p => { if (!attive.has(p[0]) || !b.contains([p[1], p[2]])) return; if (p[0] === 'fermate' && z < 13 && !punto) return; const m = L.circleMarker([p[1], p[2]], { radius: p[0] === 'fermate' ? 4 : 6, color: '#fff', weight: 1.5, fillColor: COLORI[p[0]], fillOpacity: .9 }); m.bindPopup(() => popup(p, punto ? dist(punto[0], punto[1], p[1], p[2]) : undefined)); strato.addLayer(m); });
+    strato.addTo(mappa);
+  }
+  function disegnaVicini() {
+    const el = $('vicini'); if (!punto) { el.innerHTML = ''; $('notaDistanze').hidden = false; $('esito').textContent = ''; $('piu').hidden = true; return; }
+    $('notaDistanze').hidden = true;
+    const l = D.punti.filter(p => attive.has(p[0])).map(p => [p, dist(punto[0], punto[1], p[1], p[2])]).sort((a, b) => a[1] - b[1]);
+    el.innerHTML = l.slice(0, mostraN).map(([p, d]) => { const c = catDi(p[0]), x = p[6] || {}; return `<li><div><span class="pallino" style="background:${COLORI[p[0]]}" aria-hidden="true"></span> <b>${esc(p[3])}</b><div>${esc(c.nome)}${p[4] ? ' · ' + esc(p[4]) : ''}${p[5] ? ' · ' + esc((COMUNI.find(k => k.slug === p[5]) || {}).n || '') : ''}</div>${x.telefono ? `<div>Telefono: ${esc(x.telefono)}</div>` : ''}${x.orari ? `<div>Orari: ${esc(x.orari)}</div>` : ''}${p[0] === 'fermate' ? `<div><a href="../orari/?fermata=${encodeURIComponent(x.id)}">Orari da questa fermata</a></div>` : ''}${x.daVerificare ? '<div class="dv">posizione dall\'indirizzo, da verificare</div>' : ''}</div><div class="dist">${fmtDist(d)}<span>in linea d'aria</span></div><div class="fonte-p">Fonte: ${esc(c.fonte)}${c.consultazione ? ', ' + dataIt(c.consultazione) : ''}</div></li>`; }).join('');
+    $('esito').textContent = `${Math.min(mostraN, l.length)} di ${l.length.toLocaleString('it-IT')} servizi`; $('piu').hidden = l.length <= mostraN;
+  }
+  function impostaPunto(lat, lon, et, zoom) {
+    punto = [lat, lon]; puntoEt = et || 'Punto scelto'; mostraN = 20;
+    if (segnaposto) segnaposto.remove(); segnaposto = L.marker([lat, lon], { title: puntoEt }).addTo(mappa);
+    $('puntoScelto').hidden = false; $('puntoScelto').innerHTML = `Punto di partenza: <b>${esc(puntoEt)}</b> (${lat.toFixed(5)}, ${lon.toFixed(5)}) · <button type="button" class="btn btn-secondario" id="togliPunto" style="min-height:36px;padding:0 10px">Togli</button>`;
+    if (zoom) mappa.setView([lat, lon], zoom); disegnaPunti(); disegnaVicini(); try { history.replaceState(null, '', indirizzo()); } catch (e) { /* indirizzo non modificabile */ }
+  }
+  $('puntoScelto').addEventListener('click', e => { if (!e.target.closest('#togliPunto')) return; punto = null; puntoEt = ''; if (segnaposto) segnaposto.remove(); $('puntoScelto').hidden = true; disegnaPunti(); disegnaVicini(); try { history.replaceState(null, '', indirizzo()); } catch (err) { /* ignorato */ } });
+  $('piu').addEventListener('click', () => { mostraN += 20; disegnaVicini(); });
+  // ricerca di indirizzi con Photon (OpenStreetMap), limitata alla regione
+  let tCerca; $('q').addEventListener('input', e => { clearTimeout(tCerca); const q = e.target.value.trim(); if (q.length < 3) { $('suggerimenti').hidden = true; $('q').setAttribute('aria-expanded', 'false'); return; } tCerca = setTimeout(() => cerca(q), 350); });
+  async function cerca(q) {
+    $('statoCerca').textContent = 'Cerco…';
+    try {
+      const r = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=8&lang=default&bbox=${BOX.join(',')}`); const d = await r.json();
+      const ris = (d.features || []).filter(f => f.geometry && f.geometry.coordinates);
+      $('suggerimenti').innerHTML = ris.map((f, k) => { const p = f.properties, nome = [p.name, p.housenumber ? (p.street || '') + ' ' + p.housenumber : p.street, p.city || p.town || p.village, p.postcode].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i).join(', '); return `<li role="option"><button type="button" data-k="${k}" data-lat="${f.geometry.coordinates[1]}" data-lon="${f.geometry.coordinates[0]}">${esc(nome)}</button></li>`; }).join('');
+      $('suggerimenti').hidden = !ris.length; $('q').setAttribute('aria-expanded', String(!!ris.length)); $('statoCerca').textContent = ris.length ? `${ris.length} risultati: scegline uno` : 'Nessun risultato in Friuli Venezia Giulia';
+    } catch (e) { $('statoCerca').textContent = 'Ricerca degli indirizzi non disponibile adesso: scegli un comune o tocca la mappa.'; }
+  }
+  $('suggerimenti').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $('suggerimenti').hidden = true; $('q').value = b.textContent; $('statoCerca').textContent = ''; impostaPunto(+b.dataset.lat, +b.dataset.lon, b.textContent, 15); });
+  $('comune').addEventListener('change', e => { ST.comune = e.target.value; const c = D.comuni[ST.comune]; if (c) { const nome = (COMUNI.find(k => k.slug === ST.comune) || {}).n || ST.comune; impostaPunto(c[0], c[1], 'Centro di ' + nome, 14); } });
+  $('posizione').addEventListener('click', () => {
+    if (!navigator.geolocation) { $('statoCerca').textContent = 'Il browser non fornisce la posizione.'; return; }
+    $('statoCerca').textContent = 'Attendo il permesso del browser…';
+    navigator.geolocation.getCurrentPosition(pos => { $('statoCerca').textContent = ''; impostaPunto(pos.coords.latitude, pos.coords.longitude, 'La mia posizione', 15); }, err => { $('statoCerca').textContent = err.code === 1 ? 'Permesso negato: puoi scegliere un comune o toccare la mappa.' : 'Posizione non disponibile adesso.'; }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
+  });
+  $('copiaLink').addEventListener('click', async () => { const url = location.origin + indirizzo(); try { await navigator.clipboard.writeText(url); $('copiaLink').textContent = 'Link copiato'; setTimeout(() => $('copiaLink').textContent = 'Copia link', 2000); } catch (e) { prompt('Copia il collegamento', url); } });
+  (async () => {
+    try {
+      [D, COMUNI] = await Promise.all([fetch('../dati/servizi.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }), fetch('../dati/comuni_slug.json').then(r => r.json())]);
+      leggiURL();
+      $('categorie').innerHTML = D.categorie.map(c => `<label><input type="checkbox" value="${c.id}" ${attive.has(c.id) ? 'checked' : ''}><span class="pallino" style="background:${COLORI[c.id]}" aria-hidden="true"></span>${esc(c.nome)} <span class="nota">(${D.punti.filter(p => p[0] === c.id).length.toLocaleString('it-IT')})</span></label>`).join('');
+      $('categorie').addEventListener('change', e => { const c = e.target.closest('input'); if (!c) return; if (c.checked) attive.add(c.value); else attive.delete(c.value); disegnaPunti(); disegnaVicini(); try { history.replaceState(null, '', indirizzo()); } catch (err) { /* ignorato */ } });
+      $('comune').innerHTML = '<option value="">Scegli un comune</option>' + COMUNI.slice().sort((a, b) => a.n.localeCompare(b.n, 'it')).map(c => `<option value="${esc(c.slug)}" ${c.slug === ST.comune ? 'selected' : ''}>${esc(c.n)} (${esc(c.pv)})</option>`).join('');
+      $('fonti').innerHTML = '<ul style="margin:0 0 0 18px;padding:0">' + D.categorie.map(c => `<li><b>${esc(c.nome)}</b>: ${esc(c.fonte)}${c.consultazione ? ', consultata il ' + dataIt(c.consultazione) : ''}. ${esc(c.nota || '')}</li>`).join('') + `</ul><p style="margin-top:6px">${esc(D.nota)}${D.scuoleSenzaPosizione ? ` Scuole senza posizione trovata: ${D.scuoleSenzaPosizione}.` : ''}</p>`;
+      $('fonte').innerHTML = `${D.punti.length.toLocaleString('it-IT')} punti da fonti ufficiali regionali e dalla rete TPL FVG, preparati il ${dataIt(D.generato)}. Ogni punto riporta la propria fonte e la data di consultazione.`;
+      const u = 'mailto:info@atlantefvg.it?subject=' + encodeURIComponent('Segnalazione di errore: servizi') + '&body=' + encodeURIComponent('Pagina: ' + location.href + '\nServizio:\n\nChe cosa non torna:\n');
+      $('segnala').innerHTML = `Hai trovato un errore? <a href="${u}">Segnalalo per posta</a> oppure <a href="https://wa.me/393283692227?text=${encodeURIComponent('Segnalazione di errore sull\'Atlante FVG: pagina Servizi')}" target="_blank" rel="noopener">via WhatsApp</a>.`;
+      mappa = L.map('mappa', { zoomControl: true, tap: false }).setView([46.05, 13.0], 9);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© contributori di OpenStreetMap' }).addTo(mappa);
+      mappa.on('moveend zoomend', disegnaPunti);
+      // un tocco su un punto apre il suo fumetto; solo il tocco sulla mappa libera sposta il punto di partenza
+      mappa.on('click', e => { const o = e.originalEvent && e.originalEvent.target; if (o && o.closest && o.closest('.leaflet-interactive, .leaflet-marker-icon, .leaflet-popup')) return; impostaPunto(e.latlng.lat, e.latlng.lng, 'Punto scelto sulla mappa'); });
+      if (punto) impostaPunto(punto[0], punto[1], puntoEt, 14); else if (ST.comune && D.comuni[ST.comune]) { const c = D.comuni[ST.comune]; impostaPunto(c[0], c[1], 'Centro di ' + ((COMUNI.find(k => k.slug === ST.comune) || {}).n || ST.comune), 14); } else disegnaPunti();
+    } catch (e) { $('fonte').innerHTML = '<span class="errore" style="display:block">I dati dei servizi non si sono caricati: ricarica la pagina.</span>'; }
+  })();
+})();
+</script>
+</body>
+</html>

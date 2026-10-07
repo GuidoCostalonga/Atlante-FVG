@@ -126,7 +126,7 @@ def main():
     st, _, home, _ = apri(SITO + '/')
     m = re.search(rb'^const MAN = (.*);$', home, re.M)
     file_dati = sorted({f for x in json.loads(m.group(1))['manifest'] for f in x['files']}) if m else []
-    file_dati += ['dati/_mappe_0.txt', 'dati/_punti_0.txt', 'dati/_tpl_0.txt', 'dati/bandi.json', 'dati/aggiornamenti.json', 'dati/opere_meta.json', 'dati/comuni_slug.json']
+    file_dati += ['dati/_mappe_0.txt', 'dati/_punti_0.txt', 'dati/_tpl_0.txt', 'dati/bandi.json', 'dati/aggiornamenti.json', 'dati/opere_meta.json', 'dati/comuni_slug.json', 'dati/finanziamenti_indice.json', 'dati/servizi.json']
     with cf.ThreadPoolExecutor(8) as ex:
         for f, (st, *_) in zip(file_dati, ex.map(lambda f: apri(f'{SITO}/{f}', metodo='HEAD'), file_dati)):
             if st != 200: errori.append(f'File di dati mancante: {f} (stato {st})')
