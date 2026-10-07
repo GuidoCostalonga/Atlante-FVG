@@ -98,6 +98,15 @@ Prova: `node prove/confronto.js`.
 
 Prova: `node prove/serie.js`.
 
+## Mappe e grafici esportabili
+
+- **Mappa dei comuni e delle regioni**: pulsanti «Immagine» con formato (documenti A4 orizzontale 2000×1414, presentazioni 16:9 1920×1080, social quadrato 1080×1080) e scarico in **PNG** o in **SVG**. Lo SVG (`svgMappaCompleta`) è un documento autonomo con titolo, sottotitolo (territorio, unità, periodo), mappa con i 215 comuni, legenda, fonte, marchio e data, testi veri e modificabili, logo incorporato; il PNG è composto da `esportaImmagine` con gli stessi elementi. Nessun comando dell'interfaccia finisce nell'immagine; i nomi dei file portano l'indicatore e, per la serie storica, gli anni.
+- **Grafici della scheda del comune** (residenti, conti, opere per anno, presenze, raccolta differenziata): pulsante «Scarica PNG» sotto ogni grafico, con titolo, comune, periodo, fonte e marchio.
+- **Grafici del confronto**: vedi il paragrafo sul confronto avanzato.
+- La base cartografica dei confini è quella dell'Atlante (`dati/_mappe_0.txt`); le mappe stradali e satellitari delle pagine Stradario, Orari e Servizi hanno attribuzioni obbligatorie (OpenStreetMap, Esri) e non si esportano da qui.
+
+Prova: `node prove/immagini.js` (SVG e tre PNG della mappa, PNG di un grafico; immagini controllate a occhio).
+
 ## Ricerche condivisibili e download
 
 L'indirizzo conserva il comune (o la provincia), la pagina e i filtri della pagina aperta, così chi riceve il collegamento
