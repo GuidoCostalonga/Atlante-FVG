@@ -41,6 +41,32 @@ pulsante per la scheda completa.
 Se l'indirizzo indica anche una pagina (`?pagina=mappe&comune=sacile`), il comune resta scelto nel filtro ma la scheda
 non si apre da sola.
 
+## Il mio Comune, ricerca degli indicatori, confronto e link
+
+- **Il mio Comune.** Il pulsante con la stella (sotto il filtro territoriale, nella scheda del comune e nel riquadro della
+  pagina iniziale) salva il comune preferito in `localStorage` (chiave `atlante-fvg:mio-comune`, il nome del comune nell'indirizzo,
+  per esempio `porcia`): nessuna registrazione, nessun invio. Il riquadro della pagina iniziale mostra provincia, residenti al
+  31 dicembre 2025 e i collegamenti a scheda, meteo (`meteo/#porcia`), autobus e confronto; si cambia con il selettore e si toglie
+  con «Rimuovi». Il preferito non imposta mai il filtro territoriale: contano la scelta esplicita e i collegamenti con `?comune=`.
+  Se la memoria del browser non è disponibile il sito funziona e il comune vale finché la pagina resta aperta.
+- **Ricerca degli indicatori.** Nella pagina Mappe il campo «Cerca un indicatore» filtra il selettore per nome e argomento,
+  senza badare a maiuscole e accenti, mantiene i gruppi, annuncia il numero di risultati ai lettori di schermo, mostra un
+  messaggio con il comando «Cancella la ricerca» quando non trova nulla; Invio apre il primo risultato, Esc cancella.
+  L'indicatore mostrato sulla mappa resta scelto anche se non corrisponde alla ricerca (voce «In mappa»).
+- **Confronto.** Fino a sei comuni (costante `CF_MAX`). A confronto vuoto compaiono «Confronta il mio Comune» (con il
+  preferito e i tre comuni della provincia con popolazione più vicina) e un esempio (Roveredo in Piano, Porcia, Cordenons,
+  San Quirino); «Azzera confronto» svuota i selettori; la scelta resta passando ad altre sezioni e dopo il ricaricamento
+  (`sessionStorage`, solo nella scheda del browser in uso). L'intestazione con i nomi dei comuni e la colonna degli indicatori
+  restano ferme mentre si scorre la tabella.
+- **Link.** «Copia link» e «Condividi» (solo dove il sistema offre la condivisione) nelle mappe e nel confronto; il link
+  conserva pagina, indicatore, livello, filtro territoriale e comuni a confronto. Senza accesso agli appunti compare una
+  finestra con il link da copiare a mano. **Indietro e Avanti** ripristinano pagina, comune, indicatore e confronto
+  dell'indirizzo; i parametri mancanti o non validi si ignorano.
+- **Telefono.** Sui dispositivi touch ogni comando è alto almeno 44 pixel; il pizzico a due dita sulle mappe, descritto in
+  «Grafica e uso sul telefono», resta e un dito continua a far scorrere la pagina.
+
+Prova dei percorsi: `SITE=<cartella del sito> CHROMIUM=<chrome> node prove/percorsi.js` (vedi l'intestazione del file).
+
 ## Ricerche condivisibili e download
 
 L'indirizzo conserva il comune (o la provincia), la pagina e i filtri della pagina aperta, così chi riceve il collegamento
