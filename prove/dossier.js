@@ -1,0 +1,31 @@
+// Prova del dossier PDF del comune. Uso: node prove/dossier.js [file.pdf]
+const pw = require(process.env.PWPATH || '/opt/node-tools/node_modules/playwright-core'); const fs = require('fs'), path = require('path');
+const SITE = path.resolve(__dirname, '..');
+const TIPI = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.webp': 'image/webp', '.ico': 'image/x-icon' };
+let fall = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALLITA ') + m); if (!c) fall++; };
+(async () => {
+  const opz = { executablePath: process.env.CHROMIUM || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--no-sandbox', '--disable-features=PostQuantumKyber,X25519MLKEM768,EncryptedClientHello', '--ssl-version-max=tls1.2'] };
+  if (process.env.HTTPS_PROXY) opz.proxy = { server: process.env.HTTPS_PROXY };
+  const b = await pw.chromium.launch(opz);
+  const p = await (await b.newContext({ viewport: { width: 1280, height: 900 }, locale: 'it-IT' })).newPage(); const errs = []; p.on('pageerror', e => errs.push(e + ''));
+  await p.route('https://atlante.prova/**', r => { let fp = SITE + decodeURIComponent(new URL(r.request().url()).pathname); if (fp.endsWith('/')) fp += 'index.html'; return fs.existsSync(fp) ? r.fulfill({ status: 200, body: fs.readFileSync(fp), contentType: TIPI[path.extname(fp)] || 'text/plain' }) : r.fulfill({ status: 404, body: 'no' }); });
+  await p.route(/goatcounter|gc\.zgo\.at/, r => r.abort());
+  await p.goto('https://atlante.prova/?comune=roveredo-in-piano', { waitUntil: 'networkidle', timeout: 90000 }); await p.waitForTimeout(3500);
+  await p.evaluate(() => { window.__stampe = 0; window.print = () => { window.__stampe++; }; });
+  await p.locator('#btnDossier').click(); await p.waitForTimeout(400);
+  ok(await p.evaluate(() => window.__stampe) === 1, 'la stampa parte una volta');
+  const t = await p.evaluate(() => document.getElementById('dossier').innerText);
+  ok(/Roveredo in Piano/.test(t) && /Provincia di Pordenone/.test(t), 'intestazione del dossier');
+  ok(/Mediana FVG/.test(t) && /\d+° su \d+/.test(t), 'mediana e posto in regione');
+  ok(/Residenti al 31 dicembre 2025/.test(t), 'indicatori di popolazione');
+  ok(/Serie storiche/.test(t) && await p.locator('#dossier figure img').count() >= 3, 'grafici come immagini: ' + await p.locator('#dossier figure img').count());
+  ok(!/NaN|undefined|null/.test(t), 'nessun NaN, undefined o null');
+  await p.emulateMedia({ media: 'print' });
+  ok(await p.locator('#dossier').isVisible() && !(await p.locator('header#testata').isVisible()), 'in stampa si vede solo il dossier');
+  const out = process.argv[2] || '/tmp/dossier.pdf'; await p.pdf({ path: out, format: 'A4', printBackground: true, margin: { top: '12mm', bottom: '12mm', left: '12mm', right: '12mm' } });
+  ok(fs.statSync(out).size > 20000, 'PDF generato: ' + fs.statSync(out).size + ' byte');
+  await p.emulateMedia({ media: 'screen' }); await p.evaluate(() => window.dispatchEvent(new Event('afterprint')));
+  ok(await p.locator('#dossier').count() === 0 && !(await p.evaluate(() => document.body.classList.contains('stampa-dossier'))), 'dopo la stampa la pagina torna normale');
+  ok(errs.length === 0, 'nessun errore JS ' + errs.join(' '));
+  await b.close(); console.log(fall ? `\n${fall} FALLITE` : '\nTutte le prove superate'); process.exit(fall ? 1 : 0);
+})();

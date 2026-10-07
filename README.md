@@ -67,6 +67,10 @@ non si apre da sola.
 
 Prova dei percorsi: `SITE=<cartella del sito> CHROMIUM=<chrome> node prove/percorsi.js` (vedi l'intestazione del file).
 
+## Dossier del comune in PDF
+
+Nella scheda di ogni comune il pulsante «Dossier completo in PDF» apre la stampa del browser con un documento A4 pronto da salvare: tutti gli indicatori dell'Atlante, ciascuno con valore del comune, mediana regionale, posto fra i comuni che hanno il dato (1° = valore più alto, non necessariamente il migliore), periodo e fonte; le opere pubbliche più grandi con le quote di copertura; i grafici delle serie storiche come immagini (con la scheda aperta); una nota su come leggerlo. Non si scarica nulla da server e non si usano librerie: il documento è costruito nel browser (`costruisciDossier` nel modello) e stampato con il suo stile `@media print`. Il dossier porta la data del giorno e dice che non è un atto ufficiale. Prova: `node prove/dossier.js` (genera anche un PDF di controllo).
+
 ## Ricerche condivisibili e download
 
 L'indirizzo conserva il comune (o la provincia), la pagina e i filtri della pagina aperta, così chi riceve il collegamento
