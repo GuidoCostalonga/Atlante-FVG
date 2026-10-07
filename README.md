@@ -181,7 +181,12 @@ chi visita la pagina. Ogni riquadro della mappa è agganciato al disegno con le 
 
 La pagina `orari/` mostra l'orario programmato di ogni linea TPL FVG: si sceglie la linea, la direzione, il giorno e la
 fermata e si leggono le partenze, con la prossima evidenziata e il dettaglio di ogni corsa fermata per fermata.
-Dalla pagina Autobus ci si arriva con «Orari delle linee» e, per la linea scelta, con «Orari di questa linea».
+La fermata di partenza si sceglie dalla tendina oppure toccandola sulla mappa del percorso (Leaflet con lo sfondo di
+OpenStreetMap, caricati solo quando si sceglie una linea; sul telefono la mappa si muove con due dita, un dito scorre la
+pagina). Dalla pagina Autobus ci si arriva con «Orari delle linee», con «Orari di questa linea» per la linea scelta e, dal
+pannello di una fermata toccata sulla mappa, con «Orari delle partenze da qui»: la pagina Orari elenca allora le linee che
+passano da quella fermata. Nell'indirizzo la fermata è indicata con il suo codice (`?fermata=01001`), lo stesso della rete
+degli autobus.
 
 I dati vengono dallo stesso GTFS di TPL FVG distribuito da BusOne. `scripts/aggiorna_orari.py` lo scarica ogni lunedì
 insieme alla rete degli autobus e scrive `dati/orari/indice.txt` (validità, calendario dei servizi giorno per giorno,
