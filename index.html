@@ -404,8 +404,8 @@
     <div class="p-5 border-b border-pietra-200 flex flex-wrap items-end justify-between gap-3">
       <div class="min-w-0">
         <div class="text-[11px] uppercase tracking-[0.2em] text-accento-700">Confronto</div>
-        <h2 class="font-patriarcale font-bold text-lg text-primario-800">Quattro comuni fianco a fianco</h2>
-        <p class="text-xs text-pietra-700 max-w-3xl">Scegli fino a quattro comuni. Per ogni riga il valore più alto è su fondo dorato, il più basso su fondo azzurro: alto non vuol dire sempre migliore, dipende dall'indicatore.</p>
+        <h2 class="font-patriarcale font-bold text-lg text-primario-800">Sei comuni fianco a fianco</h2>
+        <p class="text-xs text-pietra-700 max-w-3xl">Scegli fino a sei comuni. Per ogni riga il valore più alto è su fondo dorato, il più basso su fondo azzurro: alto non vuol dire sempre migliore, dipende dall'indicatore.</p>
       </div>
       <div class="flex flex-wrap gap-2">
         <button id="btnCfVicini" class="inline-flex items-center gap-1 text-sm text-primario-700 border border-primario-200 rounded-lg px-3 py-2 hover:bg-primario-50"><i data-lucide="users" class="w-4 h-4"></i>Comuni di taglia simile</button>
@@ -414,7 +414,7 @@
       </div>
     </div>
     <div class="p-4 sm:p-5 flex flex-col gap-4">
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-2" id="cfSel"></div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-2" id="cfSel"></div>
       <div class="flex flex-wrap items-center gap-2">
         <span class="text-[10px] uppercase tracking-wider text-pietra-700" id="cfVistaEt">Mostra</span>
         <div class="flex flex-wrap gap-1 bg-pietra-100 p-1 rounded-lg" role="group" aria-labelledby="cfVistaEt" id="cfVista">
@@ -1195,7 +1195,7 @@ function aggiornaIndirizzo(nuova) {
 const PAGINE = [
   { id: 'inizio', t: 'Inizio', i: 'house', sez: ['intro', 'azioni', 'panoramica', 'esplora'], d: 'La ricerca del comune, i numeri principali della regione e i tre percorsi: esplorare, confrontare, consultare e scaricare.' },
   { id: 'mappe', t: 'Mappe', i: 'map', sez: ['mappe'], d: 'Oltre trenta indicatori comune per comune, le cartine dell\'Annuario e i servizi sul territorio.' },
-  { id: 'confronto', t: 'Confronto', i: 'columns-3', sez: ['confronto'], d: 'Quattro comuni fianco a fianco, indicatore per indicatore.' },
+  { id: 'confronto', t: 'Confronto', i: 'columns-3', sez: ['confronto'], d: 'Sei comuni fianco a fianco, indicatore per indicatore.' },
   { id: 'autobus', t: 'Autobus', i: 'bus', vivo: true, sez: ['trasporti'], d: 'Linee, fermate e arrivi in tempo reale, con la mappa delle vie.' },
   { id: 'ambiente', t: 'Allerte e aria', i: 'cloud-sun', vivo: true, sez: ['allerte', 'aria'], d: 'Allerta meteo di oggi e di domani; qualità dell\'aria: ultimi dati validati delle centraline.' },
   { id: 'comuni', t: 'Comuni', i: 'list', sez: ['grafici', 'registro'], d: 'Il registro dei 215 comuni: residenti, sindaci, servizi, elezioni, con i riepiloghi per provincia.' },
@@ -1217,7 +1217,7 @@ const STRUMENTI = [['orari/', 'Orari', 'clock', 'Orari degli autobus TPL FVG', '
 const DESCR_PAG = {
   inizio: 'I 215 comuni del Friuli Venezia Giulia in un\'unica pagina: popolazione, amministratori, servizi, bilanci, elezioni, mappe e autobus in tempo reale. Dati da fonti pubbliche.',
   mappe: 'Mappe dei 215 comuni del Friuli Venezia Giulia: popolazione, redditi, servizi, Terzo settore, rischio idrogeologico, bilanci, elezioni e opere pubbliche, comune per comune.',
-  confronto: 'Confronta fino a quattro comuni del Friuli Venezia Giulia, indicatore per indicatore, con i valori assoluti separati da quelli per abitante.',
+  confronto: 'Confronta fino a sei comuni del Friuli Venezia Giulia, indicatore per indicatore, con i valori assoluti separati da quelli per abitante.',
   autobus: 'Linee, fermate e arrivi in tempo reale degli autobus del Friuli Venezia Giulia, con la mappa delle vie.',
   ambiente: 'Allerta meteo di oggi e di domani, letta al momento, e ultimi dati validati della qualità dell\'aria delle centraline del Friuli Venezia Giulia.',
   comuni: 'Elenco dei 215 comuni del Friuli Venezia Giulia per provincia, con residenti, sindaci, servizi e prossime elezioni.',
@@ -1259,7 +1259,7 @@ function vaiPagina(id, { nuova = true, scorri = true } = {}) {
   if (id !== 'mappe') { const f = document.getElementById('fogliettoMappa'); if (f) f.hidden = true; }
 }
 const PERCORSI = [['mappe', 'map', 'Esplora', 'Oltre trenta indicatori sulle mappe dei 215 comuni'],
-  ['confronto', 'columns-3', 'Confronta', 'Fino a quattro comuni fianco a fianco'],
+  ['confronto', 'columns-3', 'Confronta', 'Fino a sei comuni fianco a fianco'],
   ['archivio', 'database', 'Consulta e scarica', 'Tutti i fogli in CSV ed Excel, con fonte e data']];
 // il filtro territoriale: nella pagina Mappe sta nei comandi (su desktop accanto all'indicatore, sul telefono sotto la legenda)
 function posizionaFiltro() {
@@ -1452,7 +1452,7 @@ selCom.addEventListener('change', () => { impostaTerritorio(terr.pv, Number(selC
 document.getElementById('btnTerrReset').addEventListener('click', () => impostaTerritorio('', -1));
 function azzeraTutto() {
   document.getElementById('ricerca').value = ''; document.getElementById('fEl').value = ''; ordine = { k: 'p25', dir: -1 };
-  cfScelti = [-1, -1, -1, -1]; cfVista = 'tutti';
+  cfScelti = Array(CF_MAX).fill(-1); cfVista = 'tutti';
   document.getElementById('cercaFoglio').value = ''; document.getElementById('soloConDati').checked = false; document.getElementById('usaTerr').checked = true;
   filtriCol = {}; ordA = { j: -1, dir: 1 }; document.getElementById('cercaRighe').value = ''; if (corrente) disegnaPannelloFiltri();
   impostaTerritorio('', -1); disegnaConfronto(); ricordaStato();
@@ -2143,7 +2143,8 @@ const periodoInd = ind => ind.id === 'opRAb' || ind.id === 'opR' ? `progetti dec
 // anno di riferimento più recente nel periodo (una previsione conta per l'anno di base)
 const annoRif = ind => { const y = (periodoInd(ind).replace(/previsione al \d{4}/, '').match(/\d{4}/g) || []).map(Number); return y.length ? Math.max(...y) : null; };
 let cfVista = 'tutti';
-let cfScelti = [-1, -1, -1, -1];
+const CF_MAX = 6;
+let cfScelti = Array(CF_MAX).fill(-1);
 function opzioniComuni(v) { return '<option value="-1">Scegli un comune</option>' + MAN.istat.map((_, i) => i).sort((a, b) => NOME_COM[a].localeCompare(NOME_COM[b], 'it')).map(i => `<option value="${i}" ${i === v ? 'selected' : ''}>${esc(NOME_COM[i])} (${PV_COM[i]})</option>`).join(''); }
 const fmtInd = (ind, v) => v === null || v === undefined ? '' : (ind.cat ? esc(v) : numIt(v, ind.d) + (ind.u === '%' ? '%' : ''));
 function disegnaConfronto() {
@@ -2154,6 +2155,7 @@ function disegnaConfronto() {
   document.getElementById('cfTesta').innerHTML = '<tr><th scope="col" class="text-left px-3 py-2 font-patriarcale text-[11px] uppercase">Indicatore</th>' + sc.map(i => `<th scope="col" class="text-right px-3 py-2 font-patriarcale text-[11px] uppercase">${esc(NOME_COM[i])}</th>`).join('') + '</tr>';
   ricordaStato();
   if (!sc.length) { document.getElementById('cfCorpo').innerHTML = `<tr><td class="px-3 py-4">${vuotoHTML('Scegli almeno un comune qui sopra, oppure usa il filtro territoriale.')}</td></tr>`; lucide.createIcons(); return; }
+  document.getElementById('cfCorpo').closest('table').style.minWidth = (230 + sc.length * 105) + 'px';
   const gruppi = CF_GRUPPI.filter(g => cfVista === 'tutti' || g.id === cfVista);
   document.getElementById('cfCorpo').innerHTML = gruppi.map(g => `<tr class="gruppo"><th scope="colgroup" colspan="${sc.length + 1}" class="text-left px-3 py-2 bg-primario-50"><span class="font-patriarcale font-bold text-primario-800 text-[13px]">${esc(g.t)}</span>${g.d ? `<span class="block font-normal text-[11px] text-pietra-700">${esc(g.d)}</span>` : ''}</th></tr>` + g.righe.map(ind => {
     const vals = sc.map(i => { const v = ind.f(i); return v === undefined || (typeof v === 'number' && !isFinite(v)) ? null : v; });
@@ -2169,8 +2171,8 @@ document.getElementById('btnCfVicini').addEventListener('click', () => {
   const base = cfScelti.find(i => i >= 0) ?? (terr.com >= 0 ? terr.com : -1);
   if (base < 0) { mostraToast('Scegli prima un comune'); return; }
   const p = R(base).p25;
-  const simili = MAN.istat.map((_, i) => i).filter(i => i !== base && PV_COM[i] === PV_COM[base]).sort((a, b) => Math.abs(R(a).p25 - p) - Math.abs(R(b).p25 - p)).slice(0, 3);
-  cfScelti = [base, ...simili]; disegnaConfronto(); mostraToast('Aggiunti i tre comuni della provincia con popolazione più vicina');
+  const simili = MAN.istat.map((_, i) => i).filter(i => i !== base && PV_COM[i] === PV_COM[base]).sort((a, b) => Math.abs(R(a).p25 - p) - Math.abs(R(b).p25 - p)).slice(0, CF_MAX - 1);
+  cfScelti = [base, ...simili, ...Array(CF_MAX).fill(-1)].slice(0, CF_MAX); disegnaConfronto(); mostraToast(`Aggiunti i ${simili.length === 5 ? 'cinque' : simili.length} comuni della provincia con popolazione più vicina`);
 });
 document.getElementById('btnCfCopia').addEventListener('click', () => {
   const sc = cfScelti.filter(i => i >= 0); if (!sc.length) return;
@@ -2912,8 +2914,8 @@ function mostraToast(msg) {
   const p = PARAM0;
   if (/^20\d\d$/.test(p.get('voto') || '') && [...document.getElementById('fEl').options].some(o => o.value === p.get('voto'))) document.getElementById('fEl').value = p.get('voto');
   const o = /^(-?)([a-zA-Z0-9]+)$/.exec(p.get('ordina') || ''); if (o && document.querySelector(`th[data-ord="${o[2]}"]`)) ordine = { k: o[2], dir: o[1] ? -1 : 1 };
-  const cf = (p.get('confronta') || '').split(',').map(s => SLUG_COM.indexOf(s)).filter((i, k, a) => i >= 0 && a.indexOf(i) === k).slice(0, 4);
-  if (cf.length) cfScelti = [...cf, -1, -1, -1, -1].slice(0, 4);
+  const cf = (p.get('confronta') || '').split(',').map(s => SLUG_COM.indexOf(s)).filter((i, k, a) => i >= 0 && a.indexOf(i) === k).slice(0, CF_MAX);
+  if (cf.length) cfScelti = [...cf, ...Array(CF_MAX).fill(-1)].slice(0, CF_MAX);
   if (['tutti', 'assoluti', 'rapporto', 'elezioni'].includes(p.get('mostra'))) cfVista = p.get('mostra');
   if (p.get('livello') === 'regioni') livMappa = 'regioni';
   if (p.get('indicatore')) indCorr = p.get('indicatore').slice(0, 40);
