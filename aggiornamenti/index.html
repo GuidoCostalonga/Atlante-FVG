@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cosa è cambiato · Atlante FVG</title>
+<meta name="description" content="Il registro degli aggiornamenti dell'Atlante FVG: per ogni modifica la data, i dati o il servizio interessati, il periodo dei dati, la descrizione e il collegamento alla sezione. Distingue nuovi dati, correzioni, cambiamenti di metodo e funzioni nuove.">
+<link rel="canonical" href="https://atlantefvg.it/aggiornamenti/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<meta name="theme-color" content="#0B3359">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Atlante FVG">
+<meta property="og:url" content="https://atlantefvg.it/aggiornamenti/">
+<meta property="og:title" content="Cosa è cambiato · Atlante FVG">
+<meta property="og:description" content="Registro degli aggiornamenti dell'Atlante FVG, dalla prima versione pubblicata.">
+<meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Atlante FVG","item":"https://atlantefvg.it/"},{"@type":"ListItem","position":2,"name":"Cosa è cambiato","item":"https://atlantefvg.it/aggiornamenti/"}]}</script>
+<script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../pagine.css">
+<style>
+  .filtri { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 768px) { .filtri { grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr) minmax(0, 1.4fr); align-items: end; } }
+  .cerca { position: relative; }
+  .cerca .campo { padding-left: 40px; padding-right: 44px; }
+  .cerca .lente { position: absolute; left: 12px; top: 50%; margin-top: 11px; transform: translateY(-50%); color: var(--testo-3); pointer-events: none; }
+  .cerca .x { position: absolute; right: 2px; bottom: 2px; width: 44px; height: 44px; border: 0; background: none; border-radius: 10px; color: var(--testo-3); cursor: pointer; font-size: 18px; line-height: 1; }
+  .tipi { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .tipi button { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid #CBD8E6; background: #fff; font: inherit; font-size: 14px; font-weight: 600; color: var(--blu-medio); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+  .tipi button[aria-pressed="true"] { background: var(--blu); border-color: var(--blu); color: #fff; }
+  .pallino { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .t-dati { background: #2F7D4F; } .t-correzione { background: #C1292E; } .t-metodo { background: #D8973C; } .t-funzione { background: #155E9E; }
+  .elenco { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .voce { background: var(--carta); border: 1px solid var(--linea); border-radius: 14px; padding: 14px 16px; display: grid; grid-template-columns: 1fr; gap: 6px 16px; }
+  @media (min-width: 768px) { .voce { grid-template-columns: 9.5rem minmax(0, 1fr); } .voce .quando { grid-row: span 3; } }
+  .voce .quando { font-size: 13px; color: var(--testo-3); display: flex; flex-direction: column; gap: 4px; }
+  .voce .quando b { color: var(--testo); font-size: 15px; font-family: var(--serif); }
+  .voce h2 { font-family: var(--serif); font-size: 1.05rem; line-height: 1.3; font-weight: 600; margin: 0; }
+  .voce .descr { font-size: 14px; color: var(--testo-2); white-space: pre-line; }
+  .voce .interessa { display: flex; flex-wrap: wrap; gap: 6px; font-size: 13px; }
+  .voce .interessa a { display: inline-flex; align-items: center; min-height: 32px; padding: 0 10px; border-radius: 999px; background: var(--blu-tenue); color: var(--blu); text-decoration: none; border: 1px solid #CBD8E6; }
+  .voce .interessa a:hover { text-decoration: underline; }
+  .valori { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
+  .valori th, .valori td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--linea); }
+  .valori th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--testo-3); }
+  .valori td.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .piu { color: #1F5E3A; } .meno { color: #7E1317; }
+  .badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 700; border: 1px solid transparent; }
+  .b-dati { background: #E9F4EC; color: #1F5E3A; border-color: #B8D9C4; } .b-correzione { background: #FBEAEA; color: #7E1317; border-color: #EFC2C2; } .b-metodo { background: #FEF8E3; color: #7A4E0C; border-color: #E8C77E; } .b-funzione { background: var(--blu-tenue); color: var(--blu); border-color: #CBD8E6; }
+  .b-auto { background: #fff; color: var(--testo-3); border-color: var(--linea); font-weight: 600; }
+  .fogli { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .fogli th, .fogli td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--linea); vertical-align: top; }
+  .fogli th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--testo-3); position: sticky; top: 0; background: var(--carta); }
+  .fogli td.n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .scorri { overflow: auto; max-height: 28rem; border: 1px solid var(--linea); border-radius: 10px; }
+  .vuoto { text-align: center; padding: 28px 16px; }
+</style>
+</head>
+
+<body>
+<header class="testata"><div class="testata-dentro">
+  <a class="marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="113" height="40"></a>
+  <nav class="voci" aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus</a><a href="../orari/">Orari</a><a href="../bandi/">Bandi</a><a href="../meteo/">Meteo</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo</a>
+  </nav>
+  <details class="menu-mob"><summary>Menu</summary><nav aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../bandi/">Bandi e avvisi</a><a href="../meteo/">Meteo</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo e fonti</a>
+  </nav></details>
+</div></header>
+
+<main class="contenuto">
+  <nav class="percorso" aria-label="Percorso"><a href="../">Atlante FVG</a> › Cosa è cambiato</nav>
+  <section class="intro">
+    <h1>Cosa è cambiato</h1>
+    <p>Il registro degli aggiornamenti dell'Atlante: per ogni modifica pubblicata la data, i dati o il servizio interessati, il periodo dei dati, che cosa è cambiato e il collegamento alla sezione. Quando l'aggiornamento riporta i valori di prima e di dopo, li trovi con la differenza.</p>
+    <p class="nota" id="fonte">Lettura del registro in corso…</p>
+  </section>
+
+  <section class="riquadro" aria-labelledby="titoloFiltri">
+    <h2 id="titoloFiltri" class="sr-only">Cerca e filtra gli aggiornamenti</h2>
+    <div class="filtri">
+      <div class="cerca">
+        <label class="etichetta" for="q">Cerca</label>
+        <svg class="lente" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" class="campo" type="search" autocomplete="off" placeholder="Per esempio: farmacie, autobus, bandi" aria-describedby="esito">
+        <button type="button" class="x" id="cancella" aria-label="Cancella la ricerca" hidden>×</button>
+      </div>
+      <div><label class="etichetta" for="dataset">Dati o servizio</label><select id="dataset" class="campo"></select></div>
+      <div><label class="etichetta" for="origine">Origine</label><select id="origine" class="campo"><option value="">Tutte</option><option value="auto">Aggiornamenti automatici</option><option value="mano">Modifiche redazionali</option></select></div>
+    </div>
+    <div class="tipi" role="group" aria-label="Tipo di modifica">
+      <button type="button" data-t="dati" aria-pressed="true"><span class="pallino t-dati" aria-hidden="true"></span>Nuovi dati</button>
+      <button type="button" data-t="correzione" aria-pressed="true"><span class="pallino t-correzione" aria-hidden="true"></span>Correzioni</button>
+      <button type="button" data-t="metodo" aria-pressed="true"><span class="pallino t-metodo" aria-hidden="true"></span>Metodo</button>
+      <button type="button" data-t="funzione" aria-pressed="true"><span class="pallino t-funzione" aria-hidden="true"></span>Funzioni nuove</button>
+    </div>
+  </section>
+
+  <section aria-labelledby="titoloElenco">
+    <div class="esito" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px">
+      <h2 id="titoloElenco">Aggiornamenti</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="nota" id="esito" role="status" aria-live="polite"></span><button type="button" class="btn btn-secondario" id="azzeraTutto">Azzera i filtri</button><button type="button" class="btn btn-secondario" id="copiaLink">Copia link</button></div>
+    </div>
+    <ul class="elenco" id="elenco"></ul>
+    <div class="riquadro vuoto" id="vuoto" hidden><p id="vuotoTesto"></p><button type="button" class="btn btn-primario" id="azzera">Cancella i filtri</button></div>
+  </section>
+
+  <section class="riquadro" aria-labelledby="titoloFogli" style="margin-top:16px">
+    <h2 id="titoloFogli">Ultima consultazione delle fonti, foglio per foglio</h2>
+    <p class="nota">Per ogni foglio dell'archivio: quando l'Atlante ha letto la fonte l'ultima volta e, se l'indice lo dichiara, il periodo a cui i dati si riferiscono. La data di consultazione non è la data dei dati.</p>
+    <div class="scorri"><table class="fogli"><thead><tr><th scope="col">Foglio</th><th scope="col">Ambito</th><th scope="col" class="n">Righe</th><th scope="col">Ultima consultazione</th><th scope="col">Periodo dei dati</th></tr></thead><tbody id="fogli"></tbody></table></div>
+  </section>
+
+  <p class="nota" id="notaRegistro"></p>
+</main>
+
+<footer class="piede"><div class="piede-dentro">
+  <div><strong>Atlante FVG</strong><br>I comuni del Friuli Venezia Giulia, con fonte e data di ogni dato.</div>
+  <div><a href="../">Pagina iniziale</a> · <a href="https://github.com/GuidoCostalonga/Atlante-FVG/commits/main" target="_blank" rel="noopener">Storia completa del repository</a> · <a href="../?pagina=metodo">Metodo e fonti</a></div>
+</div></footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  const dataIt = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} ${MESI[+m[2] - 1]} ${m[1]}` : ''; };
+  const fmt = n => n === null || n === undefined ? 'n.d.' : Number(n).toLocaleString('it-IT');
+  const segno = n => n === null || n === undefined ? '' : (n > 0 ? '+' : n < 0 ? '−' : '') + Math.abs(n).toLocaleString('it-IT');
+  const TIPI = { dati: 'Nuovi dati', correzione: 'Correzione', metodo: 'Metodo', funzione: 'Funzione nuova' };
+  let D = null, ST = { q: '', ds: '', orig: '', tipi: new Set(['dati', 'correzione', 'metodo', 'funzione']) };
+  const leggiURL = () => { const p = new URLSearchParams(location.search); ST.q = p.get('q') || ''; ST.ds = p.get('dati') || ''; ST.orig = p.get('origine') || ''; if (p.get('tipo')) ST.tipi = new Set(p.get('tipo').split(',').filter(t => TIPI[t])); };
+  const indirizzo = () => { const u = new URL(location.href), p = u.searchParams; ['q', 'dati', 'origine', 'tipo'].forEach(k => p.delete(k)); if (ST.q.trim()) p.set('q', ST.q.trim()); if (ST.ds) p.set('dati', ST.ds); if (ST.orig) p.set('origine', ST.orig); if (ST.tipi.size < 4) p.set('tipo', [...ST.tipi].join(',')); return u.pathname + (p.toString() ? '?' + p.toString() : ''); };
+  function filtra() {
+    const parole = norm(ST.q).split(/\s+/).filter(Boolean);
+    return D.voci.filter(v => ST.tipi.has(v.tipo) && (!ST.orig || (ST.orig === 'auto') === !!v.automatico) && (!ST.ds || v.interessa.some(x => x.nome === ST.ds) || v.valori.some(x => x.cosa === ST.ds)) && parole.every(w => norm(v.titolo + ' ' + v.descrizione + ' ' + v.interessa.map(x => x.nome).join(' ')).includes(w)));
+  }
+  function disegna() {
+    const l = filtra();
+    $('elenco').innerHTML = l.map(v => `<li class="voce"><div class="quando"><b>${dataIt(v.data)}</b><span class="badge b-${v.tipo}">${TIPI[v.tipo]}</span>${v.automatico ? '<span class="badge b-auto">automatico</span>' : ''}</div>
+      <h2>${esc(v.titolo)}</h2>
+      ${v.descrizione ? `<div class="descr">${esc(v.descrizione)}</div>` : ''}
+      ${v.valori.length ? `<table class="valori"><thead><tr><th scope="col">Dati</th><th scope="col">Misura</th><th scope="col" class="n">Prima</th><th scope="col" class="n">Dopo</th><th scope="col" class="n">Differenza</th></tr></thead><tbody>${v.valori.map(x => `<tr><td><a href="${esc(x.collegamento)}">${esc(x.cosa)}</a></td><td>${esc(x.misura)}</td><td class="n">${fmt(x.prima)}</td><td class="n">${fmt(x.dopo)}</td><td class="n ${x.differenza > 0 ? 'piu' : x.differenza < 0 ? 'meno' : ''}">${x.differenza === null || x.differenza === undefined ? 'n.d.' : segno(x.differenza)}</td></tr>`).join('')}</tbody></table>` : ''}
+      ${v.interessa.length ? `<div class="interessa"><span class="nota" style="align-self:center">Vai a:</span>${v.interessa.map(x => `<a href="${esc(x.collegamento)}">${esc(x.nome)}</a>`).join('')}</div>` : ''}
+      ${v.commit ? `<div class="nota">Modifica <a href="https://github.com/GuidoCostalonga/Atlante-FVG/commit/${esc(v.commit)}" target="_blank" rel="noopener">${esc(v.commit.slice(0, 7))}</a> nel repository</div>` : ''}</li>`).join('');
+    $('vuoto').hidden = l.length > 0; if (!l.length) $('vuotoTesto').textContent = 'Nessun aggiornamento corrisponde ai filtri.';
+    $('esito').textContent = `${l.length} ${l.length === 1 ? 'aggiornamento' : 'aggiornamenti'} su ${D.voci.length}`;
+    document.querySelectorAll('.tipi button').forEach(b => b.setAttribute('aria-pressed', String(ST.tipi.has(b.dataset.t))));
+    $('cancella').hidden = !ST.q; try { history.replaceState(null, '', indirizzo()); } catch (e) { /* indirizzo non modificabile */ }
+  }
+  function datasets() {
+    const c = new Map(); D.voci.forEach(v => { v.interessa.forEach(x => c.set(x.nome, (c.get(x.nome) || 0) + 1)); v.valori.forEach(x => { if (!c.has(x.cosa)) c.set(x.cosa, 0); }); });
+    $('dataset').innerHTML = '<option value="">Tutti</option>' + [...c.entries()].sort((a, b) => a[0].localeCompare(b[0], 'it')).map(([n, k]) => `<option value="${esc(n)}" ${n === ST.ds ? 'selected' : ''}>${esc(n)}${k ? ` (${k})` : ''}</option>`).join('');
+  }
+  $('q').addEventListener('input', e => { ST.q = e.target.value; disegna(); });
+  $('cancella').addEventListener('click', () => { ST.q = ''; $('q').value = ''; disegna(); $('q').focus(); });
+  $('dataset').addEventListener('change', e => { ST.ds = e.target.value; disegna(); });
+  $('origine').addEventListener('change', e => { ST.orig = e.target.value; disegna(); });
+  document.querySelector('.tipi').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const t = b.dataset.t; if (ST.tipi.has(t)) ST.tipi.delete(t); else ST.tipi.add(t); disegna(); });
+  ['azzera', 'azzeraTutto'].forEach(id => $(id).addEventListener('click', () => { ST = { q: '', ds: '', orig: '', tipi: new Set(['dati', 'correzione', 'metodo', 'funzione']) }; $('q').value = ''; $('dataset').value = ''; $('origine').value = ''; disegna(); }));
+  $('copiaLink').addEventListener('click', async () => { const url = location.origin + indirizzo(); try { await navigator.clipboard.writeText(url); $('copiaLink').textContent = 'Link copiato'; setTimeout(() => $('copiaLink').textContent = 'Copia link', 2000); } catch (e) { prompt('Copia il collegamento', url); } });
+  fetch('../dati/aggiornamenti.json').then(r => { if (!r.ok) throw new Error('stato ' + r.status); return r.json(); }).then(d => {
+    D = d; leggiURL(); $('q').value = ST.q; $('origine').value = ST.orig; datasets();
+    $('fonte').innerHTML = `Registro generato il ${dataIt(d.generato)} dalla storia del repository: parte dalla prima versione pubblicata, il ${dataIt(d.prima_versione)}. Prima di quella data non esiste cronologia e nulla è ricostruito a mano.`;
+    $('notaRegistro').textContent = d.nota + ' Gli aggiornamenti automatici (ogni lunedì i dati aperti regionali a rotazione, ogni mattina i bandi, ogni mese le opere pubbliche) riportano i valori di prima e di dopo quando il flusso li registra.';
+    $('fogli').innerHTML = [...d.fogli].sort((a, b) => (b.consultazione || '').localeCompare(a.consultazione || '') || a.nome.localeCompare(b.nome, 'it')).map(f => `<tr><td><a href="../?pagina=archivio&amp;foglio=${encodeURIComponent(f.id)}">${esc(f.nome)}</a></td><td>${esc(f.ambito)}</td><td class="n">${fmt(f.righe)}</td><td>${f.consultazione ? dataIt(f.consultazione) : '<i class="nota">non registrata</i>'}</td><td>${f.periodo ? esc(f.periodo) : '<i class="nota">non dichiarato nell\'indice</i>'}</td></tr>`).join('');
+    disegna();
+  }).catch(() => { $('fonte').innerHTML = '<span class="errore" style="display:block">Il registro non si è caricato: ricarica la pagina oppure consulta la <a href="https://github.com/GuidoCostalonga/Atlante-FVG/commits/main" target="_blank" rel="noopener">storia del repository</a>.</span>'; });
+})();
+</script>
+</body>
+</html>
