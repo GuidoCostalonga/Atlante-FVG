@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Osservatorio delle opere pubbliche · Atlante FVG</title>
+<meta name="description" content="Le opere pubbliche con CUP localizzate in Friuli Venezia Giulia, da OpenCUP: ricerca per comune, descrizione, anno e stato, scheda per ogni intervento con costo, finanziamento, fonti di copertura, ente responsabile e date documentate.">
+<link rel="canonical" href="https://atlantefvg.it/opere/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<meta name="theme-color" content="#0B3359">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Atlante FVG">
+<meta property="og:url" content="https://atlantefvg.it/opere/">
+<meta property="og:title" content="Osservatorio delle opere pubbliche · Atlante FVG">
+<meta property="og:description" content="Opere pubbliche con CUP in Friuli Venezia Giulia, da OpenCUP, con una scheda per ogni intervento.">
+<meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Atlante FVG","item":"https://atlantefvg.it/"},{"@type":"ListItem","position":2,"name":"Opere pubbliche","item":"https://atlantefvg.it/opere/"}]}</script>
+<script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../pagine.css">
+<style>
+  .filtri { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 768px) { .filtri { grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); align-items: end; } }
+  .cerca { position: relative; }
+  .cerca .campo { padding-left: 40px; padding-right: 44px; }
+  .cerca .lente { position: absolute; left: 12px; top: 50%; margin-top: 11px; transform: translateY(-50%); color: var(--testo-3); pointer-events: none; }
+  .cerca .x { position: absolute; right: 2px; bottom: 2px; width: 44px; height: 44px; border: 0; background: none; border-radius: 10px; color: var(--testo-3); cursor: pointer; font-size: 18px; line-height: 1; }
+  .scelte-extra { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 12px; align-items: center; }
+  .scelte-extra label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; cursor: pointer; }
+  .scelte-extra input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--blu-chiaro); }
+  .esito { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+  .elenco { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .opera { background: var(--carta); border: 1px solid var(--linea); border-radius: 14px; padding: 14px 16px; display: grid; grid-template-columns: 1fr; gap: 6px 16px; }
+  @media (min-width: 768px) { .opera { grid-template-columns: minmax(0, 1fr) 11rem; } .opera .costo { text-align: right; } }
+  .opera h2 { font-family: var(--serif); font-size: 1.02rem; line-height: 1.3; font-weight: 600; margin: 0; }
+  .opera h2 a { color: var(--blu); text-decoration: none; } .opera h2 a:hover { text-decoration: underline; }
+  .opera .meta { font-size: 13px; color: var(--testo-2); }
+  .opera .costo b { font-family: var(--serif); font-size: 1.15rem; color: var(--blu); display: block; }
+  .opera .costo span { font-size: 12px; color: var(--testo-3); }
+  .badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 700; border: 1px solid transparent; }
+  .b-attivo { background: #E9F4EC; color: #1F5E3A; border-color: #B8D9C4; } .b-chiuso { background: #EEE9DD; color: #52565E; border-color: var(--linea); } .b-altro { background: var(--blu-tenue); color: var(--blu); border-color: #CBD8E6; } .b-multi { background: #FEF8E3; color: #7A4E0C; border-color: #E8C77E; }
+  .riga-badge { display: flex; flex-wrap: wrap; gap: 6px; }
+  .scheda { background: var(--carta); border: 1px solid var(--linea); border-radius: 14px; padding: 18px 20px; }
+  .scheda h1 { font-size: 1.35rem; line-height: 1.3; }
+  .campi { display: grid; grid-template-columns: 1fr; gap: 6px 16px; font-size: 14px; margin: 12px 0; }
+  @media (min-width: 768px) { .campi { grid-template-columns: 13rem minmax(0, 1fr); } }
+  .campi dt { color: var(--testo-3); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; padding-top: 2px; }
+  .campi dd { margin: 0; color: var(--testo-2); } .campi dd.vuoto-campo { color: var(--testo-3); font-style: italic; }
+  .campi dd b { color: var(--testo); }
+  .tot { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+  @media (min-width: 768px) { .tot { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .tot div { background: var(--carta); border: 1px solid var(--linea); border-radius: 12px; padding: 10px 12px; }
+  .tot b { display: block; font-family: var(--serif); font-size: 1.2rem; color: var(--blu); } .tot span { font-size: 12px; color: var(--testo-3); }
+  .vuoto { text-align: center; padding: 28px 16px; }
+  .pagine { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin-top: 12px; }
+  .avviso-stato { font-size: 13px; color: var(--testo-2); background: #FEF8E3; border: 1px solid #E8C77E; border-radius: 10px; padding: 8px 12px; }
+</style>
+</head>
+
+<body>
+<header class="testata"><div class="testata-dentro">
+  <a class="marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="113" height="40"></a>
+  <nav class="voci" aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus</a><a href="../orari/">Orari</a><a href="../bandi/">Bandi</a><a href="../meteo/">Meteo</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo</a>
+  </nav>
+  <details class="menu-mob"><summary>Menu</summary><nav aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../bandi/">Bandi e avvisi</a><a href="../meteo/">Meteo</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo e fonti</a>
+  </nav></details>
+</div></header>
+
+<main class="contenuto">
+  <nav class="percorso" aria-label="Percorso"><a href="../">Atlante FVG</a> › Opere pubbliche</nav>
+  <section class="intro" id="intro">
+    <h1>Osservatorio delle opere pubbliche</h1>
+    <p>I lavori pubblici con CUP (Codice unico di progetto) localizzati in Friuli Venezia Giulia, dai dati aperti OpenCUP della Presidenza del Consiglio dei ministri: una scheda per ogni intervento con descrizione, comune, ente responsabile, costo e finanziamento previsti, fonti di copertura, stato amministrativo del codice e date documentate. Dove la fonte non dice una cosa, la scheda lo scrive.</p>
+    <p class="nota" id="fonte">Lettura dei dati in corso…</p>
+  </section>
+
+  <section id="dettaglio" hidden></section>
+
+  <section id="ricerca">
+    <div class="riquadro" aria-labelledby="titoloFiltri">
+      <h2 id="titoloFiltri" class="sr-only">Cerca le opere</h2>
+      <div class="filtri">
+        <div class="cerca">
+          <label class="etichetta" for="q">Descrizione, CUP o ente</label>
+          <svg class="lente" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="q" class="campo" type="search" autocomplete="off" placeholder="Per esempio: scuola, fognatura, ciclabile" aria-describedby="esito">
+          <button type="button" class="x" id="cancella" aria-label="Cancella la ricerca" hidden>×</button>
+        </div>
+        <div><label class="etichetta" for="comune">Comune</label><select id="comune" class="campo"></select></div>
+        <div><label class="etichetta" for="anno">Anno della decisione</label><select id="anno" class="campo"></select></div>
+        <div><label class="etichetta" for="stato">Stato del CUP</label><select id="stato" class="campo"><option value="">Tutti</option></select></div>
+      </div>
+      <div class="scelte-extra">
+        <label><input type="checkbox" id="solo"> Solo opere localizzate in un solo comune</label>
+        <label>Settore <select id="settore" class="campo" style="min-height:40px;width:auto;display:inline-block;margin-left:6px"><option value="">Tutti</option></select></label>
+        <label>Ordine <select id="ordine" class="campo" style="min-height:40px;width:auto;display:inline-block;margin-left:6px"><option value="costo">Costo previsto più alto</option><option value="recenti">Decisione più recente</option><option value="comune">Comune</option></select></label>
+      </div>
+    </div>
+    <div class="tot" id="totali"></div>
+    <div class="esito" style="margin-top:12px">
+      <h2 id="titoloElenco">Opere</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="nota" id="esito" role="status" aria-live="polite"></span><button type="button" class="btn btn-secondario" id="scaricaCsv">Scarica CSV</button><button type="button" class="btn btn-secondario" id="copiaLink">Copia link</button></div>
+    </div>
+    <ul class="elenco" id="elenco"></ul>
+    <div class="pagine" id="pagine"></div>
+    <div class="riquadro vuoto" id="vuoto" hidden><p id="vuotoTesto"></p><button type="button" class="btn btn-primario" id="azzera">Cancella i filtri</button></div>
+  </section>
+
+  <section class="riquadro" style="margin-top:16px" aria-labelledby="titoloMetodo">
+    <h2 id="titoloMetodo">Come leggere queste schede</h2>
+    <p class="nota">I dati sono quelli degli open data OpenCUP (archivio del Nord Est, aggiornato ogni mese, licenza CC BY 4.0), filtrati sui lavori pubblici (natura 03) localizzati in Friuli Venezia Giulia. Una scheda corrisponde a un CUP: se l'intervento insiste su più comuni la scheda li elenca tutti e il costo non è ripartito, perché OpenCUP non dice come dividerlo. Lo «stato» è lo stato amministrativo del codice in OpenCUP (attivo, chiuso, revocato...): non dice se i lavori sono iniziati o finiti, e l'Atlante non lo deduce. Costo e finanziamento sono quelli previsti alla decisione, non la spesa effettiva. Le fonti di copertura sono quelle dichiarate (comunale, regionale, statale, comunitaria, privata, altra pubblica), senza importi per fonte. Le date disponibili sono l'anno della decisione e la data di generazione del CUP: date previste ed effettive di inizio e fine lavori non sono nella fonte. Lo stesso CUP può comparire negli atti di concessione dell'Amministrazione trasparente: la scheda lo collega quando l'archivio dei finanziamenti lo contiene. <span id="segnala"></span></p>
+  </section>
+</main>
+
+<footer class="piede"><div class="piede-dentro">
+  <div><strong>Atlante FVG</strong><br>I comuni del Friuli Venezia Giulia, con fonte e data di ogni dato.</div>
+  <div><a href="../">Pagina iniziale</a> · <a href="https://www.opencup.gov.it/" target="_blank" rel="noopener">OpenCUP</a> · <a href="../?pagina=metodo">Metodo e fonti</a></div>
+</div></footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  const dataIt = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} ${MESI[+m[2] - 1]} ${m[1]}` : (iso || ''); };
+  const euro = v => v === null || v === undefined ? 'n.d.' : Number(v).toLocaleString('it-IT', { maximumFractionDigits: 0 }) + ' euro';
+  const euroBreve = v => v === null || v === undefined ? 'n.d.' : v >= 1e6 ? (v / 1e6).toLocaleString('it-IT', { maximumFractionDigits: 1 }) + ' mln euro' : euro(v);
+  const frase = s => s ? s[0] + s.slice(1).toLowerCase() : '';
+  const PER_PAGINA = 40;
+  let META = null, COMUNI = [], OPERE = [], PER_CUP = new Map(), ST = { q: '', comune: '', anno: '', stato: '', settore: '', solo: false, ordine: 'costo', pag: 1, cup: '' };
+  async function scaricaJSON(p) {
+    const r = await fetch(p); if (!r.ok) throw new Error('HTTP ' + r.status); let testo = (await r.text()).trim();
+    if (testo[0] !== '{') { const bin = atob(testo), buf = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i); testo = await new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'))).text(); }
+    return JSON.parse(testo);
+  }
+  const slugDi = n => { const c = COMUNI.find(x => x.n === n); return c ? c.slug : ''; };
+  function leggiURL() { const p = new URLSearchParams(location.search); ST.q = p.get('q') || ''; ST.comune = p.get('comune') || ''; ST.anno = p.get('anno') || ''; ST.stato = p.get('stato') || ''; ST.settore = p.get('settore') || ''; ST.solo = p.get('solo') === '1'; ST.ordine = ['costo', 'recenti', 'comune'].includes(p.get('ordine')) ? p.get('ordine') : 'costo'; ST.pag = Math.max(1, +p.get('pag') || 1); ST.cup = (p.get('cup') || '').toUpperCase(); }
+  function indirizzo() { const u = new URL(location.href), p = u.searchParams; ['q', 'comune', 'anno', 'stato', 'settore', 'solo', 'ordine', 'pag', 'cup'].forEach(k => p.delete(k)); if (ST.cup) p.set('cup', ST.cup); else { if (ST.q.trim()) p.set('q', ST.q.trim()); if (ST.comune) p.set('comune', ST.comune); if (ST.anno) p.set('anno', ST.anno); if (ST.stato) p.set('stato', ST.stato); if (ST.settore) p.set('settore', ST.settore); if (ST.solo) p.set('solo', '1'); if (ST.ordine !== 'costo') p.set('ordine', ST.ordine); if (ST.pag > 1) p.set('pag', String(ST.pag)); } return u.pathname + (p.toString() ? '?' + p.toString() : ''); }
+  // le righe della fonte sono per progetto e comune: qui una scheda per CUP, con l'elenco dei comuni
+  function raggruppa(rows) {
+    PER_CUP = new Map();
+    rows.forEach(r => { const o = PER_CUP.get(r[1]); if (o) { if (!o.comuni.includes(r[0])) o.comuni.push(r[0]); } else PER_CUP.set(r[1], { cup: r[1], descr: r[2], anno: typeof r[3] === 'number' ? r[3] : null, stato: r[4] || '', costo: typeof r[5] === 'number' ? r[5] : null, fin: typeof r[6] === 'number' ? r[6] : null, settore: r[7] || '', categoria: r[8] || '', copertura: r[9] || '', titolare: r[10] || '', nComuni: r[11] || 1, dataCup: r[12] || '', comuni: [r[0]] }); });
+    OPERE = [...PER_CUP.values()];
+  }
+  function filtra() {
+    const parole = norm(ST.q).split(/\s+/).filter(Boolean);
+    return OPERE.filter(o => (!ST.comune || o.comuni.some(c => slugDi(c) === ST.comune)) && (!ST.anno || String(o.anno) === ST.anno) && (!ST.stato || o.stato === ST.stato) && (!ST.settore || o.settore === ST.settore) && (!ST.solo || (o.nComuni === 1 && o.comuni.length === 1 && o.comuni[0] !== 'Più comuni o non indicato')) && parole.every(w => norm(o.descr + ' ' + o.cup + ' ' + o.titolare + ' ' + o.comuni.join(' ')).includes(w)));
+  }
+  function ordina(l) { if (ST.ordine === 'recenti') return l.sort((a, b) => (b.anno || 0) - (a.anno || 0) || (b.costo || 0) - (a.costo || 0)); if (ST.ordine === 'comune') return l.sort((a, b) => a.comuni[0].localeCompare(b.comuni[0], 'it') || (b.costo || 0) - (a.costo || 0)); return l.sort((a, b) => (b.costo || 0) - (a.costo || 0)); }
+  const badgeStato = s => `<span class="badge ${/attivo/i.test(s) ? 'b-attivo' : /chius/i.test(s) ? 'b-chiuso' : 'b-altro'}">CUP ${esc(s.toLowerCase() || 'stato non indicato')}</span>`;
+  function voce(o) {
+    const multi = o.nComuni > 1;
+    return `<li class="opera"><div><div class="riga-badge">${badgeStato(o.stato)}${multi ? `<span class="badge b-multi">${o.nComuni} comuni</span>` : ''}${o.anno ? `<span class="badge b-altro">decisione ${o.anno}</span>` : ''}</div>
+      <h2><a href="?cup=${encodeURIComponent(o.cup)}">${esc(frase(o.descr) || 'Descrizione non indicata')}</a></h2>
+      <div class="meta">${o.comuni.map(c => slugDi(c) ? `<a href="../c/${slugDi(c)}/">${esc(c)}</a>` : esc(c)).join(', ')}${o.titolare ? ' · ' + esc(frase(o.titolare)) : ''}${o.settore ? ' · ' + esc(o.settore) : ''}</div></div>
+      <div class="costo"><b>${euroBreve(o.costo)}</b><span>costo previsto${o.costo === null ? ' non indicato' : ''}</span></div></li>`;
+  }
+  function totali(l) {
+    const conCosto = l.filter(o => o.costo !== null), soli = conCosto.filter(o => o.nComuni === 1 && o.comuni[0] !== 'Più comuni o non indicato');
+    $('totali').innerHTML = `<div><b>${l.length.toLocaleString('it-IT')}</b><span>opere (una per CUP)</span></div><div><b>${euroBreve(soli.reduce((s, o) => s + o.costo, 0))}</b><span>costo previsto delle ${soli.length.toLocaleString('it-IT')} opere in un solo comune</span></div><div><b>${(l.length - soli.length).toLocaleString('it-IT')}</b><span>opere su più comuni o senza costo: non sommate</span></div><div><b>${l.filter(o => /attivo/i.test(o.stato)).length.toLocaleString('it-IT')}</b><span>con CUP attivo (stato amministrativo)</span></div>`;
+  }
+  function disegna() {
+    $('dettaglio').hidden = true; $('ricerca').hidden = false; $('intro').hidden = false;
+    const l = ordina(filtra()); const pagine = Math.max(1, Math.ceil(l.length / PER_PAGINA)); if (ST.pag > pagine) ST.pag = pagine;
+    $('elenco').innerHTML = l.slice((ST.pag - 1) * PER_PAGINA, ST.pag * PER_PAGINA).map(voce).join('');
+    $('vuoto').hidden = l.length > 0; if (!l.length) $('vuotoTesto').textContent = 'Nessuna opera corrisponde ai filtri.';
+    $('esito').textContent = `${l.length.toLocaleString('it-IT')} opere${pagine > 1 ? ` · pagina ${ST.pag} di ${pagine}` : ''}`;
+    $('pagine').innerHTML = pagine > 1 ? `<button type="button" class="btn btn-secondario" data-p="${ST.pag - 1}" ${ST.pag === 1 ? 'disabled' : ''}>Pagina precedente</button><span class="nota">${ST.pag} / ${pagine}</span><button type="button" class="btn btn-secondario" data-p="${ST.pag + 1}" ${ST.pag === pagine ? 'disabled' : ''}>Pagina successiva</button>` : '';
+    totali(l); $('cancella').hidden = !ST.q; try { history.replaceState(null, '', indirizzo()); } catch (e) { /* indirizzo non modificabile */ }
+  }
+  function dettaglio(cup) {
+    const o = PER_CUP.get(cup); $('ricerca').hidden = true; $('intro').hidden = true; $('dettaglio').hidden = false;
+    if (!o) { $('dettaglio').innerHTML = `<div class="scheda"><h1>CUP ${esc(cup)} non trovato</h1><p>Il codice non è fra i lavori pubblici localizzati in Friuli Venezia Giulia nell'ultimo archivio OpenCUP (${dataIt(META.aggiornati)}). <a href="./">Torna alla ricerca</a>.</p></div>`; return; }
+    const righe = (et, val, vuoto) => `<dt>${et}</dt><dd class="${val ? '' : 'vuoto-campo'}">${val || vuoto}</dd>`;
+    const comuni = o.comuni.map(c => slugDi(c) ? `<a href="../c/${slugDi(c)}/">${esc(c)}</a>` : esc(c)).join(', ');
+    $('dettaglio').innerHTML = `<div class="scheda"><nav class="nota" style="margin-bottom:8px"><a href="./">← Tutte le opere</a></nav>
+      <div class="riga-badge">${badgeStato(o.stato)}${o.nComuni > 1 ? `<span class="badge b-multi">intervento su ${o.nComuni} comuni</span>` : ''}</div>
+      <h1 style="margin-top:8px">${esc(frase(o.descr) || 'Descrizione non indicata')}</h1>
+      <p class="nota">CUP <b>${esc(o.cup)}</b> · lavori pubblici · dati OpenCUP aggiornati al ${dataIt(META.aggiornati)}</p>
+      <dl class="campi">
+        ${righe('Localizzazione', comuni + (o.nComuni > 1 ? ` <span class="nota">(${o.nComuni} comuni secondo OpenCUP${o.comuni.length < o.nComuni ? ', non tutti in Friuli Venezia Giulia' : ''}; il costo non è ripartito)</span>` : ''), 'non indicata')}
+        ${righe('Ente responsabile (soggetto titolare)', esc(frase(o.titolare)), 'non indicato')}
+        ${righe('Settore e categoria', esc([o.settore, o.categoria].filter(Boolean).join(' · ')), 'non indicati')}
+        ${righe('Costo previsto', o.costo !== null ? `<b>${euro(o.costo)}</b> <span class="nota">alla decisione, non spesa effettiva</span>` : '', 'non indicato')}
+        ${righe('Finanziamento previsto', o.fin !== null ? `<b>${euro(o.fin)}</b>${o.costo !== null && o.fin !== null && o.fin < o.costo ? ` <span class="nota">(${(o.fin / o.costo * 100).toLocaleString('it-IT', { maximumFractionDigits: 1 })}% del costo)</span>` : ''}` : '', 'non indicato')}
+        ${righe('Fonti di copertura dichiarate', esc(o.copertura), 'non indicate')}
+        ${righe('Stato documentato', `${esc(frase(o.stato) || 'non indicato')} <span class="nota">(stato amministrativo del CUP in OpenCUP: «attivo» vuol dire non chiuso, non che i lavori siano in corso o finiti)</span>`, '')}
+        ${righe('Date documentate', `anno della decisione: <b>${o.anno || 'n.d.'}</b> · generazione del CUP: <b>${esc(dataIt(o.dataCup) || 'n.d.')}</b> <span class="nota">(date previste ed effettive di inizio e fine lavori non sono nella fonte)</span>`, '')}
+        <dt>Atti e fonti</dt><dd>OpenCUP, Presidenza del Consiglio dei ministri, Dipartimento per la programmazione e il coordinamento della politica economica: open data Nord Est aggiornati al ${dataIt(META.aggiornati)}, licenza CC BY 4.0. <a href="https://www.opencup.gov.it/" target="_blank" rel="noopener">Sito OpenCUP</a> (cerca il codice ${esc(o.cup)} per la scheda ufficiale). <a href="../finanziamenti/?q=${encodeURIComponent(o.cup)}">Atti di concessione con questo CUP nell'Amministrazione trasparente regionale</a> (se presenti).</dd>
+        <dt>Ultimo aggiornamento</dt><dd>${dataIt(META.aggiornati)} (dati OpenCUP); letti dall'Atlante il ${dataIt(META.consultazione)}.</dd>
+      </dl>
+      <p class="nota">La stessa opera può comparire in altre fonti con lo stesso CUP: qui è contata una volta sola.</p></div>`;
+    document.title = `${frase(o.descr).slice(0, 70)} · Opere pubbliche · Atlante FVG`;
+    try { history.replaceState(null, '', indirizzo()); } catch (e) { /* indirizzo non modificabile */ }
+    window.scrollTo(0, 0);
+  }
+  function opzioni() {
+    const cc = new Map(); OPERE.forEach(o => o.comuni.forEach(c => cc.set(c, (cc.get(c) || 0) + 1)));
+    $('comune').innerHTML = '<option value="">Tutti i comuni</option>' + [...cc.entries()].filter(([c]) => slugDi(c)).sort((a, b) => a[0].localeCompare(b[0], 'it')).map(([c, n]) => `<option value="${esc(slugDi(c))}" ${slugDi(c) === ST.comune ? 'selected' : ''}>${esc(c)} (${n})</option>`).join('');
+    const anni = [...new Set(OPERE.map(o => o.anno).filter(Boolean))].sort((a, b) => b - a); $('anno').innerHTML = '<option value="">Tutti</option>' + anni.map(a => `<option value="${a}" ${String(a) === ST.anno ? 'selected' : ''}>${a}</option>`).join('');
+    const stati = [...new Set(OPERE.map(o => o.stato).filter(Boolean))].sort(); $('stato').innerHTML = '<option value="">Tutti</option>' + stati.map(s => `<option value="${esc(s)}" ${s === ST.stato ? 'selected' : ''}>${esc(frase(s))}</option>`).join('');
+    const set = [...new Set(OPERE.map(o => o.settore).filter(Boolean))].sort(); $('settore').innerHTML = '<option value="">Tutti</option>' + set.map(s => `<option value="${esc(s)}" ${s === ST.settore ? 'selected' : ''}>${esc(s)}</option>`).join('');
+    $('q').value = ST.q; $('solo').checked = ST.solo; $('ordine').value = ST.ordine;
+  }
+  function avvia() { if (ST.cup) dettaglio(ST.cup); else disegna(); }
+  $('q').addEventListener('input', e => { ST.q = e.target.value; ST.pag = 1; disegna(); });
+  $('cancella').addEventListener('click', () => { ST.q = ''; $('q').value = ''; ST.pag = 1; disegna(); $('q').focus(); });
+  ['comune', 'anno', 'stato', 'settore', 'ordine'].forEach(k => $(k).addEventListener('change', e => { ST[k] = e.target.value; ST.pag = 1; disegna(); }));
+  $('solo').addEventListener('change', e => { ST.solo = e.target.checked; ST.pag = 1; disegna(); });
+  $('pagine').addEventListener('click', e => { const b = e.target.closest('button[data-p]'); if (!b) return; ST.pag = +b.dataset.p; disegna(); $('titoloElenco').scrollIntoView(); });
+  $('azzera').addEventListener('click', () => { ST = { ...ST, q: '', comune: '', anno: '', stato: '', settore: '', solo: false, ordine: 'costo', pag: 1 }; opzioni(); disegna(); });
+  $('scaricaCsv').addEventListener('click', () => {
+    const l = ordina(filtra()); const cella = v => { const s = v === null || v === undefined ? '' : String(v); return /[",\r\n;]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+    const righe = [['CUP', 'Descrizione', 'Comuni', 'Comuni coinvolti', 'Anno della decisione', 'Stato del CUP', 'Costo previsto (euro)', 'Finanziamento previsto (euro)', 'Settore', 'Categoria', 'Copertura finanziaria', 'Soggetto titolare', 'Data del CUP', 'Fonte'].join(','), ...l.map(o => [o.cup, o.descr, o.comuni.join('; '), o.nComuni, o.anno, o.stato, o.costo, o.fin, o.settore, o.categoria, o.copertura, o.titolare, o.dataCup, 'OpenCUP (DIPE), dati al ' + META.aggiornati + ', CC BY 4.0'].map(cella).join(','))];
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿' + righe.join('\r\n')], { type: 'text/csv;charset=utf-8' })); a.download = 'opere-pubbliche-fvg.csv'; document.body.appendChild(a); a.click(); a.remove();
+  });
+  $('copiaLink').addEventListener('click', async () => { const url = location.origin + indirizzo(); try { await navigator.clipboard.writeText(url); $('copiaLink').textContent = 'Link copiato'; setTimeout(() => $('copiaLink').textContent = 'Copia link', 2000); } catch (e) { prompt('Copia il collegamento', url); } });
+  document.addEventListener('click', e => { const a = e.target.closest('a[href^="?cup="]'); if (a) { e.preventDefault(); ST.cup = decodeURIComponent(a.getAttribute('href').slice(5)).toUpperCase(); dettaglio(ST.cup); } const t = e.target.closest('a[href="./"]'); if (t) { e.preventDefault(); ST.cup = ''; document.title = 'Osservatorio delle opere pubbliche · Atlante FVG'; disegna(); } });
+  window.addEventListener('popstate', () => { leggiURL(); opzioni(); avvia(); });
+  (async () => {
+    try {
+      META = await (await fetch('../dati/opere_meta.json')).json(); COMUNI = await (await fetch('../dati/comuni_slug.json')).json();
+      $('fonte').textContent = `Lettura di ${META.righe.toLocaleString('it-IT')} righe OpenCUP…`;
+      const parti = await Promise.all(META.files.map(f => scaricaJSON('../' + f)));
+      raggruppa(parti.flatMap(p => p.rows));
+      leggiURL(); opzioni();
+      $('fonte').innerHTML = `Fonte: <a href="https://www.opencup.gov.it/" target="_blank" rel="noopener">OpenCUP</a>, Presidenza del Consiglio dei ministri (DIPE), open data Nord Est aggiornati al ${dataIt(META.aggiornati)}, letti dall'Atlante il ${dataIt(META.consultazione)}, licenza CC BY 4.0. ${OPERE.length.toLocaleString('it-IT')} opere con CUP in Friuli Venezia Giulia (${META.righe.toLocaleString('it-IT')} righe per progetto e comune).`;
+      const u = 'mailto:info@atlantefvg.it?subject=' + encodeURIComponent('Segnalazione di errore: opere pubbliche') + '&body=' + encodeURIComponent('Pagina: ' + location.href + '\nOpera o CUP:\n\nChe cosa non torna:\n');
+      $('segnala').innerHTML = `Hai trovato un errore? <a href="${u}">Segnalalo per posta</a> oppure <a href="https://wa.me/393283692227?text=${encodeURIComponent('Segnalazione di errore sull\'Atlante FVG: pagina Opere pubbliche')}" target="_blank" rel="noopener">via WhatsApp</a>.`;
+      avvia();
+    } catch (e) { $('fonte').innerHTML = '<span class="errore" style="display:block">I dati delle opere non si sono caricati: ricarica la pagina o consulta direttamente <a href="https://www.opencup.gov.it/" target="_blank" rel="noopener">OpenCUP</a>.</span>'; }
+  })();
+})();
+</script>
+</body>
+</html>

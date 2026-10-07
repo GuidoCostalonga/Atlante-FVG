@@ -147,7 +147,7 @@ def pagina_html(percorso, titolo, descr, briciole, corpo, extra_ld=None):
 <nav class="percorso" aria-label="Percorso"><ol>{bric}</ol></nav>
 {corpo}
 </main>
-<footer><p>Hai trovato un errore? Segnalalo <a href="{segnala(url, titolo)}">per posta a {POSTA}</a> oppure <a href="{segnala_wa(url, titolo)}" target="_blank" rel="noopener">via WhatsApp</a>: il messaggio contiene già l'indirizzo della pagina.</p>Atlante FVG raccoglie dati pubblici con la loro fonte e la loro data. Per come sono trattati i dati vedi <a href="{su}metodo/">Metodo e fonti</a>. Pagine: <a href="{su}mappe/">Mappe</a> · <a href="{su}confronto/">Confronto</a> · <a href="{su}comuni/">Comuni</a> · <a href="{su}archivio/">Archivio</a> · <a href="{su}autobus/">Autobus</a> · <a href="{su}orari/">Orari degli autobus</a> · <a href="{su}bandi/">Bandi</a> · <a href="{su}aggiornamenti/">Cosa è cambiato</a> · <a href="{su}meteo/">Meteo</a> · <a href="{su}stradario/">Stradario</a> · <a href="{su}catasto/">Catasto</a> · <a href="{su}ambiente/">Allerte e aria</a>.</footer>
+<footer><p>Hai trovato un errore? Segnalalo <a href="{segnala(url, titolo)}">per posta a {POSTA}</a> oppure <a href="{segnala_wa(url, titolo)}" target="_blank" rel="noopener">via WhatsApp</a>: il messaggio contiene già l'indirizzo della pagina.</p>Atlante FVG raccoglie dati pubblici con la loro fonte e la loro data. Per come sono trattati i dati vedi <a href="{su}metodo/">Metodo e fonti</a>. Pagine: <a href="{su}mappe/">Mappe</a> · <a href="{su}confronto/">Confronto</a> · <a href="{su}comuni/">Comuni</a> · <a href="{su}archivio/">Archivio</a> · <a href="{su}autobus/">Autobus</a> · <a href="{su}orari/">Orari degli autobus</a> · <a href="{su}bandi/">Bandi</a> · <a href="{su}opere/">Opere pubbliche</a> · <a href="{su}aggiornamenti/">Cosa è cambiato</a> · <a href="{su}meteo/">Meteo</a> · <a href="{su}stradario/">Stradario</a> · <a href="{su}catasto/">Catasto</a> · <a href="{su}ambiente/">Allerte e aria</a>.</footer>
 </body>
 </html>
 """
@@ -296,7 +296,7 @@ def main():
     oggi = max((f['cons'] for f in man['manifest'] if re.match(r'^\d{4}-\d{2}-\d{2}$', f.get('cons') or '')), default=datetime.date.today().isoformat())
     voci = [f'  <url><loc>{SITO}/</loc><lastmod>{oggi}</lastmod></url>']
     voci += [f'  <url><loc>{SITO}/{nome}/</loc><lastmod>{oggi}</lastmod></url>' for nome, *_ in PAGINE]
-    voci += [f'  <url><loc>{SITO}/{nome}/</loc><lastmod>{oggi}</lastmod></url>' for nome in ('orari', 'bandi', 'meteo', 'stradario', 'catasto', 'aggiornamenti')]
+    voci += [f'  <url><loc>{SITO}/{nome}/</loc><lastmod>{oggi}</lastmod></url>' for nome in ('orari', 'bandi', 'opere', 'meteo', 'stradario', 'catasto', 'aggiornamenti')]
     voci += [f'  <url><loc>{SITO}/provincia/{slug(n)}/</loc><lastmod>{oggi}</lastmod></url>' for n in PROVINCE.values()]
     voci += [f'  <url><loc>{SITO}/c/{slug(c["n"])}/</loc><lastmod>{oggi}</lastmod></url>' for c in comuni]
     (RADICE / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

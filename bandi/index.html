@@ -58,6 +58,29 @@
   .apri { align-self: flex-start; }
   .vuoto { text-align: center; padding: 28px 16px; }
   .vuoto p { margin: 0 0 12px; }
+  .campi { display: grid; grid-template-columns: 1fr; gap: 4px 16px; font-size: 13.5px; margin: 2px 0; }
+  @media (min-width: 768px) { .campi { grid-template-columns: 11rem minmax(0, 1fr); } }
+  .campi dt { color: var(--testo-3); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; padding-top: 2px; }
+  .campi dd { margin: 0; color: var(--testo-2); }
+  .campi dd.vuoto-campo { color: var(--testo-3); font-style: italic; }
+  .campi dd .indic { font-size: 12px; color: var(--testo-3); }
+  .allegati { display: flex; flex-wrap: wrap; gap: 6px; }
+  .allegati a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px; border-radius: 999px; border: 1px solid #CBD8E6; background: #fff; color: var(--blu); text-decoration: none; font-size: 13px; }
+  .allegati a:hover { text-decoration: underline; }
+  .allegati .fmt { font-size: 11px; text-transform: uppercase; color: var(--testo-3); }
+  .azioni { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .stella { min-height: 44px; min-width: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #CBD8E6; background: #fff; font: inherit; font-size: 14px; color: var(--blu-medio); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+  .stella[aria-pressed="true"] { background: #FEF8E3; border-color: #E8C77E; color: #7A4E0C; }
+  .badge.tipo { background: #fff; color: var(--testo-2); border-color: var(--linea); font-weight: 600; }
+  .badge.apertura { background: #E9F4EC; color: #1F5E3A; border-color: #B8D9C4; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .chips button { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid #CBD8E6; background: #fff; font: inherit; font-size: 14px; font-weight: 600; color: var(--blu-medio); cursor: pointer; }
+  .chips button[aria-pressed="true"] { background: var(--blu); border-color: var(--blu); color: #fff; }
+  .chips .et { font-size: 13px; color: var(--testo-3); align-self: center; }
+  details.piu summary { cursor: pointer; color: var(--blu); font-size: 13.5px; min-height: 44px; display: flex; align-items: center; }
+  .verifica { font-size: 12px; color: var(--testo-3); }
+  .filtri3 { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 12px; }
+  @media (min-width: 768px) { .filtri3 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 </style>
 </head>
 <body>
@@ -74,8 +97,8 @@
 <main class="contenuto">
   <nav class="percorso" aria-label="Percorso"><a href="../">Atlante FVG</a> › Bandi</nav>
   <section class="intro">
-    <h1>Bandi e avvisi della Regione</h1>
-    <p>I bandi e gli avvisi in corso pubblicati dalla Regione Friuli Venezia Giulia, con la struttura regionale che li ha emessi e la scadenza. Ogni scheda rimanda alla pagina ufficiale, dove si leggono requisiti, importi e come presentare la domanda.</p>
+    <h1>Bandi e contributi del Friuli Venezia Giulia</h1>
+    <p>I bandi, gli avvisi e gli atti pubblicati nella sezione «Bandi e avvisi» della Regione Friuli Venezia Giulia, con la struttura responsabile, destinatari, requisiti, termini e allegati quando la pagina ufficiale li riporta. Ogni scheda rimanda alla pagina ufficiale e al bando: lì fanno fede requisiti, importi e modalità.</p>
     <p class="nota" id="fonte">Lettura dell'elenco ufficiale in corso…</p>
   </section>
 
@@ -83,40 +106,48 @@
     <h2 id="titoloFiltri" class="sr-only">Cerca e filtra i bandi</h2>
     <div class="filtri">
       <div class="cerca">
-        <label class="etichetta" for="q">Cerca nel titolo</label>
+        <label class="etichetta" for="q">Parola chiave</label>
         <svg class="lente" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input id="q" class="campo" type="search" autocomplete="off" placeholder="Per esempio: giovani, strade, sport" aria-describedby="esito">
+        <input id="q" class="campo" type="search" autocomplete="off" placeholder="Per esempio: giovani, strade, sport, Pordenone" aria-describedby="esito">
         <button type="button" class="x" id="cancella" aria-label="Cancella la ricerca" hidden>×</button>
+      </div>
+      <div>
+        <label class="etichetta" for="settore">Settore (dalla struttura regionale)</label>
+        <select id="settore" class="campo"></select>
       </div>
       <div>
         <label class="etichetta" for="direzione">Struttura regionale</label>
         <select id="direzione" class="campo"></select>
       </div>
-      <div>
-        <label class="etichetta" for="ordine">Ordine</label>
-        <select id="ordine" class="campo"><option value="scadenza">Scadenza più vicina</option><option value="recenti">Pubblicati di recente</option></select>
-      </div>
     </div>
-    <div class="parole" role="group" aria-label="Parole da cercare nel titolo">
-      <span class="et">Parole utili:</span>
-      <button type="button" data-p="comuni" aria-pressed="false">Comuni</button>
-      <button type="button" data-p="terzo settore" aria-pressed="false">Terzo settore</button>
-      <button type="button" data-p="imprese" aria-pressed="false">Imprese</button>
-      <button type="button" data-p="famiglie" aria-pressed="false">Famiglie</button>
-      <button type="button" data-p="giovani" aria-pressed="false">Giovani</button>
+    <div class="filtri3">
+      <div><label class="etichetta" for="stato">Stato</label><select id="stato" class="campo"><option value="">Aperti e in apertura</option><option value="aperto">Solo aperti</option><option value="apertura">Solo in apertura</option><option value="scaduto">Solo scaduti</option><option value="tutti">Tutti</option></select></div>
+      <div><label class="etichetta" for="tipo">Tipo</label><select id="tipo" class="campo"><option value="">Tutti</option><option value="bando">Bandi: si presenta domanda</option><option value="atto">Atti ed esiti: contributi già assegnati, graduatorie</option><option value="avviso">Altri avvisi</option></select></div>
+      <div><label class="etichetta" for="scad">Scadenza</label><select id="scad" class="campo"><option value="">Qualsiasi</option><option value="7">Entro 7 giorni</option><option value="30">Entro 30 giorni</option><option value="90">Entro 90 giorni</option><option value="con">Solo con scadenza indicata</option></select></div>
+      <div><label class="etichetta" for="comune">Territorio: comune nominato</label><select id="comune" class="campo"></select></div>
+    </div>
+    <div class="chips" role="group" aria-label="Destinatari (classificazione indicativa)">
+      <span class="et">Destinatari:</span>
+      <button type="button" data-d="comuni" aria-pressed="false">Comuni</button>
+      <button type="button" data-d="enti" aria-pressed="false">Altri enti pubblici</button>
+      <button type="button" data-d="associazioni" aria-pressed="false">Associazioni e Terzo settore</button>
+      <button type="button" data-d="imprese" aria-pressed="false">Imprese</button>
+      <button type="button" data-d="cittadini" aria-pressed="false">Cittadini</button>
     </div>
     <div class="scelte-extra">
       <label><input type="checkbox" id="contributi"> Solo con misure contributive (indicazione della Regione)</label>
-      <label><input type="checkbox" id="scaduti"> Mostra anche i già scaduti</label>
+      <label><input type="checkbox" id="preferiti"> Solo i miei preferiti <span class="nota" id="nPref"></span></label>
       <label><input type="checkbox" id="impiego"> Includi i Centri per l'impiego e il Collocamento mirato</label>
+      <label>Ordine <select id="ordine" class="campo" style="min-height:40px;width:auto;display:inline-block;margin-left:6px"><option value="scadenza">Scadenza più vicina</option><option value="recenti">Pubblicati di recente</option></select></label>
     </div>
   </section>
 
   <section aria-labelledby="titoloElenco">
     <div class="esito">
-      <h2 id="titoloElenco" style="font-size:1.2rem">Bandi e avvisi</h2>
+      <h2 id="titoloElenco">Bandi e avvisi</h2>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
         <span class="nota" id="esito" role="status" aria-live="polite"></span>
+        <button type="button" class="btn btn-secondario" id="icsTutti" title="Scarica le scadenze dei bandi visibili in formato calendario">Scadenze in calendario (ICS)</button>
         <button type="button" class="btn btn-secondario" id="copiaLink">Copia link</button>
         <button type="button" class="btn btn-secondario" id="condividi" hidden>Condividi</button>
       </div>
@@ -125,7 +156,12 @@
     <div class="riquadro vuoto" id="vuoto" hidden><p id="vuotoTesto"></p><button type="button" class="btn btn-primario" id="azzera">Cancella i filtri</button></div>
   </section>
 
-  <p class="nota">L'elenco è quello della sezione «Bandi e avvisi» del sito della Regione Autonoma Friuli Venezia Giulia, letto ogni mattina: titolo, struttura, date e collegamento sono quelli che la Regione pubblica, senza altre elaborazioni. «Misure contributive» è il filtro che la stessa Regione offre sul suo sito. Non ci sono i bandi dello Stato, dell'Unione europea, del PNRR (Piano nazionale di ripresa e resilienza), dei Gruppi di azione locale o delle fondazioni, e nemmeno quelli che la Regione non pubblica in questa sezione. Per requisiti, importi e scadenze definitive fa fede la pagina ufficiale del bando. <span id="segnala"></span></p>
+  <section class="riquadro" style="margin-top:16px" aria-labelledby="titoloMetodo">
+    <h2 id="titoloMetodo">Come leggere queste schede</h2>
+    <p class="nota">L'elenco è quello della sezione «Bandi e avvisi» del sito della Regione Autonoma Friuli Venezia Giulia, letto ogni mattina insieme alla pagina di ogni bando. Titolo, struttura, date, testo, campi e allegati sono quelli pubblicati, senza modifiche; la data di ultima verifica è quella della lettura. Quando la pagina ufficiale non riporta un'informazione in forma leggibile (requisiti, spese ammissibili, dotazione, contributo massimo), la scheda lo dice e rimanda al bando.</p>
+    <p class="nota"><b>Classificazioni dell'Atlante, segnate come indicative.</b> <i>Destinatari</i>: dal campo «Destinatari» o «Beneficiari» della pagina quando c'è, altrimenti da parole chiave nel titolo (per esempio «Comuni», «enti del Terzo settore», «imprese», «persone fisiche»); per gli avvisi dei Centri per l'impiego: cittadini. <i>Settore</i>: dalla struttura regionale che ha pubblicato. <i>Tipo</i>: «si presenta domanda» per bandi e avvisi con termini di presentazione; «atti ed esiti» per graduatorie, elenchi di beneficiari, riparti e concessioni già deliberate, riconosciuti da parole nel titolo. <i>In apertura</i>: quando il testo indica una data di avvio delle domande successiva a oggi. <i>Territorio</i>: un bando è collegato a un comune solo se il titolo o i destinatari lo nominano espressamente; non si deduce dalla sede della struttura.</p>
+    <p class="nota">Non ci sono i bandi dello Stato, dell'Unione europea, del PNRR (Piano nazionale di ripresa e resilienza), dei GAL (Gruppi di azione locale) e delle fondazioni. I preferiti restano su questo dispositivo e non vengono inviati a nessuno. <span id="segnala"></span></p>
+  </section>
 </main>
 
 <footer class="piede"><div class="piede-dentro">
@@ -137,94 +173,155 @@
 (() => {
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
   const dataIt = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} ${MESI[+m[2] - 1]} ${m[1]}` : ''; };
   const oggi = (() => { const d = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Rome' })); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; })();
   const giorni = iso => Math.round((Date.UTC(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10)) - Date.UTC(+oggi.slice(0, 4), +oggi.slice(5, 7) - 1, +oggi.slice(8, 10))) / 864e5);
-  let D = null, ST = { q: '', dir: '', contributi: false, scaduti: false, impiego: false, ordine: 'scadenza' };
-
-  function leggiIndirizzo() {
+  const DEST = { comuni: 'Comuni', enti: 'altri enti pubblici', associazioni: 'associazioni e Terzo settore', imprese: 'imprese', cittadini: 'cittadini' };
+  const TIPO = { bando: 'Si presenta domanda', atto: 'Atto o esito: già assegnato', avviso: 'Avviso' };
+  const CHIAVE_PREF = 'atlante-fvg:bandi-preferiti';
+  let pref = new Set(); try { pref = new Set(JSON.parse(localStorage.getItem(CHIAVE_PREF) || '[]')); } catch (e) { /* memoria non disponibile */ }
+  const salvaPref = () => { try { localStorage.setItem(CHIAVE_PREF, JSON.stringify([...pref])); } catch (e) { /* memoria non disponibile */ } };
+  let D = null, COMUNI = [], ST = { q: '', settore: '', dir: '', stato: '', tipo: '', scad: '', comune: '', dest: new Set(), contributi: false, preferiti: false, impiego: false, ordine: 'scadenza' };
+  const scaduto = v => v.scadenza && v.scadenza < oggi;
+  // data di apertura delle domande, se il testo la indica dopo oggi: «dal», «a partire dal», «dalle ore 10.00 del» seguiti da una data
+  function apertura(v) {
+    const c = (v.dettaglio || {}).campi || {}, t = (c.modalita || '') + ' ' + (v.dettaglio || {}).testo || '';
+    const m = /(?:a partire dal|dal(?:le ore [\d.:]+ del)?|dal giorno)\s+(\d{1,2})[\/.](\d{1,2})[\/.](\d{4})/i.exec(t);
+    if (!m) return null; const iso = `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`; return iso > oggi ? iso : null;
+  }
+  const stato = v => scaduto(v) ? 'scaduto' : apertura(v) ? 'apertura' : 'aperto';
+  // comuni nominati nel titolo o nei destinatari (criterio dichiarato): nomi interi, maiuscole ignorate
+  function comuniDi(v) {
+    const t = norm(v.titolo + ' ' + (((v.dettaglio || {}).campi || {}).destinatari || ''));
+    return COMUNI.filter(c => c.n.length >= 4 && new RegExp('(^|[^a-z])' + c.n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '($|[^a-z])').test(t)).map(c => c.slug);
+  }
+  function leggiURL() {
     const p = new URLSearchParams(location.search);
-    ST.q = (p.get('q') || '').slice(0, 80); ST.dir = (p.get('direzione') || '').slice(0, 120);
-    ST.contributi = p.get('contributi') === '1'; ST.scaduti = p.get('scaduti') === '1'; ST.impiego = p.get('impiego') === '1';
-    ST.ordine = p.get('ordine') === 'recenti' ? 'recenti' : 'scadenza';
+    ST.q = p.get('q') || ''; ST.settore = p.get('settore') || ''; ST.dir = p.get('direzione') || ''; ST.stato = p.get('stato') || ''; ST.tipo = p.get('tipo') || ''; ST.scad = p.get('scad') || ''; ST.comune = p.get('comune') || '';
+    ST.dest = new Set((p.get('dest') || '').split(',').filter(d => DEST[d])); ST.contributi = p.get('contributi') === '1'; ST.preferiti = p.get('preferiti') === '1'; ST.impiego = p.get('impiego') === '1'; ST.ordine = p.get('ordine') === 'recenti' ? 'recenti' : 'scadenza';
   }
   function indirizzo() {
-    const u = new URL(location.href), p = u.searchParams; ['q', 'direzione', 'contributi', 'scaduti', 'impiego', 'ordine'].forEach(k => p.delete(k));
-    if (ST.q.trim()) p.set('q', ST.q.trim()); if (ST.dir) p.set('direzione', ST.dir); if (ST.contributi) p.set('contributi', '1'); if (ST.scaduti) p.set('scaduti', '1'); if (ST.impiego) p.set('impiego', '1'); if (ST.ordine !== 'scadenza') p.set('ordine', ST.ordine);
-    return u.pathname + (p.toString() ? '?' + p : '');
+    const u = new URL(location.href), p = u.searchParams; ['q', 'settore', 'direzione', 'stato', 'tipo', 'scad', 'comune', 'dest', 'contributi', 'preferiti', 'impiego', 'ordine', 'scaduti'].forEach(k => p.delete(k));
+    if (ST.q.trim()) p.set('q', ST.q.trim()); if (ST.settore) p.set('settore', ST.settore); if (ST.dir) p.set('direzione', ST.dir); if (ST.stato) p.set('stato', ST.stato); if (ST.tipo) p.set('tipo', ST.tipo); if (ST.scad) p.set('scad', ST.scad); if (ST.comune) p.set('comune', ST.comune);
+    if (ST.dest.size) p.set('dest', [...ST.dest].join(',')); if (ST.contributi) p.set('contributi', '1'); if (ST.preferiti) p.set('preferiti', '1'); if (ST.impiego) p.set('impiego', '1'); if (ST.ordine !== 'scadenza') p.set('ordine', ST.ordine);
+    return u.pathname + (p.toString() ? '?' + p.toString() : '');
   }
-  const scaduto = v => v.scadenza && v.scadenza < oggi;
-  function visibili() {
+  const link = () => location.origin + indirizzo();
+  function filtra() {
     const parole = norm(ST.q).split(/\s+/).filter(Boolean);
-    return D.voci.filter(v => (ST.impiego || v.sezione === 'regione') && (!ST.dir || v.direzione === ST.dir) && (!ST.contributi || v.contributi) && (ST.scaduti || !scaduto(v)) && parole.every(w => norm(v.titolo + ' ' + v.direzione).includes(w)));
+    return D.voci.filter(v => {
+      if (!(ST.impiego || v.sezione === 'regione')) return false;
+      const s = stato(v); if (ST.stato === '' && s === 'scaduto') return false; if (ST.stato && ST.stato !== 'tutti' && s !== ST.stato) return false;
+      if (ST.settore && v.settore !== ST.settore) return false; if (ST.dir && v.direzione !== ST.dir) return false; if (ST.tipo && v.tipo !== ST.tipo) return false;
+      if (ST.scad === 'con' && !v.scadenza) return false; if (/^\d+$/.test(ST.scad) && !(v.scadenza && giorni(v.scadenza) >= 0 && giorni(v.scadenza) <= +ST.scad)) return false;
+      if (ST.comune && !(v.comuni || []).includes(ST.comune)) return false;
+      if (ST.dest.size && !(v.destinatari || []).some(d => ST.dest.has(d))) return false;
+      if (ST.contributi && !v.contributi) return false; if (ST.preferiti && !pref.has(v.id)) return false;
+      const c = (v.dettaglio || {}).campi || {}; const testo = norm([v.titolo, v.direzione, (v.dettaglio || {}).servizio, (v.dettaglio || {}).testo, ...Object.values(c)].join(' '));
+      return parole.every(w => testo.includes(w));
+    });
   }
   function ordina(l) {
-    const pub = (a, b) => b.pubblicato.localeCompare(a.pubblicato) || a.id.localeCompare(b.id);
-    if (ST.ordine === 'recenti') return l.sort(pub);
-    // prima i bandi con scadenza, dal più vicino; poi quelli senza scadenza indicata; in fondo i già scaduti
-    const classe = v => scaduto(v) ? 2 : v.scadenza ? 0 : 1;
-    return l.sort((a, b) => classe(a) - classe(b) || (classe(a) === 0 ? a.scadenza.localeCompare(b.scadenza) : classe(a) === 2 ? b.scadenza.localeCompare(a.scadenza) : 0) || pub(a, b));
+    if (ST.ordine === 'recenti') return l.sort((a, b) => b.pubblicato.localeCompare(a.pubblicato) || a.id.localeCompare(b.id));
+    return l.sort((a, b) => { const sa = scaduto(a), sb = scaduto(b); if (sa !== sb) return sa ? 1 : -1; if (!!a.scadenza !== !!b.scadenza) return a.scadenza ? -1 : 1; return (a.scadenza || '').localeCompare(b.scadenza || '') * (sa ? -1 : 1) || b.pubblicato.localeCompare(a.pubblicato); });
   }
-  function badgeScadenza(v) {
+  function badgeScad(v) {
     if (!v.scadenza) return '<span class="badge nd">Scadenza non indicata</span>';
-    const g = giorni(v.scadenza);
-    if (g < 0) return `<span class="badge passato">Scaduto il ${dataIt(v.scadenza)}</span>`;
-    if (g === 0) return '<span class="badge presto">Scade oggi</span>';
-    if (g === 1) return '<span class="badge presto">Scade domani</span>';
-    if (g <= 14) return `<span class="badge presto">Scade tra ${g} giorni · ${dataIt(v.scadenza)}</span>`;
-    return `<span class="badge scad">Scade il ${dataIt(v.scadenza)}</span>`;
+    const g = giorni(v.scadenza); if (g < 0) return `<span class="badge passato">Scaduto il ${dataIt(v.scadenza)}</span>`;
+    if (g === 0) return '<span class="badge presto">Scade oggi</span>'; if (g === 1) return '<span class="badge presto">Scade domani</span>';
+    if (g <= 14) return `<span class="badge presto">Scade tra ${g} giorni (${dataIt(v.scadenza)})</span>`; return `<span class="badge scad">Scade il ${dataIt(v.scadenza)}</span>`;
+  }
+  const campo = (et, val, vuoto) => `<dt>${et}</dt><dd class="${val ? '' : 'vuoto-campo'}">${val ? esc(val) : vuoto}</dd>`;
+  const NON_PUBB = 'non riportato in forma strutturata nella pagina ufficiale: vedi il bando';
+  function scheda(v) {
+    const d = v.dettaglio || {}, c = d.campi || {}, s = stato(v), ap = apertura(v);
+    const destTesto = c.destinatari ? esc(c.destinatari) : (v.destinatari || []).length ? `${(v.destinatari || []).map(k => DEST[k]).join(', ')} <span class="indic">(indicativo, da parole del ${v.destinatariDa === 'sezione' ? 'tipo di avviso' : 'titolo'})</span>` : '';
+    const allegati = (d.allegati || []).slice().sort((a, b) => (/bando|avviso/i.test(b.titolo) ? 1 : 0) - (/bando|avviso/i.test(a.titolo) ? 1 : 0));
+    const comuni = (v.comuni || []).map(sl => COMUNI.find(x => x.slug === sl)).filter(Boolean);
+    return `<li class="bando ${s === 'scaduto' ? 'scaduto' : ''}" data-id="${esc(v.id)}">
+      <div class="riga-badge">${badgeScad(v)}${ap ? `<span class="badge apertura">Domande dal ${dataIt(ap)}</span>` : ''}<span class="badge tipo">${TIPO[v.tipo] || 'Avviso'}</span>${v.contributi ? '<span class="badge contr">Misure contributive</span>' : ''}${v.sezione !== 'regione' ? `<span class="badge nd">${v.sezione === 'cpi' ? 'Centri per l\'impiego' : 'Collocamento mirato'}</span>` : ''}</div>
+      <h2><a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.titolo)}</a></h2>
+      <div class="dir">${esc(v.direzione || 'Struttura non indicata')}${d.servizio ? ' · ' + esc(d.servizio) : ''}${v.sito ? ` · <span class="nota">si apre sul sito ${esc(v.sito)}</span>` : ''}</div>
+      <div class="date">Pubblicato il ${dataIt(v.pubblicato)}${d.verificato ? ` · pagina verificata il ${dataIt(d.verificato)}` : d.nonLetta ? ' · <span class="errore">pagina non letta all\'ultimo aggiornamento</span>' : ''}${v.settore ? ` · settore: ${esc(v.settore)}` : ''}</div>
+      <dl class="campi">
+        ${campo('Destinatari', null, destTesto || NON_PUBB).replace('<dd class="vuoto-campo">' + (destTesto || ''), destTesto ? '<dd>' + destTesto : '<dd class="vuoto-campo">' + NON_PUBB)}
+        ${campo('Requisiti principali', c.requisiti, NON_PUBB)}
+        ${campo('Attività finanziabile', c.attivita, c.attivita ? '' : (d.testo ? esc(d.testo.slice(0, 300)) + (d.testo.length > 300 ? '…' : '') : NON_PUBB))}
+        ${campo('Spese ammissibili', c.spese, NON_PUBB)}
+        ${campo('Dotazione e contributo', [c.dotazione, c.contributo].filter(Boolean).join(' · '), 'non pubblicati nella pagina: vedi il bando')}
+        ${campo('Termini e modalità', c.modalita, v.scadenza ? `scadenza ${dataIt(v.scadenza)}; modalità nel bando` : 'vedi la pagina ufficiale')}
+        ${comuni.length ? `<dt>Comuni nominati</dt><dd>${comuni.map(x => `<a href="../c/${x.slug}/">${esc(x.n)}</a>`).join(', ')}</dd>` : ''}
+      </dl>
+      ${allegati.length ? `<div class="allegati">${allegati.slice(0, 8).map(a => `<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.titolo)} <span class="fmt">${esc(a.formato)}</span></a>`).join('')}${allegati.length > 8 ? `<span class="nota">e altri ${allegati.length - 8} allegati nella pagina ufficiale</span>` : ''}</div>` : ''}
+      <div class="azioni"><a class="btn btn-primario apri" href="${esc(v.url)}" target="_blank" rel="noopener">Apri la pagina ufficiale</a>
+        <button type="button" class="stella" data-id="${esc(v.id)}" aria-pressed="${pref.has(v.id)}" aria-label="${pref.has(v.id) ? 'Togli dai preferiti' : 'Salva nei preferiti'}">${pref.has(v.id) ? '★ Preferito' : '☆ Preferito'}</button>
+        ${v.scadenza && !scaduto(v) ? `<button type="button" class="stella ics" data-id="${esc(v.id)}">Aggiungi al calendario</button>` : ''}</div>
+    </li>`;
   }
   function disegna() {
-    const l = ordina(visibili()), el = $('elenco');
-    el.innerHTML = l.map(v => `<li class="bando${scaduto(v) ? ' scaduto' : ''}">
-      <div class="riga-badge">${badgeScadenza(v)}${v.contributi ? '<span class="badge contr">Misure contributive</span>' : ''}</div>
-      <h2><a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.titolo)}</a></h2>
-      <div class="dir">${esc(v.direzione)}</div>
-      <div class="date">Pubblicato il ${dataIt(v.pubblicato)}${v.sito ? ` · si apre sul sito ${esc(v.sito)}` : ''}</div>
-      <a class="btn btn-secondario apri" href="${esc(v.url)}" target="_blank" rel="noopener" aria-label="Apri la pagina ufficiale: ${esc(v.titolo)}">Apri la pagina ufficiale</a>
-    </li>`).join('');
+    const l = ordina(filtra());
+    $('elenco').innerHTML = l.map(scheda).join('');
+    $('vuoto').hidden = l.length > 0; if (!l.length) $('vuotoTesto').textContent = ST.preferiti && !pref.size ? 'Non hai ancora salvato preferiti: usa «☆ Preferito» su un bando.' : 'Nessun bando corrisponde ai filtri.';
     const nScad = D.voci.filter(v => (ST.impiego || v.sezione === 'regione') && scaduto(v)).length;
-    $('esito').textContent = `${l.length} ${l.length === 1 ? 'bando o avviso' : 'bandi e avvisi'}${!ST.scaduti && nScad ? ` · ${nScad} già ${nScad === 1 ? 'scaduto' : 'scaduti'} non ${nScad === 1 ? 'mostrato' : 'mostrati'}` : ''}`;
-    $('vuoto').hidden = l.length > 0;
-    if (!l.length) $('vuotoTesto').textContent = ST.q.trim() || ST.dir || ST.contributi ? 'Nessun bando o avviso corrisponde a questi filtri. Prova con meno parole o cancella i filtri.' : 'Non ci sono bandi o avvisi da mostrare.';
-    $('cancella').hidden = !ST.q;
-    document.querySelectorAll('.parole button').forEach(b => b.setAttribute('aria-pressed', String(norm(ST.q).trim() === norm(b.dataset.p))));
+    $('esito').textContent = `${l.length} ${l.length === 1 ? 'bando o avviso' : 'bandi e avvisi'}${ST.stato === '' && nScad ? ` · ${nScad} già ${nScad === 1 ? 'scaduto' : 'scaduti'} non ${nScad === 1 ? 'mostrato' : 'mostrati'}` : ''}`;
+    $('nPref').textContent = pref.size ? `(${pref.size})` : ''; $('cancella').hidden = !ST.q;
+    document.querySelectorAll('.chips button').forEach(b => b.setAttribute('aria-pressed', String(ST.dest.has(b.dataset.d))));
+    $('icsTutti').disabled = !l.some(v => v.scadenza && !scaduto(v));
     try { history.replaceState(null, '', indirizzo()); } catch (e) { /* indirizzo non modificabile */ }
   }
-  function direzioni() {
-    const c = new Map(); D.voci.filter(v => ST.impiego || v.sezione === 'regione').forEach(v => c.set(v.direzione, (c.get(v.direzione) || 0) + 1));
-    const nomi = [...c.keys()].sort((a, b) => a.localeCompare(b, 'it'));
-    if (ST.dir && !c.has(ST.dir)) ST.dir = '';
-    $('direzione').innerHTML = `<option value="">Tutte le strutture (${[...c.values()].reduce((s, n) => s + n, 0)})</option>` + nomi.map(n => `<option value="${esc(n)}"${n === ST.dir ? ' selected' : ''}>${esc(n.replace(/^Direzione centrale /, ''))} (${c.get(n)})</option>`).join('');
+  function opzioni() {
+    const base = D.voci.filter(v => ST.impiego || v.sezione === 'regione');
+    const cs = new Map(); base.forEach(v => cs.set(v.settore || 'Altro', (cs.get(v.settore || 'Altro') || 0) + 1));
+    $('settore').innerHTML = '<option value="">Tutti i settori</option>' + [...cs.entries()].sort((a, b) => a[0].localeCompare(b[0], 'it')).map(([s, n]) => `<option value="${esc(s)}" ${s === ST.settore ? 'selected' : ''}>${esc(s)} (${n})</option>`).join('');
+    const cd = new Map(); base.filter(v => !ST.settore || v.settore === ST.settore).forEach(v => cd.set(v.direzione, (cd.get(v.direzione) || 0) + 1));
+    $('direzione').innerHTML = '<option value="">Tutte le strutture</option>' + [...cd.entries()].sort((a, b) => a[0].localeCompare(b[0], 'it')).map(([d, n]) => `<option value="${esc(d)}" ${d === ST.dir ? 'selected' : ''}>${esc(d || 'Non indicata')} (${n})</option>`).join('');
+    const cc = new Map(); base.forEach(v => (v.comuni || []).forEach(sl => cc.set(sl, (cc.get(sl) || 0) + 1)));
+    $('comune').innerHTML = '<option value="">Tutti (nessun filtro territoriale)</option>' + [...cc.entries()].map(([sl, n]) => [COMUNI.find(x => x.slug === sl), n]).filter(([c]) => c).sort((a, b) => a[0].n.localeCompare(b[0].n, 'it')).map(([c, n]) => `<option value="${esc(c.slug)}" ${c.slug === ST.comune ? 'selected' : ''}>${esc(c.n)} (${n})</option>`).join('');
   }
-  function sincronizza() { $('q').value = ST.q; $('contributi').checked = ST.contributi; $('scaduti').checked = ST.scaduti; $('impiego').checked = ST.impiego; $('ordine').value = ST.ordine; direzioni(); }
-
+  function sincronizza() { $('q').value = ST.q; $('stato').value = ST.stato; $('tipo').value = ST.tipo; $('scad').value = ST.scad; $('contributi').checked = ST.contributi; $('preferiti').checked = ST.preferiti; $('impiego').checked = ST.impiego; $('ordine').value = ST.ordine; opzioni(); }
+  // calendario ICS: un evento per tutto il giorno alla scadenza, con il collegamento alla pagina ufficiale
+  const icsTesto = s => String(s).replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+  const piega = r => { const out = []; let s = r; while (s.length > 70) { out.push(s.slice(0, 70)); s = ' ' + s.slice(70); } out.push(s); return out.join('\r\n'); };
+  function ics(voci) {
+    const adesso = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+    const ev = v => { const d = v.scadenza.replace(/-/g, ''); const fine = new Date(Date.UTC(+v.scadenza.slice(0, 4), +v.scadenza.slice(5, 7) - 1, +v.scadenza.slice(8, 10) + 1)).toISOString().slice(0, 10).replace(/-/g, '');
+      return ['BEGIN:VEVENT', `UID:${v.id.replace(/[^A-Za-z0-9-]/g, '-')}@atlantefvg.it`, `DTSTAMP:${adesso}`, `DTSTART;VALUE=DATE:${d}`, `DTEND;VALUE=DATE:${fine}`, piega('SUMMARY:' + icsTesto('Scadenza: ' + v.titolo)), piega('DESCRIPTION:' + icsTesto(`${v.direzione}. Pagina ufficiale: ${v.url}. Scheda nell'Atlante FVG: https://atlantefvg.it/bandi/?q=${encodeURIComponent(v.titolo.slice(0, 40))}`)), `URL:${v.url}`, 'END:VEVENT'].join('\r\n'); };
+    return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Atlante FVG//Bandi//IT', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', piega('X-WR-CALNAME:' + icsTesto('Scadenze dei bandi (Atlante FVG)')), ...voci.map(ev), 'END:VCALENDAR'].join('\r\n') + '\r\n';
+  }
+  function salva(nome, testo, tipo) { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([testo], { type: tipo })); a.download = nome; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }
   $('q').addEventListener('input', e => { ST.q = e.target.value; disegna(); });
-  $('q').addEventListener('keydown', e => { if (e.key === 'Escape' && ST.q) { ST.q = ''; sincronizza(); disegna(); } });
-  $('cancella').addEventListener('click', () => { ST.q = ''; sincronizza(); disegna(); $('q').focus(); });
+  $('q').addEventListener('keydown', e => { if (e.key === 'Escape') { ST.q = ''; e.target.value = ''; disegna(); } });
+  $('cancella').addEventListener('click', () => { ST.q = ''; $('q').value = ''; disegna(); $('q').focus(); });
+  $('settore').addEventListener('change', e => { ST.settore = e.target.value; ST.dir = ''; opzioni(); disegna(); });
   $('direzione').addEventListener('change', e => { ST.dir = e.target.value; disegna(); });
-  $('ordine').addEventListener('change', e => { ST.ordine = e.target.value; disegna(); });
+  ['stato', 'tipo', 'scad', 'comune', 'ordine'].forEach(k => $(k).addEventListener('change', e => { ST[k] = e.target.value; disegna(); }));
   $('contributi').addEventListener('change', e => { ST.contributi = e.target.checked; disegna(); });
-  $('scaduti').addEventListener('change', e => { ST.scaduti = e.target.checked; disegna(); });
-  $('impiego').addEventListener('change', e => { ST.impiego = e.target.checked; direzioni(); disegna(); });
-  document.querySelector('.parole').addEventListener('click', e => { const b = e.target.closest('button[data-p]'); if (!b) return; ST.q = norm(ST.q).trim() === norm(b.dataset.p) ? '' : b.dataset.p; sincronizza(); disegna(); });
-  $('azzera').addEventListener('click', () => { ST = { q: '', dir: '', contributi: false, scaduti: false, impiego: false, ordine: 'scadenza' }; sincronizza(); disegna(); });
-  function link() { disegna(); return location.href; }
+  $('preferiti').addEventListener('change', e => { ST.preferiti = e.target.checked; disegna(); });
+  $('impiego').addEventListener('change', e => { ST.impiego = e.target.checked; opzioni(); disegna(); });
+  document.querySelector('.chips').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const d = b.dataset.d; if (ST.dest.has(d)) ST.dest.delete(d); else ST.dest.add(d); disegna(); });
+  $('azzera').addEventListener('click', () => { ST = { q: '', settore: '', dir: '', stato: '', tipo: '', scad: '', comune: '', dest: new Set(), contributi: false, preferiti: false, impiego: false, ordine: 'scadenza' }; sincronizza(); disegna(); });
+  $('elenco').addEventListener('click', e => {
+    const st = e.target.closest('.stella'); if (!st) return; const v = D.voci.find(x => x.id === st.dataset.id); if (!v) return;
+    if (st.classList.contains('ics')) { salva('scadenza-' + v.id.replace(/[^A-Za-z0-9-]/g, '-') + '.ics', ics([v]), 'text/calendar;charset=utf-8'); return; }
+    if (pref.has(v.id)) pref.delete(v.id); else pref.add(v.id); salvaPref(); disegna();
+  });
+  $('icsTutti').addEventListener('click', () => { const l = ordina(filtra()).filter(v => v.scadenza && !scaduto(v)); if (!l.length) return; salva('scadenze-bandi-fvg.ics', ics(l), 'text/calendar;charset=utf-8'); });
   $('copiaLink').addEventListener('click', async () => {
-    const url = link(), b = $('copiaLink'); let ok = false;
+    const url = link(); let ok = false;
     try { await navigator.clipboard.writeText(url); ok = true; } catch (e) { /* appunti non disponibili */ }
     if (!ok) { const t = document.createElement('textarea'); t.value = url; t.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(t); t.select(); try { ok = document.execCommand('copy'); } catch (_) { /* non consentita */ } t.remove(); }
-    if (!ok) { prompt('Copia il link', url); return; }
-    b.textContent = 'Link copiato'; clearTimeout(b.t); b.t = setTimeout(() => { b.textContent = 'Copia link'; }, 2400);
+    if (!ok) { prompt('Copia il collegamento', url); return; }
+    $('copiaLink').textContent = 'Link copiato'; setTimeout(() => $('copiaLink').textContent = 'Copia link', 2000);
   });
   if (navigator.share) { $('condividi').hidden = false; $('condividi').addEventListener('click', async () => { try { await navigator.share({ title: document.title, url: link() }); } catch (e) { /* annullato */ } }); }
-  addEventListener('popstate', () => { leggiIndirizzo(); sincronizza(); disegna(); });
-
-  fetch('../dati/bandi.json').then(r => { if (!r.ok) throw new Error('stato ' + r.status); return r.json(); }).then(d => {
-    D = d; leggiIndirizzo(); sincronizza();
-    $('fonte').innerHTML = `Fonte: <a href="${esc(d.fonte)}" target="_blank" rel="noopener">Regione Autonoma Friuli Venezia Giulia, bandi e avvisi</a>. L'elenco è controllato ogni mattina; l'ultima variazione è del ${dataIt(d.ultima_variazione)}. Le scadenze sono calcolate rispetto a oggi, ${dataIt(oggi)}.`;
+  window.addEventListener('popstate', () => { leggiURL(); sincronizza(); disegna(); });
+  Promise.all([fetch('../dati/bandi.json').then(r => { if (!r.ok) throw new Error('stato ' + r.status); return r.json(); }), fetch('../dati/comuni_slug.json').then(r => r.ok ? r.json() : []).catch(() => [])]).then(([d, com]) => {
+    D = d; COMUNI = com; D.voci.forEach(v => { v.comuni = comuniDi(v); });
+    leggiURL(); sincronizza();
+    const nonLette = D.voci.filter(v => (v.dettaglio || {}).nonLetta).length;
+    $('fonte').innerHTML = `Fonte: <a href="${esc(d.fonte)}" target="_blank" rel="noopener">Regione Autonoma Friuli Venezia Giulia, bandi e avvisi</a>. L'elenco e le pagine dei bandi sono controllati ogni mattina; l'ultima variazione è del ${dataIt(d.ultima_variazione)}. Le scadenze sono calcolate rispetto a oggi, ${dataIt(oggi)}.${nonLette ? ` <span class="errore">${nonLette} pagine non lette all'ultimo aggiornamento: le schede mostrano i dati precedenti.</span>` : ''}`;
     const u = 'mailto:info@atlantefvg.it?subject=' + encodeURIComponent('Segnalazione di errore: bandi') + '&body=' + encodeURIComponent('Pagina: ' + location.href + '\nBando o avviso:\n\nChe cosa non torna:\n');
     $('segnala').innerHTML = `Hai trovato un errore? <a href="${u}">Segnalalo per posta</a> oppure <a href="https://wa.me/393283692227?text=${encodeURIComponent('Segnalazione di errore sull\'Atlante FVG: pagina Bandi')}" target="_blank" rel="noopener">via WhatsApp</a>.`;
     disegna();
