@@ -20,7 +20,7 @@ PAGINA = RADICE / 'index.html'
 FILE = RADICE / 'dati' / 'aggiornamenti.json'
 BOT = 'github-actions'
 # pagine o servizi riconosciuti nel testo dei commit: parola chiave -> (etichetta, collegamento)
-SERVIZI = [(r'\bbandi\b', 'Bandi e avvisi della Regione', '../bandi/'), (r'opere pubbliche|OpenCUP', 'Opere pubbliche (OpenCUP)', '../?pagina=archivio&foglio=Opere_pubbliche_OpenCUP'),
+SERVIZI = [(r'\bbandi\b', 'Bandi e avvisi della Regione', '../bandi/'), (r'finanziament|vantaggi economici|atti di concessione', 'Finanziamenti regionali', '../finanziamenti/'), (r'osservatorio|\bopere\b', 'Osservatorio delle opere pubbliche', '../opere/'), (r'servizi sul territorio|mappa dei servizi', 'Servizi sul territorio', '../servizi/'), (r'opere pubbliche|OpenCUP', 'Opere pubbliche (OpenCUP)', '../?pagina=archivio&foglio=Opere_pubbliche_OpenCUP'),
            (r'\borari\b', 'Orari degli autobus', '../orari/'), (r'autobus|rete|GTFS|fermat', 'Rete degli autobus', '../?pagina=autobus'), (r'meteo', 'Meteo', '../meteo/'),
            (r'catasto', 'Catasto', '../catasto/'), (r'stradario', 'Stradario', '../stradario/'), (r'allert|qualità dell.aria|\baria\b', 'Allerte e qualità dell\'aria', '../?pagina=ambiente'),
            (r'confronto', 'Confronto', '../?pagina=confronto'), (r'mapp', 'Mappe', '../?pagina=mappe'), (r'dossier|scheda', 'Scheda del comune', '../?pagina=comuni'), (r'metodo|fonti|versioni', 'Metodo e fonti', '../?pagina=metodo')]
@@ -55,6 +55,9 @@ def valori_dal_corpo(corpo):
     if m:
         n, nuove, tolte = int(m.group(1)), int(m.group(3)), int(m.group(4))
         out.append({'cosa': 'Bandi e avvisi della Regione', 'misura': 'voci', 'prima': n - nuove + tolte, 'dopo': n, 'differenza': nuove - tolte, 'collegamento': '../bandi/'})
+    m = re.search(r'Finanziamenti: (\d+) righe lette dal (\S+) al (\S+), (\d+) nuove; archivio di (\d+) righe', corpo)
+    if m:
+        out.append({'cosa': 'Finanziamenti regionali (Amministrazione trasparente)', 'misura': 'righe in archivio', 'prima': int(m.group(5)) - int(m.group(4)), 'dopo': int(m.group(5)), 'differenza': int(m.group(4)), 'collegamento': '../finanziamenti/'})
     m = re.search(r'Opere pubbliche: (\d+) progetti, (\d+) righe per comune', corpo)
     if m:
         out.append({'cosa': 'Opere pubbliche (OpenCUP)', 'misura': 'progetti', 'prima': None, 'dopo': int(m.group(1)), 'differenza': None, 'collegamento': '../?pagina=archivio&foglio=Opere_pubbliche_OpenCUP'})
@@ -68,6 +71,8 @@ def servizi_di(testo, file_toccati):
         m = re.match(r'dati/([A-Za-z0-9_]+?)_\d+\.txt$', f)
         if m and not m.group(1).startswith('_'):
             s.append({'nome': m.group(1).replace('_', ' '), 'collegamento': f'../?pagina=archivio&foglio={m.group(1)}'})
+        elif f.startswith('dati/fin/') or f == 'dati/finanziamenti_indice.json':
+            s.append({'nome': 'Finanziamenti regionali', 'collegamento': '../finanziamenti/'})
         elif f == 'dati/bandi.json':
             s.append({'nome': 'Bandi e avvisi della Regione', 'collegamento': '../bandi/'})
         elif f == 'dati/_tpl_0.txt':

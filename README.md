@@ -242,6 +242,15 @@ I tre fogli dell'8 ottobre si aggiornano con la rotazione settimanale (gruppi 1,
 Nei rendiconti alcune viste regionali ripetono le stesse righe (una, intitolata a Ragogna, contiene i dati di
 Roveredo in Piano): i doppioni sono tolti tenendo una riga per anno, comune e voce di bilancio.
 
+## Qualità dei dati e registro degli errori (fase 2)
+
+- **Fonti e accesso**: ogni integrazione nuova dichiara la fonte ufficiale, come si legge (esportazione CSV, pagine, dataset), la copertura, la frequenza e i limiti, nella pagina stessa, in Metodo e fonti e in questo file.
+- **Controlli**: i finanziamenti controllano duplicati (chiave della riga), importi non numerici, date non valide, estremi mancanti ed esportazioni senza intestazione, e tengono un registro degli errori nell'indice (`dati/finanziamenti_indice.json`, `controlli` ed `errori`), con l'elenco delle finestre di date che il portale non ha servito e dei mesi senza dati. I bandi scartano le voci duplicate, validano le date e segnalano le pagine non lette. Le opere raggruppano le righe per CUP. I servizi riportano le scuole senza posizione.
+- **Ultima versione valida**: ogni flusso lascia i dati di prima quando la fonte non risponde o il risultato sembra incompleto (bandi: meno di 20 voci o meno del 40% di prima; finanziamenti: nessuna esportazione valida; opere: meno di 20.000 progetti; dati aperti: meno della metà delle righe).
+- **Dati non aggiornati**: la pagina «Cosa è cambiato» ha la tabella «Stato dei flussi automatici» con l'ultima lettura di ogni servizio e l'avviso «dati forse non aggiornati» quando la lettura è più vecchia del previsto; la pagina dei finanziamenti elenca i mesi senza dati.
+- **Nessun dato dimostrativo**: tutte le pagine leggono file prodotti dalle fonti; quando una fonte non è accessibile la pagina lo dice e rimanda alla fonte. Nessuna chiave o credenziale è nel codice (i flussi usano solo il `GITHUB_TOKEN` fornito da GitHub).
+- **Controllo del rilascio**: `scripts/controlla_rilascio.py` verifica anche i file nuovi (`bandi.json`, `aggiornamenti.json`, `opere_meta.json`, `comuni_slug.json`, `finanziamenti_indice.json`, `servizi.json`).
+
 ## Autobus
 
 Linee e fermate vengono dai dati GTFS (formato aperto per gli orari del trasporto pubblico) di TPL FVG,
@@ -291,6 +300,24 @@ La pagina `bandi/` mostra i bandi, gli avvisi e gli atti pubblicati nella sezion
 La pagina `opere/` mostra i lavori pubblici con CUP localizzati in Friuli Venezia Giulia dai dati OpenCUP già presenti nell'archivio (`dati/Opere_pubbliche_OpenCUP_*.txt`, letti nel browser; `dati/opere_meta.json` con data dei dati, colonne e file, scritto da `scripts/aggiorna_opere.py`). Una scheda per CUP (le righe per progetto e comune sono raggruppate: la stessa opera non si conta due volte) con descrizione, comuni, ente responsabile, settore e categoria, costo e finanziamento previsti, fonti di copertura dichiarate, stato amministrativo del CUP, anno della decisione e data del CUP, fonte e data dell'ultimo aggiornamento, collegamento all'archivio dei finanziamenti con lo stesso CUP. Ricerca per descrizione, CUP o ente, comune, anno, stato, settore, solo opere in un comune; totali con il criterio di conteggio (si sommano solo le opere in un solo comune con costo noto); CSV.
 
 Avvertenze scritte nella pagina: lo stato del CUP non dice se i lavori sono iniziati o finiti e l'Atlante non lo deduce; date previste ed effettive di inizio e fine lavori non sono nella fonte; il costo è quello previsto alla decisione. Collegamento dalla scheda del comune («Schede delle opere di…»). Prova: `node prove/opere.js`.
+
+## Finanziamenti regionali (atti di concessione)
+
+La pagina `finanziamenti/` è l'archivio dei vantaggi economici concessi dalla Regione e dagli enti che pubblicano nella sua Amministrazione trasparente (Comuni, aziende sanitarie, ERSA, FVG Plus, Consiglio regionale e altri), sezione «Concessione e attribuzione di vantaggi economici» (articoli 26 e 27 del decreto legislativo 33/2013; articolo 7 della legge regionale 7/2014). `scripts/aggiorna_finanziamenti.py` esporta il CSV ufficiale a finestre di dieci giorni (il server rifiuta gli intervalli lunghi e spesso risponde 502 o 503: si riprova, si spezza a cinque giorni, e le finestre non scaricate restano elencate nell'indice), scrive un file per mese di pubblicazione in `dati/fin/AAAA-MM.txt` (stesso formato compresso degli altri fogli) e l'indice `dati/finanziamenti_indice.json` (mesi, totali, enti, settori, controlli, registro degli errori, esito dell'ultima lettura). Il flusso `.github/workflows/aggiorna-finanziamenti.yml` lo esegue ogni mercoledì sugli ultimi quaranta giorni; con `--da` si ricarica un periodo.
+
+- **Una riga = un beneficiario in un atto**; gli atti con più beneficiari sono collegati dalla chiave (ente, anno, numero) e contati una volta. Le righe identiche esportate due volte sono scartate e contate nei controlli.
+- **Fasi**: la fonte pubblica importo concesso ed erogato; stanziamenti e impegni non sono pubblicati e non si deducono. I totali sommano solo importi dello stesso tipo sulle righe filtrate e il criterio è scritto nella pagina.
+- **Territorio** solo con criterio documentato, mostrato accanto al valore: ente concedente = Comune; CUP localizzato in OpenCUP (se in più comuni, importo non ripartito); comune nominato nell'oggetto. Mai dalla sede del beneficiario. Gli atti regionali senza comune restano «ambito regionale o non indicato».
+- **Persone fisiche**: nome e codice fiscale non ripubblicati (restano ente, finalità, importo). **Settore**: classificazione indicativa da parole chiave (`SETTORI`).
+- **Collegamenti**: ricerca sul portale per numero e anno dell'atto, atto di concessione e bando quando la fonte dà il collegamento, scheda dell'opera per i CUP presenti in OpenCUP.
+- **Controlli**: righe lette, duplicati scartati, importi non numerici, date mancanti, estremi assenti; tutto nell'indice e in fondo alla pagina. Se il portale non risponde restano i dati di prima e la pagina lo dice.
+- Prova: `node prove/finanziamenti_pagina.js`.
+
+## Servizi sul territorio
+
+La pagina `servizi/` mette su una sola mappa (Leaflet, tessere OpenStreetMap) i punti con coordinate già nell'archivio: farmacie (con telefono e orari del dataset regionale), parafarmacie, guardie mediche, residenze per anziani, scuole statali (sedi degli istituti 2026/27, posizione ricavata dall'indirizzo con Nominatim e dichiarata «da verificare»: `scripts/geocodifica_scuole.py`, `dati/scuole_coord.json`) e fermate degli autobus (rete TPL FVG, con il collegamento agli orari). `scripts/prepara_servizi.py` costruisce `dati/servizi.json` con fonte e data di consultazione per categoria e il centro di ogni comune; gira ogni lunedì con i dati aperti. Gli impianti sportivi del registro CONI non hanno indirizzo e restano fuori.
+
+Si parte da un comune, da un indirizzo (Photon, limitato alla regione), da un punto toccato sulla mappa o dalla posizione del dispositivo, chiesta solo premendo il pulsante e mai inviata all'Atlante né messa nell'indirizzo della pagina. L'elenco a fianco dà i servizi più vicini con la distanza **in linea d'aria**: percorsi stradali e tempi di viaggio non sono mostrati perché non c'è un servizio di calcolo integrato, e la pagina lo scrive. Lo stato (categorie, punto, comune) è nell'indirizzo. Prova: `node prove/servizi.js`.
 
 ## Stradario
 

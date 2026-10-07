@@ -85,6 +85,9 @@ jobs:
       - name: Rigenera le pagine statiche
         run: python scripts/pagine_comuni.py | tee -a esito.txt
 
+      - name: Prepara i punti della pagina Servizi
+        run: python scripts/prepara_servizi.py
+
       - name: Pubblica se qualcosa è cambiato
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

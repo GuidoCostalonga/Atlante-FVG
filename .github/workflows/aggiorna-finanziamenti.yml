@@ -1,0 +1,57 @@
+name: Aggiorna i finanziamenti
+
+# Ogni settimana rilegge dall'Amministrazione trasparente regionale gli atti di concessione di vantaggi economici
+# pubblicati negli ultimi 40 giorni (gli atti arrivano e si aggiornano con ritardo) e li unisce all'archivio.
+# Se il portale non risponde, restano i dati di prima e l'indice lo dice.
+on:
+  schedule:
+    - cron: '35 4 * * 3'
+  workflow_dispatch:
+    inputs:
+      da:
+        description: 'Data di inizio (AAAA-MM-GG), vuota per gli ultimi 40 giorni'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: aggiorna-dati
+  cancel-in-progress: false
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # il registro «Cosa è cambiato» legge tutta la storia
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Legge gli atti di concessione
+        run: |
+          if [ -n "${{ github.event.inputs.da }}" ]; then python scripts/aggiorna_finanziamenti.py --da "${{ github.event.inputs.da }}" | tee esito.txt; else python scripts/aggiorna_finanziamenti.py | tee esito.txt; fi
+
+      - name: Pubblica se qualcosa è cambiato
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add dati/fin dati/finanziamenti_indice.json
+          if git diff --cached --quiet; then
+            echo "Nessuna novità da pubblicare."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Aggiorna i finanziamenti regionali del $(date +%d/%m/%Y)" -m "$(cat esito.txt)"
+          python scripts/registro_aggiornamenti.py && git add dati/aggiornamenti.json && git commit --amend --no-edit
+          git pull --rebase
+          git push
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true

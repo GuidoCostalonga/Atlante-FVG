@@ -111,6 +111,12 @@
     <div class="riquadro vuoto" id="vuoto" hidden><p id="vuotoTesto"></p><button type="button" class="btn btn-primario" id="azzera">Cancella i filtri</button></div>
   </section>
 
+  <section class="riquadro" aria-labelledby="titoloFlussi" style="margin-top:16px">
+    <h2 id="titoloFlussi">Stato dei flussi automatici</h2>
+    <p class="nota">Per ogni servizio aggiornato in automatico: quando la fonte è stata letta l'ultima volta, l'esito e, se la lettura è più vecchia del previsto, l'avviso che i dati potrebbero non essere aggiornati.</p>
+    <div class="scorri"><table class="fogli"><thead><tr><th scope="col">Servizio</th><th scope="col">Cadenza</th><th scope="col">Ultima lettura</th><th scope="col">Esito</th></tr></thead><tbody id="flussi"><tr><td colspan="4" class="nota">Lettura in corso…</td></tr></tbody></table></div>
+  </section>
+
   <section class="riquadro" aria-labelledby="titoloFogli" style="margin-top:16px">
     <h2 id="titoloFogli">Ultima consultazione delle fonti, foglio per foglio</h2>
     <p class="nota">Per ogni foglio dell'archivio: quando l'Atlante ha letto la fonte l'ultima volta e, se l'indice lo dichiara, il periodo a cui i dati si riferiscono. La data di consultazione non è la data dei dati.</p>
@@ -159,6 +165,22 @@
     const c = new Map(); D.voci.forEach(v => { v.interessa.forEach(x => c.set(x.nome, (c.get(x.nome) || 0) + 1)); v.valori.forEach(x => { if (!c.has(x.cosa)) c.set(x.cosa, 0); }); });
     $('dataset').innerHTML = '<option value="">Tutti</option>' + [...c.entries()].sort((a, b) => a[0].localeCompare(b[0], 'it')).map(([n, k]) => `<option value="${esc(n)}" ${n === ST.ds ? 'selected' : ''}>${esc(n)}${k ? ` (${k})` : ''}</option>`).join('');
   }
+  // stato dei flussi automatici: letto dai file che ogni flusso scrive
+  async function flussi() {
+    const leggi = async u => { try { const r = await fetch(u); return r.ok ? await r.json() : null; } catch (e) { return null; } };
+    const [bandi, fin, opere, servizi] = await Promise.all([leggi('../dati/bandi.json'), leggi('../dati/finanziamenti_indice.json'), leggi('../dati/opere_meta.json'), leggi('../dati/servizi.json')]);
+    const oggiMs = Date.now(), eta = iso => iso ? Math.round((oggiMs - Date.parse(iso)) / 864e5) : null;
+    const riga = (nome, cadenza, data, limite, esito, link) => { const g = eta(data), vecchio = g !== null && g > limite; return `<tr><td><a href="${link}">${esc(nome)}</a></td><td>${cadenza}</td><td>${data ? dataIt(data) + ` <span class="nota">(${g} ${g === 1 ? 'giorno' : 'giorni'} fa)</span>` : '<i class="nota">non registrata</i>'}</td><td>${vecchio ? '<span class="badge b-correzione">dati forse non aggiornati</span> ' : ''}${esito}</td></tr>`; };
+    const bVer = bandi ? (bandi.voci || []).map(v => (v.dettaglio || {}).verificato).filter(Boolean).sort().pop() : null;
+    const righe = [
+      riga('Bandi e contributi', 'ogni mattina', bVer || (bandi || {}).ultima_variazione, 3, bandi ? `${bandi.voci.length} voci; ultima variazione dell'elenco ${dataIt(bandi.ultima_variazione)}${(bandi.voci || []).some(v => (v.dettaglio || {}).nonLetta) ? '; alcune pagine non lette' : ''}` : 'file non raggiungibile', '../bandi/'),
+      riga('Finanziamenti regionali', 'ogni mercoledì', fin && fin.ultimaLettura ? fin.ultimaLettura.data : null, 10, fin ? `${esc((fin.ultimaLettura || {}).esito || '')}; ${fin.totali ? fin.totali.righe.toLocaleString('it-IT') + ' righe' : ''}${(fin.mesiMancanti || []).length ? `; mesi senza dati: ${fin.mesiMancanti.length}` : ''}${(fin.finestreNonScaricate || []).length ? `; finestre non scaricate: ${fin.finestreNonScaricate.length}` : ''}` : 'file non raggiungibile', '../finanziamenti/'),
+      riga('Opere pubbliche (OpenCUP)', 'ogni mese', opere ? opere.consultazione : null, 40, opere ? `dati OpenCUP aggiornati al ${dataIt(opere.aggiornati)}; ${Number(opere.righe).toLocaleString('it-IT')} righe` : 'file non raggiungibile', '../opere/'),
+      riga('Servizi sul territorio', 'ogni lunedì', servizi ? servizi.generato : null, 10, servizi ? `${servizi.punti.length.toLocaleString('it-IT')} punti; scuole senza posizione: ${servizi.scuoleSenzaPosizione}` : 'file non raggiungibile', '../servizi/'),
+      riga('Dati aperti regionali (archivio)', 'ogni lunedì, a rotazione in quattro gruppi', (D.fogli || []).map(f => f.consultazione).filter(Boolean).sort().pop(), 10, `${(D.fogli || []).length} fogli con data di consultazione`, '../?pagina=archivio')
+    ];
+    $('flussi').innerHTML = righe.join('');
+  }
   $('q').addEventListener('input', e => { ST.q = e.target.value; disegna(); });
   $('cancella').addEventListener('click', () => { ST.q = ''; $('q').value = ''; disegna(); $('q').focus(); });
   $('dataset').addEventListener('change', e => { ST.ds = e.target.value; disegna(); });
@@ -171,7 +193,7 @@
     $('fonte').innerHTML = `Registro generato il ${dataIt(d.generato)} dalla storia del repository: parte dalla prima versione pubblicata, il ${dataIt(d.prima_versione)}. Prima di quella data non esiste cronologia e nulla è ricostruito a mano.`;
     $('notaRegistro').textContent = d.nota + ' Gli aggiornamenti automatici (ogni lunedì i dati aperti regionali a rotazione, ogni mattina i bandi, ogni mese le opere pubbliche) riportano i valori di prima e di dopo quando il flusso li registra.';
     $('fogli').innerHTML = [...d.fogli].sort((a, b) => (b.consultazione || '').localeCompare(a.consultazione || '') || a.nome.localeCompare(b.nome, 'it')).map(f => `<tr><td><a href="../?pagina=archivio&amp;foglio=${encodeURIComponent(f.id)}">${esc(f.nome)}</a></td><td>${esc(f.ambito)}</td><td class="n">${fmt(f.righe)}</td><td>${f.consultazione ? dataIt(f.consultazione) : '<i class="nota">non registrata</i>'}</td><td>${f.periodo ? esc(f.periodo) : '<i class="nota">non dichiarato nell\'indice</i>'}</td></tr>`).join('');
-    disegna();
+    disegna(); flussi();
   }).catch(() => { $('fonte').innerHTML = '<span class="errore" style="display:block">Il registro non si è caricato: ricarica la pagina oppure consulta la <a href="https://github.com/GuidoCostalonga/Atlante-FVG/commits/main" target="_blank" rel="noopener">storia del repository</a>.</span>'; });
 })();
 </script>
