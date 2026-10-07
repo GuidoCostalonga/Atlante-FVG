@@ -268,7 +268,14 @@ archivio del Nord Est aggiornato ogni mese. `scripts/aggiorna_opere.py` lo scari
 e tiene solo i lavori pubblici (natura 03) localizzati in Friuli Venezia Giulia. Produce il foglio `Opere_pubbliche_OpenCUP`
 (una riga per progetto e comune) e, per ogni comune in `const EXTRA`, il riepilogo della scheda e della mappa: progetti decisi
 negli ultimi cinque anni, costo previsto e costo per abitante (solo progetti localizzati nel solo comune), i sei più grandi.
-Il flusso `.github/workflows/aggiorna-opere.yml` lo esegue il 4 di ogni mese. I dati non distinguono i progetti PNRR: il
+Il flusso `.github/workflows/aggiorna-opere.yml` lo esegue il 4 di ogni mese. **Chi finanzia le opere.** Dagli stessi dati si ricavano, per i progetti decisi negli ultimi cinque anni e localizzati in un solo
+comune, la quota del costo previsto che sta in progetti con la Regione, lo Stato o l'Unione europea fra le fonti di copertura, e
+la quota coperta dal solo comune (campi `finReg`, `finSta`, `finUE`, `finCom` di `const EXTRA`; riquadro nella scheda del comune,
+righe del confronto, indicatori delle mappe). Una copertura può avere più fonti insieme e OpenCUP non dice quanto dà ciascuna:
+le quote non si sommano a cento e non sono importi versati dagli enti. Si ricalcolano senza scaricare nulla con
+`python scripts/aggiorna_opere.py --da-foglio`; con l'aggiornamento mensile si aggiornano da soli. Prova: `node prove/finanziamenti.js`.
+Non sono stati usati OpenCoesione (rifiuta gli accessi dall'estero, come Italia Domani) né il portale dati regionale, che non ha elenchi di contributi.
+I dati non distinguono i progetti PNRR: il
 portale Italia Domani non è raggiungibile dai server dell'aggiornamento automatico, che sono fuori dall'Italia.
 
 ## Allerte meteo e qualità dell'aria

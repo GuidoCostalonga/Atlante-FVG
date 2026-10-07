@@ -15,8 +15,14 @@ una riga per progetto e comune, con le fonti unite. Nei totali di un comune entr
 (in OpenCUP «attivo» vuol dire solo «non chiuso», e molti progetti vecchi restano aperti) e solo quelli localizzati
 in quel comune soltanto, perché OpenCUP non dice come dividere il costo fra più comuni.
 
+Dalle stesse righe ricava anche «chi finanzia le opere» (campi `fin*`): per i progetti decisi negli ultimi cinque anni e localizzati in un
+solo comune, il finanziamento previsto e la quota del costo che sta in progetti la cui copertura dichiarata comprende la Regione, lo
+Stato, l'Unione europea oppure solo il comune. Una copertura può avere più fonti insieme e OpenCUP non dice quanto dà ciascuna: le
+quote non si sommano a cento, e sono quote di costo dei progetti, non importi versati da ogni ente.
+
 Usa solo la libreria standard di Python. Se il download fallisce o i dati non sono plausibili, non cambia nulla.
 Uso: python scripts/aggiorna_opere.py [archivio zip già scaricato]
+     python scripts/aggiorna_opere.py --da-foglio   (ricalcola solo i campi `fin*` dal foglio già in dati/, senza scaricare nulla)
 """
 import base64, collections, csv, gzip, html, io, json, math, re, sys, tempfile, time, urllib.request, zipfile
 from pathlib import Path
@@ -72,6 +78,53 @@ def pulisci(s):
     return re.sub(r'\s+', ' ', (s or '').translate(SOSTITUZIONI)).strip()
 
 
+def finanziamenti(righe, chiavi, anno_da, residenti_per_indice):
+    """Campi `fin*` per comune dalle righe del foglio (stesso criterio di opRC: progetti recenti, in un solo comune, con costo)."""
+    tot = collections.defaultdict(lambda: {'costo': 0.0, 'fin': 0.0, 'reg': 0.0, 'sta': 0.0, 'ue': 0.0, 'com': 0.0, 'n': 0})
+    for r, k in zip(righe, chiavi):
+        if k < 0 or r[11] != 1 or not isinstance(r[3], int) or r[3] < anno_da or not r[5]:
+            continue
+        a, cop = tot[k], r[9] or ''
+        a['costo'] += r[5]; a['fin'] += r[6] or 0; a['n'] += 1
+        if 'regionale' in cop: a['reg'] += r[5]
+        if 'statale' in cop: a['sta'] += r[5]
+        if 'comunitaria' in cop: a['ue'] += r[5]
+        if cop == 'comunale': a['com'] += r[5]
+    out = {}
+    for k, a in tot.items():
+        pct = lambda v: round(100 * v / a['costo'], 1)
+        ab = residenti_per_indice.get(k)
+        out[k] = {'finN': a['n'], 'fin': round(a['fin']), 'finAb': round(a['fin'] / ab, 1) if ab else None,
+                  'finReg': pct(a['reg']), 'finSta': pct(a['sta']), 'finUE': pct(a['ue']), 'finCom': pct(a['com'])}
+    return out
+
+
+CAMPI_FIN = ('finN', 'fin', 'finAb', 'finReg', 'finSta', 'finUE', 'finCom')
+
+
+def da_foglio():
+    """Ricalcola i campi `fin*` dal foglio d'archivio già presente, senza scaricare OpenCUP."""
+    testo = PAGINA.read_text(encoding='utf-8')
+    m_ex, extra = riga_js(testo, 'EXTRA')
+    _, db = riga_js(testo, 'DB')
+    _, man = riga_js(testo, 'MAN')
+    indice = {c: i for i, c in enumerate(man['istat'])}
+    res = {indice[c['id']]: c.get('p25') for c in db['c'] if c['id'] in indice}
+    righe, chiavi = [], []
+    for fn in sorted(DATI.glob(f'{FOGLIO}_*.txt'), key=lambda p: int(p.stem.rsplit('_', 1)[1])):
+        d = json.loads(gzip.decompress(base64.b64decode(fn.read_text())))
+        righe += d['rows']; chiavi += d['k']
+    fin = finanziamenti(righe, chiavi, extra['opere']['annoRecenti'], res)
+    for i in range(len(man['istat'])):
+        e = extra['E'].setdefault(str(i), {})
+        for c in CAMPI_FIN:
+            e.pop(c, None)
+        e.update(fin.get(i, {}))
+    testo = testo[:m_ex.start(1)] + json.dumps(extra, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + testo[m_ex.end(1):]
+    PAGINA.write_text(testo, encoding='utf-8')
+    print(f'Finanziamenti delle opere: {len(fin)} comuni con progetti recenti.')
+
+
 def riga_js(testo, nome):
     m = re.search(r'^const %s = (.*);$' % nome, testo, re.M)
     if not m:
@@ -80,6 +133,8 @@ def riga_js(testo, nome):
 
 
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == '--da-foglio':
+        return da_foglio()
     testo = PAGINA.read_text(encoding='utf-8')
     m_man, man = riga_js(testo, 'MAN')
     _, db = riga_js(testo, 'DB')
@@ -187,6 +242,12 @@ def main():
         e['opRMulti'] = len(recenti) - len(solo) - len([p for p in recenti if len(comuni_cup[p['cup']] - {'-1'}) == 1 and not p['costo']])
         e['opTop'] = [[p['descr'][:160], int(p['anno']), round(p['costo']), p['sett'].capitalize(), p['stato'].capitalize(), p['cup']] for p in top]
     extra['opere'] = {'aggiornati': aggiornati, 'annoRecenti': anno_rif - 4}
+    fin = finanziamenti(righe, chiavi, anno_rif - 4, {i: residenti.get(c) for c, i in indice.items()})
+    for i in range(len(man['istat'])):
+        e = extra['E'].setdefault(str(i), {})
+        for c in CAMPI_FIN:
+            e.pop(c, None)
+        e.update(fin.get(i, {}))
 
     testo = testo[:m_ex.start(1)] + json.dumps(extra, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + testo[m_ex.end(1):]
     m_man, _ = riga_js(testo, 'MAN')
