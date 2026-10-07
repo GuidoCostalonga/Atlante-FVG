@@ -1081,7 +1081,7 @@ function apriDettaglio(id) {
   const fogliTutti = FOGLI.filter(f => CONT[f.id] && CONT[f.id][ci]).map(f => [f, CONT[f.id][ci]]);
   const fogliCom = fogliTutti.filter(([f]) => tipoColl(f) !== 'testo'), fogliTesto = fogliTutti.filter(([f]) => tipoColl(f) === 'testo');
   const vociFogli = l => l.map(([f, n]) => `<button class="apriFoglioCom flex justify-between gap-2 text-left text-sm py-1.5 border-b border-pietra-100 hover:text-primario-700" data-f="${esc(f.id)}"><span class="min-w-0 truncate">${badgeColl(tipoColl(f))} ${esc(nomeFoglio(f.id))}</span><span class="num font-semibold shrink-0">${fmt(n)}</span></button>`).join('');
-  h += `<div class="flex flex-wrap gap-2"><a class="btn btn-secondario" href="meteo/#${SLUG_COM[ci]}"><i data-lucide="cloud-sun-rain" class="w-4 h-4"></i>Meteo ${aAd(c.n) === 'ad' ? 'ad' : 'a'} ${esc(c.n)}</a><a class="btn btn-secondario" href="catasto/"><i data-lucide="land-plot" class="w-4 h-4"></i>Catasto sulla mappa</a><a class="btn btn-secondario" href="orari/"><i data-lucide="clock" class="w-4 h-4"></i>Orari degli autobus</a></div>`;
+  h += `<div class="flex flex-wrap gap-2"><a class="btn btn-secondario" href="meteo/#${SLUG_COM[ci]}"><i data-lucide="cloud-sun-rain" class="w-4 h-4"></i>Meteo ${aAd(c.n) === 'ad' ? 'ad' : 'a'} ${esc(c.n)}</a><a class="btn btn-secondario" href="stradario/?comune=${SLUG_COM[ci]}"><i data-lucide="map-pin" class="w-4 h-4"></i>Stradario</a><a class="btn btn-secondario" href="catasto/"><i data-lucide="land-plot" class="w-4 h-4"></i>Catasto sulla mappa</a><a class="btn btn-secondario" href="orari/"><i data-lucide="clock" class="w-4 h-4"></i>Orari degli autobus</a></div>`;
   h += `<div class="rounded-xl border border-pietra-200 p-4"><div class="font-patriarcale font-bold text-sm text-primario-800">Tutti i dati del comune nel database</div>
     <p class="text-[11px] text-pietra-700 mb-2">${fogliCom.length} fogli hanno righe collegate ${aAd(c.n)} ${esc(c.n)} con il codice ISTAT o con il nome. Tocca un foglio per aprirlo già filtrato nell'archivio.</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">` + vociFogli(fogliCom) + `</div>` +
@@ -1211,6 +1211,7 @@ const ALTRO = ['confronto', 'archivio', 'autobus', 'ambiente', 'metodo'];
 // pagine autonome dell'Atlante, con un indirizzo proprio
 const STRUMENTI = [['orari/', 'Orari', 'clock', 'Orari degli autobus TPL FVG', 'Partenze da ogni fermata, giorno per giorno, per tutte le linee.'],
   ['meteo/', 'Meteo', 'cloud-sun-rain', 'Meteo dei 215 comuni', 'Previsioni ora per ora e a sette giorni, con l\'attendibilità dei modelli.'],
+  ['stradario/', 'Stradario', 'map-pin', 'Stradario del Friuli Venezia Giulia', 'Cerca una via, una piazza o un luogo sulla mappa stradale e satellitare.'],
   ['catasto/', 'Catasto', 'land-plot', 'Catasto sulla mappa', 'Foglio e particella di un terreno o di un fabbricato, sulla cartografia ufficiale.']];
 const SEZ_PAG = Object.fromEntries(PAGINE.flatMap(p => p.sez.map(z => [z, p.id])));
 let paginaCorrente = null;
@@ -1318,7 +1319,7 @@ function disegnaPagine() {
   const card = (href, cls, dp, icona, sfondo, tit, desc, tag) => `<a href="${href}" class="${cls} group rounded-xl bg-white cornice-oro p-4 flex items-start gap-3 hover:bg-primario-50"${dp ? ` data-p="${dp}"` : ''}>
     <span class="w-10 h-10 rounded-lg ${sfondo} flex items-center justify-center shrink-0"><i data-lucide="${icona}" class="w-5 h-5"></i></span>
     <span class="min-w-0"><span class="block font-patriarcale font-bold text-primario-800">${esc(tit)}</span><span class="block text-[13px] text-pietra-700 leading-snug">${esc(desc)}</span>${tag ? `<span class="inline-block mt-1.5 text-[11px] font-semibold rounded border border-pietra-200 bg-pietra-50 px-1.5 py-0.5 text-pietra-800">${esc(tag)}</span>` : ''}</span></a>`;
-  const TAG_SERV = { autobus: 'arrivi in tempo reale', ambiente: 'allerte del giorno · aria: ultimi dati validati', 'orari/': 'orari programmati, aggiornati ogni lunedì', 'meteo/': 'previsioni lette al momento', 'catasto/': 'cartografia letta al momento' };
+  const TAG_SERV = { autobus: 'arrivi in tempo reale', ambiente: 'allerte del giorno · aria: ultimi dati validati', 'orari/': 'orari programmati, aggiornati ogni lunedì', 'meteo/': 'previsioni lette al momento', 'stradario/': 'mappa e ricerca lette al momento', 'catasto/': 'cartografia letta al momento' };
   document.getElementById('esploraArchivio').innerHTML = PAGINE.filter(p => !p.vivo && !['inizio', ...PERCORSI.map(x => x[0])].includes(p.id)).map(p => card('?pagina=' + p.id, 'vaiPagina2', p.id, p.i, 'bg-primario-700 text-white', p.t, p.d, '')).join('');
   document.getElementById('esploraServizi').innerHTML = PAGINE.filter(p => p.vivo).map(p => card('?pagina=' + p.id, 'vaiPagina2', p.id, p.i, 'bg-accento-500 text-primario-900', p.t, p.d, TAG_SERV[p.id])).join('')
     + STRUMENTI.map(([u, , i, tt, d]) => card(u, '', '', i, 'bg-accento-500 text-primario-900', tt, d, TAG_SERV[u])).join('');

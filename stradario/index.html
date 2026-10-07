@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stradario del Friuli Venezia Giulia · Atlante FVG</title>
+<meta name="description" content="Stradario del Friuli Venezia Giulia: cerca una via, una piazza o un luogo in uno dei 215 comuni sulla mappa stradale e satellitare, con la tua posizione e il collegamento da condividere.">
+<link rel="canonical" href="https://atlantefvg.it/stradario/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<meta name="theme-color" content="#0B3359">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Atlante FVG">
+<meta property="og:url" content="https://atlantefvg.it/stradario/">
+<meta property="og:title" content="Stradario del Friuli Venezia Giulia · Atlante FVG">
+<meta property="og:description" content="Cerca una via, una piazza o un luogo nei 215 comuni del Friuli Venezia Giulia, sulla mappa stradale e satellitare.">
+<meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Atlante FVG","item":"https://atlantefvg.it/"},{"@type":"ListItem","position":2,"name":"Stradario","item":"https://atlantefvg.it/stradario/"}]}</script>
+<script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../pagine.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  .contenuto { padding-bottom: 16px; gap: 12px; }
+  .comandi { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  @media (min-width: 900px) { .comandi { grid-template-columns: minmax(0, 1fr) auto; align-items: end; } }
+  .cerca { position: relative; }
+  .cerca .campo { padding-left: 40px; }
+  .cerca .lente { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); margin-top: 11px; color: var(--testo-3); pointer-events: none; }
+  .risultati { position: absolute; z-index: 1100; left: 0; right: 0; top: 100%; margin-top: 4px; background: #fff; border: 1px solid var(--linea); border-radius: 12px; box-shadow: 0 8px 24px rgba(11,51,89,.14); max-height: 20rem; overflow-y: auto; padding: 4px; }
+  .risultati button { width: 100%; display: flex; align-items: flex-start; gap: 10px; text-align: left; min-height: 48px; padding: 8px; border: 0; background: none; border-radius: 8px; font: inherit; color: var(--testo); cursor: pointer; }
+  .risultati button:hover, .risultati button[aria-selected="true"] { background: var(--blu-tenue); }
+  .risultati .tipo { flex: 0 0 auto; margin-top: 2px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--blu-medio); background: var(--blu-tenue); border-radius: 6px; padding: 2px 6px; }
+  .risultati .dove { display: block; font-size: 13px; color: var(--testo-3); }
+  .pulsanti { display: flex; flex-wrap: wrap; gap: 8px; }
+  .riquadro-mappa { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--linea); background: #EDE9DF; }
+  #mappa { height: calc(100dvh - 56px - 120px); min-height: 420px; }
+  @media (min-width: 1024px) { #mappa { height: calc(100dvh - 64px - 200px); min-height: 480px; } }
+  .cartellino { position: absolute; z-index: 1000; left: 50%; top: 12px; transform: translateX(-50%); max-width: calc(100% - 24px); background: #fff; border: 1px solid var(--linea); border-radius: 12px; box-shadow: 0 8px 24px rgba(11,51,89,.14); padding: 8px 14px; text-align: center; pointer-events: none; }
+  .cartellino b { font-family: var(--serif); font-size: 16px; color: var(--blu); display: block; line-height: 1.25; }
+  .cartellino small { display: block; font-size: 12px; color: var(--testo-3); font-variant-numeric: tabular-nums; margin-top: 2px; }
+  .cartellino a { pointer-events: auto; }
+  .leaflet-container { font-family: var(--sans); font-size: 13px; }
+  .leaflet-control-layers, .leaflet-bar { border: 1px solid var(--linea) !important; border-radius: 10px !important; box-shadow: 0 2px 8px rgba(11,51,89,.12) !important; overflow: hidden; }
+  .leaflet-control-layers-expanded { padding: 8px 12px; font-size: 14px; color: var(--testo); }
+  .leaflet-control-layers label { display: flex; align-items: center; gap: 10px; min-height: 40px; margin: 0; cursor: pointer; }
+  .leaflet-control-layers input { accent-color: var(--blu-chiaro); width: 18px; height: 18px; }
+  .leaflet-bar a { width: 40px !important; height: 40px !important; line-height: 40px !important; color: var(--blu) !important; font-weight: 700; font-size: 18px; }
+  .leaflet-bar a:hover { background: var(--blu-tenue) !important; }
+  .leaflet-popup-content-wrapper { border-radius: 12px !important; box-shadow: 0 8px 24px rgba(11,51,89,.16) !important; }
+  .leaflet-popup-content { font-size: 14px; line-height: 1.5; margin: 12px 16px; }
+  .leaflet-popup-content b { color: var(--blu); font-family: var(--serif); font-size: 15px; }
+  .leaflet-container a { color: var(--blu-medio); }
+  .leaflet-control-attribution { font-size: 11px; color: #4a463e; background: rgba(255,255,255,.85) !important; }
+  .leaflet-control-attribution a { color: var(--blu-medio); }
+  .scelto { display: none; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .scelto.visibile { display: flex; }
+  .scelto .dati { flex: 1 1 16rem; min-width: 0; }
+  .scelto h2 { font-size: 1.15rem; }
+  .scelto .nota { margin-top: 2px; }
+  .scelto .pulsanti { flex: 0 0 auto; }
+  .fonte { font-size: 12px; color: var(--testo-3); line-height: 1.5; }
+  /* sul telefono la mappa viene subito dopo la ricerca; il riquadro del luogo scelto sta sotto la mappa */
+  @media (max-width: 899px) { .riquadro-mappa { order: 4; } .scelto { order: 5; } .fonte { order: 6; } .intro p { font-size: 15px; } }
+</style>
+</head>
+<body>
+<header class="testata"><div class="testata-dentro">
+  <a class="marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="113" height="40"></a>
+  <nav class="voci" aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus</a><a href="../orari/">Orari</a><a href="../meteo/">Meteo</a><a href="../stradario/" aria-current="page">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo</a>
+  </nav>
+  <details class="menu-mob"><summary>Menu</summary><nav aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../meteo/">Meteo</a><a href="../stradario/" aria-current="page">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo e fonti</a>
+  </nav></details>
+</div></header>
+
+<main class="contenuto">
+  <nav class="percorso" aria-label="Percorso"><a href="../">Atlante FVG</a> › Stradario</nav>
+  <section class="intro">
+    <h1>Stradario del Friuli Venezia Giulia</h1>
+    <p>Cerca una via, una piazza o un luogo in uno dei 215 comuni, oppure scegli il comune: la mappa stradale si può cambiare in satellitare. Il collegamento ricorda il punto scelto, comodo da mandare per messaggio.</p>
+  </section>
+
+  <section class="riquadro" aria-labelledby="titoloCerca">
+    <h2 id="titoloCerca" class="sr-only">Cerca sulla mappa</h2>
+    <div class="comandi">
+      <div class="cerca">
+        <label class="etichetta" for="cerca">Via, piazza, luogo o comune</label>
+        <svg class="lente" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="cerca" class="campo" type="search" autocomplete="off" placeholder="Per esempio: via Roma, Roveredo in Piano" role="combobox" aria-autocomplete="list" aria-controls="risultati" aria-expanded="false">
+        <div id="risultati" class="risultati" role="listbox" aria-label="Luoghi trovati" hidden></div>
+      </div>
+      <div class="pulsanti">
+        <button type="button" class="btn btn-secondario" id="btnPosizione"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg>La mia posizione</button>
+        <button type="button" class="btn btn-secondario" id="btnCondividi">Copia il collegamento</button>
+      </div>
+    </div>
+    <p class="nota" id="statoCerca" role="status"></p>
+  </section>
+
+  <section class="riquadro scelto" id="scelto" aria-live="polite">
+    <div class="dati"><h2 id="sceltoNome"></h2><p class="nota" id="sceltoDove"></p></div>
+    <div class="pulsanti" id="sceltoAzioni"></div>
+  </section>
+
+  <div class="riquadro-mappa">
+    <div id="mappa" role="region" aria-label="Mappa stradale del Friuli Venezia Giulia"></div>
+    <div class="cartellino" id="cartellino" hidden><b id="cartNome"></b><small id="cartDati"></small></div>
+  </div>
+  <p class="fonte">Mappa stradale: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© contributori di OpenStreetMap</a>. Immagini satellitari: Esri, Maxar, Earthstar Geographics. Ricerca dei luoghi: <a href="https://photon.komoot.io/" target="_blank" rel="noopener">Photon</a>, su dati OpenStreetMap. Mappa e risultati sono scaricati dal tuo browser al momento; la posizione, se la chiedi, resta sul tuo telefono. Le coordinate dei comuni sono quelle dell'Atlante. Hai trovato un errore? <a href="mailto:info@atlantefvg.it?subject=Segnalazione%20di%20errore%3A%20stradario">Segnalalo per posta</a> oppure <a href="https://wa.me/393283692227?text=Segnalazione%20di%20errore%20sull%27Atlante%20FVG%3A%20pagina%20Stradario" target="_blank" rel="noopener">via WhatsApp</a>.</p>
+</main>
+
+<footer class="piede"><div class="piede-dentro">
+  <div><strong>Atlante FVG</strong><br>I comuni del Friuli Venezia Giulia, con fonte e data di ogni dato.</div>
+  <div><a href="../">Pagina iniziale</a> · <a href="../?pagina=mappe">Mappe</a> · <a href="../catasto/">Catasto</a> · <a href="../?pagina=metodo">Metodo e fonti</a></div>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(() => {
+  const COMUNI = [["Aiello del Friuli","UD",45.8729,13.3636],["Amaro","UD",46.374,13.0954],["Ampezzo","UD",46.4171,12.7903],["Andreis","PN",46.2005,12.6137],["Aquileia","UD",45.7696,13.3698],["Arba","PN",46.145,12.7914],["Arta Terme","UD",46.4724,13.0267],["Artegna","UD",46.2391,13.1557],["Attimis","UD",46.1893,13.3071],["Aviano","PN",46.0685,12.5891],["Azzano Decimo","PN",45.8814,12.7143],["Bagnaria Arsa","UD",45.8836,13.285],["Barcis","PN",46.1903,12.5582],["Basiliano","UD",46.0163,13.1071],["Bertiolo","UD",45.9427,13.0492],["Bicinicco","UD",45.9357,13.2512],["Bordano","UD",46.3153,13.1046],["Brugnera","PN",45.9035,12.526],["Budoia","PN",46.043,12.5326],["Buja","UD",46.2067,13.1186],["Buttrio","UD",46.0104,13.3338],["Camino al Tagliamento","UD",45.927,12.9451],["Campoformido","UD",46.0193,13.1624],["Campolongo Tapogliano","UD",45.8685,13.4038],["Caneva","PN",45.9687,12.4481],["Capriva del Friuli","GO",45.9414,13.5136],["Carlino","UD",45.8023,13.1882],["Casarsa della Delizia","PN",45.9559,12.8427],["Cassacco","UD",46.1736,13.1879],["Castelnovo del Friuli","PN",46.2138,12.8831],["Castions di Strada","UD",45.9083,13.1853],["Cavasso Nuovo","PN",46.1966,12.7703],["Cavazzo Carnico","UD",46.3675,13.04],["Cercivento","UD",46.5273,12.9892],["Cervignano del Friuli","UD",45.8228,13.3364],["Chions","PN",45.8472,12.7111],["Chiopris-Viscone","UD",45.9314,13.3811],["Chiusaforte","UD",46.4083,13.309],["Cimolais","PN",46.2876,12.4381],["Cividale del Friuli","UD",46.0936,13.4303],["Claut","PN",46.2667,12.5157],["Clauzetto","PN",46.2299,12.9156],["Codroipo","UD",45.9611,12.979],["Colloredo di Monte Albano","UD",46.1664,13.139],["Comeglians","UD",46.5152,12.8678],["Cordenons","PN",46.0037,12.7187],["Cordovado","PN",45.8458,12.8807],["Cormons","GO",45.9578,13.471],["Corno di Rosazzo","UD",45.9971,13.4416],["Coseano","UD",46.097,13.0194],["Dignano","UD",46.085,12.9393],["Doberdò del Lago","GO",45.8446,13.5401],["Dogna","UD",46.4479,13.315],["Dolegna del Collio","GO",46.0313,13.4793],["Drenchia","UD",46.1742,13.6365],["Duino Aurisina","TS",45.7704,13.6753],["Enemonzo","UD",46.4109,12.8787],["Erto e Casso","PN",46.2771,12.3596],["Faedis","UD",46.1503,13.3464],["Fagagna","UD",46.1134,13.0846],["Fanna","PN",46.1871,12.7531],["Farra d'Isonzo","GO",45.908,13.5165],["Fiume Veneto","PN",45.9279,12.7322],["Fiumicello Villa Vicentina","UD",45.7836,13.413],["Flaibano","UD",46.0583,12.9836],["Fogliano Redipuglia","GO",45.8565,13.4929],["Fontanafredda","PN",45.9734,12.5691],["Forgaria nel Friuli","UD",46.2228,12.9735],["Forni Avoltri","UD",46.5868,12.7769],["Forni di Sopra","UD",46.4202,12.5856],["Forni di Sotto","UD",46.395,12.6702],["Frisanco","PN",46.2128,12.7271],["Gemona del Friuli","UD",46.277,13.1401],["Gonars","UD",45.8959,13.2371],["Gorizia","GO",45.9441,13.6252],["Gradisca d'Isonzo","GO",45.8896,13.5003],["Grado","GO",45.6777,13.3864],["Grimacco","UD",46.1674,13.5812],["Latisana","UD",45.7785,12.9962],["Lauco","UD",46.424,12.933],["Lestizza","UD",45.9549,13.1417],["Lignano Sabbiadoro","UD",45.6894,13.1386],["Lusevera","UD",46.2758,13.2693],["Magnano in Riviera","UD",46.2313,13.1768],["Majano","UD",46.1852,13.0682],["Malborghetto Valbruna","UD",46.4978,13.4331],["Maniago","PN",46.171,12.7074],["Manzano","UD",45.9905,13.3815],["Marano Lagunare","UD",45.765,13.1675],["Mariano del Friuli","GO",45.9161,13.4587],["Martignacco","UD",46.0979,13.1368],["Medea","GO",45.9177,13.4225],["Meduno","PN",46.2168,12.7859],["Mereto di Tomba","UD",46.0498,13.0428],["Moggio Udinese","UD",46.4097,13.1951],["Moimacco","UD",46.0913,13.377],["Monfalcone","GO",45.8049,13.5331],["Monrupino","TS",45.7178,13.7974],["Montenars","UD",46.255,13.1788],["Montereale Valcellina","PN",46.1605,12.6621],["Moraro","GO",45.9306,13.4965],["Morsano al Tagliamento","PN",45.8581,12.9293],["Mortegliano","UD",45.9458,13.1728],["Moruzzo","UD",46.1202,13.1232],["Mossa","GO",45.9386,13.5482],["Muggia","TS",45.5958,13.7829],["Muzzana del Turgnano","UD",45.8181,13.1293],["Nimis","UD",46.2007,13.2663],["Osoppo","UD",46.256,13.0809],["Ovaro","UD",46.4829,12.8654],["Pagnacco","UD",46.1243,13.187],["Palazzolo dello Stella","UD",45.8048,13.0796],["Palmanova","UD",45.9055,13.3099],["Paluzza","UD",46.5308,13.0182],["Pasian di Prato","UD",46.0485,13.1876],["Pasiano di Pordenone","PN",45.8498,12.6265],["Paularo","UD",46.5303,13.1166],["Pavia di Udine","UD",45.9963,13.3041],["Pinzano al Tagliamento","PN",46.1831,12.9454],["Pocenia","UD",45.8355,13.1008],["Polcenigo","PN",46.0307,12.5016],["Pontebba","UD",46.5065,13.3064],["Porcia","PN",45.9466,12.6018],["Pordenone","PN",45.9562,12.6597],["Porpetto","UD",45.8582,13.2179],["Povoletto","UD",46.1182,13.2988],["Pozzuolo del Friuli","UD",45.986,13.195],["Pradamano","UD",46.0338,13.3026],["Prata di Pordenone","PN",45.8933,12.5963],["Prato Carnico","UD",46.5207,12.8094],["Pravisdomini","PN",45.8189,12.6944],["Precenicco","UD",45.7889,13.0774],["Premariacco","UD",46.0607,13.3948],["Preone","UD",46.3937,12.8662],["Prepotto","UD",46.0457,13.4794],["Pulfero","UD",46.1793,13.478],["Ragogna","UD",46.1735,12.9824],["Ravascletto","UD",46.5229,12.9221],["Raveo","UD",46.4344,12.8711],["Reana del Rojale","UD",46.1457,13.2351],["Remanzacco","UD",46.0856,13.3243],["Resia","UD",46.3474,13.3361],["Resiutta","UD",46.3931,13.2186],["Rigolato","UD",46.5528,12.8521],["Rive d'Arcano","UD",46.1261,13.0316],["Rivignano Teor","UD",45.8613,13.0476],["Romans d'Isonzo","GO",45.8906,13.4382],["Ronchi dei Legionari","GO",45.8278,13.5018],["Ronchis","UD",45.8066,12.9978],["Roveredo in Piano","PN",46.0111,12.6203],["Ruda","UD",45.8382,13.4019],["Sacile","PN",45.9539,12.5034],["Sagrado","GO",45.8758,13.4855],["San Canzian d'Isonzo","GO",45.7986,13.4661],["San Daniele del Friuli","UD",46.1532,13.009],["San Dorligo della Valle","TS",45.6126,13.8535],["San Floriano del Collio","GO",45.9831,13.5871],["San Giorgio della Richinvelda","PN",46.0395,12.8823],["San Giorgio di Nogaro","UD",45.832,13.2111],["San Giovanni al Natisone","UD",45.9779,13.4011],["San Leonardo","UD",46.1275,13.5384],["San Lorenzo Isontino","GO",45.9312,13.5285],["San Martino al Tagliamento","PN",46.0208,12.8638],["San Pier d'Isonzo","GO",45.8469,13.4601],["San Pietro al Natisone","UD",46.1267,13.4852],["San Quirino","PN",46.0362,12.68],["San Vito al Tagliamento","PN",45.9145,12.8566],["San Vito al Torre","UD",45.8958,13.3706],["San Vito di Fagagna","UD",46.0906,13.067],["Santa Maria la Longa","UD",45.9331,13.288],["Sappada","UD",46.5678,12.6864],["Sauris","UD",46.4654,12.7087],["Savogna","UD",46.1802,13.5522],["Savogna d'Isonzo","GO",45.9059,13.5749],["Sedegliano","UD",46.0144,12.9774],["Sequals","PN",46.1655,12.8288],["Sesto al Reghena","PN",45.8476,12.8155],["Sgonico","TS",45.736,13.7482],["Socchieve","UD",46.3971,12.8481],["Spilimbergo","PN",46.1113,12.9016],["Staranzano","GO",45.8058,13.5003],["Stregna","UD",46.1315,13.6036],["Sutrio","UD",46.512,12.9908],["Taipana","UD",46.2587,13.3459],["Talmassons","UD",45.9296,13.1171],["Tarcento","UD",46.2153,13.2217],["Tarvisio","UD",46.5053,13.5784],["Tavagnacco","UD",46.1274,13.2141],["Terzo d'Aquileia","UD",45.8009,13.3458],["Tolmezzo","UD",46.4295,13.0562],["Torreano","UD",46.1285,13.4311],["Torviscosa","UD",45.8222,13.2769],["Tramonti di Sopra","PN",46.3089,12.7885],["Tramonti di Sotto","PN",46.2849,12.7956],["Trasaghis","UD",46.2822,13.0754],["Travesio","PN",46.1965,12.871],["Treppo Grande","UD",46.1906,13.1581],["Treppo Ligosullo","UD",46.5443,13.0589],["Tricesimo","UD",46.1606,13.2125],["Trieste","TS",45.6505,13.7931],["Trivignano Udinese","UD",45.9434,13.3406],["Turriaco","GO",45.82,13.4467],["Udine","UD",46.0635,13.2358],["Vajont","PN",46.1461,12.6974],["Valvasone Arzene","PN",45.9952,12.8663],["Varmo","UD",45.887,12.9877],["Venzone","UD",46.3337,13.1394],["Verzegnis","UD",46.3851,12.9872],["Villa Santina","UD",46.4141,12.9207],["Villesse","GO",45.8639,13.4402],["Visco","UD",45.8922,13.3469],["Vito d'Asio","PN",46.2278,12.9383],["Vivaro","PN",46.078,12.7758],["Zoppola","PN",45.9663,12.7716],["Zuglio","UD",46.4618,13.026]];
+  const PROV = { UD: 'Udine', PN: 'Pordenone', GO: 'Gorizia', TS: 'Trieste' };
+  // confini della regione per la ricerca (ovest, sud, est, nord)
+  const BOX = [12.32, 45.58, 13.92, 46.65];
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const slug = n => String(n || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const coord = (lat, lon) => `${lat.toFixed(4).replace('.', ',')} N · ${lon.toFixed(4).replace('.', ',')} E`;
+  COMUNI.forEach(c => c.push(slug(c[0])));
+
+  /* ---------- mappa ---------- */
+  const mappa = L.map('mappa', { zoomSnap: .5, attributionControl: true });
+  mappa.attributionControl.setPrefix('');
+  const stradale = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(mappa);
+  const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Immagini © Esri, Maxar, Earthstar Geographics' });
+  L.control.layers({ 'Stradale': stradale, 'Satellite': satellite }, null, { collapsed: matchMedia('(max-width: 899px)').matches, position: 'topright' }).addTo(mappa);
+  L.control.scale({ imperial: false }).addTo(mappa);
+  const VISTA_FVG = [[45.58, 12.32], [46.65, 13.92]];
+  mappa.fitBounds(VISTA_FVG, { padding: [10, 10] });
+  let segnaposto = null, cerchio = null, scelta = null;
+
+  function mostra(p, { zoom = 16, apri = true } = {}) {
+    // p: { nome, dove, lat, lon, tipo, comune }
+    scelta = p;
+    if (segnaposto) segnaposto.remove();
+    segnaposto = L.marker([p.lat, p.lon]).addTo(mappa);
+    const link = p.comune ? `<br><a href="../c/${p.comune[4]}/">Dati del comune nell'Atlante</a>` : '';
+    segnaposto.bindPopup(`<b>${esc(p.nome)}</b><br>${esc(p.dove)}${link}`);
+    mappa.setView([p.lat, p.lon], zoom);
+    if (apri) segnaposto.openPopup();
+    $('cartellino').hidden = false; $('cartNome').textContent = p.nome; $('cartDati').textContent = `${coord(p.lat, p.lon)}${p.dove ? ' · ' + p.dove : ''}`;
+    $('scelto').classList.add('visibile'); $('sceltoNome').textContent = p.nome; $('sceltoDove').textContent = `${p.dove ? p.dove + ' · ' : ''}${coord(p.lat, p.lon)}`;
+    $('sceltoAzioni').innerHTML = (p.comune ? `<a class="btn btn-secondario" href="../c/${p.comune[4]}/">Dati del comune</a><a class="btn btn-secondario" href="../meteo/#${p.comune[4]}">Meteo</a>` : '')
+      + `<a class="btn btn-secondario" href="https://www.openstreetmap.org/?mlat=${p.lat}&mlon=${p.lon}#map=${zoom}/${p.lat}/${p.lon}" target="_blank" rel="noopener">Apri in OpenStreetMap</a>`;
+    ricorda();
+  }
+
+  function mostraComune(c, { apri = true } = {}) {
+    mostra({ nome: `${c[0]} (${c[1]})`, dove: `Provincia di ${PROV[c[1]]}`, lat: c[2], lon: c[3], tipo: 'comune', comune: c }, { zoom: 14, apri });
+  }
+
+  /* ---------- indirizzo condivisibile: ?comune=<nome> oppure #<lat>,<lon>,<zoom> ---------- */
+  function ricorda() {
+    if (!scelta) return;
+    const u = new URL(location.href); u.search = ''; u.hash = '';
+    if (scelta.comune) u.searchParams.set('comune', scelta.comune[4]);
+    else u.hash = `${scelta.lat.toFixed(5)},${scelta.lon.toFixed(5)},${mappa.getZoom()}`;
+    try { history.replaceState(null, '', u.pathname + u.search + u.hash); } catch (e) { /* indirizzo non modificabile */ }
+  }
+  $('btnCondividi').addEventListener('click', async () => {
+    let fatto = false;
+    try { await navigator.clipboard.writeText(location.href); fatto = true; } catch (e) { /* appunti non disponibili */ }
+    const b = $('btnCondividi'); b.textContent = fatto ? 'Collegamento copiato' : 'Copia non riuscita: usa la barra degli indirizzi';
+    clearTimeout(b.attesa); b.attesa = setTimeout(() => { b.textContent = 'Copia il collegamento'; }, 2600);
+  });
+
+  /* ---------- posizione del telefono ---------- */
+  $('btnPosizione').addEventListener('click', () => {
+    if (!navigator.geolocation) { $('statoCerca').textContent = 'Il tuo browser non sa dare la posizione.'; return; }
+    $('statoCerca').textContent = 'Cerco la tua posizione…';
+    navigator.geolocation.getCurrentPosition(pos => {
+      const { latitude: lat, longitude: lon, accuracy } = pos.coords;
+      if (cerchio) cerchio.remove();
+      cerchio = L.circle([lat, lon], { radius: accuracy || 30, color: '#155E9E', fillColor: '#155E9E', fillOpacity: .15, weight: 1.5 }).addTo(mappa);
+      $('statoCerca').textContent = `Posizione trovata, precisione di circa ${Math.round(accuracy || 0)} metri. Non viene inviata a nessuno.`;
+      mostra({ nome: 'La tua posizione', dove: '', lat, lon, tipo: 'posizione' }, { zoom: 16 });
+    }, err => { $('statoCerca').textContent = err.code === 1 ? 'Posizione non consentita: puoi cercare una via o un comune.' : 'Posizione non disponibile in questo momento.'; }, { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 });
+  });
+
+  /* ---------- ricerca: comuni dall'elenco dell'Atlante, vie e luoghi da Photon ---------- */
+  const inp = $('cerca'), box = $('risultati'); let ris = [], sel = -1, attesa, ultimaRichiesta = 0;
+  const TIPI = { street: 'via', house: 'civico', city: 'comune', town: 'comune', village: 'località', locality: 'località', district: 'quartiere', county: 'provincia', state: 'regione' };
+  function etichettaTipo(f) {
+    const p = f.properties; if (p.osm_key === 'highway') return p.osm_value === 'bus_stop' ? 'fermata' : 'via';
+    if (p.osm_key === 'place') return TIPI[p.osm_value] || 'luogo';
+    if (p.osm_key === 'amenity' || p.osm_key === 'shop' || p.osm_key === 'tourism' || p.osm_key === 'leisure') return 'luogo';
+    if (p.osm_key === 'building') return 'edificio';
+    return TIPI[p.type] || 'luogo';
+  }
+  const nomeRis = f => { const p = f.properties; return p.name || [p.street, p.housenumber].filter(Boolean).join(' ') || 'Luogo senza nome'; };
+  const doveRis = f => { const p = f.properties; return [p.name && p.street ? [p.street, p.housenumber].filter(Boolean).join(' ') : '', p.postcode, p.city || p.town || p.village || p.locality, p.county && p.county !== p.city ? `provincia di ${p.county}` : ''].filter(Boolean).join(', '); };
+  function disegna() {
+    sel = ris.length ? 0 : -1;
+    box.hidden = !ris.length; inp.setAttribute('aria-expanded', String(!box.hidden));
+    box.innerHTML = ris.map((r, k) => `<button type="button" role="option" id="ris${k}" aria-selected="${k === sel}" data-k="${k}"><span class="tipo">${esc(r.tipo)}</span><span class="min-w-0"><span>${esc(r.nome)}</span><span class="dove">${esc(r.dove)}</span></span></button>`).join('');
+  }
+  function cercaComuni(q) {
+    const parole = norm(q).split(/\s+/).filter(Boolean); if (!parole.length) return [];
+    return COMUNI.filter(c => parole.every(w => norm(c[0]).includes(w))).slice(0, 5).map(c => ({ tipo: 'comune', nome: `${c[0]} (${c[1]})`, dove: `Provincia di ${PROV[c[1]]}`, lat: c[2], lon: c[3], comune: c }));
+  }
+  async function cerca() {
+    const q = inp.value.trim();
+    if (q.length < 2) { ris = []; disegna(); $('statoCerca').textContent = ''; return; }
+    const locali = cercaComuni(q); ris = locali; disegna();
+    const n = ++ultimaRichiesta;
+    $('statoCerca').textContent = 'Cerco vie e luoghi…';
+    try {
+      // senza le fermate dell'autobus (stanno nella pagina Orari), altrimenti coprono le vie
+      const u = `https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=10&lang=default&bbox=${BOX.join(',')}&osm_tag=!highway:bus_stop`;
+      const r = await fetch(u); if (!r.ok) throw new Error('risposta ' + r.status);
+      const j = await r.json(); if (n !== ultimaRichiesta) return;
+      const visti = new Set(locali.map(x => x.nome));
+      const esterni = (j.features || []).filter(f => f.geometry && f.properties && (f.properties.state || '').toLowerCase().includes('friuli')).map(f => ({ tipo: etichettaTipo(f), nome: nomeRis(f), dove: doveRis(f), lat: f.geometry.coordinates[1], lon: f.geometry.coordinates[0] }))
+        .filter(x => { const k = x.nome + '|' + x.dove; if (visti.has(k)) return false; visti.add(k); return true; });
+      // prima le vie e i luoghi, poi le fermate
+      esterni.sort((a, b) => (a.tipo === 'fermata') - (b.tipo === 'fermata'));
+      ris = [...locali, ...esterni].slice(0, 10); disegna();
+      $('statoCerca').textContent = ris.length ? `${ris.length} ${ris.length === 1 ? 'risultato' : 'risultati'} in Friuli Venezia Giulia.` : 'Nessun risultato: prova con il nome della via e del comune, per esempio «via Roma, Roveredo in Piano».';
+    } catch (e) {
+      if (n !== ultimaRichiesta) return;
+      $('statoCerca').textContent = locali.length ? 'La ricerca delle vie non risponde in questo momento; i comuni sono comunque disponibili.' : 'La ricerca delle vie non risponde in questo momento: riprova tra poco.';
+    }
+  }
+  function scegli(k) {
+    const r = ris[k]; if (!r) return;
+    box.hidden = true; inp.setAttribute('aria-expanded', 'false'); inp.value = r.nome;
+    if (r.comune) mostraComune(r.comune); else mostra(r, { zoom: r.tipo === 'via' ? 17 : r.tipo === 'luogo' || r.tipo === 'civico' || r.tipo === 'edificio' || r.tipo === 'fermata' ? 18 : 15 });
+    $('statoCerca').textContent = '';
+  }
+  inp.addEventListener('input', () => { clearTimeout(attesa); attesa = setTimeout(cerca, 300); });
+  inp.addEventListener('focus', () => { if (ris.length && inp.value.trim()) { box.hidden = false; inp.setAttribute('aria-expanded', 'true'); } });
+  inp.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && box.hidden) { e.preventDefault(); clearTimeout(attesa); cerca().then(() => { if (ris.length === 1) scegli(0); }); return; }
+    if (box.hidden || !ris.length) { if (e.key === 'Escape') { box.hidden = true; inp.setAttribute('aria-expanded', 'false'); } return; }
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); sel = (sel + (e.key === 'ArrowDown' ? 1 : ris.length - 1)) % ris.length; box.querySelectorAll('button').forEach((b, k) => b.setAttribute('aria-selected', String(k === sel))); inp.setAttribute('aria-activedescendant', 'ris' + sel); box.querySelector('#ris' + sel).scrollIntoView({ block: 'nearest' }); }
+    else if (e.key === 'Enter') { e.preventDefault(); scegli(Math.max(0, sel)); }
+    else if (e.key === 'Escape') { box.hidden = true; inp.setAttribute('aria-expanded', 'false'); }
+  });
+  box.addEventListener('mousedown', e => e.preventDefault());
+  box.addEventListener('click', e => { const b = e.target.closest('button[data-k]'); if (b) scegli(+b.dataset.k); });
+  document.addEventListener('click', e => { if (!box.hidden && !box.contains(e.target) && e.target !== inp) { box.hidden = true; inp.setAttribute('aria-expanded', 'false'); } });
+
+  /* ---------- avvio: comune dall'indirizzo, oppure punto e zoom dal cancelletto ---------- */
+  const q = new URLSearchParams(location.search), sc = slug(q.get('comune') || decodeURIComponent(location.hash.replace(/^#/, '')));
+  const c0 = sc && COMUNI.find(c => c[4] === sc);
+  const m = /^#(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)(?:,(\d+(?:\.\d+)?))?$/.exec(location.hash);
+  if (c0) { inp.value = `${c0[0]} (${c0[1]})`; mostraComune(c0); }
+  else if (m) mostra({ nome: 'Punto scelto', dove: '', lat: +m[1], lon: +m[2], tipo: 'punto' }, { zoom: m[3] ? +m[3] : 16 });
+  mappa.on('zoomend moveend', () => { if (scelta && !scelta.comune) ricorda(); });
+})();
+</script>
+</body>
+</html>

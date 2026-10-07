@@ -24,10 +24,10 @@ def sostituisci(t, vecchio, nuovo, regex=False):
 TESTATA = """<header class="atl-testata"><div class="atl-dentro">
   <a class="atl-marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="113" height="40"></a>
   <nav class="atl-voci" aria-label="Pagine dell'Atlante">
-    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus</a><a href="../orari/">Orari</a><a href="../meteo/" aria-current="page">Meteo</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo</a>
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus</a><a href="../orari/">Orari</a><a href="../meteo/" aria-current="page">Meteo</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo</a>
   </nav>
   <details class="atl-menu"><summary>Menu</summary><nav aria-label="Pagine dell'Atlante">
-    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=ambiente">Allerte e qualità dell'aria</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../meteo/" aria-current="page">Meteo</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo e fonti</a>
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=ambiente">Allerte e qualità dell'aria</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../meteo/" aria-current="page">Meteo</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo e fonti</a>
   </nav></details>
 </div></header>"""
 
