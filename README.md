@@ -94,6 +94,29 @@ licenze in uso sono IODL 2.0 e CC BY 4.0 (verificato sul catalogo regionale il 6
   scritto), `filtro/...`, `mappa/<indicatore>`, `confronto/<n>-comuni`, `archivio/<foglio>`, `download/<tabella>/<formato>`,
   `condividi/vista`, `segnala-errore/<dove>`, `errore/caricamento`, `errore/programma`. L'informativa è in Metodo e fonti.
 
+## Grafica e uso sul telefono
+
+- Atlante editoriale: fondo avorio uniforme, blu profondo per struttura e pagina attiva, oro per gli accenti; titoli in
+  Source Serif 4 con maiuscole e minuscole normali, testi in Plus Jakarta Sans (16 px sul telefono, nessun testo
+  essenziale sotto i 12 px); comandi uniformi: principali blu, secondari con bordo, di servizio come collegamenti.
+- Intestazione compatta senza orologio. Su desktop le pagine stanno in una barra essenziale con la pagina attiva su
+  fondo blu; su telefono e tablet quattro voci («Inizio», «Mappe», «Comuni», «Altro»): «Altro» apre Confronto,
+  Archivio, Autobus, Allerte e aria, Metodo e fonti. Gli aggiornamenti sono una riga con i dettagli a richiesta.
+- Pagina iniziale: titolo, ricerca «Cerca il tuo comune» e sagoma vettoriale del Friuli Venezia Giulia con i confini
+  comunali (ricavata da `dati/_mappe_0.txt` e semplificata); la ricerca dell'intestazione compare solo dopo lo scorrimento.
+  Le tre azioni principali stanno sotto il riquadro blu; i numeri regionali sono cifre grandi, note e fonti a richiesta.
+- Filtro territoriale: barra compatta con il comune per primo; provincia secondaria (sul telefono dentro «Opzioni»);
+  «Togli il filtro», «Azzera tutti i filtri» e «Condividi questa vista» raccolti in «Opzioni».
+- Pagina Mappe: indicatore e comune sulla stessa riga, mappa subito visibile, legenda sopra la mappa su desktop e
+  sotto sul telefono, scheda del comune selezionato con nome, valore, unità e posizione (sul telefono in un pannello
+  dal basso), classifica compatta, servizi spenti all'avvio, istruzioni in «Come usare la mappa».
+- **Gesti sulle mappe** (comuni e regioni, autobus con le vie, allerte, aria), un solo modulo `collegaGesti` con
+  Pointer Events: due dita ingrandiscono e riducono centrando sul punto medio e spostano la mappa, senza ingrandire la
+  pagina; un dito fa scorrere la pagina (a schermo intero sposta la mappa); mouse con rotella e trascinamento;
+  pulsanti +, −, ripristina e schermo intero; limiti di zoom; un trascinamento o un pizzico non selezionano mai un
+  comune; rotazione e interruzioni chiudono il gesto senza perdere l'inquadratura. Lo zoom del browser resta libero
+  fuori dalle mappe. Prove automatiche: `prove/gesti.js` (28 controlli con eventi multitocco di Chromium).
+
 ## Accessibilità e movimento
 
 - Fuoco da tastiera ben visibile (bordo blu scuro e alone dorato); intestazioni del registro ordinabili anche con Invio.
