@@ -5,7 +5,7 @@ Pagina pubblicata su [atlantefvg.it](https://atlantefvg.it/). Il vecchio indiriz
 I 215 comuni del Friuli Venezia Giulia comune per comune: popolazione, amministratori,
 Terzo settore, sport, cultura, servizi sanitari, scuole, turismo, redditi e ambiente.
 Con le mappe dei comuni (oltre 30 indicatori, 15 cartine dell'Annuario e 8 strati di servizi),
-la mappa delle regioni d'Italia (24 cartine), la mappa degli autobus con linee, fermate e arrivi in tempo reale, il confronto fra quattro comuni, la scheda di
+la mappa delle regioni d'Italia (24 cartine), la mappa degli autobus con linee, fermate e arrivi in tempo reale, il confronto fra sei comuni, la scheda di
 ogni comune stampabile in PDF e l'archivio completo: 136 fogli e quasi 450.000 righe,
 filtrabili per provincia, per comune, per testo e colonna per colonna.
 
