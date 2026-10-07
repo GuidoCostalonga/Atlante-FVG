@@ -1,0 +1,47 @@
+name: Aggiorna i bandi
+
+# Ogni mattina rilegge l'elenco «Bandi e avvisi» della Regione e, se è cambiato, aggiorna dati/bandi.json.
+# Se la Regione non risponde o l'elenco sembra incompleto, restano i dati di prima.
+on:
+  schedule:
+    - cron: '45 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: aggiorna-dati
+  cancel-in-progress: false
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Legge l'elenco dei bandi della Regione
+        run: python scripts/aggiorna_bandi.py | tee esito.txt
+
+      - name: Pubblica se qualcosa è cambiato
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add dati/bandi.json
+          if git diff --cached --quiet; then
+            echo "Nessuna novità da pubblicare."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Aggiorna i bandi e gli avvisi della Regione del $(date +%d/%m/%Y)" -m "$(cat esito.txt)"
+          git pull --rebase
+          git push
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true

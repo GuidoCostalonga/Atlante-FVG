@@ -53,4 +53,5 @@ a { color: var(--blu-medio); text-underline-offset: 3px; }
 .piede a { color: #F7D678; }
 .piede strong { color: #fff; font-family: var(--serif); font-size: 16px; }
 @media (pointer: coarse) { button, select, input, summary { min-height: 44px; } }
+@media (pointer: coarse) { .marchio { display: flex; align-items: center; min-height: 44px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
