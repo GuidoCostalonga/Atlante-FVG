@@ -72,7 +72,7 @@ const A = BASE || 'https://atlante.prova/';
     await p.evaluate(() => { localStorage.removeItem('atlante-fvg:mio-comune'); }); await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(800);
     ok(await p.locator('#btnCfMio').isHidden(), 'senza preferito «Confronta il mio Comune» è nascosto');
     await p.locator('#btnCfEsempio').click(); await p.waitForTimeout(500); ok((await p.evaluate(() => cfScelti.filter(i => i >= 0).map(i => NOME_COM[i]))).join(',') === 'Roveredo in Piano,Porcia,Cordenons,San Quirino' && await p.locator('#cfAvvio').isHidden(), 'esempio: Roveredo in Piano, Porcia, Cordenons, San Quirino (selettori compilati: ' + (await p.locator('#cfSel select').evaluateAll(s => s.map(x => x.selectedOptions[0].text.split(' (')[0]).filter(x => !/Scegli/.test(x)))).join(', ') + ')');
-    ok(await p.locator('#cfTesta th').count() === 5, 'tabella con 4 comuni');
+    ok(await p.locator('#cfTesta th').evaluateAll(l => l.filter(x => !/^Media/i.test(x.textContent.trim())).length) === 5, 'tabella con 4 comuni');
     await p.locator('#btnCfAzzera').click(); await p.waitForTimeout(400); ok((await p.evaluate(() => cfScelti.filter(i => i >= 0).length)) === 0 && await p.locator('#cfAvvio').isVisible() && await p.locator('#btnCfAzzera').isDisabled() && !/confronta=/.test(p.url()), 'Azzera confronto: vuoto, avvio rapido di nuovo visibile, link senza comuni');
     await p.locator('#mioSel').count(); await p.evaluate(() => { localStorage.setItem('atlante-fvg:mio-comune', 'sacile'); mioComune = leggiMio(); aggiornaMioUI(); }); await p.waitForTimeout(300);
     ok(await p.locator('#btnCfMio').isVisible(), 'con il preferito compare «Confronta il mio Comune»');
