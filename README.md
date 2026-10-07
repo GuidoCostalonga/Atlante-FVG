@@ -77,6 +77,19 @@ Il documento è in A4 con testo selezionabile, pagine numerate («pagina N di M�
 
 Prova: `node prove/dossier.js` (apre le opzioni, esclude un argomento, genera il PDF di controllo e verifica confronto, medie, note e ritorno alla pagina normale).
 
+## Confronto avanzato
+
+Nella pagina Confronto, oltre alla tabella dei sei comuni:
+
+- **Comune di riferimento** (il primo scelto, modificabile): ogni altro comune mostra lo scostamento assoluto e percentuale dal riferimento; per gli indicatori in percentuale lo scostamento è in punti.
+- **Medie della provincia del riferimento e del FVG**, calcolate con la stessa tabella `AGG` del dossier (somma, numeratore su denominatore, media ponderata), mai come media semplice dei valori comunali; il metodo compare passando sul valore e nelle colonne «Metodo» dei download. «non calc.» segnala le medie che i dati non permettono.
+- **Scelta degli indicatori** (pannello «Scegli gli indicatori»), grafici a barre per i primi dodici scelti (oro il riferimento, blu gli altri, grigio le medie), con testo alternativo.
+- **Esportazioni**: CSV ed Excel con medie, metodo e scostamenti; PNG dei grafici composto con titolo, legenda, fonti, marchio e data, in tre formati (documenti A4 orizzontale, presentazioni 16:9, social quadrato) tramite `esportaImmagine`.
+- **Comuni di taglia simile** con criteri dichiarati e modificabili: popolazione più vicina (rapporto fra le popolazioni più vicino a 1), stessa provincia, stessa zona altimetrica e stesso grado di urbanizzazione (classificazioni ISTAT dall'Annuario 2026, cartine 1.2 e 1.4), eventualmente anche la densità. Se i criteri lasciano pochi comuni si allargano uno alla volta e il messaggio lo dice. I criteri restano salvati sul dispositivo e valgono anche per «Confronta il mio Comune» e per il dossier.
+- Lo stato (riferimento, scostamenti, medie, grafici, indicatori) è nell'indirizzo: `rif`, `scost`, `medie`, `grafici`, `ind`.
+
+Prova: `node prove/confronto.js`.
+
 ## Ricerche condivisibili e download
 
 L'indirizzo conserva il comune (o la provincia), la pagina e i filtri della pagina aperta, così chi riceve il collegamento
