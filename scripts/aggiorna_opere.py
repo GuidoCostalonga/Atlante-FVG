@@ -90,16 +90,21 @@ def finanziamenti(righe, chiavi, anno_da, residenti_per_indice):
         if 'statale' in cop: a['sta'] += r[5]
         if 'comunitaria' in cop: a['ue'] += r[5]
         if cop == 'comunale': a['com'] += r[5]
+    anni = collections.defaultdict(lambda: collections.defaultdict(lambda: [0, 0.0]))  # comune -> anno decisione -> [progetti, costo]
+    for r, k in zip(righe, chiavi):
+        if k >= 0 and r[11] == 1 and isinstance(r[3], int) and anno_da - 5 <= r[3] and r[5]:
+            anni[k][r[3]][0] += 1; anni[k][r[3]][1] += r[5]
     out = {}
     for k, a in tot.items():
         pct = lambda v: round(100 * v / a['costo'], 1)
         ab = residenti_per_indice.get(k)
         out[k] = {'finN': a['n'], 'fin': round(a['fin']), 'finAb': round(a['fin'] / ab, 1) if ab else None,
+                  'opAnni': [[y, v[0], round(v[1])] for y, v in sorted(anni[k].items())],
                   'finReg': pct(a['reg']), 'finSta': pct(a['sta']), 'finUE': pct(a['ue']), 'finCom': pct(a['com'])}
     return out
 
 
-CAMPI_FIN = ('finN', 'fin', 'finAb', 'finReg', 'finSta', 'finUE', 'finCom')
+CAMPI_FIN = ('opAnni', 'finN', 'fin', 'finAb', 'finReg', 'finSta', 'finUE', 'finCom')
 
 
 def da_foglio():
