@@ -88,6 +88,9 @@ FOGLI = {
     'Import_2014_2018': ('t', 3),
     'Autovetture_2020': ([('Comune', 'n')], 3),
     'Veicoli_2017': ([('COMUNE', 'n')], 3),
+    'Radon_scuole_ARPA': ([('COMUNE', 'n')], 1),
+    'Parchi_e_giardini': ([('COMUNE', 'n')], 4),
+    'Rifugi_alpini': ([('COMUNE', 'n')], 2),
     # gruppo 4: rifiuti, meteo, mobilità
     'Rifiuti_comunali': ([('CODICE ISTAT', 'c'), ('COMUNE', 'n')], 4),
     'Indicatori_rifiuti': ([('CODICE ISTAT', 'c'), ('COMUNE', 'n')], 4),
@@ -112,7 +115,9 @@ ALIAS = {'TERZODIAQUILEIA': "Terzo d'Aquileia", 'FIUMICELLO': 'Fiumicello Villa 
          'BUIA': 'Buja', 'FIUMICELLOVILLAV': 'Fiumicello Villa Vicentina', 'SGIORGIORICHINVELDA': 'San Giorgio della Richinvelda',
          'SMARTINOTAGLIAMENTO': 'San Martino al Tagliamento', 'SGIORGIODINOGARO': 'San Giorgio di Nogaro', 'SPIETROALNATISONE': 'San Pietro al Natisone',
          'MALBORGHETTO': 'Malborghetto Valbruna', 'FORGARIA': 'Forgaria nel Friuli', 'GEMONA': 'Gemona del Friuli', 'LIGNANO': 'Lignano Sabbiadoro',
-         'PALAZZOLODELSTELLA': 'Palazzolo dello Stella', 'CASARSADDELIZIA': 'Casarsa della Delizia', 'CASTELNOVO': 'Castelnovo del Friuli'}
+         'PALAZZOLODELSTELLA': 'Palazzolo dello Stella', 'CASARSADDELIZIA': 'Casarsa della Delizia', 'CASTELNOVO': 'Castelnovo del Friuli',
+         'PRATA': 'Prata di Pordenone', 'ERTOCASSO': 'Erto e Casso', 'FORGARIADELFRIULI': 'Forgaria nel Friuli', 'PASSONS': 'Pasian di Prato',
+         'PASSONSDIPASIANDIPRATO': 'Pasian di Prato'}
 # trasformazione dalle coordinate UTM fuso 33 al disegno della mappa (verificata: 414 farmacie su 417 cadono nel proprio comune)
 FX = [0.9981337794975602, -0.07416881054833876, 87284.31391544109]
 FY = [-0.0731952954966455, -0.9967836423904924, 5175818.401653809]
@@ -225,13 +230,19 @@ def main():
         print(gruppo_della_settimana())
         return 0
     prova = '--prova' in argomenti
-    if '--tutti' in argomenti:
+    solo = set(argomenti[argomenti.index('--foglio') + 1].split(',')) if '--foglio' in argomenti else set()
+    if solo:
+        gruppi = set()  # un foglio per volta (anche più, separati da virgola): nessun gruppo intero e niente anagrafe
+    elif '--tutti' in argomenti:
         gruppi = {1, 2, 3, 4}
     elif '--gruppo' in argomenti:
         gruppi = {int(argomenti[argomenti.index('--gruppo') + 1])}
     else:
         gruppi = {gruppo_della_settimana()}
-    print(f"{'Gruppi' if len(gruppi) > 1 else 'Gruppo'} da aggiornare: {', '.join(map(str, sorted(gruppi)))}{' (prova: nulla viene scritto)' if prova else ''}")
+    if solo:
+        print(f"Fogli da aggiornare: {', '.join(sorted(solo))}{' (prova: nulla viene scritto)' if prova else ''}")
+    else:
+        print(f"{'Gruppi' if len(gruppi) > 1 else 'Gruppo'} da aggiornare: {', '.join(map(str, sorted(gruppi)))}{' (prova: nulla viene scritto)' if prova else ''}")
 
     html = PAGINA.read_text(encoding='utf-8')
     m_db, DB = riga_js(html, 'DB')
@@ -337,7 +348,7 @@ def main():
 
     # 1. fogli del portale dei dati aperti
     for foglio, (mappa, gruppo) in FOGLI.items():
-        if gruppo not in gruppi:
+        if (foglio not in solo) if solo else (gruppo not in gruppi):
             continue
         f = indice.get(foglio)
         ident = re.search(r'/api/views/([a-z0-9]{4}-[a-z0-9]{4})/', (f or {}).get('fonte') or '')
