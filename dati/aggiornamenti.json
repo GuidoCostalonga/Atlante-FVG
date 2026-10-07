@@ -4,14 +4,44 @@
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
   {
+   "data": "2026-10-08",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Archivio dei finanziamenti regionali, mappa dei servizi sul territorio, stato dei flussi e controlli di qualità",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Finanziamenti regionali",
+     "collegamento": "../finanziamenti/"
+    }
+   ],
+   "valori": [],
+   "commit": "da09dce777"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Bandi con dettaglio, filtri, preferiti e calendario; osservatorio delle opere pubbliche",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [],
+   "commit": "0a2fb96895"
+  },
+  {
    "data": "2026-10-07",
    "tipo": "funzione",
    "automatico": false,
-   "titolo": "Aggiunge la pagina Cosa è cambiato con il registro degli aggiornamenti dalla storia del repository",
-   "descrizione": "",
+   "titolo": "Aggiunge la pagina Cosa è cambiato con il registro degli aggiornamenti",
+   "descrizione": "* Aggiunge la pagina Cosa è cambiato con il registro degli aggiornamenti dalla storia del repository\n\n\n* Toglie le firme tecniche dei commit dal registro degli aggiornamenti\n\n\n---------",
    "interessa": [],
    "valori": [],
-   "commit": "53302396c5"
+   "commit": "787bc69a40"
   },
   {
    "data": "2026-10-07",
@@ -119,8 +149,8 @@
    "descrizione": "",
    "interessa": [
     {
-     "nome": "Scheda del comune",
-     "collegamento": "../?pagina=comuni"
+     "nome": "Osservatorio delle opere pubbliche",
+     "collegamento": "../opere/"
     }
    ],
    "valori": [],
@@ -134,8 +164,8 @@
    "descrizione": "Quote del costo dei progetti con Regione, Stato, Unione europea o solo comune fra le fonti di copertura (OpenCUP).",
    "interessa": [
     {
-     "nome": "Opere pubbliche (OpenCUP)",
-     "collegamento": "../?pagina=archivio&foglio=Opere_pubbliche_OpenCUP"
+     "nome": "Osservatorio delle opere pubbliche",
+     "collegamento": "../opere/"
     }
    ],
    "valori": [],
