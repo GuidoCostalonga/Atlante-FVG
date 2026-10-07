@@ -18,6 +18,9 @@ let fall = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALLITA ') + m)
     const m = /([\d,]+)%\s*del costo: con la Regione/.exec(t.replace(/\n/g, ' ')); ok(!!m, 'quota regionale visibile: ' + (m && m[1]));
     ok(/non si sommano a cento/.test(t), 'avvertenza sulle quote');
     ok(!/NaN|undefined/.test(t), 'nessun NaN o undefined');
+    await p.waitForTimeout(1500);
+    ok(await p.locator('#gOpAnni').count() === 1 && await p.locator('#gBilCom').isVisible(), 'grafici delle serie storiche nella scheda (opere per anno, conti negli anni)');
+    ok(/Spesa corrente e investimenti per abitante di Roveredo in Piano: 2018/.test(await p.locator('#gBilCom').getAttribute('aria-label')), 'testo alternativo del grafico dei conti');
     await p.goto('https://atlante.prova/?pagina=confronto&confronta=roveredo-in-piano,pordenone,udine', { waitUntil: 'networkidle', timeout: 90000 }); await p.waitForTimeout(1500);
     const c = (await p.locator('body').innerText());
     ok(/con la Regione fra le fonti/.test(c), 'riga nel confronto');

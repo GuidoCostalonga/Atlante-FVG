@@ -274,6 +274,7 @@ la quota coperta dal solo comune (campi `finReg`, `finSta`, `finUE`, `finCom` di
 righe del confronto, indicatori delle mappe). Una copertura può avere più fonti insieme e OpenCUP non dice quanto dà ciascuna:
 le quote non si sommano a cento e non sono importi versati dagli enti. Si ricalcolano senza scaricare nulla con
 `python scripts/aggiorna_opere.py --da-foglio`; con l'aggiornamento mensile si aggiornano da soli. Prova: `node prove/finanziamenti.js`.
+**Serie storiche nella scheda del comune.** Due grafici nuovi: «Conti del comune negli anni» (spesa corrente e investimenti impegnati per abitante, dal foglio `Bilanci_comunali_sintesi`, letto quando si apre la scheda; compare con almeno due anni) e «Opere pubbliche decise ogni anno» (campo `opAnni` di `const EXTRA`: progetti e costo previsto per anno della decisione, ultimi dieci anni, solo progetti nel solo comune; l'anno in corso è parziale). Ogni grafico ha il testo alternativo con tutti i valori.
 Non sono stati usati OpenCoesione (rifiuta gli accessi dall'estero, come Italia Domani) né il portale dati regionale, che non ha elenchi di contributi.
 I dati non distinguono i progetti PNRR: il
 portale Italia Domani non è raggiungibile dai server dell'aggiornamento automatico, che sono fuori dall'Italia.
