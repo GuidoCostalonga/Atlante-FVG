@@ -34,6 +34,8 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # il registro «Cosa è cambiato» legge tutta la storia
 
       - uses: actions/setup-python@v6
         with:
@@ -96,6 +98,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Aggiorna i dati del gruppo ${{ steps.gruppo.outputs.gruppo }} del $(date +%d/%m/%Y)" -m "$(cat esito.txt)"
+          python scripts/registro_aggiornamenti.py && git add dati/aggiornamenti.json && git commit --amend --no-edit
           git push
           # chiede a GitHub Pages di ripubblicare il sito
           curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \

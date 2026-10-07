@@ -1,0 +1,1955 @@
+{
+ "generato": "2026-10-07",
+ "prima_versione": "2026-10-06",
+ "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
+ "voci": [
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge la pagina Cosa è cambiato con il registro degli aggiornamenti dalla storia del repository",
+   "descrizione": "",
+   "interessa": [],
+   "valori": [],
+   "commit": "53302396c5"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Esporta mappe in PNG e SVG e grafici in PNG con titolo, legenda, fonte e marchio",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Mappe",
+     "collegamento": "../?pagina=mappe"
+    }
+   ],
+   "valori": [],
+   "commit": "47a27ab04a"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Serie storiche: intervallo e variazioni nella scheda, anno e confronto fra due anni nelle mappe",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Confronto",
+     "collegamento": "../?pagina=confronto"
+    }
+   ],
+   "valori": [],
+   "commit": "30d3cf836f"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Confronto avanzato: riferimento, scostamenti, medie dai totali, scelta degli indicatori, grafici ed esportazioni",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Confronto",
+     "collegamento": "../?pagina=confronto"
+    }
+   ],
+   "valori": [],
+   "commit": "2d647ba9be"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Dossier PDF con argomenti a scelta, confronto, medie territoriali e pagine numerate",
+   "descrizione": "* Dossier PDF con argomenti a scelta, comuni di confronto, medie territoriali e pagine numerate\n\n\n* Allinea la prova del dossier all'intestazione delle medie provinciali\n\n\n---------",
+   "interessa": [
+    {
+     "nome": "Confronto",
+     "collegamento": "../?pagina=confronto"
+    }
+   ],
+   "valori": [],
+   "commit": "63ea100c0a"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Aggiunge radon nelle scuole, parchi e giardini e rifugi alpini",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Parchi e giardini",
+     "collegamento": "../?pagina=archivio&foglio=Parchi_e_giardini"
+    },
+    {
+     "nome": "Radon scuole ARPA",
+     "collegamento": "../?pagina=archivio&foglio=Radon_scuole_ARPA"
+    },
+    {
+     "nome": "Rifugi alpini",
+     "collegamento": "../?pagina=archivio&foglio=Rifugi_alpini"
+    }
+   ],
+   "valori": [],
+   "commit": "5789586e89"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge il dossier completo del comune in PDF",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Scheda del comune",
+     "collegamento": "../?pagina=comuni"
+    }
+   ],
+   "valori": [],
+   "commit": "e9800ed2c5"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge le serie storiche dei conti e delle opere nella scheda del comune",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Scheda del comune",
+     "collegamento": "../?pagina=comuni"
+    }
+   ],
+   "valori": [],
+   "commit": "7376830b41"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge chi finanzia le opere pubbliche",
+   "descrizione": "Quote del costo dei progetti con Regione, Stato, Unione europea o solo comune fra le fonti di copertura (OpenCUP).",
+   "interessa": [
+    {
+     "nome": "Opere pubbliche (OpenCUP)",
+     "collegamento": "../?pagina=archivio&foglio=Opere_pubbliche_OpenCUP"
+    }
+   ],
+   "valori": [],
+   "commit": "73765b5a8a"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Aggiunge la pagina Bandi e avvisi della Regione",
+   "descrizione": "Elenco ufficiale letto ogni mattina, con filtri, scadenze e collegamento alla pagina ufficiale.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    },
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "9b0256aa54"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge Il mio Comune, la ricerca degli indicatori e link che ripristinano la scelta",
+   "descrizione": "- Il mio Comune: comune preferito salvato sul dispositivo (localStorage), riquadro nella pagina iniziale con scheda, meteo, autobus e confronto, pulsante con la stella nel filtro e nella scheda; non sovrascrive mai una scelta esplicita né un link; il sito funziona anche senza memoria\n- Mappe: campo «Cerca un indicatore» che filtra per nome e argomento senza badare a maiuscole e accenti, con gruppi, messaggio senza risultati e comando per cancellare\n- Confronto: «Confronta il mio Comune», esempio pronto, «Azzera confronto», scelta conservata nella sessione, intestazione e colonna degli indicatori ferme durante la lettura\n- «Copia link» e «Condividi» nelle mappe e nel confronto, con alternativa senza appunti; Indietro e Avanti ripristinano pagina, comune, indicatore e confronto\n- telefono: comandi alti almeno 44 pixel\n- prove/percorsi.js e README",
+   "interessa": [
+    {
+     "nome": "Rete degli autobus",
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "valori": [],
+   "commit": "8f46696553"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Porta a sei i comuni che si possono confrontare",
+   "descrizione": "Sei selettori su due o tre colonne, tabella con larghezza proporzionata ai comuni scelti, «Comuni di taglia simile» aggiunge i cinque comuni della provincia con popolazione più vicina, l'indirizzo condivisibile e il file scaricato tengono fino a sei comuni. Testi aggiornati nella pagina, nelle pagine statiche e nel README.",
+   "interessa": [],
+   "valori": [],
+   "commit": "276fde4da9"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Dà a ogni pagina il suo indirizzo canonico e la sua descrizione, mette Confronto nella barra del telefono",
+   "descrizione": "- ogni vista dell'Atlante indica come indirizzo canonico la pagina statica corrispondente (per esempio atlantefvg.it/mappe/), con descrizione e anteprima proprie\n- barra del telefono a cinque voci: Inizio, Mappe, Confronto, Comuni, Altro\n- campanella: «aprirle» al posto del refuso «aprile»\n- pagina iniziale: l'archivio statistico sta su due colonne, senza spazio vuoto",
+   "interessa": [
+    {
+     "nome": "Confronto",
+     "collegamento": "../?pagina=confronto"
+    }
+   ],
+   "valori": [],
+   "commit": "7e6be9bbc0"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge lo Stradario del Friuli Venezia Giulia",
+   "descrizione": "- stradario/: mappa stradale (OpenStreetMap) e satellitare (Esri) di tutta la regione, ricerca di vie, piazze e luoghi con Photon limitata ai confini regionali, scelta rapida dei 215 comuni, posizione del telefono, collegamento condivisibile; con ?comune=<nome> parte centrata sul comune con segnaposto e cartellino, come la «Mappa di Roveredo in Piano» di costalonga.org da cui deriva\n- scripts/genera_stradario.py la genera dai comuni della pagina Meteo\n- collegamenti dal menu Altro, dalla scheda del comune, dalle pagine statiche, dalla barra delle pagine Orari e Meteo; sitemap con 231 indirizzi\n- il controllo di rilascio riprova fino a tre volte una risposta 503 passeggera di GitHub Pages invece di fallire al primo colpo",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "a66331aff9"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "correzione",
+   "automatico": false,
+   "titolo": "Sistema l'intestazione, i numeri, i grafici e la sezione aria dopo la revisione",
+   "descrizione": "- intestazione su una riga a ogni larghezza: «Metodo» passa nel menu «Altro», campo di ricerca più stretto\n- punto delle migliaia sempre presente anche sotto 10.000 (il browser in italiano lo omette); −0,0% diventa 0,0%\n- grafici a una sola serie con un solo colore e il valore sopra ogni barra; niente rosso per Gorizia né nel Terzo settore; niente carattere a spaziatura fissa\n- aria: l'elenco delle centraline con più giorni oltre il limite mostra il numero dei giorni in evidenza, in ordine decrescente, con l'ultimo valore a parte\n- classi della mappa senza confini ripetuti (88–717, 718–1.511)\n- pagina iniziale: archivio statistico e servizi uno sotto l'altro, schede dei percorsi della stessa altezza; stesso marchio nel piè di pagina, testo a sinistra sul telefono\n- pulsante della scheda disattivato con più contrasto e l'invito «Scegli un comune»; campanella con il numero reale delle avvertenze e la spiegazione\n- telefono: barra di stato su una riga, riquadri dei numeri allineati, suggerimento della ricerca non tagliato",
+   "interessa": [
+    {
+     "nome": "Allerte e qualità dell'aria",
+     "collegamento": "../?pagina=ambiente"
+    }
+   ],
+   "valori": [],
+   "commit": "c6a4f9090e"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "correzione",
+   "automatico": false,
+   "titolo": "Armonizza l'avvertenza sulle date dell'archivio con quella sulle allerte",
+   "descrizione": "L'archivio statistico è una raccolta di dati con date di riferimento diverse; arrivi degli autobus e bollettini di allerta vengono consultati al momento; i dati sulla qualità dell'aria sono medie giornaliere validate, pubblicate con ritardo. Stessa formulazione nella pagina, nella pagina statica Metodo e nel README.",
+   "interessa": [
+    {
+     "nome": "Rete degli autobus",
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "valori": [],
+   "commit": "c8af4078d7"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "correzione",
+   "automatico": false,
+   "titolo": "Fa scendere i suggerimenti della ricerca sopra i riquadri sul telefono",
+   "descrizione": "Il riquadro di apertura non taglia più ciò che sporge, così la tendina dei comuni trovati non viene coperta dai tre percorsi sottostanti. La sagoma del Friuli Venezia Giulia ha ora un ritaglio proprio e resta uguale.",
+   "interessa": [],
+   "valori": [],
+   "commit": "684582d895"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Permette di scegliere la fermata di partenza sulla mappa della pagina Orari",
+   "descrizione": "- mappa del percorso con le fermate (Leaflet e OpenStreetMap, caricati solo quando serve); un tocco sulla fermata la sceglie, la scelta è in oro\n- sul telefono la mappa si muove con due dita, un dito scorre la pagina\n- indice degli orari con codice, coordinate e linee di ogni fermata; nell'indirizzo la fermata è indicata con il codice\n- dalla pagina Autobus il pannello di una fermata porta agli orari delle partenze da quella fermata, con la scelta fra le linee che vi passano",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "a4afb8f3c4"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Mette i quattro capoluoghi fra i comuni rapidi della pagina Meteo",
+   "descrizione": "Pordenone, Udine, Gorizia e Trieste al posto di Roveredo in Piano, Pordenone e Trieste; all'apertura si parte da Udine. I collegamenti dalle schede dei comuni restano invariati.",
+   "interessa": [
+    {
+     "nome": "Meteo",
+     "collegamento": "../meteo/"
+    }
+   ],
+   "valori": [],
+   "commit": "0e0dd395ec"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "correzione",
+   "automatico": false,
+   "titolo": "Separa allerte e aria, distingue le date e risolve la popolazione regionale",
+   "descrizione": "* Rinnova la grafica dell'Atlante e aggiunge i gesti con due dita sulle mappe\n\nAtlante editoriale blu, oro e avorio; intestazione compatta senza orologio; navigazione\nessenziale su desktop e a quattro voci sul telefono; pagina iniziale con ricerca in evidenza\ne sagoma del Friuli Venezia Giulia; filtro territoriale compatto; pagina Mappe con mappa\nprotagonista, legenda vicina e comune selezionato in evidenza (sul telefono in un pannello\ndal basso); un solo modulo di gesti per tutte le mappe: pizzico centrato fra le dita,\ntrascinamento, rotella, schermo intero, limiti di zoom; prove automatiche dei gesti.\n\n\n* Aggiunge le pagine Orari, Meteo e Catasto con la grafica dell'Atlante\n\n- orari/: orari programmati di tutte le linee TPL FVG dal GTFS di BusOne, per linea, direzione, giorno e fermata; aggiornati ogni lunedì da scripts/aggiorna_orari.py\n- meteo/ e catasto/: le pagine di costalonga.org portate con scripts/porta_meteo.py e scripts/porta_catasto.py\n- collegamenti da Autobus («Orari delle linee», «Orari di questa linea»), dalla scheda del comune, dalle allerte, dal menu Altro e dalle pagine statiche; tre indirizzi in più nella sitemap\n\n\n* Separa allerte e aria, distingue le date e risolve la popolazione regionale\n\n- Allerte e aria: allerte di oggi lette al momento e qualità dell'aria come ultimi dati validati, con il giorno e quanti giorni fa\n- Date: versione dell'archivio, fogli regionali, ISPRA, RUNTS, banca dati regionale e servizi letti al momento indicati separatamente\n- Popolazione: 1.193.496 confermato da ISTAT (bilancio demografico 2025, provvisorio) e dal volume «Regione in cifre 2026»; tolto il DA VERIFICARE\n- Bilanci: copertura in evidenza sopra la mappa e nella scheda del comune\n- Registro: colonna «Anagrafe aggiornata al», ordinabile\n- Archivio: fogli senza colonna del comune in un gruppo a parte, con avviso\n- Pagina iniziale: archivio statistico e servizi aggiornati separati; le avvertenze stanno solo in Metodo e fonti, anche nella pagina statica\n\n\n---------",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "f081075374"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Aggiunge le pagine Orari, Meteo e Catasto con la grafica dell'Atlante",
+   "descrizione": "* Rinnova la grafica dell'Atlante e aggiunge i gesti con due dita sulle mappe\n\nAtlante editoriale blu, oro e avorio; intestazione compatta senza orologio; navigazione\nessenziale su desktop e a quattro voci sul telefono; pagina iniziale con ricerca in evidenza\ne sagoma del Friuli Venezia Giulia; filtro territoriale compatto; pagina Mappe con mappa\nprotagonista, legenda vicina e comune selezionato in evidenza (sul telefono in un pannello\ndal basso); un solo modulo di gesti per tutte le mappe: pizzico centrato fra le dita,\ntrascinamento, rotella, schermo intero, limiti di zoom; prove automatiche dei gesti.\n\n\n* Aggiunge le pagine Orari, Meteo e Catasto con la grafica dell'Atlante\n\n- orari/: orari programmati di tutte le linee TPL FVG dal GTFS di BusOne, per linea, direzione, giorno e fermata; aggiornati ogni lunedì da scripts/aggiorna_orari.py\n- meteo/ e catasto/: le pagine di costalonga.org portate con scripts/porta_meteo.py e scripts/porta_catasto.py\n- collegamenti da Autobus («Orari delle linee», «Orari di questa linea»), dalla scheda del comune, dalle allerte, dal menu Altro e dalle pagine statiche; tre indirizzi in più nella sitemap\n\n\n---------",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "290f0ae39e"
+  },
+  {
+   "data": "2026-10-07",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Rinnova la grafica per computer, tablet e telefono con lo zoom a due dita sulle mappe",
+   "descrizione": "Atlante editoriale blu, oro e avorio; intestazione compatta senza orologio; navigazione\nessenziale su desktop e a quattro voci sul telefono; pagina iniziale con ricerca in evidenza\ne sagoma del Friuli Venezia Giulia; filtro territoriale compatto; pagina Mappe con mappa\nprotagonista, legenda vicina e comune selezionato in evidenza (sul telefono in un pannello\ndal basso); un solo modulo di gesti per tutte le mappe: pizzico centrato fra le dita,\ntrascinamento, rotella, schermo intero, limiti di zoom; prove automatiche dei gesti.",
+   "interessa": [
+    {
+     "nome": "Mappe",
+     "collegamento": "../?pagina=mappe"
+    }
+   ],
+   "valori": [],
+   "commit": "d0415a5f92"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "metodo",
+   "automatico": false,
+   "titolo": "Aggiorna ogni lunedì un quarto delle fonti, a rotazione su quattro settimane",
+   "descrizione": "55 fogli del portale regionale e l'anagrafe degli amministratori divisi in quattro gruppi;\nricalcolo di registro, turismo e punti della mappa; opere pubbliche nel gruppo 4; controllo\nmensile delle fonti da aggiornare a mano con segnalazione su GitHub.",
+   "interessa": [
+    {
+     "nome": "Operatori biologici 2020",
+     "collegamento": "../?pagina=archivio&foglio=Operatori_biologici_2020"
+    },
+    {
+     "nome": "Punti WiFi",
+     "collegamento": "../?pagina=archivio&foglio=Punti_WiFi"
+    },
+    {
+     "nome": "Servizi sulla mappa",
+     "collegamento": "../?pagina=mappe"
+    }
+   ],
+   "valori": [],
+   "commit": "614196220d"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Permette di segnalare gli errori anche via WhatsApp",
+   "descrizione": "",
+   "interessa": [],
+   "valori": [],
+   "commit": "64c7b59af2"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Indica il titolare del trattamento nell'informativa",
+   "descrizione": "",
+   "interessa": [],
+   "valori": [],
+   "commit": "d6b2ca4462"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "correzione",
+   "automatico": false,
+   "titolo": "Aggiunge «Segnala un errore», il registro delle correzioni e statistiche senza cookie",
+   "descrizione": "Messaggio di posta per info@atlantefvg.it già compilato con pagina, dato e versione dei dati;\nregistro delle correzioni in dati/correzioni.json; statistiche GoatCounter di pagine ed eventi\n(ricerca, filtri, confronto, download, errori) e informativa nella pagina Metodo e fonti.",
+   "interessa": [
+    {
+     "nome": "Confronto",
+     "collegamento": "../?pagina=confronto"
+    }
+   ],
+   "valori": [],
+   "commit": "25440a06fc"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Rende l'Atlante leggibile dai motori di ricerca e più rapido sul telefono",
+   "descrizione": "Pagine statiche per i 215 comuni, le quattro province e gli argomenti, con titoli unici, un\nsolo H1, canonici, percorso e dati strutturati (BreadcrumbList, Dataset, WebSite); sitemap con\nla data dei dati; stile e icone compilati nella pagina e grafici caricati al primo uso;\ncontrolli automatici sul sito dopo ogni rilascio.",
+   "interessa": [],
+   "valori": [],
+   "commit": "288a21122b"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Semplifica la pagina iniziale, rende condivisibili i filtri e aggiunge i download",
+   "descrizione": "Pagina iniziale con la ricerca del comune in evidenza e tre percorsi (esplora, confronta,\nconsulta e scarica); confronto diviso fra valori assoluti e per abitante, con il periodo di\nogni riga; filtri nell'indirizzo e comando per azzerarli tutti; tabella equivalente alla mappa;\ndownload CSV ed Excel con fonte, data e riutilizzo; miglioramenti per telefono, tastiera e\nlettori di schermo; animazioni brevi che rispettano il movimento ridotto.",
+   "interessa": [
+    {
+     "nome": "Confronto",
+     "collegamento": "../?pagina=confronto"
+    }
+   ],
+   "valori": [],
+   "commit": "30645289d1"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "metodo",
+   "automatico": false,
+   "titolo": "Rende trasparenti versioni, fonti, copertura e collegamenti dei dati",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Metodo e fonti",
+     "collegamento": "../?pagina=metodo"
+    }
+   ],
+   "valori": [],
+   "commit": "1c895b8228"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Divide l'Atlante in pagine con una barra di navigazione",
+   "descrizione": "",
+   "interessa": [],
+   "valori": [],
+   "commit": "9c16b99b75"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Aggiunge le opere pubbliche per comune da OpenCUP",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Opere pubbliche OpenCUP",
+     "collegamento": "../?pagina=archivio&foglio=Opere_pubbliche_OpenCUP"
+    }
+   ],
+   "valori": [],
+   "commit": "a6736dc94b"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge allerte meteo e qualità dell'aria in tempo reale",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Meteo",
+     "collegamento": "../meteo/"
+    }
+   ],
+   "valori": [],
+   "commit": "dc1c56c6bf"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge l'indirizzo diretto e la condivisione per ogni comune",
+   "descrizione": "",
+   "interessa": [],
+   "valori": [],
+   "commit": "6ca494c190"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Trasforma la barra di ricerca in alto in una ricerca con suggerimenti",
+   "descrizione": "",
+   "interessa": [],
+   "valori": [],
+   "commit": "00d3cba4bc"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge icona, anteprima per le condivisioni e impostazioni per i telefoni",
+   "descrizione": "",
+   "interessa": [],
+   "valori": [],
+   "commit": "a26c8fe1c2"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Mette il logo Atlante FVG al posto del titolo nell'intestazione",
+   "descrizione": "",
+   "interessa": [],
+   "valori": [],
+   "commit": "89c79e704f"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "correzione",
+   "automatico": false,
+   "titolo": "Toglie la bandiera del Friuli dall'intestazione",
+   "descrizione": "",
+   "interessa": [],
+   "valori": [],
+   "commit": "797c23bb79"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Pubblica l'Atlante sul dominio atlantefvg.it",
+   "descrizione": "",
+   "interessa": [],
+   "valori": [],
+   "commit": "aba604a96a"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "correzione",
+   "automatico": false,
+   "titolo": "Mantiene maiuscoli i numeri romani nei nomi delle fermate",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Rete degli autobus",
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "valori": [],
+   "commit": "ec4139d0e3"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Unisce le varianti di una linea con lo stesso numero e lo stesso nome",
+   "descrizione": "",
+   "interessa": [],
+   "valori": [],
+   "commit": "da45c811ef"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i dati aperti regionali del 06/10/2026",
+   "descrizione": "Nessun foglio cambiato.\nAutobus: rete aggiornata alla versione 20260914-0041: 7966 fermate e 656 percorsi (prima 7855 fermate e 687 percorsi).",
+   "interessa": [
+    {
+     "nome": "Rete degli autobus",
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Rete degli autobus (GTFS 20260914-0041)",
+     "misura": "fermate",
+     "prima": 7855,
+     "dopo": 7966,
+     "differenza": 111,
+     "collegamento": "../?pagina=autobus"
+    },
+    {
+     "cosa": "Rete degli autobus (GTFS 20260914-0041)",
+     "misura": "percorsi",
+     "prima": 687,
+     "dopo": 656,
+     "differenza": -31,
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "commit": "5daa232dfb"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge la mappa delle vie e l'aggiornamento settimanale della rete degli autobus",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Rete degli autobus",
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "valori": [],
+   "commit": "b38bf5ff08"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge la sezione Autobus con linee, fermate e arrivi in tempo reale",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Rete degli autobus",
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "valori": [],
+   "commit": "86d73feacd"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge il menu a tendina per argomenti",
+   "descrizione": "Pulsante «Argomenti» nella barra in alto: sezioni della pagina e nove\nargomenti con collegamenti diretti alla mappa sull'indicatore giusto, agli\nstrati dei servizi e alle tabelle dell'archivio. Pulsante per tornare in\ncima e barra più compatta sul telefono.",
+   "interessa": [
+    {
+     "nome": "Mappe",
+     "collegamento": "../?pagina=mappe"
+    }
+   ],
+   "valori": [],
+   "commit": "16b67c3846"
+  },
+  {
+   "data": "2026-10-06",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Atlante dei Comuni del Friuli Venezia Giulia",
+   "descrizione": "I 215 comuni con mappe, confronto, schede stampabili e l'archivio completo\ndei dati pubblici (136 fogli). Storia del repository riscritta il 6 ottobre\n2026, su richiesta dell'autore, per togliere i contatti dei privati presenti\nnelle prime versioni.",
+   "interessa": [
+    {
+     "nome": "Affittacamere",
+     "collegamento": "../?pagina=archivio&foglio=Affittacamere"
+    },
+    {
+     "nome": "Agriturismi 2017",
+     "collegamento": "../?pagina=archivio&foglio=Agriturismi_2017"
+    },
+    {
+     "nome": "Alberghi RTA",
+     "collegamento": "../?pagina=archivio&foglio=Alberghi_RTA"
+    },
+    {
+     "nome": "Alberghi diffusi",
+     "collegamento": "../?pagina=archivio&foglio=Alberghi_diffusi"
+    },
+    {
+     "nome": "Alloggi agrituristici",
+     "collegamento": "../?pagina=archivio&foglio=Alloggi_agrituristici"
+    },
+    {
+     "nome": "Amministratori locali",
+     "collegamento": "../?pagina=archivio&foglio=Amministratori_locali"
+    },
+    {
+     "nome": "Annuario 2026 capitoli",
+     "collegamento": "../?pagina=archivio&foglio=Annuario_2026_capitoli"
+    },
+    {
+     "nome": "Associazioni culturali 2026",
+     "collegamento": "../?pagina=archivio&foglio=Associazioni_culturali_2026"
+    },
+    {
+     "nome": "Autovetture 2020",
+     "collegamento": "../?pagina=archivio&foglio=Autovetture_2020"
+    },
+    {
+     "nome": "Bed and Breakfast",
+     "collegamento": "../?pagina=archivio&foglio=Bed_and_Breakfast"
+    },
+    {
+     "nome": "Bilanci comunali sintesi",
+     "collegamento": "../?pagina=archivio&foglio=Bilanci_comunali_sintesi"
+    },
+    {
+     "nome": "Bilanci rendiconto entrate",
+     "collegamento": "../?pagina=archivio&foglio=Bilanci_rendiconto_entrate"
+    }
+   ],
+   "valori": [],
+   "commit": "9f37772831"
+  }
+ ],
+ "fogli": [
+  {
+   "id": "LEGGIMI",
+   "nome": "LEGGIMI",
+   "ambito": "Guida",
+   "righe": 19,
+   "consultazione": null,
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "INDICE",
+   "nome": "INDICE",
+   "ambito": "Guida",
+   "righe": 102,
+   "consultazione": null,
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "Comuni",
+   "nome": "Comuni",
+   "ambito": "Territorio",
+   "righe": 215,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-italiani.csv"
+  },
+  {
+   "id": "Amministratori_locali",
+   "nome": "Amministratori locali",
+   "ambito": "Amministratori",
+   "righe": 3336,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://elezioniamministratori.regione.fvg.it/distribuzione/json/amministratori_locali.json"
+  },
+  {
+   "id": "Enti_locali_anagrafe",
+   "nome": "Enti locali anagrafe",
+   "ambito": "Enti pubblici",
+   "righe": 215,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://elezioniamministratori.regione.fvg.it/distribuzione/json/enti_locali.json"
+  },
+  {
+   "id": "Elezioni_anagrafe",
+   "nome": "Elezioni anagrafe",
+   "ambito": "Amministratori",
+   "righe": 352,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://elezioniamministratori.regione.fvg.it/distribuzione/json/elezioni.json"
+  },
+  {
+   "id": "Consiglio_regionale",
+   "nome": "Consiglio regionale",
+   "ambito": "Amministratori",
+   "righe": 48,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.consiglio.regione.fvg.it/pagineinterne/Portale/HomeConsiglieri.aspx"
+  },
+  {
+   "id": "RUNTS_FVG",
+   "nome": "RUNTS FVG",
+   "ambito": "Associazioni",
+   "righe": 3594,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://servizi.lavoro.gov.it/runts/it-it/Lista-enti"
+  },
+  {
+   "id": "Scuole_2026_27",
+   "nome": "Scuole 2026 27",
+   "ambito": "Istruzione",
+   "righe": 153,
+   "consultazione": "2026-10-05",
+   "periodo": "anno 2026",
+   "fonte": "https://usrfvg.regione.fvg.it/export/sites/default/it/home/menu/uffici/Direzione/allegati-direzione/allegati-direzione-2026/ELENCO-scuole-2026-2027.xlsx"
+  },
+  {
+   "id": "Sport_FIDAL",
+   "nome": "Sport FIDAL",
+   "ambito": "Associazioni",
+   "righe": 96,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.fidal.it/mappa.php?regione=FVG"
+  },
+  {
+   "id": "Enti_contatti_web",
+   "nome": "Enti contatti web",
+   "ambito": "Enti e imprese",
+   "righe": 367,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "Incarichi_web",
+   "nome": "Incarichi web",
+   "ambito": "Amministratori",
+   "righe": 215,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "Regione_EDR",
+   "nome": "Regione EDR",
+   "ambito": "Enti pubblici",
+   "righe": 8,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "Indicatori_web",
+   "nome": "Indicatori web",
+   "ambito": "Statistiche",
+   "righe": 569,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "Traffico_autostradale",
+   "nome": "Traffico autostradale",
+   "ambito": "Trasporti",
+   "righe": 8,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "Partecipate_2024",
+   "nome": "Partecipate 2024",
+   "ambito": "Governo e settore pubblico",
+   "righe": 40,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-12-03",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/beh8-i3jj/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Protezione_civile",
+   "nome": "Protezione civile",
+   "ambito": "Giustizia, sistema giuridico e sicurezza pubblica",
+   "righe": 66,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2015-06-18",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/qhgg-fx77/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Turismo_comunale",
+   "nome": "Turismo comunale",
+   "ambito": "Istruzione, cultura e sport",
+   "righe": 41664,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2026-07-31",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/7eps-cpgr/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_Gemonese_2025",
+   "nome": "Commercio Gemonese 2025",
+   "ambito": "Economia e Finanze",
+   "righe": 602,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2025-07-25",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/gpw2-v5zm/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_Pravisdomini",
+   "nome": "Commercio Pravisdomini",
+   "ambito": "Economia e Finanze",
+   "righe": 28,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2025-07-25",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/8959-ynew/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_Chions",
+   "nome": "Commercio Chions",
+   "ambito": "Economia e Finanze",
+   "righe": 96,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2025-07-25",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/7m8r-6s76/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_Azzano",
+   "nome": "Commercio Azzano",
+   "ambito": "Economia e Finanze",
+   "righe": 246,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2025-07-25",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/n5i6-ug28/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_Udine",
+   "nome": "Commercio Udine",
+   "ambito": "Economia e Finanze",
+   "righe": 17899,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-10-04",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/nqb3-7fg7/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_Canal_Ferro",
+   "nome": "Commercio Canal Ferro",
+   "ambito": "Economia e Finanze",
+   "righe": 2406,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-10-04",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/jc9t-nxmk/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_Cordenons",
+   "nome": "Commercio Cordenons",
+   "ambito": "Economia e Finanze",
+   "righe": 2358,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-10-04",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/7dv7-zhrr/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_Tavagnacco",
+   "nome": "Commercio Tavagnacco",
+   "ambito": "Economia e Finanze",
+   "righe": 3154,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-10-04",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/2z68-t8q3/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_Treppo_Grande",
+   "nome": "Commercio Treppo Grande",
+   "ambito": "Economia e Finanze",
+   "righe": 64,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-10-04",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/tr9u-8znt/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_Buja",
+   "nome": "Commercio Buja",
+   "ambito": "Economia e Finanze",
+   "righe": 1000,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-10-04",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/uc5t-fw39/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_Caneva",
+   "nome": "Commercio Caneva",
+   "ambito": "Economia e Finanze",
+   "righe": 336,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-10-04",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/xc8n-cmjk/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_San_Daniele",
+   "nome": "Commercio San Daniele",
+   "ambito": "Economia e Finanze",
+   "righe": 1521,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-10-04",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/pjhz-bz7c/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Centri_commerciali_2025",
+   "nome": "Centri commerciali 2025",
+   "ambito": "Economia e Finanze",
+   "righe": 25,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2025-07-25",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/5q55-6mjh/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Commercio_ambulante_2025",
+   "nome": "Commercio ambulante 2025",
+   "ambito": "Economia e Finanze",
+   "righe": 20,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2025-07-25",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/gejj-7nht/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Agriturismi_2017",
+   "nome": "Agriturismi 2017",
+   "ambito": "Agricoltura, pesca, silvicoltura e prodotti alimentari",
+   "righe": 665,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2025-01-13",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/hv53-cjd9/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Operatori_biologici_2020",
+   "nome": "Operatori biologici 2020",
+   "ambito": "Agricoltura, pesca, silvicoltura e prodotti alimentari",
+   "righe": 1016,
+   "consultazione": "2026-10-06",
+   "periodo": "dati aggiornati dalla fonte al 2020-06-11",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/8fxx-smd5/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Fattorie_didattiche_2017",
+   "nome": "Fattorie didattiche 2017",
+   "ambito": "Agricoltura, pesca, silvicoltura e prodotti alimentari",
+   "righe": 86,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2025-01-13",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/ad7h-yqrk/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Affittacamere",
+   "nome": "Affittacamere",
+   "ambito": "Istruzione, cultura e sport",
+   "righe": 822,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-09-19",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/6var-2hht/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Bed_and_Breakfast",
+   "nome": "Bed and Breakfast",
+   "ambito": "Istruzione, cultura e sport",
+   "righe": 712,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-09-19",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/jzsu-f86x/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Marina_Resort",
+   "nome": "Marina Resort",
+   "ambito": "Istruzione, cultura e sport",
+   "righe": 15,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-09-19",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/6xk5-2p3e/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Campeggi",
+   "nome": "Campeggi",
+   "ambito": "Istruzione, cultura e sport",
+   "righe": 37,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-09-19",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/c2n8-qhph/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Alloggi_agrituristici",
+   "nome": "Alloggi agrituristici",
+   "ambito": "Istruzione, cultura e sport",
+   "righe": 402,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-09-19",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/yg8e-47jy/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Ricettivita_sociale",
+   "nome": "Ricettivita sociale",
+   "ambito": "Istruzione, cultura e sport",
+   "righe": 113,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-09-19",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/csiv-njht/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Alberghi_diffusi",
+   "nome": "Alberghi diffusi",
+   "ambito": "Istruzione, cultura e sport",
+   "righe": 18,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-09-19",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/69j3-9hcp/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Alberghi_RTA",
+   "nome": "Alberghi RTA",
+   "ambito": "Istruzione, cultura e sport",
+   "righe": 776,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-09-19",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/fiiw-i5su/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Farmacie",
+   "nome": "Farmacie",
+   "ambito": "Salute",
+   "righe": 417,
+   "consultazione": "2026-10-06",
+   "periodo": "dati aggiornati dalla fonte al 2026-10-04",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/jbxd-m6xe/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Parafarmacie_2024",
+   "nome": "Parafarmacie 2024",
+   "ambito": "Salute",
+   "righe": 201,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-12-03",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/b3xh-hm8p/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Guardie_mediche",
+   "nome": "Guardie mediche",
+   "ambito": "Salute",
+   "righe": 35,
+   "consultazione": "2026-10-06",
+   "periodo": "dati aggiornati dalla fonte al 2026-10-04",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/my2j-r3t4/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Residenze_anziani",
+   "nome": "Residenze anziani",
+   "ambito": "Salute",
+   "righe": 169,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2026-10-04",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/vw6s-ayge/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Siti_inquinati_2025",
+   "nome": "Siti inquinati 2025",
+   "ambito": "Ambiente",
+   "righe": 1659,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2026-01-14",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/ti84-itu7/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Impianti_rifiuti_2020",
+   "nome": "Impianti rifiuti 2020",
+   "ambito": "Ambiente",
+   "righe": 389,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2020-01-07",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/q58c-v69s/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Indicatori_rifiuti",
+   "nome": "Indicatori rifiuti",
+   "ambito": "Ambiente",
+   "righe": 53152,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2018-12-20",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/j5hn-9qge/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Rifiuti_comunali",
+   "nome": "Rifiuti comunali",
+   "ambito": "Ambiente",
+   "righe": 73462,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2020-01-09",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/xh58-mpaz/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Stazioni_idrometeo_2019",
+   "nome": "Stazioni idrometeo 2019",
+   "ambito": "Giustizia, sistema giuridico e sicurezza pubblica",
+   "righe": 304,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2019-03-22",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/pztv-ttpr/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Sensori_meteo_2019",
+   "nome": "Sensori meteo 2019",
+   "ambito": "Ambiente",
+   "righe": 223,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2019-04-03",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/498i-2j88/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Punti_WiFi",
+   "nome": "Punti WiFi",
+   "ambito": "Governo e settore pubblico",
+   "righe": 749,
+   "consultazione": "2026-10-06",
+   "periodo": "dati aggiornati dalla fonte al 2026-10-05",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/53ur-f9mj/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Ciclovie_2020",
+   "nome": "Ciclovie 2020",
+   "ambito": "Trasporti",
+   "righe": 1174,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2020-01-22",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/38yx-qk7a/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Piste_ciclabili",
+   "nome": "Piste ciclabili",
+   "ambito": "Trasporti",
+   "righe": 486,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2026-10-04",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/7eat-pecq/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Rete_viaria",
+   "nome": "Rete viaria",
+   "ambito": "Trasporti",
+   "righe": 76349,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2026-10-01",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/4tby-g59n/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Redditi_IRPEF_2018",
+   "nome": "Redditi IRPEF 2018",
+   "ambito": "Economia e Finanze",
+   "righe": 215,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2020-01-16",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/xtnj-8xsp/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Occupati_2007_2018",
+   "nome": "Occupati 2007 2018",
+   "ambito": "Economia e Finanze",
+   "righe": 15,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2020-01-16",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/e7yi-2twc/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Disoccupati_2007_2018",
+   "nome": "Disoccupati 2007 2018",
+   "ambito": "Economia e Finanze",
+   "righe": 15,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2020-01-16",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/h2sf-8xyr/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Export_2014_2018",
+   "nome": "Export 2014 2018",
+   "ambito": "Economia e Finanze",
+   "righe": 15,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2020-01-17",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/5wd4-fgzs/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Import_2014_2018",
+   "nome": "Import 2014 2018",
+   "ambito": "Economia e Finanze",
+   "righe": 15,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2020-01-17",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/vkye-mqht/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Autovetture_2020",
+   "nome": "Autovetture 2020",
+   "ambito": "Trasporti",
+   "righe": 1846,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2024-03-19",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/ap44-stze/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Veicoli_2017",
+   "nome": "Veicoli 2017",
+   "ambito": "Trasporti",
+   "righe": 221,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2018-09-05",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/dhap-nnxn/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Elezioni_comunali_2026",
+   "nome": "Elezioni comunali 2026",
+   "ambito": "Governo e settore pubblico",
+   "righe": 23,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2026-09-29",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/ivm2-pa4q/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Elezioni_comunali_2025",
+   "nome": "Elezioni comunali 2025",
+   "ambito": "Governo e settore pubblico",
+   "righe": 11,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2026-09-29",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/a3td-mpdh/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Elezioni_comunali_2024",
+   "nome": "Elezioni comunali 2024",
+   "ambito": "Governo e settore pubblico",
+   "righe": 224,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2026-09-29",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/62hc-s348/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Demanio_culturale",
+   "nome": "Demanio culturale",
+   "ambito": "Economia e Finanze",
+   "righe": 50,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2026-07-27",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/8vuc-s3dm/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Patrimonio_disponibile",
+   "nome": "Patrimonio disponibile",
+   "ambito": "Economia e Finanze",
+   "righe": 121,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2026-07-27",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/2b6s-pcam/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Patrimonio_indisponibile",
+   "nome": "Patrimonio indisponibile",
+   "ambito": "Economia e Finanze",
+   "righe": 228,
+   "consultazione": "2026-10-05",
+   "periodo": "dati aggiornati dalla fonte al 2026-07-27",
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/26im-zbgz/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Testi_estesi",
+   "nome": "Testi estesi",
+   "ambito": "Qualità",
+   "righe": 10,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "GTFS_operatori",
+   "nome": "GTFS operatori",
+   "ambito": "Trasporti",
+   "righe": 1,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://proxy.busone.app/TPLFVG/gtfs.zip"
+  },
+  {
+   "id": "GTFS_metadati",
+   "nome": "GTFS metadati",
+   "ambito": "Trasporti",
+   "righe": 1,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://proxy.busone.app/TPLFVG/gtfs.zip"
+  },
+  {
+   "id": "GTFS_fermate",
+   "nome": "GTFS fermate",
+   "ambito": "Trasporti",
+   "righe": 7855,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://proxy.busone.app/TPLFVG/gtfs.zip"
+  },
+  {
+   "id": "GTFS_linee",
+   "nome": "GTFS linee",
+   "ambito": "Trasporti",
+   "righe": 687,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://proxy.busone.app/TPLFVG/gtfs.zip"
+  },
+  {
+   "id": "GTFS_corse",
+   "nome": "GTFS corse",
+   "ambito": "Trasporti",
+   "righe": 16734,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://proxy.busone.app/TPLFVG/gtfs.zip"
+  },
+  {
+   "id": "C26_01_territorio",
+   "nome": "C26 01 territorio",
+   "ambito": "Annuario 2026",
+   "righe": 109,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_02_ambiente",
+   "nome": "C26 02 ambiente",
+   "ambito": "Annuario 2026",
+   "righe": 259,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_03_trasporti",
+   "nome": "C26 03 trasporti",
+   "ambito": "Annuario 2026",
+   "righe": 253,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_04_operepubbliche",
+   "nome": "C26 04 operepubbliche",
+   "ambito": "Annuario 2026",
+   "righe": 278,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_05_energia",
+   "nome": "C26 05 energia",
+   "ambito": "Annuario 2026",
+   "righe": 401,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_06_agricoltura",
+   "nome": "C26 06 agricoltura",
+   "ambito": "Annuario 2026",
+   "righe": 312,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_07_impreseeinnovazione",
+   "nome": "C26 07 impreseeinnovazione",
+   "ambito": "Annuario 2026",
+   "righe": 408,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_08_credito",
+   "nome": "C26 08 credito",
+   "ambito": "Annuario 2026",
+   "righe": 95,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_09_commerciointerno",
+   "nome": "C26 09 commerciointerno",
+   "ambito": "Annuario 2026",
+   "righe": 144,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_10_commercioestero",
+   "nome": "C26 10 commercioestero",
+   "ambito": "Annuario 2026",
+   "righe": 198,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_11_lavoro",
+   "nome": "C26 11 lavoro",
+   "ambito": "Annuario 2026",
+   "righe": 265,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_12_turismo",
+   "nome": "C26 12 turismo",
+   "ambito": "Annuario 2026",
+   "righe": 182,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_13_contabilitaeconomic",
+   "nome": "C26 13 contabilitaeconomic",
+   "ambito": "Annuario 2026",
+   "righe": 319,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_14_elezioni",
+   "nome": "C26 14 elezioni",
+   "ambito": "Annuario 2026",
+   "righe": 381,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_15_giustizia",
+   "nome": "C26 15 giustizia",
+   "ambito": "Annuario 2026",
+   "righe": 134,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_16_saluteprotezionesoc",
+   "nome": "C26 16 saluteprotezionesoc",
+   "ambito": "Annuario 2026",
+   "righe": 392,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_17_istruzione",
+   "nome": "C26 17 istruzione",
+   "ambito": "Annuario 2026",
+   "righe": 274,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_18_cultura",
+   "nome": "C26 18 cultura",
+   "ambito": "Annuario 2026",
+   "righe": 247,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_19_popolazione",
+   "nome": "C26 19 popolazione",
+   "ambito": "Annuario 2026",
+   "righe": 929,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_20_comportamentifamigl",
+   "nome": "C26 20 comportamentifamigl",
+   "ambito": "Annuario 2026",
+   "righe": 246,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_21_comunitalinguistich",
+   "nome": "C26 21 comunitalinguistich",
+   "ambito": "Annuario 2026",
+   "righe": 233,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "C26_22_confrontiinternazio",
+   "nome": "C26 22 confrontiinternazio",
+   "ambito": "Annuario 2026",
+   "righe": 408,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "Catalogo_tavole_2026",
+   "nome": "Catalogo tavole 2026",
+   "ambito": "Cataloghi",
+   "righe": 384,
+   "consultazione": "2026-10-05",
+   "periodo": "anno 2026",
+   "fonte": "https://www.regione.fvg.it/rafvg/export/sites/default/RAFVG/GEN/statistica/FOGLIA125/allegati/Tavole_e_grafici_2026.zip"
+  },
+  {
+   "id": "Catalogo_OpenData",
+   "nome": "Catalogo OpenData",
+   "ambito": "Cataloghi",
+   "righe": 854,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://api.eu.socrata.com/api/catalog/v1?domains=www.dati.friuliveneziagiulia.it&limit=1000"
+  },
+  {
+   "id": "Dizionario_OpenData",
+   "nome": "Dizionario OpenData",
+   "ambito": "Cataloghi",
+   "righe": 15085,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": "https://api.eu.socrata.com/api/catalog/v1?domains=www.dati.friuliveneziagiulia.it&limit=1000"
+  },
+  {
+   "id": "Piste_ricerca",
+   "nome": "Piste ricerca",
+   "ambito": "Cataloghi",
+   "righe": 304,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "Fonti_web",
+   "nome": "Fonti web",
+   "ambito": "Cataloghi",
+   "righe": 67,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "Qualita_limiti",
+   "nome": "Qualita limiti",
+   "ambito": "Qualità",
+   "righe": 15,
+   "consultazione": "2026-10-05",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "RC26_Tav_4_4_completa",
+   "nome": "RC26 Tav 4 4 completa",
+   "ambito": "Annuario 2026",
+   "righe": 23,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "ISTAT · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito dall'utente)"
+  },
+  {
+   "id": "RC26_Tav_4_5_bis",
+   "nome": "RC26 Tav 4 5 bis",
+   "ambito": "Annuario 2026",
+   "righe": 23,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "ISTAT · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito dall'utente)"
+  },
+  {
+   "id": "RC26_Tav_7_3_bis",
+   "nome": "RC26 Tav 7 3 bis",
+   "ambito": "Annuario 2026",
+   "righe": 42,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "Registro delle Imprese, Infocamere, Movimprese · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito dall'utente)"
+  },
+  {
+   "id": "RC26_Int_13_1",
+   "nome": "RC26 Int 13 1",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 220,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "Dipartimento delle Finanze - MEF, Statistiche fiscali, Open data dichiarazioni 2025 e 2024; elaborazione · tramite Regione FVG Dati, versione 5 del 16 settembre"
+  },
+  {
+   "id": "RC26_Int_19_1",
+   "nome": "RC26 Int 19 1",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 220,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "ISTAT, demo.istat.it (POSAS 2026); elaborazione · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito dall'utente)"
+  },
+  {
+   "id": "RC26_Int_19_2",
+   "nome": "RC26 Int 19 2",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 220,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "ISTAT, demo.istat.it (STRASA e POSAS 2026); elaborazione · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito dall'utente)"
+  },
+  {
+   "id": "RC26_Int_19_3",
+   "nome": "RC26 Int 19 3",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 220,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "ISTAT, demo.istat.it (Bilancio demografico 2025); elaborazione · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito dall'utente)"
+  },
+  {
+   "id": "RC26_Int_19_4",
+   "nome": "RC26 Int 19 4",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 220,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "ISTAT, demo.istat.it (Ricostruzione intercensuaria e POSAS); elaborazione · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito dall'utente"
+  },
+  {
+   "id": "RC26_Int_19_5",
+   "nome": "RC26 Int 19 5",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 220,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "ISTAT, demo.istat.it (Previsioni comunali della popolazione, base 2025); elaborazione · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito"
+  },
+  {
+   "id": "RC26_Int_19_6",
+   "nome": "RC26 Int 19 6",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 220,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "ISTAT, demo.istat.it (Popolazione residente per cittadinanza, 2025); elaborazione · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito dal"
+  },
+  {
+   "id": "RC26_Int_16_1",
+   "nome": "RC26 Int 16 1",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 220,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "RUNTS - Ministero del Lavoro e delle Politiche Sociali (servizi.lavoro.gov.it/runts), estrazione dell'utente del 16.9.2026; elaborazione · tramite Regione FVG D"
+  },
+  {
+   "id": "RC26_Int_18_1",
+   "nome": "RC26 Int 18 1",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 220,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "Registro CONI 2.0 (coni.it, Dipartimento per lo Sport / Sport e Salute), estrazione dell'utente del 16.9.2026; elaborazione · tramite Regione FVG Dati, versione"
+  },
+  {
+   "id": "RC26_Int_18_2",
+   "nome": "RC26 Int 18 2",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 220,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "censimento dell'utente da elenchi comunali (Pordenone, Udine), ANBIMA FVG e ATF, verifica del 16.9.2026; elaborazione · tramite Regione FVG Dati, versione 5 del"
+  },
+  {
+   "id": "RC26_Int_2_1",
+   "nome": "RC26 Int 2 1",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 220,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "AUSIR FVG, delibere di approvazione dei PEF 2024-2025 (Allegati F) e Relazione ex art. 14 L.R. 5/2016 anno 2024; elaborazione dell'utente; PEF per abitante calc"
+  },
+  {
+   "id": "RC26_Int_2_2",
+   "nome": "RC26 Int 2 2",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 8,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "AUSIR FVG, Relazione ex art. 14 L.R. 5/2016, anno 2024; elaborazione dell'utente · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito dall"
+  },
+  {
+   "id": "RC26_Int_4_1",
+   "nome": "RC26 Int 4 1",
+   "ambito": "Regione in cifre 2026: integrazioni",
+   "righe": 6,
+   "consultazione": "2026-09-16",
+   "periodo": null,
+   "fonte": "AUSIR FVG, Relazione ex art. 14 L.R. 5/2016 anno 2024 e relazioni tariffarie MTI-4 dei gestori; elaborazione dell'utente · tramite Regione FVG Dati, versione 5 "
+  },
+  {
+   "id": "Sport_CONI_2026",
+   "nome": "Sport CONI 2026",
+   "ambito": "Associazioni",
+   "righe": 1537,
+   "consultazione": "2026-09-16",
+   "periodo": "anno 2026",
+   "fonte": "https://www.coni.it/it/registro-societa-sportive/home/registro-2-0/registro.html · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito dall"
+  },
+  {
+   "id": "Associazioni_culturali_2026",
+   "nome": "Associazioni culturali 2026",
+   "ambito": "Associazioni",
+   "righe": 178,
+   "consultazione": "2026-09-16",
+   "periodo": "anno 2026",
+   "fonte": "Elenchi comunali di Pordenone e Udine, ANBIMA FVG, ATF · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito dall'utente)"
+  },
+  {
+   "id": "RUNTS_dettagli_set_2026",
+   "nome": "RUNTS dettagli set 2026",
+   "ambito": "Associazioni",
+   "righe": 3551,
+   "consultazione": "2026-09-16",
+   "periodo": "anno 2026",
+   "fonte": "https://servizi.lavoro.gov.it/runts/it-it/Ricerca-enti · tramite Regione FVG Dati, versione 5 del 16 settembre 2026 (file fornito dall'utente)"
+  },
+  {
+   "id": "Glossario_Annuario_2026",
+   "nome": "Glossario Annuario 2026",
+   "ambito": "Guida",
+   "righe": 222,
+   "consultazione": "2026-09-16",
+   "periodo": "anno 2026",
+   "fonte": "Regione in cifre 2026 - Regione Autonoma Friuli Venezia Giulia, Servizio programmazione, pianificazione strategica, controllo di gestione e statistica (chiusura"
+  },
+  {
+   "id": "Annuario_2026_capitoli",
+   "nome": "Annuario 2026 capitoli",
+   "ambito": "Guida",
+   "righe": 22,
+   "consultazione": "2026-09-16",
+   "periodo": "anno 2026",
+   "fonte": "Regione in cifre 2026 - Regione Autonoma Friuli Venezia Giulia, Servizio programmazione, pianificazione strategica, controllo di gestione e statistica (chiusura"
+  },
+  {
+   "id": "Cartine_comunali_2026",
+   "nome": "Cartine comunali 2026",
+   "ambito": "Annuario 2026",
+   "righe": 215,
+   "consultazione": "2026-09-16",
+   "periodo": "anno 2026",
+   "fonte": "Regione in cifre 2026 - Regione Autonoma Friuli Venezia Giulia, Servizio programmazione, pianificazione strategica, controllo di gestione e statistica (chiusura"
+  },
+  {
+   "id": "Cartine_regionali_2026",
+   "nome": "Cartine regionali 2026",
+   "ambito": "Annuario 2026",
+   "righe": 22,
+   "consultazione": "2026-09-16",
+   "periodo": "anno 2026",
+   "fonte": "Regione in cifre 2026 - Regione Autonoma Friuli Venezia Giulia, Servizio programmazione, pianificazione strategica, controllo di gestione e statistica (chiusura"
+  },
+  {
+   "id": "Rischio_idrogeologico_ISPRA",
+   "nome": "Rischio idrogeologico ISPRA",
+   "ambito": "Ambiente",
+   "righe": 215,
+   "consultazione": "2026-10-06",
+   "periodo": null,
+   "fonte": "https://idrogeo.isprambiente.it/app/ · Rapporto ISPRA 2024 «Dissesto idrogeologico in Italia: pericolosità e indicatori di rischio»"
+  },
+  {
+   "id": "Bilanci_rendiconto_spese",
+   "nome": "Bilanci rendiconto spese",
+   "ambito": "Bilanci comunali",
+   "righe": 76579,
+   "consultazione": "2026-10-06",
+   "periodo": null,
+   "fonte": "Portale dei dati aperti della Regione FVG, rendiconti degli enti locali (viste per ente)"
+  },
+  {
+   "id": "Bilanci_rendiconto_entrate",
+   "nome": "Bilanci rendiconto entrate",
+   "ambito": "Bilanci comunali",
+   "righe": 7972,
+   "consultazione": "2026-10-06",
+   "periodo": null,
+   "fonte": "Portale dei dati aperti della Regione FVG, rendiconti degli enti locali (viste per ente)"
+  },
+  {
+   "id": "Bilanci_comunali_sintesi",
+   "nome": "Bilanci comunali sintesi",
+   "ambito": "Bilanci comunali",
+   "righe": 1277,
+   "consultazione": "2026-10-06",
+   "periodo": null,
+   "fonte": "Portale dei dati aperti della Regione FVG, rendiconti degli enti locali (viste per ente); popolazione ISTAT"
+  },
+  {
+   "id": "Elezioni_regionali_2023_liste",
+   "nome": "Elezioni regionali 2023 liste",
+   "ambito": "Elezioni",
+   "righe": 2751,
+   "consultazione": "2026-10-06",
+   "periodo": "anno 2023",
+   "fonte": "Portale dei dati aperti della Regione FVG, elezioni regionali del 2 e 3 aprile 2023"
+  },
+  {
+   "id": "Elezioni_regionali_2023_presidente",
+   "nome": "Elezioni regionali 2023 presidente",
+   "ambito": "Elezioni",
+   "righe": 860,
+   "consultazione": "2026-10-06",
+   "periodo": "anno 2023",
+   "fonte": "Portale dei dati aperti della Regione FVG, elezioni regionali del 2 e 3 aprile 2023"
+  },
+  {
+   "id": "Elezioni_regionali_2023_affluenza",
+   "nome": "Elezioni regionali 2023 affluenza",
+   "ambito": "Elezioni",
+   "righe": 215,
+   "consultazione": "2026-10-06",
+   "periodo": "anno 2023",
+   "fonte": "Portale dei dati aperti della Regione FVG, elezioni regionali del 2 e 3 aprile 2023"
+  },
+  {
+   "id": "Elezioni_europee_2024",
+   "nome": "Elezioni europee 2024",
+   "ambito": "Elezioni",
+   "righe": 2580,
+   "consultazione": "2026-10-06",
+   "periodo": "anno 2024",
+   "fonte": "Ministero dell'interno, Eligendo, open data «europee-2024-italia-livcomune»"
+  },
+  {
+   "id": "Elezioni_camera_2022",
+   "nome": "Elezioni camera 2022",
+   "ambito": "Elezioni",
+   "righe": 3440,
+   "consultazione": "2026-10-06",
+   "periodo": "anno 2022",
+   "fonte": "Ministero dell'interno, Eligendo, open data «camera-2022-Italia-livcomune»"
+  },
+  {
+   "id": "Opere_pubbliche_OpenCUP",
+   "nome": "Opere pubbliche OpenCUP",
+   "ambito": "Governo e settore pubblico",
+   "righe": 63817,
+   "consultazione": "2026-10-06",
+   "periodo": null,
+   "fonte": "OpenCUP, Presidenza del Consiglio dei ministri (DIPE), open data Nord Est aggiornati al 2026-10-01, licenza CC BY 4.0"
+  },
+  {
+   "id": "Radon_scuole_ARPA",
+   "nome": "Radon scuole ARPA",
+   "ambito": "Ambiente",
+   "righe": 1394,
+   "consultazione": "2026-10-07",
+   "periodo": null,
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/k8yw-gcpj/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Parchi_e_giardini",
+   "nome": "Parchi e giardini",
+   "ambito": "Territorio",
+   "righe": 226,
+   "consultazione": "2026-10-07",
+   "periodo": null,
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/efx9-g469/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "Rifugi_alpini",
+   "nome": "Rifugi alpini",
+   "ambito": "Territorio",
+   "righe": 44,
+   "consultazione": "2026-10-07",
+   "periodo": null,
+   "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/qnwt-cjvq/rows.csv?accessType=DOWNLOAD"
+  }
+ ]
+}

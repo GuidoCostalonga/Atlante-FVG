@@ -107,6 +107,14 @@ Prova: `node prove/serie.js`.
 
 Prova: `node prove/immagini.js` (SVG e tre PNG della mappa, PNG di un grafico; immagini controllate a occhio).
 
+## Cosa è cambiato (registro degli aggiornamenti)
+
+La pagina `aggiornamenti/` elenca ogni modifica pubblicata con data, tipo (nuovi dati, correzione, metodo, funzione nuova), origine (automatica o redazionale), dati o servizi interessati con il collegamento alla sezione, descrizione e, quando il flusso li registra, i valori di prima e di dopo con la differenza (righe dei fogli, fermate e percorsi della rete, voci dei bandi). In fondo, per ogni foglio dell'archivio, l'ultima consultazione della fonte e il periodo dei dati dichiarato nell'indice.
+
+Il registro è `dati/aggiornamenti.json`, costruito da `scripts/registro_aggiornamenti.py` leggendo la storia del repository (`git log --first-parent`): parte dalla prima versione pubblicata (6 ottobre 2026) e non ricostruisce nulla a mano. I flussi automatici scaricano la storia completa (`fetch-depth: 0`), rigenerano il registro dopo aver scritto il messaggio dell'aggiornamento e lo includono nello stesso commit prima di pubblicarlo. Dopo una modifica redazionale si rigenera con `python scripts/registro_aggiornamenti.py` (il commit in corso entra al prossimo giro, oppure si passa `--messaggio` e `--corpo`).
+
+Prova: `node prove/aggiornamenti.js`.
+
 ## Ricerche condivisibili e download
 
 L'indirizzo conserva il comune (o la provincia), la pagina e i filtri della pagina aperta, così chi riceve il collegamento
