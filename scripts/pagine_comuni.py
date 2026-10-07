@@ -33,6 +33,7 @@ PAGINE = [
       'I valori assoluti sono separati da quelli per abitante, che permettono di confrontare comuni di taglia diversa. Ogni riga indica il periodo dei dati e segnala quelli meno recenti.']),
     ('autobus', 'Autobus', 'Linee, fermate e arrivi in tempo reale degli autobus del Friuli Venezia Giulia, con la mappa delle vie.',
      ['Le linee del trasporto pubblico locale, le fermate di ogni comune e gli arrivi in tempo reale, con i mezzi in viaggio sulla mappa delle vie.',
+      'Gli orari di ogni linea, fermata per fermata e giorno per giorno, sono nella pagina Orari degli autobus.',
       'Fonte: TPL FVG tramite BusOne, rete aggiornata ogni lunedì e arrivi letti al momento.']),
     ('ambiente', 'Allerte meteo e qualità dell\'aria', 'Allerta meteo di oggi e di domani e qualità dell\'aria delle centraline del Friuli Venezia Giulia.',
      ['L\'allerta idrogeologica, idraulica e per temporali di oggi e di domani nelle quattro zone d\'allerta, dal bollettino del Dipartimento della Protezione civile.',
@@ -146,7 +147,7 @@ def pagina_html(percorso, titolo, descr, briciole, corpo, extra_ld=None):
 <nav class="percorso" aria-label="Percorso"><ol>{bric}</ol></nav>
 {corpo}
 </main>
-<footer><p>Hai trovato un errore? Segnalalo <a href="{segnala(url, titolo)}">per posta a {POSTA}</a> oppure <a href="{segnala_wa(url, titolo)}" target="_blank" rel="noopener">via WhatsApp</a>: il messaggio contiene già l'indirizzo della pagina.</p>Atlante FVG raccoglie dati pubblici con la loro fonte e la loro data. Per come sono trattati i dati vedi <a href="{su}metodo/">Metodo e fonti</a>. Pagine: <a href="{su}mappe/">Mappe</a> · <a href="{su}confronto/">Confronto</a> · <a href="{su}comuni/">Comuni</a> · <a href="{su}archivio/">Archivio</a> · <a href="{su}autobus/">Autobus</a> · <a href="{su}ambiente/">Allerte e aria</a>.</footer>
+<footer><p>Hai trovato un errore? Segnalalo <a href="{segnala(url, titolo)}">per posta a {POSTA}</a> oppure <a href="{segnala_wa(url, titolo)}" target="_blank" rel="noopener">via WhatsApp</a>: il messaggio contiene già l'indirizzo della pagina.</p>Atlante FVG raccoglie dati pubblici con la loro fonte e la loro data. Per come sono trattati i dati vedi <a href="{su}metodo/">Metodo e fonti</a>. Pagine: <a href="{su}mappe/">Mappe</a> · <a href="{su}confronto/">Confronto</a> · <a href="{su}comuni/">Comuni</a> · <a href="{su}archivio/">Archivio</a> · <a href="{su}autobus/">Autobus</a> · <a href="{su}orari/">Orari degli autobus</a> · <a href="{su}meteo/">Meteo</a> · <a href="{su}catasto/">Catasto</a> · <a href="{su}ambiente/">Allerte e aria</a>.</footer>
 </body>
 </html>
 """
@@ -198,7 +199,7 @@ def pagina_comune(c, db, fm, simili, prec, succ):
 <div class="riquadro"><table><caption class="fonte" style="text-align:left;padding:8px 0">Dati di {e(c['n'])} con la loro fonte</caption><thead><tr><th scope="col">Dato e fonte</th><th scope="col" style="text-align:right">Valore</th></tr></thead><tbody>{tab}</tbody></table></div>
 <p class="fonte">Lo zero indica che la fonte non riporta voci per il comune. Altri dati (età, redditi, bilanci, opere pubbliche, rischio idrogeologico, elezioni) sono nella scheda completa.</p>
 <h2>Approfondisci</h2>
-<p><a class="bott sec" href="../../?pagina=mappe&amp;comune={s}">{e(c['n'])} sulle mappe</a><a class="bott sec" href="../../?pagina=confronto{vs}">Confronta con comuni di taglia simile</a><a class="bott sec" href="../../?pagina=archivio&amp;comune={s}">Tutte le righe dell'archivio</a><a class="bott sec" href="../../?pagina=autobus&amp;comune={s}">Autobus e fermate</a><a class="bott sec" href="../../?pagina=ambiente&amp;comune={s}">Allerte e aria</a></p>
+<p><a class="bott sec" href="../../?pagina=mappe&amp;comune={s}">{e(c['n'])} sulle mappe</a><a class="bott sec" href="../../?pagina=confronto{vs}">Confronta con comuni di taglia simile</a><a class="bott sec" href="../../?pagina=archivio&amp;comune={s}">Tutte le righe dell'archivio</a><a class="bott sec" href="../../?pagina=autobus&amp;comune={s}">Autobus e fermate</a><a class="bott sec" href="../../?pagina=ambiente&amp;comune={s}">Allerte e aria</a><a class="bott sec" href="../../meteo/#{s}">Meteo di {e(c['n'])}</a><a class="bott sec" href="../../catasto/">Catasto sulla mappa</a></p>
 <h2>Comuni di taglia simile in provincia di {e(pv)}</h2>
 <ul class="elenco">{''.join(f'<li><a href="../{slug(x["n"])}/">{e(x["n"])}</a>, {migliaia(x["p25"])} residenti</li>' for x in simili)}</ul>
 <p class="fonte">In ordine alfabetico: {f'<a href="../{slug(prec["n"])}/">‹ {e(prec["n"])}</a>' if prec else ''}{' · ' if prec and succ else ''}{f'<a href="../{slug(succ["n"])}/">{e(succ["n"])} ›</a>' if succ else ''} · <a href="../../comuni/">tutti i 215 comuni</a></p>"""
@@ -223,6 +224,8 @@ def pagina_provincia(pv, comuni):
 
 def pagina_argomento(nome, titolo, descr, testi, db, man):
     corpo = f'<h1>{e(titolo)}</h1>\n' + ''.join(f'<p>{e(t)}</p>\n' for t in testi) + f'<p><a class="bott" href="../?pagina={nome}">{e(ICONA_PAG[nome])}</a></p>\n'
+    if nome == 'autobus':
+        corpo += '<p><a class="bott sec" href="../orari/">Orari degli autobus</a></p>\n'
     ld = None
     if nome == 'comuni':
         for pv, n in PROVINCE.items():
@@ -290,6 +293,7 @@ def main():
     oggi = max((f['cons'] for f in man['manifest'] if re.match(r'^\d{4}-\d{2}-\d{2}$', f.get('cons') or '')), default=datetime.date.today().isoformat())
     voci = [f'  <url><loc>{SITO}/</loc><lastmod>{oggi}</lastmod></url>']
     voci += [f'  <url><loc>{SITO}/{nome}/</loc><lastmod>{oggi}</lastmod></url>' for nome, *_ in PAGINE]
+    voci += [f'  <url><loc>{SITO}/{nome}/</loc><lastmod>{oggi}</lastmod></url>' for nome in ('orari', 'meteo', 'catasto')]
     voci += [f'  <url><loc>{SITO}/provincia/{slug(n)}/</loc><lastmod>{oggi}</lastmod></url>' for n in PROVINCE.values()]
     voci += [f'  <url><loc>{SITO}/c/{slug(c["n"])}/</loc><lastmod>{oggi}</lastmod></url>' for c in comuni]
     (RADICE / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0B3359">
+  <meta name="description" content="Previsioni meteo comparate per tutti i 215 Comuni del Friuli Venezia Giulia, con il confronto fra i principali modelli europei.">
+  <title>Meteo dei 215 comuni del Friuli Venezia Giulia · Atlante FVG</title>
+<link rel="canonical" href="https://atlantefvg.it/meteo/">
+  <meta property="og:type" content="article">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Atlante FVG">
+<meta property="og:title" content="Meteo Friuli Venezia Giulia">
+<meta property="og:description" content="Previsioni ora per ora e a sette giorni per tutti i 215 Comuni della regione, con il confronto fra i modelli europei.">
+<meta property="og:url" content="https://atlantefvg.it/meteo/">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo Atlante FVG con la scritta: i 215 comuni del Friuli Venezia Giulia">
+<meta name="twitter:image" content="https://atlantefvg.it/anteprima.jpg">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Atlante FVG","item":"https://atlantefvg.it/"},{"@type":"ListItem","position":2,"name":"Meteo","item":"https://atlantefvg.it/meteo/"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* ============================================================
+   FONDAMENTA — i valori qui sotto valgono per tutto il sito.
+   Chi modifica una pagina cambia questi, non i singoli numeri.
+   ============================================================ */
+:root{
+  /* colore: blu profondo e accento oro */
+  --blu:#0b3c63;         --blu-fondo:#07293f;   --blu-chiaro:#1a6098;
+  --blu2:#1a6098;        --blu-tenue:#e7eef4;
+  --giallo:#e6c168;      --giallo-scuro:#c39f47;
+  --bianco:#fff;
+
+  /* superfici */
+  --fondo:#f7f6f2;       --grigio:#f7f6f2;
+  --superficie:#fff;     --superficie-2:#f1efe9;
+
+  /* testo: il corpo non e' piu' blu, si legge meglio in quasi nero */
+  --testo:#1f1c17;       --testo-2:#57534a;     --testo-3:#6e6960;
+  --su-blu:#e8eef3;      --su-blu-2:#adc0d0;
+
+  /* linee */
+  --bordo:#e4e0d7;       --bordo-forte:#cec8bb;
+
+  /* stati */
+  --ok:#1b6b4a;          --attenzione:#8a5a12;
+  --pericolo:#9c2b22;    --info:#1a6098;    --allarme:#9a4b0d;
+
+  /* spazio: scala unica, niente numeri a caso */
+  --s1:4px;  --s2:8px;  --s3:12px; --s4:16px; --s5:20px; --s6:24px;
+  --s7:32px; --s8:40px; --s9:48px; --s10:64px; --s11:80px;
+
+  /* raggi */
+  --r-sm:8px; --r:12px; --r-lg:16px; --r-tondo:999px;
+
+  /* ombre: appena percettibili, il rilievo lo fa il bordo */
+  --om-1:0 1px 2px rgba(40,34,24,.05), 0 1px 3px rgba(40,34,24,.05);
+  --om-2:0 1px 2px rgba(40,34,24,.05), 0 10px 24px -8px rgba(40,34,24,.16);
+  --om-testata:0 1px 0 rgba(255,255,255,.06), 0 6px 18px -10px rgba(7,41,63,.6);
+
+  /* movimento: spiega un cambiamento, non intrattiene */
+  --t:180ms cubic-bezier(.2,.6,.3,1);
+  --t-lento:240ms cubic-bezier(.2,.6,.3,1);
+
+  /* piani */
+  --z-nav:60; --z-testata:70; --z-galleggiante:90;
+
+  /* anello del fuoco: blu sulle superfici chiare... */
+  --anello:#1a6098;
+}
+/* ...giallo dove il fondo e' blu */
+footer,.hero,nav.show{--anello:var(--giallo)}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--testo);background:var(--fondo);font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+/* gerarchia: i titoli sono blu e in tondo, non piu' tutti in maiuscolo */
+h1,h2,h3,h4{color:var(--blu);font-weight:800;line-height:1.2;letter-spacing:-.012em;text-wrap:balance}
+p{text-wrap:pretty}
+a{color:var(--blu-chiaro);text-underline-offset:.18em;text-decoration-thickness:.08em}
+a:hover{color:var(--blu)}
+strong,b{font-weight:700}
+.titolo{font-weight:800}
+img,svg{max-width:100%}
+[hidden]{display:none!important}
+
+/* il fuoco si deve vedere sempre, da tastiera come da lettore di schermo */
+:where(a,button,select,input,textarea,summary,[tabindex]):focus-visible{
+  outline:3px solid var(--anello);outline-offset:2px;border-radius:var(--r-sm)}
+button,a{-webkit-tap-highlight-color:transparent}
+
+/* etichettine: qui il maiuscoletto funziona, sui titoli no */
+.etichetta,.htit .k,.hero .k,.tile .n,.scheda .n{
+  font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+
+/* numeri incolonnati in tabelle e importi */
+table,.num,td.num,.importo{font-variant-numeric:tabular-nums}
+
+/* ============================================================
+   TESTATA E PIE' DI PAGINA
+   ============================================================ */
+/* ---------- barra di navigazione: chiara, voci in linea, comandi a destra ---------- */
+.barra{position:sticky;top:0;z-index:var(--z-testata);background:var(--superficie);
+  border-bottom:1px solid transparent;transition:border-color var(--t),box-shadow var(--t)}
+.barra.staccata{border-color:var(--bordo);box-shadow:var(--om-2)}
+.bwrap{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:var(--s5);min-height:72px;
+  padding:var(--s3) calc(var(--s6) + env(safe-area-inset-right)) var(--s3) calc(var(--s6) + env(safe-area-inset-left))}
+
+.marchio{display:flex;align-items:center;gap:var(--s3);text-decoration:none;flex:0 0 auto;min-height:44px}
+.marchio img{width:40px;height:40px;border-radius:var(--r-tondo);object-fit:cover;display:block;
+  border:2px solid var(--giallo)}
+.marchio .nome{font-weight:800;font-size:16px;color:var(--blu);line-height:1.2;letter-spacing:-.02em;display:block}
+.marchio .ruolo{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--testo-3);display:block}
+
+.voci{display:flex;align-items:center;gap:var(--s1);margin-left:auto;
+  /* le pagine-documento hanno un nav laterale: qui vanno spente le sue regole */
+  flex:0 0 auto;position:static;top:auto;max-height:none;overflow:visible;
+  background:none;border:0;border-radius:0;box-shadow:none;padding:0;margin-top:0;margin-bottom:0}
+.voci a{display:inline-flex;align-items:center;min-height:44px;padding:0 var(--s3);border-radius:var(--r-sm);
+  color:var(--testo);text-decoration:none;font-weight:700;font-size:15px;transition:background var(--t),color var(--t)}
+.voci a:hover{background:var(--superficie-2);color:var(--blu)}
+.voci a.qui{background:var(--superficie-2);color:var(--blu)}
+
+.comandi{display:flex;align-items:center;gap:var(--s2);flex:0 0 auto}
+.bot{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);min-height:44px;
+  padding:0 var(--s5);border-radius:var(--r-tondo);font-weight:800;font-size:14px;
+  text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap;
+  transition:background var(--t),color var(--t),border-color var(--t),transform var(--t)}
+.bot:active{transform:translateY(1px)}
+.bot.pieno{background:var(--giallo);color:var(--blu)}
+.bot.pieno:hover{background:var(--giallo-scuro);color:#092e4a}
+.bot.contorno{border-color:var(--bordo-forte);color:var(--blu)}
+.bot.contorno:hover{border-color:var(--blu);background:var(--superficie-2)}
+.bot.bordo-chiaro{border-color:rgba(255,255,255,.5);color:#fff}
+.bot.bordo-chiaro:hover{border-color:#fff;background:rgba(255,255,255,.12)}
+.bot.grande{min-height:52px;padding:0 var(--s7);font-size:16px}
+
+/* tendina delle sezioni, in chiaro come il resto della barra */
+.tendina{appearance:none;-webkit-appearance:none;-moz-appearance:none;height:44px;
+  background:var(--superficie) url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%230b3c63' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M1 1.8 6 6.4 11 1.8'/%3E%3C/svg%3E") no-repeat right var(--s4) center/11px 8px;
+  color:var(--blu);border:1px solid var(--bordo-forte);border-radius:var(--r-tondo);
+  padding:0 var(--s8) 0 var(--s4);max-width:190px;font-family:inherit;font-weight:700;font-size:14px;
+  line-height:1;cursor:pointer;text-overflow:ellipsis;min-width:0;flex:0 0 auto;transition:border-color var(--t)}
+.tendina:hover{border-color:var(--blu)}
+.tendina option{background:#fff;color:var(--testo);font-weight:400}
+
+#burger{display:none;width:44px;height:44px;border:0;background:none;color:var(--blu);cursor:pointer;
+  border-radius:var(--r-sm);align-items:center;justify-content:center;font-size:22px;line-height:1}
+#burger:hover{background:var(--superficie-2)}
+#burger.aperto{color:var(--blu-chiaro)}
+
+/* ---------- pie' di pagina: colonne di collegamenti ---------- */
+footer{background:var(--blu);color:var(--su-blu);margin-top:auto}
+.piede{max-width:1180px;margin:0 auto;display:grid;gap:var(--s8) var(--s7);
+  grid-template-columns:1.5fr 1fr 1fr 1fr;
+  padding:var(--s11) calc(var(--s6) + env(safe-area-inset-right)) var(--s8) calc(var(--s6) + env(safe-area-inset-left))}
+.piede h2{color:#fff;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:var(--s4)}
+.piede ul{list-style:none;display:flex;flex-direction:column;gap:var(--s1)}
+.piede li a{display:inline-flex;align-items:center;min-height:44px;color:var(--su-blu);text-decoration:none;
+  font-size:15px;font-weight:600}
+.piede li a:hover{color:var(--giallo);text-decoration:underline}
+.piede .nm{color:#fff;font-weight:800;font-size:20px;letter-spacing:-.02em;display:block}
+.piede .ruolo{color:var(--su-blu-2);font-size:15px;margin-top:var(--s2);max-width:34ch}
+.piede .wa{display:inline-flex;align-items:center;gap:var(--s2);margin-top:var(--s5);color:var(--giallo);
+  font-weight:800;text-decoration:none;font-size:16px;min-height:44px}
+.piede .wa:hover{color:#fff;text-decoration:underline}
+.coda{border-top:1px solid rgba(255,255,255,.14)}
+.coda .dentro{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:var(--s3) var(--s6);
+  justify-content:space-between;
+  padding:var(--s5) calc(var(--s6) + env(safe-area-inset-right)) calc(var(--s6) + env(safe-area-inset-bottom)) calc(var(--s6) + env(safe-area-inset-left));
+  font-size:13px;line-height:1.6;color:var(--su-blu-2)}
+.coda .dentro p{max-width:80ch}
+
+@media(max-width:1040px){
+  .voci{display:none}
+  #burger{display:inline-flex}
+  .piede{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .bwrap{gap:var(--s3)}
+  .comandi{gap:var(--s2)}
+  .marchio{min-width:0;flex:0 1 auto}
+  .marchio>span{min-width:0}
+  .marchio .nome{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .piede{grid-template-columns:1fr;padding-top:var(--s9);padding-bottom:var(--s6)}
+}
+@media(max-width:400px){
+  .marchio .ruolo,.marchio .nome{display:none}
+  .bot{padding:0 var(--s4)}
+  .tendina{max-width:150px}
+}
+
+/* ---------- seconda riga: titolo della pagina e suoi comandi ---------- */
+.barra-pagina{position:sticky;top:72px;z-index:calc(var(--z-testata) - 1);background:var(--fondo);
+  border-bottom:1px solid var(--bordo)}
+.bpwrap{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:var(--s4);min-height:64px;
+  padding:var(--s2) calc(var(--s6) + env(safe-area-inset-right)) var(--s2) calc(var(--s6) + env(safe-area-inset-left))}
+.titolo-pagina{flex:1;min-width:0;font-size:18px;line-height:1.25;color:var(--blu);font-weight:800;
+  letter-spacing:-.02em;margin:0;text-wrap:balance}
+.titolo-pagina .k{display:block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--testo-3);margin-bottom:2px}
+.comandi-pagina{display:flex;align-items:center;gap:var(--s2);flex:0 0 auto}
+.cerca-pagina{position:relative;flex:0 1 260px;min-width:170px}
+.cerca-pagina input{width:100%;height:44px;padding:0 var(--s4) 0 var(--s8);font-size:16px;font-family:inherit;
+  color:var(--testo);background:var(--superficie);border:1px solid var(--bordo-forte);border-radius:var(--r-tondo);
+  outline:none;transition:border-color var(--t);-webkit-appearance:none;appearance:none}
+.cerca-pagina input:focus{border-color:var(--blu)}
+.cerca-pagina input::placeholder{color:var(--testo-3)}
+.cerca-pagina input::-webkit-search-decoration,.cerca-pagina input::-webkit-search-cancel-button{-webkit-appearance:none}
+.cerca-pagina svg{position:absolute;left:var(--s4);top:14px;width:16px;height:16px;color:var(--testo-3);pointer-events:none}
+
+@media(max-width:1040px){
+  /* su schermo stretto sta appiccicata solo la riga della pagina: due barre sono troppe */
+  .barra{position:static}
+  .barra-pagina{top:0}
+}
+@media(max-width:760px){
+  .bpwrap{flex-wrap:wrap;gap:var(--s2)}
+  .titolo-pagina{flex:1 1 100%;font-size:16px}
+  .comandi-pagina{flex:1 1 100%;flex-wrap:wrap;gap:var(--s2)}
+  .cerca-pagina{flex:1 1 180px;min-width:150px;order:-1}
+  /* dove c'e' il pulsante dell'indice la tendina delle sezioni e' di troppo;
+     dove non c'e', resta l'unico modo per saltare fra le sezioni */
+  .con-indice .tendina{display:none}
+}
+
+
+.fwrap .agg a{display:inline;font-size:inherit;min-height:0}
+
+/* ritorno alla pagina principale, in testata come sulle altre pagine */
+#tasto-home{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;height:42px;padding:0 var(--s4);
+  background:var(--giallo);color:var(--blu);text-decoration:none;border-radius:var(--r-sm);
+  font-weight:800;font-size:13px;white-space:nowrap;transition:background var(--t),transform var(--t)}
+#tasto-home:hover{background:#fff;color:var(--blu)}
+#tasto-home:active{transform:translateY(1px)}
+@media print{#tasto-home,.tendine{display:none!important}}
+
+/* ============================================================
+   IMPIANTO
+   ============================================================ */
+.wrap{max-width:1180px;margin:0 auto;
+  padding:var(--s7) calc(var(--s6) + env(safe-area-inset-right)) var(--s10) calc(var(--s6) + env(safe-area-inset-left))}
+h2.tit{font-size:22px;line-height:1.25;margin:var(--s9) 0 var(--s4);scroll-margin-top:92px}
+h2.tit span{display:block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--testo-3);margin-top:var(--s1)}
+.scheda{background:var(--superficie);border:1px solid var(--bordo);border-left:3px solid var(--giallo);
+  border-radius:var(--r);padding:var(--s5);box-shadow:var(--om-1)}
+.k{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+
+/* ---------- apertura ---------- */
+.hero{background:var(--blu-fondo);color:var(--su-blu);border-radius:var(--r-lg);
+  padding:var(--s8) var(--s8) var(--s9);margin-bottom:var(--s7)}
+.hero .k{color:var(--giallo);display:block}
+.hero h2{font-size:clamp(26px,3.6vw,36px);line-height:1.12;color:#fff;margin:var(--s3) 0 0;max-width:24ch}
+.hero .rule{width:56px;height:4px;background:var(--giallo);border-radius:2px;margin:var(--s5) 0 var(--s6)}
+.hero p{max-width:68ch;font-size:17px;color:var(--su-blu)}
+.hero .agg{margin-top:var(--s5);font-size:13px;color:var(--su-blu-2)}
+
+/* ---------- scelta del Comune ---------- */
+.scelta{display:flex;gap:var(--s2);flex-wrap:wrap;align-items:center;margin-bottom:var(--s3)}
+.picker{position:relative;display:inline-flex;align-items:center}
+.picker:after{content:"";position:absolute;right:16px;pointer-events:none;width:10px;height:7px;
+  background:var(--testo-2);clip-path:polygon(0 0,100% 0,50% 100%)}
+.picker select{appearance:none;-webkit-appearance:none;height:44px;font-weight:700;font-size:15px;
+  background:var(--superficie);color:var(--testo);border:1px solid var(--bordo-forte);
+  border-radius:var(--r-sm);padding:0 38px 0 var(--s4);cursor:pointer;max-width:280px;
+  transition:background var(--t),border-color var(--t)}
+.picker select:hover{background:var(--superficie-2);border-color:var(--blu-chiaro)}
+.city,.copia{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 var(--s4);
+  font-family:inherit;font-weight:700;font-size:14px;background:var(--superficie);color:var(--testo);
+  border:1px solid var(--bordo-forte);border-radius:var(--r-sm);cursor:pointer;white-space:nowrap;
+  transition:background var(--t),color var(--t),border-color var(--t)}
+.city:hover,.copia:hover{background:var(--superficie-2);border-color:var(--blu-chiaro);color:var(--blu)}
+.city.active{background:var(--blu);color:#fff;border-color:var(--blu)}
+.copia.ok{background:var(--giallo);border-color:var(--giallo);color:var(--blu)}
+.condividi{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap;margin-bottom:var(--s2)}
+.condividi-nota{font-size:13px;color:var(--testo-2)}
+
+/* ---------- adesso ---------- */
+.duo{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s4);align-items:start}
+.big{display:flex;align-items:center;gap:var(--s5);margin:var(--s3) 0 var(--s1)}
+.weather-icon{font-size:4.2rem;line-height:1}
+.temp{font-weight:800;font-size:clamp(3rem,7vw,4.4rem);line-height:.92;letter-spacing:-.04em;
+  color:var(--blu);font-variant-numeric:tabular-nums}
+.degree{font-size:.42em;vertical-align:top;color:var(--testo-3)}
+.condition{font-size:17px;color:var(--testo-2);margin:var(--s2) 0 var(--s5)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2)}
+.metric{background:var(--superficie-2);border:1px solid var(--bordo);border-radius:var(--r-sm);
+  padding:var(--s3) var(--s3)}
+.metric span{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:800;color:var(--testo-3);margin-bottom:2px}
+.metric b{font-size:16px;color:var(--testo);font-variant-numeric:tabular-nums}
+
+/* ---------- attendibilita' ---------- */
+.scoreline{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s4)}
+.score{font-weight:800;font-size:3rem;line-height:1;color:var(--blu);font-variant-numeric:tabular-nums}
+.score small{font-size:.8rem;color:var(--testo-3);font-weight:700}
+#scoreText{font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:.1em;
+  color:var(--testo-2);margin-top:var(--s2)}
+.bar{height:8px;border-radius:var(--r-tondo);background:var(--superficie-2);
+  border:1px solid var(--bordo);overflow:hidden;margin:var(--s4) 0}
+.bar i{display:block;height:100%;width:0;background:var(--blu-chiaro);border-radius:inherit;transition:width .8s}
+.models{margin-top:var(--s4)}
+.model{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);
+  border-top:1px solid var(--bordo);padding-top:var(--s3);margin-top:var(--s3);font-size:15px}
+.dot{width:8px;height:8px;display:inline-block;border-radius:50%;background:var(--blu-chiaro);margin-right:var(--s2)}
+.model strong{font-weight:800;color:var(--blu);font-variant-numeric:tabular-nums}
+
+/* ---------- allerte ---------- */
+.allerte{padding:var(--s5)}
+.allerte-box{border-radius:var(--r-sm);overflow:hidden}
+.allerte-box.attivo{background:var(--superficie-2);border:1px solid var(--bordo);padding:var(--s4)}
+.allerte-box iframe{display:block;width:100%;border:0;height:1px}
+.allerte-stato{display:flex;gap:var(--s3);align-items:flex-start}
+.allerte-stato[hidden],.allerte-box[hidden]{display:none}
+.allerte-stato .pallino{width:10px;height:10px;border-radius:50%;background:var(--ok);
+  margin-top:8px;flex:0 0 auto}
+.allerte-stato.ko .pallino{background:var(--allarme)}
+.allerte-stato b{display:block;margin-bottom:2px;color:var(--blu)}
+.allerte-stato.ko b{color:var(--allarme)}
+.allerte-stato .dettaglio{font-size:15px;color:var(--testo-2)}
+.allerte-nota{margin-top:var(--s4);padding-top:var(--s4);border-top:1px solid var(--bordo);
+  font-size:13px;color:var(--testo-2);line-height:1.6}
+
+/* ---------- ore ---------- */
+.hourly,.detail-hours{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(102px,1fr);
+  gap:var(--s2);overflow:auto;padding:3px 3px var(--s4);scrollbar-width:thin}
+.hour,.detail-hour{background:var(--superficie);border:1px solid var(--bordo);border-radius:var(--r);
+  padding:var(--s4) var(--s3);text-align:center;box-shadow:var(--om-1)}
+.hour.now-hour{border-color:var(--giallo);box-shadow:0 0 0 1px var(--giallo),var(--om-1)}
+.hour time,.hour small,.detail-hour time,.detail-hour small{display:block;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--testo-3)}
+.hour i,.detail-hour i{display:block;font-style:normal;font-size:1.7rem;margin:var(--s2) 0}
+.hour b,.detail-hour b{font-size:17px;color:var(--testo);font-variant-numeric:tabular-nums}
+.hour em,.detail-hour em{display:block;font-style:normal;font-size:12.5px;color:var(--blu-chiaro);
+  margin-top:var(--s1);font-weight:700;font-variant-numeric:tabular-nums}
+
+/* ---------- giorni e consigli ---------- */
+.lower{display:grid;grid-template-columns:1.35fr .65fr;gap:var(--s4);align-items:start}
+.forecast{padding:var(--s1) var(--s4)}
+.day{width:100%;background:none;border:0;display:grid;grid-template-columns:1.2fr .5fr .7fr 1fr;
+  gap:var(--s2);align-items:center;padding:var(--s3) var(--s2);border-bottom:1px solid var(--bordo);
+  text-align:left;cursor:pointer;border-radius:var(--r-sm);font-family:inherit;color:var(--testo);
+  min-height:52px;transition:background var(--t)}
+.day:last-child{border-bottom:0}
+.day:hover{background:var(--superficie-2)}
+.day.active{background:var(--blu);color:#fff}
+.day.active .rain{color:var(--giallo)}
+.day .ico{font-size:1.4rem}
+.day .rain{color:var(--blu-chiaro);font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
+.day .range{text-align:right;font-variant-numeric:tabular-nums}
+.day b{font-weight:800}
+.tips h2{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--testo-3);margin-bottom:var(--s2)}
+.tip{display:flex;gap:var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--bordo)}
+.tip:last-child{border:0}
+.tip-icon{font-size:1.2rem}
+.tip b{display:block;font-weight:800;color:var(--blu)}
+.tip p{font-size:14px;color:var(--testo-2);line-height:1.55}
+.day-detail{margin-top:var(--s4)}
+.detail-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s4);
+  margin-bottom:var(--s4)}
+.detail-head h2{font-size:19px;line-height:1.25;color:var(--blu)}
+.detail-head span{font-size:13px;color:var(--testo-3)}
+
+/* ---------- stati ---------- */
+.error{display:none;background:var(--superficie);border:1px solid var(--bordo);
+  border-left:3px solid var(--allarme);border-radius:var(--r);padding:var(--s4) var(--s5);
+  margin-bottom:var(--s5);box-shadow:var(--om-1);color:var(--allarme);font-weight:700}
+.loading{opacity:.55;animation:pulse 1.3s infinite}
+@keyframes pulse{50%{opacity:.3}}
+
+/* ============================================================
+   SCHERMI PICCOLI
+   ============================================================ */
+@media(max-width:980px){.duo,.lower{grid-template-columns:1fr}}
+@media(max-width:900px){
+  .hwrap{flex-wrap:wrap;row-gap:var(--s3);
+    padding-left:calc(var(--s4) + env(safe-area-inset-left));
+    padding-right:calc(var(--s4) + env(safe-area-inset-right))}
+  .tendine{order:4;width:100%}
+  .tendina{flex:1 1 0;width:auto;max-width:none}
+}
+@media(max-width:760px){
+  .hlogo{width:40px;height:40px;flex:0 0 40px}
+  .htit h1{font-size:17px}
+  .wrap{padding:var(--s5) var(--s4) var(--s8)}
+  .hero{padding:var(--s6) var(--s5) var(--s7);border-radius:var(--r);margin-bottom:var(--s6)}
+  .hero p{font-size:16px}
+  h2.tit{font-size:20px;margin:var(--s7) 0 var(--s4)}
+  .scheda{padding:var(--s4)}
+  .weather-icon{font-size:3.2rem}
+  .metrics{gap:var(--s1)}
+  .metric{padding:var(--s2)}
+  .metric b{font-size:15px}
+  .day{grid-template-columns:1.1fr .45fr .7fr .85fr;font-size:14px;padding:var(--s3) var(--s1)}
+  .fwrap{padding:var(--s5) var(--s4) calc(var(--s6) + env(safe-area-inset-bottom))}
+  .fwrap{grid-template-columns:1fr}
+  .fwrap .st{justify-self:start}
+  .picker select,.city,.copia{max-width:100%}
+}
+@media(max-width:400px){
+  .metrics{grid-template-columns:1fr 1fr}
+  .scelta{gap:var(--s1)}
+}
+
+/* ===== Grafica dell'Atlante FVG ===== */
+:root{--blu:#0B3359;--blu-fondo:#07213A;--blu-chiaro:#155E9E;--blu2:#155E9E;--blu-tenue:#F0F6FB;--giallo:#F7D678;--giallo-scuro:#D8973C;
+  --fondo:#F7F4EC;--grigio:#F7F4EC;--superficie-2:#F4F1EA;--bordo:#E4DDCD;--bordo-forte:#CFC7B5;--anello:#0B3359}
+body{font-family:"Plus Jakarta Sans",system-ui,"Segoe UI",sans-serif}
+h1,h2,h3,h4,.titolo,.titolo-pagina{font-family:"Source Serif 4",Georgia,serif;letter-spacing:-.005em}
+.atl-testata{position:sticky;top:0;z-index:70;background:rgba(247,244,236,.96);backdrop-filter:blur(6px);border-bottom:1px solid #E4DDCD}
+.atl-dentro{max-width:1180px;margin:0 auto;padding:0 16px;min-height:56px;display:flex;align-items:center;gap:12px}
+.atl-marchio img{height:36px;width:auto;display:block;border:0;border-radius:0}
+.atl-voci{display:none;gap:2px;margin-left:8px}
+.atl-voci a{min-height:40px;display:inline-flex;align-items:center;padding:0 10px;border-radius:8px;color:#22303F;font-weight:600;font-size:14px;text-decoration:none;white-space:nowrap}
+.atl-voci a:hover{background:#ECE6D8}
+.atl-voci a[aria-current="page"]{background:#0B3359;color:#fff}
+.atl-menu{margin-left:auto;position:relative}
+.atl-menu>summary{list-style:none;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;padding:0 12px;border-radius:10px;font-weight:600;color:#0B3359;border:1px solid #CBD8E6;background:#fff}
+.atl-menu>summary::-webkit-details-marker{display:none}
+.atl-menu nav{position:absolute;right:0;top:calc(100% + 6px);width:min(18rem,calc(100vw - 32px));background:#fff;border:1px solid #E4DDCD;border-radius:12px;box-shadow:0 8px 24px rgba(11,51,89,.14);padding:6px;display:flex;flex-direction:column}
+.atl-menu nav a{min-height:48px;display:flex;align-items:center;padding:0 12px;border-radius:8px;color:#1F2329;text-decoration:none;font-weight:600}
+.atl-menu nav a[aria-current="page"]{background:#0B3359;color:#fff}
+@media (min-width:1024px){.atl-voci{display:flex}.atl-menu{display:none}.atl-marchio img{height:40px}.atl-dentro{min-height:64px}}
+.barra-pagina{top:56px}
+@media (min-width:1024px){.barra-pagina{top:64px}}
+.atl-piede{background:#202226;color:#D4CBBF;margin-top:32px}
+.atl-piede-dentro{max-width:1180px;margin:0 auto;padding:24px 16px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;font-size:14px}
+.atl-piede a{color:#F7D678}
+.atl-piede strong{color:#fff;font-family:"Source Serif 4",Georgia,serif;font-size:17px}
+.atl-fonti{flex-basis:100%;margin:0;font-size:13px;color:#BFB8AA;line-height:1.6}
+.titolo-pagina .k,.hero .k,.etichetta,.scheda .k{font-family:"Plus Jakarta Sans",system-ui,sans-serif}
+</style>
+</head>
+<body>
+<header class="atl-testata"><div class="atl-dentro">
+  <a class="atl-marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="113" height="40"></a>
+  <nav class="atl-voci" aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus</a><a href="../orari/">Orari</a><a href="../meteo/" aria-current="page">Meteo</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo</a>
+  </nav>
+  <details class="atl-menu"><summary>Menu</summary><nav aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=ambiente">Allerte e qualità dell'aria</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../meteo/" aria-current="page">Meteo</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo e fonti</a>
+  </nav></details>
+</div></header>
+
+<div class="barra-pagina">
+  <div class="bpwrap">
+    <h1 class="titolo-pagina"><span class="k">Previsioni per i 215 Comuni</span>Meteo Friuli Venezia Giulia</h1>
+    <div class="comandi-pagina">
+      <select id="sez" class="tendina" aria-label="Vai a una sezione di questa pagina"><option value="" selected>Sezioni…</option></select>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="k">Previsioni locali</div>
+    <h2>Meteo Friuli Venezia Giulia</h2>
+    <div class="rule"></div>
+    <p>Tutti i 215 Comuni della regione, con le previsioni confrontate tra i principali modelli europei. Più i modelli concordano, più alta è l'attendibilità.</p>
+    <p class="agg" id="updated">Aggiornamento…</p>
+  </section>
+
+  <nav class="scelta" aria-label="Seleziona il comune">
+    <span class="picker"><select id="comune" aria-label="Scegli un comune del Friuli Venezia Giulia"></select></span>
+    <button class="city" data-c="Roveredo in Piano">Roveredo in Piano</button>
+    <button class="city" data-c="Pordenone">Pordenone</button>
+    <button class="city" data-c="Trieste">Trieste</button>
+  </nav>
+  <div class="condividi">
+    <button class="copia" id="copia" type="button">Copia il collegamento</button>
+    <span class="condividi-nota">Il collegamento apre la pagina già sul comune scelto: comodo da mandare per messaggio.</span>
+  </div>
+
+  <div id="error" class="error">I dati live non sono momentaneamente raggiungibili. Riprovo automaticamente tra poco.</div>
+
+  <h2 class="tit" id="place">Adesso</h2>
+  <div class="duo">
+    <article class="scheda">
+      <div class="big"><div class="weather-icon" id="mainIcon">☀️</div><div class="temp"><span id="mainTemp">--</span><span class="degree">°</span></div></div>
+      <div class="condition" id="condition">Caricamento previsione…</div>
+      <div class="metrics">
+        <div class="metric"><span>Percepita</span><b id="feels">--°</b></div>
+        <div class="metric"><span>Vento</span><b id="wind">-- km/h</b></div>
+        <div class="metric"><span>Umidità</span><b id="humidity">--%</b></div>
+      </div>
+    </article>
+    <aside class="scheda">
+      <div class="scoreline">
+        <div><div class="k">Attendibilità 24 ore</div><div class="score"><span id="score">--</span><small>/100</small></div></div>
+        <div id="scoreText">In calcolo</div>
+      </div>
+      <div class="bar"><i id="scoreBar"></i></div>
+      <p id="agreement">Confronto dei modelli in corso.</p>
+      <div class="models">
+        <div class="model"><span><i class="dot"></i>ICON-D2 / DWD</span><strong id="m1">—</strong></div>
+        <div class="model"><span><i class="dot"></i>ECMWF IFS</span><strong id="m2">—</strong></div>
+        <div class="model"><span><i class="dot"></i>Météo-France</span><strong id="m3">—</strong></div>
+      </div>
+    </aside>
+  </div>
+
+  <h2 class="tit" id="allerte">Allerta della Protezione Civile<span>Fonte ufficiale · Regione Friuli Venezia Giulia</span></h2>
+  <section class="scheda allerte">
+    <div class="allerte-box" id="allerteBox"><iframe id="allerteFrame" title="Allerta della Protezione Civile della Regione Friuli Venezia Giulia" scrolling="no"></iframe></div>
+    <div class="allerte-stato" id="allerteStato" hidden><span class="pallino"></span><div><b id="allerteTitolo"></b><span class="dettaglio" id="allerteTesto"></span></div></div>
+    <p class="allerte-nota">Riquadro pubblicato dalla Protezione Civile della Regione Friuli Venezia Giulia, riferito al comune selezionato. In caso di emergenza fanno fede sempre le comunicazioni ufficiali della Regione: <a href="https://www.protezionecivile.fvg.it/" target="_blank" rel="noopener">protezionecivile.fvg.it</a>.</p>
+  </section>
+
+  <h2 class="tit" id="ore">Prossime ore<span>Scorri per vedere il dettaglio</span></h2>
+  <section class="hourly" id="hourly" aria-label="Previsione oraria"></section>
+
+  <h2 class="tit" id="giorni">Prossimi 7 giorni<span>Seleziona un giorno · minima e massima</span></h2>
+  <section class="lower">
+    <div class="scheda forecast" id="daily"></div>
+    <aside class="scheda tips"><h2>Da sapere</h2><div id="tips"></div></aside>
+  </section>
+
+  <section class="scheda day-detail" id="dayDetail">
+    <div class="detail-head"><h2 id="detailTitle">Dettaglio orario</h2><span>24 ore · temperatura, pioggia e vento</span></div>
+    <div class="detail-hours" id="detailHours"></div>
+  </section>
+</div>
+
+<footer class="atl-piede"><div class="atl-piede-dentro">
+  <div><strong>Atlante FVG</strong><br>I comuni del Friuli Venezia Giulia, con fonte e data di ogni dato.</div>
+  <div><a href="../">Pagina iniziale</a> · <a href="../?pagina=ambiente">Allerte e qualità dell'aria</a> · <a href="../orari/">Orari degli autobus</a> · <a href="../?pagina=metodo">Metodo e fonti</a></div>
+  <p class="atl-fonti">Dati meteorologici: Open-Meteo, ECMWF, DWD e Météo-France. Elenco dei 215 Comuni e coordinate del municipio (standard EPSG:4326): codici ISTAT delle unità amministrative territoriali, raccolta Open Data Sicilia. Allerte: riquadro ufficiale della <a href="https://www.protezionecivile.fvg.it/" target="_blank" rel="noopener">Protezione Civile della Regione Friuli Venezia Giulia</a>. Le previsioni indicano probabilità, non certezze. Orari locali Europe/Rome.</p>
+  <p class="atl-fonti">Hai trovato un errore? <a href="mailto:info@atlantefvg.it?subject=Segnalazione%20di%20errore%3A%20meteo">Segnalalo per posta</a> oppure <a href="https://wa.me/393283692227?text=Segnalazione%20di%20errore%20sull%27Atlante%20FVG%3A%20pagina%20Meteo" target="_blank" rel="noopener">via WhatsApp</a>.</p>
+</div></footer>
+
+<script>
+
+const COMUNI=[
+["Aiello del Friuli","UD",45.8729,13.3636,"30001"],["Amaro","UD",46.374,13.0954,"30002"],["Ampezzo","UD",46.4171,12.7903,"30003"],
+["Andreis","PN",46.2005,12.6137,"93001"],["Aquileia","UD",45.7696,13.3698,"30004"],["Arba","PN",46.145,12.7914,"93002"],
+["Arta Terme","UD",46.4724,13.0267,"30005"],["Artegna","UD",46.2391,13.1557,"30006"],["Attimis","UD",46.1893,13.3071,"30007"],
+["Aviano","PN",46.0685,12.5891,"93004"],["Azzano Decimo","PN",45.8814,12.7143,"93005"],["Bagnaria Arsa","UD",45.8836,13.285,"30008"],
+["Barcis","PN",46.1903,12.5582,"93006"],["Basiliano","UD",46.0163,13.1071,"30009"],["Bertiolo","UD",45.9427,13.0492,"30010"],
+["Bicinicco","UD",45.9357,13.2512,"30011"],["Bordano","UD",46.3153,13.1046,"30012"],["Brugnera","PN",45.9035,12.526,"93007"],
+["Budoia","PN",46.043,12.5326,"93008"],["Buja","UD",46.2067,13.1186,"30013"],["Buttrio","UD",46.0104,13.3338,"30014"],
+["Camino al Tagliamento","UD",45.927,12.9451,"30015"],["Campoformido","UD",46.0193,13.1624,"30016"],["Campolongo Tapogliano","UD",45.8685,13.4038,"30138"],
+["Caneva","PN",45.9687,12.4481,"93009"],["Capriva del Friuli","GO",45.9414,13.5136,"31001"],["Carlino","UD",45.8023,13.1882,"30018"],
+["Casarsa della Delizia","PN",45.9559,12.8427,"93010"],["Cassacco","UD",46.1736,13.1879,"30019"],["Castelnovo del Friuli","PN",46.2138,12.8831,"93011"],
+["Castions di Strada","UD",45.9083,13.1853,"30020"],["Cavasso Nuovo","PN",46.1966,12.7703,"93012"],["Cavazzo Carnico","UD",46.3675,13.04,"30021"],
+["Cercivento","UD",46.5273,12.9892,"30022"],["Cervignano del Friuli","UD",45.8228,13.3364,"30023"],["Chions","PN",45.8472,12.7111,"93013"],
+["Chiopris-Viscone","UD",45.9314,13.3811,"30024"],["Chiusaforte","UD",46.4083,13.309,"30025"],["Cimolais","PN",46.2876,12.4381,"93014"],
+["Cividale del Friuli","UD",46.0936,13.4303,"30026"],["Claut","PN",46.2667,12.5157,"93015"],["Clauzetto","PN",46.2299,12.9156,"93016"],
+["Codroipo","UD",45.9611,12.979,"30027"],["Colloredo di Monte Albano","UD",46.1664,13.139,"30028"],["Comeglians","UD",46.5152,12.8678,"30029"],
+["Cordenons","PN",46.0037,12.7187,"93017"],["Cordovado","PN",45.8458,12.8807,"93018"],["Cormons","GO",45.9578,13.471,"31002"],
+["Corno di Rosazzo","UD",45.9971,13.4416,"30030"],["Coseano","UD",46.097,13.0194,"30031"],["Dignano","UD",46.085,12.9393,"30032"],
+["Doberdò del Lago","GO",45.8446,13.5401,"31003"],["Dogna","UD",46.4479,13.315,"30033"],["Dolegna del Collio","GO",46.0313,13.4793,"31004"],
+["Drenchia","UD",46.1742,13.6365,"30034"],["Duino Aurisina","TS",45.7704,13.6753,"32001"],["Enemonzo","UD",46.4109,12.8787,"30035"],
+["Erto e Casso","PN",46.2771,12.3596,"93019"],["Faedis","UD",46.1503,13.3464,"30036"],["Fagagna","UD",46.1134,13.0846,"30037"],
+["Fanna","PN",46.1871,12.7531,"93020"],["Farra d'Isonzo","GO",45.908,13.5165,"31005"],["Fiume Veneto","PN",45.9279,12.7322,"93021"],
+["Fiumicello Villa Vicentina","UD",45.7836,13.413,"30190"],["Flaibano","UD",46.0583,12.9836,"30039"],["Fogliano Redipuglia","GO",45.8565,13.4929,"31006"],
+["Fontanafredda","PN",45.9734,12.5691,"93022"],["Forgaria nel Friuli","UD",46.2228,12.9735,"30137"],["Forni Avoltri","UD",46.5868,12.7769,"30040"],
+["Forni di Sopra","UD",46.4202,12.5856,"30041"],["Forni di Sotto","UD",46.395,12.6702,"30042"],["Frisanco","PN",46.2128,12.7271,"93024"],
+["Gemona del Friuli","UD",46.277,13.1401,"30043"],["Gonars","UD",45.8959,13.2371,"30044"],["Gorizia","GO",45.9441,13.6252,"31007"],
+["Gradisca d'Isonzo","GO",45.8896,13.5003,"31008"],["Grado","GO",45.6777,13.3864,"31009"],["Grimacco","UD",46.1674,13.5812,"30045"],
+["Latisana","UD",45.7785,12.9962,"30046"],["Lauco","UD",46.424,12.933,"30047"],["Lestizza","UD",45.9549,13.1417,"30048"],
+["Lignano Sabbiadoro","UD",45.6894,13.1386,"30049"],["Lusevera","UD",46.2758,13.2693,"30051"],["Magnano in Riviera","UD",46.2313,13.1768,"30052"],
+["Majano","UD",46.1852,13.0682,"30053"],["Malborghetto Valbruna","UD",46.4978,13.4331,"30054"],["Maniago","PN",46.171,12.7074,"93025"],
+["Manzano","UD",45.9905,13.3815,"30055"],["Marano Lagunare","UD",45.765,13.1675,"30056"],["Mariano del Friuli","GO",45.9161,13.4587,"31010"],
+["Martignacco","UD",46.0979,13.1368,"30057"],["Medea","GO",45.9177,13.4225,"31011"],["Meduno","PN",46.2168,12.7859,"93026"],
+["Mereto di Tomba","UD",46.0498,13.0428,"30058"],["Moggio Udinese","UD",46.4097,13.1951,"30059"],["Moimacco","UD",46.0913,13.377,"30060"],
+["Monfalcone","GO",45.8049,13.5331,"31012"],["Monrupino","TS",45.7178,13.7974,"32002"],["Montenars","UD",46.255,13.1788,"30061"],
+["Montereale Valcellina","PN",46.1605,12.6621,"93027"],["Moraro","GO",45.9306,13.4965,"31013"],["Morsano al Tagliamento","PN",45.8581,12.9293,"93028"],
+["Mortegliano","UD",45.9458,13.1728,"30062"],["Moruzzo","UD",46.1202,13.1232,"30063"],["Mossa","GO",45.9386,13.5482,"31014"],
+["Muggia","TS",45.5958,13.7829,"32003"],["Muzzana del Turgnano","UD",45.8181,13.1293,"30064"],["Nimis","UD",46.2007,13.2663,"30065"],
+["Osoppo","UD",46.256,13.0809,"30066"],["Ovaro","UD",46.4829,12.8654,"30067"],["Pagnacco","UD",46.1243,13.187,"30068"],
+["Palazzolo dello Stella","UD",45.8048,13.0796,"30069"],["Palmanova","UD",45.9055,13.3099,"30070"],["Paluzza","UD",46.5308,13.0182,"30071"],
+["Pasian di Prato","UD",46.0485,13.1876,"30072"],["Pasiano di Pordenone","PN",45.8498,12.6265,"93029"],["Paularo","UD",46.5303,13.1166,"30073"],
+["Pavia di Udine","UD",45.9963,13.3041,"30074"],["Pinzano al Tagliamento","PN",46.1831,12.9454,"93030"],["Pocenia","UD",45.8355,13.1008,"30075"],
+["Polcenigo","PN",46.0307,12.5016,"93031"],["Pontebba","UD",46.5065,13.3064,"30076"],["Porcia","PN",45.9466,12.6018,"93032"],
+["Pordenone","PN",45.9562,12.6597,"93033"],["Porpetto","UD",45.8582,13.2179,"30077"],["Povoletto","UD",46.1182,13.2988,"30078"],
+["Pozzuolo del Friuli","UD",45.986,13.195,"30079"],["Pradamano","UD",46.0338,13.3026,"30080"],["Prata di Pordenone","PN",45.8933,12.5963,"93034"],
+["Prato Carnico","UD",46.5207,12.8094,"30081"],["Pravisdomini","PN",45.8189,12.6944,"93035"],["Precenicco","UD",45.7889,13.0774,"30082"],
+["Premariacco","UD",46.0607,13.3948,"30083"],["Preone","UD",46.3937,12.8662,"30084"],["Prepotto","UD",46.0457,13.4794,"30085"],
+["Pulfero","UD",46.1793,13.478,"30086"],["Ragogna","UD",46.1735,12.9824,"30087"],["Ravascletto","UD",46.5229,12.9221,"30088"],
+["Raveo","UD",46.4344,12.8711,"30089"],["Reana del Rojale","UD",46.1457,13.2351,"30090"],["Remanzacco","UD",46.0856,13.3243,"30091"],
+["Resia","UD",46.3474,13.3361,"30092"],["Resiutta","UD",46.3931,13.2186,"30093"],["Rigolato","UD",46.5528,12.8521,"30094"],
+["Rive d'Arcano","UD",46.1261,13.0316,"30095"],["Rivignano Teor","UD",45.8613,13.0476,"30188"],["Romans d'Isonzo","GO",45.8906,13.4382,"31015"],
+["Ronchi dei Legionari","GO",45.8278,13.5018,"31016"],["Ronchis","UD",45.8066,12.9978,"30097"],["Roveredo in Piano","PN",46.0111,12.6203,"93036"],
+["Ruda","UD",45.8382,13.4019,"30098"],["Sacile","PN",45.9539,12.5034,"93037"],["Sagrado","GO",45.8758,13.4855,"31017"],
+["San Canzian d'Isonzo","GO",45.7986,13.4661,"31018"],["San Daniele del Friuli","UD",46.1532,13.009,"30099"],["San Dorligo della Valle","TS",45.6126,13.8535,"32004"],
+["San Floriano del Collio","GO",45.9831,13.5871,"31019"],["San Giorgio della Richinvelda","PN",46.0395,12.8823,"93038"],["San Giorgio di Nogaro","UD",45.832,13.2111,"30100"],
+["San Giovanni al Natisone","UD",45.9779,13.4011,"30101"],["San Leonardo","UD",46.1275,13.5384,"30102"],["San Lorenzo Isontino","GO",45.9312,13.5285,"31020"],
+["San Martino al Tagliamento","PN",46.0208,12.8638,"93039"],["San Pier d'Isonzo","GO",45.8469,13.4601,"31021"],["San Pietro al Natisone","UD",46.1267,13.4852,"30103"],
+["San Quirino","PN",46.0362,12.68,"93040"],["San Vito al Tagliamento","PN",45.9145,12.8566,"93041"],["San Vito al Torre","UD",45.8958,13.3706,"30105"],
+["San Vito di Fagagna","UD",46.0906,13.067,"30106"],["Santa Maria la Longa","UD",45.9331,13.288,"30104"],["Sappada","UD",46.5678,12.6864,"30189"],
+["Sauris","UD",46.4654,12.7087,"30107"],["Savogna","UD",46.1802,13.5522,"30108"],["Savogna d'Isonzo","GO",45.9059,13.5749,"31022"],
+["Sedegliano","UD",46.0144,12.9774,"30109"],["Sequals","PN",46.1655,12.8288,"93042"],["Sesto al Reghena","PN",45.8476,12.8155,"93043"],
+["Sgonico","TS",45.736,13.7482,"32005"],["Socchieve","UD",46.3971,12.8481,"30110"],["Spilimbergo","PN",46.1113,12.9016,"93044"],
+["Staranzano","GO",45.8058,13.5003,"31023"],["Stregna","UD",46.1315,13.6036,"30111"],["Sutrio","UD",46.512,12.9908,"30112"],
+["Taipana","UD",46.2587,13.3459,"30113"],["Talmassons","UD",45.9296,13.1171,"30114"],["Tarcento","UD",46.2153,13.2217,"30116"],
+["Tarvisio","UD",46.5053,13.5784,"30117"],["Tavagnacco","UD",46.1274,13.2141,"30118"],["Terzo d'Aquileia","UD",45.8009,13.3458,"30120"],
+["Tolmezzo","UD",46.4295,13.0562,"30121"],["Torreano","UD",46.1285,13.4311,"30122"],["Torviscosa","UD",45.8222,13.2769,"30123"],
+["Tramonti di Sopra","PN",46.3089,12.7885,"93045"],["Tramonti di Sotto","PN",46.2849,12.7956,"93046"],["Trasaghis","UD",46.2822,13.0754,"30124"],
+["Travesio","PN",46.1965,12.871,"93047"],["Treppo Grande","UD",46.1906,13.1581,"30126"],["Treppo Ligosullo","UD",46.5443,13.0589,"30191"],
+["Tricesimo","UD",46.1606,13.2125,"30127"],["Trieste","TS",45.6505,13.7931,"32006"],["Trivignano Udinese","UD",45.9434,13.3406,"30128"],
+["Turriaco","GO",45.82,13.4467,"31024"],["Udine","UD",46.0635,13.2358,"30129"],["Vajont","PN",46.1461,12.6974,"93052"],
+["Valvasone Arzene","PN",45.9952,12.8663,"93053"],["Varmo","UD",45.887,12.9877,"30130"],["Venzone","UD",46.3337,13.1394,"30131"],
+["Verzegnis","UD",46.3851,12.9872,"30132"],["Villa Santina","UD",46.4141,12.9207,"30133"],["Villesse","GO",45.8639,13.4402,"31025"],
+["Visco","UD",45.8922,13.3469,"30135"],["Vito d'Asio","PN",46.2278,12.9383,"93049"],["Vivaro","PN",46.078,12.7758,"93050"],
+["Zoppola","PN",45.9663,12.7716,"93051"],["Zuglio","UD",46.4618,13.026,"30136"]];
+const PROV={GO:'Gorizia',PN:'Pordenone',TS:'Trieste',UD:'Udine'},INDICE=new Map(COMUNI.map(c=>[c[0],c]));
+const slug=n=>n.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const PER_SLUG=new Map(COMUNI.map(c=>[slug(c[0]),c[0]]));
+const comune=nome=>{const c=INDICE.get(nome);return c&&{name:c[0],prov:PROV[c[1]],lat:c[2],lon:c[3],istat:c[4],slug:slug(c[0])}};
+const WX={0:['Sereno','☀️'],1:['Prevalentemente sereno','🌤️'],2:['Parzialmente nuvoloso','⛅'],3:['Coperto','☁️'],45:['Nebbia','🌫️'],48:['Nebbia con brina','🌫️'],51:['Pioviggine debole','🌦️'],53:['Pioviggine','🌦️'],55:['Pioviggine intensa','🌧️'],61:['Pioggia debole','🌦️'],63:['Pioggia','🌧️'],65:['Pioggia intensa','🌧️'],71:['Neve debole','🌨️'],73:['Neve','🌨️'],75:['Neve intensa','❄️'],80:['Rovesci deboli','🌦️'],81:['Rovesci','🌧️'],82:['Rovesci forti','⛈️'],95:['Temporale','⛈️'],96:['Temporale con grandine','⛈️'],99:['Forte temporale','⛈️']};
+const MODELS=['icon_seamless','ecmwf_ifs025','meteofrance_seamless'];let active='Roveredo in Piano',timer,lastData,selectedDay=0;
+const $=s=>document.querySelector(s), round=n=>Math.round(n), wx=c=>WX[c]||['Variabile','🌥️'];
+function api(c,model='best_match'){const h='temperature_2m,apparent_temperature,relative_humidity_2m,precipitation_probability,weather_code,wind_speed_10m';const d='weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max';return `https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m&hourly=${h}&daily=${d}&timezone=Europe%2FRome&forecast_days=7&models=${model}`}
+async function json(url){const r=await fetch(url);if(!r.ok)throw Error(r.status);return r.json()}
+function confidence(models){const vals=models.filter(Boolean).map(x=>x.hourly.temperature_2m.slice(0,24));if(vals.length<2)return 70;let spread=0,n=0;for(let h=0;h<24;h++){const a=vals.map(v=>v[h]).filter(Number.isFinite);spread+=Math.max(...a)-Math.min(...a);n++}const avg=spread/n;return Math.max(45,Math.min(96,round(96-avg*12)))}
+function renderDay(dayIndex,scroll=false){if(!lastData)return;selectedDay=dayIndex;document.querySelectorAll('.day').forEach((el,i)=>el.classList.toggle('active',i===dayIndex));const date=lastData.daily.time[dayIndex];const label=dayIndex===0?'Oggi':new Date(date+'T12:00:00').toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'});$('#detailTitle').textContent='Dettaglio orario · '+label;const indexes=lastData.hourly.time.map((t,i)=>t.startsWith(date)?i:-1).filter(i=>i>=0);$('#detailHours').innerHTML=indexes.map(i=>`<div class="detail-hour"><time>${new Date(lastData.hourly.time[i]).toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})}</time><i>${wx(lastData.hourly.weather_code[i])[1]}</i><b>${round(lastData.hourly.temperature_2m[i])}°</b><small>percep. ${round(lastData.hourly.apparent_temperature[i])}°</small><em>💧 ${lastData.hourly.precipitation_probability[i]}% · 〰 ${round(lastData.hourly.wind_speed_10m[i])}</em></div>`).join('');if(scroll)$('#dayDetail').scrollIntoView({behavior:'smooth',block:'start'})}
+function render(data,models,c){lastData=data;const cur=data.current;const [desc,icon]=wx(cur.weather_code);$('#place').textContent=c.name+(c.prov===c.name?'':' · '+c.prov)+' · Adesso';$('#mainTemp').textContent=round(cur.temperature_2m);$('#mainIcon').textContent=icon;$('#condition').textContent=desc;$('#feels').textContent=round(cur.apparent_temperature)+'°';$('#wind').textContent=round(cur.wind_speed_10m)+' km/h';$('#humidity').textContent=round(cur.relative_humidity_2m)+'%';
+ const score=confidence(models);$('#score').textContent=score;$('#scoreBar').style.width=score+'%';$('#scoreText').textContent=score>=85?'Alta':score>=70?'Buona':'Moderata';$('#agreement').textContent=score>=85?'I modelli concordano nettamente: scenario stabile nelle prossime 24 ore.':score>=70?'Buona coerenza tra i modelli, con qualche differenza locale.':'I modelli divergono: controlla più spesso gli aggiornamenti.';models.forEach((m,i)=>$('#m'+(i+1)).textContent=m?round(m.hourly.temperature_2m[6])+'° tra 6h':'non disponibile');
+ const now=Date.now(), start=Math.max(0,data.hourly.time.findIndex(t=>new Date(t).getTime()>=now));$('#hourly').innerHTML=data.hourly.time.slice(start,start+18).map((t,i)=>{const x=start+i;return `<div class="hour ${i===0?'now-hour':''}"><time>${i===0?'Adesso':new Date(t).toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})}</time><i>${wx(data.hourly.weather_code[x])[1]}</i><b>${round(data.hourly.temperature_2m[x])}°</b><small>percep. ${round(data.hourly.apparent_temperature[x])}°</small><em>${data.hourly.precipitation_probability[x]}% pioggia</em></div>`}).join('');
+ $('#daily').innerHTML=data.daily.time.map((t,i)=>`<button class="day ${i===selectedDay?'active':''}" data-day="${i}" aria-label="Mostra il dettaglio orario di ${i===0?'oggi':new Date(t+'T12:00:00').toLocaleDateString('it-IT',{weekday:'long'})}"><b>${i===0?'Oggi':new Date(t+'T12:00:00').toLocaleDateString('it-IT',{weekday:'long'})}</b><span class="ico">${wx(data.daily.weather_code[i])[1]}</span><span class="rain">💧 ${data.daily.precipitation_probability_max[i]}%</span><span class="range">${round(data.daily.temperature_2m_min[i])}° / <b>${round(data.daily.temperature_2m_max[i])}°</b></span></button>`).join('');document.querySelectorAll('.day').forEach(b=>b.onclick=()=>renderDay(Number(b.dataset.day),true));renderDay(selectedDay);
+ const rain=Math.max(...data.hourly.precipitation_probability.slice(start,start+12)),wind=Math.max(...data.hourly.wind_speed_10m.slice(start,start+24)),uvTip=cur.temperature_2m>27?['Sole e caldo','Nelle ore centrali preferisci ombra e acqua.']:['Temperatura','Condizioni generalmente gestibili nelle prossime ore.'];const tips=[rain>55?['Ombrello consigliato',`Probabilità di pioggia fino al ${rain}% nelle prossime 12 ore.`]:['Pioggia poco probabile',`Rischio massimo ${rain}% nelle prossime 12 ore.`],wind>35?['Attenzione al vento',`Raffiche o vento sostenuto fino a circa ${round(wind)} km/h.`]:['Vento contenuto',`Velocità massima prevista circa ${round(wind)} km/h.`],uvTip];$('#tips').innerHTML=tips.map((x,i)=>`<div class="tip"><div class="tip-icon">${i===0?'☂️':i===1?'〰️':'◉'}</div><p><b>${x[0]}</b>${x[1]}</p></div>`).join('');
+ $('#updated').textContent='Aggiornato alle '+new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'});}
+async function load(){clearTimeout(timer);const c=comune(active);document.body.classList.add('loading');$('#error').style.display='none';try{const [base,...mods]=await Promise.all([json(api(c)),...MODELS.map(m=>json(api(c,m)).catch(()=>null))]);render(base,mods,c)}catch(e){$('#error').style.display='block'}finally{document.body.classList.remove('loading');timer=setTimeout(load,15*60*1000)}}
+const sel=$('#comune'),copia=$('#copia'),telaio=$('#allerteFrame');
+sel.innerHTML=Object.entries(PROV).sort((a,b)=>a[1].localeCompare(b[1],'it')).map(([sigla,nome])=>
+ '<optgroup label="Provincia di '+nome+'">'+COMUNI.filter(c=>c[1]===sigla).map(c=>'<option value="'+c[0]+'">'+c[0]+'</option>').join('')+'</optgroup>').join('');
+const daHash=()=>PER_SLUG.get(decodeURIComponent((location.hash||'').replace(/^#/,'')).trim().toLowerCase());
+const indirizzo=c=>location.origin+location.pathname+'#'+c.slug;
+/* riquadro allerte: ricostruito a ogni cambio di comune dentro una cornice isolata,
+   cosi lo script della Protezione Civile riparte da zero sul codice ISTAT giusto.
+   Lo script segnala se e stato caricato, cosi la pagina distingue tre casi:
+   avviso presente, nessun avviso pubblicato, riquadro non raggiungibile. */
+let tMisura,giriAllerte=0,statoAllerte='';
+function allerte(c){if(!telaio)return;clearInterval(tMisura);giriAllerte=0;statoAllerte='';
+ telaio.style.height='1px';$('#allerteBox').classList.remove('attivo');
+ $('#allerteBox').hidden=false;$('#allerteStato').hidden=true;
+ telaio.srcdoc='<!doctype html><html lang="it"><head><meta charset="utf-8"><base target="_blank">'
+  +'<style>html,body{margin:0;padding:0;background:transparent;color:#0b3c63;'
+  +'font:15px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}'
+  +'#misura{overflow:hidden}</style></head><body><div id="misura">'
+  +'<script type="text/javascript" src="https://www.protezionecivile.fvg.it/widgets/pcrfvgit_alert.js"'
+  +' onload="window.pcrCaricato=true" onerror="window.pcrCaricato=false"><\/script>'
+  +'<div class="pcrfvgit_alert_widget" data-istatcode="'+c.istat+'"></div></div></body></html>'}
+function mostraStato(stato,c){if(stato===statoAllerte)return;statoAllerte=stato;
+ const box=$('#allerteBox'),st=$('#allerteStato');
+ if(stato==='pieno'){box.hidden=false;box.classList.add('attivo');st.hidden=true;return}
+ box.hidden=true;box.classList.remove('attivo');st.hidden=false;st.classList.toggle('ko',stato==='ko');
+ if(stato==='ko'){$('#allerteTitolo').textContent='Riquadro non raggiungibile';
+  $('#allerteTesto').textContent='Non è stato possibile caricare il riquadro della Protezione Civile regionale. Controlla direttamente il sito della Regione.'}
+ else{$('#allerteTitolo').textContent='Nessun avviso in corso';
+  $('#allerteTesto').textContent='La Protezione Civile regionale non sta pubblicando allerte per '+c.name+'. Verificato alle '
+   +new Date().toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})+'.'}}
+function controllaAllerte(){if(!telaio)return;const c=comune(active);if(!c)return;
+ let d,caricato;try{d=telaio.contentDocument;caricato=telaio.contentWindow.pcrCaricato}catch(e){return}
+ if(!d||!d.body)return;
+ const w=d.querySelector('.pcrfvgit_alert_widget');
+ if(w&&(w.children.length||w.textContent.trim().length)){mostraStato('pieno',c);
+  const m=d.getElementById('misura'),h=m?Math.ceil(m.getBoundingClientRect().height):0;
+  if(h>20&&Math.abs(h+8-parseFloat(telaio.style.height||0))>2)telaio.style.height=(h+8)+'px';return}
+ if(caricato===false){mostraStato('ko',c);return}
+ if(caricato===true&&giriAllerte>6)mostraStato('vuoto',c);
+ else if(giriAllerte>24)mostraStato('ko',c)}
+if(telaio)telaio.addEventListener('load',()=>{giriAllerte=0;controllaAllerte();clearInterval(tMisura);
+ tMisura=setInterval(()=>{giriAllerte++;controllaAllerte();if(giriAllerte>30)clearInterval(tMisura)},500)});
+function scegli(nome,ricarica=true){if(!INDICE.has(nome))return;active=nome;selectedDay=0;sel.value=nome;
+ document.querySelectorAll('.city').forEach(b=>b.classList.toggle('active',b.dataset.c===nome));
+ const c=comune(nome);
+ try{history.replaceState(null,'','#'+c.slug)}catch(e){location.hash=c.slug}
+ try{localStorage.setItem('meteo-fvg-comune',nome)}catch(e){}
+ allerte(c);
+ if(ricarica)load()}
+sel.addEventListener('change',()=>scegli(sel.value));
+document.querySelectorAll('.city').forEach(b=>b.addEventListener('click',()=>scegli(b.dataset.c)));
+addEventListener('hashchange',()=>{const n=daHash();if(n&&n!==active)scegli(n)});
+copia.addEventListener('click',async()=>{const url=indirizzo(comune(active));let fatto=false;
+ try{await navigator.clipboard.writeText(url);fatto=true}catch(e){
+  try{const t=document.createElement('textarea');t.value=url;t.setAttribute('readonly','');
+   t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();
+   fatto=document.execCommand('copy');t.remove()}catch(e2){}}
+ copia.textContent=fatto?'Collegamento copiato':'Copia non riuscita: usa la barra degli indirizzi';
+ copia.classList.toggle('ok',fatto);clearTimeout(copia.attesa);
+ copia.attesa=setTimeout(()=>{copia.textContent='Copia il collegamento';copia.classList.remove('ok')},2600)});
+let salvato=null;try{salvato=localStorage.getItem('meteo-fvg-comune')}catch(e){}
+scegli(daHash()||(INDICE.has(salvato)?salvato:active),false);load();
+/* ---------- tendine della testata ---------- */
+const vai=document.getElementById('vai');
+if(vai)vai.addEventListener('change',()=>{const v=vai.value;vai.selectedIndex=0;if(v)location.href=v});
+const sez=document.getElementById('sez');
+if(sez){
+  document.querySelectorAll('h2.tit[id]').forEach(h=>{
+    const o=document.createElement('option');
+    o.value='#'+h.id;
+    /* il sottotitolo sta in uno <span> dentro il titolo: nella tendina non serve */
+    o.textContent=(h.firstChild&&h.firstChild.nodeType===3?h.firstChild.textContent:h.textContent).trim();
+    sez.appendChild(o);
+  });
+  sez.addEventListener('change',()=>{ if(sez.value) location.hash=sez.value; });
+}
+
+/* la barra si stacca dal contenuto appena la pagina scorre */
+(function(){
+  const barra=document.querySelector('.atl-testata');
+  if(!barra) return;
+  let stato=null;
+  function guarda(){
+    const giu=(window.scrollY||document.documentElement.scrollTop||0)>8;
+    if(giu!==stato){ stato=giu; barra.classList.toggle('staccata', giu); }
+  }
+  addEventListener('scroll', guarda, {passive:true});
+  guarda();
+})();
+</script>
+
+</body>
+</html>

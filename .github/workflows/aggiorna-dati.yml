@@ -7,7 +7,7 @@ name: Aggiorna i dati
 #   3 commercio, economia, veicoli
 #   4 rifiuti, meteo, mobilità, opere pubbliche OpenCUP e controllo delle fonti da aggiornare a mano
 # La rete degli autobus si controlla ogni settimana: gli orari cambiano in date precise e il file
-# si riscrive solo se cambiano fermate o percorsi.
+# si riscrive solo se cambiano fermate o percorsi; con lei si aggiornano gli orari delle linee (dati/orari).
 # Si può avviare anche a mano da Actions, scegliendo il gruppo o tutti.
 on:
   schedule:
@@ -58,6 +58,9 @@ jobs:
       - name: Scarica e prepara la rete degli autobus
         run: python scripts/aggiorna_autobus.py | tee -a esito.txt
 
+      - name: Scarica e prepara gli orari degli autobus
+        run: python scripts/aggiorna_orari.py | tee -a esito.txt
+
       - name: Scarica e prepara le opere pubbliche (gruppo 4)
         if: steps.gruppo.outputs.gruppo == '4' || steps.gruppo.outputs.gruppo == 'tutti'
         run: python scripts/aggiorna_opere.py | tee -a esito.txt
@@ -85,7 +88,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           rm -f fonti_da_aggiornare.md
-          git add -A index.html dati c provincia sitemap.xml robots.txt mappe confronto autobus ambiente comuni archivio metodo
+          git add -A index.html dati c provincia sitemap.xml robots.txt mappe confronto autobus ambiente comuni archivio metodo orari
           if git diff --cached --quiet; then
             echo "Nessuna novità da pubblicare."
             exit 0
