@@ -224,6 +224,18 @@ solo i file cambiati e toglie quelli dei percorsi soppressi. Se il download fall
 Nella versione del 6 ottobre 2026 gli orari valgono dal 5 ottobre 2026 al 31 gennaio 2027. Per i giorni fuori da questo
 periodo la pagina non mostra orari e rimanda a [tplfvg.it](https://tplfvg.it).
 
+## Bandi e avvisi della Regione
+
+La pagina `bandi/` mostra i bandi e gli avvisi in corso pubblicati dalla Regione Autonoma Friuli Venezia Giulia nella sezione «Bandi e avvisi» del suo sito. Ogni voce riporta soltanto ciò che la Regione scrive: titolo, struttura regionale, data di pubblicazione, scadenza (se indicata) e collegamento alla pagina ufficiale, dove si leggono requisiti, importi e modalità di domanda. L'Atlante non interpreta i testi e non deduce destinatari o importi.
+
+- **Fonte**: https://www.regione.fvg.it/rafvg/cms/RAFVG/MODULI/bandi_avvisi/ (tutte le pagine dell'elenco). L'indicazione «Misure contributive» è il filtro che la stessa Regione offre sul suo sito, letto a parte (`ricerca.jsp`, con `onlyTagServizio=1`).
+- **Aggiornamento**: ogni mattina, con `.github/workflows/aggiorna-bandi.yml` e `scripts/aggiorna_bandi.py` (solo libreria standard di Python, con pausa fra le richieste). Il file `dati/bandi.json` si riscrive solo se l'elenco cambia; la sua data `ultima_variazione` è quella del cambiamento. Se la lettura fallisce, o l'elenco ha meno di 20 voci o meno del 40% di prima, restano i dati precedenti.
+- **Scadenze**: calcolate nel browser rispetto alla data di oggi. I bandi già scaduti sono nascosti, salvo la casella «Mostra anche i già scaduti». Una scadenza del 1° gennaio 1970, segnaposto usato dalla Regione, vale «Scadenza non indicata».
+- **Centri per l'impiego e Collocamento mirato**: avvisi di lavoro dell'elenco ufficiale (51 al 7 ottobre 2026), nascosti di default e mostrati con la casella dedicata.
+- **Filtri e indirizzo**: ricerca nel titolo (senza distinguere accenti), struttura, ordine, parole utili, solo misure contributive. Lo stato è nell'indirizzo (`q`, `direzione`, `contributi`, `scaduti`, `impiego`, `ordine`), quindi si copia e si condivide con «Copia link».
+- **Limiti dichiarati**: non ci sono i bandi dello Stato, dell'Unione europea, del PNRR (Piano nazionale di ripresa e resilienza), dei GAL (Gruppi di azione locale) né delle fondazioni. Fa fede sempre la pagina ufficiale.
+- **Prova**: `node prove/bandi.js` (filtri, indirizzo, scaduti, errore di caricamento, nessuno scorrimento orizzontale a 360, 390 e 1440 punti, bersagli del tocco).
+
 ## Stradario
 
 La pagina `stradario/` è la versione regionale della «Mappa di Roveredo in Piano» di costalonga.org: mappa stradale
