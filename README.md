@@ -491,6 +491,10 @@ Come aggiornare il contenuto (il file sorgente in chiaro non va mai pubblicato):
 python3 -I scripts/prepara_elezioni.py <cruscotto.html> /tmp/frammento.html
 PAROLA='…' node scripts/cifra_pagina.js /tmp/frammento.html elezioni/contenuto.json
 ```
+Due funzioni sono state aggiunte dall'Atlante al cruscotto (`scripts/prefliste.js`, innestato da `prepara_elezioni.py`): nella lente della mappa
+«Preferenze di un candidato» un campo di ricerca per nome accanto all'elenco; la sezione «Le preferenze di una lista, comune per comune»
+(circoscrizione e lista a scelta: per ogni comune i voti alla lista, le preferenze a ciascun candidato e i totali di riga e di colonna, con
+scarico in CSV; per il 2013 e il 2008 solo i totali di circoscrizione, come pubblica la fonte).
 `prepara_elezioni.py` confina lo stile sotto `#elezioni`, lo porta alla tavolozza dell'Atlante (le variabili di base sono quelle di
 `pagine.css`), rinomina le classi che si scontrano con lo stile comune (`campo`, `nota`), toglie intestazione propria, tema scuro
 e scarico della pagina, e corregge i riferimenti al documento. Limite: una parola d'ordine breve resiste poco a un attacco a forza
