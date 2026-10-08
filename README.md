@@ -472,6 +472,6 @@ Le tre mappe «Lista più votata» (regionali 2023, europee 2024, politiche 2022
 comune usano colori vicini a quelli consueti dei partiti (`COLORI_LISTE`, `coloreLista`): blu scuro Fratelli d'Italia, verde Lega,
 azzurro Forza Italia, azzurro chiaro per le civiche del centrodestra (Fedriga Presidente, Autonomia Responsabile), rosso Partito
 Democratico, rosa e cremisi per Alleanza Verdi e Sinistra e Open Sinistra, giallo Movimento 5 Stelle, magenta Azione e Italia Viva,
-arancione tenue per le civiche del centrosinistra, arancione Slovenska Skupnost, grigio SVP. Riferimento: i codici del modulo
+giallo scuro Patto per l'Autonomia, arancione tenue per le civiche del centrosinistra, arancione Slovenska Skupnost, grigio SVP. Riferimento: i codici del modulo
 «Partiti/Configurazione» di Wikipedia in italiano, letti l'8 ottobre 2026; le liste non riconosciute prendono i colori neutri della
 tavolozza `CAT`. L'indicatore «Anno delle prossime elezioni comunali» resta con la tavolozza neutra.
