@@ -52,6 +52,45 @@ corpo = corpo.replace('<div class="strumenti">\n        <div class="campo-el"><l
 assert 'id="cCirc"' in corpo
 corpo = corpo.replace('<a class="solo-reg" href="#sez-comuni">Comuni</a>', '<a class="solo-reg" href="#sez-comuni">Comuni</a><a class="solo-reg" href="#sez-prefliste">Preferenze per comune</a>')
 assert 'id="sez-prefliste"' in corpo and '#sez-prefliste' in corpo
+# ---------------------------------------------------------------- comunali: un solo pannello di filtri
+PANNELLO = '''    <section class="card s12 solo-com ancora" id="filtriCom" aria-labelledby="fcTitolo">
+      <div class="card-testa"><div><h2 id="fcTitolo">Filtri delle comunali</h2>
+        <p class="sotto">Valgono insieme per la mappa, gli indicatori e tutte le tabelle della vista. Il territorio si sceglie nella barra in alto.</p></div></div>
+      <div class="strumenti">
+        <div class="campo-el"><label for="fcEl">Elezione</label><select id="fcEl"></select></div>
+        <div class="campo-el"><label for="fcPart">Partito nel nome di una lista</label><select id="fcPart"></select></div>
+        <div class="campo-el"><label for="fcDim">Dimensione del comune</label><select id="fcDim"></select></div>
+        <div class="campo-el"><label for="fcEsito">Esito</label><select id="fcEsito"></select></div>
+        <div class="campo-el"><label for="fcCerca">Cerca nelle tabelle</label><input id="fcCerca" placeholder="Comune, sindaco o consigliere" autocomplete="off"></div>
+        <button class="bot" type="button" id="fcAzzera">Azzera i filtri</button>
+      </div>
+      <p class="conteggio" id="fcRiepilogo" aria-live="polite"></p>
+    </section>
+
+    <section class="card s12 solo-com" id="sintesiCom"></section>'''
+corpo = corpo.replace('    <section class="card s12 solo-com" id="sintesiCom"></section>', PANNELLO)
+assert 'id="filtriCom"' in corpo
+corpo = corpo.replace('''      <p class="sotto">Preferenze all'ultima elezione di ogni comune del territorio scelto. Tocca una riga per aprire il comune. Attenzione: i comuni hanno dimensioni molto diverse.</p>
+      <div class="strumenti">
+        <div class="campo-el"><label for="cpPart">Partito nel nome della lista</label><select id="cpPart"></select></div>
+        <div class="campo-el"><label for="cpCerca">Cerca nome o comune</label><input id="cpCerca" placeholder="Nome, cognome o comune" autocomplete="off"></div>
+        <button class="bot" type="button" id="cpCsv">Scarica in CSV</button>''', '''      <p class="sotto" id="cpSotto"></p>
+      <div class="strumenti">
+        <button class="bot" type="button" id="cpCsv">Scarica in CSV</button>''')
+assert 'id="cpPart"' not in corpo and 'id="cpSotto"' in corpo
+corpo = corpo.replace('''      <h2>Tutti i comuni, ultima elezione</h2>
+      <p class="sotto">Tocca una riga per aprire il comune. Tocca le intestazioni per ordinare.</p>
+      <div class="strumenti">
+        <div class="campo-el"><label for="tcAnno">Anno</label><select id="tcAnno"></select></div>
+        <div class="campo-el"><label for="tcPart">Partito nel nome di una lista</label><select id="tcPart"></select></div>
+        <div class="campo-el"><label for="tcCerca">Cerca</label><input id="tcCerca" placeholder="Nome del comune" autocomplete="off"></div>
+        <button class="bot" type="button" id="tcCsv">Scarica in CSV</button>''', '''      <h2 id="tcTitolo">Tutti i comuni</h2>
+      <p class="sotto">Una riga per comune, con l'elezione scelta nei filtri. Tocca una riga per aprire il comune. Tocca le intestazioni per ordinare.</p>
+      <div class="strumenti">
+        <button class="bot" type="button" id="tcCsv">Scarica in CSV</button>''')
+assert 'id="tcAnno"' not in corpo and 'id="tcTitolo"' in corpo
+corpo = corpo.replace('<a class="solo-com" href="#sez-com-scheda">Il comune</a>', '<a class="solo-com" href="#filtriCom">Filtri</a><a class="solo-com" href="#sez-com-scheda">Il comune</a>')
+assert '#filtriCom' in corpo
 assert 'class="campo"' not in corpo and '<footer' not in corpo
 
 # ---------------------------------------------------------------- CSS: confinato sotto #elezioni, colori e caratteri dell'Atlante
@@ -73,7 +112,7 @@ def regole(css):
 
 SCARTA = ('*,*::before,*::after', 'html', 'body::after', '.salta', '.salta:focus', ':where(a,button,select,input,[tabindex]):focus-visible', '.tema', '.tema:hover', '.tema:active')
 def prefissa(sel):
-    sel = sel.strip()
+    sel = re.sub(r'/\*.*?\*/', '', sel, flags=re.S).strip()  # un commento prima del selettore ne impediva la riscrittura
     if sel.startswith('@keyframes') or sel == ':root': return sel
     parti = []
     for p in sel.split(','):
@@ -112,6 +151,7 @@ css = re.sub(r':root\{[^}]*--z-barra:[^}]*\}', '', css)  # il secondo blocco di 
 css = re.sub(r':root\{[^}]*--sfondo:[^}]*\}', ':root{--sfondo:var(--avorio);--superficie:#ffffff;--superficie-2:#F4F1EA;--superficie-3:#ECE6D8;--bordo:var(--linea);--bordo-forte:#CFC7B5;--accento:var(--blu-chiaro);--griglia:#ECE9E2;--assente:#E6E0D4;--om-1:0 1px 2px rgba(11,51,89,.05),0 2px 6px -2px rgba(11,51,89,.06);--om-2:0 2px 4px rgba(11,51,89,.06),0 18px 36px -14px rgba(11,51,89,.22);--r:14px;--r-sm:10px;--r-xs:6px;--t:260ms cubic-bezier(.2,.6,.3,1);--molla:cubic-bezier(.34,1.3,.5,1);--z-barra:20;--z-barra-mob:25;--z-sugg:200}', css, count=1)
 assert 'Geist' not in css and 'Fraunces' not in css, 'caratteri non sostituiti'
 assert '--z-barra:' in css and css.count(':root{') == 1, 'variabili di base non in un solo blocco'
+assert '#elezioni[data-vista="com"] .solo-reg{display:none!important}' in css and '\nbody' not in css, 'regola delle viste non confinata'
 css += '''
 /* ===== integrazione nell'Atlante ===== */
 #elezioni .contenitore{max-width:none;padding:0}
@@ -136,6 +176,15 @@ css += '''
 #elezioni #tabPrefListe td.cel{text-align:right;font-variant-numeric:tabular-nums}
 #elezioni #tabPrefListe tr.totale td{font-weight:800;background:var(--superficie-2);position:sticky;bottom:0;z-index:1}
 #elezioni #tabPrefListe tr.totale td:first-child{z-index:2}
+'''
+
+css += '''
+#elezioni #filtriCom .strumenti{margin-bottom:4px}
+#elezioni #filtriCom .campo-el select,#elezioni #filtriCom .campo-el input{min-width:200px}
+#elezioni #fcEl{min-width:250px}
+#elezioni #fcCerca{min-width:230px}
+#elezioni #fcRiepilogo{margin-top:6px}
+@media (max-width:640px){#elezioni #filtriCom .campo-el{flex:1 1 100%}#elezioni #filtriCom .campo-el select,#elezioni #filtriCom .campo-el input{min-width:0;width:100%}}
 '''
 
 # ---------------------------------------------------------------- JS: riferimenti al documento
@@ -192,6 +241,101 @@ sost('''// ---------- aggiornamento generale
 function aggiorna(spostaMappa){''', open(__file__.replace('prepara_elezioni.py', 'prefliste.js'), encoding='utf-8').read() + '''
 // ---------- aggiornamento generale
 function aggiorna(spostaMappa){''')
+# ---------------------------------------------------------------- comunali: filtri unici (scripts/filtricom.js)
+sost('cCirc:"" };', 'cCirc:"", fcEl:"1", fcPart:"", fcDim:"", fcEsito:"", fcCerca:"" };')
+sost('function ambitoCom(){ return S.circ ? TUTTI.filter(i=>C[i].ci===S.circ) : TUTTI; }',
+     open(__file__.replace('prepara_elezioni.py', 'filtricom.js'), encoding='utf-8').read())
+# nelle funzioni delle comunali l'elezione di ogni comune è quella scelta nei filtri (EL), non più sempre l'ultima (ULT)
+a = app.index('// ---------- indicatori\nfunction disegnaKpiCom'); b = app.index('// ---------- scelta della vista')
+blocco = re.sub(r'ULT\[([^\]]+)\]', r'EL(\1)', app[a:b]).replace('EL(S.com)', 'ELC(S.com)')
+assert 'ULT[' not in blocco
+app = app[:a] + blocco + app[b:]
+# filtri delle singole sezioni: restano solo i pulsanti di scarico e «Mostra altri»
+sost('''  const anni=[...new Set(ULT.filter(Boolean).map(anno))].sort((a,b)=>b-a);
+  d3.select("#tcAnno").selectAll("option").data([""].concat(anni)).join("option").attr("value",d=>d).text(d=>d===""?"Tutti gli anni":d);
+  d3.select("#tcAnno").on("change",function(){S.tcAnno=this.value;disegnaTabComuniCom();});
+  const op=[""].concat(PART.map((p,k)=>k));
+  ["#tcPart","#cpPart"].forEach(id=>d3.select(id).selectAll("option").data(op).join("option").attr("value",d=>d).text(d=>d===""?"Tutte":PART[d].n));
+  d3.select("#tcPart").on("change",function(){S.tcPart=this.value;disegnaTabComuniCom();});
+  d3.select("#cpPart").on("change",function(){S.cpPart=this.value;S.cpMostra=50;disegnaClassificaCom();});
+  d3.select("#tcCerca").on("input",function(){S.tcCerca=this.value.trim().toLowerCase();disegnaTabComuniCom();});
+  d3.select("#cpCerca").on("input",function(){S.cpCerca=this.value.trim().toLowerCase();S.cpMostra=50;disegnaClassificaCom();});
+''', '')
+sost('''  if (S.cpPart!=="") righe=righe.filter(r=>r.l.pa.includes(+S.cpPart));
+  if (S.cpCerca) righe=righe.filter(r=>r.p[1].toLowerCase().includes(S.cpCerca)||C[r.c.c].n.toLowerCase().includes(S.cpCerca));''',
+     '''  if (S.fcPart!=="") righe=righe.filter(r=>r.l.pa.includes(+S.fcPart));
+  if (S.fcCerca) righe=righe.filter(r=>normTesto(r.p[1]).includes(S.fcCerca)||normTesto(C[r.c.c].n).includes(S.fcCerca));
+  d3.select("#cpSotto").text(`Preferenze ${etEl()} nei comuni del territorio scelto${S.fcPart!==""?", solo nelle liste con il nome "+PART[+S.fcPart].n:""}. Tocca una riga per aprire il comune. Attenzione: i comuni hanno dimensioni molto diverse.`);''')
+sost('''  if (S.tcAnno) righe=righe.filter(r=>anno(r.c)===+S.tcAnno);
+  if (S.tcPart!=="") righe=righe.filter(r=>partitiUlt(r.i).includes(+S.tcPart));
+  if (S.tcCerca) righe=righe.filter(r=>C[r.i].n.toLowerCase().includes(S.tcCerca));''',
+     '''  if (S.fcCerca) righe=righe.filter(r=>normTesto(C[r.i].n).includes(S.fcCerca)||(r.w&&normTesto(r.w.s.n).includes(S.fcCerca)));
+  d3.select("#tcTitolo").text("Tutti i comuni, "+etElBreve());''')
+sost('{m:0,k:"d",t:"Ultima elezione",f:r=>dataIt(r.c.d),csv:r=>r.c.d},', '{m:0,k:"d",t:"Elezione",f:r=>dataIt(r.c.d),csv:r=>r.c.d},')
+sost('scaricaCsv("comunali-fvg-ultima-elezione.csv",COL_TC,TC_RIGHE)', 'scaricaCsv("comunali-fvg-"+etElBreve().replace(/ /g,"-")+".csv",COL_TC,TC_RIGHE)')
+sost('''function disegnaComunali(){
+  disegnaKpiCom();''', '''function disegnaComunali(){
+  riepilogoFiltri(); disegnaKpiCom();''')
+# testi che davano per scontata l'ultima elezione
+sost('{et:"Ultima elezione",t:dataIt(c.d),n:c.ba?"con ballottaggio":"turno unico"},', '{et:cap(etElBreve()),t:dataIt(c.d),n:c.ba?"con ballottaggio":"turno unico"},')
+sost('{et:"Comuni",v:idx.length,f:x=>N(Math.round(x)),n:S.circ?"circoscrizione di "+S.circ:"tutta la regione"},', '{et:"Comuni",v:idx.length,f:x=>N(Math.round(x)),n:(S.circ?"circoscrizione di "+S.circ:"tutta la regione")+(filtriAttivi()?", con i filtri":"")},')
+sost('''{et:"Affluenza all'ultima",v:el?vv/el:null,f:x=>pf(x),n:"regionali 2023: "+pf(r.aff[FIN]/r.el,1)},''', '''{et:"Affluenza",v:el?vv/el:null,f:x=>pf(x),n:"regionali 2023: "+pf(r.aff[FIN]/r.el,1)},''')
+sost('''{et:"Candidati sindaco",v:d3.sum(ult,c=>c.S.length),f:x=>N(Math.round(x)),n:"all'ultima elezione"},''', '''{et:"Candidati sindaco",v:d3.sum(ult,c=>c.S.length),f:x=>N(Math.round(x)),n:etEl()},''')
+sost('''{et:"Candidato unico",v:ult.filter(c=>c.S.length===1).length,f:x=>N(Math.round(x)),n:"comuni, all'ultima elezione"},''', '''{et:"Candidato unico",v:ult.filter(c=>c.S.length===1).length,f:x=>N(Math.round(x)),n:"comuni, "+etEl()},''')
+sost('''  const idx=ambitoCom(), ult=idx.map(i=>EL(i)).filter(Boolean);
+  const anni=d3.rollups(ult,v=>v.length,anno).sort((a,b)=>b[1]-a[1]);''', '''  const idx=ambitoCom(), ult=idx.map(i=>EL(i)).filter(Boolean);
+  if (!ult.length){ box.html(`<h2 class="sintesi-tit">${S.circ?"Circoscrizione di "+esc(S.circ):"Friuli Venezia Giulia"}: le elezioni comunali</h2><div class="sintesi"><p>Nessun comune del territorio corrisponde ai filtri scelti: cambia elezione, partito, dimensione o esito, oppure azzera i filtri.</p></div>`); return; }
+  const anni=d3.rollups(ult,v=>v.length,anno).sort((a,b)=>b[1]-a[1]);''')
+sost("<p>Ogni comune vota con un suo calendario: l'ultima elezione va dal ${dataIt(dmin)} al ${dataIt(dmax)}.", "<p>Ogni comune vota con un suo calendario: l'elezione scelta (${etElBreve()}) va dal ${dataIt(dmin)} al ${dataIt(dmax)}.")
+sost("<p>All'ultima tornata, in <b>${unico}</b> comuni su ${ult.length}", "<p>${cap(etEl())}, in <b>${unico}</b> comuni su ${ult.length}")
+sost('''  const idx=ambitoCom(), tutte=idx.flatMap(i=>PER_COM[i].filter(c=>c.o>0));
+  const anni=d3.range(''', '''  const idx=ambitoCom(), tutte=idx.flatMap(i=>PER_COM[i].filter(c=>c.o>0));
+  if (!tutte.length){ d3.select("#calCom").html('<p class="nota-el">Nessun comune corrisponde ai filtri scelti.</p>'); return; }
+  const anni=d3.range(''')
+sost('''d3.select("#partSotto").text(`All'ultima elezione, ${S.circ?"circoscrizione di "+S.circ:"tutta la regione"}. Tocca una riga per vederla sulla mappa.`);''', '''d3.select("#partSotto").text(`${cap(etEl())}, ${S.circ?"circoscrizione di "+S.circ:"tutta la regione"}${filtriAttivi()?", con i filtri scelti":""}. Tocca una riga per vederla sulla mappa.`);''')
+# mappa: lenti e legende seguono i filtri; i comuni esclusi restano in grigio
+sost('''{k:"cAnno",t:"Anno dell'ultima elezione"}''', '''{k:"cAnno",t:"Anno dell'elezione"}''')
+sost('''  let colore, leg="";
+  const ult=i=>EL(i);
+  if (S.lenteC==="cAnno"){''', '''  let colore, leg="";
+  const ult=i=>EL(i);
+  const esclusi=(S.circ?TUTTI.filter(i=>C[i].ci===S.circ):TUTTI).length-ambito.length;
+  const notaEsclusi = esclusi ? `<p class="nota-el">In grigio ${esclusi} ${esclusi===1?"comune escluso":"comuni esclusi"} dai filtri delle comunali.</p>` : "";
+  if (!ambito.length) return {colore:()=>ass, leg:`<h3>Nessun comune</h3><p class="nota-el">Nessun comune del territorio corrisponde ai filtri scelti.</p>`};
+  if (S.lenteC==="cAnno"){''')
+sost("leg=`<h3>Anno dell'ultima elezione</h3>${cont.map(", "leg=`<h3>Anno dell'elezione (${etElBreve()})</h3>${cont.map(")
+sost('''legendaScala("Affluenza all'ultima elezione comunale","#1a6098"''', '''legendaScala("Affluenza "+etEl(),"#1a6098"''')
+sost("leg=`<h3>Candidati sindaco all'ultima elezione</h3>", "leg=`<h3>Candidati sindaco ${etEl()}</h3>")
+sost("Presenti in <b>${pres.length}</b> comuni all'ultima elezione. Grigio: nessuna lista con questo nome.", "Presenti in <b>${pres.length}</b> comuni ${etEl()}. Grigio: nessuna lista con questo nome.")
+sost('''<p class="nota-el">Nessuna lista con questo nome all'ultima elezione nel territorio scelto.</p>''', '''<p class="nota-el">Nessuna lista con questo nome ${etEl()} nel territorio scelto.</p>''')
+sost('''  return {colore, leg};
+}
+function schedaComuneCom(i){
+  const c=EL(i), w=vincitore(c), a=affFin(c), rr=aggrega([i]);
+  return `<h4>${esc(C[i].n)}</h4><small>Ultima elezione: ${dataIt(c.d)}''', '''  return {colore, leg:leg+notaEsclusi};
+}
+function schedaComuneCom(i){
+  const c=EL(i); if (!c || !passaFiltri(i)) return `<h4>${esc(C[i].n)}</h4><small>${c?"Escluso dai filtri delle comunali":"Nessuna elezione comunale "+etEl()}</small>`;
+  const w=vincitore(c), a=affFin(c), rr=aggrega([i]);
+  return `<h4>${esc(C[i].n)}</h4><small>${cap(etElBreve())}: ${dataIt(c.d)}''')
+sost('const ambito = (S.circ ? TUTTI.filter(i=>C[i].ci===S.circ) : TUTTI).filter(i=>S.vista==="com"||!assente(i));', 'const ambito = (S.circ ? TUTTI.filter(i=>C[i].ci===S.circ) : TUTTI).filter(i=>S.vista==="com"?passaFiltri(i):!assente(i));')
+sost('  if (S.vista!=="com"){ const c0=colore; colore=i=>assente(i)?ass:c0(i); }', '  if (S.vista!=="com"){ const c0=colore; colore=i=>assente(i)?ass:c0(i); } else { const c0=colore; colore=i=>passaFiltri(i)?c0(i):ass; }')
+# scheda del comune: all'apertura di un comune si parte dall'elezione scelta nei filtri
+sost('if (S.com!==S.comPrec){ S.comPrec=S.com; S.consO=1;', 'if (S.com!==S.comPrec){ S.comPrec=S.com; S.consO=S.com!=null&&EL(S.com)?EL(S.com).o:1;')
+# indicatori del territorio: seguono i filtri, non il solo territorio
+sost('''function disegnaKpiCom(){
+  const idx=insieme(), box=d3.select("#kpiCom");''', '''function disegnaKpiCom(){
+  let idx=insieme(); const box=d3.select("#kpiCom");''')
+sost('''  } else {
+    const ult=idx.map(i=>EL(i)).filter(Boolean);
+    let el=0,vv=0;''', '''  } else {
+    idx=ambitoCom();
+    const ult=idx.map(i=>EL(i)).filter(Boolean);
+    let el=0,vv=0;''')
+sost('{et:"Elezioni comunali",v:nCons,f:x=>N(Math.round(x)),n:"le ultime tre di ogni comune"},', '{et:"Elezioni comunali",v:nCons,f:x=>N(Math.round(x)),n:"le ultime tre di ogni comune mostrato"},')
+sost('{et:"Ballottaggi",v:ball,f:x=>N(Math.round(x)),n:"nelle tre tornate"}', '{et:"Ballottaggi",v:ball,f:x=>N(Math.round(x)),n:"nelle tre tornate dei comuni mostrati"}')
+sost('d3.select("#tcConta").text(`${N(righe.length)} comuni.`);', 'd3.select("#tcConta").text(`${N(righe.length)} ${righe.length===1?"comune":"comuni"}.`);')
+assert 'S.tcAnno' not in app and 'S.cpPart' not in app and 'S.tcCerca' not in app and 'S.cpCerca' not in app
 script[-1] = app
 
 frammento = '<style>\n' + css + '\n</style>\n' + corpo.strip() + '\n' + ''.join(f'<script>{x}</script>\n' for x in script)

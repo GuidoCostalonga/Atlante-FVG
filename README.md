@@ -495,6 +495,16 @@ Due funzioni sono state aggiunte dall'Atlante al cruscotto (`scripts/prefliste.j
 «Preferenze di un candidato» un filtro per lista e un campo di ricerca per nome accanto all'elenco (con avviso quando nessun candidato corrisponde); nella «Classifica dei candidati consiglieri» un filtro per circoscrizione (posizioni e quote ricalcolate nella circoscrizione; se il territorio scelto in alto è già una circoscrizione o un comune il filtro lo segue e resta bloccato); la sezione «Le preferenze di una lista, comune per comune»
 (circoscrizione e lista a scelta: per ogni comune i voti alla lista, le preferenze a ciascun candidato e i totali di riga e di colonna, con
 scarico in CSV; per il 2013 e il 2008 solo i totali di circoscrizione, come pubblica la fonte).
+Nella vista «Comunali» i filtri sparsi nelle singole sezioni (anno, partito e ricerca nella tabella dei comuni; partito e ricerca nella
+classifica dei consiglieri) sono stati sostituiti da un solo pannello «Filtri delle comunali» (`scripts/filtricom.js`), subito sotto gli
+indicatori: elezione (ultima, penultima o terzultima di ogni comune, oppure un anno dal 2011 al 2026, con i soli comuni al voto quell'anno),
+partito nel nome di una lista, dimensione del comune (quattro fasce di elettori alle regionali 2023), esito (candidato unico, più
+candidati, ballottaggio, sindaco sostenuto da una lista di partito) e una ricerca per comune, sindaco o consigliere che agisce sulle
+tabelle. I filtri valgono insieme per la mappa (i comuni esclusi restano in grigio, con il conteggio in legenda), per gli indicatori, la
+sintesi, le liste di partito, il calendario, la classifica dei consiglieri e la tabella dei comuni; una riga di riepilogo dice quanti
+comuni restano e con quali scelte, e «Azzera i filtri» riporta tutto all'ultima elezione. Aprendo un comune, la scheda parte dall'elezione
+scelta nei filtri. Nella stessa revisione è stata corretta la regola di stile che nascondeva le sezioni delle regionali nella vista
+«Comunali»: un commento davanti al selettore `body[data-vista]` ne impediva la riscrittura su `#elezioni`, e le due viste comparivano sovrapposte.
 `prepara_elezioni.py` confina lo stile sotto `#elezioni`, lo porta alla tavolozza dell'Atlante (le variabili di base sono quelle di
 `pagine.css`), rinomina le classi che si scontrano con lo stile comune (`campo`, `nota`), toglie intestazione propria, tema scuro
 e scarico della pagina, e corregge i riferimenti al documento. Limite: una parola d'ordine breve resiste poco a un attacco a forza
