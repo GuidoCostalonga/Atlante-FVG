@@ -1234,7 +1234,7 @@ function apriDettaglio(id) {
     (fogliTesto.length ? `<p class="text-[11px] text-pietra-700 mt-3 mb-2">In altri ${fogliTesto.length} fogli il nome «${esc(c.n)}» compare nel testo: può indicare il comune ma anche una frazione, una via o un omonimo. Righe da verificare, escluse dai conteggi.</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 opacity-80">` + vociFogli(fogliTesto) + '</div>' : '') + `</div>`;
   const elez = [['el_r23', 'Regionali 2023'], ['el_e24', 'Europee 2024'], ['el_c22', 'Politiche 2022, Camera']].filter(([k]) => x[k]);
   if (elez.length) h += `<div class="rounded-xl border border-pietra-200 p-4"><div class="font-patriarcale font-bold text-sm text-primario-800 mb-2">Come ha votato ${esc(c.n)}</div><div class="grid grid-cols-1 md:grid-cols-3 gap-4">` +
-    elez.map(([k, t]) => `<div class="min-w-0"><div class="text-[11px] uppercase tracking-wider text-accento-700">${t}</div><div class="text-xs text-pietra-700 mb-1">Affluenza ${x[k].aff != null ? fmt1(x[k].aff) + '%' : 'n.d.'}</div>` + (x[k].top || []).map(([n, v]) => `<div class="flex justify-between gap-2 text-xs py-0.5 border-b border-pietra-100"><span class="min-w-0 truncate" title="${esc(n)}">${esc(titolo(n))}</span><span class="num shrink-0">${fmt1(v)}%</span></div>`).join('') +
+    elez.map(([k, t]) => `<div class="min-w-0"><div class="text-[11px] uppercase tracking-wider text-accento-700">${t}</div><div class="text-xs text-pietra-700 mb-1">Affluenza ${x[k].aff != null ? fmt1(x[k].aff) + '%' : 'n.d.'}</div>` + (x[k].top || []).map(([n, v]) => `<div class="flex justify-between gap-2 text-xs py-0.5 border-b border-pietra-100"><span class="min-w-0 truncate inline-flex items-center gap-1.5" title="${esc(n)}"><span class="w-2.5 h-2.5 rounded-sm shrink-0 border border-pietra-200" style="background:${coloreLista(n, 6)}" aria-hidden="true"></span>${esc(titolo(n))}</span><span class="num shrink-0">${fmt1(v)}%</span></div>`).join('') +
       (x[k].pres ? `<div class="text-[11px] text-pietra-700 mt-2">Presidente: ` + x[k].pres.slice(0, 2).map(([n, v]) => `${esc(titolo(n))} ${fmt1(v)}%`).join(' · ') + '</div>' : '') + '</div>').join('') +
     `</div><p class="text-[11px] text-pietra-700 mt-2">Percentuali sui voti validi alle liste. Fonti: Regione FVG (regionali), Ministero dell'interno, Eligendo (europee e politiche).</p></div>`;
   h += `<div class="border-l-4 border-accento-500 bg-accento-50 rounded-r-lg p-4 text-xs text-pietra-800 leading-relaxed"><div class="font-patriarcale font-bold text-sm text-accento-700 mb-1">Fonti</div>
@@ -2251,6 +2251,39 @@ const SEQ5 = ['#E1EDF7', '#9CC3E6', '#5B9BD5', '#1B6FB5', '#0B3359'];
 const DIV6 = ['#7E1317', '#C1292E', '#F2B5B5', '#B6D4EE', '#3F8BC9', '#0B3359'];
 const CAT = ['#155E9E', '#D8973C', '#2F7D4F', '#C1292E', '#7FB2DE', '#8A5313', '#52565E'];
 const NULLO = '#E6E0D4', NEUTRO = '#F4F1EA';
+// colori delle liste nelle mappe elettorali, vicini a quelli consueti dei partiti (riferimento: colori di Wikipedia in italiano,
+// Modulo:Partiti/Configurazione, letto l'8 ottobre 2026): rossi e rosa a sinistra, giallo per il Movimento 5 Stelle, arancione
+// tenue per le civiche di centrosinistra, azzurro chiaro per le civiche del centrodestra, blu scuro per Fratelli d'Italia,
+// verde per la Lega, azzurro per Forza Italia. Le liste non riconosciute prendono i colori neutri della tavolozza
+const COLORI_LISTE = [
+  [/FRATELLI D.ITALIA/i, '#0B3B6A'],
+  [/^LEGA\b/i, '#00A651'],
+  [/FORZA ITALIA/i, '#00A2E8'],
+  [/NOI MODERATI/i, '#DC6C2A'],
+  [/FEDRIGA PRESIDENTE/i, '#89BCF0'],
+  [/AUTONOMIA RESPONSABILE/i, '#BBD7F2'],
+  [/PARTITO DEMOCRATICO/i, '#FF4040'],
+  [/ALLEANZA VERDI E SINISTRA/i, '#D81B60'],
+  [/OPEN SINISTRA|SINISTRA/i, '#C2185B'],
+  [/MOVIMENTO 5 STELLE/i, '#FFEB3B'],
+  [/AZIONE.*ITALIA VIVA|ITALIA VIVA/i, '#D42894'],
+  [/STATI UNITI D.EUROPA/i, '#E57BB0'],
+  [/\+EUROPA/i, '#FFC317'],
+  [/^AZIONE\b/i, '#3F6FD1'],
+  [/PATTO PER L.AUTONOMIA/i, '#1A68A6'],
+  [/PACE TERRA DIGNIT/i, '#B41317'],
+  [/UNIONE POPOLARE/i, '#5B2482'],
+  [/ITALIA SOVRANA E POPOLARE/i, '#B04E4E'],
+  [/ITALEXIT/i, '#366A9F'],
+  [/^VITA\b/i, '#0058C8'],
+  [/^LIBERT/i, '#2D4895'],
+  [/SLOVENSKA SKUPNOST/i, '#FFA500'],
+  [/S.DTIROLER VOLKSPARTEI|\bSVP\b/i, '#8A8A8A'],
+  [/INSIEME LIBERI/i, '#8D6E63'],
+  [/CIVIC.*CENTRO.?DESTRA/i, '#89BCF0'],
+  [/CIVIC.*CENTRO.?SINISTRA/i, '#FFB280'],
+  [/CIVIC/i, '#DABAD0']];
+function coloreLista(nome, k = 0) { for (const [re, c] of COLORI_LISTE) if (re.test(nome)) return c; return CAT[k % CAT.length]; }
 const F_ANN = 'Annuario statistico regionale 2026', F_RFVG = 'banca dati «Regione FVG Dati» del 16 settembre 2026';
 // periodo di riferimento di ogni indicatore della mappa (dalle fonti indicate accanto)
 const PERIODO = { p25: '31 dicembre 2025', var: 'dal 31 dicembre 2024 al 31 dicembre 2025', dens: '31 dicembre 2025', etaMed: '1° gennaio 2026', vecch: '1° gennaio 2026', strPct: '1° gennaio 2026',
@@ -2301,11 +2334,11 @@ const IND_COM = [
   { g: 'Bilanci comunali 2023', id: 'invAb', t: 'Investimenti impegnati per abitante', u: 'euro', d: 0, f: i => X(i).invAb, fonte: 'Rendiconti 2023, dati aperti Regione FVG; popolazione ISTAT al 1° gennaio 2024', nota: 'Impegni del titolo 2 (spese in conto capitale): variano molto da un anno all\'altro con le singole opere.' },
   { g: 'Bilanci comunali 2023', id: 'tribAb', t: 'Entrate tributarie accertate per abitante', u: 'euro', d: 0, f: i => X(i).tribAb, fonte: 'Rendiconti 2023, dati aperti Regione FVG', nota: 'La Regione pubblica le entrate solo per 84 comuni, e per il 2023 solo per 77: gli altri sono in grigio.' },
   { g: 'Elezioni', id: 'affR23', t: 'Affluenza alle regionali 2023', u: '%', d: 2, f: i => (X(i).el_r23 || {}).aff, fonte: 'Dati aperti Regione FVG, elezioni regionali 2023' },
-  { g: 'Elezioni', id: 'primaR23', t: 'Lista più votata alle regionali 2023', cat: true, f: i => ((X(i).el_r23 || {}).top || [])[0]?.[0] ?? null, fonte: 'Dati aperti Regione FVG, elezioni regionali 2023' },
+  { g: 'Elezioni', id: 'primaR23', partiti: true, t: 'Lista più votata alle regionali 2023', cat: true, f: i => ((X(i).el_r23 || {}).top || [])[0]?.[0] ?? null, fonte: 'Dati aperti Regione FVG, elezioni regionali 2023' },
   { g: 'Elezioni', id: 'affE24', t: 'Affluenza alle europee 2024', u: '%', d: 2, f: i => (X(i).el_e24 || {}).aff, fonte: 'Ministero dell\'interno, Eligendo, europee 2024' },
-  { g: 'Elezioni', id: 'primaE24', t: 'Lista più votata alle europee 2024', cat: true, f: i => ((X(i).el_e24 || {}).top || [])[0]?.[0] ?? null, fonte: 'Ministero dell\'interno, Eligendo, europee 2024' },
+  { g: 'Elezioni', id: 'primaE24', partiti: true, t: 'Lista più votata alle europee 2024', cat: true, f: i => ((X(i).el_e24 || {}).top || [])[0]?.[0] ?? null, fonte: 'Ministero dell\'interno, Eligendo, europee 2024' },
   { g: 'Elezioni', id: 'affC22', t: 'Affluenza alle politiche 2022 (Camera)', u: '%', d: 2, f: i => (X(i).el_c22 || {}).aff, fonte: 'Ministero dell\'interno, Eligendo, Camera 2022' },
-  { g: 'Elezioni', id: 'primaC22', t: 'Lista più votata alle politiche 2022 (Camera)', cat: true, f: i => ((X(i).el_c22 || {}).top || [])[0]?.[0] ?? null, fonte: 'Ministero dell\'interno, Eligendo, Camera 2022' },
+  { g: 'Elezioni', id: 'primaC22', partiti: true, t: 'Lista più votata alle politiche 2022 (Camera)', cat: true, f: i => ((X(i).el_c22 || {}).top || [])[0]?.[0] ?? null, fonte: 'Ministero dell\'interno, Eligendo, Camera 2022' },
   { g: 'Amministrazione', id: 'el', t: 'Anno delle prossime elezioni comunali', cat: true, f: i => R(i).el, fonte: 'Anagrafe regionale degli amministratori locali' }
 ];
 // serie storica dei residenti: anno mostrato (annoA), anno di confronto (annoB), soglie della legenda fisse sui due anni
@@ -2336,7 +2369,8 @@ function serieCorrente() {
   const val = i => { const v = ind.f(i); return v === undefined || v === null || (typeof v === 'number' && !isFinite(v)) ? null : v; };
   if (ind.cat) {
     const cats = [...new Set(MAN.istat.map((_, i) => val(i)).filter(v => v !== null))].sort();
-    return { tipo: 'cat', ind, t: ind.t, val, cats, col: i => val(i) === null ? NULLO : CAT[cats.indexOf(val(i)) % CAT.length], lab: i => val(i) ?? 'n.d.' };
+    const colore = k => ind.partiti ? coloreLista(cats[k], k) : CAT[k % CAT.length];
+    return { tipo: 'cat', ind, t: ind.t, val, cats, colore, col: i => val(i) === null ? NULLO : colore(cats.indexOf(val(i))), lab: i => val(i) ?? 'n.d.' };
   }
   const vals = MAN.istat.map((_, i) => val(i)).filter(v => v !== null);
   // per la serie dei residenti con le soglie fisse, le classi si calcolano sui valori di tutti e due gli anni: così le mappe dei due anni si confrontano
@@ -2399,7 +2433,7 @@ function coloraMappa() {
   document.getElementById('legTitolo').textContent = s.t;
   let leg = '';
   if (s.tipo === 'cartina') leg = s.c.legend.map((l, k) => `<div class="flex items-center gap-2"><span class="w-4 h-3 rounded-sm border border-pietra-300 shrink-0" style="background:${coloreClasse(s.c, k)}"></span><span>${esc(l.label)}</span></div>`).join('');
-  else if (s.tipo === 'cat') leg = s.cats.map((v, k) => `<div class="flex items-center gap-2"><span class="w-4 h-3 rounded-sm shrink-0" style="background:${CAT[k % CAT.length]}"></span><span class="num">${esc(v)}</span></div>`).join('');
+  else if (s.tipo === 'cat') leg = s.cats.map((v, k) => `<div class="flex items-center gap-2"><span class="w-4 h-3 rounded-sm shrink-0 border border-pietra-200" style="background:${s.colore(k)}"></span><span class="num">${esc(v)}</span></div>`).join('');
   else {
     const mn = Math.min(...s.vals), mx = Math.max(...s.vals), lim = [mn, ...s.br, mx];
     if (s.zeri) lim[1] = Math.min(...s.vals.filter(v => v > 0));
