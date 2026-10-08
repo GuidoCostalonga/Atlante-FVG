@@ -27,6 +27,28 @@ corpo = corpo.replace('<footer>', '<section class="fonti-el riquadro" aria-label
 corpo = corpo.replace('class="campo campo-vista"', 'class="campo-el campo-vista"').replace('class="campo campo-cerca"', 'class="campo-el campo-cerca"').replace('class="campo"', 'class="campo-el"')
 corpo = corpo.replace('class="nota"', 'class="nota-el"')
 corpo = corpo.replace(' autocomplete="off"', ' autocomplete="off"')
+# lente «Preferenze di un candidato»: campo di ricerca per nome accanto al selettore
+corpo = corpo.replace('<div class="campo-el" id="lenteCand" hidden><label for="selCand">Candidato consigliere</label><select id="selCand"></select></div>',
+    '<div class="campo-el" id="lenteCand" hidden><label for="cercaCand">Candidato consigliere: cerca per nome o scegli dall\'elenco</label><div class="conf-sel"><input id="cercaCand" placeholder="Cognome o nome" autocomplete="off" aria-label="Cerca un candidato per nome"><select id="selCand" aria-label="Candidato consigliere"></select></div></div>')
+assert 'id="cercaCand"' in corpo
+# nuova sezione: le preferenze dei candidati di una lista, comune per comune, con i totali
+SEZ_PREF = '''    <!-- PREFERENZE DI UNA LISTA PER COMUNE -->
+    <section class="card solo-reg s12 ancora" id="sez-prefliste">
+      <h2>Le preferenze di una lista, comune per comune</h2>
+      <p class="sotto" id="plSotto">Scegli la circoscrizione e la lista: per ogni comune i voti alla lista e le preferenze a ciascun candidato, con i totali di riga e di colonna.</p>
+      <div class="strumenti">
+        <div class="campo-el"><label for="plCirc">Circoscrizione</label><select id="plCirc"></select></div>
+        <div class="campo-el"><label for="plLista">Lista</label><select id="plLista"></select></div>
+        <button class="bot" type="button" id="plCsv">Scarica in CSV</button>
+      </div>
+      <div class="tab-box" style="max-height:640px"><table class="matrice" id="tabPrefListe"></table></div>
+      <p class="nota-el" id="plNota"></p>
+    </section>
+
+'''
+corpo = corpo.replace('    <!-- COMUNALI -->', SEZ_PREF + '    <!-- COMUNALI -->')
+corpo = corpo.replace('<a class="solo-reg" href="#sez-comuni">Comuni</a>', '<a class="solo-reg" href="#sez-comuni">Comuni</a><a class="solo-reg" href="#sez-prefliste">Preferenze per comune</a>')
+assert 'id="sez-prefliste"' in corpo and '#sez-prefliste' in corpo
 assert 'class="campo"' not in corpo and '<footer' not in corpo
 
 # ---------------------------------------------------------------- CSS: confinato sotto #elezioni, colori e caratteri dell'Atlante
@@ -104,6 +126,12 @@ css += '''
 #elezioni .bot.pieno,#elezioni .lenti button[aria-pressed="true"],#elezioni .vista button[aria-pressed="true"],#elezioni .indice a.attivo{background:var(--blu);border-color:var(--blu);color:#fff}
 #elezioni .kpi .k:nth-child(3)::before{background:var(--oro)}
 #elezioni .ancora{scroll-margin-top:150px}
+#elezioni #cercaCand{min-width:200px}
+#elezioni #tabPrefListe th{white-space:normal;min-width:118px;vertical-align:bottom;line-height:1.25}
+#elezioni #tabPrefListe th:first-child,#elezioni #tabPrefListe td.nome{min-width:160px}
+#elezioni #tabPrefListe td.cel{text-align:right;font-variant-numeric:tabular-nums}
+#elezioni #tabPrefListe tr.totale td{font-weight:800;background:var(--superficie-2);position:sticky;bottom:0;z-index:1}
+#elezioni #tabPrefListe tr.totale td:first-child{z-index:2}
 '''
 
 # ---------------------------------------------------------------- JS: riferimenti al documento
@@ -117,6 +145,25 @@ sost('try{ const t=localStorage.getItem("tema-reg23"); if(t) document.documentEl
 sost('document.querySelector(".filtri").offsetTop-4', 'document.querySelector("#elezioni .filtri").offsetTop-70')
 app = app.replace('class="campo"', 'class="campo-el"').replace('class="nota"', 'class="nota-el"')
 assert 'class="campo"' not in app and 'class="nota"' not in app
+# stato aggiuntivo: circoscrizione e lista della tabella delle preferenze, ricerca del candidato
+sost('comPrec:null };', 'comPrec:null, plCirc:null, plLista:null, candCerca:"" };')
+# ricerca del candidato nella lente della mappa
+sost('''  const ks=K.filter(k=>!S.circ||k.ci===S.circ);
+  const gruppi=d3.groups(ks,k=>k.l)''', '''  const ks=K.filter(k=>(!S.circ||k.ci===S.circ) && (!S.candCerca || normCand(k.n).includes(S.candCerca)));
+  if (!ks.length){ s.selectAll("optgroup").remove(); return; }
+  const gruppi=d3.groups(ks,k=>k.l)''')
+sost('''d3.select("#selCand").on("change",function(){S.cand=+this.value;disegnaMappa();});''',
+     '''d3.select("#selCand").on("change",function(){S.cand=+this.value;disegnaMappa();});
+const normCand = s => String(s).toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"");
+d3.select("#cercaCand").on("input",function(){ S.candCerca=normCand(this.value.trim()); const ks=K.filter(k=>(!S.circ||k.ci===S.circ) && (!S.candCerca || normCand(k.n).includes(S.candCerca))); if (ks.length && !ks.find(k=>k.id===S.cand)) S.cand=ks.slice().sort((a,b)=>b.v-a.v)[0].id; disegnaMappa(); });''')
+sost('''  S.lista=fdi; S.tLista=fdi; S.pres=0; S.cand=null;''', '''  S.lista=fdi; S.tLista=fdi; S.pres=0; S.cand=null; S.plLista=null; S.candCerca=""; d3.select("#cercaCand").property("value","");''')
+sost('''disegnaMatrice(); disegnaComuni(); disegnaStoria();
+}''', '''disegnaMatrice(); disegnaComuni(); disegnaPrefListe(); disegnaStoria();
+}''')
+sost('''// ---------- aggiornamento generale
+function aggiorna(spostaMappa){''', open(__file__.replace('prepara_elezioni.py', 'prefliste.js'), encoding='utf-8').read() + '''
+// ---------- aggiornamento generale
+function aggiorna(spostaMappa){''')
 script[-1] = app
 
 frammento = '<style>\n' + css + '\n</style>\n' + corpo.strip() + '\n' + ''.join(f'<script>{x}</script>\n' for x in script)
