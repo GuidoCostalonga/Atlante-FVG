@@ -43,8 +43,8 @@ non si apre da sola.
 
 ## Il mio Comune, ricerca degli indicatori, confronto e link
 
-- **Il mio Comune.** Il pulsante con la stella (sotto il filtro territoriale, nella scheda del comune e nel riquadro della
-  pagina iniziale) salva il comune preferito in `localStorage` (chiave `atlante-fvg:mio-comune`, il nome del comune nell'indirizzo,
+- **Il mio Comune.** Nella pagina iniziale il filtro territoriale e «Il mio Comune» stanno in un solo blocco con un solo
+  selettore: il pulsante con la stella (sotto il filtro territoriale e nella scheda del comune) salva il comune preferito in `localStorage` (chiave `atlante-fvg:mio-comune`, il nome del comune nell'indirizzo,
   per esempio `porcia`): nessuna registrazione, nessun invio. Il riquadro della pagina iniziale mostra provincia, residenti al
   31 dicembre 2025 e i collegamenti a scheda, meteo (`meteo/#porcia`), autobus e confronto; si cambia con il selettore e si toglie
   con «Rimuovi». Il preferito non imposta mai il filtro territoriale: contano la scelta esplicita e i collegamenti con `?comune=`.
@@ -100,7 +100,7 @@ Prova: `node prove/serie.js`.
 
 ## Mappe e grafici esportabili
 
-- **Mappa dei comuni e delle regioni**: pulsanti «Immagine» con formato (documenti A4 orizzontale 2000×1414, presentazioni 16:9 1920×1080, social quadrato 1080×1080) e scarico in **PNG** o in **SVG**. Lo SVG (`svgMappaCompleta`) è un documento autonomo con titolo, sottotitolo (territorio, unità, periodo), mappa con i 215 comuni, legenda, fonte, marchio e data, testi veri e modificabili, logo incorporato; il PNG è composto da `esportaImmagine` con gli stessi elementi. Nessun comando dell'interfaccia finisce nell'immagine; i nomi dei file portano l'indicatore e, per la serie storica, gli anni.
+- **Mappa dei comuni e delle regioni**: menu «Scarica l'immagine» con formato (documenti A4 orizzontale 2000×1414, presentazioni 16:9 1920×1080, social quadrato 1080×1080) e scarico in **PNG** o in **SVG**. Lo SVG (`svgMappaCompleta`) è un documento autonomo con titolo, sottotitolo (territorio, unità, periodo), mappa con i 215 comuni, legenda, fonte, marchio e data, testi veri e modificabili, logo incorporato; il PNG è composto da `esportaImmagine` con gli stessi elementi. Nessun comando dell'interfaccia finisce nell'immagine; i nomi dei file portano l'indicatore e, per la serie storica, gli anni.
 - **Grafici della scheda del comune** (residenti, conti, opere per anno, presenze, raccolta differenziata): pulsante «Scarica PNG» sotto ogni grafico, con titolo, comune, periodo, fonte e marchio.
 - **Grafici del confronto**: vedi il paragrafo sul confronto avanzato.
 - La base cartografica dei confini è quella dell'Atlante (`dati/_mappe_0.txt`); le mappe stradali e satellitari delle pagine Stradario, Orari e Servizi hanno attribuzioni obbligatorie (OpenStreetMap, Esri) e non si esportano da qui.
@@ -181,8 +181,8 @@ licenze in uso sono IODL 2.0 e CC BY 4.0 (verificato sul catalogo regionale il 6
   Le tre azioni principali stanno sotto il riquadro blu; i numeri regionali sono cifre grandi, note e fonti a richiesta.
 - Filtro territoriale: barra compatta con il comune per primo; provincia secondaria (sul telefono dentro «Opzioni»);
   «Togli il filtro», «Azzera tutti i filtri» e «Condividi questa vista» raccolti in «Opzioni».
-- Pagina Mappe: indicatore e comune sulla stessa riga, mappa subito visibile, legenda sopra la mappa su desktop e
-  sotto sul telefono, scheda del comune selezionato con nome, valore, unità e posizione (sul telefono in un pannello
+- Pagina Mappe: indicatore e comune sulla stessa riga, mappa subito visibile, legenda a lato della mappa su desktop (sopra la mappa solo a schermo intero) e
+  sotto sul telefono, indicatore in un solo campo con ricerca ed elenco, scheda del comune selezionato con nome, valore, unità e posizione (sul telefono in un pannello
   dal basso), classifica compatta, servizi spenti all'avvio, istruzioni in «Come usare la mappa».
 - **Gesti sulle mappe** (comuni e regioni, autobus con le vie, allerte, aria), un solo modulo `collegaGesti` con
   Pointer Events: due dita ingrandiscono e riducono centrando sul punto medio e spostano la mappa, senza ingrandire la
@@ -443,3 +443,25 @@ duplicati. Le classi delle cartine sono state lette dall'immagine pubblicata.
 - Nei fogli senza colonna del comune il filtro cerca il nome del comune nel testo.
 
 Realizzato da Guido Costalonga.
+
+## Revisione dell'8 ottobre 2026: criticità di lettura su computer e telefono
+
+- **Confronto**: i sei selettori portano il testo breve «Comune 1…6»; i comandi (Azzera, Comuni di taglia simile) compaiono solo
+  dopo la scelta e le azioni secondarie stanno nel menu «Condividi e scarica» (link, condivisione, copia per Excel, CSV, Excel);
+  senza comuni resta un messaggio compatto al posto della tabella, senza altezza minima; se il filtro territoriale ha un comune,
+  l'avvio propone «X e i comuni di taglia simile».
+- **Pagina iniziale**: «Il mio Comune» e il filtro territoriale sono un solo blocco con un solo selettore; i servizi aggiornati
+  sono raggruppati per tema (Trasporti e strade, Meteo e ambiente, Risorse pubbliche, Territorio), ogni gruppo su una riga.
+- **Mappe**: legenda nella colonna a lato su desktop, così non copre il Tarvisiano; un solo campo «Indicatore» con ricerca ed elenco
+  a tendina (`#cercaInd` con ruolo combobox, `#listaInd`; il `select` nascosto resta il portatore dello stato); etichette allineate;
+  sul telefono il riquadro segue le proporzioni della regione (10/9) e i nomi dei capoluoghi sono più grandi; «Servizi sulla
+  mappa» con la descrizione sotto il titolo nelle colonne strette; esportazioni nel menu «Scarica l'immagine».
+- **Archivio**: righe su una sola riga (valori troncati con il testo completo al passaggio e nel dettaglio della riga), ombra sui
+  bordi e avviso «la tabella continua a destra» quando serve (classe `scorri-x`, usata anche nel confronto); la fonte è mostrata
+  con un nome leggibile (`descriviFonte`, titoli del portale dei dati aperti letti dal foglio `Catalogo_OpenData`); i nomi dei
+  fogli nell'elenco laterale vanno a capo.
+- **Autobus**: «Linee con più corse» spiega che il riquadro colorato è il numero della linea e mostra a destra le corse
+  programmate; sotto la mappa sono elencate le linee che proseguono fuori regione (`tpLineeFuori`, tracciato oltre il riquadro
+  delle fermate regionali).
+- **Filtro territoriale compatto** nelle pagine Metodo, Autobus e Allerte e aria: una riga con lo stato e il pulsante «Scegli un
+  comune» / «Cambia» che apre i campi (`FILTRO_COMPATTO`).
