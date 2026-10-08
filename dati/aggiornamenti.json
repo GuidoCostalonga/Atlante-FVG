@@ -1,8 +1,87 @@
 {
- "generato": "2026-10-07",
+ "generato": "2026-10-08",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-10-08",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i bandi e gli avvisi della Regione del 08/10/2026",
+   "descrizione": "Bandi: 119 voci (13 con misure contributive), 2 nuove e 0 tolte rispetto a prima.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Bandi e avvisi della Regione",
+     "misura": "voci",
+     "prima": 117,
+     "dopo": 119,
+     "differenza": 2,
+     "collegamento": "../bandi/"
+    }
+   ],
+   "commit": "c0b989a651"
+  },
+  {
+   "data": "2026-10-08",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Colora in giallo scuro il Patto per l'Autonomia nelle mappe elettorali",
+   "descrizione": "",
+   "interessa": [
+    {
+     "nome": "Mappe",
+     "collegamento": "../?pagina=mappe"
+    }
+   ],
+   "valori": [],
+   "commit": "ea957efa2d"
+  },
+  {
+   "data": "2026-10-08",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Colora le mappe elettorali con i colori consueti delle liste",
+   "descrizione": "Le mappe «Lista più votata» e l'elenco «Come ha votato» della scheda usano colori vicini a quelli dei partiti: blu scuro Fratelli d'Italia, verde Lega, azzurro Forza Italia, azzurro chiaro per le civiche del centrodestra, rosso e rosa a sinistra, giallo Movimento 5 Stelle, arancione tenue per le civiche del centrosinistra. Riferimento: modulo Partiti/Configurazione di Wikipedia in italiano.",
+   "interessa": [
+    {
+     "nome": "Mappe",
+     "collegamento": "../?pagina=mappe"
+    }
+   ],
+   "valori": [],
+   "commit": "9d121f6560"
+  },
+  {
+   "data": "2026-10-08",
+   "tipo": "correzione",
+   "automatico": false,
+   "titolo": "Risolve le criticità di lettura su computer e telefono",
+   "descrizione": "Confronto: selettori «Comune 1…6», comandi solo dopo la scelta con menu «Condividi e scarica», nessuno spazio vuoto senza comuni.\nPagina iniziale: «Il mio Comune» e filtro territoriale in un solo blocco; servizi aggiornati raggruppati per tema.\nMappe: legenda a lato su desktop, indicatore in un solo campo con ricerca, etichette allineate, riquadro proporzionato ed etichette più grandi sul telefono, esportazioni in un menu.\nArchivio: righe compatte, ombra di scorrimento, fonte con nome leggibile, elenco dei fogli su due righe.\nAutobus: corse accanto alle linee e linee che escono dalla regione in nota.\nFiltro territoriale compatto in Metodo, Autobus e Allerte e aria.",
+   "interessa": [
+    {
+     "nome": "Rete degli autobus",
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "valori": [],
+   "commit": "ca41747054"
+  },
+  {
+   "data": "2026-10-08",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiorna il registro degli aggiornamenti con i moduli della seconda fase",
+   "descrizione": "",
+   "interessa": [],
+   "valori": [],
+   "commit": "74ebb15692"
+  },
   {
    "data": "2026-10-08",
    "tipo": "dati",
