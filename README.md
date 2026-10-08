@@ -475,3 +475,23 @@ Democratico, rosa e cremisi per Alleanza Verdi e Sinistra e Open Sinistra, giall
 giallo scuro Patto per l'Autonomia, arancione tenue per le civiche del centrosinistra, arancione Slovenska Skupnost, grigio SVP. Riferimento: i codici del modulo
 «Partiti/Configurazione» di Wikipedia in italiano, letti l'8 ottobre 2026; le liste non riconosciute prendono i colori neutri della
 tavolozza `CAT`. L'indicatore «Anno delle prossime elezioni comunali» resta con la tavolozza neutra.
+
+## Sezione riservata «Elezioni regionali e comunali» (8 ottobre 2026)
+
+La pagina `elezioni/` ospita il cruscotto delle elezioni regionali (2008, 2013, 2018, 2023) e comunali nei 215 comuni, con
+intestazione, piè di pagina, colori e caratteri dell'Atlante. I contenuti non stanno in chiaro nel repository: il file
+`elezioni/contenuto.json` è il frammento HTML (stile, dati, codice) compresso con gzip e cifrato con AES-GCM a 256 bit; la chiave
+deriva dalla parola d'ordine con PBKDF2 (SHA-256, 300.000 giri, sale casuale). La pagina scarica il file, deriva la chiave nel
+browser con WebCrypto, decifra, decomprime e inserisce il frammento; la parola d'ordine non viene mai trasmessa. La chiave resta in
+`sessionStorage` (`atlante-fvg:elezioni-chiave`) finché la scheda è aperta; «Chiudi la sezione riservata» la cancella.
+La pagina è `noindex`, non è nella sitemap ed è raggiungibile dalla pagina iniziale (gruppo «Voto») e dal menu «Altro».
+
+Come aggiornare il contenuto (il file sorgente in chiaro non va mai pubblicato):
+```
+python3 -I scripts/prepara_elezioni.py <cruscotto.html> /tmp/frammento.html
+PAROLA='…' node scripts/cifra_pagina.js /tmp/frammento.html elezioni/contenuto.json
+```
+`prepara_elezioni.py` confina lo stile sotto `#elezioni`, lo porta alla tavolozza dell'Atlante (le variabili di base sono quelle di
+`pagine.css`), rinomina le classi che si scontrano con lo stile comune (`campo`, `nota`), toglie intestazione propria, tema scuro
+e scarico della pagina, e corregge i riferimenti al documento. Limite: una parola d'ordine breve resiste poco a un attacco a forza
+bruta condotto fuori dal browser; la protezione serve a tenere la sezione fuori dalla consultazione pubblica, non a custodire segreti.
