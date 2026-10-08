@@ -506,4 +506,5 @@ Su computer la barra in alto non elenca più le pagine: resta il pulsante «Men�
 «Vai a» (le sezioni della pagina principale), la riga «Altre pagine» (le pagine autonome: Orari, Meteo, Bandi, Opere, Finanziamenti,
 Servizi, Stradario, Catasto, Elezioni) e i temi. Nel tema «Amministrazione ed elezioni» la prima voce «Dati elezioni» porta alla
 sezione riservata `elezioni/` (voce di tipo `p`, collegamento a una pagina). Sul telefono la barra in basso (Inizio, Mappe, Confronto,
-Comuni, Altro) resta com'era.
+Comuni, Altro) resta com'era. Anche le pagine autonome (Orari, Meteo, Bandi, Opere, Finanziamenti, Servizi, Stradario, Cosa è cambiato,
+Elezioni) hanno in alto solo il marchio e il pulsante «Menù», con l'elenco completo delle pagine su due colonne; Catasto non aveva una barra.
