@@ -47,6 +47,9 @@ SEZ_PREF = '''    <!-- PREFERENZE DI UNA LISTA PER COMUNE -->
 
 '''
 corpo = corpo.replace('    <!-- COMUNALI -->', SEZ_PREF + '    <!-- COMUNALI -->')
+corpo = corpo.replace('<div class="strumenti">\n        <div class="campo-el"><label for="cLista">Lista</label><select id="cLista"></select></div>',
+    '<div class="strumenti">\n        <div class="campo-el"><label for="cCirc">Circoscrizione</label><select id="cCirc"></select></div>\n        <div class="campo-el"><label for="cLista">Lista</label><select id="cLista"></select></div>')
+assert 'id="cCirc"' in corpo
 corpo = corpo.replace('<a class="solo-reg" href="#sez-comuni">Comuni</a>', '<a class="solo-reg" href="#sez-comuni">Comuni</a><a class="solo-reg" href="#sez-prefliste">Preferenze per comune</a>')
 assert 'id="sez-prefliste"' in corpo and '#sez-prefliste' in corpo
 assert 'class="campo"' not in corpo and '<footer' not in corpo
@@ -147,7 +150,7 @@ sost('document.querySelector(".filtri").offsetTop-4', 'document.querySelector("#
 app = app.replace('class="campo"', 'class="campo-el"').replace('class="nota"', 'class="nota-el"')
 assert 'class="campo"' not in app and 'class="nota"' not in app
 # stato aggiuntivo: circoscrizione e lista della tabella delle preferenze, ricerca del candidato
-sost('comPrec:null };', 'comPrec:null, plCirc:null, plLista:null, candCerca:"", candLista:"" };')
+sost('comPrec:null };', 'comPrec:null, plCirc:null, plLista:null, candCerca:"", candLista:"", cCirc:"" };')
 # ricerca del candidato nella lente della mappa
 sost('''  const ks=K.filter(k=>!S.circ||k.ci===S.circ);
   const gruppi=d3.groups(ks,k=>k.l)''', '''  // filtro per lista: le liste presenti nel territorio scelto, in ordine di voti
@@ -165,6 +168,22 @@ const candFiltrati = () => K.filter(k=>(!S.circ||k.ci===S.circ) && (S.candLista=
 const scegliPrimoCand = () => { const ks=candFiltrati(); if (ks.length && !ks.find(k=>k.id===S.cand)) S.cand=ks.slice().sort((a,b)=>b.v-a.v)[0].id; };
 d3.select("#cercaCand").on("input",function(){ S.candCerca=normCand(this.value.trim()); scegliPrimoCand(); disegnaMappa(); });
 d3.select("#listaCand").on("change",function(){ S.candLista=this.value; scegliPrimoCand(); disegnaMappa(); });''')
+sost('''d3.select("#cGen").on("change",function(){S.cGen=this.value;S.cMostra=50;disegnaCandidati();});''',
+     '''d3.select("#cGen").on("change",function(){S.cGen=this.value;S.cMostra=50;disegnaCandidati();});
+d3.select("#cCirc").selectAll("option").data([""].concat(CIRC)).join("option").attr("value",d=>d).text(d=>d===""?"Tutte le circoscrizioni":"Circoscrizione di "+d);
+d3.select("#cCirc").on("change",function(){S.cCirc=this.value;S.cMostra=50;disegnaCandidati();});''')
+sost('''  const idx=insieme();
+  const totLista={};
+  let righe=K.map(k=>({k,v:prefIn(k,idx)})).filter(r=>r.v!=null);''',
+     '''  // filtro per circoscrizione della classifica: se il territorio scelto in alto è già una circoscrizione (o un comune), vale quello
+  const circTerr = S.com!=null ? C[S.com].ci : S.circ;
+  const sc=d3.select("#cCirc"); sc.property("value",circTerr||S.cCirc).property("disabled",!!circTerr);
+  const circClass = circTerr || S.cCirc;
+  const idx = circClass && !circTerr ? TUTTI.filter(i=>C[i].ci===circClass && !assente(i)) : insieme();
+  const totLista={};
+  let righe=K.map(k=>({k,v:prefIn(k,idx)})).filter(r=>r.v!=null && (!circClass || r.k.ci===circClass));''')
+sost('''d3.select("#candSotto").text((D.prefNota?D.prefNota+" ":"")+"Preferenze in "+terrPref()+".''',
+     '''d3.select("#candSotto").text((D.prefNota?D.prefNota+" ":"")+"Preferenze in "+(circClass && !circTerr ? "circoscrizione di "+circClass : terrPref())+".''')
 sost('''  S.lista=fdi; S.tLista=fdi; S.pres=0; S.cand=null;''', '''  S.lista=fdi; S.tLista=fdi; S.pres=0; S.cand=null; S.plLista=null; S.candCerca=""; S.candLista=""; d3.select("#cercaCand").property("value","");''')
 sost('''disegnaMatrice(); disegnaComuni(); disegnaStoria();
 }''', '''disegnaMatrice(); disegnaComuni(); disegnaPrefListe(); disegnaStoria();
