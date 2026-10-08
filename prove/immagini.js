@@ -11,7 +11,9 @@ let fall = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALLITA ') + m)
   await p.route('https://atlante.prova/**', r => { let fp = SITE + decodeURIComponent(new URL(r.request().url()).pathname); if (fp.endsWith('/')) fp += 'index.html'; return fs.existsSync(fp) ? r.fulfill({ status: 200, body: fs.readFileSync(fp), contentType: TIPI[path.extname(fp)] || 'text/plain' }) : r.fulfill({ status: 404, body: 'no' }); });
   await p.route(/goatcounter|gc\.zgo\.at/, r => r.abort());
   await p.goto('https://atlante.prova/?pagina=mappe&indicatore=red24&comune=roveredo-in-piano', { waitUntil: 'networkidle', timeout: 90000 }); await p.waitForTimeout(2500);
-  const scarica = async (sel) => { const [dl] = await Promise.all([p.waitForEvent('download', { timeout: 30000 }), p.locator(sel).click()]); return [dl.suggestedFilename(), await dl.path()]; };
+  // le esportazioni della mappa stanno nel menu «Scarica l'immagine», che va aperto prima
+  const apriMenu = () => p.evaluate(() => { document.getElementById('menuImmagine').open = true; });
+  const scarica = async (sel) => { if (/Mappa/.test(sel)) await apriMenu(); const [dl] = await Promise.all([p.waitForEvent('download', { timeout: 30000 }), p.locator(sel).click()]); return [dl.suggestedFilename(), await dl.path()]; };
   let [nome, fp] = await scarica('#btnMappaSvg');
   const svg = fs.readFileSync(fp, 'utf8');
   ok(/^mappa-.*\.svg$/.test(nome) && svg.startsWith('<svg xmlns="http://www.w3.org/2000/svg"'), 'SVG della mappa: ' + nome);
@@ -20,7 +22,7 @@ let fall = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALLITA ') + m)
   ok(/<image href="data:image\/webp/.test(svg), 'logo incorporato nello SVG');
   fs.writeFileSync(out + '/mappa-export.svg', svg);
   for (const f of ['documento', 'presentazione', 'social']) {
-    await p.locator('#mappaPngFormato').selectOption(f); [nome, fp] = await scarica('#btnMappaPng');
+    await apriMenu(); await p.locator('#mappaPngFormato').selectOption(f); [nome, fp] = await scarica('#btnMappaPng');
     const dim = fs.statSync(fp).size; ok(nome.endsWith(`-${f}.png`) && dim > 80000, `PNG della mappa ${f}: ${nome} ${dim} byte`);
     fs.copyFileSync(fp, `${out}/mappa-export-${f}.png`);
   }

@@ -22,13 +22,17 @@ const A = BASE || 'https://atlante.prova/';
   }
   const vai = async (p, q, w = 1500) => { await p.goto(A + q, { waitUntil: 'networkidle', timeout: 90000 }); await p.waitForTimeout(w); };
   const sel = (p, idx) => p.evaluate(i => cfScelti.filter(x => x >= 0).map(x => NOME_COM[x]), 0);
+  // Il mio Comune si salva scegliendo il comune nel filtro e premendo la stella (un solo selettore nel blocco)
+  // nel confronto le azioni secondarie stanno nel menu «Condividi e scarica», che va aperto prima
+  const apriMenuCf = p => p.evaluate(() => { document.querySelector('#cfAzioni details.menu-azioni').open = true; });
+  const salvaMio = async (p, nome) => { await p.evaluate(() => { const m = document.getElementById('modale'); if (m && getComputedStyle(m).display !== 'none') document.getElementById('btnChiudiX').click(); impostaTerritorio('', -1); }); await p.waitForTimeout(300); await p.locator('#gCom').selectOption({ label: nome }); await p.waitForTimeout(400); await p.locator('#mioFiltro .mioToggle').click(); await p.waitForTimeout(500); await p.evaluate(() => impostaTerritorio('', -1)); await p.waitForTimeout(200); };
   for (const [w, h, mob] of [[1440, 900, false], [390, 844, true]]) {
     console.log(`\n=========== ${w} px ===========`);
     let p = await nuova(w, h, mob);
     // ---- 1. IL MIO COMUNE
     await vai(p, '');
     ok(await p.locator('#mioComune').isVisible() && /Scegli il tuo comune/.test(await p.locator('#mioComune').innerText()), 'homepage: riquadro «Il mio Comune» vuoto con invito');
-    await p.locator('#mioSel').selectOption({ label: 'Porcia (PN)' }); await p.waitForTimeout(500);
+    await salvaMio(p, 'Porcia (PN)');
     let t = await p.locator('#mioCorpo').innerText();
     ok(/Porcia/.test(t) && /Provincia di Pordenone/.test(t) && /\d[\d.]* residenti al 31 dicembre 2025/.test(t), 'salvato Porcia: ' + t.replace(/\n/g, ' · ').slice(0, 110));
     ok(await p.evaluate(() => localStorage.getItem('atlante-fvg:mio-comune')) === 'porcia', 'localStorage: porcia');
@@ -37,8 +41,8 @@ const A = BASE || 'https://atlante.prova/';
     ok(await p.locator('#btnMioScheda').getAttribute('aria-pressed') === 'true', 'nella scheda il pulsante è attivo');
     await p.locator('#btnChiudiX').click(); await p.waitForTimeout(300);
     await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(1200); ok(/Porcia/.test(await p.locator('#mioCorpo').innerText()), 'dopo il ricaricamento resta Porcia');
-    ok(await p.evaluate(() => terr.com) === -1, 'il preferito non imposta il filtro territoriale');
-    await p.locator('#mioSel').selectOption({ label: 'Udine (UD)' }); await p.waitForTimeout(400); ok(/Udine/.test(await p.locator('#mioCorpo').innerText()) && await p.evaluate(() => localStorage.getItem('atlante-fvg:mio-comune')) === 'udine', 'cambiato in Udine');
+    ok(await p.locator('#mioRimuovi').isVisible() && await p.evaluate(() => terr.com) === -1, 'il blocco mostra «Rimuovi» e il filtro territoriale può restare vuoto');
+    await salvaMio(p, 'Udine (UD)'); ok(/Udine/.test(await p.locator('#mioCorpo').innerText()) && await p.evaluate(() => localStorage.getItem('atlante-fvg:mio-comune')) === 'udine', 'cambiato in Udine');
     // selezione esplicita da link: non viene sovrascritta
     await vai(p, '?comune=gorizia'); ok(await p.evaluate(() => NOME_COM[terr.com]) === 'Gorizia' && /Udine/.test(await p.locator('#mioCorpo').innerText()), 'il link ?comune=gorizia vince: filtro Gorizia, preferito Udine intatto');
     // stella nel filtro
@@ -47,9 +51,9 @@ const A = BASE || 'https://atlante.prova/';
     await tg.click(); await p.waitForTimeout(400); ok(/Tarvisio/.test(await p.locator('#mioCorpo').innerText()) && await p.locator('#mioFiltro .mioToggle').getAttribute('aria-pressed') === 'true', 'salvato Tarvisio dal filtro');
     await p.locator('#mioFiltro .mioToggle').click(); await p.waitForTimeout(400); ok(await p.evaluate(() => localStorage.getItem('atlante-fvg:mio-comune')) === null && /Scegli il tuo comune/.test(await p.locator('#mioComune').innerText()), 'rimosso dal filtro');
     // rimuovi dal riquadro
-    await p.locator('#mioSel').selectOption({ label: 'Cordenons (PN)' }); await p.waitForTimeout(300); await p.locator('#mioRimuovi').click(); await p.waitForTimeout(300);
+    await salvaMio(p, 'Cordenons (PN)'); await p.locator('#mioRimuovi').click(); await p.waitForTimeout(300);
     ok(await p.evaluate(() => localStorage.getItem('atlante-fvg:mio-comune')) === null, 'rimosso con «Rimuovi»');
-    await p.locator('#mioSel').selectOption({ label: 'Porcia (PN)' }); await p.waitForTimeout(300);
+    await salvaMio(p, 'Porcia (PN)');
     // nuova sessione: il preferito non c'è (storage separato), il sito funziona
     // ---- 2. RICERCA INDICATORI
     await vai(p, '?pagina=mappe', 2500);
@@ -60,11 +64,13 @@ const A = BASE || 'https://atlante.prova/';
     await p.locator('#cercaInd').fill('rischio'); await p.waitForTimeout(300); const gr = await p.locator('#selIndicatore optgroup').evaluateAll(o => o.map(x => x.label)); ok(gr.length >= 1 && gr.every(x => /ischio|Annuario/i.test(x) || true), 'ricerca per argomento «rischio»: gruppi ' + gr.join(', '));
     ok(/indicator\w+ trovat/.test(await p.locator('#statoInd').innerText()), 'conteggio annunciato: ' + (await p.locator('#statoInd').innerText()).slice(0, 70));
     await p.locator('#cercaInd').fill('zzzz'); await p.waitForTimeout(300); ok(/Nessun indicatore trovato per «zzzz»/.test(await p.locator('#statoInd').innerText()) && await p.locator('.cancellaIndTesto').isVisible(), 'nessun risultato: messaggio e comando di cancellazione');
-    await p.locator('.cancellaIndTesto').click(); await p.waitForTimeout(300); ok(await p.locator('#cercaInd').inputValue() === '' && await p.locator('#selIndicatore option').count() === tutti && await p.locator('#statoInd').isHidden(), 'cancellata la ricerca: elenco completo (' + tutti + ' voci, ' + gr0 + ' gruppi)');
-    await p.locator('#cercaInd').fill('reddit'); await p.waitForTimeout(200); ok(await p.locator('#cancellaInd').isVisible(), 'pulsante × visibile con testo'); await p.locator('#cancellaInd').click(); ok(await p.locator('#cercaInd').inputValue() === '', '× svuota il campo');
+    await p.locator('.cancellaIndTesto').click(); await p.waitForTimeout(300); ok(/Residenti/.test(await p.locator('#cercaInd').inputValue()) && await p.locator('#selIndicatore option').count() === tutti && await p.locator('#statoInd').isHidden(), 'cancellata la ricerca: elenco completo (' + tutti + ' voci, ' + gr0 + ' gruppi), il campo mostra di nuovo l\'indicatore in mappa');
+    await p.locator('#cercaInd').fill('reddit'); await p.waitForTimeout(200); ok(await p.locator('#cancellaInd').isVisible(), 'pulsante × visibile con testo'); await p.locator('#cancellaInd').click(); await p.waitForTimeout(200); ok(/Residenti/.test(await p.locator('#cercaInd').inputValue()) && await p.locator('#cancellaInd').isHidden(), '× annulla la ricerca e torna all\'indicatore in mappa');
     await p.locator('#cercaInd').fill('densita'); await p.keyboard.press('Enter'); await p.waitForTimeout(800); ok(await p.evaluate(() => indCorr) === 'dens' && /indicatore=dens/.test(p.url()), 'Invio apre il primo risultato: indicatore=' + await p.evaluate(() => indCorr));
-    await p.keyboard.press('Escape'); await p.waitForTimeout(200); ok(await p.locator('#cercaInd').inputValue() === '', 'Esc cancella la ricerca');
-    ok(await p.evaluate(() => document.querySelector('label[for="cercaInd"]').textContent) !== '' && await p.locator('#statoInd').getAttribute('role') === 'status' && (await p.locator('#cercaInd').getAttribute('aria-controls')) === 'selIndicatore', 'accessibilità: etichetta, annuncio di stato, aria-controls');
+    await p.keyboard.press('Escape'); await p.waitForTimeout(200); ok(/Densit/.test(await p.locator('#cercaInd').inputValue()) && await p.locator('#listaInd').isHidden(), 'Esc chiude l\'elenco e il campo mostra l\'indicatore scelto');
+    await p.locator('#cercaInd').click(); await p.waitForTimeout(300); ok(await p.locator('#listaInd').isVisible() && await p.locator('#listaInd [role="option"]').count() === tutti, 'al tocco del campo si apre l\'elenco completo (' + await p.locator('#listaInd [role="option"]').count() + ' voci)');
+    await p.keyboard.press('ArrowDown'); await p.keyboard.press('ArrowDown'); await p.keyboard.press('Enter'); await p.waitForTimeout(600); ok(await p.locator('#listaInd').isHidden() && await p.evaluate(() => indCorr) !== 'dens', 'frecce e Invio scelgono una voce: indicatore=' + await p.evaluate(() => indCorr));
+    ok(await p.evaluate(() => document.querySelector('label[for="cercaInd"]').textContent) !== '' && await p.locator('#statoInd').getAttribute('role') === 'status' && (await p.locator('#cercaInd').getAttribute('aria-controls')) === 'listaInd' && (await p.locator('#cercaInd').getAttribute('role')) === 'combobox', 'accessibilità: etichetta, annuncio di stato, combobox con aria-controls');
     // ---- 3. CONFRONTO
     await vai(p, '?pagina=confronto', 800); await p.evaluate(() => { try { sessionStorage.clear(); } catch (e) {} });
     await vai(p, '?pagina=confronto', 800);
@@ -74,7 +80,7 @@ const A = BASE || 'https://atlante.prova/';
     await p.locator('#btnCfEsempio').click(); await p.waitForTimeout(500); ok((await p.evaluate(() => cfScelti.filter(i => i >= 0).map(i => NOME_COM[i]))).join(',') === 'Roveredo in Piano,Porcia,Cordenons,San Quirino' && await p.locator('#cfAvvio').isHidden(), 'esempio: Roveredo in Piano, Porcia, Cordenons, San Quirino (selettori compilati: ' + (await p.locator('#cfSel select').evaluateAll(s => s.map(x => x.selectedOptions[0].text.split(' (')[0]).filter(x => !/Scegli/.test(x)))).join(', ') + ')');
     ok(await p.locator('#cfTesta th').evaluateAll(l => l.filter(x => !/^Media/i.test(x.textContent.trim())).length) === 5, 'tabella con 4 comuni');
     await p.locator('#btnCfAzzera').click(); await p.waitForTimeout(400); ok((await p.evaluate(() => cfScelti.filter(i => i >= 0).length)) === 0 && await p.locator('#cfAvvio').isVisible() && await p.locator('#btnCfAzzera').isDisabled() && !/confronta=/.test(p.url()), 'Azzera confronto: vuoto, avvio rapido di nuovo visibile, link senza comuni');
-    await p.locator('#mioSel').count(); await p.evaluate(() => { localStorage.setItem('atlante-fvg:mio-comune', 'sacile'); mioComune = leggiMio(); aggiornaMioUI(); }); await p.waitForTimeout(300);
+    await p.evaluate(() => { localStorage.setItem('atlante-fvg:mio-comune', 'sacile'); mioComune = leggiMio(); aggiornaMioUI(); }); await p.waitForTimeout(300);
     ok(await p.locator('#btnCfMio').isVisible(), 'con il preferito compare «Confronta il mio Comune»');
     await p.locator('#btnCfMio').click(); await p.waitForTimeout(500); const cm = await p.evaluate(() => cfScelti.filter(i => i >= 0).map(i => NOME_COM[i])); ok(cm[0] === 'Sacile' && cm.length === 4, 'confronto del mio Comune: ' + cm.join(', '));
     // conserva passando ad altra sezione e tornando
@@ -86,7 +92,7 @@ const A = BASE || 'https://atlante.prova/';
     ok(/pagina=mappe/.test(cb) && /indicatore=dens/.test(cb) && /comune=aviano/.test(cb) && /Link copiato/.test(await p.locator('#toast').innerText()), 'Copia link (mappe): ' + cb.split('?')[1] + ' · toast «' + (await p.locator('#toast').innerText()).trim() + '»');
     const p2 = await nuova(w, h, mob); await p2.goto(cb.replace(/^https?:\/\/[^/]+\//, A), { waitUntil: 'networkidle' }); await p2.waitForTimeout(2500);
     ok(await p2.evaluate(() => indCorr) === 'dens' && await p2.evaluate(() => NOME_COM[terr.com]) === 'Aviano' && await p2.evaluate(() => paginaCorrente) === 'mappe' && await p2.locator('#selIndicatore').inputValue() === 'dens', 'nuova sessione: aperti pagina, indicatore e comune del link'); ok(p2.errs.length === 0, 'nessun errore ' + JSON.stringify(p2.errs)); await p2.ctx.close();
-    await vai(p, '?pagina=confronto&confronta=udine,pordenone,trieste', 800); await p.locator('.copiaLink[data-ctx="confronto"]').click(); await p.waitForTimeout(400); cb = await p.evaluate(() => navigator.clipboard.readText()); ok(/confronta=udine(%2C|,)pordenone(%2C|,)trieste/.test(cb), 'Copia link (confronto): ' + cb.split('?')[1]);
+    await vai(p, '?pagina=confronto&confronta=udine,pordenone,trieste', 800); await apriMenuCf(p); await p.locator('.copiaLink[data-ctx="confronto"]').click(); await p.waitForTimeout(400); cb = await p.evaluate(() => navigator.clipboard.readText()); ok(/confronta=udine(%2C|,)pordenone(%2C|,)trieste/.test(cb), 'Copia link (confronto): ' + cb.split('?')[1]);
     const p3 = await nuova(w, h, mob); await p3.goto(cb.replace(/^https?:\/\/[^/]+\//, A), { waitUntil: 'networkidle' }); await p3.waitForTimeout(1200); ok((await p3.evaluate(() => cfScelti.filter(i => i >= 0).map(i => NOME_COM[i]))).join(',') === 'Udine,Pordenone,Trieste', 'nuova sessione: confronto ripristinato'); await p3.ctx.close();
     // parametri non validi
     const p4 = await nuova(w, h, mob); await p4.goto(A + '?pagina=nonesiste&comune=zz&provincia=XX&indicatore=%3Cb%3E&livello=boh&confronta=a,b,,c&mostra=x&voto=1&ordina=;;', { waitUntil: 'networkidle' }); await p4.waitForTimeout(2500);
@@ -99,11 +105,11 @@ const A = BASE || 'https://atlante.prova/';
     await p.locator('#linkManualeChiudi').click();
     ok(await p.locator('.condividiLink[data-ctx="mappa"]').isHidden(), 'senza condivisione di sistema il pulsante «Condividi» è nascosto');
     const ps = await nuova(w, h, mob, { init: "navigator.share = async d => { window.__cond = d; };" }); await ps.goto(A + '?pagina=confronto&confronta=udine,gorizia', { waitUntil: 'networkidle' }); await ps.waitForTimeout(1000);
-    ok(await ps.locator('.condividiLink[data-ctx="confronto"]').isVisible(), 'con la condivisione di sistema compare «Condividi»'); await ps.locator('.condividiLink[data-ctx="confronto"]').click(); await ps.waitForTimeout(300); ok(/confronta=udine/.test((await ps.evaluate(() => window.__cond)).url), 'Condividi passa il link al sistema'); await ps.ctx.close();
+    await apriMenuCf(ps); ok(await ps.locator('.condividiLink[data-ctx="confronto"]').isVisible(), 'con la condivisione di sistema compare «Condividi»'); await ps.locator('.condividiLink[data-ctx="confronto"]').click(); await ps.waitForTimeout(300); ok(/confronta=udine/.test((await ps.evaluate(() => window.__cond)).url), 'Condividi passa il link al sistema'); await ps.ctx.close();
     // ---- 5. INDIETRO E AVANTI
     const pn = await nuova(w, h, mob); await pn.goto(A, { waitUntil: 'networkidle' }); await pn.waitForTimeout(1500);
     await pn.evaluate(() => vaiPagina('mappe')); await pn.waitForTimeout(2500);
-    await pn.locator('#selIndicatore').selectOption('dens'); await pn.waitForTimeout(500);
+    await pn.locator('#cercaInd').fill('densit'); await pn.keyboard.press('Enter'); await pn.waitForTimeout(500);
     await pn.evaluate(() => impostaTerritorio('PN', MAN.istat.findIndex((_, i) => NOME_COM[i] === 'Aviano'))); await pn.waitForTimeout(500);
     await pn.evaluate(() => vaiPagina('confronto')); await pn.waitForTimeout(400);
     await pn.evaluate(() => compilaConfronto(['udine', 'pordenone', 'trieste', 'gorizia'].map(s => SLUG_COM.indexOf(s)))); await pn.waitForTimeout(500);
@@ -120,9 +126,9 @@ const A = BASE || 'https://atlante.prova/';
     // ---- 6. senza localStorage
     const pb = await nuova(w, h, mob, { init: "Object.defineProperty(window, 'localStorage', { get() { throw new Error('bloccato'); } }); Object.defineProperty(window, 'sessionStorage', { get() { throw new Error('bloccato'); } });" });
     await pb.goto(A, { waitUntil: 'networkidle' }); await pb.waitForTimeout(1500); ok(pb.errs.length === 0 && await pb.locator('#mioComune').isVisible(), 'senza memoria: il sito parte e mostra «Il mio Comune»');
-    await pb.locator('#mioSel').selectOption({ label: 'Porcia (PN)' }); await pb.waitForTimeout(500);
+    await salvaMio(pb, 'Porcia (PN)');
     ok(/Porcia/.test(await pb.locator('#mioCorpo').innerText()) && /solo finché la pagina resta aperta/.test(await pb.locator('#toast').innerText()), 'senza memoria: il comune vale per la sessione e l\'avviso lo dice');
-    await pb.evaluate(() => vaiPagina('confronto')); await pb.waitForTimeout(300); await pb.locator('#btnCfEsempio').click(); await pb.waitForTimeout(400); ok((await pb.evaluate(() => cfScelti.filter(i => i >= 0).length)) === 4, 'senza memoria: il confronto funziona');
+    await pb.evaluate(() => { vaiPagina('confronto'); compilaConfronto([]); }); await pb.waitForTimeout(300); await pb.locator('#btnCfEsempio').click(); await pb.waitForTimeout(400); ok((await pb.evaluate(() => cfScelti.filter(i => i >= 0).length)) === 4, 'senza memoria: il confronto funziona');
     ok(pb.errs.length === 0, 'senza memoria: nessun errore ' + JSON.stringify(pb.errs)); await pb.ctx.close();
     console.log('    errori pagina principale', p.errs); await p.ctx.close();
   }

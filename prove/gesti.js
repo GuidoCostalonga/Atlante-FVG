@@ -39,7 +39,8 @@ const ok = (cond, msg) => { console.log((cond ? 'OK   ' : 'FALLITA ') + msg); if
   // la mappa in vista
   await p.evaluate(() => document.getElementById('svgMappa').scrollIntoView({ block: 'center' })); await p.waitForTimeout(300);
   const bb = await p.locator('#svgMappa').boundingBox();
-  const cx = bb.x + bb.width * 0.55, cy = bb.y + bb.height * 0.5;
+  // il punto medio sta un po' a sinistra del centro, così con le dita larghe non si tocca la colonna dei pulsanti di ingrandimento
+  const cx = bb.x + bb.width * 0.45, cy = bb.y + bb.height * 0.5;
   // 1. pizzico per ingrandire, centrato sul punto medio
   let s0 = await stato('#svgMappa'); const sotto0 = await puntoMappa('#svgMappa', cx, cy);
   await pizzico(cx, cy, 60, 220);

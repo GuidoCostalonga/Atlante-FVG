@@ -45,6 +45,7 @@ let fall = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALLITA ') + m)
     const [dl] = await Promise.all([p.waitForEvent('download', { timeout: 20000 }), p.locator('#btnCfPng').click()]);
     const fp = await dl.path(); ok(/confronto-.*-documento\.png$/.test(dl.suggestedFilename()) && fs.statSync(fp).size > 50000, 'PNG dei grafici scaricato: ' + dl.suggestedFilename() + ' ' + fs.statSync(fp).size + ' byte');
     if (!mob) fs.copyFileSync(fp, (process.env.S || '/tmp') + '/shotO/confronto-export.png');
+    await p.evaluate(() => { document.querySelector('#cfAzioni details.menu-azioni').open = true; });
     const [dl2] = await Promise.all([p.waitForEvent('download', { timeout: 20000 }), p.locator('.scarica[data-t="confronto"][data-f="csv"]').first().click()]);
     const csv = fs.readFileSync(await dl2.path(), 'utf8'); ok(/Media FVG/.test(csv) && /Metodo media fvg/.test(csv) && /Scostamento Roveredo in Piano dal riferimento/.test(csv), 'CSV con medie, metodo e scostamenti');
     // comuni simili con criteri
