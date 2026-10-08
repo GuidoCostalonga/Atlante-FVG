@@ -29,7 +29,7 @@ corpo = corpo.replace('class="nota"', 'class="nota-el"')
 corpo = corpo.replace(' autocomplete="off"', ' autocomplete="off"')
 # lente «Preferenze di un candidato»: campo di ricerca per nome accanto al selettore
 corpo = corpo.replace('<div class="campo-el" id="lenteCand" hidden><label for="selCand">Candidato consigliere</label><select id="selCand"></select></div>',
-    '<div class="campo-el" id="lenteCand" hidden><label for="cercaCand">Candidato consigliere: cerca per nome o scegli dall\'elenco</label><div class="conf-sel"><input id="cercaCand" placeholder="Cognome o nome" autocomplete="off" aria-label="Cerca un candidato per nome"><select id="selCand" aria-label="Candidato consigliere"></select></div></div>')
+    '<div class="campo-el" id="lenteCand" hidden><label for="listaCand">Candidato consigliere: scegli la lista, cerca per nome o scegli dall\'elenco</label><div class="conf-sel"><select id="listaCand" aria-label="Lista del candidato"></select><input id="cercaCand" placeholder="Cognome o nome" autocomplete="off" aria-label="Cerca un candidato per nome"><select id="selCand" aria-label="Candidato consigliere"></select></div></div>')
 assert 'id="cercaCand"' in corpo
 # nuova sezione: le preferenze dei candidati di una lista, comune per comune, con i totali
 SEZ_PREF = '''    <!-- PREFERENZE DI UNA LISTA PER COMUNE -->
@@ -126,7 +126,8 @@ css += '''
 #elezioni .bot.pieno,#elezioni .lenti button[aria-pressed="true"],#elezioni .vista button[aria-pressed="true"],#elezioni .indice a.attivo{background:var(--blu);border-color:var(--blu);color:#fff}
 #elezioni .kpi .k:nth-child(3)::before{background:var(--oro)}
 #elezioni .ancora{scroll-margin-top:150px}
-#elezioni #cercaCand{min-width:200px}
+#elezioni #cercaCand{min-width:180px}
+#elezioni #listaCand{min-width:150px}
 #elezioni #tabPrefListe th{white-space:normal;min-width:118px;vertical-align:bottom;line-height:1.25}
 #elezioni #tabPrefListe th:first-child,#elezioni #tabPrefListe td.nome{min-width:160px}
 #elezioni #tabPrefListe td.cel{text-align:right;font-variant-numeric:tabular-nums}
@@ -146,17 +147,25 @@ sost('document.querySelector(".filtri").offsetTop-4', 'document.querySelector("#
 app = app.replace('class="campo"', 'class="campo-el"').replace('class="nota"', 'class="nota-el"')
 assert 'class="campo"' not in app and 'class="nota"' not in app
 # stato aggiuntivo: circoscrizione e lista della tabella delle preferenze, ricerca del candidato
-sost('comPrec:null };', 'comPrec:null, plCirc:null, plLista:null, candCerca:"" };')
+sost('comPrec:null };', 'comPrec:null, plCirc:null, plLista:null, candCerca:"", candLista:"" };')
 # ricerca del candidato nella lente della mappa
 sost('''  const ks=K.filter(k=>!S.circ||k.ci===S.circ);
-  const gruppi=d3.groups(ks,k=>k.l)''', '''  const ks=K.filter(k=>(!S.circ||k.ci===S.circ) && (!S.candCerca || normCand(k.n).includes(S.candCerca)));
-  if (!ks.length){ s.selectAll("optgroup").remove(); return; }
+  const gruppi=d3.groups(ks,k=>k.l)''', '''  // filtro per lista: le liste presenti nel territorio scelto, in ordine di voti
+  const listeQui=L.map((l,i)=>i).filter(i=>K.some(k=>k.l===i && (!S.circ||k.ci===S.circ))).sort((a,b)=>L[b].v-L[a].v);
+  if (S.candLista!=="" && !listeQui.includes(+S.candLista)) S.candLista="";
+  const sl=d3.select("#listaCand"); sl.selectAll("option").data([["","Tutte le liste"],...listeQui.map(i=>[String(i),L[i].s])],d=>d[0]).join("option").attr("value",d=>d[0]).text(d=>d[1]); sl.property("value",S.candLista);
+  const ks=candFiltrati();
+  s.selectAll(":scope > option").remove();
+  if (!ks.length){ s.selectAll("optgroup").remove(); s.append("option").attr("value","").text("Nessun candidato con questi filtri: cambia lista o ricerca"); return; }
   const gruppi=d3.groups(ks,k=>k.l)''')
 sost('''d3.select("#selCand").on("change",function(){S.cand=+this.value;disegnaMappa();});''',
      '''d3.select("#selCand").on("change",function(){S.cand=+this.value;disegnaMappa();});
 const normCand = s => String(s).toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"");
-d3.select("#cercaCand").on("input",function(){ S.candCerca=normCand(this.value.trim()); const ks=K.filter(k=>(!S.circ||k.ci===S.circ) && (!S.candCerca || normCand(k.n).includes(S.candCerca))); if (ks.length && !ks.find(k=>k.id===S.cand)) S.cand=ks.slice().sort((a,b)=>b.v-a.v)[0].id; disegnaMappa(); });''')
-sost('''  S.lista=fdi; S.tLista=fdi; S.pres=0; S.cand=null;''', '''  S.lista=fdi; S.tLista=fdi; S.pres=0; S.cand=null; S.plLista=null; S.candCerca=""; d3.select("#cercaCand").property("value","");''')
+const candFiltrati = () => K.filter(k=>(!S.circ||k.ci===S.circ) && (S.candLista==="" || k.l===+S.candLista) && (!S.candCerca || normCand(k.n).includes(S.candCerca)));
+const scegliPrimoCand = () => { const ks=candFiltrati(); if (ks.length && !ks.find(k=>k.id===S.cand)) S.cand=ks.slice().sort((a,b)=>b.v-a.v)[0].id; };
+d3.select("#cercaCand").on("input",function(){ S.candCerca=normCand(this.value.trim()); scegliPrimoCand(); disegnaMappa(); });
+d3.select("#listaCand").on("change",function(){ S.candLista=this.value; scegliPrimoCand(); disegnaMappa(); });''')
+sost('''  S.lista=fdi; S.tLista=fdi; S.pres=0; S.cand=null;''', '''  S.lista=fdi; S.tLista=fdi; S.pres=0; S.cand=null; S.plLista=null; S.candCerca=""; S.candLista=""; d3.select("#cercaCand").property("value","");''')
 sost('''disegnaMatrice(); disegnaComuni(); disegnaStoria();
 }''', '''disegnaMatrice(); disegnaComuni(); disegnaPrefListe(); disegnaStoria();
 }''')
