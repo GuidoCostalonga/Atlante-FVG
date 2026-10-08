@@ -499,3 +499,11 @@ scarico in CSV; per il 2013 e il 2008 solo i totali di circoscrizione, come pubb
 `pagine.css`), rinomina le classi che si scontrano con lo stile comune (`campo`, `nota`), toglie intestazione propria, tema scuro
 e scarico della pagina, e corregge i riferimenti al documento. Limite: una parola d'ordine breve resiste poco a un attacco a forza
 bruta condotto fuori dal browser; la protezione serve a tenere la sezione fuori dalla consultazione pubblica, non a custodire segreti.
+
+## Barra in alto ridotta al solo «Menù» (8 ottobre 2026)
+
+Su computer la barra in alto non elenca più le pagine: resta il pulsante «Menù» (già «Argomenti»), che apre il pannello con la riga
+«Vai a» (le sezioni della pagina principale), la riga «Altre pagine» (le pagine autonome: Orari, Meteo, Bandi, Opere, Finanziamenti,
+Servizi, Stradario, Catasto, Elezioni) e i temi. Nel tema «Amministrazione ed elezioni» la prima voce «Dati elezioni» porta alla
+sezione riservata `elezioni/` (voce di tipo `p`, collegamento a una pagina). Sul telefono la barra in basso (Inizio, Mappe, Confronto,
+Comuni, Altro) resta com'era.
