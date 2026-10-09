@@ -1,8 +1,132 @@
 {
- "generato": "2026-10-08",
+ "generato": "2026-10-09",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-10-09",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i bandi e gli avvisi della Regione del 09/10/2026",
+   "descrizione": "Bandi: 114 voci (13 con misure contributive), 0 nuove e 5 tolte rispetto a prima.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Bandi e avvisi della Regione",
+     "misura": "voci",
+     "prima": 119,
+     "dopo": 114,
+     "differenza": -5,
+     "collegamento": "../bandi/"
+    }
+   ],
+   "commit": "9a9b7e3cfe"
+  },
+  {
+   "data": "2026-10-08",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Riunisce i filtri delle comunali in un solo pannello con elezione, partito, dimensione ed esito",
+   "descrizione": "Nella vista «Comunali» della sezione riservata i filtri sparsi nelle singole sezioni lasciano il posto a un pannello unico «Filtri delle comunali»: elezione (ultima, penultima, terzultima o un anno dal 2011 al 2026), partito nel nome di una lista, dimensione del comune per fasce di elettori, esito (candidato unico, più candidati, ballottaggio, sindaco di lista di partito) e una ricerca unica per le tabelle. I filtri valgono insieme per mappa, indicatori, sintesi, liste di partito, calendario, classifica dei consiglieri e tabella dei comuni; i comuni esclusi restano in grigio e una riga di riepilogo dice quanti restano. Aprendo un comune la scheda parte dall'elezione scelta.\n\nCorregge anche lo scoper del CSS: un commento davanti a «body[data-vista]» impediva la riscrittura della regola che nasconde le sezioni delle regionali nella vista comunali, e le due viste comparivano sovrapposte.",
+   "interessa": [
+    {
+     "nome": "Mappe",
+     "collegamento": "../?pagina=mappe"
+    }
+   ],
+   "valori": [],
+   "commit": "ff211e6bac"
+  },
+  {
+   "data": "2026-10-08",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge il filtro per circoscrizione alla classifica dei candidati consiglieri",
+   "descrizione": "Nella sezione riservata delle elezioni la classifica dei candidati ha un selettore della circoscrizione: posizioni e quote sono ricalcolate nella circoscrizione scelta; se il territorio scelto in alto è già una circoscrizione o un comune, il filtro lo segue e resta bloccato.",
+   "interessa": [],
+   "valori": [],
+   "commit": "4f33a45ff6"
+  },
+  {
+   "data": "2026-10-08",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Rilegge il contenuto cifrato delle elezioni convalidandolo sul server",
+   "descrizione": "La pagina elezioni/ caricava contenuto.json con la cache forzata: chi aveva già aperto la sezione vedeva la versione vecchia. Ora il file si rilegge con «no-cache», così gli aggiornamenti arrivano subito.",
+   "interessa": [],
+   "valori": [],
+   "commit": "c982066aaa"
+  },
+  {
+   "data": "2026-10-08",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge il filtro per lista nella lente «Preferenze di un candidato»",
+   "descrizione": "Nella mappa delle elezioni la scelta del candidato parte dalla lista: un selettore con le liste presenti nel territorio, poi la ricerca per nome e l'elenco; quando nessun candidato corrisponde compare un avviso.",
+   "interessa": [
+    {
+     "nome": "Mappe",
+     "collegamento": "../?pagina=mappe"
+    }
+   ],
+   "valori": [],
+   "commit": "5396f78bc1"
+  },
+  {
+   "data": "2026-10-08",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Riduce al pulsante «Menù» la barra delle pagine autonome",
+   "descrizione": "Orari, Meteo, Bandi, Opere, Finanziamenti, Servizi, Stradario, Cosa è cambiato ed Elezioni hanno in alto solo il marchio e il pulsante «Menù», con l'elenco completo delle pagine dell'Atlante su due colonne.",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "c148d27a30"
+  },
+  {
+   "data": "2026-10-08",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Riduce la barra in alto al pulsante «Menù» e collega i dati delle elezioni",
+   "descrizione": "La barra in alto non elenca più le pagine su computer: resta il pulsante «Menù», che nel pannello mostra anche le pagine autonome. Nel tema «Amministrazione ed elezioni» la voce «Dati elezioni» porta alla sezione riservata.",
+   "interessa": [],
+   "valori": [],
+   "commit": "856837299c"
+  },
+  {
+   "data": "2026-10-08",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge alle elezioni la ricerca del candidato sulla mappa e la tabella delle preferenze per lista e comune",
+   "descrizione": "Nella lente «Preferenze di un candidato» un campo di ricerca per nome; nuova sezione «Le preferenze di una lista, comune per comune» con circoscrizione e lista a scelta, voti alla lista, preferenze per candidato, totali di riga e di colonna e scarico in CSV.",
+   "interessa": [
+    {
+     "nome": "Mappe",
+     "collegamento": "../?pagina=mappe"
+    }
+   ],
+   "valori": [],
+   "commit": "a1aa257784"
+  },
+  {
+   "data": "2026-10-08",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge la sezione riservata delle elezioni regionali e comunali",
+   "descrizione": "Pagina elezioni/ con lo stile dell'Atlante e apertura con parola d'ordine: il cruscotto (regionali 2008-2023 e comunali nei 215 comuni) sta in un file compresso e cifrato con AES-GCM, chiave derivata nel browser con PBKDF2. Scripts prepara_elezioni.py e cifra_pagina.js per gli aggiornamenti. Collegamenti dalla pagina iniziale (gruppo «Voto») e dal menu «Altro».",
+   "interessa": [],
+   "valori": [],
+   "commit": "bdb9a267ca"
+  },
   {
    "data": "2026-10-08",
    "tipo": "dati",
@@ -25,7 +149,7 @@
      "collegamento": "../bandi/"
     }
    ],
-   "commit": "c0b989a651"
+   "commit": "327a612f2e"
   },
   {
    "data": "2026-10-08",
