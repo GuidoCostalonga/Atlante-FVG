@@ -549,7 +549,10 @@ Il cruscotto mostra solo dati reali, prodotti ogni 30 minuti da `.github/workflo
    La Verità). Si tengono solo le notizie con un termine istituzionale o politico; per le testate venete e nazionali
    anche un riferimento al Friuli Venezia Giulia, ai capoluoghi o a un nome seguito. Messaggero Veneto e Il Piccolo non
    pubblicano un flusso proprio; Pordenone Today lo nega ai programmi automatici (risposta 403) ed è escluso;
-2. cerca in più su Google News (e su Bluesky, se configurato) i nomi del segreto `MONITOR_NOMI`;
+2. cerca in più su Google News (e su Bluesky, se configurato) i nomi del segreto `MONITOR_NOMI`. Una persona o un luogo
+   con nome e cognome («Luca Ciriani», «Roveredo in Piano») si segue ovunque, anche sulle testate nazionali; un partito o
+   una parola sola («FdI», «Nadal») si tiene solo se il titolo cita il Friuli Venezia Giulia, un capoluogo o una persona
+   seguita, altrimenti le notizie nazionali del partito (o del tennista) riempirebbero il giro;
 3. analizza fino a 60 menzioni nuove per giro, prima quelle che citano un nome seguito e poi le più recenti
    (`MONITOR_MAX_PER_GIRO`, al massimo 20 minuti: le altre passano al giro
    dopo) con un modello linguistico **aperto e gratuito**, Qwen3 4B (licenza Apache 2.0, file GGUF quantizzato Q4_K_M,

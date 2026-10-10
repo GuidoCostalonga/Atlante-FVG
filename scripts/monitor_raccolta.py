@@ -118,8 +118,16 @@ def leggi_feed(http: httpx.Client, url: str):
         return []
 
 
+def generico(nome: str) -> bool:
+    """Vero per un partito o una parola sola («FdI», «Nadal»): si tiene solo con un riferimento al territorio.
+    Una persona o un luogo con nome e cognome («Luca Ciriani», «Roveredo in Piano») si segue ovunque."""
+    n = nome.strip().lower()
+    return n in SIGLE_PARTITI or 'partito' in n or len(n.split()) < 2
+
+
 def raccogli(fonti: dict, nomi: list[str], viste: dict) -> list[dict]:
-    territorio = schema_parole(fonti['territorio'] + nomi)
+    specifici = [n for n in nomi if not generico(n)]
+    territorio = schema_parole(fonti['territorio'] + specifici)
     politica = schema_parole(fonti['politica'] + nomi)
     escludi = schema_parole(fonti.get('escludi', []))
     limite = ADESSO - timedelta(hours=ORE_RECENTI)
@@ -143,10 +151,14 @@ def raccogli(fonti: dict, nomi: list[str], viste: dict) -> list[dict]:
                     continue
                 aggiungi('rss', v.get('id') or v.get('link') or testo[:120], testo, v.get('link'), f['nome'], data_voce(v))
         # notizie che citano i nomi da seguire (segreto MONITOR_NOMI)
+        # (per un nome generico, partito o parola sola, solo se il titolo cita il territorio o una persona seguita)
         for nome in nomi:
             for v in leggi_feed(http, fonti['google_news_per_nome'].format(nome=quote(nome))):
+                titolo = pulisci(v.get('title', ''))
+                if generico(nome) and not territorio.search(titolo):
+                    continue
                 testata = (v.get('source') or {}).get('title') or 'Google News'
-                aggiungi('rss', v.get('id') or v.get('link'), pulisci(v.get('title', '')), v.get('link'), testata, data_voce(v))
+                aggiungi('rss', v.get('id') or v.get('link'), titolo, v.get('link'), testata, data_voce(v))
         # Bluesky, se configurato
         if os.getenv('BLUESKY_UTENTE') and os.getenv('BLUESKY_PASSWORD_APP'):
             s = http.post('https://bsky.social/xrpc/com.atproto.server.createSession',
@@ -157,6 +169,8 @@ def raccogli(fonti: dict, nomi: list[str], viste: dict) -> list[dict]:
                     r = http.get('https://bsky.social/xrpc/app.bsky.feed.searchPosts', headers={'Authorization': f'Bearer {tok}'},
                                  params={'q': f'"{ricerca}"', 'lang': 'it', 'sort': 'latest', 'limit': 50})
                     for p in (r.json().get('posts', []) if r.status_code == 200 else []):
+                        if generico(ricerca) and not territorio.search(p['record'].get('text', '')):
+                            continue
                         handle, rk = p['author']['handle'], p['uri'].rsplit('/', 1)[-1]
                         aggiungi('bluesky', p['uri'], p['record'].get('text', ''), f'https://bsky.app/profile/{handle}/post/{rk}', 'Bluesky',
                                  datetime.fromisoformat(p['record'].get('createdAt', ADESSO.isoformat()).replace('Z', '+00:00')),
