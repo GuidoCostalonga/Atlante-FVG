@@ -550,7 +550,8 @@ Il cruscotto mostra solo dati reali, prodotti ogni 30 minuti da `.github/workflo
    anche un riferimento al Friuli Venezia Giulia, ai capoluoghi o a un nome seguito. Messaggero Veneto e Il Piccolo non
    pubblicano un flusso proprio; Pordenone Today lo nega ai programmi automatici (risposta 403) ed è escluso;
 2. cerca in più su Google News (e su Bluesky, se configurato) i nomi del segreto `MONITOR_NOMI`;
-3. analizza fino a 30 menzioni nuove per giro (`MONITOR_MAX_PER_GIRO`, al massimo 15 minuti: le altre passano al giro
+3. analizza fino a 60 menzioni nuove per giro, prima quelle che citano un nome seguito e poi le più recenti
+   (`MONITOR_MAX_PER_GIRO`, al massimo 20 minuti: le altre passano al giro
    dopo) con un modello linguistico **aperto e gratuito**, Qwen3 4B (licenza Apache 2.0, file GGUF quantizzato Q4_K_M,
    revisione `bc640142` di Hugging Face, impronta SHA-256 verificata a ogni giro), eseguito con llama-cpp-python sul
    computer di GitHub: nessun servizio a pagamento e nessun testo inviato a fornitori di analisi. Per ogni menzione:
