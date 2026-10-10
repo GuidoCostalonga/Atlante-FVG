@@ -550,8 +550,15 @@ Il cruscotto mostra solo dati reali, prodotti ogni 30 minuti da `.github/workflo
    anche un riferimento al Friuli Venezia Giulia, ai capoluoghi o a un nome seguito. Messaggero Veneto e Il Piccolo non
    pubblicano un flusso proprio; Pordenone Today lo nega ai programmi automatici (risposta 403) ed è escluso;
 2. cerca in più su Google News (e su Bluesky, se configurato) i nomi del segreto `MONITOR_NOMI`;
-3. fa analizzare a Claude fino a 60 menzioni nuove per giro (`MONITOR_MAX_PER_GIRO`), a lotti di 10, con lo stesso
-   schema del servizio Python (tono, sarcasmo, emozioni, varietà linguistica, entità, temi, ostilità);
+3. analizza fino a 30 menzioni nuove per giro (`MONITOR_MAX_PER_GIRO`, al massimo 15 minuti: le altre passano al giro
+   dopo) con un modello linguistico **aperto e gratuito**, Qwen3 4B (licenza Apache 2.0, file GGUF quantizzato Q4_K_M,
+   revisione `bc640142` di Hugging Face, impronta SHA-256 verificata a ogni giro), eseguito con llama-cpp-python sul
+   computer di GitHub: nessun servizio a pagamento e nessun testo inviato a fornitori di analisi. Per ogni menzione:
+   tono (positivo, neutro, negativo) e sua intensità, sarcasmo, emozione prevalente, un tema da un elenco fisso, persone
+   e partiti citati, una motivazione breve. Circa 15 secondi a menzione. Limiti dichiarati: la sicurezza del giudizio è
+   fissa (0,8), l'ostilità non è misurata (l'etichetta «Toni ostili» non compare), le varietà linguistiche sono lette ma non
+   indicate; il sarcasmo è riconosciuto nei casi evidenti. Il modello e la libreria, compilata al primo giro, restano
+   nella cache di Actions (circa 2,5 GB);
 4. calcola le allerte (almeno 6 menzioni nelle ultime 2 ore, confronto con le 24 ore precedenti, pausa di 6 ore fra
    due allerte uguali) e le manda su Telegram se il bot è configurato;
 5. pubblica lo stato **cifrato** nel ramo `monitor-dati` (un solo file, `dati.json`, riscritto a ogni giro senza
@@ -559,14 +566,15 @@ Il cruscotto mostra solo dati reali, prodotti ogni 30 minuti da `.github/workflo
    quindi il cruscotto la usa senza chiedere altro e legge il file da raw.githubusercontent.com ogni 5 minuti.
    Restano 72 ore di menzioni e allerte e 30 giorni di impronte dei contenuti già visti.
 
-**Segreti** (Settings → Secrets and variables → Actions): `ANTHROPIC_API_KEY` e `MONITOR_PAROLA` (la parola d'ordine
-della sezione) obbligatori; `MONITOR_NOMI` (nomi di politici e partiti separati da virgola: stanno nei segreti perché il
+**Segreti** (Settings → Secrets and variables → Actions): `MONITOR_PAROLA` (la parola d'ordine della sezione)
+obbligatorio; `MONITOR_NOMI` (nomi di politici e partiti separati da virgola: stanno nei segreti perché il
 repository è pubblico), `BLUESKY_UTENTE` con `BLUESKY_PASSWORD_APP`, `TELEGRAM_BOT_TOKEN` con `TELEGRAM_CHAT_STAFF`
-facoltativi. Senza i due obbligatori il lavoro termina subito, senza errori. Rigenerare `monitor/contenuto.json`
+facoltativi. Senza `MONITOR_PAROLA` il lavoro termina subito, senza scaricare nulla e senza errori. Rigenerare `monitor/contenuto.json`
 cambia il sale e quindi la chiave: il giro successivo non legge più lo stato precedente e riparte da zero.
 
-Prova senza spesa: `scripts/monitor_raccolta.py` si può eseguire in locale sostituendo la funzione `analizza` con una
-risposta finta; i grafici del cruscotto usano l'ora di pubblicazione e, in questa modalità, 24 ore a intervalli di un'ora.
+Prova in locale: con il file del modello in `modelli/` (o indicato in `MONITOR_MODELLO_FILE`) e llama-cpp-python
+installato, `MONITOR_PAROLA=… python scripts/monitor_raccolta.py stato.json nuovo.json`; per le parole da filtrare
+via (per esempio «Lega Basket») c'è l'elenco «escludi» di `scripts/monitor_fonti.json`; i grafici del cruscotto usano l'ora di pubblicazione e, in questa modalità, 24 ore a intervalli di un'ora.
 
 ## Barra in alto ridotta al solo «Menù» (8 ottobre 2026)
 

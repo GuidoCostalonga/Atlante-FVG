@@ -4,14 +4,16 @@ Eseguito da .github/workflows/monitor.yml ogni 30 minuti:
 1. legge lo stato precedente (file cifrato, ramo monitor-dati);
 2. scarica le fonti di scripts/monitor_fonti.json e, per ogni nome del segreto MONITOR_NOMI,
    le notizie di Google News che lo citano; facoltativamente i post di Bluesky;
-3. fa analizzare le menzioni nuove a Claude (tono, sarcasmo, emozioni, entità, temi), a lotti;
+3. fa analizzare le menzioni nuove da un modello linguistico aperto e gratuito (Qwen3 4B, licenza
+   Apache 2.0) eseguito sul computer di GitHub: i testi non vengono inviati a nessun servizio esterno;
 4. calcola le allerte di crisi e di consenso e, se configurato, le manda su Telegram;
 5. riscrive lo stato, cifrato con la stessa chiave della pagina monitor/ (parola d'ordine + sale
    di monitor/contenuto.json), così il cruscotto lo apre con la chiave che ha già.
 
-Segreti (variabili d'ambiente): ANTHROPIC_API_KEY e MONITOR_PAROLA obbligatori; MONITOR_NOMI,
-BLUESKY_UTENTE, BLUESKY_PASSWORD_APP, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_STAFF facoltativi.
-Senza i due obbligatori lo script esce senza errori e senza scrivere nulla.
+Segreti (variabili d'ambiente): MONITOR_PAROLA obbligatorio; MONITOR_NOMI, BLUESKY_UTENTE,
+BLUESKY_PASSWORD_APP, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_STAFF facoltativi. Senza MONITOR_PAROLA lo
+script esce senza errori e senza scrivere nulla. MONITOR_MODELLO_FILE indica il file del modello
+(predefinito: modelli/Qwen3-4B-Q4_K_M.gguf, scaricato dal flusso di lavoro e verificato con SHA-256).
 
 Uso: python scripts/monitor_raccolta.py <stato precedente o file assente> <stato nuovo>
 """
@@ -26,6 +28,7 @@ import json
 import os
 import re
 import sys
+import time
 import unicodedata
 import uuid
 from collections import Counter, defaultdict
@@ -34,7 +37,6 @@ from pathlib import Path
 from statistics import mean
 from urllib.parse import quote
 
-import anthropic
 import feedparser
 import httpx
 from cryptography.hazmat.primitives import hashes
@@ -44,10 +46,10 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 RADICE = Path(__file__).resolve().parent.parent
 ADESSO = datetime.now(timezone.utc)
 
-MODELLO = os.getenv('MONITOR_MODELLO', 'claude-opus-5-5')
-SFORZO = os.getenv('MONITOR_SFORZO', 'medium')
-MAX_PER_GIRO = int(os.getenv('MONITOR_MAX_PER_GIRO', '60'))     # tetto di spesa: menzioni analizzate per giro
-LOTTO = 10
+MODELLO_FILE = os.getenv('MONITOR_MODELLO_FILE', str(RADICE / 'modelli' / 'Qwen3-4B-Q4_K_M.gguf'))
+MOTORE = 'Qwen3 4B (Apache 2.0), eseguito in locale'
+MAX_PER_GIRO = int(os.getenv('MONITOR_MAX_PER_GIRO', '30'))     # circa 15 secondi a menzione su 4 processori
+MINUTI_MAX = float(os.getenv('MONITOR_MINUTI_MAX', '15'))       # le menzioni rimaste passano al giro dopo
 ORE_MENZIONI = 72          # menzioni e allerte conservate nello stato
 GIORNI_VISTE = 30          # impronte dei contenuti già visti (evitano analisi doppie)
 ORE_RECENTI = 26           # alla prima raccolta si prendono solo le notizie dell'ultimo giorno
@@ -119,6 +121,7 @@ def leggi_feed(http: httpx.Client, url: str):
 def raccogli(fonti: dict, nomi: list[str], viste: dict) -> list[dict]:
     territorio = schema_parole(fonti['territorio'] + nomi)
     politica = schema_parole(fonti['politica'] + nomi)
+    escludi = schema_parole(fonti.get('escludi', []))
     limite = ADESSO - timedelta(hours=ORE_RECENTI)
     nuove: dict[str, dict] = {}
 
@@ -136,7 +139,7 @@ def raccogli(fonti: dict, nomi: list[str], viste: dict) -> list[dict]:
                 testo = pulisci(f"{v.get('title', '')}. {v.get('summary', '')}")
                 if f.get('territorio') and not territorio.search(testo):
                     continue
-                if f.get('politica') and not politica.search(testo):
+                if f.get('politica') and not politica.search(escludi.sub(' ', testo) if escludi else testo):
                     continue
                 aggiungi('rss', v.get('id') or v.get('link') or testo[:120], testo, v.get('link'), f['nome'], data_voce(v))
         # notizie che citano i nomi da seguire (segreto MONITOR_NOMI)
@@ -167,92 +170,61 @@ def raccogli(fonti: dict, nomi: list[str], viste: dict) -> list[dict]:
 
 # --------------------------------------------------------------------------- analisi
 
-ISTRUZIONI = """\
-Sei un analista della comunicazione politica specializzato nel Friuli Venezia Giulia.
-Ricevi menzioni pubbliche (articoli, post, commenti) e per ciascuna valuti la percezione
-espressa dall'autore verso il bersaglio del discorso.
-
-Criteri da applicare sempre:
-
-1. Sarcasmo e ironia. Distingui l'approvazione letterale da quella ironica (lodi esagerate su fatti
-   negativi, virgolette di distanza, emoji in contrasto con il testo, domande retoriche, «complimenti»
-   o «grazie» rivolti a un disservizio). Con il sarcasmo la polarità è quella REALE, non quella letterale.
-2. Varietà linguistiche del territorio: friulano, triestino, bisiacco, veneto, sloveno, tedesco.
-   Indicala nel campo "dialetto", oppure null per l'italiano standard.
-3. Emozioni: rabbia, paura, entusiasmo, fiducia, tristezza da 0 a 1 ciascuna; scegli la dominante
-   ("indifferenza" per testi informativi).
-4. Punteggio da -1 a +1, 0 per testi neutri o puramente informativi; confidenza da 0 a 1.
-5. Entità: persone, partiti, enti, riforme o leggi, località, in forma estesa e normalizzata.
-6. Temi: da 1 a 3 etichette brevi in italiano, minuscole, riutilizzabili (es. "sanità", "viabilità").
-7. Ostilità da 0 a 1: insulti, minacce, linguaggio d'odio, toni aggressivi.
-8. Motivazione: una frase breve per un addetto stampa.
-
-Gli articoli di cronaca che riportano fatti senza giudizio sono "neutro": il tono di un titolo di
-giornale va letto come lo leggerebbe un cittadino. Non attribuire opinioni che il testo non esprime.
-Restituisci un risultato per ogni menzione, con lo stesso "id" ricevuto.
-"""
-_N = {'type': 'number'}
-_SN = {'anyOf': [{'type': 'string'}, {'type': 'null'}]}
-SCHEMA = {'type': 'object', 'additionalProperties': False, 'required': ['risultati'], 'properties': {'risultati': {'type': 'array', 'items': {
-    'type': 'object', 'additionalProperties': False,
-    'required': ['id', 'polarita', 'punteggio', 'confidenza', 'sarcasmo', 'emozione_dominante', 'emozioni', 'dialetto', 'entita', 'temi', 'bersaglio', 'ostilita', 'motivazione'],
-    'properties': {
-        'id': {'type': 'string'}, 'polarita': {'type': 'string', 'enum': ['positivo', 'negativo', 'neutro']},
-        'punteggio': _N, 'confidenza': _N, 'sarcasmo': {'type': 'boolean'},
-        'emozione_dominante': {'type': 'string', 'enum': ['rabbia', 'paura', 'entusiasmo', 'fiducia', 'tristezza', 'indifferenza']},
-        'emozioni': {'type': 'object', 'additionalProperties': False, 'required': ['rabbia', 'paura', 'entusiasmo', 'fiducia', 'tristezza'],
-                     'properties': {k: _N for k in ('rabbia', 'paura', 'entusiasmo', 'fiducia', 'tristezza')}},
-        'dialetto': _SN,
-        'entita': {'type': 'array', 'items': {'type': 'object', 'additionalProperties': False, 'required': ['testo', 'tipo'], 'properties': {
-            'testo': {'type': 'string'}, 'tipo': {'type': 'string', 'enum': ['persona', 'partito', 'ente', 'riforma', 'localita', 'altro']}}}},
-        'temi': {'type': 'array', 'items': {'type': 'string'}}, 'bersaglio': _SN, 'ostilita': _N, 'motivazione': {'type': 'string'},
-    }}}}}
+ISTRUZIONI = """Analista politico del Friuli Venezia Giulia. Valuta il tono reale dell'autore del testo.
+- Notizia che riporta fatti senza giudizio: neutro.
+- Proteste, critiche, attacchi, disservizi, reati, disagi: negativo.
+- Apprezzamenti sinceri, buone notizie: positivo.
+- sarcasmo = true quando il testo loda, si complimenta o ringrazia in modo ironico per qualcosa di negativo (es. «Complimenti, cantiere fermo da mesi», «Grazie per il treno soppresso»); in quel caso il tono è negativo. Un elogio sincero di una cosa bella ha sarcasmo = false.
+- Il testo può essere in italiano, friulano, triestino, veneto o sloveno.
+intensita: forza del tono da 0 a 1. temi: uno o due dell'elenco consentito, il primo è il principale. persone_partiti: nomi di persone o partiti citati. motivo: massimo 12 parole."""
+TEMI = ['sanità', 'viabilità', 'trasporti', 'scuola', 'sicurezza', 'lavoro', 'economia', 'ambiente', 'casa', 'sociale', 'cultura',
+        'sport', 'turismo', 'agricoltura', 'immigrazione', 'protezione civile', 'bilancio', 'istituzioni', 'elezioni', 'altro']
+EMOZIONI = ['rabbia', 'paura', 'entusiasmo', 'fiducia', 'tristezza', 'indifferenza']
+SCHEMA = {'type': 'object', 'required': ['polarita', 'intensita', 'sarcasmo', 'emozione', 'temi', 'persone_partiti', 'motivo'], 'properties': {
+    'polarita': {'type': 'string', 'enum': ['positivo', 'neutro', 'negativo']}, 'intensita': {'type': 'number'},
+    'sarcasmo': {'type': 'boolean'}, 'emozione': {'type': 'string', 'enum': EMOZIONI},
+    'temi': {'type': 'array', 'items': {'type': 'string', 'enum': TEMI}, 'minItems': 1, 'maxItems': 2},
+    'persone_partiti': {'type': 'array', 'items': {'type': 'string'}, 'maxItems': 3}, 'motivo': {'type': 'string'}}}
+SIGLE_PARTITI = {'pd', 'fdi', 'lega', 'fi', 'm5s', 'avs', 'azione', 'italia viva', 'forza italia', 'fratelli d\'italia',
+                 'partito democratico', 'movimento 5 stelle', 'patto per l\'autonomia', 'alleanza verdi e sinistra'}
 
 
 def limita(v, a, b):
     return max(a, min(b, float(v)))
 
 
-def analizza(client: anthropic.Anthropic, lotto: list[dict]) -> dict[str, dict]:
-    blocco = [{'id': m['chiave'], 'fonte': m['fonte'], 'testata': m['testata'], 'testo': m['testo']} for m in lotto]
+def carica_modello():
+    from llama_cpp import Llama
+    return Llama(model_path=MODELLO_FILE, n_ctx=2048, n_threads=os.cpu_count() or 4, verbose=False)
+
+
+def analizza(llm, m: dict) -> dict | None:
+    """Analisi di una menzione con il modello locale; None se la risposta non è utilizzabile."""
     try:
-        r = client.beta.messages.create(
-            model=MODELLO, max_tokens=16000,
-            system=[{'type': 'text', 'text': ISTRUZIONI, 'cache_control': {'type': 'ephemeral'}}],
-            messages=[{'role': 'user', 'content': 'Analizza queste menzioni:\n' + json.dumps(blocco, ensure_ascii=False)}],
-            output_config={'effort': SFORZO, 'format': {'type': 'json_schema', 'schema': SCHEMA}},
-            betas=['server-side-fallback-2026-07-01'], fallbacks='default',
-        )
-    except anthropic.RateLimitError:
-        registro('  limite di richieste raggiunto: il lotto sarà ripreso al prossimo giro')
-        return {}
-    except anthropic.APIStatusError as e:
-        registro(f'  errore del servizio di analisi ({e.status_code}): {e.message}')
-        return {}
-    except anthropic.APIConnectionError:
-        registro('  servizio di analisi non raggiungibile')
-        return {}
-    if r.stop_reason in ('refusal', 'max_tokens'):
-        registro(f'  lotto non analizzato ({r.stop_reason})')
-        return {}
-    testo = next((b.text for b in r.content if b.type == 'text'), '')
-    try:
-        risultati = json.loads(testo)['risultati']
-    except (json.JSONDecodeError, KeyError):
-        return {}
-    esito = {}
-    for x in risultati:
-        try:
-            esito[x['id']] = {
-                'polarita': x['polarita'], 'punteggio': limita(x['punteggio'], -1, 1), 'confidenza': limita(x['confidenza'], 0, 1),
-                'sarcasmo': bool(x['sarcasmo']), 'emozione_dominante': x['emozione_dominante'],
-                'emozioni': {k: limita(v, 0, 1) for k, v in x['emozioni'].items()}, 'dialetto': x['dialetto'],
-                'entita': x['entita'], 'temi': [t.strip().lower() for t in x['temi']][:3], 'bersaglio': x['bersaglio'],
-                'ostilita': limita(x['ostilita'], 0, 1), 'motivazione': x['motivazione'],
-            }
-        except (KeyError, TypeError, ValueError):
-            continue
-    return esito
+        r = llm.create_chat_completion(
+            messages=[{'role': 'system', 'content': ISTRUZIONI},
+                      {'role': 'user', 'content': f"Testata: {m['testata']}\nTesto: {m['testo'][:1500]} /no_think"}],
+            response_format={'type': 'json_object', 'schema': SCHEMA}, temperature=0.1, max_tokens=180)
+        x = json.loads(r['choices'][0]['message']['content'])
+        pol, forza = x['polarita'], limita(x['intensita'], 0, 1)
+        emo = x['emozione'] if x['emozione'] in EMOZIONI and pol != 'neutro' else 'indifferenza'
+    except Exception as e:  # risposta troncata o non valida: la menzione resta per il giro dopo
+        registro(f'  analisi non riuscita ({e.__class__.__name__})')
+        return None
+    forza_emo = max(forza, 0.5) if emo != 'indifferenza' else 0
+    temi = list(dict.fromkeys(t for t in x['temi'] if t in TEMI and t != 'altro'))[:1] or ['altro']
+    # solo nomi propri (iniziale maiuscola) o sigle di partito: si scartano parole come «ministro» o «sindaco»
+    entita = [{'testo': n.strip(), 'tipo': 'partito' if n.strip().lower() in SIGLE_PARTITI or 'partito' in n.lower() else 'persona'}
+              for n in x['persone_partiti']
+              if 1 < len(n.strip()) <= 80 and (n.strip()[0].isupper() or n.strip().lower() in SIGLE_PARTITI)][:3]
+    return {
+        'polarita': pol, 'punteggio': {'positivo': 1, 'negativo': -1}.get(pol, 0) * forza, 'confidenza': 0.8,
+        'sarcasmo': bool(x['sarcasmo']) and pol == 'negativo', 'emozione_dominante': emo,
+        'emozioni': {e: (forza_emo if e == emo else 0.0) for e in EMOZIONI if e != 'indifferenza'},
+        'dialetto': None, 'entita': entita, 'temi': temi, 'bersaglio': None,
+        'ostilita': 0.0,  # non misurata da questo modello: meglio nessun dato che un dato inaffidabile
+        'motivazione': str(x['motivo'])[:160], 'motore': MOTORE,
+    }
 
 
 # --------------------------------------------------------------------------- allerte
@@ -344,8 +316,8 @@ def main() -> None:
     if len(sys.argv) != 3:
         raise SystemExit(__doc__)
     precedente, uscita = Path(sys.argv[1]), Path(sys.argv[2])
-    if not os.getenv('ANTHROPIC_API_KEY') or not os.getenv('MONITOR_PAROLA'):
-        registro('Segreti ANTHROPIC_API_KEY o MONITOR_PAROLA assenti: nessuna raccolta (vedi README, sezione Monitor).')
+    if not os.getenv('MONITOR_PAROLA'):
+        registro('Segreto MONITOR_PAROLA assente: nessuna raccolta (vedi README, sezione Monitor).')
         return
     k = chiave()
     stato = {'menzioni': [], 'allerte': [], 'viste': {}, 'ultime_allerte': {}}
@@ -358,14 +330,16 @@ def main() -> None:
     fonti = json.loads((RADICE / 'scripts' / 'monitor_fonti.json').read_text(encoding='utf-8'))
 
     candidate = raccogli(fonti, nomi, stato['viste'])[:MAX_PER_GIRO]
-    client = anthropic.Anthropic()
     nuove = []
-    for i in range(0, len(candidate), LOTTO):
-        lotto = candidate[i:i + LOTTO]
-        esiti = analizza(client, lotto)
-        for m in lotto:
-            if m['chiave'] in esiti:
-                nuove.append({**m, 'raccolto': ADESSO.isoformat(), 'analisi': esiti[m['chiave']]})
+    if candidate:
+        llm, inizio = carica_modello(), time.monotonic()
+        for m in candidate:
+            if time.monotonic() - inizio > MINUTI_MAX * 60:
+                registro('  tempo massimo raggiunto: le altre menzioni passano al giro successivo')
+                break
+            a = analizza(llm, m)
+            if a:
+                nuove.append({**m, 'raccolto': ADESSO.isoformat(), 'analisi': a})
                 stato['viste'][m['chiave']] = ADESSO.isoformat()
     registro(f'Menzioni analizzate: {len(nuove)} su {len(candidate)}')
 
