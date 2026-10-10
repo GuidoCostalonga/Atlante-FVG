@@ -110,7 +110,7 @@
 
   <section class="riquadro" style="margin-top:16px" aria-labelledby="titoloMetodo">
     <h2 id="titoloMetodo">Come leggere questi atti</h2>
-    <p class="nota">Le mozioni sono gli atti con cui il Consiglio impegna la Giunta su un tema; gli ordini del giorno sono presentati di regola durante l'esame di un disegno di legge. Lo stato («presentato in attesa di esame», «esaminato e approvato», «esaminato e non approvato», «ritirato») è quello registrato nella banca dati del Consiglio alla data di lettura. Il gruppo è quello attuale del primo firmatario sulla pagina dei gruppi consiliari: chi ha cambiato gruppo durante la legislatura compare nel gruppo di oggi. Il testo depositato si apre dal sito del Consiglio. Interpellanze e interrogazioni non sono comprese.</p>
+    <p class="nota">Le mozioni sono gli atti con cui il Consiglio impegna la Giunta su un tema; gli ordini del giorno sono presentati di regola durante l'esame di un disegno di legge. Lo stato («presentato in attesa di esame», «esaminato e approvato», «esaminato e non approvato», «ritirato») è quello registrato nella banca dati del Consiglio alla data di lettura; per gli ordini del giorno la scheda riporta anche l'esito della votazione (approvato, accolto dalla Giunta, respinto, ritirato) con la seduta, il disegno di legge di riferimento, la legge approvata e le firme aggiunte. Il gruppo è quello attuale del primo firmatario sulla pagina dei gruppi consiliari: chi ha cambiato gruppo durante la legislatura compare nel gruppo di oggi. Il testo depositato si apre dal sito del Consiglio. Interpellanze e interrogazioni non sono comprese.</p>
     <p class="nota" id="segnala"></p>
   </section>
 </main>
@@ -136,7 +136,7 @@
   function filtra() {
     const parole = norm(ST.q).split(/\s+/).filter(Boolean);
     return ATTI.filter(a => (!ST.tipo || a.tipo === ST.tipo) && (!ST.gruppo || gruppoDi(a.primo) === ST.gruppo) && (!ST.stato || a.stato === ST.stato) && (!ST.consigliere || a.proponenti.includes(ST.consigliere)) && (!ST.assessore || a.assessore === ST.assessore)
-      && parole.every(w => norm([a.titolo, a.numero, a.proponenti.join(' '), a.proponenti.map(nomeCons).join(' '), a.assessore, a.tipo].join(' ')).includes(w)));
+      && parole.every(w => norm([a.titolo, a.numero, a.proponenti.join(' '), a.proponenti.map(nomeCons).join(' '), a.assessore, a.tipo, a.oggetto, a.ddl, a.esito, a.legge].join(' ')).includes(w)));
   }
   const ordina = l => ST.ordine === 'numero' ? l.sort((a, b) => a.tipo.localeCompare(b.tipo) || b.numero - a.numero) : l.sort((a, b) => b.data.localeCompare(a.data) || b.numero - a.numero);
   const badgeStato = s => `<span class="badge ${/approvato$/.test(s) ? 'b-ok' : /non approvato/.test(s) ? 'b-no' : /attesa/.test(s) ? 'b-attesa' : /ritirat/i.test(s) ? 'b-grigio' : 'b-altro'}">${esc(s || 'stato non indicato')}</span>`;
@@ -144,6 +144,7 @@
     return `<li class="atto"><div><div class="riga-badge"><span class="badge b-altro">${esc(a.tipo)} n. ${a.numero}</span>${badgeStato(a.stato)}</div>
       <h2><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.titolo)}</a></h2>
       <div class="meta">${a.tipo === 'Mozione' ? 'Presentata' : 'Presentato'} da ${a.proponenti.map((c, k) => `<a href="?consigliere=${encodeURIComponent(c)}">${esc(nomeCons(c))}</a>${k === 0 ? ` <span class="nota">(${esc(gruppoDi(c))})</span>` : ''}`).join(', ') || 'proponenti non indicati'}${a.assessore ? ` · assessore competente: ${esc(nomeCons(a.assessore))}` : ''}</div>
+      ${a.tipo === 'Ordine del giorno' ? `<div class="meta">${a.oggetto ? esc(a.oggetto) + (a.ddl ? ` n. ${esc(a.ddl)}` : '') : ''}${a.legge ? ` · legge regionale ${esc(a.legge)}` : ''}${a.esito ? ` · esito: <b>${esc(a.esito)}</b>` : ''}${a.firmeAggiunte && a.firmeAggiunte.length ? ` · firme aggiunte: ${a.firmeAggiunte.map(nomeCons).map(esc).join(', ')}` : ''}</div>` : ''}
       <div class="meta">${a.allegato ? `<a href="${esc(a.allegato)}" target="_blank" rel="noopener">Testo depositato</a> · ` : ''}<a href="${esc(a.url)}" target="_blank" rel="noopener">Scheda sul sito del Consiglio</a></div></div>
       <div class="lato"><b>${dataIt(a.data)}</b><span>data di presentazione</span></div></li>`;
   }
@@ -179,7 +180,7 @@
   document.addEventListener('click', e => { const a = e.target.closest('a[href^="?consigliere="], a[href^="?gruppo="]'); if (!a) return; e.preventDefault(); const p = new URLSearchParams(a.getAttribute('href').slice(1)); ST = { q: '', tipo: '', gruppo: p.get('gruppo') || '', stato: '', consigliere: p.get('consigliere') || '', assessore: '', ordine: ST.ordine, pag: 1 }; opzioni(); disegna(); $('titoloElenco').scrollIntoView(); });
   $('scaricaCsv').addEventListener('click', () => {
     const l = ordina(filtra()); const cella = v => { const s = v == null ? '' : String(v); return /[",\r\n;]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
-    const righe = [['Tipo', 'Numero', 'Data di presentazione', 'Titolo', 'Proponenti', 'Gruppo del primo firmatario', 'Assessore competente', 'Stato', 'Testo depositato', 'Scheda', 'Fonte'].join(','), ...l.map(a => [a.tipo, a.numero, a.data, a.titolo, a.proponenti.map(nomeCons).join(' | '), gruppoDi(a.primo), a.assessore ? nomeCons(a.assessore) : '', a.stato, a.allegato, a.url, 'Consiglio regionale FVG, banca dati degli atti di indirizzo, letta il ' + D.letti].map(cella).join(','))];
+    const righe = [['Tipo', 'Numero', 'Data di presentazione', 'Titolo', 'Proponenti', 'Gruppo del primo firmatario', 'Assessore competente', 'Stato', 'Esito della votazione', 'Provvedimento di riferimento', 'Legge', 'Firme aggiunte', 'Testo depositato', 'Scheda', 'Fonte'].join(','), ...l.map(a => [a.tipo, a.numero, a.data, a.titolo, a.proponenti.map(nomeCons).join(' | '), gruppoDi(a.primo), a.assessore ? nomeCons(a.assessore) : '', a.stato, a.esito || '', a.oggetto ? a.oggetto + (a.ddl ? ' n. ' + a.ddl : '') : '', a.legge || '', (a.firmeAggiunte || []).map(nomeCons).join(' | '), a.allegato, a.url, 'Consiglio regionale FVG, banca dati degli atti di indirizzo, letta il ' + D.letti].map(cella).join(','))];
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['\ufeff' + righe.join('\r\n')], { type: 'text/csv;charset=utf-8' })); a.download = 'consiglio-fvg-atti.csv'; document.body.appendChild(a); a.click(); a.remove();
   });
   $('copiaLink').addEventListener('click', async () => { const url = location.origin + indirizzo(); try { await navigator.clipboard.writeText(url); $('copiaLink').textContent = 'Link copiato'; setTimeout(() => $('copiaLink').textContent = 'Copia link', 2000); } catch (e) { prompt('Copia il collegamento:', url); } });

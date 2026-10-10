@@ -51,6 +51,31 @@ def atti(cartella, tipo, dett, stati):
     return out
 
 
+def atti_odg(cartella, dett, stati):
+    """Gli ordini del giorno hanno una scheda diversa: numero per disegno di legge, esito della votazione, legge approvata, firme aggiunte."""
+    d = json.loads((cartella / dett).read_text(encoding='utf-8'))
+    st = json.loads((cartella / stati).read_text(encoding='utf-8')) if (cartella / stati).exists() else {}
+    stato_di = {}
+    for s, righe in st.items():
+        for r in righe:
+            stato_di[(r['testo'].split('\n')[0].strip(), r['data'])] = s
+    out = []
+    for v in d.values():
+        testa = re.sub(r'^Legislatura \S+\s*', '', v.get('titolo', '')).strip()
+        m = re.match(r'Odg(?: su (.*?))? - (\d+)\s+(.*)$', testa)
+        oggetto, num, titolo = (m.group(1) or '', int(m.group(2)), m.group(3)) if m else ('', None, testa)
+        riga = v['lista']['testo'].split('\n')
+        mn = re.match(r'(\d+)\s*-', riga[0])
+        if mn: num = int(mn.group(1))
+        dm = re.match(r'(\d\d)/(\d\d)/(\d{4})', v['data']); data = f'{dm.group(3)}-{dm.group(2)}-{dm.group(1)}' if dm else ''
+        firme = re.findall(r'Firma aggiunta:\s*([A-ZÀ-Ü\' ,]+)', v.get('note', ''))
+        aggiunte = [x.strip() for x in firme[0].split(',')] if firme else []
+        out.append({'tipo': 'Ordine del giorno', 'numero': num, 'titolo': titolo.rstrip('.'), 'data': data, 'proponenti': v['proponenti'], 'primo': v['proponenti'][0] if v['proponenti'] else '',
+                    'assessore': '', 'stato': stato_di.get((riga[0].strip(), v['lista']['data']), ''), 'esito': v.get('esito', ''), 'ddl': v.get('ddl', ''), 'legge': v.get('legge', ''),
+                    'oggetto': oggetto or (riga[1].strip() if len(riga) > 1 else ''), 'firmeAggiunte': aggiunte, 'allegato': v.get('allegato', ''), 'url': v['url']})
+    return out
+
+
 def main():
     args = sys.argv[1:]
     cartella = Path(args[0])
@@ -58,7 +83,7 @@ def main():
     membri = gruppi(cartella)
     tutti = atti(cartella, 'Mozione', 'mozioni_dett.json', 'stati_mozioni.json')
     if (cartella / 'odg_dett.json').exists():
-        tutti += atti(cartella, 'Ordine del giorno', 'odg_dett.json', 'stati_odg.json')
+        tutti += atti_odg(cartella, 'odg_dett.json', 'stati_odg.json')
     senza = [a['primo'] for a in tutti if a['primo'] and a['primo'] not in membri]
     print(f"atti: {len(tutti)}; stati: {dict(collections.Counter(a['stato'] for a in tutti))}; gruppi: {len(membri)} consiglieri; primi firmatari non nei gruppi: {sorted(set(senza)) or 'nessuno'}")
     USCITA.write_text(json.dumps({'letti': letti, 'legislatura': 'XIII', 'fonte': 'https://www.consiglio.regione.fvg.it/pagineinterne/Portale/Attivita/AttiIndirizzoRicerca.aspx', 'gruppi': membri,
