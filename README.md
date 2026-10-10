@@ -586,6 +586,17 @@ Prova in locale: con il file del modello in `modelli/` (o indicato in `MONITOR_M
 installato, `MONITOR_PAROLA=… python scripts/monitor_raccolta.py stato.json nuovo.json`; per le parole da filtrare
 via (per esempio «Lega Basket») c'è l'elenco «escludi» di `scripts/monitor_fonti.json`; i grafici del cruscotto usano l'ora di pubblicazione e, in questa modalità, 24 ore a intervalli di un'ora.
 
+## Consiglio regionale: mozioni e ordini del giorno (10 ottobre 2026)
+
+La banca dati degli atti di indirizzo del Consiglio regionale non offre dati aperti ed è un'applicazione a «postback»: la raccolta
+avviene con un browser automatico (`scripts/consiglio/`, vedi `LEGGIMI.md`): per ogni atto della XIII legislatura l'indirizzo della
+scheda, poi la scheda stessa (titolo, data di presentazione, proponenti, assessore competente, testo depositato), lo stato dai filtri
+di ricerca (presentato in attesa di esame, esaminato e approvato, esaminato e non approvato, ritirato) e la composizione attuale dei
+gruppi consiliari. `scripts/aggiorna_consiglio.py` unisce tutto in `dati/consiglio_atti.json`. La pagina `consiglio/` mostra gli atti
+con ricerca per testo, tipo, gruppo del primo firmatario, stato, consigliere e assessore, i totali per stato e per gruppo, il
+collegamento al testo depositato e alla scheda ufficiale, con scarico CSV. Prima raccolta: 235 mozioni; gli ordini del giorno
+(887) seguono con la stessa procedura. Interpellanze e interrogazioni non sono comprese.
+
 ## Bilancio della Regione (10 ottobre 2026)
 
 `scripts/aggiorna_bilancio_regionale.py` legge i PDF dei rendiconti generali pubblicati nella pagina «Bilancio» della Regione
