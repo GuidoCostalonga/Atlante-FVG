@@ -1,0 +1,36 @@
+{
+ "aggiornati": "2026-06-13",
+ "letti": "2026-10-10",
+ "progetti": 5044,
+ "comuni": 215,
+ "finanziamentoPnrrSoloComune": 1230256695,
+ "finanziamentoPnrrTotale": 1908120654,
+ "files": [
+  "dati/pnrr/progetti_0.txt",
+  "dati/pnrr/progetti_1.txt",
+  "dati/pnrr/progetti_2.txt"
+ ],
+ "cols": [
+  "CUP",
+  "Titolo",
+  "Missione e componente",
+  "Misura",
+  "Soggetto attuatore",
+  "Finanziamento PNRR (euro)",
+  "Finanziamento totale (euro)",
+  "Comuni",
+  "Territori in Italia",
+  "Codice locale del progetto"
+ ],
+ "missioni": {
+  "M1": "Digitalizzazione, innovazione, competitività, cultura e turismo",
+  "M2": "Rivoluzione verde e transizione ecologica",
+  "M3": "Infrastrutture per una mobilità sostenibile",
+  "M4": "Istruzione e ricerca",
+  "M5": "Inclusione e coesione",
+  "M6": "Salute",
+  "M7": "REPowerEU"
+ },
+ "fonte": "OpenPNRR (Fondazione Openpolis), open data da Italia Domani e ReGiS",
+ "indirizzo": "https://openpnrr.it/opendata/"
+}
