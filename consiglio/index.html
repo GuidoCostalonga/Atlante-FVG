@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consiglio regionale: mozioni e ordini del giorno · Atlante FVG</title>
+<meta name="description" content="Gli atti di indirizzo del Consiglio regionale del Friuli Venezia Giulia nella XIII legislatura: mozioni e ordini del giorno con proponenti, gruppo, assessore competente, stato e testo, dalla banca dati del Consiglio.">
+<link rel="canonical" href="https://atlantefvg.it/consiglio/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<meta name="theme-color" content="#0B3359">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Atlante FVG">
+<meta property="og:url" content="https://atlantefvg.it/consiglio/">
+<meta property="og:title" content="Consiglio regionale: mozioni e ordini del giorno · Atlante FVG">
+<meta property="og:description" content="Mozioni e ordini del giorno del Consiglio regionale: proponenti, gruppi, stato e testi.">
+<meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Atlante FVG","item":"https://atlantefvg.it/"},{"@type":"ListItem","position":2,"name":"Consiglio regionale","item":"https://atlantefvg.it/consiglio/"}]}</script>
+<script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../pagine.css">
+<style>
+  .filtri { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 768px) { .filtri { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); align-items: end; } }
+  .cerca { position: relative; }
+  .cerca .campo { padding-left: 40px; padding-right: 44px; }
+  .cerca .lente { position: absolute; left: 12px; top: 50%; margin-top: 11px; transform: translateY(-50%); color: var(--testo-3); pointer-events: none; }
+  .cerca .x { position: absolute; right: 2px; bottom: 2px; width: 44px; height: 44px; border: 0; background: none; border-radius: 10px; color: var(--testo-3); cursor: pointer; font-size: 18px; line-height: 1; }
+  .scelte-extra { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 12px; align-items: center; }
+  .scelte-extra label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; }
+  .esito { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+  .elenco { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .atto { background: var(--carta); border: 1px solid var(--linea); border-radius: 14px; padding: 14px 16px; display: grid; grid-template-columns: 1fr; gap: 6px 16px; }
+  @media (min-width: 768px) { .atto { grid-template-columns: minmax(0, 1fr) 11rem; } .atto .lato { text-align: right; } }
+  .atto h2 { font-family: var(--serif); font-size: 1.02rem; line-height: 1.3; font-weight: 600; margin: 0; }
+  .atto h2 a { color: var(--blu); text-decoration: none; } .atto h2 a:hover { text-decoration: underline; }
+  .atto .meta { font-size: 13px; color: var(--testo-2); }
+  .atto .lato b { font-family: var(--serif); font-size: 1rem; color: var(--blu); display: block; }
+  .atto .lato span { font-size: 12px; color: var(--testo-3); }
+  .badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 700; border: 1px solid transparent; }
+  .b-ok { background: #E9F4EC; color: #1F5E3A; border-color: #B8D9C4; } .b-no { background: #FBE9E7; color: #8A2A1C; border-color: #F0C2BC; } .b-attesa { background: #FEF8E3; color: #6A4B00; border-color: #E8C77E; } .b-altro { background: var(--blu-tenue); color: var(--blu); border-color: #C9D9EA; } .b-grigio { background: #EEE9DD; color: #52565E; border-color: var(--linea); }
+  .riga-badge { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tot { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+  @media (min-width: 768px) { .tot { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .tot div { background: var(--carta); border: 1px solid var(--linea); border-radius: 12px; padding: 10px 12px; }
+  .tot b { display: block; font-family: var(--serif); font-size: 1.2rem; color: var(--blu); } .tot span { font-size: 12px; color: var(--testo-3); }
+  .vuoto { text-align: center; padding: 28px 16px; }
+  .pagine { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin-top: 12px; }
+  .tab { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .tab th, .tab td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--linea); vertical-align: top; }
+  .tab th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--testo-3); }
+  .tab td.n, .tab th.n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .scorri { overflow: auto; border: 1px solid var(--linea); border-radius: 10px; background: var(--carta); }
+</style>
+</head>
+
+<body>
+<header class="testata"><div class="testata-dentro">
+  <a class="marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="113" height="40"></a>
+  <details class="menu-mob"><summary>Menù</summary><nav aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=confronto">Confronto fra comuni</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=archivio">Archivio dei dati</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../?pagina=ambiente">Allerte e qualità dell'aria</a><a href="../meteo/">Meteo</a><a href="../bandi/">Bandi e avvisi</a><a href="../opere/">Opere pubbliche</a><a href="../pnrr/">PNRR</a><a href="../bilancio-regionale/">Bilancio della Regione</a><a href="../consiglio/" aria-current="page">Consiglio regionale</a><a href="../finanziamenti/">Finanziamenti regionali</a><a href="../servizi/">Servizi sul territorio</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../elezioni/">Dati elezioni (riservata)</a><a href="../monitor/">Monitor percezione (riservata)</a><a href="../aggiornamenti/">Cosa è cambiato</a><a href="../?pagina=metodo">Metodo e fonti</a>
+  </nav></details>
+</div></header>
+
+<main class="contenuto">
+  <nav class="percorso" aria-label="Percorso"><a href="../">Atlante FVG</a> › Consiglio regionale</nav>
+  <section class="intro" id="intro">
+    <h1>Consiglio regionale: mozioni e ordini del giorno</h1>
+    <p>Gli atti di indirizzo presentati in Consiglio regionale nella XIII legislatura, dalla banca dati ufficiale del Consiglio: per ogni mozione e ordine del giorno il titolo, chi lo ha presentato e il suo gruppo, l'assessore competente, lo stato dell'esame e il testo depositato. Serve a vedere su quali temi i gruppi prendono posizione e con quale esito.</p>
+    <p class="nota" id="fonte">Lettura dei dati in corso…</p>
+  </section>
+
+  <section class="riquadro" aria-labelledby="titoloFiltri">
+    <h2 id="titoloFiltri" class="sr-only">Cerca gli atti</h2>
+    <div class="filtri">
+      <div class="cerca">
+        <label class="etichetta" for="q">Titolo, numero o consigliere</label>
+        <svg class="lente" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" class="campo" type="search" autocomplete="off" placeholder="Per esempio: sanità, trasporti, Maurmair" aria-describedby="esito">
+        <button type="button" class="x" id="cancella" aria-label="Cancella la ricerca" hidden>×</button>
+      </div>
+      <div><label class="etichetta" for="tipo">Tipo di atto</label><select id="tipo" class="campo"></select></div>
+      <div><label class="etichetta" for="gruppo">Gruppo del primo firmatario</label><select id="gruppo" class="campo"></select></div>
+      <div><label class="etichetta" for="stato">Stato</label><select id="stato" class="campo"></select></div>
+    </div>
+    <div class="scelte-extra">
+      <label>Consigliere <select id="consigliere" class="campo" style="min-height:40px;width:auto;display:inline-block;margin-left:6px"></select></label>
+      <label>Assessore competente <select id="assessore" class="campo" style="min-height:40px;width:auto;display:inline-block;margin-left:6px"></select></label>
+      <label>Ordine <select id="ordine" class="campo" style="min-height:40px;width:auto;display:inline-block;margin-left:6px"><option value="data">Più recenti</option><option value="numero">Numero</option></select></label>
+    </div>
+  </section>
+  <div class="tot" id="totali"></div>
+  <section class="riquadro" style="margin-top:16px" aria-labelledby="titoloGruppi">
+    <h2 id="titoloGruppi">Atti per gruppo del primo firmatario</h2>
+    <p class="nota">Con i filtri scelti. Il gruppo è quello attuale del consigliere secondo il sito del Consiglio.</p>
+    <div class="scorri"><table class="tab" id="tabGruppi"></table></div>
+  </section>
+  <div class="esito" style="margin-top:12px">
+    <h2 id="titoloElenco">Atti</h2>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="nota" id="esito" role="status" aria-live="polite"></span><button type="button" class="btn btn-secondario" id="scaricaCsv">Scarica CSV</button><button type="button" class="btn btn-secondario" id="copiaLink">Copia link</button></div>
+  </div>
+  <ul class="elenco" id="elenco"></ul>
+  <div class="pagine" id="pagine"></div>
+  <div class="riquadro vuoto" id="vuoto" hidden><p id="vuotoTesto"></p><button type="button" class="btn btn-primario" id="azzera">Cancella i filtri</button></div>
+
+  <section class="riquadro" style="margin-top:16px" aria-labelledby="titoloMetodo">
+    <h2 id="titoloMetodo">Come leggere questi atti</h2>
+    <p class="nota">Le mozioni sono gli atti con cui il Consiglio impegna la Giunta su un tema; gli ordini del giorno sono presentati di regola durante l'esame di un disegno di legge. Lo stato («presentato in attesa di esame», «esaminato e approvato», «esaminato e non approvato», «ritirato») è quello registrato nella banca dati del Consiglio alla data di lettura. Il gruppo è quello attuale del primo firmatario sulla pagina dei gruppi consiliari: chi ha cambiato gruppo durante la legislatura compare nel gruppo di oggi. Il testo depositato si apre dal sito del Consiglio. Interpellanze e interrogazioni non sono comprese.</p>
+    <p class="nota" id="segnala"></p>
+  </section>
+</main>
+
+<footer class="piede"><div class="piede-dentro">
+  <div><strong>Atlante FVG</strong><br>I comuni del Friuli Venezia Giulia, con fonte e data di ogni dato.</div>
+  <div><a href="../">Pagina iniziale</a> · <a href="https://www.consiglio.regione.fvg.it/cms/attivita/atti-di-indirizzo.html" target="_blank" rel="noopener">Atti di indirizzo del Consiglio</a> · <a href="../?pagina=metodo">Metodo e fonti</a></div>
+</div></footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  const dataIt = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} ${MESI[+m[2] - 1]} ${m[1]}` : (iso || ''); };
+  const nomeCons = c => { const m = D.gruppi[c]; const s = c.toLowerCase().replace(/(^|[\s'])([a-zà-ü])/g, (x, a, b) => a + b.toUpperCase()); return m && m.nome ? `${m.nome} ${s}` : s; };
+  const gruppoDi = c => (D.gruppi[c] || {}).gruppo || 'non in carica o non nei gruppi';
+  const PER_PAGINA = 40;
+  let D = null, ATTI = [], ST = { q: '', tipo: '', gruppo: '', stato: '', consigliere: '', assessore: '', ordine: 'data', pag: 1 };
+  function leggiURL() { const p = new URLSearchParams(location.search); ['q', 'tipo', 'gruppo', 'stato', 'consigliere', 'assessore'].forEach(k => ST[k] = p.get(k) || ''); ST.ordine = p.get('ordine') === 'numero' ? 'numero' : 'data'; ST.pag = Math.max(1, +p.get('pag') || 1); }
+  function indirizzo() { const u = new URL(location.href), p = u.searchParams; ['q', 'tipo', 'gruppo', 'stato', 'consigliere', 'assessore', 'ordine', 'pag'].forEach(k => p.delete(k)); ['q', 'tipo', 'gruppo', 'stato', 'consigliere', 'assessore'].forEach(k => { if (ST[k].trim()) p.set(k, ST[k].trim()); }); if (ST.ordine !== 'data') p.set('ordine', ST.ordine); if (ST.pag > 1) p.set('pag', ST.pag); return u.pathname + (p.toString() ? '?' + p.toString() : ''); }
+  function filtra() {
+    const parole = norm(ST.q).split(/\s+/).filter(Boolean);
+    return ATTI.filter(a => (!ST.tipo || a.tipo === ST.tipo) && (!ST.gruppo || gruppoDi(a.primo) === ST.gruppo) && (!ST.stato || a.stato === ST.stato) && (!ST.consigliere || a.proponenti.includes(ST.consigliere)) && (!ST.assessore || a.assessore === ST.assessore)
+      && parole.every(w => norm([a.titolo, a.numero, a.proponenti.join(' '), a.proponenti.map(nomeCons).join(' '), a.assessore, a.tipo].join(' ')).includes(w)));
+  }
+  const ordina = l => ST.ordine === 'numero' ? l.sort((a, b) => a.tipo.localeCompare(b.tipo) || b.numero - a.numero) : l.sort((a, b) => b.data.localeCompare(a.data) || b.numero - a.numero);
+  const badgeStato = s => `<span class="badge ${/approvato$/.test(s) ? 'b-ok' : /non approvato/.test(s) ? 'b-no' : /attesa/.test(s) ? 'b-attesa' : /ritirat/i.test(s) ? 'b-grigio' : 'b-altro'}">${esc(s || 'stato non indicato')}</span>`;
+  function voce(a) {
+    return `<li class="atto"><div><div class="riga-badge"><span class="badge b-altro">${esc(a.tipo)} n. ${a.numero}</span>${badgeStato(a.stato)}</div>
+      <h2><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.titolo)}</a></h2>
+      <div class="meta">${a.tipo === 'Mozione' ? 'Presentata' : 'Presentato'} da ${a.proponenti.map((c, k) => `<a href="?consigliere=${encodeURIComponent(c)}">${esc(nomeCons(c))}</a>${k === 0 ? ` <span class="nota">(${esc(gruppoDi(c))})</span>` : ''}`).join(', ') || 'proponenti non indicati'}${a.assessore ? ` · assessore competente: ${esc(nomeCons(a.assessore))}` : ''}</div>
+      <div class="meta">${a.allegato ? `<a href="${esc(a.allegato)}" target="_blank" rel="noopener">Testo depositato</a> · ` : ''}<a href="${esc(a.url)}" target="_blank" rel="noopener">Scheda sul sito del Consiglio</a></div></div>
+      <div class="lato"><b>${dataIt(a.data)}</b><span>data di presentazione</span></div></li>`;
+  }
+  function totali(l) {
+    const st = s => l.filter(a => a.stato === s).length;
+    $('totali').innerHTML = `<div><b>${l.length}</b><span>atti con i filtri scelti</span></div><div><b>${st('Esaminato e approvato')}</b><span>esaminati e approvati</span></div><div><b>${st('Esaminato e non approvato')}</b><span>esaminati e non approvati</span></div><div><b>${st('Presentato in attesa di esame')}</b><span>in attesa di esame</span></div>`;
+    const gr = new Map(); l.forEach(a => { const g = gruppoDi(a.primo); const o = gr.get(g) || { n: 0, ok: 0, no: 0, att: 0, rit: 0 }; o.n++; if (a.stato === 'Esaminato e approvato') o.ok++; else if (a.stato === 'Esaminato e non approvato') o.no++; else if (/attesa/.test(a.stato)) o.att++; else if (/ritirat/i.test(a.stato)) o.rit++; gr.set(g, o); });
+    $('tabGruppi').innerHTML = `<thead><tr><th>Gruppo</th><th class="n">Atti</th><th class="n">Approvati</th><th class="n">Non approvati</th><th class="n">In attesa</th><th class="n">Ritirati</th></tr></thead><tbody>${[...gr.entries()].sort((a, b) => b[1].n - a[1].n).map(([g, o]) => `<tr><td><a href="?gruppo=${encodeURIComponent(g)}">${esc(g)}</a></td><td class="n">${o.n}</td><td class="n">${o.ok}</td><td class="n">${o.no}</td><td class="n">${o.att}</td><td class="n">${o.rit}</td></tr>`).join('')}</tbody>`;
+  }
+  function disegna() {
+    const l = ordina(filtra()); const pagine = Math.max(1, Math.ceil(l.length / PER_PAGINA)); if (ST.pag > pagine) ST.pag = pagine;
+    $('elenco').innerHTML = l.slice((ST.pag - 1) * PER_PAGINA, ST.pag * PER_PAGINA).map(voce).join('');
+    $('vuoto').hidden = l.length > 0; if (!l.length) $('vuotoTesto').textContent = 'Nessun atto corrisponde ai filtri.';
+    $('esito').textContent = `${l.length} atti${pagine > 1 ? ` · pagina ${ST.pag} di ${pagine}` : ''}`;
+    $('pagine').innerHTML = pagine > 1 ? `<button type="button" class="btn btn-secondario" data-p="${ST.pag - 1}" ${ST.pag === 1 ? 'disabled' : ''}>Pagina precedente</button><span class="nota">${ST.pag} / ${pagine}</span><button type="button" class="btn btn-secondario" data-p="${ST.pag + 1}" ${ST.pag === pagine ? 'disabled' : ''}>Pagina successiva</button>` : '';
+    totali(l); $('cancella').hidden = !ST.q; try { history.replaceState(null, '', indirizzo()); } catch (e) { /* indirizzo non modificabile */ }
+  }
+  function opzioni() {
+    const conta = (f, lista) => { const m = new Map(); lista.forEach(a => f(a).forEach(k => m.set(k, (m.get(k) || 0) + 1))); return m; };
+    const opt = (sel, m, vuoto, nome = x => x, ord = 'n') => '<option value="">' + vuoto + '</option>' + [...m.entries()].sort((a, b) => ord === 'n' ? b[1] - a[1] : nome(a[0]).localeCompare(nome(b[0]), 'it')).map(([k, n]) => `<option value="${esc(k)}" ${k === ST[sel] ? 'selected' : ''}>${esc(nome(k))} (${n})</option>`).join('');
+    $('tipo').innerHTML = opt('tipo', conta(a => [a.tipo], ATTI), 'Tutti');
+    $('gruppo').innerHTML = opt('gruppo', conta(a => [gruppoDi(a.primo)], ATTI), 'Tutti i gruppi');
+    $('stato').innerHTML = opt('stato', conta(a => [a.stato], ATTI), 'Tutti');
+    $('consigliere').innerHTML = opt('consigliere', conta(a => a.proponenti, ATTI), 'Tutti', nomeCons, 'a');
+    $('assessore').innerHTML = opt('assessore', conta(a => a.assessore ? [a.assessore] : [], ATTI), 'Tutti', nomeCons, 'a');
+    $('q').value = ST.q; $('ordine').value = ST.ordine;
+  }
+  $('q').addEventListener('input', e => { ST.q = e.target.value; ST.pag = 1; disegna(); });
+  $('cancella').addEventListener('click', () => { ST.q = ''; $('q').value = ''; ST.pag = 1; disegna(); $('q').focus(); });
+  ['tipo', 'gruppo', 'stato', 'consigliere', 'assessore', 'ordine'].forEach(k => $(k).addEventListener('change', e => { ST[k] = e.target.value; ST.pag = 1; disegna(); }));
+  $('pagine').addEventListener('click', e => { const b = e.target.closest('button[data-p]'); if (!b) return; ST.pag = +b.dataset.p; disegna(); $('titoloElenco').scrollIntoView(); });
+  $('azzera').addEventListener('click', () => { ST = { q: '', tipo: '', gruppo: '', stato: '', consigliere: '', assessore: '', ordine: 'data', pag: 1 }; opzioni(); disegna(); });
+  document.addEventListener('click', e => { const a = e.target.closest('a[href^="?consigliere="], a[href^="?gruppo="]'); if (!a) return; e.preventDefault(); const p = new URLSearchParams(a.getAttribute('href').slice(1)); ST = { q: '', tipo: '', gruppo: p.get('gruppo') || '', stato: '', consigliere: p.get('consigliere') || '', assessore: '', ordine: ST.ordine, pag: 1 }; opzioni(); disegna(); $('titoloElenco').scrollIntoView(); });
+  $('scaricaCsv').addEventListener('click', () => {
+    const l = ordina(filtra()); const cella = v => { const s = v == null ? '' : String(v); return /[",\r\n;]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+    const righe = [['Tipo', 'Numero', 'Data di presentazione', 'Titolo', 'Proponenti', 'Gruppo del primo firmatario', 'Assessore competente', 'Stato', 'Testo depositato', 'Scheda', 'Fonte'].join(','), ...l.map(a => [a.tipo, a.numero, a.data, a.titolo, a.proponenti.map(nomeCons).join(' | '), gruppoDi(a.primo), a.assessore ? nomeCons(a.assessore) : '', a.stato, a.allegato, a.url, 'Consiglio regionale FVG, banca dati degli atti di indirizzo, letta il ' + D.letti].map(cella).join(','))];
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['\ufeff' + righe.join('\r\n')], { type: 'text/csv;charset=utf-8' })); a.download = 'consiglio-fvg-atti.csv'; document.body.appendChild(a); a.click(); a.remove();
+  });
+  $('copiaLink').addEventListener('click', async () => { const url = location.origin + indirizzo(); try { await navigator.clipboard.writeText(url); $('copiaLink').textContent = 'Link copiato'; setTimeout(() => $('copiaLink').textContent = 'Copia link', 2000); } catch (e) { prompt('Copia il collegamento:', url); } });
+  window.addEventListener('popstate', () => { leggiURL(); opzioni(); disegna(); });
+  (async () => {
+    try {
+      D = await (await fetch('../dati/consiglio_atti.json')).json(); ATTI = D.atti;
+      leggiURL(); opzioni();
+      const tipi = [...new Set(ATTI.map(a => a.tipo))];
+      $('fonte').innerHTML = `Fonte: <a href="https://www.consiglio.regione.fvg.it/cms/attivita/atti-di-indirizzo.html" target="_blank" rel="noopener">Consiglio regionale del Friuli Venezia Giulia, banca dati degli atti di indirizzo</a>, XIII legislatura, letta dall'Atlante il ${dataIt(D.letti)}; gruppi consiliari dalla pagina dei gruppi alla stessa data. ${ATTI.length} atti: ${tipi.map(t => `${ATTI.filter(a => a.tipo === t).length} ${t.toLowerCase()}${ATTI.filter(a => a.tipo === t).length === 1 ? '' : t === 'Mozione' ? '' : ''}`).join(', ')}.`;
+      const u = 'mailto:info@atlantefvg.it?subject=' + encodeURIComponent('Segnalazione di errore: Consiglio regionale') + '&body=' + encodeURIComponent('Pagina: ' + location.href + '\nAtto:\n\nChe cosa non torna:\n');
+      $('segnala').innerHTML = `Hai trovato un errore? <a href="${u}">Segnalalo per posta</a> oppure <a href="https://wa.me/393283692227?text=${encodeURIComponent('Segnalazione di errore sull\'Atlante FVG: pagina Consiglio regionale')}" target="_blank" rel="noopener">via WhatsApp</a>.`;
+      disegna();
+    } catch (e) { $('fonte').innerHTML = '<span class="errore" style="display:block">I dati del Consiglio non si sono caricati: ricarica la pagina o consulta direttamente la <a href="https://www.consiglio.regione.fvg.it/cms/attivita/atti-di-indirizzo.html" target="_blank" rel="noopener">banca dati del Consiglio</a>.</span>'; }
+  })();
+})();
+</script>
+</body>
+</html>
