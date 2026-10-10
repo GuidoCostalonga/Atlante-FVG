@@ -1,13 +1,14 @@
 name: Monitor della percezione
 
 # Ogni 30 minuti raccoglie le notizie delle fonti di scripts/monitor_fonti.json (più i nomi del segreto
-# MONITOR_NOMI), le fa analizzare a Claude e pubblica lo stato CIFRATO nel ramo monitor-dati, che contiene
-# un solo file (dati.json) e viene riscritto a ogni giro: la storia di main e il registro «Cosa è cambiato»
-# non si riempiono di aggiornamenti. La pagina monitor/ lo legge da raw.githubusercontent.com e lo apre con
-# la stessa chiave della sezione riservata.
-# Segreti obbligatori: ANTHROPIC_API_KEY, MONITOR_PAROLA. Facoltativi: MONITOR_NOMI, BLUESKY_UTENTE,
-# BLUESKY_PASSWORD_APP, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_STAFF. Senza i due obbligatori il lavoro finisce
-# subito, senza errori.
+# MONITOR_NOMI), le fa analizzare da un modello linguistico aperto e gratuito (Qwen3 4B, licenza Apache 2.0)
+# eseguito qui, sul computer di GitHub, e pubblica lo stato CIFRATO nel ramo monitor-dati, che contiene un solo
+# file (dati.json) riscritto a ogni giro: la storia di main e il registro «Cosa è cambiato» non si riempiono.
+# La pagina monitor/ lo legge da raw.githubusercontent.com e lo apre con la stessa chiave della sezione riservata.
+# Nessun servizio a pagamento e nessun testo inviato a fornitori esterni di analisi.
+# Segreto obbligatorio: MONITOR_PAROLA. Facoltativi: MONITOR_NOMI, BLUESKY_UTENTE, BLUESKY_PASSWORD_APP,
+# TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_STAFF. Senza MONITOR_PAROLA il lavoro finisce subito, senza errori.
+# Il modello (2,5 GB) e la libreria llama-cpp-python, compilata al primo giro, restano nella cache di Actions.
 on:
   schedule:
     - cron: '11,41 * * * *'
@@ -23,30 +24,69 @@ concurrency:
 jobs:
   raccolta:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
+    env:
+      MODELLO_URL: https://huggingface.co/Qwen/Qwen3-4B-GGUF/resolve/bc640142c66e1fdd12af0bd68f40445458f3869b/Qwen3-4B-Q4_K_M.gguf
+      MODELLO_SHA256: 7485fe6f11af29433bc51cab58009521f205840f5b4ae3a32fa7f92e8534fdf5
+      LLAMA_CPP_VERSIONE: '0.3.36'
     steps:
+      - name: Controlla che la raccolta sia configurata
+        id: controllo
+        env:
+          MONITOR_PAROLA: ${{ secrets.MONITOR_PAROLA }}
+        run: |
+          if [ -n "$MONITOR_PAROLA" ]; then echo "attivo=true" >> "$GITHUB_OUTPUT"
+          else echo "attivo=false" >> "$GITHUB_OUTPUT"; echo "Segreto MONITOR_PAROLA assente: nessuna raccolta."; fi
+
       - uses: actions/checkout@v5
+        if: steps.controllo.outputs.attivo == 'true'
         with:
           sparse-checkout: |
             scripts
             monitor
 
       - uses: actions/setup-python@v6
+        if: steps.controllo.outputs.attivo == 'true'
         with:
-          python-version: '3.12'
+          python-version: '3.13'
 
-      - name: Installa le librerie
-        run: pip install --quiet "anthropic>=1.0" feedparser httpx cryptography
+      - name: Recupera libreria e modello dalla cache
+        if: steps.controllo.outputs.attivo == 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/ruote
+            modelli
+          key: monitor-qwen3-4b-q4km-${{ env.MODELLO_SHA256 }}-llama-${{ env.LLAMA_CPP_VERSIONE }}-py313
+
+      - name: Prepara la libreria del modello (compilata solo la prima volta)
+        if: steps.controllo.outputs.attivo == 'true'
+        run: |
+          if ! ls ~/ruote/llama_cpp_python-*.whl >/dev/null 2>&1; then
+            mkdir -p ~/ruote
+            pip wheel --quiet --no-deps "llama-cpp-python==${LLAMA_CPP_VERSIONE}" -w ~/ruote
+          fi
+          pip install --quiet ~/ruote/llama_cpp_python-*.whl feedparser httpx cryptography
+
+      - name: Scarica e verifica il modello (solo la prima volta)
+        if: steps.controllo.outputs.attivo == 'true'
+        run: |
+          mkdir -p modelli
+          if [ ! -s modelli/Qwen3-4B-Q4_K_M.gguf ]; then
+            curl -sSL --retry 3 -o modelli/Qwen3-4B-Q4_K_M.gguf "$MODELLO_URL"
+          fi
+          echo "$MODELLO_SHA256  modelli/Qwen3-4B-Q4_K_M.gguf" | sha256sum -c -
 
       - name: Scarica lo stato precedente
+        if: steps.controllo.outputs.attivo == 'true'
         run: |
           if git fetch --quiet --depth=1 origin monitor-dati 2>/dev/null; then
             git show FETCH_HEAD:dati.json > "$RUNNER_TEMP/precedente.json" || true
           fi
 
       - name: Raccoglie e analizza
+        if: steps.controllo.outputs.attivo == 'true'
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           MONITOR_PAROLA: ${{ secrets.MONITOR_PAROLA }}
           MONITOR_NOMI: ${{ secrets.MONITOR_NOMI }}
           BLUESKY_UTENTE: ${{ secrets.BLUESKY_UTENTE }}
@@ -56,6 +96,7 @@ jobs:
         run: python scripts/monitor_raccolta.py "$RUNNER_TEMP/precedente.json" "$RUNNER_TEMP/dati.json"
 
       - name: Pubblica lo stato cifrato nel ramo monitor-dati
+        if: steps.controllo.outputs.attivo == 'true'
         run: |
           if [ ! -s "$RUNNER_TEMP/dati.json" ]; then echo "Niente da pubblicare."; exit 0; fi
           cartella="$RUNNER_TEMP/ramo"; mkdir -p "$cartella"; cp "$RUNNER_TEMP/dati.json" "$cartella/dati.json"

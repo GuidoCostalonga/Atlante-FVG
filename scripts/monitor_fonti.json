@@ -1,5 +1,5 @@
 {
-  "_nota": "Fonti del Monitor della percezione pubblica (sezione riservata monitor/). Indirizzi verificati il 10 ottobre 2026. I nomi di politici e partiti da cercare in più NON vanno scritti qui (il repository è pubblico): stanno nel segreto MONITOR_NOMI. politica=true: si tengono solo le notizie con almeno un termine istituzionale o politico dell'elenco «politica». territorio=true (testate venete e nazionali): si tengono solo le notizie che nel titolo o nel sommario citano il Friuli Venezia Giulia, i suoi capoluoghi o uno dei nomi seguiti. Le testate senza flusso proprio passano da Google News: arrivano solo titolo e testata.",
+  "_nota": "Fonti del Monitor della percezione pubblica (sezione riservata monitor/). Indirizzi verificati il 10 ottobre 2026. I nomi di politici e partiti da cercare in più NON vanno scritti qui (il repository è pubblico): stanno nel segreto MONITOR_NOMI. politica=true: si tengono solo le notizie con almeno un termine istituzionale o politico dell'elenco «politica»; le espressioni dell'elenco «escludi» (per esempio «Lega Basket») non contano. territorio=true (testate venete e nazionali): si tengono solo le notizie che nel titolo o nel sommario citano il Friuli Venezia Giulia, i suoi capoluoghi o uno dei nomi seguiti. Le testate senza flusso proprio passano da Google News: arrivano solo titolo e testata.",
   "feed": [
     {
       "nome": "Regione FVG, notizie dalla Giunta",
@@ -205,5 +205,16 @@
     "Azione",
     "Italia viva"
   ],
-  "google_news_per_nome": "https://news.google.com/rss/search?q=%22{nome}%22+when:1d&hl=it&gl=IT&ceid=IT:it"
+  "google_news_per_nome": "https://news.google.com/rss/search?q=%22{nome}%22+when:1d&hl=it&gl=IT&ceid=IT:it",
+  "escludi": [
+    "Lega Basket",
+    "Lega Pro",
+    "Lega Serie A",
+    "Lega Serie B",
+    "Lega Calcio",
+    "Lega Volley",
+    "Serie A",
+    "Serie B",
+    "Serie C"
+  ]
 }
