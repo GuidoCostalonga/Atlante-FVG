@@ -161,6 +161,7 @@ def raccogli(fonti: dict, nomi: list[str], viste: dict) -> list[dict]:
                         aggiungi('bluesky', p['uri'], p['record'].get('text', ''), f'https://bsky.app/profile/{handle}/post/{rk}', 'Bluesky',
                                  datetime.fromisoformat(p['record'].get('createdAt', ADESSO.isoformat()).replace('Z', '+00:00')),
                                  p['author']['did'], p.get('likeCount', 0) + p.get('repostCount', 0) + p.get('replyCount', 0))
+                registro(f"  Bluesky: accesso riuscito, {sum(m['fonte'] == 'bluesky' for m in nuove.values())} messaggi nuovi")
             else:
                 registro(f'  accesso a Bluesky non riuscito ({s.status_code})')
     elenco = sorted(nuove.values(), key=lambda m: m['pubblicato'], reverse=True)
@@ -320,6 +321,14 @@ def main() -> None:
         registro('Segreto MONITOR_PAROLA assente: nessuna raccolta (vedi README, sezione Monitor).')
         return
     k = chiave()
+    # La parola d'ordine deve aprire la pagina riservata: se il segreto è sbagliato lo stato scritto sarebbe illeggibile
+    # dal cruscotto e sostituirebbe quello buono, quindi il giro si ferma prima di pubblicare.
+    pagina = json.loads((RADICE / 'monitor' / 'contenuto.json').read_text())
+    try:
+        AESGCM(k).decrypt(base64.b64decode(pagina['i']), base64.b64decode(pagina['d']), None)
+    except Exception:
+        raise SystemExit('ERRORE: il segreto MONITOR_PAROLA non corrisponde alla parola d\'ordine della pagina monitor/: '
+                         'nessuno stato scritto. Correggere il segreto in Settings → Secrets and variables → Actions.')
     stato = {'menzioni': [], 'allerte': [], 'viste': {}, 'ultime_allerte': {}}
     if precedente.exists() and precedente.stat().st_size:
         try:
