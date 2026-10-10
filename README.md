@@ -566,6 +566,12 @@ Il cruscotto mostra solo dati reali, prodotti ogni 30 minuti da `.github/workflo
    quindi il cruscotto la usa senza chiedere altro e legge il file da raw.githubusercontent.com ogni 5 minuti.
    Restano 72 ore di menzioni e allerte e 30 giorni di impronte dei contenuti già visti.
 
+**Cadenza.** La programmazione di GitHub parte spesso con ore di ritardo o salta (succede anche agli altri flussi
+dell'Atlante), quindi ogni giro, finito il lavoro, attende che siano passati circa 30 minuti dal suo inizio e avvia da sé
+il giro successivo. Il cron `11,41 * * * *` serve solo a riavviare la catena se si interrompe; `concurrency` tiene in coda
+un solo giro. Per fermare la raccolta: annullare il giro in corso e togliere il segreto `MONITOR_PAROLA` (o disattivare
+il flusso in Actions).
+
 **Segreti** (Settings → Secrets and variables → Actions): `MONITOR_PAROLA` (la parola d'ordine della sezione)
 obbligatorio; `MONITOR_NOMI` (nomi di politici e partiti separati da virgola: stanno nei segreti perché il
 repository è pubblico), `BLUESKY_UTENTE` con `BLUESKY_PASSWORD_APP`, `TELEGRAM_BOT_TOKEN` con `TELEGRAM_CHAT_STAFF`
