@@ -510,6 +510,31 @@ scelta nei filtri. Nella stessa revisione è stata corretta la regola di stile c
 e scarico della pagina, e corregge i riferimenti al documento. Limite: una parola d'ordine breve resiste poco a un attacco a forza
 bruta condotto fuori dal browser; la protezione serve a tenere la sezione fuori dalla consultazione pubblica, non a custodire segreti.
 
+## Sezione riservata «Monitor della percezione pubblica» (10 ottobre 2026)
+
+La pagina `monitor/` ospita il cruscotto che misura il tono di testate e social su politici, partiti e temi del Friuli Venezia
+Giulia: indice netto da −100 a +100, menzioni all'ora, volatilità, sarcasmo, emozioni, temi caldi, fonti, flusso delle menzioni
+e allerte di crisi o di consenso, con la casella «Politico o partito da monitorare» che filtra tutto su un nome (fino a cinque
+varianti separate da virgola). Senza servizio collegato mostra dati simulati, con politici e partiti di fantasia.
+
+Funziona come la sezione Elezioni: `monitor/contenuto.json` è il frammento (stile, struttura, Chart.js 4.4.1 e programma)
+compresso e cifrato con AES-GCM; la chiave deriva dalla parola d'ordine con PBKDF2 e si calcola solo nel browser, resta in
+`sessionStorage` (`atlante-fvg:monitor-chiave`) finché la scheda è aperta. La parola d'ordine non distingue maiuscole e minuscole:
+si cifra e si verifica in maiuscolo. Chart.js viaggia dentro il frammento, quindi la pagina non scarica librerie da siti esterni.
+La pagina è `noindex`, non è nella sitemap ed è raggiungibile dal menu di ogni pagina («Monitor percezione (riservata)»), dalla
+pagina iniziale (gruppo «Voto») e dalla ricerca per argomento.
+
+La grafica sta in `scripts/monitor_frammento.html` (tavolozza e caratteri di `pagine.css`, stile confinato sotto `#monitor`); il
+programma è `app.js` del progetto sentiment-fvg di costalonga.org, che contiene anche il servizio Python di raccolta e analisi.
+Per collegare il servizio si scrive il suo indirizzo in `data-servizio` di `#monitor` nel modello. Come aggiornare:
+```
+python3 -I scripts/prepara_monitor.py <sentiment-fvg/app.js> <chart.umd.min.js 4.4.1> /tmp/frammento.html
+PAROLA='…' node scripts/cifra_pagina.js /tmp/frammento.html monitor/contenuto.json
+```
+`prepara_monitor.py` controlla l'impronta SHA-384 di Chart.js prima di inserirla. Stesso limite della sezione Elezioni: una
+parola d'ordine breve tiene la sezione fuori dalla consultazione pubblica, ma non resiste a un attacco a forza bruta condotto
+fuori dal browser.
+
 ## Barra in alto ridotta al solo «Menù» (8 ottobre 2026)
 
 Su computer la barra in alto non elenca più le pagine: resta il pulsante «Menù» (già «Argomenti»), che apre il pannello con la riga

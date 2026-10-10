@@ -1,0 +1,268 @@
+<style>
+/* Monitor della percezione pubblica, con la tavolozza dell'Atlante (le variabili di base sono quelle di pagine.css).
+   Le variabili qui sotto sono lette anche dal programma per colorare i grafici. */
+:root {
+  --superficie: #FFFFFF; --superficie-2: #F4F1EA; --bordo: #E4DDCD; --griglia: #EFEAE0;
+  --accento: #0B3359; --accento-testo: #FFFFFF;
+  --positivo: #155E9E; --neutro: #BDB5A6; --negativo: #A41D22;
+  --crisi: #A41D22; --crisi-fondo: #FDF2F2; --opportunita: #2F7D4F; --opportunita-testo: #1F5C39; --opportunita-fondo: #EEF6F1; --avviso: #D8973C;
+  --carattere: "Plus Jakarta Sans", system-ui, "Segoe UI", sans-serif;
+}
+#monitor { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+#monitor h2 { font-size: 19px; }
+#monitor .nota { margin: 0; }
+#monitor p { margin: 0; }
+
+/* barra dei comandi */
+#monitor .comandi { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+#monitor .comandi .btn { min-height: 40px; }
+#monitor .btn[aria-pressed="true"] { background: var(--blu-tenue); border-color: var(--blu-chiaro); }
+#monitor .stato { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--testo-2);
+  padding: 8px 12px; border-radius: 999px; background: #fff; border: 1px solid var(--linea); margin-right: auto; }
+#monitor .stato .punto { width: 9px; height: 9px; border-radius: 50%; background: var(--neutro); }
+#monitor .stato[data-tipo="collegato"] .punto { background: var(--verde); }
+#monitor .stato[data-tipo="demo"] .punto { background: var(--oro); }
+#monitor .stato[data-tipo="errore"] .punto { background: var(--rosso); }
+#monitor .stato[data-tipo="collegato"] .punto, #monitor .stato[data-tipo="demo"] .punto { animation: mon-battito 2s infinite; }
+@keyframes mon-battito { 50% { opacity: .35; } }
+
+/* obiettivo */
+#monitor .obiettivo { display: grid; gap: 10px; }
+#monitor .obiettivo-modulo { display: grid; gap: 6px; }
+#monitor .obiettivo-modulo label { font-family: var(--serif); color: var(--blu); font-weight: 700; font-size: 18px; }
+#monitor .obiettivo-riga { display: flex; gap: 8px; }
+#monitor .obiettivo-riga .campo { flex: 1; min-width: 0; font-size: 16px; }
+#monitor .obiettivo-attivo { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: space-between;
+  padding: 10px 12px; border-radius: 10px; background: var(--blu-tenue); border-left: 5px solid var(--blu); }
+#monitor .obiettivo-attivo > span { min-width: 0; overflow-wrap: anywhere; }
+#monitor .obiettivo-attivo strong { color: var(--blu); font-size: 16px; }
+#monitor .obiettivo-avviso { border-left: 4px solid var(--oro); background: #FFFDF5; padding: 10px 12px; border-radius: 8px; font-size: 14px; }
+
+/* striscione delle allerte */
+#monitor .striscione { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; padding: 14px 16px; border-radius: 14px; color: #fff; }
+#monitor .striscione[data-tipo="crisi"] { background: var(--crisi); animation: mon-crisi 1.4s ease-in-out infinite; }
+#monitor .striscione[data-tipo="opportunita"] { background: var(--opportunita); animation: mon-opp 1.8s ease-in-out infinite; }
+#monitor .striscione-icona { font-size: 26px; line-height: 1; }
+#monitor .striscione-corpo { flex: 1 1 260px; display: grid; gap: 2px; }
+#monitor .striscione-corpo strong { font-family: var(--serif); font-size: 19px; }
+#monitor .striscione .btn { background: #fff; color: var(--blu); }
+@keyframes mon-crisi { 50% { box-shadow: 0 0 0 6px rgba(164,29,34,.25); } }
+@keyframes mon-opp { 50% { box-shadow: 0 0 0 6px rgba(47,125,79,.25); } }
+
+/* indicatori */
+#monitor .indicatori { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+#monitor .indicatore { background: var(--carta); border: 1px solid var(--linea); border-radius: 14px; padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
+#monitor .indicatore h2 { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--testo-2); }
+#monitor .indicatore h2 .nota { font-weight: 400; }
+#monitor .valore { font-family: var(--serif); color: var(--blu); font-size: 34px; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+#monitor .valore-testo { font-size: 26px; text-transform: capitalize; }
+#monitor .variazione { font-size: 13px; color: var(--testo-3); min-height: 1.4em; }
+#monitor .scala { position: relative; height: 6px; margin-top: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--negativo), var(--superficie-2) 50%, var(--positivo)); }
+#monitor .scala span { position: absolute; top: -4px; width: 4px; height: 14px; border-radius: 2px; background: var(--testo); left: 50%; transform: translateX(-2px); transition: left .6s ease; }
+
+/* griglia dei riquadri */
+#monitor .griglia { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+#monitor .colonna-grafici { display: grid; gap: 20px; min-width: 0; }
+#monitor .coppia { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+#monitor .riquadro { min-width: 0; }
+#monitor .pannello-testa { display: grid; gap: 2px; margin-bottom: 12px; }
+#monitor .tela { position: relative; height: 200px; }
+#monitor .tela.alta { height: 240px; }
+
+/* temi */
+#monitor .nuvola { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; min-height: 160px; align-content: flex-start; }
+#monitor .tema { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: var(--avorio); border: 1px solid var(--linea); line-height: 1.2; cursor: pointer; color: var(--testo); font-family: var(--sans); min-height: 0; }
+#monitor .tema:hover { border-color: var(--oro); }
+#monitor .tema .segno { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+#monitor .tema .cifra { font-size: 12px; color: var(--testo-3); font-variant-numeric: tabular-nums; }
+#monitor .legenda-divergente { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--testo-3); margin-top: 12px; }
+#monitor .barra-divergente { flex: 1; max-width: 160px; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--negativo), var(--neutro), var(--positivo)); }
+
+/* fonti */
+#monitor .fonti { display: grid; gap: 8px; }
+#monitor .fonte-riga { display: grid; grid-template-columns: 110px 1fr 44px; gap: 10px; align-items: center; font-size: 14px; }
+#monitor .fonte-barra { height: 10px; background: var(--superficie-2); border-radius: 4px; overflow: hidden; display: flex; gap: 2px; }
+#monitor .fonte-barra span { display: block; height: 100%; }
+#monitor .fonte-riga .cifra { text-align: right; font-variant-numeric: tabular-nums; color: var(--testo-2); }
+
+/* registro delle allerte */
+#monitor .registro { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; max-height: 360px; overflow: auto; }
+#monitor .registro li { border: 1px solid var(--linea); border-radius: 10px; padding: 10px 12px; display: grid; gap: 4px; }
+#monitor .registro li[data-tipo="crisi"] { border-left: 5px solid var(--crisi); background: var(--crisi-fondo); }
+#monitor .registro li[data-tipo="opportunita"] { border-left: 5px solid var(--opportunita); background: var(--opportunita-fondo); }
+#monitor .registro .vuoto { color: var(--testo-3); border-style: dashed; }
+#monitor .registro .riga-testa { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 14px; }
+#monitor .registro time, #monitor .registro .dettaglio { font-size: 13px; color: var(--testo-3); }
+
+/* flusso delle menzioni */
+#monitor .colonna-flusso { position: sticky; top: 76px; display: flex; flex-direction: column; max-height: calc(100vh - 96px); }
+#monitor .filtri { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: flex-end; margin-bottom: 12px; }
+#monitor .filtri label { display: grid; gap: 2px; font-size: 12px; font-weight: 600; color: var(--testo-2); }
+#monitor .filtri .campo { min-height: 40px; font-size: 14px; padding: 6px 10px; width: auto; }
+#monitor .filtri .cerca { flex: 1 1 140px; }
+#monitor .filtri .cerca .campo { width: 100%; }
+#monitor .filtri .spunta { display: flex; align-items: center; gap: 6px; min-height: 40px; font-size: 14px; color: var(--testo); }
+#monitor .filtri .btn { min-height: 40px; }
+#monitor .flusso { list-style: none; margin: 0; padding: 0 4px 0 0; overflow-y: auto; display: grid; gap: 10px; flex: 1; align-content: start; }
+#monitor .scheda { border: 1px solid var(--linea); border-radius: 10px; padding: 10px 12px; border-left: 5px solid var(--neutro); display: grid; gap: 6px; background: #fff; }
+#monitor .scheda[data-polarita="positivo"] { border-left-color: var(--positivo); }
+#monitor .scheda[data-polarita="negativo"] { border-left-color: var(--negativo); }
+#monitor .scheda.nuova { animation: mon-comparsa .5s ease; }
+@keyframes mon-comparsa { from { opacity: 0; transform: translateY(-6px); } }
+#monitor .scheda-testa { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 12px; color: var(--testo-2); }
+#monitor .scheda-testa .ora { margin-left: auto; font-variant-numeric: tabular-nums; }
+#monitor .scheda-testo { font-size: 14.5px; overflow-wrap: anywhere; }
+#monitor .scheda-motivo { font-size: 12.5px; color: var(--testo-3); font-style: italic; }
+#monitor .scheda-piede { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 12px; }
+#monitor .scheda-piede a { font-weight: 700; margin-left: auto; }
+#monitor .etichetta { display: inline-flex; align-items: center; gap: 4px; margin: 0; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; background: var(--avorio); color: var(--testo); border: 1px solid var(--linea); }
+#monitor .etichetta.sarcasmo { background: var(--oro-chiaro); border-color: var(--oro); color: #3A2A08; }
+#monitor .etichetta.ostile { background: var(--crisi-fondo); border-color: var(--crisi); color: #7E1317; }
+#monitor .entita { padding: 1px 6px; border-radius: 4px; background: var(--blu-tenue); color: var(--blu-medio); }
+#monitor .flusso .vuoto { color: var(--testo-3); padding: 20px 0; text-align: center; }
+
+/* metodo e accesso al servizio */
+#monitor .metodo summary { cursor: pointer; font-weight: 700; color: var(--blu); min-height: 44px; display: flex; align-items: center; }
+#monitor .metodo ul { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 6px; color: var(--testo-2); font-size: 14.5px; }
+#monitor .accesso { border: 1px solid var(--linea); border-radius: 14px; background: #fff; color: var(--testo); padding: 24px; width: min(420px, calc(100vw - 32px)); }
+#monitor .accesso::backdrop { background: rgba(7,33,58,.55); }
+#monitor .accesso form { display: grid; gap: 10px; }
+#monitor .accesso label { font-size: 13px; font-weight: 600; color: var(--testo-2); }
+#monitor .accesso .errore { min-height: 1.2em; }
+#monitor .accesso .errore:empty { border: 0; background: none; padding: 0; }
+
+@media (max-width: 1080px) {
+  #monitor .griglia { grid-template-columns: minmax(0, 1fr); }
+  #monitor .colonna-flusso { position: static; max-height: 80vh; order: -1; }
+}
+@media (max-width: 640px) {
+  #monitor .coppia { grid-template-columns: minmax(0, 1fr); }
+  #monitor .indicatori { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #monitor .valore { font-size: 28px; }
+  #monitor .fonte-riga { grid-template-columns: 88px 1fr 36px; }
+}
+@media (prefers-reduced-motion: reduce) { #monitor .striscione { outline: 4px solid #fff; outline-offset: -8px; } }
+</style>
+
+<!-- data-servizio: indirizzo del servizio (es. https://monitor.atlantefvg.it). Vuoto = dati simulati. -->
+<div class="monitor" id="monitor" data-servizio="">
+
+  <div class="comandi">
+    <span class="stato" id="stato" data-tipo="attesa" role="status"><span class="punto" aria-hidden="true"></span><span id="stato-testo">Avvio</span></span>
+    <button type="button" class="btn btn-secondario" id="tasto-suoni" aria-pressed="false" title="Avviso sonoro per le nuove allerte">🔕 Suoni</button>
+    <button type="button" class="btn btn-secondario" id="tasto-notifiche" title="Notifiche del browser per le nuove allerte">🔔 Notifiche</button>
+  </div>
+
+  <p class="avviso" id="avviso-demo" hidden>
+    <strong>Dati simulati.</strong> Testi, fonti e numeri sono generati per dimostrazione, con un orologio accelerato (circa 25 volte).
+    Politici e partiti citati sono di fantasia: nessun contenuto si riferisce a persone o fatti reali.
+  </p>
+
+  <section class="riquadro obiettivo" aria-label="Politico o partito da monitorare">
+    <form id="obiettivo-modulo" class="obiettivo-modulo" role="search">
+      <label for="obiettivo-campo">Politico o partito da monitorare</label>
+      <div class="obiettivo-riga">
+        <input type="search" class="campo" id="obiettivo-campo" list="obiettivo-suggerimenti" maxlength="200" autocomplete="off" placeholder="Nome del politico o del partito">
+        <button type="submit" class="btn btn-primario">Monitora</button>
+      </div>
+      <datalist id="obiettivo-suggerimenti"></datalist>
+      <p class="nota">Puoi scrivere più varianti separate da virgola, per esempio nome completo, cognome e sigla del partito.</p>
+    </form>
+    <div class="obiettivo-attivo" id="obiettivo-attivo" hidden>
+      <span>Stai monitorando <strong id="obiettivo-nome"></strong> <span class="nota" id="obiettivo-conteggio"></span></span>
+      <button type="button" class="btn btn-secondario" id="obiettivo-togli">✕ Mostra tutto</button>
+    </div>
+    <p class="obiettivo-avviso" id="obiettivo-avviso" hidden></p>
+  </section>
+
+  <section class="striscione" id="striscione" hidden aria-live="assertive">
+    <span class="striscione-icona" id="striscione-icona" aria-hidden="true"></span>
+    <div class="striscione-corpo"><strong id="striscione-titolo"></strong><span id="striscione-testo"></span></div>
+    <button type="button" class="btn" id="striscione-visto">Presa visione</button>
+  </section>
+
+  <section class="indicatori" aria-label="Indicatori principali">
+    <article class="indicatore"><h2>Indice netto <span class="nota">ultima ora</span></h2><p class="valore" id="k-indice">–</p><p class="variazione" id="k-indice-var"></p><div class="scala" aria-hidden="true"><span id="k-indice-cursore"></span></div></article>
+    <article class="indicatore"><h2>Menzioni all'ora</h2><p class="valore" id="k-volume">–</p><p class="variazione" id="k-volume-var"></p></article>
+    <article class="indicatore"><h2>Volatilità <span class="nota">ultime 2 ore</span></h2><p class="valore" id="k-volatilita">–</p><p class="variazione" id="k-volatilita-var"></p></article>
+    <article class="indicatore"><h2>Sarcasmo rilevato</h2><p class="valore" id="k-sarcasmo">–</p><p class="variazione" id="k-sarcasmo-var"></p></article>
+    <article class="indicatore"><h2>Emozione prevalente</h2><p class="valore valore-testo" id="k-emozione">–</p><p class="variazione" id="k-emozione-var"></p></article>
+  </section>
+
+  <div class="griglia">
+    <div class="colonna-grafici">
+      <section class="riquadro">
+        <header class="pannello-testa"><h2>Andamento dell'indice netto</h2><p class="nota" id="nota-andamento">Ultime 6 ore, intervalli di 10 minuti. Da −100 a +100.</p></header>
+        <div class="tela alta"><canvas id="g-andamento" role="img" aria-label="Andamento dell'indice netto del sentimento nelle ultime 6 ore"></canvas></div>
+      </section>
+      <section class="riquadro">
+        <header class="pannello-testa"><h2>Volume delle menzioni per tono</h2><p class="nota">Stessi intervalli del grafico precedente.</p></header>
+        <div class="tela"><canvas id="g-volume" role="img" aria-label="Numero di menzioni positive, neutre e negative per intervallo"></canvas></div>
+      </section>
+      <div class="coppia">
+        <section class="riquadro">
+          <header class="pannello-testa"><h2>Temi caldi</h2><p class="nota">Ultime 2 ore. Dimensione = volume, colore = indice del tema.</p></header>
+          <div class="nuvola" id="nuvola" aria-live="polite"></div>
+          <div class="legenda-divergente" aria-hidden="true"><span>Negativo</span><span class="barra-divergente"></span><span>Positivo</span></div>
+        </section>
+        <section class="riquadro">
+          <header class="pannello-testa"><h2>Emozioni</h2><p class="nota">Intensità media nell'ultima ora.</p></header>
+          <div class="tela"><canvas id="g-emozioni" role="img" aria-label="Intensità media delle emozioni nell'ultima ora"></canvas></div>
+        </section>
+      </div>
+      <section class="riquadro">
+        <header class="pannello-testa"><h2>Fonti nell'ultima ora</h2></header>
+        <div class="fonti" id="fonti"></div>
+      </section>
+      <section class="riquadro">
+        <header class="pannello-testa"><h2>Registro delle allerte</h2><p class="nota">Ultime 24 ore.</p></header>
+        <ol class="registro" id="registro"><li class="vuoto">Nessuna allerta.</li></ol>
+      </section>
+    </div>
+
+    <section class="riquadro colonna-flusso" aria-label="Flusso delle menzioni">
+      <header class="pannello-testa"><h2>Menzioni in diretta</h2><p class="nota" id="flusso-conteggio"></p></header>
+      <form class="filtri" id="filtri">
+        <label>Fonte
+          <select class="campo" id="f-fonte">
+            <option value="tutte">Tutte</option><option value="rss">Testate</option><option value="bluesky">Bluesky</option><option value="x">X</option>
+            <option value="facebook">Facebook</option><option value="telegram">Telegram</option><option value="webhook">Altre</option>
+          </select>
+        </label>
+        <label>Tono
+          <select class="campo" id="f-polarita">
+            <option value="tutte">Tutti</option><option value="negativo">Negativo</option><option value="neutro">Neutro</option><option value="positivo">Positivo</option>
+          </select>
+        </label>
+        <label class="spunta"><input type="checkbox" id="f-sarcasmo"> Solo sarcasmo</label>
+        <label class="cerca">Cerca<input type="search" class="campo" id="f-testo" placeholder="parola, tema, ente"></label>
+        <button type="button" class="btn btn-secondario" id="tasto-pausa" aria-pressed="false">⏸ Pausa</button>
+      </form>
+      <ol class="flusso" id="flusso"></ol>
+    </section>
+  </div>
+
+  <details class="riquadro metodo">
+    <summary>Come si leggono gli indicatori</summary>
+    <ul>
+      <li><strong>Indice netto</strong>: media dei punteggi (da −1 a +1) pesata per la sicurezza del giudizio, moltiplicata per 100. Il sarcasmo è già conteggiato con il suo significato reale.</li>
+      <li><strong>Menzioni all'ora</strong>: contenuti raccolti negli ultimi 60 minuti, confrontati con l'ora precedente.</li>
+      <li><strong>Volatilità</strong>: scarto quadratico medio dell'indice sui 12 intervalli delle ultime 2 ore. Sotto 10 bassa, da 10 a 20 media, oltre 20 alta.</li>
+      <li><strong>Allerta crisi</strong>: almeno 12 menzioni in 15 minuti con calo dell'indice di 30 punti rispetto alle 6 ore precedenti, oppure oltre il 60% negative con rabbia diffusa, oppure lo stesso testo da molti profili (possibile azione organizzata).</li>
+      <li><strong>Opportunità di consenso</strong>: tema, politico o partito con volume almeno doppio rispetto alla media, indice sopra +40 ed entusiasmo diffuso.</li>
+      <li>Il giudizio automatico è un supporto: prima di rispondere pubblicamente, leggere sempre le fonti originali.</li>
+    </ul>
+  </details>
+
+  <dialog class="accesso" id="accesso">
+    <form method="dialog" id="accesso-modulo">
+      <h2>Accesso al servizio</h2>
+      <p class="nota">Inserisci il codice personale ricevuto per vedere i dati in diretta.</p>
+      <label for="accesso-codice">Codice</label>
+      <input class="campo" type="password" id="accesso-codice" autocomplete="current-password" required minlength="8">
+      <p class="errore" id="accesso-errore" role="alert"></p>
+      <button type="submit" class="btn btn-primario">Entra</button>
+    </form>
+  </dialog>
+</div>
+<!--PROGRAMMA-->
