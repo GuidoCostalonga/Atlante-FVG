@@ -515,7 +515,8 @@ bruta condotto fuori dal browser; la protezione serve a tenere la sezione fuori 
 La pagina `monitor/` ospita il cruscotto che misura il tono di testate e social su politici, partiti e temi del Friuli Venezia
 Giulia: indice netto da −100 a +100, menzioni all'ora, volatilità, sarcasmo, emozioni, temi caldi, fonti, flusso delle menzioni
 e allerte di crisi o di consenso, con la casella «Politico o partito da monitorare» che filtra tutto su un nome (fino a cinque
-varianti separate da virgola). Senza servizio collegato mostra dati simulati, con politici e partiti di fantasia.
+varianti separate da virgola). Mostra solo dati reali: finché il servizio non è collegato la pagina resta vuota e lo dice
+in un avviso.
 
 Funziona come la sezione Elezioni: `monitor/contenuto.json` è il frammento (stile, struttura, Chart.js 4.4.1 e programma)
 compresso e cifrato con AES-GCM; la chiave deriva dalla parola d'ordine con PBKDF2 e si calcola solo nel browser, resta in

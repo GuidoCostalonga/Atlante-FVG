@@ -144,7 +144,7 @@
 @media (prefers-reduced-motion: reduce) { #monitor .striscione { outline: 4px solid #fff; outline-offset: -8px; } }
 </style>
 
-<!-- data-servizio: indirizzo del servizio (es. https://monitor.atlantefvg.it). Vuoto = dati simulati. -->
+<!-- data-servizio: indirizzo del servizio (es. https://monitor.atlantefvg.it). Vuoto = servizio non collegato, nessun dato. -->
 <div class="monitor" id="monitor" data-servizio="">
 
   <div class="comandi">
@@ -153,9 +153,9 @@
     <button type="button" class="btn btn-secondario" id="tasto-notifiche" title="Notifiche del browser per le nuove allerte">🔔 Notifiche</button>
   </div>
 
-  <p class="avviso" id="avviso-demo" hidden>
-    <strong>Dati simulati.</strong> Testi, fonti e numeri sono generati per dimostrazione, con un orologio accelerato (circa 25 volte).
-    Politici e partiti citati sono di fantasia: nessun contenuto si riferisce a persone o fatti reali.
+  <p class="avviso" id="avviso-servizio" hidden>
+    <strong>Dati reali non ancora attivi.</strong> Il servizio che raccoglie e analizza testate e social non è ancora collegato:
+    indicatori, grafici e menzioni compariranno qui appena sarà acceso. Nessun dato simulato viene mostrato.
   </p>
 
   <section class="riquadro obiettivo" aria-label="Politico o partito da monitorare">
