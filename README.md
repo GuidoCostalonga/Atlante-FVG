@@ -583,6 +583,17 @@ Prova in locale: con il file del modello in `modelli/` (o indicato in `MONITOR_M
 installato, `MONITOR_PAROLA=… python scripts/monitor_raccolta.py stato.json nuovo.json`; per le parole da filtrare
 via (per esempio «Lega Basket») c'è l'elenco «escludi» di `scripts/monitor_fonti.json`; i grafici del cruscotto usano l'ora di pubblicazione e, in questa modalità, 24 ore a intervalli di un'ora.
 
+## Comunità linguistiche tutelate (10 ottobre 2026)
+
+`scripts/aggiorna_lingue.py` legge la tavola 21.1 dell'Annuario statistico regionale 2026 («Comuni con presenza di comunità
+linguistiche», situazione al 31 dicembre 2025, fonte ISTAT, ARLeF e Regione), già nell'archivio in `dati/C26_21_comunitalinguistich_0.txt`,
+e scrive in `const EXTRA` per ogni comune il campo `ling` con il nome ufficiale nelle lingue tutelate (`f` friulano, `s` sloveno,
+`t` tedesco): 173 comuni nel territorio di tutela del friulano, 32 della minoranza slovena, 6 germanofoni (a Paluzza solo Timau).
+Ne derivano l'indicatore categoriale «Comunità linguistiche tutelate» (gruppo Comunità delle mappe, voce nel menù, argomento
+«Comunità linguistiche» del dossier con i nomi ufficiali) e il riquadro «Comunità linguistiche» nella scheda del comune.
+La cartina 21.1 dell'Annuario, letta dall'immagine, resta disponibile a parte. Si rigenera con `python3 scripts/aggiorna_lingue.py`
+(con `--prova` non scrive nulla).
+
 ## Barra in alto ridotta al solo «Menù» (8 ottobre 2026)
 
 Su computer la barra in alto non elenca più le pagine: resta il pulsante «Menù» (già «Argomenti»), che apre il pannello con la riga

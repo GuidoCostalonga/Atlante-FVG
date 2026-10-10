@@ -13,7 +13,7 @@ let fall = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FALLITA ') + m)
   await p.goto('https://atlante.prova/?comune=roveredo-in-piano', { waitUntil: 'networkidle', timeout: 90000 }); await p.waitForTimeout(3500);
   await p.evaluate(() => { window.__stampe = 0; window.print = () => { window.__stampe++; }; });
   await p.locator('#btnDossier').click(); await p.waitForTimeout(400);
-  ok(await p.locator('#dossierModale').isVisible() && await p.locator('.dosArg').count() === 9 && await p.locator('.dosCf').count() === 3, 'finestra delle opzioni: argomenti e comuni di confronto');
+  ok(await p.locator('#dossierModale').isVisible() && await p.locator('.dosArg').count() === 10 && await p.locator('.dosCf').count() === 3, 'finestra delle opzioni: argomenti e comuni di confronto');
   await p.locator('.dosArg[value="rischio"]').uncheck();
   await p.locator('#dosCrea').click(); await p.waitForFunction(() => window.__stampe === 1, null, { timeout: 30000 }); await p.waitForTimeout(300);
   ok(await p.evaluate(() => window.__stampe) === 1, 'la stampa parte una volta');
