@@ -57,10 +57,15 @@ jobs:
           path: |
             ~/ruote
             modelli
-          key: monitor-qwen3-4b-q4km-${{ env.MODELLO_SHA256 }}-llama-${{ env.LLAMA_CPP_VERSIONE }}-py313
+          key: monitor-qwen3-4b-q4km-${{ env.MODELLO_SHA256 }}-llama-${{ env.LLAMA_CPP_VERSIONE }}-py313-avx2
 
+      # GGML_NATIVE=OFF: senza, la libreria è compilata per il processore del primo giro e si blocca
+      # (istruzione non valida) quando GitHub assegna un computer con un processore diverso.
+      # AVX2, FMA e F16C ci sono su tutti i computer x86 di GitHub.
       - name: Prepara la libreria del modello (compilata solo la prima volta)
         if: steps.controllo.outputs.attivo == 'true'
+        env:
+          CMAKE_ARGS: -DGGML_NATIVE=OFF -DGGML_AVX=ON -DGGML_AVX2=ON -DGGML_FMA=ON -DGGML_F16C=ON
         run: |
           if ! ls ~/ruote/llama_cpp_python-*.whl >/dev/null 2>&1; then
             mkdir -p ~/ruote
