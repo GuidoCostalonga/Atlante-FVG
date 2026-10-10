@@ -530,7 +530,7 @@ programma è `app.js` del progetto sentiment-fvg di costalonga.org, che contiene
 Per collegare il servizio si scrive il suo indirizzo in `data-servizio` di `#monitor` nel modello. Come aggiornare:
 ```
 python3 -I scripts/prepara_monitor.py <sentiment-fvg/app.js> <chart.umd.min.js 4.4.1> /tmp/frammento.html
-PAROLA='…' node scripts/cifra_pagina.js /tmp/frammento.html monitor/contenuto.json
+MANTIENI_SALE=1 PAROLA='…' node scripts/cifra_pagina.js /tmp/frammento.html monitor/contenuto.json
 ```
 `prepara_monitor.py` controlla l'impronta SHA-384 di Chart.js prima di inserirla. Stesso limite della sezione Elezioni: una
 parola d'ordine breve tiene la sezione fuori dalla consultazione pubblica, ma non resiste a un attacco a forza bruta condotto
@@ -543,7 +543,7 @@ Il cruscotto mostra solo dati reali, prodotti ogni 30 minuti da `.github/workflo
 
 1. legge le fonti di `scripts/monitor_fonti.json` (indirizzi verificati il 10 ottobre 2026): il sito della Regione
    (notizie dalla Giunta), ANSA Friuli Venezia Giulia, Il Gazzettino Nordest, Il Friuli, Telefriuli, Friuli Oggi,
-   UdineToday, TriestePrima, Nordest24; tramite Google News, che ne riporta solo titolo e testata, Messaggero Veneto,
+   UdineToday, TriestePrima, Nordest24, Il Popolo (settimanale di Pordenone); tramite Google News, che ne riporta solo titolo e testata, Messaggero Veneto,
    Il Piccolo, Tribuna di Treviso, La Nuova Venezia e dodici quotidiani nazionali (Corriere della Sera, la Repubblica,
    La Stampa, Il Sole 24 Ore, il Giornale, Libero, Il Fatto Quotidiano, Il Messaggero, Avvenire, Il Tempo, Il Foglio,
    La Verità). Si tengono solo le notizie con un termine istituzionale o politico; per le testate venete e nazionali
@@ -570,7 +570,7 @@ Il cruscotto mostra solo dati reali, prodotti ogni 30 minuti da `.github/workflo
 obbligatorio; `MONITOR_NOMI` (nomi di politici e partiti separati da virgola: stanno nei segreti perché il
 repository è pubblico), `BLUESKY_UTENTE` con `BLUESKY_PASSWORD_APP`, `TELEGRAM_BOT_TOKEN` con `TELEGRAM_CHAT_STAFF`
 facoltativi. Senza `MONITOR_PAROLA` il lavoro termina subito, senza scaricare nulla e senza errori. Rigenerare `monitor/contenuto.json`
-cambia il sale e quindi la chiave: il giro successivo non legge più lo stato precedente e riparte da zero.
+senza `MANTIENI_SALE=1` cambia il sale e quindi la chiave: il giro successivo non legge più lo stato precedente e riparte da zero.
 
 Prova in locale: con il file del modello in `modelli/` (o indicato in `MONITOR_MODELLO_FILE`) e llama-cpp-python
 installato, `MONITOR_PAROLA=… python scripts/monitor_raccolta.py stato.json nuovo.json`; per le parole da filtrare
