@@ -48,8 +48,8 @@ ADESSO = datetime.now(timezone.utc)
 
 MODELLO_FILE = os.getenv('MONITOR_MODELLO_FILE', str(RADICE / 'modelli' / 'Qwen3-4B-Q4_K_M.gguf'))
 MOTORE = 'Qwen3 4B (Apache 2.0), eseguito in locale'
-MAX_PER_GIRO = int(os.getenv('MONITOR_MAX_PER_GIRO', '30'))     # circa 15 secondi a menzione su 4 processori
-MINUTI_MAX = float(os.getenv('MONITOR_MINUTI_MAX', '15'))       # le menzioni rimaste passano al giro dopo
+MAX_PER_GIRO = int(os.getenv('MONITOR_MAX_PER_GIRO', '60'))     # circa 15 secondi a menzione su 4 processori
+MINUTI_MAX = float(os.getenv('MONITOR_MINUTI_MAX', '20'))       # le menzioni rimaste passano al giro dopo; il giro dura comunque 29 minuti
 ORE_MENZIONI = 72          # menzioni e allerte conservate nello stato
 GIORNI_VISTE = 30          # impronte dei contenuti già visti (evitano analisi doppie)
 ORE_RECENTI = 26           # alla prima raccolta si prendono solo le notizie dell'ultimo giorno
@@ -329,7 +329,11 @@ def main() -> None:
     nomi = [n.strip() for n in os.getenv('MONITOR_NOMI', '').split(',') if len(n.strip()) >= 2][:20]
     fonti = json.loads((RADICE / 'scripts' / 'monitor_fonti.json').read_text(encoding='utf-8'))
 
-    candidate = raccogli(fonti, nomi, stato['viste'])[:MAX_PER_GIRO]
+    # Se le menzioni nuove superano il limite, si analizzano prima quelle che citano un nome seguito, poi le più recenti:
+    # le altre restano non viste e passano al giro dopo.
+    schema_nomi = schema_parole(nomi)
+    candidate = sorted(raccogli(fonti, nomi, stato['viste']), key=lambda m: m['pubblicato'], reverse=True)
+    candidate = sorted(candidate, key=lambda m: not (schema_nomi and schema_nomi.search(m['testo'])))[:MAX_PER_GIRO]
     nuove = []
     if candidate:
         llm, inizio = carica_modello(), time.monotonic()
