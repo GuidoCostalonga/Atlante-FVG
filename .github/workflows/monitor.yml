@@ -9,6 +9,10 @@ name: Monitor della percezione
 # Segreto obbligatorio: MONITOR_PAROLA. Facoltativi: MONITOR_NOMI, BLUESKY_UTENTE, BLUESKY_PASSWORD_APP,
 # TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_STAFF. Senza MONITOR_PAROLA il lavoro finisce subito, senza errori.
 # Il modello (2,5 GB) e la libreria llama-cpp-python, compilata al primo giro, restano nella cache di Actions.
+# La programmazione di GitHub (schedule) parte spesso con ore di ritardo o salta: per questo ogni giro, alla fine,
+# attende che siano passati circa 30 minuti dal suo inizio e avvia da sé il giro successivo (workflow_dispatch è
+# l'unico evento che il GITHUB_TOKEN può far partire). Il cron resta come riavvio se la catena si interrompe; grazie
+# a «concurrency» resta in coda un solo giro, quindi le catene non si moltiplicano.
 on:
   schedule:
     - cron: '11,41 * * * *'
@@ -16,6 +20,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: monitor-percezione
@@ -30,6 +35,9 @@ jobs:
       MODELLO_SHA256: 7485fe6f11af29433bc51cab58009521f205840f5b4ae3a32fa7f92e8534fdf5
       LLAMA_CPP_VERSIONE: '0.3.36'
     steps:
+      - name: Annota l'ora di inizio
+        run: echo "INIZIO_GIRO=$(date +%s)" >> "$GITHUB_ENV"
+
       - name: Controlla che la raccolta sia configurata
         id: controllo
         env:
@@ -112,3 +120,13 @@ jobs:
           git add dati.json
           git commit --quiet -m "Monitor: stato cifrato del $(date -u +%Y-%m-%dT%H:%MZ)"
           git push --quiet --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" monitor-dati
+
+      # Anche se un passo è fallito (non se il giro è annullato a mano): la catena non si interrompe per un giro andato male.
+      - name: Avvia il giro successivo dopo circa 30 minuti
+        if: ${{ !cancelled() && steps.controllo.outputs.attivo == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          attesa=$(( INIZIO_GIRO + 29 * 60 - $(date +%s) ))
+          if [ "$attesa" -gt 0 ]; then echo "Attesa di $attesa secondi prima del giro successivo."; sleep "$attesa"; fi
+          gh workflow run monitor.yml --repo "${{ github.repository }}" --ref "${{ github.ref_name }}"
