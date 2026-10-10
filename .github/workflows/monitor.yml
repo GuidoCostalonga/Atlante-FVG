@@ -1,0 +1,68 @@
+name: Monitor della percezione
+
+# Ogni 30 minuti raccoglie le notizie delle fonti di scripts/monitor_fonti.json (più i nomi del segreto
+# MONITOR_NOMI), le fa analizzare a Claude e pubblica lo stato CIFRATO nel ramo monitor-dati, che contiene
+# un solo file (dati.json) e viene riscritto a ogni giro: la storia di main e il registro «Cosa è cambiato»
+# non si riempiono di aggiornamenti. La pagina monitor/ lo legge da raw.githubusercontent.com e lo apre con
+# la stessa chiave della sezione riservata.
+# Segreti obbligatori: ANTHROPIC_API_KEY, MONITOR_PAROLA. Facoltativi: MONITOR_NOMI, BLUESKY_UTENTE,
+# BLUESKY_PASSWORD_APP, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_STAFF. Senza i due obbligatori il lavoro finisce
+# subito, senza errori.
+on:
+  schedule:
+    - cron: '11,41 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitor-percezione
+  cancel-in-progress: false
+
+jobs:
+  raccolta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: |
+            scripts
+            monitor
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Installa le librerie
+        run: pip install --quiet "anthropic>=1.0" feedparser httpx cryptography
+
+      - name: Scarica lo stato precedente
+        run: |
+          if git fetch --quiet --depth=1 origin monitor-dati 2>/dev/null; then
+            git show FETCH_HEAD:dati.json > "$RUNNER_TEMP/precedente.json" || true
+          fi
+
+      - name: Raccoglie e analizza
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MONITOR_PAROLA: ${{ secrets.MONITOR_PAROLA }}
+          MONITOR_NOMI: ${{ secrets.MONITOR_NOMI }}
+          BLUESKY_UTENTE: ${{ secrets.BLUESKY_UTENTE }}
+          BLUESKY_PASSWORD_APP: ${{ secrets.BLUESKY_PASSWORD_APP }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_STAFF: ${{ secrets.TELEGRAM_CHAT_STAFF }}
+        run: python scripts/monitor_raccolta.py "$RUNNER_TEMP/precedente.json" "$RUNNER_TEMP/dati.json"
+
+      - name: Pubblica lo stato cifrato nel ramo monitor-dati
+        run: |
+          if [ ! -s "$RUNNER_TEMP/dati.json" ]; then echo "Niente da pubblicare."; exit 0; fi
+          cartella="$RUNNER_TEMP/ramo"; mkdir -p "$cartella"; cp "$RUNNER_TEMP/dati.json" "$cartella/dati.json"
+          cd "$cartella"
+          git init --quiet -b monitor-dati
+          git config user.name "github-actions[bot]"
+          git config user.email "41898229+github-actions[bot]@users.noreply.github.com"
+          git add dati.json
+          git commit --quiet -m "Monitor: stato cifrato del $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push --quiet --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" monitor-dati
