@@ -583,6 +583,21 @@ Prova in locale: con il file del modello in `modelli/` (o indicato in `MONITOR_M
 installato, `MONITOR_PAROLA=… python scripts/monitor_raccolta.py stato.json nuovo.json`; per le parole da filtrare
 via (per esempio «Lega Basket») c'è l'elenco «escludi» di `scripts/monitor_fonti.json`; i grafici del cruscotto usano l'ora di pubblicazione e, in questa modalità, 24 ore a intervalli di un'ora.
 
+## PNRR in Friuli Venezia Giulia (10 ottobre 2026)
+
+`scripts/aggiorna_pnrr.py` legge gli open data di OpenPNRR (Fondazione Openpolis, licenza CC BY 4.0), che ripubblicano i dati
+ufficiali di Italia Domani e del sistema ReGiS (il portale ufficiale rifiuta gli accessi dall'estero): `progetti.csv` (un progetto
+per CUP con i finanziamenti) e `progetti_territori.csv` (localizzazione per comune con codice ISTAT). Tiene i progetti con almeno
+un comune della regione fra i territori (5.044 al 13 giugno 2026) e scrive: i fogli `dati/pnrr/progetti_N.txt` (CUP, titolo,
+missione e componente, misura, soggetto attuatore, finanziamento PNRR e totale, comuni, territori in Italia, codice locale),
+`dati/pnrr_meta.json`, `dati/pnrr_cup.json` (i CUP, per il contrassegno nella pagina delle opere) e, in `const EXTRA`, per ogni
+comune `pnN` (progetti localizzati nel comune), `pnSolo` (nel solo comune), `pnFin` e `pnFinAb` (finanziamento PNRR dei progetti
+nel solo comune, totale e per abitante) e `pnTop` (i sei più finanziati). I progetti su più comuni o nazionali contano in ogni
+comune ma non sono ripartiti; i pagamenti non sono usati perché nel file non sono riconducibili con certezza a importi cumulati
+per progetto. Pagina `pnrr/` (ricerca per testo, comune, missione e soggetto attuatore, totali, scheda per CUP, CSV), gruppo «PNRR»
+delle mappe, riquadro nella scheda del comune, argomento del dossier, contrassegno «PNRR» e filtro nell'osservatorio delle opere.
+Uso: `python3 scripts/aggiorna_pnrr.py --aggiornati AAAA-MM-GG` (scarica circa 140 MB) oppure `--cartella` con i file già scaricati.
+
 ## Copertura del trasporto pubblico per comune (10 ottobre 2026)
 
 `scripts/aggiorna_trasporto.py` legge gli orari TPL FVG già scaricati per la pagina `orari/` (`dati/orari/indice.txt` e i file dei
