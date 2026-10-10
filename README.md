@@ -594,8 +594,7 @@ scheda, poi la scheda stessa (titolo, data di presentazione, proponenti, assesso
 di ricerca (presentato in attesa di esame, esaminato e approvato, esaminato e non approvato, ritirato) e la composizione attuale dei
 gruppi consiliari. `scripts/aggiorna_consiglio.py` unisce tutto in `dati/consiglio_atti.json`. La pagina `consiglio/` mostra gli atti
 con ricerca per testo, tipo, gruppo del primo firmatario, stato, consigliere e assessore, i totali per stato e per gruppo, il
-collegamento al testo depositato e alla scheda ufficiale, con scarico CSV. Prima raccolta: 235 mozioni; gli ordini del giorno
-(887) seguono con la stessa procedura. Interpellanze e interrogazioni non sono comprese.
+collegamento al testo depositato e alla scheda ufficiale, con scarico CSV. Raccolta del 10 ottobre 2026: 235 mozioni e 887 ordini del giorno. Interpellanze e interrogazioni non sono comprese.
 
 ## Bilancio della Regione (10 ottobre 2026)
 
