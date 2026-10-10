@@ -536,6 +536,38 @@ PAROLA='…' node scripts/cifra_pagina.js /tmp/frammento.html monitor/contenuto.
 parola d'ordine breve tiene la sezione fuori dalla consultazione pubblica, ma non resiste a un attacco a forza bruta condotto
 fuori dal browser.
 
+### Raccolta automatica dei dati reali (10 ottobre 2026)
+
+Il cruscotto mostra solo dati reali, prodotti ogni 30 minuti da `.github/workflows/monitor.yml` con
+`scripts/monitor_raccolta.py`:
+
+1. legge le fonti di `scripts/monitor_fonti.json` (indirizzi verificati il 10 ottobre 2026): il sito della Regione
+   (notizie dalla Giunta), ANSA Friuli Venezia Giulia, Il Gazzettino Nordest, Il Friuli, Telefriuli, Friuli Oggi,
+   UdineToday, TriestePrima, Nordest24; tramite Google News, che ne riporta solo titolo e testata, Messaggero Veneto,
+   Il Piccolo, Tribuna di Treviso, La Nuova Venezia e dodici quotidiani nazionali (Corriere della Sera, la Repubblica,
+   La Stampa, Il Sole 24 Ore, il Giornale, Libero, Il Fatto Quotidiano, Il Messaggero, Avvenire, Il Tempo, Il Foglio,
+   La Verità). Si tengono solo le notizie con un termine istituzionale o politico; per le testate venete e nazionali
+   anche un riferimento al Friuli Venezia Giulia, ai capoluoghi o a un nome seguito. Messaggero Veneto e Il Piccolo non
+   pubblicano un flusso proprio; Pordenone Today lo nega ai programmi automatici (risposta 403) ed è escluso;
+2. cerca in più su Google News (e su Bluesky, se configurato) i nomi del segreto `MONITOR_NOMI`;
+3. fa analizzare a Claude fino a 60 menzioni nuove per giro (`MONITOR_MAX_PER_GIRO`), a lotti di 10, con lo stesso
+   schema del servizio Python (tono, sarcasmo, emozioni, varietà linguistica, entità, temi, ostilità);
+4. calcola le allerte (almeno 6 menzioni nelle ultime 2 ore, confronto con le 24 ore precedenti, pausa di 6 ore fra
+   due allerte uguali) e le manda su Telegram se il bot è configurato;
+5. pubblica lo stato **cifrato** nel ramo `monitor-dati` (un solo file, `dati.json`, riscritto a ogni giro senza
+   storia): la chiave è la stessa della pagina (parola d'ordine con PBKDF2 sul sale di `monitor/contenuto.json`),
+   quindi il cruscotto la usa senza chiedere altro e legge il file da raw.githubusercontent.com ogni 5 minuti.
+   Restano 72 ore di menzioni e allerte e 30 giorni di impronte dei contenuti già visti.
+
+**Segreti** (Settings → Secrets and variables → Actions): `ANTHROPIC_API_KEY` e `MONITOR_PAROLA` (la parola d'ordine
+della sezione) obbligatori; `MONITOR_NOMI` (nomi di politici e partiti separati da virgola: stanno nei segreti perché il
+repository è pubblico), `BLUESKY_UTENTE` con `BLUESKY_PASSWORD_APP`, `TELEGRAM_BOT_TOKEN` con `TELEGRAM_CHAT_STAFF`
+facoltativi. Senza i due obbligatori il lavoro termina subito, senza errori. Rigenerare `monitor/contenuto.json`
+cambia il sale e quindi la chiave: il giro successivo non legge più lo stato precedente e riparte da zero.
+
+Prova senza spesa: `scripts/monitor_raccolta.py` si può eseguire in locale sostituendo la funzione `analizza` con una
+risposta finta; i grafici del cruscotto usano l'ora di pubblicazione e, in questa modalità, 24 ore a intervalli di un'ora.
+
 ## Barra in alto ridotta al solo «Menù» (8 ottobre 2026)
 
 Su computer la barra in alto non elenca più le pagine: resta il pulsante «Menù» (già «Argomenti»), che apre il pannello con la riga

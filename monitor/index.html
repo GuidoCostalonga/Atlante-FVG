@@ -96,6 +96,8 @@
       if (daMemoria) chiave = await crypto.subtle.importKey('raw', daB64(daMemoria), { name: 'AES-GCM' }, false, ['decrypt']);
       else chiave = await chiaveDa(parola, daB64(p.s));
       const html = await decifra(chiave, p);
+      // la stessa chiave apre anche i dati cifrati della raccolta automatica (ramo monitor-dati)
+      window.ATLANTE_MONITOR_CHIAVE = chiave;
       if (!daMemoria) { try { sessionStorage.setItem(CHIAVE, btoa(String.fromCharCode(...new Uint8Array(await crypto.subtle.exportKey('raw', chiave))))); } catch (e) { /* memoria non disponibile: la sezione resta aperta finché la pagina è aperta */ } }
       mostra(html); esito.textContent = '';
     } catch (e) {

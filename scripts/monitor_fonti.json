@@ -1,0 +1,209 @@
+{
+  "_nota": "Fonti del Monitor della percezione pubblica (sezione riservata monitor/). Indirizzi verificati il 10 ottobre 2026. I nomi di politici e partiti da cercare in più NON vanno scritti qui (il repository è pubblico): stanno nel segreto MONITOR_NOMI. politica=true: si tengono solo le notizie con almeno un termine istituzionale o politico dell'elenco «politica». territorio=true (testate venete e nazionali): si tengono solo le notizie che nel titolo o nel sommario citano il Friuli Venezia Giulia, i suoi capoluoghi o uno dei nomi seguiti. Le testate senza flusso proprio passano da Google News: arrivano solo titolo e testata.",
+  "feed": [
+    {
+      "nome": "Regione FVG, notizie dalla Giunta",
+      "url": "https://www.regione.fvg.it/rafvg/rss/comunicati.act?dir=/rafvg/cms/RAFVG/notiziedallagiunta",
+      "territorio": false,
+      "politica": false
+    },
+    {
+      "nome": "ANSA Friuli Venezia Giulia",
+      "url": "https://www.ansa.it/friuliveneziagiulia/notizie/friuliveneziagiulia_rss.xml",
+      "territorio": false,
+      "politica": true
+    },
+    {
+      "nome": "Il Gazzettino, Nordest",
+      "url": "https://www.ilgazzettino.it/rss/nordest.xml",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "Il Friuli",
+      "url": "https://www.ilfriuli.it/feed/",
+      "territorio": false,
+      "politica": true
+    },
+    {
+      "nome": "Telefriuli",
+      "url": "https://www.telefriuli.it/feed/",
+      "territorio": false,
+      "politica": true
+    },
+    {
+      "nome": "Friuli Oggi",
+      "url": "https://www.friulioggi.it/feed/",
+      "territorio": false,
+      "politica": true
+    },
+    {
+      "nome": "UdineToday",
+      "url": "https://www.udinetoday.it/rss",
+      "territorio": false,
+      "politica": true
+    },
+    {
+      "nome": "TriestePrima",
+      "url": "https://www.triesteprima.it/rss",
+      "territorio": false,
+      "politica": true
+    },
+    {
+      "nome": "Nordest24",
+      "url": "https://www.nordest24.it/feed",
+      "territorio": false,
+      "politica": true
+    },
+    {
+      "nome": "Messaggero Veneto (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:messaggeroveneto.it+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": false,
+      "politica": true
+    },
+    {
+      "nome": "Il Piccolo (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:ilpiccolo.it+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": false,
+      "politica": true
+    },
+    {
+      "nome": "Tribuna di Treviso (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:tribunatreviso.it+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "La Nuova Venezia (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:nuovavenezia.it+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "Corriere della Sera (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:corriere.it+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "la Repubblica (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:repubblica.it+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "La Stampa (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:lastampa.it+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "Il Sole 24 Ore (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:ilsole24ore.com+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "il Giornale (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:ilgiornale.it+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "Libero (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:liberoquotidiano.it+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "Il Fatto Quotidiano (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:ilfattoquotidiano.it+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "Il Messaggero (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:ilmessaggero.it+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "Avvenire (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:avvenire.it+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "Il Tempo (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:iltempo.it+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "Il Foglio (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:ilfoglio.it+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    },
+    {
+      "nome": "La Verità (da Google News)",
+      "url": "https://news.google.com/rss/search?q=site:laverita.info+(%22Friuli+Venezia+Giulia%22+OR+Trieste+OR+Udine+OR+Pordenone+OR+Gorizia)+when:1d&hl=it&gl=IT&ceid=IT:it",
+      "territorio": true,
+      "politica": true
+    }
+  ],
+  "territorio": [
+    "Friuli Venezia Giulia",
+    "Friuli",
+    "FVG",
+    "Trieste",
+    "Udine",
+    "Pordenone",
+    "Gorizia",
+    "Monfalcone",
+    "Carnia",
+    "Isontino",
+    "Bassa friulana"
+  ],
+  "politica": [
+    "Regione",
+    "Giunta",
+    "Consiglio",
+    "consigliere",
+    "consigliera",
+    "assessore",
+    "assessora",
+    "sindaco",
+    "sindaca",
+    "vicesindaco",
+    "vicesindaca",
+    "governatore",
+    "presidente della Regione",
+    "ministro",
+    "ministra",
+    "parlamentare",
+    "deputato",
+    "deputata",
+    "senatore",
+    "senatrice",
+    "partito",
+    "elezioni",
+    "candidato",
+    "candidata",
+    "opposizione",
+    "maggioranza",
+    "mozione",
+    "interrogazione",
+    "riforma",
+    "Fratelli d'Italia",
+    "Lega",
+    "Forza Italia",
+    "Partito democratico",
+    "Movimento 5 stelle",
+    "Patto per l'Autonomia",
+    "Alleanza Verdi e Sinistra",
+    "Azione",
+    "Italia viva"
+  ],
+  "google_news_per_nome": "https://news.google.com/rss/search?q=%22{nome}%22+when:1d&hl=it&gl=IT&ceid=IT:it"
+}

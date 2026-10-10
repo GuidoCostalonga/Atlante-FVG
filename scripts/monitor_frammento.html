@@ -144,8 +144,9 @@
 @media (prefers-reduced-motion: reduce) { #monitor .striscione { outline: 4px solid #fff; outline-offset: -8px; } }
 </style>
 
-<!-- data-servizio: indirizzo del servizio (es. https://monitor.atlantefvg.it). Vuoto = servizio non collegato, nessun dato. -->
-<div class="monitor" id="monitor" data-servizio="">
+<!-- data-dati: file cifrato della raccolta automatica (.github/workflows/monitor.yml, ramo monitor-dati).
+     data-servizio: in alternativa, indirizzo di un servizio Python in diretta (ha la precedenza se compilato). -->
+<div class="monitor" id="monitor" data-servizio="" data-dati="https://raw.githubusercontent.com/GuidoCostalonga/Atlante-FVG/monitor-dati/dati.json">
 
   <div class="comandi">
     <span class="stato" id="stato" data-tipo="attesa" role="status"><span class="punto" aria-hidden="true"></span><span id="stato-testo">Avvio</span></span>
@@ -154,8 +155,7 @@
   </div>
 
   <p class="avviso" id="avviso-servizio" hidden>
-    <strong>Dati reali non ancora attivi.</strong> Il servizio che raccoglie e analizza testate e social non è ancora collegato:
-    indicatori, grafici e menzioni compariranno qui appena sarà acceso. Nessun dato simulato viene mostrato.
+    <strong>Dati reali non ancora attivi.</strong> La raccolta che legge e analizza testate e social non è ancora collegata.
   </p>
 
   <section class="riquadro obiettivo" aria-label="Politico o partito da monitorare">
@@ -184,7 +184,7 @@
   <section class="indicatori" aria-label="Indicatori principali">
     <article class="indicatore"><h2>Indice netto <span class="nota">ultima ora</span></h2><p class="valore" id="k-indice">–</p><p class="variazione" id="k-indice-var"></p><div class="scala" aria-hidden="true"><span id="k-indice-cursore"></span></div></article>
     <article class="indicatore"><h2>Menzioni all'ora</h2><p class="valore" id="k-volume">–</p><p class="variazione" id="k-volume-var"></p></article>
-    <article class="indicatore"><h2>Volatilità <span class="nota">ultime 2 ore</span></h2><p class="valore" id="k-volatilita">–</p><p class="variazione" id="k-volatilita-var"></p></article>
+    <article class="indicatore"><h2>Volatilità <span class="nota">ultime 24 ore</span></h2><p class="valore" id="k-volatilita">–</p><p class="variazione" id="k-volatilita-var"></p></article>
     <article class="indicatore"><h2>Sarcasmo rilevato</h2><p class="valore" id="k-sarcasmo">–</p><p class="variazione" id="k-sarcasmo-var"></p></article>
     <article class="indicatore"><h2>Emozione prevalente</h2><p class="valore valore-testo" id="k-emozione">–</p><p class="variazione" id="k-emozione-var"></p></article>
   </section>
@@ -192,7 +192,7 @@
   <div class="griglia">
     <div class="colonna-grafici">
       <section class="riquadro">
-        <header class="pannello-testa"><h2>Andamento dell'indice netto</h2><p class="nota" id="nota-andamento">Ultime 6 ore, intervalli di 10 minuti. Da −100 a +100.</p></header>
+        <header class="pannello-testa"><h2>Andamento dell'indice netto</h2><p class="nota" id="nota-andamento">Ultime 24 ore, intervalli di un'ora. Da −100 a +100.</p></header>
         <div class="tela alta"><canvas id="g-andamento" role="img" aria-label="Andamento dell'indice netto del sentimento nelle ultime 6 ore"></canvas></div>
       </section>
       <section class="riquadro">
@@ -246,9 +246,10 @@
     <summary>Come si leggono gli indicatori</summary>
     <ul>
       <li><strong>Indice netto</strong>: media dei punteggi (da −1 a +1) pesata per la sicurezza del giudizio, moltiplicata per 100. Il sarcasmo è già conteggiato con il suo significato reale.</li>
-      <li><strong>Menzioni all'ora</strong>: contenuti raccolti negli ultimi 60 minuti, confrontati con l'ora precedente.</li>
-      <li><strong>Volatilità</strong>: scarto quadratico medio dell'indice sui 12 intervalli delle ultime 2 ore. Sotto 10 bassa, da 10 a 20 media, oltre 20 alta.</li>
-      <li><strong>Allerta crisi</strong>: almeno 12 menzioni in 15 minuti con calo dell'indice di 30 punti rispetto alle 6 ore precedenti, oppure oltre il 60% negative con rabbia diffusa, oppure lo stesso testo da molti profili (possibile azione organizzata).</li>
+      <li><strong>Menzioni all'ora</strong>: contenuti pubblicati negli ultimi 60 minuti, confrontati con l'ora precedente.</li>
+      <li><strong>Fonti</strong>: 24 testate (regionali, venete e nazionali) e il sito della Regione, lette ogni 30 minuti; per le testate venete e nazionali solo le notizie sul Friuli Venezia Giulia. I dati di ogni giro sono cifrati e restano 72 ore.</li>
+      <li><strong>Volatilità</strong>: scarto quadratico medio dell'indice sulle ore delle ultime 24 con almeno 3 menzioni. Sotto 10 bassa, da 10 a 20 media, oltre 20 alta.</li>
+      <li><strong>Allerta crisi</strong>: almeno 6 menzioni nelle ultime 2 ore con calo dell'indice di 30 punti rispetto alle 24 ore precedenti, oppure oltre il 60% negative con rabbia diffusa, oppure lo stesso testo da molti profili (possibile azione organizzata).</li>
       <li><strong>Opportunità di consenso</strong>: tema, politico o partito con volume almeno doppio rispetto alla media, indice sopra +40 ed entusiasmo diffuso.</li>
       <li>Il giudizio automatico è un supporto: prima di rispondere pubblicamente, leggere sempre le fonti originali.</li>
     </ul>
