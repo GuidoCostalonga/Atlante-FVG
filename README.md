@@ -586,6 +586,21 @@ Prova in locale: con il file del modello in `modelli/` (o indicato in `MONITOR_M
 installato, `MONITOR_PAROLA=… python scripts/monitor_raccolta.py stato.json nuovo.json`; per le parole da filtrare
 via (per esempio «Lega Basket») c'è l'elenco «escludi» di `scripts/monitor_fonti.json`; i grafici del cruscotto usano l'ora di pubblicazione e, in questa modalità, 24 ore a intervalli di un'ora.
 
+## Bilancio della Regione (10 ottobre 2026)
+
+`scripts/aggiorna_bilancio_regionale.py` legge i PDF dei rendiconti generali pubblicati nella pagina «Bilancio» della Regione
+(conto del bilancio: gestione delle spese per missione e programma, gestione delle entrate per titolo), li converte in testo con
+`pdftotext` (poppler) ed estrae le righe «TOTALE MISSIONE», «TOTALE PROGRAMMA» e «TOTALE TITOLO» con le colonne stampate nel
+documento: previsioni definitive di competenza, impegni, pagamenti di competenza e totali per le spese; previsioni, accertamenti e
+riscossioni di competenza per le entrate. Ogni anno è controllato contro il totale generale stampato nel documento e viene scritto
+solo se torna al centesimo: i rendiconti dal 2021 al 2025 passano il controllo, il 2019 e il 2020 hanno un'impaginazione diversa
+e restano esclusi. Scrive `dati/bilancio_regionale.json` (con la legge regionale di approvazione di ogni rendiconto). La pagina
+`bilancio-regionale/` mostra, per l'anno scelto, i quattro valori di sintesi (totale delle missioni, peso della sanità, entrate
+accertate, legge di approvazione), la tabella delle missioni con quota, pagato su impegnato e variazione sull'anno precedente,
+i programmi della missione scelta, il confronto fra gli anni e le entrate per titolo; le partite di giro (missione 99 e titolo 9)
+sono escluse dai totali salvo scelta diversa. Scarico CSV di tutti gli anni. Uso: `python3 scripts/aggiorna_bilancio_regionale.py`
+(scarica circa 150 MB di PDF) oppure `--cartella` con i PDF o i testi già estratti.
+
 ## PNRR in Friuli Venezia Giulia (10 ottobre 2026)
 
 `scripts/aggiorna_pnrr.py` legge gli open data di OpenPNRR (Fondazione Openpolis, licenza CC BY 4.0), che ripubblicano i dati

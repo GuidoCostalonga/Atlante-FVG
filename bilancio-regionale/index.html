@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bilancio della Regione · Atlante FVG</title>
+<meta name="description" content="Il bilancio della Regione Friuli Venezia Giulia dai rendiconti: spese per missione e programma, entrate per titolo, peso della sanità, confronto fra gli anni dal 2021 al 2025.">
+<link rel="canonical" href="https://atlantefvg.it/bilancio-regionale/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<meta name="theme-color" content="#0B3359">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Atlante FVG">
+<meta property="og:url" content="https://atlantefvg.it/bilancio-regionale/">
+<meta property="og:title" content="Bilancio della Regione · Atlante FVG">
+<meta property="og:description" content="Spese per missione, entrate per titolo e peso della sanità nei rendiconti della Regione.">
+<meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Atlante FVG","item":"https://atlantefvg.it/"},{"@type":"ListItem","position":2,"name":"Bilancio della Regione","item":"https://atlantefvg.it/bilancio-regionale/"}]}</script>
+<script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../pagine.css">
+<style>
+  .kpi { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+  @media (min-width: 768px) { .kpi { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .kpi div { background: var(--carta); border: 1px solid var(--linea); border-radius: 12px; padding: 10px 12px; }
+  .kpi b { display: block; font-family: var(--serif); font-size: 1.25rem; color: var(--blu); } .kpi span { font-size: 12px; color: var(--testo-3); }
+  .scelte { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: end; }
+  .scelte label { font-size: 13px; color: var(--testo-2); display: flex; flex-direction: column; gap: 4px; }
+  .scelte select { min-height: 44px; }
+  .tab { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .tab th, .tab td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--linea); vertical-align: top; }
+  .tab th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--testo-3); }
+  .tab td.n, .tab th.n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .tab tr.evid td { background: var(--blu-tenue); }
+  .tab tr.tot td { font-weight: 700; border-top: 2px solid var(--linea); }
+  .tab a { color: var(--blu); }
+  .barra { display: inline-block; height: 9px; background: var(--blu-chiaro); border-radius: 3px; vertical-align: middle; margin-right: 6px; }
+  .scorri { overflow: auto; border: 1px solid var(--linea); border-radius: 10px; background: var(--carta); }
+  .serie { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 10px; }
+  @media (min-width: 768px) { .serie { grid-template-columns: 1fr 1fr; } }
+  .grafico { background: var(--carta); border: 1px solid var(--linea); border-radius: 12px; padding: 12px 14px; }
+  .grafico h3 { font-family: var(--serif); font-size: 1rem; margin: 0 0 6px; color: var(--blu); }
+  .grafico svg { width: 100%; height: auto; display: block; }
+  .legenda { font-size: 12px; color: var(--testo-3); margin-top: 4px; }
+  .dettaglio { margin-top: 14px; }
+  .btn-piccolo { font-size: 13px; padding: 6px 10px; }
+  .solo-stampa { display: none; }
+</style>
+</head>
+
+<body>
+<header class="testata"><div class="testata-dentro">
+  <a class="marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="113" height="40"></a>
+  <details class="menu-mob"><summary>Menù</summary><nav aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=confronto">Confronto fra comuni</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=archivio">Archivio dei dati</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../?pagina=ambiente">Allerte e qualità dell'aria</a><a href="../meteo/">Meteo</a><a href="../bandi/">Bandi e avvisi</a><a href="../opere/">Opere pubbliche</a><a href="../pnrr/">PNRR</a><a href="../bilancio-regionale/" aria-current="page">Bilancio della Regione</a><a href="../finanziamenti/">Finanziamenti regionali</a><a href="../servizi/">Servizi sul territorio</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../elezioni/">Dati elezioni (riservata)</a><a href="../monitor/">Monitor percezione (riservata)</a><a href="../aggiornamenti/">Cosa è cambiato</a><a href="../?pagina=metodo">Metodo e fonti</a>
+  </nav></details>
+</div></header>
+
+<main class="contenuto">
+  <nav class="percorso" aria-label="Percorso"><a href="../">Atlante FVG</a> › Bilancio della Regione</nav>
+  <section class="intro" id="intro">
+    <h1>Il bilancio della Regione, anno per anno</h1>
+    <p>Quanto spende la Regione Friuli Venezia Giulia e per che cosa, dai rendiconti approvati con legge regionale: le spese per missione e programma (impegni e pagamenti dell'anno), le entrate per titolo, il peso della sanità e il confronto fra gli anni. I numeri sono quelli dei documenti ufficiali pubblicati dalla Regione, riportati senza stime.</p>
+    <p class="nota" id="fonte">Lettura dei dati in corso…</p>
+  </section>
+
+  <section class="riquadro" aria-labelledby="titoloScelte">
+    <h2 id="titoloScelte" class="sr-only">Scegli l'anno e il valore</h2>
+    <div class="scelte">
+      <label>Anno del rendiconto <select id="anno" class="campo"></select></label>
+      <label>Valore <select id="valore" class="campo"><option value="I">Impegni di competenza</option><option value="TP">Pagamenti totali (competenza e residui)</option><option value="PC">Pagamenti di competenza</option><option value="CP">Previsioni definitive di competenza</option></select></label>
+      <label>Partite di giro <select id="giro" class="campo"><option value="0">Escluse (missione 99)</option><option value="1">Comprese</option></select></label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:end"><button type="button" class="btn btn-secondario" id="scaricaCsv">Scarica CSV</button><button type="button" class="btn btn-secondario" id="copiaLink">Copia link</button></div>
+    </div>
+    <div class="kpi" id="kpi"></div>
+  </section>
+
+  <section class="riquadro" style="margin-top:16px" aria-labelledby="titoloMissioni">
+    <h2 id="titoloMissioni">Spese per missione</h2>
+    <p class="nota" id="notaMissioni"></p>
+    <div class="scorri"><table class="tab" id="tabMissioni"></table></div>
+    <div class="dettaglio" id="programmi"></div>
+  </section>
+
+  <section class="riquadro" style="margin-top:16px" aria-labelledby="titoloSerie">
+    <h2 id="titoloSerie">Gli anni a confronto</h2>
+    <p class="nota">Impegni di competenza per missione dal primo all'ultimo rendiconto disponibile, in milioni di euro. Tocca una missione nella tabella per vederla qui.</p>
+    <div class="serie" id="serie"></div>
+  </section>
+
+  <section class="riquadro" style="margin-top:16px" aria-labelledby="titoloEntrate">
+    <h2 id="titoloEntrate">Entrate per titolo</h2>
+    <p class="nota" id="notaEntrate"></p>
+    <div class="scorri"><table class="tab" id="tabEntrate"></table></div>
+  </section>
+
+  <section class="riquadro" style="margin-top:16px" aria-labelledby="titoloMetodo">
+    <h2 id="titoloMetodo">Come leggere questi numeri</h2>
+    <p class="nota">Il rendiconto è il consuntivo dell'anno, approvato con legge regionale l'anno successivo. Per ogni missione la Regione pubblica le previsioni definitive di competenza (CP), gli impegni (I), i pagamenti in conto competenza (PC) e i pagamenti totali (TP, competenza più residui). Gli impegni sono le somme che la Regione si è giuridicamente obbligata a spendere nell'anno; i pagamenti sono le uscite di cassa. La missione 99 «Servizi per conto terzi» (partite di giro) non è spesa propria ed è esclusa dai totali, salvo scelta diversa. Le missioni seguono lo schema nazionale del decreto legislativo 118/2011: la sanità è la missione 13 «Tutela della salute». Le entrate sono riportate per titolo con accertamenti (A) e riscossioni in conto competenza (RC). I valori sono letti dai PDF ufficiali con un programma e controllati contro i totali generali stampati nei documenti.</p>
+    <p class="nota" id="segnala"></p>
+  </section>
+</main>
+
+<footer class="piede"><div class="piede-dentro">
+  <div><strong>Atlante FVG</strong><br>I comuni del Friuli Venezia Giulia, con fonte e data di ogni dato.</div>
+  <div><a href="../">Pagina iniziale</a> · <a href="https://www.regione.fvg.it/rafvg/cms/RAFVG/GEN/bilancio/" target="_blank" rel="noopener">Bilancio della Regione</a> · <a href="../?pagina=metodo">Metodo e fonti</a></div>
+</div></footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  const dataIt = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} ${MESI[+m[2] - 1]} ${m[1]}` : (iso || ''); };
+  const mln = v => v == null ? 'n.d.' : (v / 1e6).toLocaleString('it-IT', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const euro = v => v == null ? 'n.d.' : Number(v).toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' euro';
+  const pct = (a, b) => b ? (a / b * 100).toLocaleString('it-IT', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%' : 'n.d.';
+  const ETIC = { I: 'impegni di competenza', TP: 'pagamenti totali', PC: 'pagamenti di competenza', CP: 'previsioni definitive di competenza' };
+  const nomeMiss = s => s.replace(/attivita'/g, 'attività').replace(/mobilita'/g, 'mobilità').replace(/competitivita'/g, 'competitività').replace(/citta'/g, 'città');
+  let D = null, ST = { anno: '', valore: 'I', giro: '0', miss: '' };
+  function leggiURL() { const p = new URLSearchParams(location.search); ST.anno = p.get('anno') || ''; ST.valore = ['I', 'TP', 'PC', 'CP'].includes(p.get('valore')) ? p.get('valore') : 'I'; ST.giro = p.get('giro') === '1' ? '1' : '0'; ST.miss = p.get('missione') || ''; }
+  function indirizzo() { const u = new URL(location.href), p = u.searchParams; ['anno', 'valore', 'giro', 'missione'].forEach(k => p.delete(k)); if (ST.anno !== String(D.anni[D.anni.length - 1].anno)) p.set('anno', ST.anno); if (ST.valore !== 'I') p.set('valore', ST.valore); if (ST.giro === '1') p.set('giro', '1'); if (ST.miss) p.set('missione', ST.miss); return u.pathname + (p.toString() ? '?' + p.toString() : ''); }
+  const annoCorr = () => D.anni.find(a => String(a.anno) === ST.anno) || D.anni[D.anni.length - 1];
+  const missioniDi = a => a.missioni.filter(m => ST.giro === '1' || m.n !== '99');
+  function kpi() {
+    const a = annoCorr(), ms = missioniDi(a), v = ST.valore, tot = ms.reduce((s, m) => s + (m[v] || 0), 0), san = ms.find(m => m.n === '13'), ent = a.entrate.filter(e => ST.giro === '1' || e.n !== '9');
+    const acc = ent.reduce((s, e) => s + (e.A || 0), 0);
+    $('kpi').innerHTML = `<div><b>${mln(tot)} mln</b><span>${ETIC[v]} ${a.anno}, totale delle missioni${ST.giro === '1' ? '' : ' senza partite di giro'}</span></div>
+      <div><b>${san ? pct(san[v], tot) : 'n.d.'}</b><span>peso della sanità (missione 13): ${san ? mln(san[v]) : 'n.d.'} mln</span></div>
+      <div><b>${mln(acc)} mln</b><span>entrate accertate ${a.anno}${ST.giro === '1' ? '' : ' senza partite di giro'}</span></div>
+      <div><b>${a.approvazione ? esc(a.approvazione) : 'n.d.'}</b><span>legge di approvazione del rendiconto</span></div>`;
+  }
+  function tabellaMissioni() {
+    const a = annoCorr(), v = ST.valore, ms = missioniDi(a).slice().sort((x, y) => (y[v] || 0) - (x[v] || 0)), tot = ms.reduce((s, m) => s + (m[v] || 0), 0), max = Math.max(...ms.map(m => m[v] || 0), 1);
+    const prec = D.anni.find(x => x.anno === a.anno - 1);
+    $('tabMissioni').innerHTML = `<thead><tr><th>Missione</th><th class="n">${esc(ETIC[v])} (mln)</th><th class="n">Quota</th><th class="n">Impegni (mln)</th><th class="n">Pagamenti totali (mln)</th><th class="n">Pagato su impegnato</th>${prec ? '<th class="n">Rispetto al ' + prec.anno + '</th>' : ''}</tr></thead><tbody>` +
+      ms.map(m => { const pm = prec && prec.missioni.find(x => x.n === m.n); const var_ = pm && pm[v] ? (m[v] - pm[v]) / pm[v] * 100 : null;
+        return `<tr class="${ST.miss === m.n ? 'evid' : ''}"><td><a href="#" data-miss="${m.n}">${m.n} · ${esc(nomeMiss(m.den))}</a></td><td class="n"><span class="barra" style="width:${Math.round((m[v] || 0) / max * 90)}px"></span>${mln(m[v])}</td><td class="n">${pct(m[v], tot)}</td><td class="n">${mln(m.I)}</td><td class="n">${mln(m.TP)}</td><td class="n">${m.I ? pct(m.TP, m.I) : 'n.d.'}</td>${prec ? `<td class="n">${var_ == null ? 'n.d.' : (var_ > 0 ? '+' : '') + var_.toLocaleString('it-IT', { maximumFractionDigits: 1 }) + '%'}</td>` : ''}</tr>`; }).join('') +
+      `<tr class="tot"><td>Totale</td><td class="n">${mln(tot)}</td><td class="n">100%</td><td class="n">${mln(ms.reduce((s, m) => s + (m.I || 0), 0))}</td><td class="n">${mln(ms.reduce((s, m) => s + (m.TP || 0), 0))}</td><td class="n"></td>${prec ? '<td class="n"></td>' : ''}</tr></tbody>`;
+    $('notaMissioni').textContent = `Rendiconto ${a.anno}: ${ETIC[v]} per missione, in milioni di euro, in ordine decrescente${ST.giro === '1' ? ', comprese le partite di giro' : ', escluse le partite di giro (missione 99)'}. Tocca una missione per vedere i programmi.`;
+  }
+  function programmi() {
+    const a = annoCorr(), v = ST.valore; if (!ST.miss) { $('programmi').innerHTML = ''; return; }
+    const m = a.missioni.find(x => x.n === ST.miss); const ps = a.programmi.filter(p => p.cod.slice(0, 2) === ST.miss.padStart(2, '0')).sort((x, y) => (y[v] || 0) - (x[v] || 0));
+    if (!m) { $('programmi').innerHTML = ''; return; }
+    const tot = ps.reduce((s, p) => s + (p[v] || 0), 0);
+    $('programmi').innerHTML = `<h3 style="font-family:var(--serif);color:var(--blu);margin:0 0 6px">Missione ${m.n} · ${esc(nomeMiss(m.den))}: i programmi (${a.anno})</h3><div class="scorri"><table class="tab"><thead><tr><th>Programma</th><th class="n">${esc(ETIC[v])} (mln)</th><th class="n">Quota della missione</th><th class="n">Pagamenti totali (mln)</th></tr></thead><tbody>${ps.map(p => `<tr><td>${esc(p.cod.slice(2, 4).replace(/^0/, ''))} · ${esc(nomeMiss(p.den))}</td><td class="n">${mln(p[v])}</td><td class="n">${pct(p[v], tot)}</td><td class="n">${mln(p.TP)}</td></tr>`).join('')}</tbody></table></div><p class="nota" style="margin-top:6px"><a href="#" data-miss="">Chiudi i programmi</a></p>`;
+  }
+  function serie() {
+    const anni = D.anni, miss = ST.miss || '13', nome = (anni[anni.length - 1].missioni.find(m => m.n === miss) || {}).den || '';
+    const grafico = (titolo, valori, colore) => { const max = Math.max(...valori.map(x => x.v || 0), 1), w = 320, h = 150, bw = Math.floor((w - 20) / valori.length);
+      return `<div class="grafico"><h3>${esc(titolo)}</h3><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(titolo)}">${valori.map((x, k) => { const bh = Math.round((x.v || 0) / max * 100); return `<rect x="${10 + k * bw + 4}" y="${120 - bh}" width="${bw - 8}" height="${bh}" fill="${colore}" rx="3"/><text x="${10 + k * bw + bw / 2}" y="${116 - bh}" font-size="10" text-anchor="middle" fill="#2B2F36">${mln(x.v)}</text><text x="${10 + k * bw + bw / 2}" y="138" font-size="11" text-anchor="middle" fill="#52565E">${x.anno}</text>`; }).join('')}</svg><div class="legenda">Milioni di euro, impegni di competenza.</div></div>`; };
+    const tot = anni.map(a => ({ anno: a.anno, v: missioniDi(a).reduce((s, m) => s + (m.I || 0), 0) }));
+    const sel = anni.map(a => ({ anno: a.anno, v: (a.missioni.find(m => m.n === miss) || {}).I || 0 }));
+    $('serie').innerHTML = grafico(`Totale delle missioni${ST.giro === '1' ? '' : ' senza partite di giro'}`, tot, '#0B3359') + grafico(`Missione ${miss} · ${nomeMiss(nome)}`, sel, '#1B6FB5');
+  }
+  function entrate() {
+    const a = annoCorr(), es = a.entrate.filter(e => ST.giro === '1' || e.n !== '9'), tot = es.reduce((s, e) => s + (e.A || 0), 0);
+    $('tabEntrate').innerHTML = `<thead><tr><th>Titolo</th><th class="n">Accertamenti (mln)</th><th class="n">Quota</th><th class="n">Riscossioni di competenza (mln)</th><th class="n">Riscosso su accertato</th></tr></thead><tbody>${es.map(e => `<tr><td>${e.n} · ${esc(nomeMiss(e.den))}</td><td class="n">${mln(e.A)}</td><td class="n">${pct(e.A, tot)}</td><td class="n">${mln(e.RC)}</td><td class="n">${e.A ? pct(e.RC, e.A) : 'n.d.'}</td></tr>`).join('')}<tr class="tot"><td>Totale</td><td class="n">${mln(tot)}</td><td class="n">100%</td><td class="n">${mln(es.reduce((s, e) => s + (e.RC || 0), 0))}</td><td class="n"></td></tr></tbody>`;
+    $('notaEntrate').textContent = `Rendiconto ${a.anno}: entrate per titolo, accertamenti e riscossioni in conto competenza, in milioni di euro${ST.giro === '1' ? '' : ', escluse le partite di giro (titolo 9)'}.`;
+  }
+  function disegna() { kpi(); tabellaMissioni(); programmi(); serie(); entrate(); try { history.replaceState(null, '', indirizzo()); } catch (e) { /* indirizzo non modificabile */ } }
+  function opzioni() { $('anno').innerHTML = D.anni.map(a => `<option value="${a.anno}" ${String(a.anno) === ST.anno ? 'selected' : ''}>${a.anno}</option>`).join(''); $('valore').value = ST.valore; $('giro').value = ST.giro; }
+  $('anno').addEventListener('change', e => { ST.anno = e.target.value; disegna(); });
+  $('valore').addEventListener('change', e => { ST.valore = e.target.value; disegna(); });
+  $('giro').addEventListener('change', e => { ST.giro = e.target.value; disegna(); });
+  document.addEventListener('click', e => { const a = e.target.closest('a[data-miss]'); if (!a) return; e.preventDefault(); ST.miss = a.dataset.miss; disegna(); if (ST.miss) $('programmi').scrollIntoView({ block: 'nearest' }); });
+  $('scaricaCsv').addEventListener('click', () => {
+    const cella = v => { const s = v == null ? '' : String(v); return /[",\r\n;]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+    const righe = [['Anno', 'Tipo', 'Codice', 'Denominazione', 'Previsioni definitive di competenza (CP)', 'Impegni (I)', 'Pagamenti di competenza (PC)', 'Pagamenti totali (TP)', 'Accertamenti (A)', 'Riscossioni di competenza (RC)', 'Fonte'].join(',')];
+    D.anni.forEach(a => { a.missioni.forEach(m => righe.push([a.anno, 'missione', m.n, m.den, m.CP, m.I, m.PC, m.TP, '', '', a.fonte].map(cella).join(','))); a.programmi.forEach(p => righe.push([a.anno, 'programma', p.cod, p.den, p.CP, p.I, p.PC, p.TP, '', '', a.fonte].map(cella).join(','))); a.entrate.forEach(t => righe.push([a.anno, 'titolo di entrata', t.n, t.den, t.CP, '', '', '', t.A, t.RC, a.fonte].map(cella).join(','))); });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['\ufeff' + righe.join('\r\n')], { type: 'text/csv;charset=utf-8' })); a.download = 'bilancio-regione-fvg.csv'; document.body.appendChild(a); a.click(); a.remove();
+  });
+  $('copiaLink').addEventListener('click', async () => { const url = location.origin + indirizzo(); try { await navigator.clipboard.writeText(url); $('copiaLink').textContent = 'Link copiato'; setTimeout(() => $('copiaLink').textContent = 'Copia link', 2000); } catch (e) { prompt('Copia il collegamento:', url); } });
+  window.addEventListener('popstate', () => { leggiURL(); opzioni(); disegna(); });
+  (async () => {
+    try {
+      D = await (await fetch('../dati/bilancio_regionale.json')).json();
+      leggiURL(); if (!D.anni.some(a => String(a.anno) === ST.anno)) ST.anno = String(D.anni[D.anni.length - 1].anno); opzioni();
+      const ult = D.anni[D.anni.length - 1];
+      $('fonte').innerHTML = `Fonte: Regione Autonoma Friuli Venezia Giulia, <a href="https://www.regione.fvg.it/rafvg/cms/RAFVG/GEN/bilancio/" target="_blank" rel="noopener">rendiconti generali</a> dal ${D.anni[0].anno} al ${ult.anno} (conto del bilancio: gestione delle spese per missione e programma, gestione delle entrate per titolo), letti dall'Atlante il ${dataIt(D.letti)}. Ultimo rendiconto: ${ult.anno}, ${esc(ult.approvazione || '')}.`;
+      const u = 'mailto:info@atlantefvg.it?subject=' + encodeURIComponent('Segnalazione di errore: bilancio della Regione') + '&body=' + encodeURIComponent('Pagina: ' + location.href + '\nAnno e voce:\n\nChe cosa non torna:\n');
+      $('segnala').innerHTML = `Hai trovato un errore? <a href="${u}">Segnalalo per posta</a> oppure <a href="https://wa.me/393283692227?text=${encodeURIComponent('Segnalazione di errore sull\'Atlante FVG: pagina Bilancio della Regione')}" target="_blank" rel="noopener">via WhatsApp</a>.`;
+      disegna();
+    } catch (e) { $('fonte').innerHTML = '<span class="errore" style="display:block">I dati del bilancio non si sono caricati: ricarica la pagina o consulta direttamente il <a href="https://www.regione.fvg.it/rafvg/cms/RAFVG/GEN/bilancio/" target="_blank" rel="noopener">sito della Regione</a>.</span>'; }
+  })();
+})();
+</script>
+</body>
+</html>
