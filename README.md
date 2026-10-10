@@ -583,6 +583,17 @@ Prova in locale: con il file del modello in `modelli/` (o indicato in `MONITOR_M
 installato, `MONITOR_PAROLA=… python scripts/monitor_raccolta.py stato.json nuovo.json`; per le parole da filtrare
 via (per esempio «Lega Basket») c'è l'elenco «escludi» di `scripts/monitor_fonti.json`; i grafici del cruscotto usano l'ora di pubblicazione e, in questa modalità, 24 ore a intervalli di un'ora.
 
+## Copertura del trasporto pubblico per comune (10 ottobre 2026)
+
+`scripts/aggiorna_trasporto.py` legge gli orari TPL FVG già scaricati per la pagina `orari/` (`dati/orari/indice.txt` e i file dei
+percorsi, dal GTFS pubblicato da BusOne) e calcola per ogni comune le corse di autobus che fermano almeno una volta nel comune in un
+giorno (mediana dei giorni feriali, dei sabati e delle domeniche del periodo di validità), le linee con almeno una corsa in un giorno
+feriale e le fermate con sede nel comune; scrive il campo `tp` in `const EXTRA` (`fer`, `sab`, `dom`, `linee`, `ferm`, `v`, `da`, `a`).
+Ne derivano il gruppo «Trasporto pubblico» delle mappe (corse feriali, corse per 1.000 abitanti, sabato, domenica, linee, fermate),
+la voce nel menù, il riquadro «Autobus: copertura del servizio» nella scheda del comune e l'argomento «Trasporto pubblico» del
+dossier. Una corsa che attraversa più comuni conta in ciascuno; le 204 fermate senza comune noto non entrano nel conto. Si rilancia
+dopo ogni aggiornamento degli orari (`--prova` non scrive nulla).
+
 ## Comunità linguistiche tutelate (10 ottobre 2026)
 
 `scripts/aggiorna_lingue.py` legge la tavola 21.1 dell'Annuario statistico regionale 2026 («Comuni con presenza di comunità
