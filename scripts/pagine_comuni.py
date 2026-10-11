@@ -25,13 +25,13 @@ MESI = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 
 ANNUARIO = ('Annuario statistico regionale 2026, tavola 19.2',)
 # pagine per argomento: indirizzo breve, titolo, descrizione, testo della pagina; devono coincidere con PAGINE in index.html
 PAGINE = [
-    ('mappe', 'Mappe dei comuni', 'Mappe dei 215 comuni del Friuli Venezia Giulia: popolazione, redditi, servizi, Terzo settore, rischio idrogeologico, bilanci, elezioni e opere pubbliche, comune per comune.',
+    ('mappe', 'Mappe dei comuni', 'Mappe dei 215 comuni del Friuli Venezia Giulia: popolazione, redditi, servizi, Terzo settore, rischio idrogeologico, bilanci, elezioni e opere pubbliche.',
      ['Oltre trenta indicatori, ognuno con fonte, periodo e copertura: popolazione ed età, redditi, turismo, farmacie, Terzo settore, rischio di frana e di alluvione, bilanci comunali, opere pubbliche, affluenza e liste più votate.',
       'Accanto a ogni mappa c\'è la tabella con gli stessi valori, scaricabile in CSV ed Excel. Ci sono anche le cartine dell\'Annuario statistico regionale e i servizi sul territorio: farmacie, guardie mediche, residenze per anziani.']),
     ('confronto', 'Confronto fra comuni', 'Confronta fino a sei comuni del Friuli Venezia Giulia, indicatore per indicatore, con i valori assoluti separati da quelli per abitante.',
      ['Si scelgono fino a sei comuni e si leggono fianco a fianco: popolazione, redditi, servizi, Terzo settore, bilanci, rischio idrogeologico ed elezioni.',
       'I valori assoluti sono separati da quelli per abitante, che permettono di confrontare comuni di taglia diversa. Ogni riga indica il periodo dei dati e segnala quelli meno recenti.']),
-    ('autobus', 'Autobus', 'Linee, fermate e arrivi in tempo reale degli autobus del Friuli Venezia Giulia, con la mappa delle vie.',
+    ('autobus', 'Autobus del Friuli Venezia Giulia', 'Linee, fermate e arrivi in tempo reale degli autobus del Friuli Venezia Giulia, con la mappa delle vie.',
      ['Le linee del trasporto pubblico locale, le fermate di ogni comune e gli arrivi in tempo reale, con i mezzi in viaggio sulla mappa delle vie.',
       'Gli orari di ogni linea, fermata per fermata e giorno per giorno, sono nella pagina Orari degli autobus.',
       'Fonte: TPL FVG tramite BusOne, rete aggiornata ogni lunedì e arrivi letti al momento.']),
@@ -46,6 +46,8 @@ PAGINE = [
     ('metodo', 'Metodo e fonti', 'Versioni, date di aggiornamento, fonti, copertura e avvertenze sui dati dell\'Atlante dei comuni del Friuli Venezia Giulia.',
      ['Come sono fatti i dati dell\'Atlante: versioni e date di aggiornamento, fonti con i collegamenti alla documentazione originale, copertura di ogni gruppo di dati, differenza fra zero e dato non disponibile, avvertenze.']),
 ]
+# pagine fatte a mano o da altri script, da tenere nella sitemap
+PAGINE_FISSE = ('orari', 'bandi', 'opere', 'finanziamenti', 'pnrr', 'bilancio-regionale', 'consiglio', 'servizi', 'meteo', 'stradario', 'catasto', 'aggiornamenti')
 ICONA_PAG = {'mappe': 'Esplora le mappe', 'confronto': 'Apri il confronto', 'autobus': 'Apri gli autobus', 'ambiente': 'Apri allerte e aria', 'comuni': 'Apri il registro dei comuni', 'archivio': 'Apri l\'archivio', 'metodo': 'Apri Metodo e fonti'}
 
 e = html.escape
@@ -135,8 +137,10 @@ def pagina_html(percorso, titolo, descr, briciole, corpo, extra_ld=None):
 <meta property="og:title" content="{e(titolo)}">
 <meta property="og:description" content="{e(descr)}">
 <meta property="og:image" content="{SITO}/anteprima.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo Atlante FVG con la scritta: i 215 comuni del Friuli Venezia Giulia">
 <meta name="twitter:card" content="summary_large_image">
 <script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 {ld_txt}{STILE}
@@ -147,7 +151,7 @@ def pagina_html(percorso, titolo, descr, briciole, corpo, extra_ld=None):
 <nav class="percorso" aria-label="Percorso"><ol>{bric}</ol></nav>
 {corpo}
 </main>
-<footer><p>Hai trovato un errore? Segnalalo <a href="{segnala(url, titolo)}">per posta a {POSTA}</a> oppure <a href="{segnala_wa(url, titolo)}" target="_blank" rel="noopener">via WhatsApp</a>: il messaggio contiene già l'indirizzo della pagina.</p>Atlante FVG raccoglie dati pubblici con la loro fonte e la loro data. Per come sono trattati i dati vedi <a href="{su}metodo/">Metodo e fonti</a>. Pagine: <a href="{su}mappe/">Mappe</a> · <a href="{su}confronto/">Confronto</a> · <a href="{su}comuni/">Comuni</a> · <a href="{su}archivio/">Archivio</a> · <a href="{su}autobus/">Autobus</a> · <a href="{su}orari/">Orari degli autobus</a> · <a href="{su}bandi/">Bandi</a> · <a href="{su}opere/">Opere pubbliche</a> · <a href="{su}finanziamenti/">Finanziamenti</a> · <a href="{su}servizi/">Servizi sul territorio</a> · <a href="{su}aggiornamenti/">Cosa è cambiato</a> · <a href="{su}meteo/">Meteo</a> · <a href="{su}stradario/">Stradario</a> · <a href="{su}catasto/">Catasto</a> · <a href="{su}ambiente/">Allerte e aria</a>.</footer>
+<footer><p>Hai trovato un errore? Segnalalo <a href="{segnala(url, titolo)}">per posta a {POSTA}</a> oppure <a href="{segnala_wa(url, titolo)}" target="_blank" rel="noopener">via WhatsApp</a>: il messaggio contiene già l'indirizzo della pagina.</p>Atlante FVG raccoglie dati pubblici con la loro fonte e la loro data. Per come sono trattati i dati vedi <a href="{su}metodo/">Metodo e fonti</a>. Pagine: <a href="{su}mappe/">Mappe</a> · <a href="{su}confronto/">Confronto</a> · <a href="{su}comuni/">Comuni</a> · <a href="{su}archivio/">Archivio</a> · <a href="{su}autobus/">Autobus</a> · <a href="{su}orari/">Orari degli autobus</a> · <a href="{su}bandi/">Bandi</a> · <a href="{su}opere/">Opere pubbliche</a> · <a href="{su}finanziamenti/">Finanziamenti</a> · <a href="{su}pnrr/">PNRR</a> · <a href="{su}bilancio-regionale/">Bilancio della Regione</a> · <a href="{su}consiglio/">Consiglio regionale</a> · <a href="{su}servizi/">Servizi sul territorio</a> · <a href="{su}aggiornamenti/">Cosa è cambiato</a> · <a href="{su}meteo/">Meteo</a> · <a href="{su}stradario/">Stradario</a> · <a href="{su}catasto/">Catasto</a> · <a href="{su}ambiente/">Allerte e aria</a>.</footer>
 </body>
 </html>
 """
@@ -169,6 +173,9 @@ def pagina_comune(c, db, fm, simili, prec, succ):
     titolo = f"{c['n']} ({c['pv']}): dati del comune · Atlante FVG"
     descr = (f"{c['n']}, provincia di {pv}: {migliaia(c['p25'])} residenti al 31 dicembre 2025. "
              'Sindaco, servizi, Terzo settore, turismo, elezioni e fonti ufficiali del comune.')
+    if len(descr) > 160:  # i motori di ricerca tagliano le descrizioni più lunghe
+        descr = (f"{c['n']} ({c['pv']}): {migliaia(c['p25'])} residenti al 31 dicembre 2025. "
+                 'Sindaco, servizi, Terzo settore, turismo, elezioni e fonti ufficiali.')
     agg = c.get('agg') or ''
     m = re.match(r'^(\d{2})/(\d{2})/(\d{4})$', agg)
     vecchia = bool(m) and datetime.date(int(m[3]), int(m[2]), int(m[1])) < datetime.date(2024, 10, 5)
@@ -204,7 +211,13 @@ def pagina_comune(c, db, fm, simili, prec, succ):
 <ul class="elenco">{''.join(f'<li><a href="../{slug(x["n"])}/">{e(x["n"])}</a>, {migliaia(x["p25"])} residenti</li>' for x in simili)}</ul>
 <p class="fonte">In ordine alfabetico: {f'<a href="../{slug(prec["n"])}/">‹ {e(prec["n"])}</a>' if prec else ''}{' · ' if prec and succ else ''}{f'<a href="../{slug(succ["n"])}/">{e(succ["n"])} ›</a>' if succ else ''} · <a href="../../comuni/">tutti i 215 comuni</a></p>"""
     br = [('Atlante FVG', ''), (f'Provincia di {pv}', f'provincia/{slug(pv)}/'), (c['n'], None)]
-    return s, pagina_html(f'c/{s}/', titolo, descr, br, corpo)
+    luogo = {'@context': 'https://schema.org', '@type': 'City', 'name': c['n'], 'url': f'{SITO}/c/{s}/',
+             'identifier': {'@type': 'PropertyValue', 'propertyID': 'Codice ISTAT', 'value': str(c['id'])},
+             'containedInPlace': {'@type': 'AdministrativeArea', 'name': f'Provincia di {pv}',
+                                  'containedInPlace': {'@type': 'AdministrativeArea', 'name': 'Friuli Venezia Giulia'}}}
+    if c.get('ml') and c['ml'] != c['n']:
+        luogo['alternateName'] = c['ml']
+    return s, pagina_html(f'c/{s}/', titolo, descr, br, corpo, luogo)
 
 
 def pagina_provincia(pv, comuni):
@@ -296,7 +309,7 @@ def main():
     oggi = max((f['cons'] for f in man['manifest'] if re.match(r'^\d{4}-\d{2}-\d{2}$', f.get('cons') or '')), default=datetime.date.today().isoformat())
     voci = [f'  <url><loc>{SITO}/</loc><lastmod>{oggi}</lastmod></url>']
     voci += [f'  <url><loc>{SITO}/{nome}/</loc><lastmod>{oggi}</lastmod></url>' for nome, *_ in PAGINE]
-    voci += [f'  <url><loc>{SITO}/{nome}/</loc><lastmod>{oggi}</lastmod></url>' for nome in ('orari', 'bandi', 'opere', 'finanziamenti', 'servizi', 'meteo', 'stradario', 'catasto', 'aggiornamenti')]
+    voci += [f'  <url><loc>{SITO}/{nome}/</loc><lastmod>{oggi}</lastmod></url>' for nome in PAGINE_FISSE]
     voci += [f'  <url><loc>{SITO}/provincia/{slug(n)}/</loc><lastmod>{oggi}</lastmod></url>' for n in PROVINCE.values()]
     voci += [f'  <url><loc>{SITO}/c/{slug(c["n"])}/</loc><lastmod>{oggi}</lastmod></url>' for c in comuni]
     (RADICE / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
