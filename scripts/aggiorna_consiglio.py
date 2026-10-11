@@ -12,6 +12,8 @@ RADICE = Path(__file__).resolve().parent.parent
 USCITA = RADICE / 'dati' / 'consiglio_atti.json'
 SIGLE = {'PARTITO DEMOCRATICO': 'PD', 'LEGA SALVINI FVG': 'Lega', 'FEDRIGA PRESIDENTE': 'Fedriga Presidente', "FRATELLI D'ITALIA": 'FdI',
          "PATTO PER L'AUTONOMIA - CIVICA FVG": "Patto per l'Autonomia - Civica FVG", 'FORZA ITALIA - PARTITO POPOLARE EUROPEO': 'Forza Italia', 'GRUPPO MISTO': 'Gruppo misto'}
+# consiglieri non più in carica: restano nel gruppo di appartenenza fino alle dimissioni, come indicato dal curatore
+EX = {'BASSO': {'nome': '', 'gruppo': 'FdI', 'ruolo': 'non più in carica', 'ex': True}}
 MISTO = [('CAPOZZI', 'Movimento 5 Stelle'), ('PELLEGRINO', 'Alleanza Verdi Sinistra'), ('HONSELL', 'Open Sinistra FVG'), ('SPAGNOLO', 'Futuro Nazionale'), ('BULLIAN', '')]
 
 
@@ -26,6 +28,8 @@ def gruppi(cartella):
             m = re.match(r"\s*([A-ZÀ-Ü' ]{3,}?) ([A-ZÀ-Ü][a-zà-ü]+(?: [A-ZÀ-Ü][a-zà-ü]+)*)(?: - ([A-Za-z ]+))?\s*$", l)
             if m:
                 membri[m.group(1).strip()] = {'nome': m.group(2), 'gruppo': SIGLE.get(g, g.title()), 'ruolo': (m.group(3) or '').strip()}
+    for cogn, v in EX.items():
+        membri.setdefault(cogn, dict(v))
     testo_misto = grezzi.get('GRUPPO MISTO', '')
     for cogn, forza in MISTO:
         if cogn in testo_misto:
