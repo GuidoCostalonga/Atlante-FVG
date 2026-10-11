@@ -1,8 +1,262 @@
 {
- "generato": "2026-10-10",
+ "generato": "2026-10-11",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-10-11",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i bandi e gli avvisi della Regione del 11/10/2026",
+   "descrizione": "Bandi: 113 voci (13 con misure contributive), 3 nuove e 3 tolte rispetto a prima.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Bandi e avvisi della Regione",
+     "misura": "voci",
+     "prima": 113,
+     "dopo": 113,
+     "differenza": 0,
+     "collegamento": "../bandi/"
+    }
+   ],
+   "commit": "5c0f24d474"
+  },
+  {
+   "data": "2026-10-11",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Assegna il consigliere Basso al gruppo Fratelli d'Italia fino alle dimissioni",
+   "descrizione": "Nella pagina del Consiglio regionale i consiglieri non più in carica restano nel gruppo di appartenenza fino alle dimissioni: Basso compare in Fratelli d'Italia, con la dicitura «fino alle dimissioni» accanto al gruppo e la nota di metodo aggiornata.",
+   "interessa": [
+    {
+     "nome": "Metodo e fonti",
+     "collegamento": "../?pagina=metodo"
+    }
+   ],
+   "valori": [],
+   "commit": "338cf474df"
+  },
+  {
+   "data": "2026-10-11",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Aggiunge gli 887 ordini del giorno del Consiglio regionale con esito della votazione",
+   "descrizione": "Lettore dedicato per le schede degli ordini del giorno (scripts/consiglio/leggi_dettagli_odg.py): disegno di legge di riferimento, legge approvata, esito della votazione con la seduta, testo in PDF, proponenti e firme aggiunte. scripts/aggiorna_consiglio.py li unisce alle mozioni in dati/consiglio_atti.json (1.122 atti); la pagina consiglio/ mostra per gli ordini del giorno provvedimento, legge, esito e firme aggiunte, anche nella ricerca e nel CSV. Documentazione e README aggiornati.",
+   "interessa": [],
+   "valori": [],
+   "commit": "cbb1e8e3c7"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Aggiunge gli atti di indirizzo del Consiglio regionale: mozioni con proponenti, gruppi e stato",
+   "descrizione": "Dalla banca dati degli atti di indirizzo del Consiglio regionale (XIII legislatura), raccolta con un browser automatico (scripts/consiglio/, con LEGGIMI.md) e unita da scripts/aggiorna_consiglio.py in dati/consiglio_atti.json: per ogni mozione titolo, data di presentazione, proponenti, assessore competente, stato dell'esame, testo depositato e scheda ufficiale, più la composizione attuale dei gruppi consiliari. La nuova pagina consiglio/ offre ricerca per testo, tipo, gruppo del primo firmatario, stato, consigliere e assessore, totali per stato e per gruppo e scarico CSV. Voce fra gli strumenti, nel gruppo «Voto», nel menù di tutte le pagine e nella sitemap; nota di metodo e README. Prima raccolta: 235 mozioni; gli ordini del giorno seguono.",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "8dcc699981"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Aggiunge il bilancio della Regione: spese per missione e programma, entrate per titolo dal 2021 al 2025",
+   "descrizione": "* Aggiunge il bilancio della Regione: spese per missione e programma, entrate per titolo dal 2021 al 2025\n\nscripts/aggiorna_bilancio_regionale.py legge i PDF dei rendiconti generali pubblicati dalla Regione, ne estrae i totali per missione, programma e titolo con le colonne stampate nel documento e li scrive in dati/bilancio_regionale.json solo se tornano al centesimo con il totale generale (dal 2021 al 2025; il 2019 e il 2020 hanno un'impaginazione diversa e restano esclusi). La nuova pagina bilancio-regionale/ mostra per l'anno scelto il totale delle missioni, il peso della sanità, le entrate accertate e la legge di approvazione, la tabella delle missioni con quota, pagato su impegnato e variazione sull'anno precedente, i programmi della missione scelta, il confronto fra gli anni e le entrate per titolo, con partite di giro escluse salvo scelta diversa e scarico CSV. Voce fra gli strumenti, nel menù di tutte le pagine, nella sitemap, nota di metodo e README.\n\n\n* Corregge il menù delle pagine PNRR e Bilancio della Regione\n\n\n---------",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "1f609eb562"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Monitor: i nomi generici si tengono solo con un riferimento al territorio",
+   "descrizione": "Con «Fratelli d'Italia» e «FdI» in MONITOR_NOMI la ricerca per nome\nportava decine di notizie nazionali del partito (Cesena, Bari, Genova…)\nche occupavano i posti del giro al posto di quelle friulane; «Nadal» da\nsolo trovava il tennista. Ora un nome generico (partito o parola sola)\nsi tiene solo se il titolo, o il messaggio Bluesky, cita il Friuli\nVenezia Giulia, un capoluogo o una persona seguita; una persona o un\nluogo con nome e cognome si segue ovunque. Anche il filtro territoriale\ndelle testate venete e nazionali conta solo i nomi specifici, non più le\nsigle di partito. Prova sulle ricerche vere: «FdI» 100 titoli trovati, 0\ntenuti; «Luca Ciriani» 8 su 8; «Nadal» 1 su 5.",
+   "interessa": [],
+   "valori": [],
+   "commit": "f443bca457"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Aggiunge i progetti del PNRR: pagina, indicatori, scheda del comune e contrassegno nelle opere",
+   "descrizione": "Dagli open data di OpenPNRR (Fondazione Openpolis), che ripubblicano i dati ufficiali di Italia Domani e ReGiS, scripts/aggiorna_pnrr.py tiene i 5.044 progetti localizzati nei comuni della regione (dati al 13 giugno 2026) e scrive i fogli dati/pnrr, i metadati, l'elenco dei CUP e i campi per comune in const EXTRA. Nuova pagina pnrr/ con ricerca per testo, comune, missione e soggetto attuatore, totali, scheda per CUP e CSV; gruppo «PNRR» nelle mappe, riquadro nella scheda del comune, argomento del dossier, voce fra gli strumenti e nel menù di tutte le pagine, contrassegno «PNRR» con filtro nell'osservatorio delle opere, nota di metodo, README e sitemap. I progetti su più comuni o nazionali non sono ripartiti; i pagamenti non sono usati.",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "15504c9ef2"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge la copertura del trasporto pubblico per comune: corse, linee e fermate",
+   "descrizione": "Dagli orari TPL FVG già usati dalla pagina degli orari (GTFS tramite BusOne), scripts/aggiorna_trasporto.py calcola per ogni comune le corse di autobus che fermano nel comune in un giorno (mediana dei giorni feriali, dei sabati e delle domeniche del periodo di validità), le linee in un giorno feriale e le fermate con sede nel comune, e scrive il campo «tp» in const EXTRA. Ne derivano il gruppo «Trasporto pubblico» delle mappe (corse feriali, per 1.000 abitanti, sabato, domenica, linee, fermate), la voce nel menù, il riquadro «Autobus: copertura del servizio» nella scheda del comune e l'argomento del dossier; nota di metodo e README descrivono il calcolo.",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "23b38fd362"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge le comunità linguistiche tutelate: indicatore, scheda del comune e dossier",
+   "descrizione": "Dalla tavola 21.1 dell'Annuario statistico regionale 2026 (ISTAT, ARLeF, Regione, situazione al 31 dicembre 2025) lo script scripts/aggiorna_lingue.py scrive per ogni comune il campo «ling» con il nome ufficiale in friulano, sloveno e tedesco: 173 comuni nel territorio di tutela del friulano, 32 della minoranza slovena, 6 germanofoni. Ne derivano l'indicatore categoriale «Comunità linguistiche tutelate» nelle mappe e nel menù, il riquadro «Comunità linguistiche» nella scheda del comune con i nomi ufficiali e i riferimenti di legge, e l'argomento del dossier. La riga della cartina 21.1 letta dall'immagine lascia il posto al dato ufficiale; la nota di metodo e il README descrivono la fonte.",
+   "interessa": [
+    {
+     "nome": "Mappe",
+     "collegamento": "../?pagina=mappe"
+    }
+   ],
+   "valori": [],
+   "commit": "289b00aa6a"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Monitor: il giro si ferma se MONITOR_PAROLA non apre la pagina riservata",
+   "descrizione": "Il giro delle 19:35 UTC ha scritto uno stato cifrato con una chiave\ndiversa da quella della pagina (sale invariato, quindi il segreto\nMONITOR_PAROLA è cambiato): il cruscotto non lo apre e lo stato buono\nprecedente è stato sostituito. Ora, prima di raccogliere, si prova a\ndecifrare monitor/contenuto.json con la chiave del segreto; se non\nriesce il giro termina con un errore chiaro e il passo di pubblicazione\nnon parte, così lo stato buono resta. Il registro dice anche se\nl'accesso a Bluesky è riuscito e quanti messaggi ha portato.",
+   "interessa": [],
+   "valori": [],
+   "commit": "912df3c286"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Monitor: 60 analisi per giro, prima le menzioni dei nomi seguiti",
+   "descrizione": "Con la catena dei giri ogni esecuzione dura comunque 29 minuti: il tempo\nnon usato per l'analisi era attesa. Il limite passa da 30 a 60 menzioni\ne da 15 a 20 minuti, senza cambiare la cadenza né il limite di 40\nminuti del lavoro. Le menzioni oltre il limite non sono più tagliate\nnell'ordine delle fonti (che metteva in fondo proprio le ricerche per\nnome): si analizzano prima quelle che citano un nome di MONITOR_NOMI,\npoi le più recenti.",
+   "interessa": [
+    {
+     "nome": "Metodo e fonti",
+     "collegamento": "../?pagina=metodo"
+    }
+   ],
+   "valori": [],
+   "commit": "c2d3d87329"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Monitor: ogni giro avvia da sé il successivo, senza dipendere dal cron",
+   "descrizione": "La programmazione di GitHub su questo repository parte con ore di\nritardo o salta (Aggiorna i bandi, previsto alle 5:45 UTC, è partito\nalle 11:23 e alle 12:06; i flussi settimanali non sono mai partiti; i\ngiri del Monitor alle :11 e :41 non sono partiti). Ora l'ultimo passo\nattende che siano passati 29 minuti dall'inizio del giro e lancia il\nsuccessivo con workflow_dispatch, l'evento che il GITHUB_TOKEN può far\npartire (serve actions: write). Gira anche se un passo è fallito, non\nse il giro è annullato a mano. Il cron resta come riavvio; concurrency\ntiene in coda un solo giro, quindi le catene non si moltiplicano.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [],
+   "commit": "9e4b3f6734"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Monitor: aggiunto Il Popolo, settimanale di Pordenone",
+   "descrizione": "Flusso proprio (https://ilpopolopordenone.it/feed/, verificato il 10\nottobre 2026), trattato come le altre testate regionali: si tengono solo\nle notizie con un termine politico o istituzionale. Nota di metodo e\nREADME aggiornati (25 testate).\n\ncifra_pagina.js accetta MANTIENI_SALE=1 per riusare il sale del file\ngià presente: la pagina riservata si può rigenerare senza cambiare la\nchiave, così lo stato cifrato in monitor-dati resta leggibile e la\nraccolta non riparte da zero.",
+   "interessa": [
+    {
+     "nome": "Metodo e fonti",
+     "collegamento": "../?pagina=metodo"
+    }
+   ],
+   "valori": [],
+   "commit": "54d3bb6b35"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Monitor: libreria del modello compilata per tutti i processori di GitHub",
+   "descrizione": "llama-cpp-python veniva compilata con GGML_NATIVE attivo, cioè per il\nprocessore del primo giro; quando GitHub assegna un computer diverso\nla raccolta si blocca dopo pochi secondi (secondo tentativo del giro 2\nfallito in 21 secondi). Ora GGML_NATIVE=OFF con AVX2, FMA e F16C,\npresenti su tutti i computer x86 di GitHub; nuova chiave di cache\nperché la libreria venga ricompilata una volta.",
+   "interessa": [],
+   "valori": [],
+   "commit": "653df2efa1"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Monitor: analisi con un modello aperto e gratuito al posto di Claude",
+   "descrizione": "La raccolta automatica analizza le menzioni con Qwen3 4B (licenza Apache\n2.0, GGUF Q4_K_M, revisione e impronta SHA-256 fissate) eseguito con\nllama-cpp-python sul computer di GitHub: nessun servizio a pagamento e\nnessun testo inviato a fornitori di analisi. Modello e libreria restano\nnella cache di Actions; al massimo 30 menzioni o 15 minuti per giro.\nSegreto obbligatorio solo MONITOR_PAROLA: senza, il lavoro non scarica\nnulla. Elenco «escludi» per i falsi positivi sportivi (Lega Basket).\nL'ostilità non è più stimata. README e nota di metodo aggiornati.",
+   "interessa": [
+    {
+     "nome": "Metodo e fonti",
+     "collegamento": "../?pagina=metodo"
+    }
+   ],
+   "valori": [],
+   "commit": "184dc0f42c"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Monitor: raccolta automatica dei dati reali ogni 30 minuti",
+   "descrizione": "Nuovo flusso .github/workflows/monitor.yml con scripts/monitor_raccolta.py:\nlegge 25 fonti (Regione, testate regionali, venete e nazionali, queste\nultime solo per le notizie sul Friuli Venezia Giulia), cerca i nomi del\nsegreto MONITOR_NOMI, fa analizzare le menzioni a Claude, calcola le\nallerte e pubblica lo stato cifrato nel ramo monitor-dati, con la stessa\nchiave della sezione riservata. Il cruscotto legge il file ogni 5 minuti;\ngrafici su 24 ore a intervalli di un'ora. Senza i segreti\nANTHROPIC_API_KEY e MONITOR_PAROLA il lavoro termina senza errori.",
+   "interessa": [
+    {
+     "nome": "Allerte e qualità dell'aria",
+     "collegamento": "../?pagina=ambiente"
+    }
+   ],
+   "valori": [],
+   "commit": "ce8029b56e"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Monitor: tolti i dati simulati, solo dati reali",
+   "descrizione": "Senza servizio collegato la sezione resta vuota e lo dice con un avviso\n(«Dati reali non ancora attivi»); niente più menzioni, politici o partiti\ndi fantasia. Contenuto cifrato rigenerato con lo stesso app.js del\nprogetto sentiment-fvg.",
+   "interessa": [],
+   "valori": [],
+   "commit": "558383bd42"
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge la sezione riservata «Monitor della percezione pubblica»",
+   "descrizione": "Nuova pagina monitor/ con lo stesso cancello cifrato della sezione\nElezioni (AES-GCM, chiave da PBKDF2 sulla parola d'ordine, verificata\nsolo nel browser): il frammento contiene stile, struttura, Chart.js e\nprogramma del cruscotto, con la grafica dell'Atlante. Voce «Monitor\npercezione (riservata)» nel menu di ogni pagina, nella pagina iniziale\n(gruppo «Voto») e nella ricerca per argomento. Script di preparazione\nscripts/prepara_monitor.py e sezione nel README.",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "edb9e23b59"
+  },
   {
    "data": "2026-10-10",
    "tipo": "dati",
@@ -25,7 +279,7 @@
      "collegamento": "../bandi/"
     }
    ],
-   "commit": "95e3fb89fd"
+   "commit": "88171d5f5b"
   },
   {
    "data": "2026-10-09",
