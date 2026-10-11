@@ -69,12 +69,17 @@ def main():
   <meta property="og:title" content="Catasto: foglio e particella sulla mappa · Atlante FVG">
   <meta property="og:description" content="Trova su mappa un terreno o un fabbricato e leggi foglio e particella catastale, con la cartografia ufficiale dell'Agenzia delle Entrate.">
   <meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo Atlante FVG con la scritta: i 215 comuni del Friuli Venezia Giulia">
   <meta name="twitter:card" content="summary_large_image">
   <script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Atlante FVG", "item": "https://atlantefvg.it/"}, {"@type": "ListItem", "position": 2, "name": "Catasto: foglio e particella sulla mappa", "item": "https://atlantefvg.it/catasto/"}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">""")
-    t = sostituisci(t, r'<meta name="description" content="[^"]*">', '<meta name="description" content="Catasto dell\'Atlante FVG: trova su mappa un terreno o un fabbricato e leggi foglio e particella catastale, con la cartografia ufficiale dell\'Agenzia delle Entrate (CC BY 4.0).">', regex=True)
+    t = sostituisci(t, r'<meta name="description" content="[^"]*">', '<meta name="description" content="Catasto dell\'Atlante FVG: trova sulla mappa un terreno o un fabbricato e leggi foglio e particella, con la cartografia ufficiale dell\'Agenzia delle Entrate.">', regex=True)
     t = t.replace('<meta name="theme-color" content="#0f4c81">', '<meta name="theme-color" content="#0B3359">').replace('content="Catasto Map"', 'content="Catasto FVG"')
     t = sostituisci(t, r'<div class="brand" title="CATASTO MAP">.*?</div>', """<div class="brand" title="Catasto · Atlante FVG">
       <a class="atl-marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="96" height="34"><span class="atl-nome">Catasto</span></a>

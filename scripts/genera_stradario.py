@@ -30,7 +30,7 @@ PAGINA = r"""<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stradario del Friuli Venezia Giulia · Atlante FVG</title>
-<meta name="description" content="Stradario del Friuli Venezia Giulia: cerca una via, una piazza o un luogo in uno dei 215 comuni sulla mappa stradale e satellitare, con la tua posizione e il collegamento da condividere.">
+<meta name="description" content="Stradario del Friuli Venezia Giulia: cerca una via, una piazza o un luogo nei 215 comuni sulla mappa stradale e satellitare, con la tua posizione.">
 <link rel="canonical" href="https://atlantefvg.it/stradario/">
 <link rel="icon" href="../favicon.ico" sizes="any">
 <meta name="theme-color" content="#0B3359">
@@ -43,6 +43,7 @@ PAGINA = r"""<!DOCTYPE html>
 <meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo Atlante FVG con la scritta: i 215 comuni del Friuli Venezia Giulia">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Atlante FVG","item":"https://atlantefvg.it/"},{"@type":"ListItem","position":2,"name":"Stradario","item":"https://atlantefvg.it/stradario/"}]}</script>
 <script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -98,11 +99,8 @@ PAGINA = r"""<!DOCTYPE html>
 <body>
 <header class="testata"><div class="testata-dentro">
   <a class="marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="113" height="40"></a>
-  <nav class="voci" aria-label="Pagine dell'Atlante">
-    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus</a><a href="../orari/">Orari</a><a href="../bandi/">Bandi</a><a href="../meteo/">Meteo</a><a href="../stradario/" aria-current="page">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo</a>
-  </nav>
-  <details class="menu-mob"><summary>Menu</summary><nav aria-label="Pagine dell'Atlante">
-    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../bandi/">Bandi e avvisi</a><a href="../meteo/">Meteo</a><a href="../stradario/" aria-current="page">Stradario</a><a href="../catasto/">Catasto</a><a href="../?pagina=metodo">Metodo e fonti</a>
+  <details class="menu-mob"><summary>Menù</summary><nav aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=confronto">Confronto fra comuni</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=archivio">Archivio dei dati</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../?pagina=ambiente">Allerte e qualità dell'aria</a><a href="../meteo/">Meteo</a><a href="../bandi/">Bandi e avvisi</a><a href="../opere/">Opere pubbliche</a><a href="../pnrr/">PNRR</a><a href="../bilancio-regionale/">Bilancio della Regione</a><a href="../consiglio/">Consiglio regionale</a><a href="../finanziamenti/">Finanziamenti regionali</a><a href="../servizi/">Servizi sul territorio</a><a href="../stradario/" aria-current="page">Stradario</a><a href="../catasto/">Catasto</a><a href="../elezioni/">Dati elezioni (riservata)</a><a href="../monitor/">Monitor percezione (riservata)</a><a href="../aggiornamenti/">Cosa è cambiato</a><a href="../?pagina=metodo">Metodo e fonti</a>
   </nav></details>
 </div></header>
 

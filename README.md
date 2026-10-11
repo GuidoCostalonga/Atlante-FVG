@@ -142,10 +142,16 @@ licenze in uso sono IODL 2.0 e CC BY 4.0 (verificato sul catalogo regionale il 6
   (elenco dei comuni) e una pagina per argomento (`mappe/`, `confronto/`, `autobus/`, `ambiente/`, `comuni/`,
   `archivio/`, `metodo/`) con il pulsante che apre la pagina interattiva. Non rimandano più da sole all'Atlante.
 - Ogni pagina ha titolo e descrizione propri, un solo H1, indirizzo canonico, percorso (breadcrumb) e dati strutturati
-  schema.org: `BreadcrumbList` ovunque, `Dataset` su `archivio/` (senza licenza unica, che le fonti non hanno),
-  `WebSite` sulla pagina principale. Gli indirizzi con parametri (`?comune=`, `?pagina=`, filtri) hanno come canonico
+  schema.org: `BreadcrumbList` ovunque (anche su `catasto/`), `City` su ogni comune (nome, codice ISTAT, provincia e
+  regione), `Dataset` su `archivio/` (senza licenza unica, che le fonti non hanno), `WebSite` sulla pagina principale.
+  Descrizioni entro i 160 caratteri che i motori di ricerca mostrano; immagine di anteprima con tipo, misure e testo
+  alternativo su tutte le pagine pubbliche. Gli indirizzi con parametri (`?comune=`, `?pagina=`, filtri) hanno come canonico
   `https://atlantefvg.it/`: si indicizzano le pagine statiche, non le combinazioni di filtri.
-- `sitemap.xml` con 227 indirizzi e data dell'ultimo aggiornamento dei dati; `robots.txt` senza esclusioni.
+- `sitemap.xml` con 239 indirizzi e data dell'ultimo aggiornamento dei dati; `robots.txt` senza esclusioni. Le pagine
+  fatte a mano o da altri script (orari, bandi, opere, finanziamenti, PNRR, bilancio, Consiglio, servizi, meteo, stradario,
+  catasto, aggiornamenti) sono nell'elenco `PAGINE_FISSE` di `scripts/pagine_comuni.py`: una pagina nuova va aggiunta lì,
+  altrimenti la rigenerazione settimanale la toglie dalla sitemap. Le sezioni riservate `elezioni/` e `monitor/` restano
+  fuori dalla sitemap e hanno `noindex`.
 - **Stile e icone compilati** dentro `index.html` con `scripts/compila_stile.js` (Tailwind CSS 3.4.19, Lucide 0.469:
   solo le 111 icone usate). Chart.js si scarica solo al primo grafico. Misura su telefono simulato (Pixel 7, rete 4G
   lenta, processore rallentato quattro volte): spostamenti del layout da 0,405 a 0, tempo bloccato da circa 5 a circa
