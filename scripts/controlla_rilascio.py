@@ -3,10 +3,11 @@
 
 Verifica:
 1. reindirizzamenti: http e www portano a https://atlantefvg.it conservando percorso e parametri;
-2. robots.txt e sitemap.xml: presenti, nessuna pagina pubblica esclusa;
+2. robots.txt e sitemap.xml (indice delle sitemap): presenti, nessuna pagina pubblica esclusa, nessuna data futura;
 3. ogni indirizzo della sitemap: risponde 200, ha un solo H1, titolo e descrizione unici,
    indirizzo canonico uguale al proprio, dati strutturati leggibili, nessun «noindex»;
-4. collegamenti interni delle pagine statiche: nessuno rotto;
+4. collegamenti interni delle pagine statiche: nessuno rotto; ogni indirizzo della sitemap raggiungibile dalla
+   pagina principale con link veri in al massimo 3 clic (nessuna pagina orfana);
 5. pagina principale: i file di dati citati nell'elenco dei fogli rispondono tutti;
 6. servizi esterni usati dalla pagina (fonti in tempo reale): rispondono (solo avviso).
 
@@ -99,7 +100,18 @@ def main():
     if st != 200 or b'Sitemap:' not in rob or re.search(rb'Disallow:\s*/\s*$', rob, re.M):
         errori.append(f'robots.txt: stato {st} o contenuto inatteso')
     st, _, sm, _ = apri(SITO + '/sitemap.xml')
-    indirizzi = re.findall(r'<loc>([^<]+)</loc>', sm.decode()) if st == 200 else []
+    indirizzi, date = [], []
+    figlie = re.findall(r'<sitemap>\s*<loc>([^<]+)</loc>', sm.decode()) if st == 200 else []
+    for f in figlie or ([SITO + '/sitemap.xml'] if st == 200 else []):
+        st_f, _, corpo, _ = apri(f) if figlie else (st, None, sm, None)
+        if st_f != 200:
+            errori.append(f'{f}: stato {st_f}'); continue
+        indirizzi += re.findall(r'<url>\s*<loc>([^<]+)</loc>', corpo.decode()); date += re.findall(r'<lastmod>([^<]+)</lastmod>', corpo.decode())
+    oggi = time.strftime('%Y-%m-%d', time.gmtime(time.time() + 86400))
+    errori.extend(f'Sitemap: data futura {d}' for d in sorted(set(date)) if d > oggi)
+    if len(indirizzi) != len(set(indirizzi)):
+        errori.append('Sitemap: indirizzi ripetuti')
+    fatti.append(f'Sitemap: {len(figlie)} file nell\'indice, {len(indirizzi)} indirizzi')
     if len(indirizzi) < 200:
         errori.append(f'sitemap.xml: stato {st}, {len(indirizzi)} indirizzi')
     pagine = {}
@@ -122,6 +134,19 @@ def main():
     with cf.ThreadPoolExecutor(8) as ex:
         for a, (st, *_) in zip(interni, ex.map(lambda u: apri(u, metodo='HEAD'), interni)):
             if st != 200: errori.append(f'Collegamento interno rotto: {a} (stato {st})')
+    # raggiungibilità: visita in ampiezza dalla pagina principale seguendo solo link veri fra le pagine della sitemap
+    dist, coda = {SITO + '/': 0}, [SITO + '/']
+    while coda:
+        u = coda.pop(0); p = pagine.get(u)
+        for l in (p.link if p else []):
+            a = urllib.parse.urljoin(u, l).split('#')[0]
+            if a in pagine and a not in dist:
+                dist[a] = dist[u] + 1; coda.append(a)
+    orfane = [u for u in indirizzi if u not in dist]
+    lontane = [u for u in indirizzi if dist.get(u, 0) > 3]
+    errori.extend(f'Pagina non raggiungibile con link dalla pagina principale: {u}' for u in orfane)
+    errori.extend(f'Pagina a più di 3 clic dalla pagina principale: {u}' for u in lontane)
+    fatti.append(f'Raggiungibili dalla pagina principale: {len(dist)} indirizzi della sitemap, al massimo a {max(dist.values())} clic')
     # file di dati della pagina principale
     st, _, home, _ = apri(SITO + '/')
     m = re.search(rb'^const MAN = (.*);$', home, re.M)

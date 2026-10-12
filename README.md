@@ -147,11 +147,23 @@ licenze in uso sono IODL 2.0 e CC BY 4.0 (verificato sul catalogo regionale il 6
   Descrizioni entro i 160 caratteri che i motori di ricerca mostrano; immagine di anteprima con tipo, misure e testo
   alternativo su tutte le pagine pubbliche. Gli indirizzi con parametri (`?comune=`, `?pagina=`, filtri) hanno come canonico
   `https://atlantefvg.it/`: si indicizzano le pagine statiche, non le combinazioni di filtri.
-- `sitemap.xml` con 239 indirizzi e data dell'ultimo aggiornamento dei dati; `robots.txt` senza esclusioni. Le pagine
-  fatte a mano o da altri script (orari, bandi, opere, finanziamenti, PNRR, bilancio, Consiglio, servizi, meteo, stradario,
-  catasto, aggiornamenti) sono nell'elenco `PAGINE_FISSE` di `scripts/pagine_comuni.py`: una pagina nuova va aggiunta lì,
-  altrimenti la rigenerazione settimanale la toglie dalla sitemap. Le sezioni riservate `elezioni/` e `monitor/` restano
-  fuori dalla sitemap e hanno `noindex`.
+- **Indicizzazione (12 ottobre 2026)**: la pagina principale ha nel piè di pagina un «Indice del sito» con link veri a
+  `comuni/`, alle 4 province e alle pagine per argomento; le pagine statiche hanno nell'intestazione un menu con gli stessi
+  collegamenti. Ogni indirizzo della sitemap è raggiungibile dalla pagina principale in al massimo 2 clic.
+- `sitemap.xml` è un indice di tre sitemap (`sitemap-servizi.xml`, `sitemap-province.xml`, `sitemap-comuni.xml`, 239
+  indirizzi in tutto). `<lastmod>` è la data dell'ultima modifica reale di ogni file (ultimo commit che lo ha cambiato, o la
+  data di oggi se cambia nell'esecuzione). Le pagine fatte a mano o da altri script (orari, bandi, opere, finanziamenti, PNRR,
+  bilancio, Consiglio, servizi, meteo, stradario, catasto, aggiornamenti) sono nell'elenco `PAGINE_FISSE` di
+  `scripts/pagine_comuni.py`: una pagina nuova va aggiunta lì. Le sezioni riservate `elezioni/` e `monitor/` restano fuori
+  dalla sitemap e hanno `noindex`. `robots.txt` senza esclusioni.
+- **Schede dei comuni**: oltre ai dati principali con la fonte di ogni riga, riportano maschi e femmine, associazioni di
+  promozione sociale e organizzazioni di volontariato (sezioni del RUNTS), posti letto nelle residenze per anziani, quota di
+  presenze straniere, un confronto con la provincia e la regione (densità, variazione dei residenti, posizioni) calcolato
+  dai dati dell'Annuario, e i **comuni confinanti**, calcolati dai confini delle mappe (`dati/_mappe_0.txt`): due comuni
+  confinano se condividono almeno 300 metri di confine; se il calcolo non è simmetrico o un comune resta senza confinanti
+  lo script si ferma.
+- `mappe/` e `confronto/` elencano gli indicatori con la loro fonte, `autobus/` le fermate per provincia (dagli orari GTFS),
+  `ambiente/` i comuni di ogni zona d'allerta. `404.html` porta a tutti i comuni.
 - **Stile e icone compilati** dentro `index.html` con `scripts/compila_stile.js` (Tailwind CSS 3.4.19, Lucide 0.469:
   solo le 111 icone usate). Chart.js si scarica solo al primo grafico. Misura su telefono simulato (Pixel 7, rete 4G
   lenta, processore rallentato quattro volte): spostamenti del layout da 0,405 a 0, tempo bloccato da circa 5 a circa
