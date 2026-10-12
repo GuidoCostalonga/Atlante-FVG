@@ -93,7 +93,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           rm -f fonti_da_aggiornare.md
-          git add -A index.html dati c provincia sitemap.xml robots.txt mappe confronto autobus ambiente comuni archivio metodo orari
+          git add -A index.html dati c provincia sitemap.xml sitemap-*.xml 404.html robots.txt mappe confronto autobus ambiente comuni archivio metodo orari
           if git diff --cached --quiet; then
             echo "Nessuna novità da pubblicare."
             exit 0
