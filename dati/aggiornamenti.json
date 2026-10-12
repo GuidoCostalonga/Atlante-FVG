@@ -1,8 +1,98 @@
 {
- "generato": "2026-10-11",
+ "generato": "2026-10-12",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-10-12",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i dati del gruppo 1 del 12/10/2026",
+   "descrizione": "Gruppo da aggiornare: 1\nGruppo da aggiornare: 1\nFogli aggiornati:\n  Farmacie: 417 righe (prima 417)\n  Punti_WiFi: 749 righe (prima 749)\nUguali alla fonte: 16 fogli.\nAutobus: rete aggiornata alla versione 20261005-0027: 7949 fermate e 652 percorsi (prima 7966 fermate e 656 percorsi).\nOrari: versione 20261005-0027, validi dal 20261005 al 20270131, 652 linee e 43953 corse; 652 file di linea riscritti, 0 tolti, indice aggiornato.\nPagine: 215 comuni, 4 province, 7 argomenti; indice delle sitemap con 239 indirizzi in 3 file",
+   "interessa": [
+    {
+     "nome": "Farmacie",
+     "collegamento": "../?pagina=archivio&foglio=Farmacie"
+    },
+    {
+     "nome": "Punti WiFi",
+     "collegamento": "../?pagina=archivio&foglio=Punti_WiFi"
+    },
+    {
+     "nome": "Servizi sulla mappa",
+     "collegamento": "../?pagina=mappe"
+    },
+    {
+     "nome": "Rete degli autobus",
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Farmacie",
+     "misura": "righe",
+     "prima": 417,
+     "dopo": 417,
+     "differenza": 0,
+     "collegamento": "../?pagina=archivio&foglio=Farmacie"
+    },
+    {
+     "cosa": "Punti_WiFi",
+     "misura": "righe",
+     "prima": 749,
+     "dopo": 749,
+     "differenza": 0,
+     "collegamento": "../?pagina=archivio&foglio=Punti_WiFi"
+    },
+    {
+     "cosa": "Rete degli autobus (GTFS 20261005-0027)",
+     "misura": "fermate",
+     "prima": 7966,
+     "dopo": 7949,
+     "differenza": -17,
+     "collegamento": "../?pagina=autobus"
+    },
+    {
+     "cosa": "Rete degli autobus (GTFS 20261005-0027)",
+     "misura": "percorsi",
+     "prima": 656,
+     "dopo": 652,
+     "differenza": -4,
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "commit": "f2b4aa0655"
+  },
+  {
+   "data": "2026-10-12",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Indicizzazione: indice del sito nella home, schede dei comuni più ricche, sitemap divisa con date reali",
+   "descrizione": "- index.html: «Indice del sito» nel piè di pagina con link veri a comuni/, alle 4\n  province e alle pagine per argomento (prima la home collegava con link veri solo\n  3 pagine statiche: 226 indirizzi della sitemap erano irraggiungibili)\n- pagine statiche: menu principale nell'intestazione e province nel piè di pagina\n- schede dei comuni: maschi e femmine, APS e ODV (sezioni del RUNTS), posti letto\n  nelle residenze per anziani, quota di presenze straniere, confronto con provincia\n  e regione, posizioni, comuni confinanti calcolati dai confini delle mappe; titolo\n  più distintivo; variazioni piccole con due decimali («−0,02%» invece di «−0,0%»)\n- mappe/, confronto/, autobus/, ambiente/: indicatori con fonte, fermate per\n  provincia, comuni per zona d'allerta\n- sitemap.xml diventa un indice di tre sitemap; lastmod dalla data dell'ultima\n  modifica reale di ogni file\n- 404.html con i collegamenti a tutti i comuni\n- controlla_rilascio.py: legge l'indice delle sitemap, segnala date future,\n  pagine orfane o a più di 3 clic dalla pagina principale\n- flusso aggiorna-dati: pubblica anche sitemap-*.xml e 404.html",
+   "interessa": [
+    {
+     "nome": "Rete degli autobus",
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "valori": [],
+   "commit": "dfbb636f50"
+  },
+  {
+   "data": "2026-10-11",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Motori di ricerca: sitemap stabile, descrizioni più corte, dati strutturati dei comuni",
+   "descrizione": "* Motori di ricerca: sitemap stabile, descrizioni più corte, dati strutturati dei comuni\n\n- sitemap: PNRR, Bilancio della Regione e Consiglio regionale erano scritti a mano e\n  la rigenerazione settimanale li avrebbe tolti; ora sono nell'elenco PAGINE_FISSE\n- piede delle pagine statiche: collegamenti a PNRR, Bilancio e Consiglio\n- dati strutturati City su ogni comune (nome, codice ISTAT, provincia, regione) e\n  BreadcrumbList sul catasto\n- descrizioni entro 160 caratteri (pagina iniziale, mappe, bilancio, catasto,\n  aggiornamenti, finanziamenti, PNRR, servizi, opere, Consiglio, bandi, stradario e\n  i comuni dal nome lungo); titolo del Consiglio più corto; titolo «Autobus del\n  Friuli Venezia Giulia»\n- immagine di anteprima con tipo, misure e testo alternativo su tutte le pagine pubbliche\n- modifiche riportate anche in pagine_comuni.py, porta_catasto.py e genera_stradario.py\n\n\n* Stradario: il generatore riprende il menù della pagina pubblicata\n\ngenera_stradario.py scriveva ancora la vecchia barra con le voci e il menù\nridotto: rigenerando, lo stradario perdeva le voci aggiunte dopo (Confronto,\nArchivio, Allerte, PNRR, Bilancio, Consiglio, Finanziamenti, Servizi, Elezioni,\nMonitor, Cosa è cambiato). Ora l'uscita coincide con stradario/index.html.\n\n\n---------",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "815e37e941"
+  },
   {
    "data": "2026-10-11",
    "tipo": "dati",
@@ -25,7 +115,7 @@
      "collegamento": "../bandi/"
     }
    ],
-   "commit": "5c0f24d474"
+   "commit": "0150ee2f4a"
   },
   {
    "data": "2026-10-11",
@@ -1594,7 +1684,7 @@
    "nome": "Farmacie",
    "ambito": "Salute",
    "righe": 417,
-   "consultazione": "2026-10-06",
+   "consultazione": "2026-10-12",
    "periodo": "dati aggiornati dalla fonte al 2026-10-04",
    "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/jbxd-m6xe/rows.csv?accessType=DOWNLOAD"
   },
@@ -1684,7 +1774,7 @@
    "nome": "Punti WiFi",
    "ambito": "Governo e settore pubblico",
    "righe": 749,
-   "consultazione": "2026-10-06",
+   "consultazione": "2026-10-12",
    "periodo": "dati aggiornati dalla fonte al 2026-10-05",
    "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/53ur-f9mj/rows.csv?accessType=DOWNLOAD"
   },
