@@ -2,6 +2,8 @@ name: Osservatorio sondaggi
 
 # Sonda provvisoria: verifica da GitHub la raggiungibilità delle fonti dell'Osservatorio sondaggi.
 on:
+  push:
+    branches: ['aggiornamenti/2026-10-13-sondaggi']
   workflow_dispatch:
 
 permissions:
