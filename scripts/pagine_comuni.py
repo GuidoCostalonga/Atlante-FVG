@@ -472,7 +472,7 @@ def pagina_argomento(nome, titolo, descr, testi, db, man):
             fonte = f['fonte'] or ''
             breve = e(fonte[:70]) + ('…' if len(fonte) > 70 else '')
             cella = f'<a href="{e(fonte)}">{breve}</a>' if fonte.startswith('http') else e(fonte[:160])
-            corpo += (f'<tr><th scope="row">{e(f["id"].replace("_", " "))}</th><td>{e(f["ambito"])}</td><td class="n">{migliaia(f["righe"])}</td>'
+            corpo += (f'<tr><th scope="row">{e(f.get("nome") or f["id"].replace("_", " "))}</th><td>{e(f["ambito"])}</td><td class="n">{migliaia(f["righe"])}</td>'
                       f'<td class="fonte">{cella}</td></tr>')
         corpo += '</tbody></table></div>\n'
         date = sorted(f['cons'] for f in fogli if re.match(r'^\d{4}-\d{2}-\d{2}$', f.get('cons') or ''))

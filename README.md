@@ -6,7 +6,7 @@ I 215 comuni del Friuli Venezia Giulia comune per comune: popolazione, amministr
 Terzo settore, sport, cultura, servizi sanitari, scuole, turismo, redditi e ambiente.
 Con le mappe dei comuni (oltre 30 indicatori, 15 cartine dell'Annuario e 8 strati di servizi),
 la mappa delle regioni d'Italia (24 cartine), la mappa degli autobus con linee, fermate e arrivi in tempo reale, il confronto fra sei comuni, la scheda di
-ogni comune stampabile in PDF e l'archivio completo: 136 fogli e quasi 450.000 righe,
+ogni comune stampabile in PDF e l'archivio completo: 575 fogli e oltre 3,5 milioni di righe,
 filtrabili per provincia, per comune, per testo e colonna per colonna.
 
 ## Come è fatta
@@ -15,6 +15,8 @@ filtrabili per provincia, per comune, per testo e colonna per colonna.
 |---|---|
 | `index.html` | La pagina: HTML, stile e programma in un solo file, con i dati riassuntivi dei comuni incorporati |
 | `dati/*.txt` | Un file per foglio del database (i fogli più grandi sono divisi in parti). Ogni file è JSON compresso con gzip e codificato in base64; la pagina lo scarica e lo decomprime solo quando il foglio viene aperto |
+| `dati/raccolte/*.txt` | I 435 fogli delle raccolte di ottobre 2026, stessa codifica; le colonne stanno nel primo file di ogni foglio |
+| `scripts/importa_raccolte.py` | Importazione dei fogli del file «Atlante FVG: archivio delle nuove raccolte» |
 | `dati/_mappe_0.txt` | Confini di comuni, province, regione e regioni italiane, con le classi delle 41 cartine dell'Annuario (stessa codifica degli altri file) |
 | `dati/_punti_0.txt` | Punti della mappa dei servizi (farmacie, guardie mediche, residenze per anziani, fermate, accessi a internet, impianti dei rifiuti, stazioni meteo) già proiettati sul disegno della mappa |
 | `dati/_tpl_0.txt` | Rete degli autobus TPL FVG (Trasporto pubblico locale del Friuli Venezia Giulia): fermate con il loro comune e percorsi con il tracciato stradale (semplificato a 8 metri), già proiettati sul disegno della mappa |
@@ -233,6 +235,40 @@ licenze in uso sono IODL 2.0 e CC BY 4.0 (verificato sul catalogo regionale il 6
   all'acquisizione del 5 ottobre 2026 il dato è segnato «DA VERIFICARE».
 - **Bilanci**: per ogni comune gli anni dei rendiconti di spesa e di entrata pubblicati (`EXTRA.E[i].bil`); dove manca il
   rendiconto la pagina scrive «non pubblicato», non zero.
+
+## Raccolte di ottobre 2026
+
+Il 13 ottobre 2026 sono stati aggiunti all'archivio i 435 fogli del file «Atlante FVG: archivio delle nuove raccolte»
+(raccolte del 12 e 13 ottobre 2026, 3.019.487 righe), con `python scripts/importa_raccolte.py <file.xlsx> --cache <cartella>`.
+Lo script legge ogni foglio (titolo alla riga 2, descrizione alla riga 3, intestazione alla riga 5, colonna A vuota),
+toglie le colonne di contatto e i codici fiscali delle imprese aggiudicatarie, collega le righe al comune con il codice
+ISTAT quando il foglio lo ha (405 fogli; negli altri 30 si cerca il nome del comune nel testo), scrive i file in
+`dati/raccolte/` e aggiunge i fogli all'indice della pagina con un nome leggibile (campo `nome`). Per non appesantire
+la pagina, nei fogli delle raccolte le colonne stanno nel primo file (campo `cols`, l'indice ha solo `ncol`) e i
+conteggi per comune sono un elenco nell'ordine di `MAN.istat`. Si può rieseguire: i fogli già importati vengono
+sostituiti. Prova: `node prove/raccolte.js`.
+
+| Ambito nell'archivio | Fonte | Fogli |
+|---|---|---|
+| Raccolte di ottobre 2026: guida e controlli | Indice, metodo, piano, copertura, fonti, controlli, anomalie e dizionario della raccolta | `INDICE_raccolte_ottobre`, `LEGGIMI_raccolte_ottobre`, `PIANO_OPERATIVO`, `COPERTURA_LIMITI`, `FONTI`, `VERIFICA_QUALITA`, `COMUNI_BASE`, `ALIAS_TERRITORIALI`, `ANOMALIE`, `DIZIONARIO`, `FONTI_DA_INTEGRARE`, `CATALOGO_INTEGRAZIONI`, `CONTROLLI_INTEGRAZIONE`, `RACCOLTA_13OTTOBRE`, `QA_PROSECUZIONE`, `FONTI_PROSECUZIONE` |
+| Nidi e prima infanzia | Registro regionale dei servizi per la prima infanzia (8 ottobre 2026); ISTAT per i bambini da 0 a 2 anni | `NIDI_STRUTTURE`, `NIDI_COMUNI`, `INFANZIA_DATI`, `INFANZIA_0_2` |
+| Popolazione per età (ISTAT) | Popolazione residente per età al 1° gennaio, 2019-2026 (2026 stima) | `ETA_2019` … `ETA_2026` |
+| Medici di famiglia e pediatri | Elenchi di ASFO, ASUFC e ASUGI (12 ottobre 2026) | `MEDICI_SERVIZI`, `AMBULATORI` |
+| Consumo di suolo (ISPRA) | ISPRA, serie 2006-2024 | `SUOLO_COMUNI`, `SUOLO_PROVINCE`, `SUOLO_REGIONE`, `SUOLO_DIZIONARIO` |
+| Impianti fotovoltaici e agrivoltaici | Registro regionale AUE (servizio WFS della Regione) | `ENERGIA_AUE`, `ENERGIA_COMUNI`, `ENERGIA_VERTICI` |
+| Copertura della rete internet (AGCOM) | AGCOM, indicatori DESI per provincia, quarto trimestre 2025 | `AGCOM_PROVINCE`, `AGCOM_DEFINIZIONI` |
+| Valori immobiliari (OMI) | Agenzia delle entrate, Osservatorio del mercato immobiliare, secondo semestre 2025 | `OMI_COMUNI_FONTE`, `OMI_ZONE`, `OMI_QUOTAZIONI`, `OMI_CONTROLLI` |
+| Appalti pubblici (ANAC) | ANAC tramite Open Contracting Partnership, inizio gara 2018-2024, enti con sede in regione | `APP_ENTI`, `APP_PROCEDURE`, `APP_LOTTI`, `APP_AGGIUDICAZIONI`, `APP_FORNITORI`, `APP_CONTRATTI`, `APP_TAPPE`, `APP_ESTRAZIONE` |
+| Opere pubbliche: monitoraggio BDAP-MOP | Ragioneria generale dello Stato | `MOP_PROGETTI`, `MOP_PAGAMENTI`, `MOP_COSTI`, `MOP_LOCALIZZAZIONI` |
+| Incassi e pagamenti dei comuni (SIOPE) | Copia della Ragioneria (importi cumulati, 2024-2026) e Banca d'Italia (importi mensili in centesimi, con colonna in euro calcolata; licenza CC BY-NC 4.0) | `SIOPE_ENTRATE_*`, `SIOPE_SPESE_*`, `SIOPE_BI_*` |
+| Rendiconti dei comuni 2018 … 2025 (OpenBDAP) | OpenBDAP, prospetti dei rendiconti e piano degli indicatori (2024 e 2025); nel 2025 mancano Drenchia e Roveredo in Piano | `BD18_S01` … `BD25_I07` (363 fogli; il nome leggibile viene dal foglio `CATALOGO_INTEGRAZIONI`) |
+| Rendiconto 2025 di Drenchia | Documenti del rendiconto approvato dal Consiglio comunale (delibera n. 6 del 2026), estrazione automatica | `DRENCHIA25_PAGINE`, `DRENCHIA25_TABELLE`, `DRENCHIA25_ENTRATE`, `DRENCHIA25_SPESE` |
+| Associazioni | Protezione civile della Regione, copia conservata della pagina ufficiale (data non dichiarata) | `PC_ASSOCIAZIONI` |
+
+Non acquisiti dalla raccolta e quindi assenti: copertura internet comunale di AGCOM (il collegamento ufficiale restituiva
+un errore), impianti del GSE (sito non raggiungibile), rendiconto 2025 di Roveredo in Piano. Colonne tolte: telefono e
+posta elettronica dei nidi, telefono degli ambulatori, codice fiscale dei fornitori negli appalti. Le condizioni di
+riutilizzo delle fonti senza licenza dichiarata (fra cui le quotazioni OMI) sono da verificare presso il titolare.
 
 ## Fonti e data
 
