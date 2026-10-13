@@ -1,0 +1,107 @@
+<style>
+/* Osservatorio sondaggi: stile del frammento riservato. Tutto sotto .oss per non toccare il resto della pagina. */
+.oss { min-width: 0; }
+.oss .schede { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 14px; }
+.oss .schede button { min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid #CBD8E6; background: #fff; color: var(--blu-medio); font: inherit; font-weight: 600; font-size: 14px; cursor: pointer; }
+.oss .schede button[aria-selected="true"] { background: var(--blu); color: #fff; border-color: var(--blu); }
+.oss .schede button:hover { background: var(--blu-tenue); } .oss .schede button[aria-selected="true"]:hover { background: var(--blu-fondo); }
+.oss .stato-dati { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: 13px; color: var(--testo-3); margin-bottom: 12px; }
+.oss .stato-dati b { color: var(--testo-2); }
+.oss .riquadro + .riquadro { margin-top: 14px; }
+.oss .riquadro h2 { font-size: 1.15rem; } .oss .riquadro h3 { font-size: 1rem; margin-top: 14px; }
+.oss .filtri { display: grid; grid-template-columns: 1fr; gap: 10px; align-items: end; }
+@media (min-width: 700px) { .oss .filtri { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .oss .filtri { grid-template-columns: repeat(4, minmax(0, 1fr)); } .oss .filtri.sei { grid-template-columns: repeat(6, minmax(0, 1fr)); } .oss .filtri.tre { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.oss .campo { font-size: 15px; }
+.oss .cerca { position: relative; } .oss .cerca .x { position: absolute; right: 2px; bottom: 2px; width: 44px; height: 44px; border: 0; background: none; border-radius: 10px; color: var(--testo-3); cursor: pointer; font-size: 18px; }
+.oss .tot { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+@media (min-width: 768px) { .oss .tot { grid-template-columns: repeat(4, minmax(0, 1fr)); } .oss .tot.sei { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.oss .tot div { background: var(--carta); border: 1px solid var(--linea); border-radius: 12px; padding: 10px 12px; min-width: 0; }
+.oss .tot b { display: block; font-family: var(--serif); font-size: 1.25rem; color: var(--blu); line-height: 1.2; } .oss .tot span { font-size: 12px; color: var(--testo-3); }
+.oss .tot small { display: block; font-size: 12px; color: var(--testo-3); margin-top: 2px; }
+.oss .badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 2px 9px; font-size: 11.5px; font-weight: 700; border: 1px solid transparent; white-space: nowrap; }
+.oss .b-ok { background: #E9F4EC; color: #1F5E3A; border-color: #B8D9C4; } .oss .b-auto { background: #EAF1FA; color: #0E4273; border-color: #BFD3EA; }
+.oss .b-sec { background: #F4EEE2; color: #6A4B00; border-color: #E2D3B0; } .oss .b-coda { background: #FEF8E3; color: #6A4B00; border-color: #E8C77E; }
+.oss .b-no { background: #FBE9E7; color: #8A2A1C; border-color: #F0C2BC; } .oss .b-grigio { background: #F0EFEA; color: #52565E; border-color: #D9D5CA; }
+.oss .b-fvg { background: #E3EEF8; color: #0B3359; border-color: #B4CBE3; }
+.oss .elenco { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.oss .voce { background: var(--carta); border: 1px solid var(--linea); border-radius: 12px; padding: 12px 14px; display: grid; grid-template-columns: 1fr; gap: 4px 14px; }
+@media (min-width: 768px) { .oss .voce { grid-template-columns: minmax(0, 1fr) 12rem; } .oss .voce .lato { text-align: right; } }
+.oss .voce h3 { margin: 0; font-size: 1rem; line-height: 1.3; } .oss .voce h3 button, .oss a.scheda-link { background: none; border: 0; padding: 0; font: inherit; color: var(--blu); text-align: left; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.oss .voce .meta { font-size: 13px; color: var(--testo-2); } .oss .voce .lato b { font-family: var(--serif); color: var(--blu); display: block; } .oss .voce .lato span { font-size: 12px; color: var(--testo-3); }
+.oss .riga-badge { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.oss .tab { width: 100%; border-collapse: collapse; font-size: 13px; }
+.oss .tab th, .oss .tab td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--linea); vertical-align: top; }
+.oss .tab th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--testo-3); background: #FBF9F4; position: sticky; top: 0; }
+.oss .tab th button { background: none; border: 0; font: inherit; color: inherit; cursor: pointer; padding: 0; text-transform: inherit; letter-spacing: inherit; }
+.oss .tab td.n, .oss .tab th.n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.oss .tab tr.cliccabile { cursor: pointer; } .oss .tab tr.cliccabile:hover td { background: var(--blu-tenue); }
+.oss .scorri { overflow: auto; border: 1px solid var(--linea); border-radius: 10px; background: var(--carta); max-height: 70vh; }
+.oss .vuoto { text-align: center; padding: 28px 16px; color: var(--testo-2); }
+.oss .pagine { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin-top: 12px; }
+.oss .azioni { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+.oss .btn.mini { min-height: 36px; padding: 0 12px; font-size: 13px; }
+.oss .grafico-box { background: var(--carta); border: 1px solid var(--linea); border-radius: 12px; padding: 10px 12px 6px; margin-top: 10px; position: relative; }
+.oss .grafico-box svg { width: 100%; height: auto; display: block; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.oss .grafico-box .titolo-g { font-family: var(--serif); font-weight: 600; color: var(--blu); font-size: 1rem; margin: 0 0 2px; }
+.oss .grafico-box .sotto-g { font-size: 12px; color: var(--testo-3); margin: 0 0 6px; }
+.oss .legenda { display: flex; flex-wrap: wrap; gap: 4px 10px; margin: 6px 0 2px; }
+.oss .legenda button { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 8px; border-radius: 8px; border: 1px solid transparent; background: none; font: inherit; font-size: 12.5px; color: var(--testo-2); cursor: pointer; }
+.oss .legenda button:hover { background: var(--blu-tenue); } .oss .legenda button[aria-pressed="false"] { opacity: .45; text-decoration: line-through; }
+.oss .legenda i { width: 14px; height: 4px; border-radius: 2px; display: inline-block; }
+.oss .intervalli { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
+.oss .intervalli button { min-height: 36px; padding: 0 10px; border-radius: 8px; border: 1px solid #CBD8E6; background: #fff; color: var(--blu-medio); font: inherit; font-size: 13px; cursor: pointer; }
+.oss .intervalli button[aria-pressed="true"] { background: var(--blu); color: #fff; border-color: var(--blu); }
+.oss .intervalli input { min-height: 36px; border: 1px solid #CFC7B5; border-radius: 8px; padding: 0 8px; font: inherit; font-size: 13px; }
+.oss .suggerimento { position: absolute; pointer-events: none; background: #1F2329; color: #fff; font-size: 12px; line-height: 1.4; padding: 8px 10px; border-radius: 8px; max-width: 18rem; z-index: 5; box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+.oss .suggerimento b { color: #FFE9A8; }
+.oss .punto-g { cursor: pointer; }
+.oss .avviso-blocco { border-left: 4px solid var(--oro); background: #FEF8E3; color: #5A4300; padding: 10px 12px; border-radius: 8px; font-size: 14px; margin-top: 10px; }
+.oss .barre { display: grid; gap: 6px; margin-top: 8px; }
+.oss .barra { display: grid; grid-template-columns: minmax(0, 11rem) 1fr 3.2rem; gap: 8px; align-items: center; font-size: 13px; }
+.oss .barra .asta { height: 14px; background: #E6EEF6; border-radius: 7px; overflow: hidden; } .oss .barra .asta i { display: block; height: 100%; background: var(--blu-chiaro); border-radius: 7px; }
+.oss .barra .v { text-align: right; font-variant-numeric: tabular-nums; }
+.oss dl.dati { display: grid; grid-template-columns: minmax(0, 11rem) 1fr; gap: 4px 12px; margin: 8px 0 0; font-size: 14px; }
+.oss dl.dati dt { color: var(--testo-3); font-size: 13px; } .oss dl.dati dd { margin: 0; }
+.oss dialog.scheda { border: 0; border-radius: 16px; padding: 0; max-width: min(60rem, calc(100vw - 24px)); width: 100%; max-height: calc(100vh - 24px); background: var(--avorio); color: var(--testo); }
+.oss dialog.scheda::backdrop { background: rgba(7,33,58,.55); }
+.oss dialog.scheda .dentro { padding: 18px 20px 20px; }
+.oss dialog.scheda .testa { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+.oss dialog.scheda h2 { font-size: 1.2rem; margin-right: 8px; }
+.oss .chiudi-s { min-width: 44px; min-height: 44px; border-radius: 12px; border: 1px solid #CBD8E6; background: #fff; font-size: 20px; cursor: pointer; color: var(--blu); }
+.oss .colonne { display: grid; grid-template-columns: 1fr; gap: 14px; } @media (min-width: 900px) { .oss .colonne { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.oss .colonne.tre { grid-template-columns: 1fr; } @media (min-width: 900px) { .oss .colonne.tre { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.oss textarea.campo { min-height: 90px; resize: vertical; }
+.oss .campo-file { display: block; margin-top: 4px; font-size: 14px; }
+.oss .ok-msg { border-left: 4px solid var(--verde); background: #EEF7F0; color: #1F5E3A; padding: 10px 12px; border-radius: 8px; font-size: 14px; margin-top: 10px; }
+.oss .k { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; background: #F0EFEA; padding: 1px 5px; border-radius: 4px; }
+.oss .nota-l { font-size: 13px; color: var(--testo-3); }
+.oss .griglia-istituti { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 10px; } @media (min-width: 700px) { .oss .griglia-istituti { grid-template-columns: repeat(2, minmax(0, 1fr)); } } @media (min-width: 1100px) { .oss .griglia-istituti { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.oss .ist { background: var(--carta); border: 1px solid var(--linea); border-radius: 12px; padding: 12px 14px; text-align: left; font: inherit; cursor: pointer; color: var(--testo); display: block; width: 100%; }
+.oss .ist:hover { border-color: var(--blu-chiaro); background: var(--blu-tenue); }
+.oss .ist b { font-family: var(--serif); color: var(--blu); font-size: 1.05rem; display: block; } .oss .ist span { font-size: 12.5px; color: var(--testo-3); }
+.oss .sparkline { display: block; margin-top: 6px; }
+.oss .spiega { font-size: 13px; color: var(--testo-3); margin: 6px 0 0; }
+.oss .inline-azioni { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+@media (prefers-reduced-motion: no-preference) { .oss .schede button, .oss .ist { transition: background .15s, border-color .15s; } }
+@media (max-width: 480px) { .oss .barra { grid-template-columns: minmax(0, 7.5rem) 1fr 3rem; } .oss dl.dati { grid-template-columns: 1fr; gap: 0 } .oss dl.dati dt { margin-top: 6px; } }
+</style>
+
+<!-- data-dati: archivio cifrato scritto dal flusso .github/workflows/sondaggi.yml nel ramo sondaggi-dati.
+     data-restrizioni: periodi di silenzio e regole di diffusione (file pubblico nel ramo principale).
+     data-repo / data-ramo / data-flusso: coordinate per il pannello di gestione (GitHub). -->
+<div class="oss" id="oss" data-dati="https://raw.githubusercontent.com/GuidoCostalonga/Atlante-FVG/sondaggi-dati/archivio.json" data-restrizioni="../dati/sondaggi/restrizioni.json" data-soggetti="../dati/sondaggi/soggetti.json" data-repo="GuidoCostalonga/Atlante-FVG" data-ramo="sondaggi-dati" data-flusso="sondaggi.yml">
+  <nav class="schede" id="schede" aria-label="Sezioni dell'Osservatorio" role="tablist">
+    <button type="button" role="tab" data-vista="panoramica" aria-selected="true">Panoramica</button>
+    <button type="button" role="tab" data-vista="italia" aria-selected="false">Italia</button>
+    <button type="button" role="tab" data-vista="fvg" aria-selected="false">Friuli Venezia Giulia</button>
+    <button type="button" role="tab" data-vista="istituti" aria-selected="false">Istituti</button>
+    <button type="button" role="tab" data-vista="percezioni" aria-selected="false">Percezioni</button>
+    <button type="button" role="tab" data-vista="archivio" aria-selected="false">Archivio</button>
+    <button type="button" role="tab" data-vista="gestione" aria-selected="false">Gestione</button>
+  </nav>
+  <div class="stato-dati" id="stato-dati" role="status" aria-live="polite"><span class="rotella" aria-hidden="true"></span> Scarico e apro l'archivio dei sondaggi…</div>
+  <div id="vista" role="tabpanel"></div>
+  <dialog class="scheda" id="scheda" aria-labelledby="scheda-titolo"><div class="dentro" id="scheda-dentro"></div></dialog>
+</div>
+<!--PROGRAMMA-->

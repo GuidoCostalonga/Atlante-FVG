@@ -1,0 +1,156 @@
+name: Osservatorio sondaggi
+
+# Ogni mattina alle 6 (ora di Roma) aggiorna l'archivio cifrato dei sondaggi nel ramo `sondaggi-dati`:
+# legge le fonti attive (dati/sondaggi/fonti.json), applica le revisioni scritte dal pannello di gestione,
+# estrae i valori (testo, tabelle, OCR delle immagini), mette in coda «da verificare» ciò che non supera i
+# controlli e riscrive archivio.json e stato.json cifrati con la chiave della sezione riservata sondaggi/.
+# La pagina li legge da raw.githubusercontent.com e li apre con la stessa parola d'ordine.
+#
+# Il cron è in UTC: 04:00 UTC è l'ora 6 con l'ora estiva, 05:00 UTC con quella solare. Partono entrambi e il
+# primo passo tiene soltanto quello che cade alle 6 di Roma (l'altro termina subito). «workflow_dispatch» è
+# il comando «Aggiorna adesso» del pannello: modalità incrementale (novità), storico (recupero a lotti,
+# riprendibile) o ricontrollo (rilegge le acquisizioni degli ultimi 60 giorni).
+#
+# Segreto necessario: SONDAGGI_PAROLA (in mancanza si usa MONITOR_PAROLA). Deve essere la parola d'ordine
+# che apre sondaggi/: il lavoro lo verifica e si ferma con un messaggio chiaro se non corrisponde.
+# Nessun servizio a pagamento: OCR eseguito qui (RapidOCR, licenza Apache 2.0), nessun dato inviato a terzi.
+on:
+  schedule:
+    - cron: '0 4 * * *'
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+    inputs:
+      modalita:
+        description: 'incrementale | storico | ricontrollo'
+        required: false
+        default: 'incrementale'
+      limite:
+        description: 'numero massimo di voci per fonte (0 = predefinito)'
+        required: false
+        default: '0'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: osservatorio-sondaggi
+  cancel-in-progress: false
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    timeout-minutes: 58
+    steps:
+      - name: Decide se è il giro giusto (le 6 di Roma) e con quale modalità
+        id: decidi
+        env:
+          EVENTO: ${{ github.event_name }}
+          MODALITA_INPUT: ${{ github.event.inputs.modalita }}
+          LIMITE_INPUT: ${{ github.event.inputs.limite }}
+        run: |
+          ora_roma=$(TZ=Europe/Rome date +%H)
+          if [ "$EVENTO" = "schedule" ] && [ "$ora_roma" != "06" ]; then
+            echo "Giro delle $ora_roma (Roma): non è quello delle 6, termino."; echo "vai=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          echo "vai=true" >> "$GITHUB_OUTPUT"
+          echo "modalita=${MODALITA_INPUT:-incrementale}" >> "$GITHUB_OUTPUT"
+          echo "limite=${LIMITE_INPUT:-0}" >> "$GITHUB_OUTPUT"
+
+      - name: Controlla che la parola d'ordine sia configurata
+        id: controllo
+        if: steps.decidi.outputs.vai == 'true'
+        env:
+          SONDAGGI_PAROLA: ${{ secrets.SONDAGGI_PAROLA }}
+          MONITOR_PAROLA: ${{ secrets.MONITOR_PAROLA }}
+        run: |
+          if [ -n "$SONDAGGI_PAROLA$MONITOR_PAROLA" ]; then echo "attivo=true" >> "$GITHUB_OUTPUT"
+          else echo "attivo=false" >> "$GITHUB_OUTPUT"; echo "::warning::Segreti SONDAGGI_PAROLA e MONITOR_PAROLA assenti: nessun aggiornamento."; fi
+
+      - uses: actions/checkout@v5
+        if: steps.controllo.outputs.attivo == 'true'
+        with:
+          sparse-checkout: |
+            scripts/sondaggi
+            dati/sondaggi
+            sondaggi
+
+      - uses: actions/setup-python@v6
+        if: steps.controllo.outputs.attivo == 'true'
+        with:
+          python-version: '3.12'
+
+      - name: Librerie (dalla cache dopo la prima volta)
+        if: steps.controllo.outputs.attivo == 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: sondaggi-pip-${{ runner.os }}-py312-v1
+
+      - name: Installa le librerie
+        if: steps.controllo.outputs.attivo == 'true'
+        run: pip install --quiet cryptography pdfplumber pypdfium2 "rapidocr_onnxruntime>=1.3" beautifulsoup4 lxml openpyxl pillow numpy
+
+      - name: Scarica il ramo dei dati (archivio, revisioni, caricamenti)
+        if: steps.controllo.outputs.attivo == 'true'
+        run: |
+          mkdir -p "$RUNNER_TEMP/ramo"
+          if git fetch --quiet --depth=1 origin sondaggi-dati 2>/dev/null; then
+            git --work-tree="$RUNNER_TEMP/ramo" checkout FETCH_HEAD -- . 2>/dev/null || true
+            git reset --quiet
+            echo "Ramo sondaggi-dati letto: $(ls "$RUNNER_TEMP/ramo" | tr '\n' ' ')"
+          else
+            echo "Ramo sondaggi-dati assente: primo giro, archivio vuoto."
+          fi
+
+      - name: Verifica la parola d'ordine e aggiorna l'archivio
+        if: steps.controllo.outputs.attivo == 'true'
+        env:
+          SONDAGGI_PAROLA: ${{ secrets.SONDAGGI_PAROLA }}
+          MONITOR_PAROLA: ${{ secrets.MONITOR_PAROLA }}
+          MODALITA: ${{ steps.decidi.outputs.modalita }}
+          LIMITE: ${{ steps.decidi.outputs.limite }}
+        run: |
+          python - <<'EOF'
+          import sys; sys.path.insert(0, 'scripts/sondaggi')
+          from comune import verifica_parola
+          if not verifica_parola():
+              print("::error::La parola d'ordine nei segreti non apre sondaggi/contenuto.json: niente da fare. Imposta SONDAGGI_PAROLA con la parola della sezione riservata.")
+              sys.exit(1)
+          print("Parola d'ordine verificata.")
+          EOF
+          python scripts/sondaggi/aggiorna.py --cartella "$RUNNER_TEMP/ramo" --modalita "$MODALITA" --limite "$LIMITE" --minuti 40 --esecutore "GitHub Actions ${{ github.run_id }}"
+
+      - name: Pubblica il ramo sondaggi-dati in un solo commit, così la storia non cresce
+        if: steps.controllo.outputs.attivo == 'true'
+        run: |
+          cd "$RUNNER_TEMP/ramo"
+          [ -s archivio.json ] || { echo "Nessun archivio prodotto: niente da pubblicare."; exit 0; }
+          cat > LEGGIMI.md <<'EOF'
+          Ramo dei dati dell'Osservatorio sondaggi di Atlante FVG. I file sono cifrati (AES-GCM) con la chiave
+          della sezione riservata sondaggi/: archivio.json (rilevazioni, istituti, serie, coda, esecuzioni),
+          stato.json (avanzamento delle fonti), revisioni/ e caricati/ (scritti dal pannello di gestione).
+          Riscritto a ogni esecuzione del flusso .github/workflows/sondaggi.yml; non modificare a mano.
+          EOF
+          rm -rf .git
+          git init --quiet -b sondaggi-dati
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit --quiet -m "Osservatorio sondaggi: archivio del $(date -u +%Y-%m-%dT%H:%MZ) ($(python -c "import json;d=json.load(open('esito.txt'));print(d['modalita'],d['esito'],d['totali']['rilevazioni'],'rilevazioni')"))"
+          git push --quiet --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" sondaggi-dati
+          echo "Pubblicato: $(cat esito.txt)"
+
+      # Recupero storico a lotti: finché una fonte non ha finito, il giro successivo riparte da solo (al più uno in coda).
+      - name: Prosegue il recupero storico, se non è finito
+        if: steps.controllo.outputs.attivo == 'true' && steps.decidi.outputs.modalita == 'storico'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          esito="$RUNNER_TEMP/ramo/esito.txt"
+          if [ -s "$esito" ] && grep -q '"storicoFinito": false' "$esito" && ! grep -q '"esito": "fallita"' "$esito"; then
+            echo "Storico non completato: avvio il giro successivo."
+            gh workflow run sondaggi.yml --repo "${{ github.repository }}" --ref "${{ github.ref_name }}" -f modalita=storico
+          else
+            echo "Storico completato per tutte le fonti attive (o giro fallito: nessun riavvio automatico)."
+          fi
