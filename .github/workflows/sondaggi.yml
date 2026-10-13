@@ -43,6 +43,13 @@ jobs:
           prendi tp_art.html 'https://www.termometropolitico.it/1634542_sondaggi-elettorali-emg-milano-campo-largo-avanti-con-calabresi.html'
           prendi tp_tag.html 'https://www.termometropolitico.it/tag/sondaggi-elettorali'
           prendi twimg.jpg 'https://pbs.twimg.com/media/HT3i2UJWMAAObiT?format=jpg&name=orig'
+          prendi wb_det1.html 'https://web.archive.org/web/20070818170905id_/http://www.sondaggipoliticoelettorali.it:80/asp/visualizza_sondaggio.asp?idsondaggio=1161'
+          prendi wb_det2.html 'https://web.archive.org/web/2011id_/http://www.sondaggipoliticoelettorali.it/asp/visualizza_sondaggio.asp?idsondaggio=5075'
+          prendi wb_det3.html 'https://web.archive.org/web/2013id_/http://www.sondaggipoliticoelettorali.it/asp/visualizza_sondaggio.asp?idsondaggio=5550'
+          prendi cdx_swg.json 'https://web.archive.org/cdx/search/cdx?url=swg.it/pa/attachment/*&output=json&fl=timestamp,original,statuscode,mimetype&filter=statuscode:200&collapse=urlkey&limit=5000'
+          prendi wiki_it_fvg23.json 'https://it.wikipedia.org/w/api.php?action=parse&page=Elezioni_regionali_in_Friuli-Venezia_Giulia_del_2023&prop=text&format=json&formatversion=2'
+          prendi wiki_it_ts21.json 'https://it.wikipedia.org/w/api.php?action=parse&page=Elezioni_comunali_a_Trieste_del_2021&prop=text&format=json&formatversion=2'
+          prendi wiki_en_eu24.json 'https://en.wikipedia.org/w/api.php?action=parse&page=Opinion_polling_for_the_2024_European_Parliament_election_in_Italy&prop=text&format=json&formatversion=2'
           ls -la
       - uses: actions/upload-artifact@v4
         with:
