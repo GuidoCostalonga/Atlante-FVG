@@ -1,0 +1,24 @@
+name: Osservatorio sondaggi
+
+# Sonda provvisoria: verifica da GitHub la raggiungibilità delle fonti dell'Osservatorio sondaggi.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sonda:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Prova le fonti
+        run: |
+          for u in https://www.sondaggipoliticoelettorali.it/ https://www.scenaripolitici.com/ https://www.termometropolitico.it/sondaggi https://www.swg.it/ https://www.demos.it/; do
+            printf '%s -> ' "$u"; curl -sS -o /tmp/pagina.html -L -w '%{http_code} %{size_download} %{url_effective}\n' --max-time 40 -A 'Mozilla/5.0 (X11; Linux x86_64) AtlanteFVG/1.0 (+https://atlantefvg.it)' "$u" || echo FALLITO
+          done
+          curl -sS -o /tmp/spe.html -L --max-time 40 -A 'Mozilla/5.0 (X11; Linux x86_64) AtlanteFVG/1.0 (+https://atlantefvg.it)' https://www.sondaggipoliticoelettorali.it/ || true
+          echo "===== collegamenti del portale ====="
+          grep -oi '<a [^>]*href="[^"]*"' /tmp/spe.html | sed 's/.*href="//;s/"$//' | sort -u | head -150
+          echo "===== robots ====="
+          curl -sS --max-time 20 https://www.sondaggipoliticoelettorali.it/robots.txt || true
