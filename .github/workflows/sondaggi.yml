@@ -123,7 +123,7 @@ jobs:
           EOF
           python scripts/sondaggi/aggiorna.py --cartella "$RUNNER_TEMP/ramo" --modalita "$MODALITA" --limite "$LIMITE" --minuti 38 --esecutore "GitHub Actions ${{ github.run_id }}"
 
-      - name: Pubblica il ramo sondaggi-dati (un solo commit: la storia non cresce)
+      - name: Pubblica il ramo sondaggi-dati in un solo commit, così la storia non cresce
         if: steps.controllo.outputs.attivo == 'true'
         run: |
           cd "$RUNNER_TEMP/ramo"
