@@ -141,7 +141,7 @@ def tabella_in_righe(tab: list[list[dict]], contesto: dict) -> list[dict]:
             ruoli.append('istituto')
         elif re.search(r'sample|campione', e):
             ruoli.append('campione')
-        elif re.search(r'^lead$|^vantaggio|^ref\.?$|^notes?$|^majority|^house$|^tifosi|^commissioner|^client|^committente', e):
+        elif re.search(r'^lead$|^vantaggio|^ref\.?$|^notes?$|^majority|^house$|^tifosi|^commissioner|^client|^committente|^totale?$|^turnout|^affluenza|^electorate', e):
             ruoli.append('salta')
         elif re.search(r'^others?$|^altri', e):
             ruoli.append('altri')
@@ -209,7 +209,21 @@ def tabella_in_righe(tab: list[list[dict]], contesto: dict) -> list[dict]:
                    'testo': contesto['testo'], 'unita': '%', 'denominatore': 'validi' if tipo == 'voto' else 'totale',
                    'indecisi': indecisi, 'astenuti': astenuti, 'risposte': voci, 'origine': 'tabella',
                    'controlli': controlli_voto(voci) if tipo == 'voto' else {'ok': True, 'motivi': []}}
-        if tipo == 'voto' and domanda['controlli'] and not domanda['controlli']['ok']:
+        if tipo == 'voto' and contesto.get('elezione') == 'referendum':
+            # due sole risposte (Sì e No): basta che ci siano entrambe
+            domanda['livello'] = 'referendum'
+            ha = {x['soggetto'] for x in voci}
+            domanda['controlli'] = {'ok': {'ref-si', 'ref-no'} <= ha, 'motivi': [] if {'ref-si', 'ref-no'} <= ha else ['manca il Sì o il No'], 'somma': round(sum(x['valore'] for x in voci if x['valore'] is not None), 1)}
+            domanda['testo'] = 'Intenzioni di voto al referendum'
+        elif tipo == 'voto' and sum(1 for x in voci if x['soggetto'] and x['soggetto'] != 'altri') < 2 and len([x for x in voci if x['valore'] is not None]) >= 2 and all(re.fullmatch(r"[A-ZÀ-Ü][\w'’.\- ]+", x['testo'] or '') for x in voci if x['soggetto'] != 'altri'):
+            # colonne con i cognomi dei candidati (regionali, comunali, scenari): nessun partito da riconoscere
+            domanda['livello'] = 'candidati'
+            domanda['testo'] = 'Intenzioni di voto per candidato'
+            s = round(sum(x['valore'] for x in voci if x['valore'] is not None), 1)
+            domanda['controlli'] = {'ok': 85 <= s <= 101.5, 'motivi': [] if 85 <= s <= 101.5 else [f'somma {s} fuori dall\'intervallo 85–101,5'], 'somma': s}
+            for x in voci:
+                x['soggetto'] = None
+        if tipo == 'voto' and domanda['controlli'] and not domanda['controlli']['ok'] and domanda.get('livello') not in ('referendum', 'candidati'):
             # le tabelle di Wikipedia omettono spesso partiti minori: la somma può non chiudere a 100 senza che il dato sia sbagliato
             motivi = [m for m in domanda['controlli']['motivi'] if not m.startswith('somma')]
             domanda['controlli']['motivi'] = motivi

@@ -88,7 +88,7 @@ def controlli_voto(righe: list[dict]) -> dict:
     }
     visti = set()
     for r in riconosciute:
-        if r['soggetto'] in visti:
+        if r['soggetto'] in visti and r['soggetto'] != 'altri':
             esito['duplicati'].append(r['soggetto'])
         visti.add(r['soggetto'])
     if len(valori) < 4:

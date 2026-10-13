@@ -208,7 +208,7 @@
       <div class="filtri tre" style="margin-top:10px">
         <div><label class="etichetta" for="f-ist">Istituto</label><select class="campo" id="f-ist">${Object.keys(istituti).length ? '' : '<option value="">Nessun istituto con valori</option>'}${Object.entries(istituti).sort((a, b) => b[1] - a[1]).map(([k, n]) => `<option value="${esc(k)}" ${k === ist ? 'selected' : ''}>${esc(S.a.istituti[k] ? S.a.istituti[k].nome : k)} (${n})</option>`).join('')}</select></div>
         <div><label class="etichetta" for="f-el">Tipo di elezione</label><select class="campo" id="f-el"></select></div>
-        <div><label class="etichetta" for="f-liv">Livello</label><select class="campo" id="f-liv"><option value="partiti">Partiti e liste</option><option value="coalizioni">Coalizioni</option></select></div>
+        <div><label class="etichetta" for="f-liv">Livello</label><select class="campo" id="f-liv"><option value="partiti">Partiti e liste</option><option value="coalizioni">Coalizioni</option><option value="candidati">Candidati</option><option value="referendum">Referendum (Sì e No)</option></select></div>
       </div>
       <div id="blocco-voto"></div>
     </section>
@@ -427,7 +427,7 @@
       <h3>Intenzioni di voto</h3>
       <div class="filtri tre"><div><label class="etichetta" for="i-area">Territorio</label><select class="campo" id="i-area">${Object.entries(aree).map(([a, n]) => `<option value="${a}">${a === 'italia' ? 'Italia' : a === 'fvg' ? 'Friuli Venezia Giulia' : 'Altre aree'} (${n})</option>`).join('') || '<option value="">–</option>'}</select></div>
         <div><label class="etichetta" for="i-el">Tipo di elezione</label><select class="campo" id="i-el"></select></div>
-        <div><label class="etichetta" for="i-liv">Livello</label><select class="campo" id="i-liv"><option value="partiti">Partiti e liste</option><option value="coalizioni">Coalizioni</option></select></div></div>
+        <div><label class="etichetta" for="i-liv">Livello</label><select class="campo" id="i-liv"><option value="partiti">Partiti e liste</option><option value="coalizioni">Coalizioni</option><option value="candidati">Candidati</option><option value="referendum">Referendum (Sì e No)</option></select></div></div>
       <div id="i-voto"></div>
       <h3>Percezioni e opinioni</h3><div id="i-perc"></div>
       <h3>Rilevazioni dell'istituto</h3><ul class="elenco">${R.slice(0, 20).map(voceRil).join('')}</ul><p class="azioni"><button type="button" class="btn btn-secondario" data-vai="archivio?ist=${esc(id)}">Tutte nell'archivio</button></p></section>`;

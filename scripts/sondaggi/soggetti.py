@@ -13,6 +13,7 @@ import re
 from comune import chiave_testo, leggi_json_locale
 
 _DIZ = None
+GRUPPI_UE = {'id', 's', 'd', 's d', 'epp', 'ecr', 'ni', 'renew', 'left', 'g', 'efa', 'g efa', 'gue', 'ngl', 'alde', 'pes', 'efdd', 'enf', 'ppe', 'pse', 'ecr', 'eu', 'ue', 'left g efa'}
 
 
 def dizionario() -> dict:
@@ -71,6 +72,14 @@ def riconosci(testo: str, quando: dt.date | None = None) -> tuple[str | None, st
             a, b = d['alias'].get(' '.join(parole[:taglio])), d['alias'].get(' '.join(parole[taglio:]))
             if a and b and set(a) & set(b):
                 candidati = list(set(a) & set(b))
+                break
+    if not candidati:
+        # «Lega ID», «PD S&D», «AVS Left – G/EFA»: nome seguito dal gruppo del Parlamento europeo
+        parole = chiave.split()
+        for taglio in range(len(parole) - 1, 0, -1):
+            resto = set(parole[taglio:])
+            if resto <= GRUPPI_UE and d['alias'].get(' '.join(parole[:taglio])):
+                candidati = d['alias'][' '.join(parole[:taglio])]
                 break
     if not candidati:
         senza_articolo = re.sub(r"^(?:l'|il |la |lo |i |gli |le |the )", '', chiave + ' ').strip()
