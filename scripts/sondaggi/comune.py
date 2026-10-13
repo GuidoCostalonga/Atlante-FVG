@@ -338,5 +338,11 @@ def leggi_json_locale(nome: str, predefinito=None):
     return json.loads(p.read_text(encoding='utf-8')) if p.exists() else predefinito
 
 
+def scaduto(opzioni: dict) -> bool:
+    """Vero quando il tempo concesso all'esecuzione è finito: i connettori interrompono i cicli e lasciano «finito: False»."""
+    s = opzioni.get('scadenza')
+    return bool(s) and time.monotonic() > s
+
+
 def registro(messaggio: str) -> None:
     print(f'[{dt.datetime.now(ROMA).strftime("%H:%M:%S")}] {messaggio}', file=sys.stderr, flush=True)

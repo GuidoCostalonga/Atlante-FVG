@@ -42,7 +42,7 @@ concurrency:
 jobs:
   aggiorna:
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 58
     steps:
       - name: Decide se è il giro giusto (le 6 di Roma) e con quale modalità
         id: decidi
@@ -121,7 +121,7 @@ jobs:
               sys.exit(1)
           print("Parola d'ordine verificata.")
           EOF
-          python scripts/sondaggi/aggiorna.py --cartella "$RUNNER_TEMP/ramo" --modalita "$MODALITA" --limite "$LIMITE" --minuti 38 --esecutore "GitHub Actions ${{ github.run_id }}"
+          python scripts/sondaggi/aggiorna.py --cartella "$RUNNER_TEMP/ramo" --modalita "$MODALITA" --limite "$LIMITE" --minuti 40 --esecutore "GitHub Actions ${{ github.run_id }}"
 
       - name: Pubblica il ramo sondaggi-dati in un solo commit, così la storia non cresce
         if: steps.controllo.outputs.attivo == 'true'

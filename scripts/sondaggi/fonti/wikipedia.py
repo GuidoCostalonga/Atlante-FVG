@@ -18,7 +18,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from archivio import inserisci  # noqa: E402
-from comune import MESI, MESI_EN, impronta, numero, pulisci  # noqa: E402
+from comune import MESI, MESI_EN, impronta, numero, pulisci, scaduto  # noqa: E402
 from estrai import controlli_voto  # noqa: E402
 from soggetti import riconosci  # noqa: E402
 
@@ -300,6 +300,10 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
     esito = {'letti': 0, 'nuovi': 0, 'aggiornati': 0, 'invariati': 0, 'coda': 0, 'protetti': 0, 'errori': [], 'finito': True, 'pagine': 0}
     conteggio = {'nuova': 'nuovi', 'aggiornata': 'aggiornati', 'invariata': 'invariati', 'coda': 'coda', 'protetta': 'protetti'}
     for pagina in fonte.get('parametri', {}).get('pagine', []):
+        if scaduto(opzioni):
+            esito['finito'] = False
+            esito['errori'].append('tempo esaurito: pagine restanti rinviate al giro successivo')
+            break
         lingua = pagina.get('lingua', 'en')
         titolo = pagina['titolo']
         url = f'https://{lingua}.wikipedia.org/w/api.php?action=parse&page={urllib.parse.quote(titolo)}&prop=text|revid&format=json&formatversion=2&redirects=1'

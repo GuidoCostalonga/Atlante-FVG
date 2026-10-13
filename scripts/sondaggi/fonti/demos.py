@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from archivio import inserisci  # noqa: E402
-from comune import data_italiana, pulisci  # noqa: E402
+from comune import data_italiana, pulisci, scaduto  # noqa: E402
 from estrai import controlli_voto, nota_informativa, ocr_righe, righe_ocr_in_valori  # noqa: E402
 
 BASE = 'https://www.demos.it/'
@@ -121,6 +121,8 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
     esecuzione = opzioni['esecuzione']
     modalita = opzioni.get('modalita', 'incrementale')
     limite = int(opzioni.get('limite') or fonte.get('parametri', {}).get('lotto') or 40)
+    if modalita != 'storico':
+        limite = min(limite, 10)
     ocr = bool(opzioni.get('ocr', True))
     esito = {'letti': 0, 'nuovi': 0, 'aggiornati': 0, 'invariati': 0, 'coda': 0, 'protetti': 0, 'errori': [], 'finito': False}
     conteggio = {'nuova': 'nuovi', 'aggiornata': 'aggiornati', 'invariata': 'invariati', 'coda': 'coda', 'protetta': 'protetti'}
@@ -139,6 +141,8 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
             esito['errori'].append(str(e))
     da_fare.sort(key=lambda x: x[0]['data'] or '', reverse=True)
     for v, sezione in da_fare[:limite]:
+        if scaduto(opzioni):
+            break
         esito['letti'] += 1
         try:
             r = articolo(rete, v, sezione, ocr)
@@ -147,7 +151,7 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
         except Exception as e:  # noqa: BLE001
             esito['errori'].append(f'{v["url"]}: {type(e).__name__}: {e}')
     stato['avanzamento']['letti'] = sorted(fatti)
-    esito['finito'] = len(da_fare) <= limite
+    esito['finito'] = len(da_fare) <= esito['letti']
     if esito['finito'] and modalita == 'storico':
         stato['avanzamento']['storicoCompletato'] = esecuzione.get('inizio')
     return esito

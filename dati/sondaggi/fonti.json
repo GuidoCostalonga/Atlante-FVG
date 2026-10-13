@@ -138,17 +138,6 @@
      },
      {
       "lingua": "en",
-      "titolo": "Opinion_polling_for_the_2020_Italian_constitutional_referendum",
-      "elezione": "referendum",
-      "descrizione": "sondaggi per il referendum costituzionale 2020",
-      "territorio": {
-       "tipo": "Italia",
-       "nome": "Italia",
-       "codice": "IT"
-      }
-     },
-     {
-      "lingua": "en",
       "titolo": "2023_Friuli-Venezia_Giulia_regional_election",
       "elezione": "regionali",
       "descrizione": "elezioni regionali del Friuli Venezia Giulia 2023",

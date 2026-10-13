@@ -21,7 +21,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from archivio import inserisci  # noqa: E402
-from comune import adesso, data_italiana, pulisci, registro  # noqa: E402
+from comune import adesso, data_italiana, pulisci, registro, scaduto  # noqa: E402
 from estrai import controlli_voto, leggi_righe, nota_informativa, ocr_righe, righe_ocr_in_valori  # noqa: E402
 
 BASE = 'https://www.scenaripolitici.com/wp-json/wp/v2/'
@@ -267,7 +267,7 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
     if modalita == 'storico':
         offset = int(stato.get('avanzamento', {}).get('offset') or 0)
         totale = None
-        while esito['letti'] < limite:
+        while esito['letti'] < limite and not scaduto(opzioni):
             url = f'{BASE}posts?per_page={per_pagina}&offset={offset}&orderby=date&order=desc&_fields={CAMPI}'
             try:
                 lista = rete.json(url)
@@ -277,7 +277,12 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
             if not lista:
                 esito['finito'] = True
                 break
-            for p in lista:
+            interrotto = False
+            for n_p, p in enumerate(lista):
+                if scaduto(opzioni):
+                    lista = lista[:n_p]
+                    interrotto = True
+                    break
                 esito['letti'] += 1
                 if not e_sondaggio(p):
                     esito['saltati'] = esito.get('saltati', 0) + 1
@@ -289,7 +294,10 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
                     esito['errori'].append(f'articolo {p.get("id")}: {type(e).__name__}: {e}')
             offset += len(lista)
             stato.setdefault('avanzamento', {})['offset'] = offset
-            stato['avanzamento']['ultimaData'] = lista[-1]['date'][:10]
+            if lista:
+                stato['avanzamento']['ultimaData'] = lista[-1]['date'][:10]
+            if interrotto:
+                break
             if len(lista) < per_pagina:
                 esito['finito'] = True
                 break
@@ -303,7 +311,7 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
             da_dt = (dt.datetime.utcnow() - dt.timedelta(days=30)).strftime('%Y-%m-%dT%H:%M:%S')
         for chiave in ('after', 'modified_after'):
             pagina = 1
-            while esito['letti'] < limite:
+            while esito['letti'] < limite and not scaduto(opzioni):
                 url = f'{BASE}posts?per_page={per_pagina}&page={pagina}&{chiave}={da_dt}&orderby=date&order=asc&_fields={CAMPI}'
                 try:
                     lista = rete.json(url)
@@ -315,6 +323,8 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
                 if not lista:
                     break
                 for p in lista:
+                    if scaduto(opzioni):
+                        break
                     esito['letti'] += 1
                     if not e_sondaggio(p):
                         esito['saltati'] = esito.get('saltati', 0) + 1
@@ -327,5 +337,5 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
                 if len(lista) < per_pagina:
                     break
                 pagina += 1
-        esito['finito'] = True
+        esito['finito'] = not scaduto(opzioni)
     return esito

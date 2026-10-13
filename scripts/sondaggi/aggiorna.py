@@ -150,7 +150,7 @@ def main() -> int:
         st['ultimoTentativo'] = adesso()
         opzioni = {'modalita': 'incrementale' if a.modalita == 'ricontrollo' else a.modalita, 'esecuzione': esecuzione,
                    'ocr': (not a.senza_ocr) and f.get('parametri', {}).get('ocr', True), 'limite': a.limite or None,
-                   'caricamenti': caricamenti, 'secondi': rimasti - 30}
+                   'caricamenti': caricamenti, 'secondi': rimasti - 30, 'scadenza': inizio + a.minuti * 60 - 45}
         if a.modalita == 'ricontrollo':
             st_rc = dict(st)
             st_rc['ultimoRiuscito'] = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=60)).isoformat()

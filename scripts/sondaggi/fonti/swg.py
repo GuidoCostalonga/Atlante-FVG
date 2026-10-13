@@ -15,7 +15,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from archivio import inserisci  # noqa: E402
-from comune import impronta, intervallo_date, pulisci  # noqa: E402
+from comune import impronta, intervallo_date, pulisci, scaduto  # noqa: E402
 from estrai import controlli_voto, nota_informativa, ocr_righe, righe_ocr_in_valori, righe_pdf_parole, testo_pdf  # noqa: E402
 
 BASE = 'https://www.swg.it/osservatorio'
@@ -107,6 +107,9 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
         if u in visti:
             esito['invariati'] += 1
             continue
+        if scaduto(opzioni):
+            esito['finito'] = False
+            break
         esito['letti'] += 1
         try:
             dati = rete.scarica(u, binario=True)

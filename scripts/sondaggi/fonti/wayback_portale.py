@@ -19,7 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from archivio import inserisci  # noqa: E402
-from comune import data_italiana, numero, pulisci  # noqa: E402
+from comune import data_italiana, numero, pulisci, scaduto  # noqa: E402
 from estrai import controlli_voto, leggi_righe, nota_informativa, ocr_righe, righe_ocr_in_valori, tabelle_html  # noqa: E402
 
 CDX = 'https://web.archive.org/cdx/search/cdx?url=sondaggipoliticoelettorali.it/asp/visualizza_sondaggi*&output=json&fl=timestamp,original,statuscode&filter=statuscode:200&collapse=digest&limit=20000'
@@ -171,12 +171,16 @@ def scheda_in_rilevazione(h: str, url_archivio: str, idsondaggio: str, elenco: d
     if elezione:
         ril['elezione'] = elezione
     immagini = re.findall(r'<img[^>]+src="([^"]+immagini(?:domande|finali)/[^"]+)"', h, re.I)
-    for u in immagini[:6]:
+    for u in immagini[:3]:
         u_ass = urllib.parse.urljoin(url_archivio, html.unescape(u))
         doc = {'url': u_ass, 'tipo': 'immagine', 'titolo': titolo, 'rif': 'immagine delle risposte'}
         if ocr and not any(d['tipo'] == 'voto' for d in domande):
             try:
-                righe = ocr_righe(rete.scarica(u_ass, binario=True))
+                dati_img = rete.scarica(u_ass, binario=True)
+                # la Wayback Machine risponde con una pagina HTML quando l'immagine non è archiviata
+                righe = ocr_righe(dati_img) if dati_img[:4] in (b'\xff\xd8\xff\xe0', b'\xff\xd8\xff\xe1', b'\x89PNG', b'GIF8') or dati_img[:3] == b'\xff\xd8\xff' else []
+                if not righe and dati_img[:3] != b'\xff\xd8\xff' and dati_img[:4] not in (b'\x89PNG', b'GIF8'):
+                    doc['rif'] = 'immagine non archiviata dalla Wayback Machine'
             except ConnectionError:
                 righe = []
             if righe:
@@ -195,6 +199,8 @@ def scheda_in_rilevazione(h: str, url_archivio: str, idsondaggio: str, elenco: d
 def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> dict:
     esecuzione = opzioni['esecuzione']
     limite = int(opzioni.get('limite') or fonte.get('parametri', {}).get('lotto') or 60)
+    if opzioni.get('modalita') != 'storico':
+        limite = min(limite, 15)  # fonte statica: nei giri quotidiani avanza di poco, il recupero vero è in modalità storico
     ocr = bool(opzioni.get('ocr', True))
     esito = {'letti': 0, 'nuovi': 0, 'aggiornati': 0, 'invariati': 0, 'coda': 0, 'protetti': 0, 'errori': [], 'finito': False}
     conteggio = {'nuova': 'nuovi', 'aggiornata': 'aggiornati', 'invariata': 'invariati', 'coda': 'coda', 'protetta': 'protetti'}
@@ -218,6 +224,8 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
     # prima gli elenchi (metadati rapidi), poi i dettagli
     liste = [c for c in av['catture'] if c[0] == 'l' and c[3] not in fatte]
     for tipo, chiave, ts, u in liste[:max(5, limite // 4)]:
+        if scaduto(opzioni):
+            break
         esito['letti'] += 1
         try:
             h = _decodifica(rete.scarica(WB.format(ts=ts, url=u), binario=True))
@@ -228,6 +236,8 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
             esito['errori'].append(f'{u}: {type(e).__name__}: {e}')
     dettagli = [c for c in av['catture'] if c[0] == 'd' and c[1] not in fatte]
     for tipo, idsondaggio, ts, u in dettagli[:limite]:
+        if scaduto(opzioni):
+            break
         esito['letti'] += 1
         url_arch = WB.format(ts=ts, url=u)
         try:
@@ -242,7 +252,7 @@ def aggiorna(fonte: dict, stato: dict, archivio: dict, rete, opzioni: dict) -> d
         except Exception as e:  # noqa: BLE001
             esito['errori'].append(f'{u}: {type(e).__name__}: {e}')
     # schede note solo dall'elenco (dettaglio non archiviato): metadati senza valori
-    if not dettagli[limite:] and not liste[max(5, limite // 4):]:
+    if not dettagli[limite:] and not liste[max(5, limite // 4):] and not scaduto(opzioni):
         for idsondaggio, el in av['elenco'].items():
             if idsondaggio in fatte:
                 continue
