@@ -1,6 +1,6 @@
 name: Osservatorio sondaggi
 
-# Sonda provvisoria: verifica da GitHub la raggiungibilità delle fonti dell'Osservatorio sondaggi.
+# Sonda provvisoria: raccoglie da GitHub campioni delle fonti dell'Osservatorio sondaggi.
 on:
   push:
     branches: ['aggiornamenti/2026-10-13-sondaggi']
@@ -12,15 +12,29 @@ permissions:
 jobs:
   sonda:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      - name: Prova le fonti
+      - name: Raccoglie campioni
         run: |
-          for u in https://www.sondaggipoliticoelettorali.it/ https://www.scenaripolitici.com/ https://www.termometropolitico.it/sondaggi https://www.swg.it/ https://www.demos.it/; do
-            printf '%s -> ' "$u"; curl -sS -o /tmp/pagina.html -L -w '%{http_code} %{size_download} %{url_effective}\n' --max-time 40 -A 'Mozilla/5.0 (X11; Linux x86_64) AtlanteFVG/1.0 (+https://atlantefvg.it)' "$u" || echo FALLITO
+          mkdir -p campioni && cd campioni
+          UA='Mozilla/5.0 (X11; Linux x86_64) AtlanteFVG/1.0 (+https://atlantefvg.it)'
+          prendi() { printf '%s -> ' "$2"; curl -sS -o "$1" -L -w '%{http_code} %{size_download} %{url_effective}\n' --max-time 60 -A "$UA" "$2" || echo FALLITO; }
+          prendi tp_sondaggi.html https://www.termometropolitico.it/sondaggi
+          prendi tp_feed.xml https://www.termometropolitico.it/feed
+          prendi tp_wp.json 'https://www.termometropolitico.it/wp-json/wp/v2/posts?per_page=3&_fields=id,date,link,title,categories'
+          prendi tp_cat.json 'https://www.termometropolitico.it/wp-json/wp/v2/categories?per_page=100&_fields=id,name,slug,count,parent'
+          prendi cdx_spe.json 'https://web.archive.org/cdx/search/cdx?url=sondaggipoliticoelettorali.it/*&output=json&fl=timestamp,original,statuscode,mimetype&filter=statuscode:200&collapse=urlkey&limit=50000'
+          prendi wb_spe_home.html 'https://web.archive.org/web/2026id_/https://www.sondaggipoliticoelettorali.it/'
+          prendi wiki_2027.html 'https://it.wikipedia.org/wiki/Sondaggi_elettorali_per_le_elezioni_politiche_in_Italia_del_2027'
+          prendi wiki_cerca.json 'https://it.wikipedia.org/w/api.php?action=query&list=search&srsearch=intitle:%22Sondaggi%22%20intitle:%22elettorali%22&format=json&srlimit=50'
+          for s in youtrend.it ipsos.com/it-it bidimedia.com euromediaresearch.it tecne-italia.it istitutopiepoli.it notosondaggi.it istitutoixe.it winpoll.it eumetra.com demopolis.it onlynumbers.it swg.it emgdifferent.com quorumsas.it lab2101.it; do
+            n=$(echo "$s" | tr '/.' '__'); prendi "wp_$n.json" "https://www.$s/wp-json/wp/v2/posts?per_page=2&_fields=id,date,link,title"
           done
-          curl -sS -o /tmp/spe.html -L --max-time 40 -A 'Mozilla/5.0 (X11; Linux x86_64) AtlanteFVG/1.0 (+https://atlantefvg.it)' https://www.sondaggipoliticoelettorali.it/ || true
-          echo "===== collegamenti del portale ====="
-          grep -oi '<a [^>]*href="[^"]*"' /tmp/spe.html | sed 's/.*href="//;s/"$//' | sort -u | head -150
-          echo "===== robots ====="
-          curl -sS --max-time 20 https://www.sondaggipoliticoelettorali.it/robots.txt || true
+          prendi swg_home.html https://www.swg.it/
+          prendi sp_feed.xml https://www.scenaripolitici.com/feed/
+          ls -la
+      - uses: actions/upload-artifact@v4
+        with:
+          name: campioni
+          path: campioni
+          retention-days: 3
