@@ -1,8 +1,62 @@
 {
- "generato": "2026-10-12",
+ "generato": "2026-10-13",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-10-13",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i bandi e gli avvisi della Regione del 13/10/2026",
+   "descrizione": "Bandi: 115 voci (15 con misure contributive), 2 nuove e 0 tolte rispetto a prima.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Bandi e avvisi della Regione",
+     "misura": "voci",
+     "prima": 113,
+     "dopo": 115,
+     "differenza": 2,
+     "collegamento": "../bandi/"
+    }
+   ],
+   "commit": "35adc02bf0"
+  },
+  {
+   "data": "2026-10-13",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Aggiunge all'archivio le raccolte di ottobre 2026: 435 fogli e 3.019.487 righe",
+   "descrizione": "Importa i fogli del file «Atlante FVG: archivio delle nuove raccolte» (12 e 13 ottobre 2026)\ncon scripts/importa_raccolte.py: nidi e prima infanzia, popolazione ISTAT per età 2019-2026,\nconsumo di suolo ISPRA, copertura internet AGCOM per provincia, appalti ANAC, medici di\nfamiglia e pediatri, impianti fotovoltaici e agrivoltaici, quotazioni OMI, rendiconti dei\ncomuni OpenBDAP 2018-2025, SIOPE, monitoraggio delle opere pubbliche BDAP-MOP, rendiconto\n2025 di Drenchia, associazioni di protezione civile e fogli di guida della raccolta.\n\nQuattordici nuovi ambiti nell'archivio, nomi leggibili dei fogli, fonti nella pagina Metodo,\navvertenza sulle raccolte, colonne di contatto tolte. Le colonne dei nuovi fogli stanno nei\nfile di dati e i conteggi per comune sono elenchi, per non appesantire la pagina.\nProva: node prove/raccolte.js.",
+   "interessa": [
+    {
+     "nome": "Osservatorio delle opere pubbliche",
+     "collegamento": "../opere/"
+    }
+   ],
+   "valori": [],
+   "commit": "81b48deb61"
+  },
+  {
+   "data": "2026-10-13",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Aggiunge la sezione riservata «Osservatorio sondaggi» con archivio cifrato e aggiornamento quotidiano",
+   "descrizione": "Pagina riservata sondaggi/ con grafici per istituto, Italia e Friuli Venezia Giulia, percezioni, archivio e pannello di gestione; connettori per Scenari Politici, Wikipedia, Demos & Pi, SWG, copie Wayback del portale ufficiale e documenti caricati; coda «da verificare», revisioni cifrate, flusso GitHub Actions alle 6 di Roma, prove con Chromium.",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "a8041d143c"
+  },
   {
    "data": "2026-10-12",
    "tipo": "dati",
@@ -61,7 +115,7 @@
      "collegamento": "../?pagina=autobus"
     }
    ],
-   "commit": "f2b4aa0655"
+   "commit": "6331543c6a"
   },
   {
    "data": "2026-10-12",
@@ -2551,6 +2605,3921 @@
    "consultazione": "2026-10-07",
    "periodo": null,
    "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/qnwt-cjvq/rows.csv?accessType=DOWNLOAD"
+  },
+  {
+   "id": "INDICE_raccolte_ottobre",
+   "nome": "INDICE raccolte ottobre",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 434,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "LEGGIMI_raccolte_ottobre",
+   "nome": "LEGGIMI raccolte ottobre",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 33,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "PIANO_OPERATIVO",
+   "nome": "PIANO OPERATIVO",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 14,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "COPERTURA_LIMITI",
+   "nome": "COPERTURA LIMITI",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 17,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "FONTI",
+   "nome": "FONTI",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 23,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "VERIFICA_QUALITA",
+   "nome": "VERIFICA QUALITA",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 10,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "COMUNI_BASE",
+   "nome": "COMUNI BASE",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 215,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://www.istat.it/storage/cartografia/confini_amministrativi/generalizzati/2026/Limiti01012026_g.zip"
+  },
+  {
+   "id": "ALIAS_TERRITORIALI",
+   "nome": "ALIAS TERRITORIALI",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 23,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "NIDI_STRUTTURE",
+   "nome": "NIDI STRUTTURE",
+   "ambito": "Nidi e prima infanzia",
+   "righe": 343,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/cms/RAFVG/famiglia-casa/politiche-famiglia/FOGLIA27/allegati/20261008_Strutture_per_registro_Regionale_Ottobre_26.xlsx"
+  },
+  {
+   "id": "NIDI_COMUNI",
+   "nome": "NIDI COMUNI",
+   "ambito": "Nidi e prima infanzia",
+   "righe": 215,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://www.regione.fvg.it/rafvg/cms/RAFVG/famiglia-casa/politiche-famiglia/FOGLIA27/allegati/20261008_Strutture_per_registro_Regionale_Ottobre_26.xlsx"
+  },
+  {
+   "id": "SUOLO_COMUNI",
+   "nome": "SUOLO COMUNI",
+   "ambito": "Consumo di suolo (ISPRA)",
+   "righe": 215,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://www.isprambiente.gov.it/it/attivita/suolo-e-territorio/suolo/il-consumo-di-suolo/consumo_di_suolo_estratto_dati_2025_anni_2006_2024.xlsx"
+  },
+  {
+   "id": "SUOLO_PROVINCE",
+   "nome": "SUOLO PROVINCE",
+   "ambito": "Consumo di suolo (ISPRA)",
+   "righe": 4,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://www.isprambiente.gov.it/it/attivita/suolo-e-territorio/suolo/il-consumo-di-suolo/consumo_di_suolo_estratto_dati_2025_anni_2006_2024.xlsx"
+  },
+  {
+   "id": "SUOLO_REGIONE",
+   "nome": "SUOLO REGIONE",
+   "ambito": "Consumo di suolo (ISPRA)",
+   "righe": 1,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://www.isprambiente.gov.it/it/attivita/suolo-e-territorio/suolo/il-consumo-di-suolo/consumo_di_suolo_estratto_dati_2025_anni_2006_2024.xlsx"
+  },
+  {
+   "id": "SUOLO_DIZIONARIO",
+   "nome": "SUOLO DIZIONARIO",
+   "ambito": "Consumo di suolo (ISPRA)",
+   "righe": 13,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://www.isprambiente.gov.it/it/attivita/suolo-e-territorio/suolo/il-consumo-di-suolo/consumo_di_suolo_estratto_dati_2025_anni_2006_2024.xlsx"
+  },
+  {
+   "id": "AGCOM_PROVINCE",
+   "nome": "AGCOM PROVINCE",
+   "ambito": "Copertura della rete internet (AGCOM)",
+   "righe": 4,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://geo.agcom.it/reportistica/desi/Survey_Italy_IT_DESI_2026_Data_2025_v2_pub.xlsx"
+  },
+  {
+   "id": "AGCOM_DEFINIZIONI",
+   "nome": "AGCOM DEFINIZIONI",
+   "ambito": "Copertura della rete internet (AGCOM)",
+   "righe": 20,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://geo.agcom.it/reportistica/desi/Survey_Italy_IT_DESI_2026_Data_2025_v2_pub.xlsx"
+  },
+  {
+   "id": "MEDICI_SERVIZI",
+   "nome": "MEDICI SERVIZI",
+   "ambito": "Medici di famiglia e pediatri",
+   "righe": 797,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://asfo.sanita.fvg.it/it/medici/"
+  },
+  {
+   "id": "AMBULATORI",
+   "nome": "AMBULATORI",
+   "ambito": "Medici di famiglia e pediatri",
+   "righe": 912,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://asfo.sanita.fvg.it/it/medici/"
+  },
+  {
+   "id": "APP_ENTI",
+   "nome": "APP ENTI",
+   "ambito": "Appalti pubblici (ANAC)",
+   "righe": 538,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://data.open-contracting.org/en/publication/117"
+  },
+  {
+   "id": "APP_PROCEDURE",
+   "nome": "APP PROCEDURE",
+   "ambito": "Appalti pubblici (ANAC)",
+   "righe": 16878,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://data.open-contracting.org/en/publication/117"
+  },
+  {
+   "id": "APP_LOTTI",
+   "nome": "APP LOTTI",
+   "ambito": "Appalti pubblici (ANAC)",
+   "righe": 23794,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://data.open-contracting.org/en/publication/117"
+  },
+  {
+   "id": "APP_AGGIUDICAZIONI",
+   "nome": "APP AGGIUDICAZIONI",
+   "ambito": "Appalti pubblici (ANAC)",
+   "righe": 10924,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://data.open-contracting.org/en/publication/117"
+  },
+  {
+   "id": "APP_FORNITORI",
+   "nome": "APP FORNITORI",
+   "ambito": "Appalti pubblici (ANAC)",
+   "righe": 12824,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://data.open-contracting.org/en/publication/117"
+  },
+  {
+   "id": "APP_CONTRATTI",
+   "nome": "APP CONTRATTI",
+   "ambito": "Appalti pubblici (ANAC)",
+   "righe": 5648,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://data.open-contracting.org/en/publication/117"
+  },
+  {
+   "id": "APP_TAPPE",
+   "nome": "APP TAPPE",
+   "ambito": "Appalti pubblici (ANAC)",
+   "righe": 3018,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://data.open-contracting.org/en/publication/117"
+  },
+  {
+   "id": "APP_ESTRAZIONE",
+   "nome": "APP ESTRAZIONE",
+   "ambito": "Appalti pubblici (ANAC)",
+   "righe": 6,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://data.open-contracting.org/en/publication/117"
+  },
+  {
+   "id": "ENERGIA_AUE",
+   "nome": "ENERGIA AUE",
+   "ambito": "Impianti fotovoltaici e agrivoltaici",
+   "righe": 174,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://serviziogc.regione.fvg.it/geoserver/RIS_ENERG/wfs?version=1.0.0&service=wfs&request=GetFeature&typeName=RIS_ENERG:imp_ftv_agriftv&outputFormat=applicati"
+  },
+  {
+   "id": "ENERGIA_COMUNI",
+   "nome": "ENERGIA COMUNI",
+   "ambito": "Impianti fotovoltaici e agrivoltaici",
+   "righe": 210,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://serviziogc.regione.fvg.it/geoserver/RIS_ENERG/wfs?version=1.0.0&service=wfs&request=GetFeature&typeName=RIS_ENERG:imp_ftv_agriftv&outputFormat=applicati"
+  },
+  {
+   "id": "ENERGIA_VERTICI",
+   "nome": "ENERGIA VERTICI",
+   "ambito": "Impianti fotovoltaici e agrivoltaici",
+   "righe": 9820,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://serviziogc.regione.fvg.it/geoserver/RIS_ENERG/wfs?version=1.0.0&service=wfs&request=GetFeature&typeName=RIS_ENERG:imp_ftv_agriftv&outputFormat=applicati"
+  },
+  {
+   "id": "OMI_COMUNI_FONTE",
+   "nome": "OMI COMUNI FONTE",
+   "ambito": "Valori immobiliari (OMI)",
+   "righe": 225,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://www1.agenziaentrate.gov.it/servizi/Consultazione/ricerca.htm"
+  },
+  {
+   "id": "OMI_ZONE",
+   "nome": "OMI ZONE",
+   "ambito": "Valori immobiliari (OMI)",
+   "righe": 639,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://www1.agenziaentrate.gov.it/servizi/Consultazione/ricerca.htm"
+  },
+  {
+   "id": "OMI_QUOTAZIONI",
+   "nome": "OMI QUOTAZIONI",
+   "ambito": "Valori immobiliari (OMI)",
+   "righe": 4820,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://www1.agenziaentrate.gov.it/servizi/Consultazione/ricerca.htm"
+  },
+  {
+   "id": "OMI_CONTROLLI",
+   "nome": "OMI CONTROLLI",
+   "ambito": "Valori immobiliari (OMI)",
+   "righe": 2566,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": "https://www1.agenziaentrate.gov.it/servizi/Consultazione/ricerca.htm"
+  },
+  {
+   "id": "ANOMALIE",
+   "nome": "ANOMALIE",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 49,
+   "consultazione": "2026-10-12",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "DIZIONARIO",
+   "nome": "DIZIONARIO",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 488,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "FONTI_DA_INTEGRARE",
+   "nome": "FONTI DA INTEGRARE",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 7,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "CATALOGO_INTEGRAZIONI",
+   "nome": "CATALOGO INTEGRAZIONI",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 395,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "CONTROLLI_INTEGRAZIONE",
+   "nome": "CONTROLLI INTEGRAZIONE",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 22,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "INFANZIA_DATI",
+   "nome": "INFANZIA DATI",
+   "ambito": "Nidi e prima infanzia",
+   "righe": 5160,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://demo.istat.it/app/?i=POS"
+  },
+  {
+   "id": "INFANZIA_0_2",
+   "nome": "INFANZIA 0 2",
+   "ambito": "Nidi e prima infanzia",
+   "righe": 1720,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://demo.istat.it/app/?i=POS"
+  },
+  {
+   "id": "ETA_2019",
+   "nome": "ETA 2019",
+   "ambito": "Popolazione per età (ISTAT)",
+   "righe": 21930,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2019",
+   "fonte": "https://demo.istat.it/app/?i=POS&a=2019"
+  },
+  {
+   "id": "ETA_2020",
+   "nome": "ETA 2020",
+   "ambito": "Popolazione per età (ISTAT)",
+   "righe": 21930,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2020",
+   "fonte": "https://demo.istat.it/app/?i=POS&a=2020"
+  },
+  {
+   "id": "ETA_2021",
+   "nome": "ETA 2021",
+   "ambito": "Popolazione per età (ISTAT)",
+   "righe": 21930,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2021",
+   "fonte": "https://demo.istat.it/app/?i=POS&a=2021"
+  },
+  {
+   "id": "ETA_2022",
+   "nome": "ETA 2022",
+   "ambito": "Popolazione per età (ISTAT)",
+   "righe": 21930,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2022",
+   "fonte": "https://demo.istat.it/app/?i=POS&a=2022"
+  },
+  {
+   "id": "ETA_2023",
+   "nome": "ETA 2023",
+   "ambito": "Popolazione per età (ISTAT)",
+   "righe": 21930,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2023",
+   "fonte": "https://demo.istat.it/app/?i=POS&a=2023"
+  },
+  {
+   "id": "ETA_2024",
+   "nome": "ETA 2024",
+   "ambito": "Popolazione per età (ISTAT)",
+   "righe": 21930,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2024",
+   "fonte": "https://demo.istat.it/app/?i=POS&a=2024"
+  },
+  {
+   "id": "ETA_2025",
+   "nome": "ETA 2025",
+   "ambito": "Popolazione per età (ISTAT)",
+   "righe": 21930,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2025",
+   "fonte": "https://demo.istat.it/app/?i=POS&a=2025"
+  },
+  {
+   "id": "ETA_2026",
+   "nome": "ETA 2026",
+   "ambito": "Popolazione per età (ISTAT)",
+   "righe": 21930,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2026",
+   "fonte": "https://demo.istat.it/app/?i=POS&a=2026"
+  },
+  {
+   "id": "BD18_S01",
+   "nome": "BD18 S01",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 5332,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S02",
+   "nome": "BD18 S02",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 2817,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S03",
+   "nome": "BD18 S03",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 213,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S04",
+   "nome": "BD18 S04",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 1511,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S05",
+   "nome": "BD18 S05",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 192,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S06",
+   "nome": "BD18 S06",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 59,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S07",
+   "nome": "BD18 S07",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 6203,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S09",
+   "nome": "BD18 S09",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 2543,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S10",
+   "nome": "BD18 S10",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 16165,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S11",
+   "nome": "BD18 S11",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 16165,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S12",
+   "nome": "BD18 S12",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 16165,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S13",
+   "nome": "BD18 S13",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 2791,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S14",
+   "nome": "BD18 S14",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 2791,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S15",
+   "nome": "BD18 S15",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 2791,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S16",
+   "nome": "BD18 S16",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 320,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S17",
+   "nome": "BD18 S17",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 446,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S18",
+   "nome": "BD18 S18",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 2508,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S19",
+   "nome": "BD18 S19",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 2531,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S20",
+   "nome": "BD18 S20",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 19167,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S22",
+   "nome": "BD18 S22",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 91,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S23",
+   "nome": "BD18 S23",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 223,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S24",
+   "nome": "BD18 S24",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 4364,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S25",
+   "nome": "BD18 S25",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 623,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S26",
+   "nome": "BD18 S26",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 623,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S27",
+   "nome": "BD18 S27",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 1407,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S28",
+   "nome": "BD18 S28",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 3451,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S29",
+   "nome": "BD18 S29",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 8733,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S31",
+   "nome": "BD18 S31",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 1946,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S32",
+   "nome": "BD18 S32",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 1704,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S33",
+   "nome": "BD18 S33",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 1278,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S34",
+   "nome": "BD18 S34",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 1278,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S35",
+   "nome": "BD18 S35",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 28,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S36",
+   "nome": "BD18 S36",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 28,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S37",
+   "nome": "BD18 S37",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 3707,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S38",
+   "nome": "BD18 S38",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 28,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S39",
+   "nome": "BD18 S39",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 996,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S40",
+   "nome": "BD18 S40",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 11683,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S41",
+   "nome": "BD18 S41",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 3453,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S42",
+   "nome": "BD18 S42",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 221,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD18_S43",
+   "nome": "BD18 S43",
+   "ambito": "Rendiconti dei comuni 2018 (OpenBDAP)",
+   "righe": 2245,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S01",
+   "nome": "BD19 S01",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 1908,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S03",
+   "nome": "BD19 S03",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 5382,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S04",
+   "nome": "BD19 S04",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 972,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S05",
+   "nome": "BD19 S05",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 6895,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S06",
+   "nome": "BD19 S06",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 1224,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S07",
+   "nome": "BD19 S07",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 2837,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S08",
+   "nome": "BD19 S08",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 215,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S09",
+   "nome": "BD19 S09",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 1540,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S10",
+   "nome": "BD19 S10",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 192,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S11",
+   "nome": "BD19 S11",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 59,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S12",
+   "nome": "BD19 S12",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 6216,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S14",
+   "nome": "BD19 S14",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 2556,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S15",
+   "nome": "BD19 S15",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 16216,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S16",
+   "nome": "BD19 S16",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 16216,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S17",
+   "nome": "BD19 S17",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 16216,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S18",
+   "nome": "BD19 S18",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 2923,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S19",
+   "nome": "BD19 S19",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 2923,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S20",
+   "nome": "BD19 S20",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 2923,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S21",
+   "nome": "BD19 S21",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 320,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S22",
+   "nome": "BD19 S22",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 448,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S23",
+   "nome": "BD19 S23",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 2515,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S24",
+   "nome": "BD19 S24",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 2552,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S25",
+   "nome": "BD19 S25",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 13214,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S27",
+   "nome": "BD19 S27",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 109,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S28",
+   "nome": "BD19 S28",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 233,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S29",
+   "nome": "BD19 S29",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 3849,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S30",
+   "nome": "BD19 S30",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 658,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S31",
+   "nome": "BD19 S31",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 658,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S32",
+   "nome": "BD19 S32",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 1419,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S33",
+   "nome": "BD19 S33",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 3500,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S34",
+   "nome": "BD19 S34",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 12900,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S36",
+   "nome": "BD19 S36",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 1967,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S37",
+   "nome": "BD19 S37",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 1720,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S38",
+   "nome": "BD19 S38",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 215,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S39",
+   "nome": "BD19 S39",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 1290,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S40",
+   "nome": "BD19 S40",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 1290,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S41",
+   "nome": "BD19 S41",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 28,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S42",
+   "nome": "BD19 S42",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 57,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S43",
+   "nome": "BD19 S43",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 3752,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S44",
+   "nome": "BD19 S44",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 55,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S45",
+   "nome": "BD19 S45",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 1005,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S46",
+   "nome": "BD19 S46",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 11925,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S47",
+   "nome": "BD19 S47",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 5638,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S48",
+   "nome": "BD19 S48",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 205,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD19_S49",
+   "nome": "BD19 S49",
+   "ambito": "Rendiconti dei comuni 2019 (OpenBDAP)",
+   "righe": 3485,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S01",
+   "nome": "BD20 S01",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 1917,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S03",
+   "nome": "BD20 S03",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 5381,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S04",
+   "nome": "BD20 S04",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 1103,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S05",
+   "nome": "BD20 S05",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 8812,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S06",
+   "nome": "BD20 S06",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 1361,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S07",
+   "nome": "BD20 S07",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 2943,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S08",
+   "nome": "BD20 S08",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 215,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S09",
+   "nome": "BD20 S09",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 1542,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S10",
+   "nome": "BD20 S10",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 189,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S11",
+   "nome": "BD20 S11",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 60,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S12",
+   "nome": "BD20 S12",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 6121,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S14",
+   "nome": "BD20 S14",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 2583,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S15",
+   "nome": "BD20 S15",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 16369,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S16",
+   "nome": "BD20 S16",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 16369,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S17",
+   "nome": "BD20 S17",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 16369,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S18",
+   "nome": "BD20 S18",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 2885,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S19",
+   "nome": "BD20 S19",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 2885,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S20",
+   "nome": "BD20 S20",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 2885,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S21",
+   "nome": "BD20 S21",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 313,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S22",
+   "nome": "BD20 S22",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 448,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S23",
+   "nome": "BD20 S23",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 2464,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S24",
+   "nome": "BD20 S24",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 2535,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S25",
+   "nome": "BD20 S25",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 11666,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S27",
+   "nome": "BD20 S27",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 152,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S28",
+   "nome": "BD20 S28",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 240,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S29",
+   "nome": "BD20 S29",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 3068,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S30",
+   "nome": "BD20 S30",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 656,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S31",
+   "nome": "BD20 S31",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 656,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S32",
+   "nome": "BD20 S32",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 1374,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S33",
+   "nome": "BD20 S33",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 3503,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S34",
+   "nome": "BD20 S34",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 13114,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S36",
+   "nome": "BD20 S36",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 1971,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S37",
+   "nome": "BD20 S37",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 1720,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S38",
+   "nome": "BD20 S38",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 215,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S39",
+   "nome": "BD20 S39",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 1290,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S40",
+   "nome": "BD20 S40",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 1290,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S41",
+   "nome": "BD20 S41",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 27,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S42",
+   "nome": "BD20 S42",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 55,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S43",
+   "nome": "BD20 S43",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 3800,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S44",
+   "nome": "BD20 S44",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 54,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S45",
+   "nome": "BD20 S45",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 1011,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S46",
+   "nome": "BD20 S46",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 12193,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S47",
+   "nome": "BD20 S47",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 5772,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S48",
+   "nome": "BD20 S48",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 191,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD20_S49",
+   "nome": "BD20 S49",
+   "ambito": "Rendiconti dei comuni 2020 (OpenBDAP)",
+   "righe": 3636,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S01",
+   "nome": "BD21 S01",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 1926,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S03",
+   "nome": "BD21 S03",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 5382,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S04",
+   "nome": "BD21 S04",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 1288,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S05",
+   "nome": "BD21 S05",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 10138,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S06",
+   "nome": "BD21 S06",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 1384,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S07",
+   "nome": "BD21 S07",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 3094,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S08",
+   "nome": "BD21 S08",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 215,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S09",
+   "nome": "BD21 S09",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 1540,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S10",
+   "nome": "BD21 S10",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 196,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S11",
+   "nome": "BD21 S11",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 60,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S12",
+   "nome": "BD21 S12",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 5964,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S14",
+   "nome": "BD21 S14",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 2564,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S15",
+   "nome": "BD21 S15",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 16409,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S16",
+   "nome": "BD21 S16",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 16409,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S17",
+   "nome": "BD21 S17",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 16409,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S18",
+   "nome": "BD21 S18",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 2999,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S19",
+   "nome": "BD21 S19",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 2999,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S20",
+   "nome": "BD21 S20",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 2999,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S21",
+   "nome": "BD21 S21",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 305,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S22",
+   "nome": "BD21 S22",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 447,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S23",
+   "nome": "BD21 S23",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 2447,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S24",
+   "nome": "BD21 S24",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 2536,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S25",
+   "nome": "BD21 S25",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 10609,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S27",
+   "nome": "BD21 S27",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 154,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S28",
+   "nome": "BD21 S28",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 236,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S29",
+   "nome": "BD21 S29",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 2896,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S30",
+   "nome": "BD21 S30",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 667,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S31",
+   "nome": "BD21 S31",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 667,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S32",
+   "nome": "BD21 S32",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 1349,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S33",
+   "nome": "BD21 S33",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 3434,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S34",
+   "nome": "BD21 S34",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 13113,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S36",
+   "nome": "BD21 S36",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 2127,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S37",
+   "nome": "BD21 S37",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 1720,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S38",
+   "nome": "BD21 S38",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 215,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S39",
+   "nome": "BD21 S39",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 1290,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S40",
+   "nome": "BD21 S40",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 1290,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S41",
+   "nome": "BD21 S41",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 28,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S42",
+   "nome": "BD21 S42",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 57,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S43",
+   "nome": "BD21 S43",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 3828,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S44",
+   "nome": "BD21 S44",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 56,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S45",
+   "nome": "BD21 S45",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 987,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S46",
+   "nome": "BD21 S46",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 12295,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S47",
+   "nome": "BD21 S47",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 5837,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S48",
+   "nome": "BD21 S48",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 198,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD21_S49",
+   "nome": "BD21 S49",
+   "ambito": "Rendiconti dei comuni 2021 (OpenBDAP)",
+   "righe": 3703,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S01",
+   "nome": "BD22 S01",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 1917,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S03",
+   "nome": "BD22 S03",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 5375,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S04",
+   "nome": "BD22 S04",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 1492,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S05",
+   "nome": "BD22 S05",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 11116,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S06",
+   "nome": "BD22 S06",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 1578,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S07",
+   "nome": "BD22 S07",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 3032,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S08",
+   "nome": "BD22 S08",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 215,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S09",
+   "nome": "BD22 S09",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 1582,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S10",
+   "nome": "BD22 S10",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 206,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S11",
+   "nome": "BD22 S11",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 65,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S12",
+   "nome": "BD22 S12",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 5836,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S14",
+   "nome": "BD22 S14",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 2584,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S15",
+   "nome": "BD22 S15",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 16498,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S16",
+   "nome": "BD22 S16",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 16498,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S17",
+   "nome": "BD22 S17",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 16498,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S18",
+   "nome": "BD22 S18",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 3006,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S19",
+   "nome": "BD22 S19",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 3006,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S20",
+   "nome": "BD22 S20",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 3006,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S21",
+   "nome": "BD22 S21",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 304,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S22",
+   "nome": "BD22 S22",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 447,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S23",
+   "nome": "BD22 S23",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 2421,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S24",
+   "nome": "BD22 S24",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 2536,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S25",
+   "nome": "BD22 S25",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 10587,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S27",
+   "nome": "BD22 S27",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 340,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S28",
+   "nome": "BD22 S28",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 222,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S29",
+   "nome": "BD22 S29",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 2863,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S30",
+   "nome": "BD22 S30",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 669,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S31",
+   "nome": "BD22 S31",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 669,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S32",
+   "nome": "BD22 S32",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 1350,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S33",
+   "nome": "BD22 S33",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 3417,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S34",
+   "nome": "BD22 S34",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 13110,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S36",
+   "nome": "BD22 S36",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 2150,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S37",
+   "nome": "BD22 S37",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 1720,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S38",
+   "nome": "BD22 S38",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 215,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S39",
+   "nome": "BD22 S39",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 1290,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S40",
+   "nome": "BD22 S40",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 1290,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S41",
+   "nome": "BD22 S41",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 31,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S42",
+   "nome": "BD22 S42",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 62,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S43",
+   "nome": "BD22 S43",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 3849,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S44",
+   "nome": "BD22 S44",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 62,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S45",
+   "nome": "BD22 S45",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 997,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S46",
+   "nome": "BD22 S46",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 12409,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S47",
+   "nome": "BD22 S47",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 6007,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S48",
+   "nome": "BD22 S48",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 230,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD22_S49",
+   "nome": "BD22 S49",
+   "ambito": "Rendiconti dei comuni 2022 (OpenBDAP)",
+   "righe": 3839,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S01",
+   "nome": "BD23 S01",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 1908,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S03",
+   "nome": "BD23 S03",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 5564,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S04",
+   "nome": "BD23 S04",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 1592,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S05",
+   "nome": "BD23 S05",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 11916,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S06",
+   "nome": "BD23 S06",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 1464,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S07",
+   "nome": "BD23 S07",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 3059,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S08",
+   "nome": "BD23 S08",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 215,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S09",
+   "nome": "BD23 S09",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 1689,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S10",
+   "nome": "BD23 S10",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 240,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S11",
+   "nome": "BD23 S11",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 75,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S12",
+   "nome": "BD23 S12",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 5923,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S14",
+   "nome": "BD23 S14",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 2615,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S15",
+   "nome": "BD23 S15",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 16435,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S16",
+   "nome": "BD23 S16",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 16435,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S17",
+   "nome": "BD23 S17",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 16435,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S18",
+   "nome": "BD23 S18",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 3179,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S19",
+   "nome": "BD23 S19",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 3179,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S20",
+   "nome": "BD23 S20",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 3179,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S21",
+   "nome": "BD23 S21",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 296,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S22",
+   "nome": "BD23 S22",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 442,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S23",
+   "nome": "BD23 S23",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 2426,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S24",
+   "nome": "BD23 S24",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 2547,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S25",
+   "nome": "BD23 S25",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 11099,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S27",
+   "nome": "BD23 S27",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 646,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S28",
+   "nome": "BD23 S28",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 207,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S29",
+   "nome": "BD23 S29",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 2865,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S30",
+   "nome": "BD23 S30",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 887,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S31",
+   "nome": "BD23 S31",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 887,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S32",
+   "nome": "BD23 S32",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 1366,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S33",
+   "nome": "BD23 S33",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 3552,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S34",
+   "nome": "BD23 S34",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 15050,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S36",
+   "nome": "BD23 S36",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 2150,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S37",
+   "nome": "BD23 S37",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 1720,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S38",
+   "nome": "BD23 S38",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 215,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S39",
+   "nome": "BD23 S39",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 1290,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S40",
+   "nome": "BD23 S40",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 1290,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S41",
+   "nome": "BD23 S41",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 36,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S42",
+   "nome": "BD23 S42",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 72,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S43",
+   "nome": "BD23 S43",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 3880,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S44",
+   "nome": "BD23 S44",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 72,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S45",
+   "nome": "BD23 S45",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 1011,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S46",
+   "nome": "BD23 S46",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 12568,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S47",
+   "nome": "BD23 S47",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 6212,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S48",
+   "nome": "BD23 S48",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 271,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD23_S49",
+   "nome": "BD23 S49",
+   "ambito": "Rendiconti dei comuni 2023 (OpenBDAP)",
+   "righe": 3949,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S01",
+   "nome": "BD24 S01",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 1917,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S03",
+   "nome": "BD24 S03",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 5564,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S04",
+   "nome": "BD24 S04",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 1642,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S05",
+   "nome": "BD24 S05",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 12816,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S06",
+   "nome": "BD24 S06",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 1505,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S07",
+   "nome": "BD24 S07",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 3119,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S08",
+   "nome": "BD24 S08",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 215,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S09",
+   "nome": "BD24 S09",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 1674,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S10",
+   "nome": "BD24 S10",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 240,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S11",
+   "nome": "BD24 S11",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 75,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S12",
+   "nome": "BD24 S12",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 5900,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S14",
+   "nome": "BD24 S14",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 2623,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S15",
+   "nome": "BD24 S15",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 16462,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S16",
+   "nome": "BD24 S16",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 16462,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S17",
+   "nome": "BD24 S17",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 16462,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S18",
+   "nome": "BD24 S18",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 3325,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S19",
+   "nome": "BD24 S19",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 3325,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S20",
+   "nome": "BD24 S20",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 3325,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S21",
+   "nome": "BD24 S21",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 292,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S22",
+   "nome": "BD24 S22",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 442,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S23",
+   "nome": "BD24 S23",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 2428,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S24",
+   "nome": "BD24 S24",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 2558,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S25",
+   "nome": "BD24 S25",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 11040,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S27",
+   "nome": "BD24 S27",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 691,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S28",
+   "nome": "BD24 S28",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 206,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S29",
+   "nome": "BD24 S29",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 2877,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S30",
+   "nome": "BD24 S30",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 890,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S31",
+   "nome": "BD24 S31",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 890,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S32",
+   "nome": "BD24 S32",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 1351,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S33",
+   "nome": "BD24 S33",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 3543,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S34",
+   "nome": "BD24 S34",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 15050,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S36",
+   "nome": "BD24 S36",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 2150,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S37",
+   "nome": "BD24 S37",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 1720,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S38",
+   "nome": "BD24 S38",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 215,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S39",
+   "nome": "BD24 S39",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 1290,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S40",
+   "nome": "BD24 S40",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 1290,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S41",
+   "nome": "BD24 S41",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 36,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S42",
+   "nome": "BD24 S42",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 72,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S43",
+   "nome": "BD24 S43",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 3897,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S44",
+   "nome": "BD24 S44",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 72,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S45",
+   "nome": "BD24 S45",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 1006,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S46",
+   "nome": "BD24 S46",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 12680,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S47",
+   "nome": "BD24 S47",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 6224,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S48",
+   "nome": "BD24 S48",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 274,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_S49",
+   "nome": "BD24 S49",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 3990,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_I01",
+   "nome": "BD24 I01",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 3565,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_I03",
+   "nome": "BD24 I03",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 9407,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_I04",
+   "nome": "BD24 I04",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 9407,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD24_I07",
+   "nome": "BD24 I07",
+   "ambito": "Rendiconti dei comuni 2024 (OpenBDAP)",
+   "righe": 8604,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S01",
+   "nome": "BD25 S01",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 1917,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S03",
+   "nome": "BD25 S03",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 5964,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S04",
+   "nome": "BD25 S04",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 1851,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S05",
+   "nome": "BD25 S05",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 14004,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S06",
+   "nome": "BD25 S06",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 1543,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S07",
+   "nome": "BD25 S07",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 3133,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S08",
+   "nome": "BD25 S08",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 213,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S09",
+   "nome": "BD25 S09",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 1681,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S10",
+   "nome": "BD25 S10",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 237,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S11",
+   "nome": "BD25 S11",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 75,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S12",
+   "nome": "BD25 S12",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 5752,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S14",
+   "nome": "BD25 S14",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 2659,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S15",
+   "nome": "BD25 S15",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 16438,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S16",
+   "nome": "BD25 S16",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 16438,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S17",
+   "nome": "BD25 S17",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 16438,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S18",
+   "nome": "BD25 S18",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 3502,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S19",
+   "nome": "BD25 S19",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 3502,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S20",
+   "nome": "BD25 S20",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 3502,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S21",
+   "nome": "BD25 S21",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 281,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S22",
+   "nome": "BD25 S22",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 432,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S23",
+   "nome": "BD25 S23",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 2399,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S24",
+   "nome": "BD25 S24",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 2540,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S25",
+   "nome": "BD25 S25",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 10824,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S27",
+   "nome": "BD25 S27",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 770,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S28",
+   "nome": "BD25 S28",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 203,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S29",
+   "nome": "BD25 S29",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 2829,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S30",
+   "nome": "BD25 S30",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 880,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S31",
+   "nome": "BD25 S31",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 880,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S32",
+   "nome": "BD25 S32",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 1332,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S33",
+   "nome": "BD25 S33",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 3507,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S34",
+   "nome": "BD25 S34",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 15595,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S36",
+   "nome": "BD25 S36",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 2130,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S37",
+   "nome": "BD25 S37",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 1704,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S38",
+   "nome": "BD25 S38",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 213,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S39",
+   "nome": "BD25 S39",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 1278,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S40",
+   "nome": "BD25 S40",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 1278,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S41",
+   "nome": "BD25 S41",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 36,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S42",
+   "nome": "BD25 S42",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 72,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S43",
+   "nome": "BD25 S43",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 3884,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S44",
+   "nome": "BD25 S44",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 72,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S45",
+   "nome": "BD25 S45",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 1007,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S46",
+   "nome": "BD25 S46",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 12795,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S47",
+   "nome": "BD25 S47",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 6302,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S48",
+   "nome": "BD25 S48",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 386,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_S49",
+   "nome": "BD25 S49",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 4006,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_I01",
+   "nome": "BD25 I01",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 3507,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_I03",
+   "nome": "BD25 I03",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 9372,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_I04",
+   "nome": "BD25 I04",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 9372,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "BD25_I07",
+   "nome": "BD25 I07",
+   "ambito": "Rendiconti dei comuni 2025 (OpenBDAP)",
+   "righe": 8592,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://openbdap.rgs.mef.gov.it/it/FET/analizza"
+  },
+  {
+   "id": "SIOPE_ENTRATE_2024",
+   "nome": "SIOPE ENTRATE 2024",
+   "ambito": "Incassi e pagamenti dei comuni (SIOPE)",
+   "righe": 115873,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2024",
+   "fonte": "https://bdap-opendata.rgs.mef.gov.it/opendata/spd_rnd_ent_sio_reg06_01_2024"
+  },
+  {
+   "id": "SIOPE_ENTRATE_2025",
+   "nome": "SIOPE ENTRATE 2025",
+   "ambito": "Incassi e pagamenti dei comuni (SIOPE)",
+   "righe": 116555,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2025",
+   "fonte": "https://bdap-opendata.rgs.mef.gov.it/opendata/spd_rnd_ent_sio_reg06_01_2025"
+  },
+  {
+   "id": "SIOPE_ENTRATE_2026",
+   "nome": "SIOPE ENTRATE 2026",
+   "ambito": "Incassi e pagamenti dei comuni (SIOPE)",
+   "righe": 81953,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2026",
+   "fonte": "https://bdap-opendata.rgs.mef.gov.it/opendata/spd_rnd_ent_sio_reg06_01_2026"
+  },
+  {
+   "id": "SIOPE_SPESE_2024",
+   "nome": "SIOPE SPESE 2024",
+   "ambito": "Incassi e pagamenti dei comuni (SIOPE)",
+   "righe": 224437,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2024",
+   "fonte": "https://bdap-opendata.rgs.mef.gov.it/opendata/spd_rnd_spe_sio_reg06_01_2024"
+  },
+  {
+   "id": "SIOPE_SPESE_2025",
+   "nome": "SIOPE SPESE 2025",
+   "ambito": "Incassi e pagamenti dei comuni (SIOPE)",
+   "righe": 37258,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2025",
+   "fonte": "https://bdap-opendata.rgs.mef.gov.it/opendata/spd_rnd_spe_sio_reg06_01_2025"
+  },
+  {
+   "id": "SIOPE_SPESE_2026",
+   "nome": "SIOPE SPESE 2026",
+   "ambito": "Incassi e pagamenti dei comuni (SIOPE)",
+   "righe": 163263,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2026",
+   "fonte": "https://bdap-opendata.rgs.mef.gov.it/opendata/spd_rnd_spe_sio_reg06_01_2026"
+  },
+  {
+   "id": "MOP_PROGETTI",
+   "nome": "MOP PROGETTI",
+   "ambito": "Opere pubbliche: monitoraggio BDAP-MOP",
+   "righe": 16894,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://bdap-opendata.rgs.mef.gov.it/opendata/spd_mop_prg_mon_reg06_01_9999"
+  },
+  {
+   "id": "MOP_PAGAMENTI",
+   "nome": "MOP PAGAMENTI",
+   "ambito": "Opere pubbliche: monitoraggio BDAP-MOP",
+   "righe": 33186,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://bdap-opendata.rgs.mef.gov.it/opendata/spd_mop_prg_mon_reg06_01_9999"
+  },
+  {
+   "id": "MOP_COSTI",
+   "nome": "MOP COSTI",
+   "ambito": "Opere pubbliche: monitoraggio BDAP-MOP",
+   "righe": 20081,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://bdap-opendata.rgs.mef.gov.it/opendata/spd_mop_prg_mon_reg06_01_9999"
+  },
+  {
+   "id": "MOP_LOCALIZZAZIONI",
+   "nome": "MOP LOCALIZZAZIONI",
+   "ambito": "Opere pubbliche: monitoraggio BDAP-MOP",
+   "righe": 19268,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://bdap-opendata.rgs.mef.gov.it/opendata/spd_mop_prg_mon_reg06_01_9999"
+  },
+  {
+   "id": "PC_ASSOCIAZIONI",
+   "nome": "PC ASSOCIAZIONI",
+   "ambito": "Associazioni",
+   "righe": 76,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://www.protezionecivile.fvg.it/en/associazioni"
+  },
+  {
+   "id": "SIOPE_BI_ENTI",
+   "nome": "SIOPE BI ENTI",
+   "ambito": "Incassi e pagamenti dei comuni (SIOPE)",
+   "righe": 225,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://www.siope.it/Siope/documenti/siope2/open/last/SIOPE_ANAGRAFICHE.zip"
+  },
+  {
+   "id": "SIOPE_BI_SPESE_2025",
+   "nome": "SIOPE BI SPESE 2025",
+   "ambito": "Incassi e pagamenti dei comuni (SIOPE)",
+   "righe": 229578,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2025",
+   "fonte": "https://www.siope.it/Siope/documenti/siope2/open/last/SIOPE_USCITE.2025.zip"
+  },
+  {
+   "id": "SIOPE_BI_SPESE_2026",
+   "nome": "SIOPE BI SPESE 2026",
+   "ambito": "Incassi e pagamenti dei comuni (SIOPE)",
+   "righe": 185693,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2026",
+   "fonte": "https://www.siope.it/Siope/documenti/siope2/open/last/SIOPE_USCITE.2026.zip"
+  },
+  {
+   "id": "SIOPE_BI_ENTRATE_2026",
+   "nome": "SIOPE BI ENTRATE 2026",
+   "ambito": "Incassi e pagamenti dei comuni (SIOPE)",
+   "righe": 93005,
+   "consultazione": "2026-10-13",
+   "periodo": "anno 2026",
+   "fonte": "https://www.siope.it/Siope/documenti/siope2/open/last/SIOPE_ENTRATE.2026.zip"
+  },
+  {
+   "id": "SIOPE_BI_CODICI_SPESE",
+   "nome": "SIOPE BI CODICI SPESE",
+   "ambito": "Incassi e pagamenti dei comuni (SIOPE)",
+   "righe": 7034,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://www.siope.it/Siope/documenti/siope2/open/last/SIOPE_ANAGRAFICHE.zip"
+  },
+  {
+   "id": "SIOPE_BI_CODICI_ENTRATE",
+   "nome": "SIOPE BI CODICI ENTRATE",
+   "ambito": "Incassi e pagamenti dei comuni (SIOPE)",
+   "righe": 3916,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://www.siope.it/Siope/documenti/siope2/open/last/SIOPE_ANAGRAFICHE.zip"
+  },
+  {
+   "id": "DRENCHIA25_PAGINE",
+   "nome": "DRENCHIA25 PAGINE",
+   "ambito": "Rendiconto 2025 di Drenchia",
+   "righe": 173,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://www.comune.drenchia.ud.it/media/files/030034/attachment/ALLEGATI_DELIBERA_CC_06.2026_APPROVAZIONE_CONSUNTIVO_2025.zip"
+  },
+  {
+   "id": "DRENCHIA25_TABELLE",
+   "nome": "DRENCHIA25 TABELLE",
+   "ambito": "Rendiconto 2025 di Drenchia",
+   "righe": 2352,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://www.comune.drenchia.ud.it/media/files/030034/attachment/ALLEGATI_DELIBERA_CC_06.2026_APPROVAZIONE_CONSUNTIVO_2025.zip"
+  },
+  {
+   "id": "DRENCHIA25_ENTRATE",
+   "nome": "DRENCHIA25 ENTRATE",
+   "ambito": "Rendiconto 2025 di Drenchia",
+   "righe": 10,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://www.comune.drenchia.ud.it/media/files/030034/attachment/ALLEGATI_DELIBERA_CC_06.2026_APPROVAZIONE_CONSUNTIVO_2025.zip"
+  },
+  {
+   "id": "DRENCHIA25_SPESE",
+   "nome": "DRENCHIA25 SPESE",
+   "ambito": "Rendiconto 2025 di Drenchia",
+   "righe": 33,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": "https://www.comune.drenchia.ud.it/media/files/030034/attachment/ALLEGATI_DELIBERA_CC_06.2026_APPROVAZIONE_CONSUNTIVO_2025.zip"
+  },
+  {
+   "id": "RACCOLTA_13OTTOBRE",
+   "nome": "RACCOLTA 13OTTOBRE",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 7,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "QA_PROSECUZIONE",
+   "nome": "QA PROSECUZIONE",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 6,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
+  },
+  {
+   "id": "FONTI_PROSECUZIONE",
+   "nome": "FONTI PROSECUZIONE",
+   "ambito": "Raccolte di ottobre 2026: guida e controlli",
+   "righe": 5,
+   "consultazione": "2026-10-13",
+   "periodo": null,
+   "fonte": ""
   }
  ]
 }
