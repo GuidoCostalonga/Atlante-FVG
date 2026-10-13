@@ -15,6 +15,8 @@ name: Osservatorio sondaggi
 # che apre sondaggi/: il lavoro lo verifica e si ferma con un messaggio chiaro se non corrisponde.
 # Nessun servizio a pagamento: OCR eseguito qui (RapidOCR, licenza Apache 2.0), nessun dato inviato a terzi.
 on:
+  push:
+    branches: ['aggiornamenti/2026-10-13-sondaggi']  # provvisorio: avvio di prova dal ramo di lavoro
   schedule:
     - cron: '0 4 * * *'
     - cron: '0 5 * * *'

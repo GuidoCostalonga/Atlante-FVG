@@ -296,7 +296,7 @@
         ${tick.map(v => `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="${v === 0 ? '#B9B2A2' : '#EDE8DC'}"/><text x="${m.l - 6}" y="${y(v) + 3.5}" font-size="10" text-anchor="end" fill="#52565E">${v}${o.unita === '%' ? '%' : ''}</text>`).join('')}
         ${mesi.map(d => `<line x1="${x(d)}" x2="${x(d)}" y1="${m.t}" y2="${H - m.b}" stroke="#F3EFE6"/><text x="${x(d)}" y="${H - m.b + 14}" font-size="10" text-anchor="middle" fill="#52565E">${d.toLocaleDateString('it-IT', { month: 'short', year: ogni >= 12 || d.getMonth() === 0 ? 'numeric' : undefined })}</text>`).join('')}
         <text x="${W - m.r}" y="${H - 6}" font-size="9.5" text-anchor="end" fill="#52565E">${esc(o.fonte)}</text>`;
-      const buchi = [];
+      const buchi = []; const etichette = [];
       ids.forEach((id, k) => {
         if (!vis[id]) return;
         const pts = vis[id]; const col = colSogg(id, ids.indexOf(id));
@@ -308,8 +308,13 @@
         }
         svg += `<path d="${path}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" opacity=".9"/>`;
         svg += pts.map((p, i) => `<circle class="punto-g" data-id="${esc(id)}" data-i="${i}" cx="${x(p.data).toFixed(1)}" cy="${y(p.v).toFixed(1)}" r="${pts.length > 80 ? 2.2 : 3.4}" fill="${p.criterio === 'pubblicazione' ? '#fff' : col}" stroke="${col}" stroke-width="1.6"/>`).join('');
-        if (pts.length) { const u = pts[pts.length - 1]; svg += `<text x="${Math.min(x(u.data) + 5, W - m.r - 30)}" y="${y(u.v) + 3.5}" font-size="10" fill="${col}" font-weight="600">${esc((nomeSogg(id) || '').slice(0, 22))} ${fmtN(u.v)}</text>`; }
+        if (pts.length) { const u = pts[pts.length - 1]; etichette.push({ x: Math.min(x(u.data) + 5, W - m.r - 30), y: y(u.v) + 3.5, col, testo: `${(nomeSogg(id) || '').slice(0, 22)} ${fmtN(u.v)}` }); }
       });
+      // etichette finali senza sovrapposizioni: ordinate per altezza e distanziate di almeno 11 punti
+      etichette.sort((a, b) => a.y - b.y);
+      for (let i = 1; i < etichette.length; i++) if (etichette[i].y - etichette[i - 1].y < 11) etichette[i].y = etichette[i - 1].y + 11;
+      for (let i = etichette.length - 1; i >= 0; i--) if (etichette[i].y > H - m.b - 2) etichette[i].y = H - m.b - 2 - (etichette.length - 1 - i) * 11;
+      for (const e of etichette) svg += `<text x="${e.x}" y="${e.y}" font-size="10" fill="${e.col}" font-weight="600">${esc(e.testo)}</text>`;
       const uniq = buchi.filter((b, i) => buchi.findIndex(c => c[0] === b[0] && c[1] === b[1]) === i).slice(0, 6);
       for (const [a1, b1] of uniq) svg += `<rect x="${x(a1)}" y="${m.t}" width="${Math.max(0, x(b1) - x(a1))}" height="${H - m.t - m.b}" fill="#F7D678" opacity=".16"/><title>Nessuna rilevazione fra ${fmtD(a1)} e ${fmtD(b1)}</title>`;
       svg += `<rect id="zona-${o.id}" x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="transparent"/></svg>`;
