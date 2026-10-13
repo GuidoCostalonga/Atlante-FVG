@@ -1,0 +1,1775 @@
+{
+ "nota": "Partiti, coalizioni e liste riconosciuti dall'estrazione automatica. Gli alias servono solo a riconoscere la stessa denominazione scritta in modi diversi: soggetti diversi (scissioni, liste comuni, coalizioni) restano separati. Le date «dal» e «al» delimitano il periodo in cui la denominazione è stata usata; fuori periodo il riconoscimento finisce in coda «da verificare».",
+ "soggetti": [
+  {
+   "id": "fdi",
+   "nome": "Fratelli d'Italia",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#1f3b8a",
+   "dal": "2012-12-17",
+   "alias": [
+    "Fratelli d'Italia",
+    "FdI",
+    "FDI",
+    "Fratelli d'Italia - Alleanza Nazionale",
+    "FdI-AN",
+    "Fratelli d'Italia - AN",
+    "Brothers of Italy"
+   ]
+  },
+  {
+   "id": "pd",
+   "nome": "Partito Democratico",
+   "tipo": "partito",
+   "area": "centrosinistra",
+   "colore": "#d6262a",
+   "dal": "2007-10-14",
+   "alias": [
+    "Partito Democratico",
+    "PD",
+    "P.D.",
+    "Democratic Party"
+   ]
+  },
+  {
+   "id": "m5s",
+   "nome": "Movimento 5 Stelle",
+   "tipo": "partito",
+   "area": "altro",
+   "colore": "#f2c611",
+   "dal": "2009-10-04",
+   "alias": [
+    "Movimento 5 Stelle",
+    "Movimento Cinque Stelle",
+    "M5S",
+    "MoVimento 5 Stelle",
+    "M5s",
+    "Five Star Movement",
+    "Movimento5Stelle",
+    "MS"
+   ]
+  },
+  {
+   "id": "fi",
+   "nome": "Forza Italia",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#2e8bd4",
+   "dal": "1994-01-18",
+   "alias": [
+    "Forza Italia",
+    "FI",
+    "F.I.",
+    "Forza Italia - Berlusconi Presidente",
+    "Forza Italia-Berlusconi"
+   ]
+  },
+  {
+   "id": "lega",
+   "nome": "Lega",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#1a7f3c",
+   "dal": "1991-02-10",
+   "alias": [
+    "Lega",
+    "Lega Nord",
+    "LN",
+    "Lega Salvini Premier",
+    "Lega per Salvini Premier",
+    "Lega - Salvini Premier",
+    "Lega Nord Padania",
+    "Lega (Salvini Premier)",
+    "League",
+    "L",
+    "LSP"
+   ]
+  },
+  {
+   "id": "avs",
+   "nome": "Alleanza Verdi e Sinistra",
+   "tipo": "lista",
+   "area": "centrosinistra",
+   "colore": "#3fa34d",
+   "dal": "2022-07-02",
+   "alias": [
+    "Alleanza Verdi e Sinistra",
+    "Verdi e Sinistra",
+    "AVS",
+    "Verdi-Sinistra",
+    "Sinistra Italiana/Europa Verde",
+    "Europa Verde - Sinistra Italiana",
+    "Alleanza Verdi-Sinistra",
+    "Greens and Left Alliance",
+    "Verdi / Sinistra"
+   ]
+  },
+  {
+   "id": "si",
+   "nome": "Sinistra Italiana",
+   "tipo": "partito",
+   "area": "sinistra",
+   "colore": "#c21d3a",
+   "dal": "2015-11-07",
+   "alias": [
+    "Sinistra Italiana",
+    "SI",
+    "Sinistra Italiana - SEL"
+   ]
+  },
+  {
+   "id": "ev",
+   "nome": "Europa Verde",
+   "tipo": "partito",
+   "area": "centrosinistra",
+   "colore": "#4fb04a",
+   "dal": "2019-02-17",
+   "alias": [
+    "Europa Verde",
+    "Verdi",
+    "Federazione dei Verdi",
+    "Europa Verde - Verdi",
+    "Greens"
+   ]
+  },
+  {
+   "id": "azione",
+   "nome": "Azione",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#0f5ea8",
+   "dal": "2019-11-21",
+   "alias": [
+    "Azione",
+    "Azione - Calenda",
+    "Azione di Calenda",
+    "Azione (Calenda)",
+    "Action",
+    "A"
+   ]
+  },
+  {
+   "id": "iv",
+   "nome": "Italia Viva",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#d94f90",
+   "dal": "2019-09-18",
+   "alias": [
+    "Italia Viva",
+    "IV",
+    "Italia Viva - Renzi",
+    "Italia Viva (Renzi)"
+   ]
+  },
+  {
+   "id": "az-iv",
+   "nome": "Azione - Italia Viva",
+   "tipo": "lista",
+   "area": "centro",
+   "colore": "#3b6db3",
+   "dal": "2022-08-11",
+   "al": "2023-12-31",
+   "alias": [
+    "Azione - Italia Viva",
+    "Azione/Italia Viva",
+    "Azione-Italia Viva",
+    "Terzo Polo",
+    "Azione - Italia Viva - Calenda",
+    "Azione + Italia Viva",
+    "Action – Italia Viva",
+    "A–IV",
+    "A-IV",
+    "A/IV"
+   ]
+  },
+  {
+   "id": "piu-europa",
+   "nome": "+Europa",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#f0a30a",
+   "dal": "2017-11-23",
+   "alias": [
+    "+Europa",
+    "Più Europa",
+    "+ Europa",
+    "Piu Europa",
+    "+Europa - Bonino",
+    "More Europe",
+    "+E"
+   ]
+  },
+  {
+   "id": "nm",
+   "nome": "Noi Moderati",
+   "tipo": "lista",
+   "area": "centrodestra",
+   "colore": "#2f6fa8",
+   "dal": "2022-08-10",
+   "alias": [
+    "Noi Moderati",
+    "Noi moderati",
+    "Noi Moderati - Lupi",
+    "Noi Moderati (Lupi)",
+    "Noi con l'Italia",
+    "Noi Moderati/Noi con l'Italia",
+    "Us Moderates",
+    "NM"
+   ]
+  },
+  {
+   "id": "futuro-nazionale",
+   "nome": "Futuro Nazionale",
+   "tipo": "partito",
+   "area": "destra",
+   "colore": "#5b2a86",
+   "dal": "2025-01-01",
+   "alias": [
+    "Futuro Nazionale",
+    "Futuro Nazionale - Vannacci",
+    "Futuro Nazionale (Vannacci)",
+    "FN"
+   ]
+  },
+  {
+   "id": "psi",
+   "nome": "Partito Socialista Italiano",
+   "tipo": "partito",
+   "area": "centrosinistra",
+   "colore": "#e0536b",
+   "dal": "2007-10-05",
+   "alias": [
+    "Partito Socialista Italiano",
+    "PSI",
+    "Avanti - PSI",
+    "Avanti PSI",
+    "Socialisti",
+    "Partito Socialista",
+    "Il Partito Socialista"
+   ]
+  },
+  {
+   "id": "pap",
+   "nome": "Potere al Popolo",
+   "tipo": "lista",
+   "area": "sinistra",
+   "colore": "#9a1c1c",
+   "dal": "2017-11-18",
+   "alias": [
+    "Potere al Popolo",
+    "PaP",
+    "Potere al Popolo!"
+   ]
+  },
+  {
+   "id": "up",
+   "nome": "Unione Popolare",
+   "tipo": "lista",
+   "area": "sinistra",
+   "colore": "#b02e2e",
+   "dal": "2022-07-11",
+   "alias": [
+    "Unione Popolare",
+    "Unione Popolare con de Magistris",
+    "Unione Popolare (de Magistris)",
+    "UP"
+   ]
+  },
+  {
+   "id": "rifondazione",
+   "nome": "Partito della Rifondazione Comunista",
+   "tipo": "partito",
+   "area": "sinistra",
+   "colore": "#a01010",
+   "dal": "1991-12-15",
+   "alias": [
+    "Rifondazione Comunista",
+    "PRC",
+    "Partito della Rifondazione Comunista",
+    "Rifondazione",
+    "RC"
+   ]
+  },
+  {
+   "id": "pci",
+   "nome": "Partito Comunista Italiano",
+   "tipo": "partito",
+   "area": "sinistra",
+   "colore": "#8a0f0f",
+   "dal": "2016-06-26",
+   "alias": [
+    "Partito Comunista Italiano",
+    "PCI",
+    "Partito Comunista"
+   ]
+  },
+  {
+   "id": "italexit",
+   "nome": "Italexit",
+   "tipo": "partito",
+   "area": "altro",
+   "colore": "#2b2b6b",
+   "dal": "2020-07-23",
+   "alias": [
+    "Italexit",
+    "ItalExit",
+    "Italexit con Paragone",
+    "ItalExit (Paragone)",
+    "Italexit - Paragone"
+   ]
+  },
+  {
+   "id": "sudchiamaNord",
+   "nome": "Sud chiama Nord",
+   "tipo": "partito",
+   "area": "altro",
+   "colore": "#8b5a2b",
+   "dal": "2022-07-01",
+   "alias": [
+    "Sud chiama Nord",
+    "Sud Chiama Nord",
+    "ScN",
+    "Sud chiama Nord - De Luca",
+    "SCN"
+   ]
+  },
+  {
+   "id": "pace-terra-dignita",
+   "nome": "Pace Terra Dignità",
+   "tipo": "lista",
+   "area": "sinistra",
+   "colore": "#7a4e9e",
+   "dal": "2024-02-01",
+   "alias": [
+    "Pace Terra Dignità",
+    "Pace Terra Dignita",
+    "Pace, Terra e Dignità",
+    "Santoro - Pace Terra Dignità",
+    "PTD"
+   ]
+  },
+  {
+   "id": "sue",
+   "nome": "Stati Uniti d'Europa",
+   "tipo": "lista",
+   "area": "centro",
+   "colore": "#3f78c9",
+   "dal": "2024-03-01",
+   "al": "2024-06-30",
+   "alias": [
+    "Stati Uniti d'Europa",
+    "SUE",
+    "Stati Uniti d'Europa - Renzi Bonino",
+    "Stati Uniti d’Europa"
+   ]
+  },
+  {
+   "id": "liberta",
+   "nome": "Libertà",
+   "tipo": "lista",
+   "area": "altro",
+   "colore": "#6b6b6b",
+   "dal": "2024-03-01",
+   "al": "2024-06-30",
+   "alias": [
+    "Libertà",
+    "Libertà - Cateno De Luca",
+    "Liberta"
+   ]
+  },
+  {
+   "id": "alternativa-popolare",
+   "nome": "Alternativa Popolare",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#3e7cb1",
+   "dal": "2017-03-18",
+   "alias": [
+    "Alternativa Popolare",
+    "AP",
+    "Alternativa Popolare - Bandecchi",
+    "Alternativa Popolare (Bandecchi)"
+   ]
+  },
+  {
+   "id": "coraggio-italia",
+   "nome": "Coraggio Italia",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#2a7fb8",
+   "dal": "2021-05-27",
+   "al": "2022-08-10",
+   "alias": [
+    "Coraggio Italia",
+    "CI",
+    "Coraggio Italia - Toti Brugnaro"
+   ]
+  },
+  {
+   "id": "italia-al-centro",
+   "nome": "Italia al Centro",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#3a8fbf",
+   "dal": "2022-02-23",
+   "al": "2022-08-10",
+   "alias": [
+    "Italia al Centro",
+    "Italia al centro - Toti"
+   ]
+  },
+  {
+   "id": "impegno-civico",
+   "nome": "Impegno Civico",
+   "tipo": "lista",
+   "area": "centrosinistra",
+   "colore": "#2ab0a0",
+   "dal": "2022-08-01",
+   "al": "2022-12-31",
+   "alias": [
+    "Impegno Civico",
+    "Impegno Civico (Di Maio)",
+    "Impegno Civico - Di Maio",
+    "Insieme per il futuro"
+   ]
+  },
+  {
+   "id": "art1",
+   "nome": "Articolo Uno",
+   "tipo": "partito",
+   "area": "centrosinistra",
+   "colore": "#c43b3b",
+   "dal": "2017-02-25",
+   "al": "2023-03-12",
+   "alias": [
+    "Articolo Uno",
+    "Art.1",
+    "Articolo 1",
+    "Articolo Uno - MDP",
+    "MDP",
+    "Articolo 1 - MDP",
+    "Movimento Democratico e Progressista"
+   ]
+  },
+  {
+   "id": "leu",
+   "nome": "Liberi e Uguali",
+   "tipo": "lista",
+   "area": "centrosinistra",
+   "colore": "#c43b3b",
+   "dal": "2017-12-03",
+   "al": "2022-07-01",
+   "alias": [
+    "Liberi e Uguali",
+    "LeU",
+    "LEU",
+    "Liberi e uguali"
+   ]
+  },
+  {
+   "id": "la-sinistra",
+   "nome": "La Sinistra",
+   "tipo": "lista",
+   "area": "sinistra",
+   "colore": "#b02e2e",
+   "dal": "2019-01-10",
+   "al": "2019-06-30",
+   "alias": [
+    "La Sinistra"
+   ]
+  },
+  {
+   "id": "pap-ps",
+   "nome": "Partito Comunista",
+   "tipo": "partito",
+   "area": "sinistra",
+   "colore": "#8a0f0f",
+   "dal": "2014-01-01",
+   "al": "2016-06-25",
+   "alias": [
+    "Partito Comunista (Rizzo)"
+   ]
+  },
+  {
+   "id": "casapound",
+   "nome": "CasaPound Italia",
+   "tipo": "partito",
+   "area": "destra",
+   "colore": "#3a3a3a",
+   "dal": "2008-06-26",
+   "alias": [
+    "CasaPound Italia",
+    "CasaPound",
+    "CPI"
+   ]
+  },
+  {
+   "id": "fn",
+   "nome": "Forza Nuova",
+   "tipo": "partito",
+   "area": "destra",
+   "colore": "#2f2f2f",
+   "dal": "1997-09-29",
+   "alias": [
+    "Forza Nuova"
+   ]
+  },
+  {
+   "id": "ncd",
+   "nome": "Nuovo Centrodestra",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#2e6da4",
+   "dal": "2013-11-15",
+   "al": "2017-03-18",
+   "alias": [
+    "Nuovo Centrodestra",
+    "NCD",
+    "Nuovo Centro Destra",
+    "Nuovo CentroDestra",
+    "NCD-UDC",
+    "Area Popolare",
+    "AP (NCD-UDC)",
+    "AP (NCD)"
+   ]
+  },
+  {
+   "id": "udc",
+   "nome": "Unione di Centro",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#6aa0d8",
+   "dal": "2002-12-06",
+   "alias": [
+    "Unione di Centro",
+    "UDC",
+    "UdC",
+    "Unione dei Democratici Cristiani e di Centro",
+    "Udc"
+   ]
+  },
+  {
+   "id": "sc",
+   "nome": "Scelta Civica",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#4a90c2",
+   "dal": "2013-01-04",
+   "al": "2019-03-01",
+   "alias": [
+    "Scelta Civica",
+    "SC",
+    "Scelta Civica con Monti",
+    "Scelta Civica - Monti",
+    "Con Monti per l'Italia",
+    "Lista Monti",
+    "MONTI",
+    "Coalizione Monti",
+    "CD"
+   ]
+  },
+  {
+   "id": "fli",
+   "nome": "Futuro e Libertà",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#3c5f9e",
+   "dal": "2010-07-30",
+   "al": "2014-01-01",
+   "alias": [
+    "Futuro e Libertà",
+    "FLI",
+    "Futuro e Libertà per l'Italia",
+    "Fli"
+   ]
+  },
+  {
+   "id": "pdl",
+   "nome": "Il Popolo della Libertà",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#2e8bd4",
+   "dal": "2007-11-18",
+   "al": "2013-11-16",
+   "alias": [
+    "Il Popolo della Libertà",
+    "Popolo della Libertà",
+    "PdL",
+    "PDL",
+    "Pdl",
+    "People of Freedom"
+   ]
+  },
+  {
+   "id": "an",
+   "nome": "Alleanza Nazionale",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#1f3b8a",
+   "dal": "1995-01-27",
+   "al": "2009-03-22",
+   "alias": [
+    "Alleanza Nazionale",
+    "AN"
+   ]
+  },
+  {
+   "id": "idv",
+   "nome": "Italia dei Valori",
+   "tipo": "partito",
+   "area": "centrosinistra",
+   "colore": "#e07020",
+   "dal": "1998-03-21",
+   "al": "2016-12-31",
+   "alias": [
+    "Italia dei Valori",
+    "IdV",
+    "IDV",
+    "Idv"
+   ]
+  },
+  {
+   "id": "sel",
+   "nome": "Sinistra Ecologia Libertà",
+   "tipo": "partito",
+   "area": "sinistra",
+   "colore": "#c21d3a",
+   "dal": "2009-10-25",
+   "al": "2016-12-17",
+   "alias": [
+    "Sinistra Ecologia Libertà",
+    "SEL",
+    "Sel",
+    "Sinistra Ecologia e Libertà"
+   ]
+  },
+  {
+   "id": "rivoluzione-civile",
+   "nome": "Rivoluzione Civile",
+   "tipo": "lista",
+   "area": "sinistra",
+   "colore": "#e8650f",
+   "dal": "2012-12-28",
+   "al": "2013-04-30",
+   "alias": [
+    "Rivoluzione Civile",
+    "RC - Ingroia",
+    "Rivoluzione Civile - Ingroia",
+    "RC"
+   ]
+  },
+  {
+   "id": "fare",
+   "nome": "Fare per Fermare il Declino",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#777777",
+   "dal": "2012-07-01",
+   "al": "2014-12-31",
+   "alias": [
+    "Fare per Fermare il Declino",
+    "Fare",
+    "FiD",
+    "Fermare il declino"
+   ]
+  },
+  {
+   "id": "la-destra",
+   "nome": "La Destra",
+   "tipo": "partito",
+   "area": "destra",
+   "colore": "#2f2f2f",
+   "dal": "2007-11-10",
+   "al": "2017-12-31",
+   "alias": [
+    "La Destra",
+    "La Destra - Storace"
+   ]
+  },
+  {
+   "id": "fratelli-dit-an",
+   "nome": "Movimento per Alleanza Nazionale",
+   "tipo": "partito",
+   "area": "destra",
+   "colore": "#1f3b8a",
+   "dal": "2013-11-01",
+   "al": "2014-03-01",
+   "alias": [
+    "Movimento per Alleanza Nazionale",
+    "Movimento per AN",
+    "Alleanza Nazionale (Movimento)"
+   ]
+  },
+  {
+   "id": "ds",
+   "nome": "Democratici di Sinistra",
+   "tipo": "partito",
+   "area": "centrosinistra",
+   "colore": "#d6262a",
+   "dal": "1998-02-14",
+   "al": "2007-10-14",
+   "alias": [
+    "Democratici di Sinistra",
+    "DS"
+   ]
+  },
+  {
+   "id": "margherita",
+   "nome": "La Margherita",
+   "tipo": "partito",
+   "area": "centrosinistra",
+   "colore": "#f0c030",
+   "dal": "2002-03-24",
+   "al": "2007-10-14",
+   "alias": [
+    "La Margherita",
+    "Margherita",
+    "DL - La Margherita",
+    "Democrazia è Libertà - La Margherita",
+    "DL"
+   ]
+  },
+  {
+   "id": "ulivo",
+   "nome": "L'Ulivo",
+   "tipo": "lista",
+   "area": "centrosinistra",
+   "colore": "#6a9a2a",
+   "dal": "1995-01-01",
+   "al": "2007-10-14",
+   "alias": [
+    "L'Ulivo",
+    "Ulivo",
+    "Uniti nell'Ulivo",
+    "Lista Ulivo"
+   ]
+  },
+  {
+   "id": "unione",
+   "nome": "L'Unione",
+   "tipo": "coalizione",
+   "area": "centrosinistra",
+   "colore": "#6a9a2a",
+   "dal": "2005-02-10",
+   "al": "2008-02-01",
+   "alias": [
+    "L'Unione",
+    "Unione"
+   ]
+  },
+  {
+   "id": "cdl",
+   "nome": "Casa delle Libertà",
+   "tipo": "coalizione",
+   "area": "centrodestra",
+   "colore": "#2e8bd4",
+   "dal": "2000-01-01",
+   "al": "2008-02-01",
+   "alias": [
+    "Casa delle Libertà",
+    "CdL",
+    "CDL"
+   ]
+  },
+  {
+   "id": "pdci",
+   "nome": "Partito dei Comunisti Italiani",
+   "tipo": "partito",
+   "area": "sinistra",
+   "colore": "#a01010",
+   "dal": "1998-10-11",
+   "al": "2014-12-31",
+   "alias": [
+    "Partito dei Comunisti Italiani",
+    "PdCI",
+    "Comunisti Italiani"
+   ]
+  },
+  {
+   "id": "verdi-storici",
+   "nome": "Federazione dei Verdi (fino al 2019)",
+   "tipo": "partito",
+   "area": "centrosinistra",
+   "colore": "#4fb04a",
+   "dal": "1990-01-01",
+   "al": "2019-02-16",
+   "alias": [
+    "Federazione dei Verdi",
+    "Verdi (Federazione)",
+    "Verdi",
+    "I Verdi"
+   ]
+  },
+  {
+   "id": "udeur",
+   "nome": "Popolari UDEUR",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#6aa0d8",
+   "dal": "1999-02-26",
+   "al": "2013-12-31",
+   "alias": [
+    "Popolari UDEUR",
+    "UDEUR",
+    "Udeur",
+    "Popolari-Udeur"
+   ]
+  },
+  {
+   "id": "rosa-nel-pugno",
+   "nome": "Rosa nel Pugno",
+   "tipo": "lista",
+   "area": "centrosinistra",
+   "colore": "#e0536b",
+   "dal": "2005-11-01",
+   "al": "2007-12-31",
+   "alias": [
+    "Rosa nel Pugno",
+    "La Rosa nel Pugno"
+   ]
+  },
+  {
+   "id": "nuovo-psi",
+   "nome": "Nuovo PSI",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#e0536b",
+   "dal": "2001-01-01",
+   "al": "2013-12-31",
+   "alias": [
+    "Nuovo PSI",
+    "NPSI"
+   ]
+  },
+  {
+   "id": "mpa",
+   "nome": "Movimento per le Autonomie",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#b0a000",
+   "dal": "2005-04-30",
+   "al": "2013-12-31",
+   "alias": [
+    "Movimento per le Autonomie",
+    "MpA",
+    "MPA",
+    "Movimento per l'Autonomia"
+   ]
+  },
+  {
+   "id": "sa",
+   "nome": "Sinistra Arcobaleno",
+   "tipo": "lista",
+   "area": "sinistra",
+   "colore": "#c21d3a",
+   "dal": "2007-12-08",
+   "al": "2008-07-31",
+   "alias": [
+    "La Sinistra l'Arcobaleno",
+    "Sinistra Arcobaleno",
+    "SA"
+   ]
+  },
+  {
+   "id": "sinistra-e-liberta",
+   "nome": "Sinistra e Libertà",
+   "tipo": "lista",
+   "area": "sinistra",
+   "colore": "#c21d3a",
+   "dal": "2009-03-01",
+   "al": "2009-12-31",
+   "alias": [
+    "Sinistra e Libertà",
+    "SeL (2009)"
+   ]
+  },
+  {
+   "id": "altri",
+   "nome": "Altri",
+   "tipo": "residuo",
+   "area": null,
+   "colore": "#9aa0a6",
+   "alias": [
+    "Altri",
+    "Altro",
+    "Altri partiti",
+    "Altro Partito",
+    "Altre liste",
+    "Altri (totale)",
+    "Altre",
+    "Others",
+    "Altri partiti/liste"
+   ]
+  },
+  {
+   "id": "altri-cdx",
+   "nome": "Altri di centrodestra",
+   "tipo": "residuo",
+   "area": "centrodestra",
+   "colore": "#9aa0a6",
+   "alias": [
+    "Altri di CDX",
+    "Altri CDX",
+    "Altri centrodestra",
+    "Altri di centrodestra",
+    "Altri cdx"
+   ]
+  },
+  {
+   "id": "altri-csx",
+   "nome": "Altri di centrosinistra",
+   "tipo": "residuo",
+   "area": "centrosinistra",
+   "colore": "#9aa0a6",
+   "alias": [
+    "Altri di CSX",
+    "Altri CSX",
+    "Altri centrosinistra",
+    "Altri di centrosinistra",
+    "Altri csx"
+   ]
+  },
+  {
+   "id": "cdx",
+   "nome": "Centrodestra (coalizione)",
+   "tipo": "coalizione",
+   "area": "centrodestra",
+   "colore": "#1f3b8a",
+   "alias": [
+    "Centrodestra",
+    "CDX",
+    "Cdx",
+    "Coalizione di centrodestra",
+    "Centro-destra",
+    "Centro destra",
+    "Centre-right coalition",
+    "Centre-right"
+   ]
+  },
+  {
+   "id": "csx",
+   "nome": "Centrosinistra (coalizione)",
+   "tipo": "coalizione",
+   "area": "centrosinistra",
+   "colore": "#d6262a",
+   "alias": [
+    "Centrosinistra",
+    "CSX",
+    "Csx",
+    "Coalizione di centrosinistra",
+    "Centro-sinistra",
+    "Centro sinistra",
+    "Centre-left coalition",
+    "Centre-left"
+   ]
+  },
+  {
+   "id": "ibc",
+   "nome": "Italia. Bene Comune",
+   "tipo": "coalizione",
+   "area": "centrosinistra",
+   "colore": "#d6262a",
+   "dal": "2012-10-01",
+   "al": "2013-04-30",
+   "alias": [
+    "Italia Bene Comune",
+    "IBC",
+    "Italia. Bene Comune"
+   ]
+  },
+  {
+   "id": "campo-largo",
+   "nome": "Campo largo",
+   "tipo": "coalizione",
+   "area": "centrosinistra",
+   "colore": "#c0392b",
+   "dal": "2022-01-01",
+   "alias": [
+    "Campo largo",
+    "Campo Largo",
+    "Coalizione progressista",
+    "Centrosinistra allargato"
+   ]
+  },
+  {
+   "id": "terzo-polo-coal",
+   "nome": "Terzo polo (coalizione)",
+   "tipo": "coalizione",
+   "area": "centro",
+   "colore": "#3b6db3",
+   "dal": "2022-08-01",
+   "al": "2023-12-31",
+   "alias": [
+    "Terzo Polo (coalizione)",
+    "Polo di centro"
+   ]
+  },
+  {
+   "id": "cx",
+   "nome": "Centro (coalizione)",
+   "tipo": "coalizione",
+   "area": "centro",
+   "colore": "#6aa0d8",
+   "alias": [
+    "Centro",
+    "CX",
+    "Cx",
+    "Coalizione di centro",
+    "Area di centro",
+    "Centre",
+    "Centro (Wikipedia)"
+   ]
+  },
+  {
+   "id": "patto-fvg",
+   "nome": "Patto per l'Autonomia",
+   "tipo": "partito",
+   "area": "autonomista",
+   "colore": "#6c8f2f",
+   "dal": "2017-01-01",
+   "territorio": "FVG",
+   "alias": [
+    "Patto per l'Autonomia",
+    "Patto per l'Autonomia - Civica FVG",
+    "Patto Civica",
+    "Patto per l'Autonomia-Civica FVG",
+    "Pact for Autonomy"
+   ]
+  },
+  {
+   "id": "open-sinistra-fvg",
+   "nome": "Open Sinistra FVG",
+   "tipo": "lista",
+   "area": "sinistra",
+   "colore": "#c21d3a",
+   "dal": "2017-10-01",
+   "territorio": "FVG",
+   "alias": [
+    "Open Sinistra FVG",
+    "Open - Sinistra FVG",
+    "Open Sinistra Fvg"
+   ]
+  },
+  {
+   "id": "slovenska-skupnost",
+   "nome": "Slovenska skupnost",
+   "tipo": "partito",
+   "area": "autonomista",
+   "colore": "#2b7a78",
+   "dal": "1975-01-01",
+   "territorio": "FVG",
+   "alias": [
+    "Slovenska skupnost",
+    "Slovenska Skupnost",
+    "SSk",
+    "Unione Slovena"
+   ]
+  },
+  {
+   "id": "progetto-fvg",
+   "nome": "Progetto FVG",
+   "tipo": "lista",
+   "area": "centrodestra",
+   "colore": "#4a6fa5",
+   "dal": "2017-01-01",
+   "territorio": "FVG",
+   "alias": [
+    "Progetto FVG",
+    "Progetto FVG per una Regione Speciale",
+    "Progetto Fvg"
+   ]
+  },
+  {
+   "id": "autonomia-responsabile",
+   "nome": "Autonomia Responsabile",
+   "tipo": "lista",
+   "area": "centrodestra",
+   "colore": "#4a6fa5",
+   "dal": "2013-01-01",
+   "al": "2018-12-31",
+   "territorio": "FVG",
+   "alias": [
+    "Autonomia Responsabile",
+    "AR - Autonomia Responsabile",
+    "Autonomia Responsabile - Tondo"
+   ]
+  },
+  {
+   "id": "cittadini-fvg",
+   "nome": "Cittadini per il Presidente",
+   "tipo": "lista",
+   "area": "centrosinistra",
+   "colore": "#e07020",
+   "dal": "2008-01-01",
+   "al": "2018-12-31",
+   "territorio": "FVG",
+   "alias": [
+    "Cittadini per il Presidente",
+    "Cittadini per Serracchiani",
+    "Cittadini",
+    "Cittadini per il presidente"
+   ]
+  },
+  {
+   "id": "fedriga-presidente",
+   "nome": "Lista Fedriga Presidente",
+   "tipo": "lista",
+   "area": "centrodestra",
+   "colore": "#1a7f3c",
+   "dal": "2023-01-01",
+   "territorio": "FVG",
+   "alias": [
+    "Fedriga Presidente",
+    "Lista Fedriga Presidente",
+    "Lista Fedriga"
+   ]
+  },
+  {
+   "id": "insieme-liberi",
+   "nome": "Insieme Liberi",
+   "tipo": "lista",
+   "area": "altro",
+   "colore": "#9b59b6",
+   "dal": "2023-01-01",
+   "territorio": "FVG",
+   "alias": [
+    "Insieme Liberi",
+    "Insieme Liberi - Bertossi"
+   ]
+  },
+  {
+   "id": "udf",
+   "nome": "Unione Democratica Friulana",
+   "tipo": "lista",
+   "area": "autonomista",
+   "colore": "#6c8f2f",
+   "dal": "2017-01-01",
+   "territorio": "FVG",
+   "alias": [
+    "Unione Democratica Friulana",
+    "UDF"
+   ]
+  },
+  {
+   "id": "front-furlan",
+   "nome": "Front Furlan",
+   "tipo": "partito",
+   "area": "autonomista",
+   "colore": "#6c8f2f",
+   "dal": "2003-01-01",
+   "territorio": "FVG",
+   "alias": [
+    "Front Furlan"
+   ]
+  },
+  {
+   "id": "art-lavoro-fvg",
+   "nome": "Articolo Uno FVG",
+   "tipo": "lista",
+   "area": "centrosinistra",
+   "colore": "#c43b3b",
+   "dal": "2017-02-25",
+   "al": "2023-03-12",
+   "territorio": "FVG",
+   "alias": [
+    "Articolo Uno FVG"
+   ]
+  },
+  {
+   "id": "dsp",
+   "nome": "Democrazia Sovrana Popolare",
+   "tipo": "partito",
+   "area": "altro",
+   "colore": "#7f8c8d",
+   "dal": "2022-07-01",
+   "alias": [
+    "Democrazia Sovrana Popolare",
+    "DSP",
+    "Democrazia Sovrana e Popolare"
+   ]
+  },
+  {
+   "id": "pld",
+   "nome": "Partito Liberaldemocratico",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#5dade2",
+   "dal": "2024-01-01",
+   "alias": [
+    "Partito Liberaldemocratico",
+    "PLD",
+    "Liberaldemocratici",
+    "Liberal Democratic Party"
+   ]
+  },
+  {
+   "id": "isp",
+   "nome": "Italia Sovrana e Popolare",
+   "tipo": "lista",
+   "area": "altro",
+   "colore": "#7f8c8d",
+   "dal": "2022-08-01",
+   "al": "2022-12-31",
+   "alias": [
+    "Italia Sovrana e Popolare",
+    "ISP"
+   ]
+  },
+  {
+   "id": "ora",
+   "nome": "Ora!",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#e67e22",
+   "dal": "2025-01-01",
+   "alias": [
+    "Ora!",
+    "Ora",
+    "Ora! - Marattin"
+   ]
+  },
+  {
+   "id": "noi-con-italia",
+   "nome": "Noi con l'Italia",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#2f6fa8",
+   "dal": "2017-12-01",
+   "al": "2022-08-09",
+   "alias": [
+    "Noi con l'Italia",
+    "NcI",
+    "Noi con l'Italia - UDC"
+   ]
+  },
+  {
+   "id": "cambiamo",
+   "nome": "Cambiamo!",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#e8702a",
+   "dal": "2019-08-10",
+   "al": "2021-05-26",
+   "alias": [
+    "Cambiamo!",
+    "Cambiamo",
+    "Cambiamo! - Toti"
+   ]
+  },
+  {
+   "id": "vox",
+   "nome": "Vox Italia",
+   "tipo": "partito",
+   "area": "altro",
+   "colore": "#555555",
+   "dal": "2019-09-01",
+   "alias": [
+    "Vox Italia",
+    "Vox"
+   ]
+  },
+  {
+   "id": "volt",
+   "nome": "Volt Italia",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#502379",
+   "dal": "2018-01-01",
+   "alias": [
+    "Volt",
+    "Volt Italia"
+   ]
+  },
+  {
+   "id": "svp",
+   "nome": "Südtiroler Volkspartei",
+   "tipo": "partito",
+   "area": "autonomista",
+   "colore": "#1a7f3c",
+   "dal": "1945-05-08",
+   "alias": [
+    "SVP",
+    "Südtiroler Volkspartei",
+    "Sudtiroler Volkspartei"
+   ]
+  },
+  {
+   "id": "pap-azione-civile",
+   "nome": "Azione Civile",
+   "tipo": "lista",
+   "area": "sinistra",
+   "colore": "#e8650f",
+   "dal": "2013-01-01",
+   "al": "2014-12-31",
+   "alias": [
+    "Azione Civile",
+    "Azione Civile - Ingroia"
+   ]
+  },
+  {
+   "id": "centro-democratico",
+   "nome": "Centro Democratico",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#e67e22",
+   "dal": "2012-12-28",
+   "alias": [
+    "Centro Democratico",
+    "CD - Centro Democratico",
+    "Centro Democratico (Tabacci)"
+   ]
+  },
+  {
+   "id": "civica-popolare",
+   "nome": "Civica Popolare",
+   "tipo": "lista",
+   "area": "centro",
+   "colore": "#e67e22",
+   "dal": "2017-12-01",
+   "al": "2019-03-01",
+   "alias": [
+    "Civica Popolare",
+    "CP",
+    "Civica Popolare - Lorenzin"
+   ]
+  },
+  {
+   "id": "insieme",
+   "nome": "Insieme",
+   "tipo": "lista",
+   "area": "centrosinistra",
+   "colore": "#6a9a2a",
+   "dal": "2017-12-01",
+   "al": "2018-12-31",
+   "alias": [
+    "Insieme",
+    "Insieme (PSI-Verdi-AC)"
+   ]
+  },
+  {
+   "id": "mdp-leu",
+   "nome": "Movimento Democratico e Progressista",
+   "tipo": "partito",
+   "area": "centrosinistra",
+   "colore": "#c43b3b",
+   "dal": "2017-02-25",
+   "al": "2017-04-30",
+   "alias": [
+    "MDP (2017)",
+    "Movimento Democratici e Progressisti"
+   ]
+  },
+  {
+   "id": "ap-centro",
+   "nome": "Alternativa Popolare (2017)",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#3e7cb1",
+   "dal": "2017-03-18",
+   "al": "2019-12-31",
+   "alias": [
+    "AP - Alternativa Popolare"
+   ]
+  },
+  {
+   "id": "lista-tsipras",
+   "nome": "L'Altra Europa con Tsipras",
+   "tipo": "lista",
+   "area": "sinistra",
+   "colore": "#b02e2e",
+   "dal": "2014-02-01",
+   "al": "2015-12-31",
+   "alias": [
+    "L'Altra Europa con Tsipras",
+    "Lista Tsipras",
+    "Altra Europa"
+   ]
+  },
+  {
+   "id": "fratelli-ditalia-2014",
+   "nome": "Fratelli d'Italia - Alleanza Nazionale",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#1f3b8a",
+   "dal": "2014-03-01",
+   "al": "2017-12-31",
+   "alias": [
+    "FdI-AN (2014)"
+   ]
+  },
+  {
+   "id": "verdi-eu",
+   "nome": "Verdi Europei",
+   "tipo": "lista",
+   "area": "centrosinistra",
+   "colore": "#4fb04a",
+   "dal": "2014-01-01",
+   "al": "2014-12-31",
+   "alias": [
+    "Green Italia - Verdi Europei",
+    "Verdi Europei"
+   ]
+  },
+  {
+   "id": "scelta-europea",
+   "nome": "Scelta Europea",
+   "tipo": "lista",
+   "area": "centro",
+   "colore": "#4a90c2",
+   "dal": "2014-01-01",
+   "al": "2014-12-31",
+   "alias": [
+    "Scelta Europea",
+    "Scelta Europea con Guy Verhofstadt"
+   ]
+  },
+  {
+   "id": "io-cambio-maie",
+   "nome": "Io Cambio - MAIE",
+   "tipo": "lista",
+   "area": "altro",
+   "colore": "#999999",
+   "dal": "2014-01-01",
+   "al": "2014-12-31",
+   "alias": [
+    "Io Cambio - MAIE",
+    "Io Cambio"
+   ]
+  },
+  {
+   "id": "italia-dei-diritti",
+   "nome": "Italia dei Diritti",
+   "tipo": "partito",
+   "area": "altro",
+   "colore": "#999999",
+   "dal": "2012-01-01",
+   "alias": [
+    "Italia dei Diritti"
+   ]
+  },
+  {
+   "id": "fds",
+   "nome": "Federazione della Sinistra",
+   "tipo": "lista",
+   "area": "sinistra",
+   "colore": "#a01010",
+   "dal": "2009-12-20",
+   "al": "2012-12-31",
+   "alias": [
+    "Federazione della Sinistra",
+    "FdS",
+    "Federazione Sinistra"
+   ]
+  },
+  {
+   "id": "radicali",
+   "nome": "Radicali Italiani",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#f0a30a",
+   "dal": "2001-07-14",
+   "alias": [
+    "Radicali Italiani",
+    "Radicali",
+    "I radicali",
+    "Lista Pannella",
+    "Lista Bonino-Pannella",
+    "Lista Bonino Pannella"
+   ]
+  },
+  {
+   "id": "api",
+   "nome": "Alleanza per l'Italia",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#6aa0d8",
+   "dal": "2009-11-10",
+   "al": "2016-12-31",
+   "alias": [
+    "Alleanza per l'Italia",
+    "ApI",
+    "API",
+    "Alleanza per l'Italia (Rutelli)"
+   ]
+  },
+  {
+   "id": "grande-sud",
+   "nome": "Grande Sud",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#b0a000",
+   "dal": "2011-07-01",
+   "al": "2013-12-31",
+   "alias": [
+    "Grande Sud",
+    "Grande Sud (Miccichè)"
+   ]
+  },
+  {
+   "id": "pli",
+   "nome": "Partito Liberale Italiano",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#4a90c2",
+   "dal": "1997-01-01",
+   "alias": [
+    "Partito Liberale Italiano",
+    "PLI",
+    "Liberali"
+   ]
+  },
+  {
+   "id": "nps",
+   "nome": "Partito Socialista (SDI)",
+   "tipo": "partito",
+   "area": "centrosinistra",
+   "colore": "#e0536b",
+   "dal": "1998-05-10",
+   "al": "2007-10-04",
+   "alias": [
+    "Socialisti Democratici Italiani",
+    "SDI",
+    "Sdi"
+   ]
+  },
+  {
+   "id": "dc-udeur",
+   "nome": "Democrazia Cristiana",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#6aa0d8",
+   "dal": "1943-01-01",
+   "al": "1994-01-18",
+   "alias": [
+    "Democrazia Cristiana",
+    "DC"
+   ]
+  },
+  {
+   "id": "ccd-cdu",
+   "nome": "CCD-CDU (Biancofiore)",
+   "tipo": "lista",
+   "area": "centrodestra",
+   "colore": "#6aa0d8",
+   "dal": "1995-01-01",
+   "al": "2002-12-05",
+   "alias": [
+    "CCD-CDU",
+    "Biancofiore",
+    "CCD",
+    "CDU",
+    "Centro Cristiano Democratico",
+    "Cristiani Democratici Uniti"
+   ]
+  },
+  {
+   "id": "ppi",
+   "nome": "Partito Popolare Italiano",
+   "tipo": "partito",
+   "area": "centro",
+   "colore": "#f0c030",
+   "dal": "1994-01-18",
+   "al": "2002-03-24",
+   "alias": [
+    "Partito Popolare Italiano",
+    "PPI",
+    "Popolari"
+   ]
+  },
+  {
+   "id": "democratici",
+   "nome": "I Democratici",
+   "tipo": "partito",
+   "area": "centrosinistra",
+   "colore": "#f0c030",
+   "dal": "1999-02-27",
+   "al": "2002-03-24",
+   "alias": [
+    "I Democratici",
+    "Democratici (Asinello)",
+    "L'Asinello"
+   ]
+  },
+  {
+   "id": "girasole",
+   "nome": "Il Girasole",
+   "tipo": "lista",
+   "area": "centrosinistra",
+   "colore": "#4fb04a",
+   "dal": "2001-01-01",
+   "al": "2001-12-31",
+   "alias": [
+    "Il Girasole",
+    "Girasole"
+   ]
+  },
+  {
+   "id": "msft",
+   "nome": "Movimento Sociale Fiamma Tricolore",
+   "tipo": "partito",
+   "area": "destra",
+   "colore": "#2f2f2f",
+   "dal": "1995-01-01",
+   "alias": [
+    "Fiamma Tricolore",
+    "Movimento Sociale Fiamma Tricolore",
+    "MS-FT",
+    "MSFT"
+   ]
+  },
+  {
+   "id": "pensionati",
+   "nome": "Partito Pensionati",
+   "tipo": "partito",
+   "area": "altro",
+   "colore": "#999999",
+   "dal": "1987-01-01",
+   "alias": [
+    "Partito Pensionati",
+    "Pensionati"
+   ]
+  },
+  {
+   "id": "lega-azione-meridionale",
+   "nome": "Lega d'Azione Meridionale",
+   "tipo": "partito",
+   "area": "altro",
+   "colore": "#999999",
+   "dal": "1992-01-01",
+   "alias": [
+    "Lega d'Azione Meridionale"
+   ]
+  },
+  {
+   "id": "sinistra-critica",
+   "nome": "Sinistra Critica",
+   "tipo": "partito",
+   "area": "sinistra",
+   "colore": "#a01010",
+   "dal": "2007-12-08",
+   "al": "2013-12-31",
+   "alias": [
+    "Sinistra Critica"
+   ]
+  },
+  {
+   "id": "pcl",
+   "nome": "Partito Comunista dei Lavoratori",
+   "tipo": "partito",
+   "area": "sinistra",
+   "colore": "#a01010",
+   "dal": "2006-01-01",
+   "alias": [
+    "Partito Comunista dei Lavoratori",
+    "PCL"
+   ]
+  },
+  {
+   "id": "mpa-ai",
+   "nome": "Autonomie e Ambiente",
+   "tipo": "lista",
+   "area": "autonomista",
+   "colore": "#6c8f2f",
+   "dal": "2009-01-01",
+   "al": "2009-12-31",
+   "alias": [
+    "Autonomie e Ambiente"
+   ]
+  },
+  {
+   "id": "forza-del-sud",
+   "nome": "Forza del Sud",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#b0a000",
+   "dal": "2010-11-27",
+   "al": "2011-06-30",
+   "alias": [
+    "Forza del Sud"
+   ]
+  },
+  {
+   "id": "iniziativa-responsabile",
+   "nome": "Iniziativa Responsabile",
+   "tipo": "partito",
+   "area": "centrodestra",
+   "colore": "#999999",
+   "dal": "2010-12-01",
+   "al": "2011-12-31",
+   "alias": [
+    "Iniziativa Responsabile",
+    "Popolo e Territorio"
+   ]
+  },
+  {
+   "id": "rosa-bianca",
+   "nome": "La Rosa Bianca",
+   "tipo": "lista",
+   "area": "centro",
+   "colore": "#6aa0d8",
+   "dal": "2008-01-01",
+   "al": "2008-12-31",
+   "alias": [
+    "La Rosa Bianca",
+    "Rosa Bianca",
+    "UDC - Rosa Bianca"
+   ]
+  },
+  {
+   "id": "mpa-destra",
+   "nome": "La Destra - Fiamma Tricolore",
+   "tipo": "lista",
+   "area": "destra",
+   "colore": "#2f2f2f",
+   "dal": "2008-01-01",
+   "al": "2008-12-31",
+   "alias": [
+    "La Destra - Fiamma Tricolore"
+   ]
+  },
+  {
+   "id": "lega-lombarda",
+   "nome": "Lega Lombarda",
+   "tipo": "partito",
+   "area": "autonomista",
+   "colore": "#1a7f3c",
+   "dal": "1984-01-01",
+   "al": "1991-02-09",
+   "alias": [
+    "Lega Lombarda"
+   ]
+  }
+ ],
+ "coalizioni_note": {
+  "cdx": [
+   "fdi",
+   "fi",
+   "lega",
+   "nm",
+   "udc",
+   "ncd",
+   "pdl",
+   "an",
+   "fli",
+   "coraggio-italia",
+   "italia-al-centro",
+   "altri-cdx"
+  ],
+  "csx": [
+   "pd",
+   "avs",
+   "si",
+   "ev",
+   "piu-europa",
+   "psi",
+   "art1",
+   "leu",
+   "sel",
+   "idv",
+   "impegno-civico",
+   "altri-csx"
+  ]
+ }
+}

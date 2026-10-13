@@ -1,0 +1,342 @@
+{
+ "nota": "Registro delle fonti dell'Osservatorio sondaggi. «attiva» si può cambiare dal pannello di gestione (revisione di tipo «fonte»). «lotto» è il numero massimo di voci lette per esecuzione nel recupero storico. «livello» dice se la fonte pubblica il documento originale (primaria) o lo ripubblica (secondaria).",
+ "fonti": [
+  {
+   "id": "scenaripolitici",
+   "nome": "Scenari Politici",
+   "tipo": "wordpress",
+   "livello": "secondaria",
+   "attiva": true,
+   "url": "https://www.scenaripolitici.com/",
+   "copertura": "sondaggi nazionali, regionali e comunali ripubblicati dal 2009; sondaggi propri (GPG, Winpoll) anche sul Friuli Venezia Giulia",
+   "accesso": "interfaccia WordPress (wp-json) raggiungibile; immagini su scenaripolitici.com, pbs.twimg.com, dire.it",
+   "parametri": {
+    "lotto": 300,
+    "ocr": true
+   }
+  },
+  {
+   "id": "wikipedia",
+   "nome": "Wikipedia (tabelle dei sondaggi)",
+   "tipo": "wikipedia",
+   "livello": "secondaria",
+   "attiva": true,
+   "url": "https://en.wikipedia.org/",
+   "copertura": "tabelle per elezione con istituto, periodo delle interviste, campione, valori e riferimento alla pubblicazione originale",
+   "accesso": "interfaccia MediaWiki (action=parse)",
+   "parametri": {
+    "pagine": [
+     {
+      "lingua": "en",
+      "titolo": "Opinion_polling_for_the_next_Italian_general_election",
+      "elezione": "politiche",
+      "descrizione": "sondaggi per le prossime elezioni politiche",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "Opinion_polling_for_the_2022_Italian_general_election",
+      "elezione": "politiche",
+      "descrizione": "sondaggi per le elezioni politiche 2022",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "Opinion_polling_for_the_2018_Italian_general_election",
+      "elezione": "politiche",
+      "descrizione": "sondaggi per le elezioni politiche 2018",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "Opinion_polling_for_the_2013_Italian_general_election",
+      "elezione": "politiche",
+      "descrizione": "sondaggi per le elezioni politiche 2013",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "Opinion_polling_for_the_2008_Italian_general_election",
+      "elezione": "politiche",
+      "descrizione": "sondaggi per le elezioni politiche 2008",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "Opinion_polling_for_the_2006_Italian_general_election",
+      "elezione": "politiche",
+      "descrizione": "sondaggi per le elezioni politiche 2006",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "2024_European_Parliament_election_in_Italy",
+      "elezione": "europee",
+      "descrizione": "sondaggi per le elezioni europee 2024",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "2019_European_Parliament_election_in_Italy",
+      "elezione": "europee",
+      "descrizione": "sondaggi per le elezioni europee 2019",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "2014_European_Parliament_election_in_Italy",
+      "elezione": "europee",
+      "descrizione": "sondaggi per le elezioni europee 2014",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "Opinion_polling_for_the_2016_Italian_constitutional_referendum",
+      "elezione": "referendum",
+      "descrizione": "sondaggi per il referendum costituzionale 2016",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "Opinion_polling_for_the_2020_Italian_constitutional_referendum",
+      "elezione": "referendum",
+      "descrizione": "sondaggi per il referendum costituzionale 2020",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "2023_Friuli-Venezia_Giulia_regional_election",
+      "elezione": "regionali",
+      "descrizione": "elezioni regionali del Friuli Venezia Giulia 2023",
+      "territorio": {
+       "tipo": "regione",
+       "nome": "Friuli Venezia Giulia",
+       "codice": "FVG"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "2018_Friuli-Venezia_Giulia_regional_election",
+      "elezione": "regionali",
+      "descrizione": "elezioni regionali del Friuli Venezia Giulia 2018",
+      "territorio": {
+       "tipo": "regione",
+       "nome": "Friuli Venezia Giulia",
+       "codice": "FVG"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "2013_Friuli-Venezia_Giulia_regional_election",
+      "elezione": "regionali",
+      "descrizione": "elezioni regionali del Friuli Venezia Giulia 2013",
+      "territorio": {
+       "tipo": "regione",
+       "nome": "Friuli Venezia Giulia",
+       "codice": "FVG"
+      }
+     },
+     {
+      "lingua": "it",
+      "titolo": "Sondaggi_sulle_elezioni_politiche_in_Italia_del_2018",
+      "elezione": "politiche",
+      "descrizione": "sondaggi per le elezioni politiche 2018 (Wikipedia in italiano)",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "it",
+      "titolo": "Sondaggi_sulle_elezioni_europee_del_2009_in_Italia",
+      "elezione": "europee",
+      "descrizione": "sondaggi per le elezioni europee 2009 (Wikipedia in italiano)",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "it",
+      "titolo": "Elezioni_regionali_in_Friuli-Venezia_Giulia_del_2023",
+      "elezione": "regionali",
+      "descrizione": "elezioni regionali del Friuli Venezia Giulia 2023 (Wikipedia in italiano)",
+      "territorio": {
+       "tipo": "regione",
+       "nome": "Friuli Venezia Giulia",
+       "codice": "FVG"
+      }
+     },
+     {
+      "lingua": "it",
+      "titolo": "Elezioni_regionali_in_Friuli-Venezia_Giulia_del_2018",
+      "elezione": "regionali",
+      "descrizione": "elezioni regionali del Friuli Venezia Giulia 2018 (Wikipedia in italiano)",
+      "territorio": {
+       "tipo": "regione",
+       "nome": "Friuli Venezia Giulia",
+       "codice": "FVG"
+      }
+     },
+     {
+      "lingua": "it",
+      "titolo": "Elezioni_amministrative_in_Italia_del_2021",
+      "elezione": "comunali",
+      "descrizione": "elezioni amministrative 2021 (Wikipedia in italiano)",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "2021_Italian_local_elections",
+      "elezione": "comunali",
+      "descrizione": "elezioni comunali 2021 (Wikipedia in inglese)",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     },
+     {
+      "lingua": "en",
+      "titolo": "Opinion_polling_for_the_2016_Italian_local_elections",
+      "elezione": "comunali",
+      "descrizione": "elezioni comunali 2016 (Wikipedia in inglese)",
+      "territorio": {
+       "tipo": "Italia",
+       "nome": "Italia",
+       "codice": "IT"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "demos",
+   "nome": "Demos & Pi",
+   "tipo": "demos",
+   "livello": "primaria",
+   "attiva": true,
+   "url": "https://www.demos.it/",
+   "copertura": "Atlante Politico (la Repubblica), Osservatorio sul Nord Est (Il Gazzettino: Veneto, Friuli Venezia Giulia e provincia di Trento insieme), Osservatorio Capitale Sociale, indagini europee",
+   "accesso": "pagine HTML con nota informativa in testo e grafici come immagini",
+   "parametri": {
+    "lotto": 40,
+    "ocr": true
+   }
+  },
+  {
+   "id": "swg",
+   "nome": "SWG (Radar)",
+   "tipo": "swg",
+   "livello": "primaria",
+   "attiva": true,
+   "url": "https://www.swg.it/osservatorio",
+   "copertura": "Radar settimanale: orientamenti di voto (per La7), fiducia nelle istituzioni, temi di attualità; solo l'ultimo numero è collegato dal sito; i Radar dal 2021 si recuperano dalle copie della Wayback Machine",
+   "accesso": "PDF raggiungibile; grafici come immagini nel PDF",
+   "parametri": {
+    "ocr": true,
+    "wayback": true,
+    "lotto": 12
+   }
+  },
+  {
+   "id": "wayback_portale",
+   "nome": "Portale ufficiale sondaggipoliticoelettorali.it (copie Wayback Machine)",
+   "tipo": "wayback_portale",
+   "livello": "primaria",
+   "attiva": true,
+   "url": "https://web.archive.org/web/*/sondaggipoliticoelettorali.it*",
+   "copertura": "elenchi e schede del vecchio portale, 2002–2013 circa; il portale attuale non è archiviato",
+   "accesso": "il portale non risponde né da GitHub né dall'ambiente di lavoro (blocco geografico): si leggono solo le copie della Wayback Machine",
+   "parametri": {
+    "lotto": 80,
+    "ocr": true
+   }
+  },
+  {
+   "id": "caricamenti",
+   "nome": "Documenti caricati dal pannello",
+   "tipo": "caricamenti",
+   "livello": "primaria",
+   "attiva": true,
+   "url": null,
+   "copertura": "PDF, CSV, XLSX e immagini caricati a mano (per esempio le note informative scaricate dal portale ufficiale)",
+   "accesso": "ramo sondaggi-dati, cartella caricati/ (file cifrati)",
+   "parametri": {
+    "ocr": true
+   }
+  },
+  {
+   "id": "portale_ufficiale",
+   "nome": "Portale ufficiale sondaggipoliticoelettorali.it (sito attuale)",
+   "tipo": "non_raggiungibile",
+   "livello": "primaria",
+   "attiva": false,
+   "url": "https://www.sondaggipoliticoelettorali.it/",
+   "copertura": "tutti i sondaggi politici ed elettorali pubblicati in Italia, con documento completo (deposito previsto dalla legge 28/2000)",
+   "accesso": "NON RAGGIUNGIBILE: la connessione va in timeout dal computer di GitHub (Azure) e dall'ambiente di lavoro. Servirebbe un esecutore in Italia (runner autogestito). Nel frattempo i documenti si caricano a mano dal pannello.",
+   "parametri": {}
+  },
+  {
+   "id": "termometropolitico",
+   "nome": "Termometro Politico",
+   "tipo": "non_raggiungibile",
+   "livello": "primaria",
+   "attiva": false,
+   "url": "https://www.termometropolitico.it/sondaggi",
+   "copertura": "sondaggi settimanali propri e rassegna degli altri istituti",
+   "accesso": "NON RAGGIUNGIBILE in automatico: il sito oppone una verifica anti automatismi (Cloudflare) che non viene aggirata. I valori di Termometro Politico arrivano dalle tabelle di Wikipedia e da Scenari Politici.",
+   "parametri": {}
+  }
+ ]
+}

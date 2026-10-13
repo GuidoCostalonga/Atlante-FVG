@@ -1,0 +1,10 @@
+{
+  "nota": "Restrizioni configurabili alla visualizzazione, diffusione ed esportazione. La legge 22 febbraio 2000, n. 28, articolo 8, vieta di rendere pubblici o comunque diffondere i risultati di sondaggi sull'esito delle elezioni e sugli orientamenti politici e di voto degli elettori nei quindici giorni precedenti la data delle votazioni e fino alla chiusura dei seggi. La password della sezione non è di per sé un'esenzione: l'archivio conserva i dati, la pagina applica i blocchi qui elencati. Ogni voce vale per il territorio indicato (e, se «comune», solo per quel comune) e per i tipi di domanda indicati. La riga «regola» generale si applica automaticamente a ogni elezione elencata in «elezioni» usando le date; le voci «periodi» sono blocchi espliciti aggiuntivi.",
+  "regola": {"giorniPrima": 15, "blocca": ["grafici", "tabelle", "esportazione"], "tipi": ["voto", "scenario"], "avviso": "Periodo di silenzio dei sondaggi (articolo 8 della legge 28/2000): dal quindicesimo giorno prima del voto alla chiusura dei seggi i risultati su orientamenti e intenzioni di voto per questa consultazione non vengono mostrati né esportati."},
+  "elezioni": [
+    {"id": "comunali-fvg-2026", "nome": "Elezioni comunali in Friuli Venezia Giulia 2026 (primo turno e ballottaggio)", "territorio": {"tipo": "regione", "codice": "FVG"}, "elezione": "comunali", "voto": "2026-04-19", "chiusura": "2026-05-04", "nota": "date da verificare sull'albo della Regione: la regola si applica solo se confermate", "attiva": false}
+  ],
+  "periodi": [],
+  "mostraAvvisoGenerale": true,
+  "avvisoGenerale": "Sezione riservata a uso interno. I dati riportano sondaggi già pubblicati dalle fonti indicate in ogni scheda; la diffusione di risultati nei quindici giorni precedenti una votazione è vietata dall'articolo 8 della legge 28/2000. Ogni grafico e ogni esportazione riportano istituto, committente, date e fonte."
+}
