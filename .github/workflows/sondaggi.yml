@@ -32,6 +32,17 @@ jobs:
           done
           prendi swg_home.html https://www.swg.it/
           prendi sp_feed.xml https://www.scenaripolitici.com/feed/
+          prendi wiki_en_cerca.json 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=intitle:%22Opinion%20polling%22%20intitle:Italian&format=json&srlimit=50'
+          prendi wiki_en_cerca2.json 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=intitle:%22Opinion%20polling%22%20intitle:Friuli&format=json&srlimit=50'
+          prendi wiki_it_cerca.json 'https://it.wikipedia.org/w/api.php?action=query&list=search&srsearch=intitle:Sondaggi%20intitle:elezioni&format=json&srlimit=50'
+          prendi wiki_en_next.html 'https://en.wikipedia.org/w/api.php?action=parse&page=Opinion_polling_for_the_next_Italian_general_election&prop=text&format=json&formatversion=2'
+          prendi wiki_en_fvg23.html 'https://en.wikipedia.org/w/api.php?action=parse&page=2023_Friuli-Venezia_Giulia_regional_election&prop=text&format=json&formatversion=2'
+          prendi wb_vis.html 'https://web.archive.org/web/2012id_/http://www.sondaggipoliticoelettorali.it/asp/visualizza_sondaggio.asp?idsondaggio=1900'
+          prendi wb_lista.html 'https://web.archive.org/web/2011id_/http://www.sondaggipoliticoelettorali.it/asp/visualizza_sondaggi.asp?ordine=&PaginaCorrente=3'
+          prendi wb_lista_new.html 'https://web.archive.org/web/2026id_/https://www.sondaggipoliticoelettorali.it/ListaSondaggi.aspx'
+          prendi tp_art.html 'https://www.termometropolitico.it/1634542_sondaggi-elettorali-emg-milano-campo-largo-avanti-con-calabresi.html'
+          prendi tp_tag.html 'https://www.termometropolitico.it/tag/sondaggi-elettorali'
+          prendi twimg.jpg 'https://pbs.twimg.com/media/HT3i2UJWMAAObiT?format=jpg&name=orig'
           ls -la
       - uses: actions/upload-artifact@v4
         with:
