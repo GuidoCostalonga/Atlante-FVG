@@ -656,3 +656,42 @@ Servizi, Stradario, Catasto, Elezioni) e i temi. Nel tema «Amministrazione ed e
 sezione riservata `elezioni/` (voce di tipo `p`, collegamento a una pagina). Sul telefono la barra in basso (Inizio, Mappe, Confronto,
 Comuni, Altro) resta com'era. Anche le pagine autonome (Orari, Meteo, Bandi, Opere, Finanziamenti, Servizi, Stradario, Cosa è cambiato,
 Elezioni) hanno in alto solo il marchio e il pulsante «Menù», con l'elenco completo delle pagine su due colonne; Catasto non aveva una barra.
+
+## Sezione riservata «Osservatorio sondaggi» (13 ottobre 2026)
+
+Pagina `sondaggi/`, protetta come le altre sezioni riservate: la parola d'ordine deriva nel browser la chiave
+(PBKDF2, 300.000 giri) che decifra il frammento `contenuto.json` e, con la stessa chiave, l'archivio dei dati
+pubblicato cifrato nel ramo `sondaggi-dati`. Nessun dato in chiaro nei file pubblici; la chiave resta in
+`sessionStorage` (`atlante-fvg:sondaggi-chiave`) finché la scheda è aperta. La pagina è `noindex`, fuori
+dalla sitemap, raggiungibile dal menu di ogni pagina («Osservatorio sondaggi (riservata)») e dagli strumenti
+della pagina iniziale.
+
+Che cosa contiene: le rilevazioni demoscopiche pubblicamente reperibili (intenzioni di voto per partito e
+coalizione, scenari e candidati, fiducia in leader, Governo e istituzioni, problemi prioritari, economia,
+servizi, temi di attualità), separate fra Italia e Friuli Venezia Giulia (solo rilevazioni dichiarate dalla
+fonte come regionali o locali: i dati nazionali e del Nord Est non sono attribuiti alla regione), per
+istituto, con la scheda di ogni rilevazione (istituto, committente, editore, date delle interviste, campione,
+metodo, nota metodologica, testo originale delle domande, valori, fonti cliccabili, limiti) e lo stato degli
+aggiornamenti (ultimo tentativo, ultimo riuscito, ultima rilevazione disponibile).
+
+Viste: Panoramica, Italia, Friuli Venezia Giulia, Istituti (elenco ricercabile con pagina per istituto),
+Percezioni (per argomento), Archivio (tabella con ricerca, filtri e ordinamento, esportazione CSV ed Excel
+con provenienza e note), Gestione (coda «da verificare», fonti, caricamento di documenti, correzioni con
+cronologia, istituti e alias, serie dichiarate a mano, esecuzioni ed errori, «Aggiorna adesso»). I grafici
+sono in SVG: una linea per soggetto, legenda selezionabile, intervalli di 6 mesi, 1 anno, 3 anni, tutto o
+personalizzato, ingrandimento per trascinamento, tabella accessibile, esportazione SVG e PNG con titolo,
+periodo, istituto e fonte. Nessuna media fra istituti, nessuna interpolazione; le fasce gialle segnalano oltre
+sei mesi senza rilevazioni; i punti vuoti usano la data di pubblicazione quando la fine delle interviste non
+è nota; le variazioni sono in punti percentuali rispetto alla rilevazione comparabile precedente dello stesso
+istituto. Una sola osservazione viene mostrata come barre, non come andamento.
+
+Aggiornamento: flusso `.github/workflows/sondaggi.yml`, ogni giorno alle 6 (Europe/Rome) e a richiesta dal
+pannello (workflow_dispatch) in modalità incrementale, storico (recupero a lotti, riprendibile) o
+ricontrollo. Un errore di una fonte non tocca le altre né i dati esistenti. Le estrazioni che non superano i
+controlli di coerenza finiscono nella coda «da verificare», esclusa dai grafici; le correzioni manuali sono
+protette dagli aggiornamenti successivi. Fonti, raggiungibilità, modello dei dati, regole di importazione e
+limiti di protezione sono descritti in `scripts/sondaggi/LEGGIMI.md`. Prove: `prove/sondaggi.js`.
+
+Restrizioni: `dati/sondaggi/restrizioni.json` applica il divieto di diffusione dei quindici giorni precedenti
+le votazioni (legge 22 febbraio 2000, n. 28, articolo 8) nascondendo grafici, tabelle ed esportazioni delle
+intenzioni di voto per la consultazione e il territorio interessati; l'archivio conserva i dati.
