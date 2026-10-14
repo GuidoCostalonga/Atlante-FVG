@@ -13,7 +13,7 @@
  */
 (function () {
   'use strict';
-  var ID_MISURAZIONE = 'G-XXXXXXXXXX';
+  var ID_MISURAZIONE = 'G-380D56PCJN';
   var CHIAVE = 'atlante-fvg:consenso', VERSIONE = 1;
   var DURATA_SCELTA = 182 * 24 * 3600 * 1000; // 6 mesi
   var DURATA_COOKIE = 182 * 24 * 3600;        // i cookie di GA4 non durano più della scelta

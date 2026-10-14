@@ -194,7 +194,7 @@ licenze in uso sono IODL 2.0 e CC BY 4.0 (verificato sul catalogo regionale il 6
   `analytics_storage`; segnali Google e personalizzazione della pubblicità disattivati; cookie di GA4 al massimo 6 mesi.
   La scelta sta in `localStorage` (chiave `atlante-fvg:consenso`) e vale 6 mesi; «Preferenze sui cookie», aggiunto in fondo a
   ogni pagina (o qualunque elemento con `data-consenso-apri`), la cambia; la revoca cancella i cookie `_ga` e ricarica la pagina.
-  L'ID di misurazione è la costante `ID_MISURAZIONE` in cima a `consenso.js`: finché resta `G-XXXXXXXXXX` lo script non fa nulla.
+  L'ID di misurazione (`G-380D56PCJN`) è la costante `ID_MISURAZIONE` in cima a `consenso.js`: con il segnaposto `G-XXXXXXXXXX` lo script non fa nulla.
   Informativa sui cookie: Metodo e fonti, sezione `#cookie` (pagina interattiva e `metodo/`).
 
 ## Grafica e uso sul telefono
