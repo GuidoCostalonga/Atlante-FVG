@@ -82,6 +82,7 @@ def main():
     t = sostituisci(t, r'<title>[^<]*</title>', '<title>Meteo dei 215 comuni del Friuli Venezia Giulia · Atlante FVG</title>', regex=True)
     t = sostituisci(t, '<style>@font-face', """<link rel="icon" href="../favicon.ico" sizes="any">
 <script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="/consenso.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Atlante FVG","item":"https://atlantefvg.it/"},{"@type":"ListItem","position":2,"name":"Meteo","item":"https://atlantefvg.it/meteo/"}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
