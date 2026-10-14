@@ -1,0 +1,65 @@
+name: Aggiorna le strutture ricettive
+
+# Il primo lunedì di ogni mese rilegge il portale PromoTurismoFVG e i dati aperti della Regione e aggiorna
+# la sezione «Strutture ricettive» solo con dati certi (regole in scripts/aggiorna_strutture.py).
+# Il calendario di GitHub non sa dire «primo lunedì»: il flusso parte ogni lunedì e prosegue solo se il giorno
+# del mese è fra 1 e 7. Si può avviare a mano da Actions, «Aggiorna le strutture ricettive», «Run workflow».
+on:
+  schedule:
+    - cron: '23 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: aggiorna-dati
+  cancel-in-progress: false
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - name: Controlla che sia il primo lunedì del mese
+        id: giorno
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$(date -u +%-d)" -le 7 ]; then
+            echo "procedi=si" >> "$GITHUB_OUTPUT"
+          else
+            echo "Non è il primo lunedì del mese: nessun controllo."
+            echo "procedi=no" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v5
+        if: steps.giorno.outputs.procedi == 'si'
+        with:
+          fetch-depth: 0  # il registro «Cosa è cambiato» legge tutta la storia
+
+      - uses: actions/setup-python@v6
+        if: steps.giorno.outputs.procedi == 'si'
+        with:
+          python-version: '3.12'
+
+      - name: Rilegge le fonti ufficiali
+        if: steps.giorno.outputs.procedi == 'si'
+        run: python scripts/aggiorna_strutture.py | tee esito.txt
+
+      - name: Pubblica se qualcosa è cambiato
+        if: steps.giorno.outputs.procedi == 'si'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add dati/strutture_ricettive.json dati/strutture_ricettive_fonti.json
+          if git diff --cached --quiet; then
+            echo "Nessuna novità da pubblicare."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Aggiorna le strutture ricettive del $(date +%d/%m/%Y)" -m "$(grep -v '^  schede lette' esito.txt | head -60)"
+          python scripts/registro_aggiornamenti.py && git add dati/aggiornamenti.json && git commit --amend --no-edit
+          git push
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true
