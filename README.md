@@ -711,6 +711,28 @@ Ne derivano l'indicatore categoriale «Comunità linguistiche tutelate» (gruppo
 La cartina 21.1 dell'Annuario, letta dall'immagine, resta disponibile a parte. Si rigenera con `python3 scripts/aggiorna_lingue.py`
 (con `--prova` non scrive nulla).
 
+## Strutture ricettive (14 ottobre 2026)
+
+La pagina `strutture/` è l'archivio delle strutture ricettive del Friuli Venezia Giulia: 3.184 strutture del portale ufficiale
+PromoTurismoFVG e 1.013 voci presenti nel solo registro regionale (dati aperti), con la provenienza sempre visibile. Base: il file
+«Strutture ricettive FVG 2026» (dati estratti il 14 ottobre 2026), convertito in `dati/strutture_ricettive.json` (record compatti,
+testi ripetuti in un dizionario; note di metodo, parametri dei prezzi e verifica dei collegamenti del file).
+
+- **Pagina**: mappa per comune (Leaflet, OpenStreetMap; un cerchio per comune con il numero di strutture filtrate, raggruppati quando
+  sono vicini; la posizione è il centro del comune, coordinate da Wikidata per codice ISTAT), ricerca libera, filtri a scelta multipla
+  (provenienza, provincia, comune, tipologia, zona e base del prezzo, riscontro nel registro, stato del sito web), presenza di telefono,
+  posta elettronica, sito, CIN e scheda ufficiale, intervalli numerici (posti letto, camere, bagni, posti letto per camera, prezzi),
+  filtri attivi rimovibili, ordinamento, elenco o tabella, scheda di dettaglio con collegamento alla scheda del comune nell'Atlante,
+  esportazione CSV e stampa. `?comune=<slug>` apre la pagina già filtrata sul comune.
+- **Prezzi**: sempre «prezzi medi stimati» di zona, calcolati con le formule e i parametri del file; mai prezzi ufficiali.
+- **Aggiornamento mensile**: `.github/workflows/aggiorna-strutture.yml` parte ogni lunedì e prosegue solo se il giorno del mese è
+  fra 1 e 7 (il primo lunedì del mese); si avvia anche a mano da Actions. `scripts/aggiorna_strutture.py` rilegge l'elenco ufficiale
+  per tipologia del portale (con più ordinamenti, perché il portale a volte restituisce pagine vuote, fino al totale dichiarato),
+  ogni scheda e i nove elenchi aperti della Regione, e cambia un dato solo se la fonte lo dice in modo esplicito: le regole sono
+  nell'intestazione dello script. Le copie degli elenchi aperti usate come riferimento sono in `dati/strutture_ricettive_fonti.json`.
+  I casi dubbi finiscono nell'elenco «da verificare» della pagina («Fonti, metodo e limiti»); se le fonti rispondono in modo anomalo
+  il flusso si ferma senza cambiare nulla. Prova senza scrivere: `python scripts/aggiorna_strutture.py --prova`.
+
 ## Barra in alto ridotta al solo «Menù» (8 ottobre 2026)
 
 Su computer la barra in alto non elenca più le pagine: resta il pulsante «Menù» (già «Argomenti»), che apre il pannello con la riga

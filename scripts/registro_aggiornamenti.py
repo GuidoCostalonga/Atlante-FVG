@@ -20,7 +20,7 @@ PAGINA = RADICE / 'index.html'
 FILE = RADICE / 'dati' / 'aggiornamenti.json'
 BOT = 'github-actions'
 # pagine o servizi riconosciuti nel testo dei commit: parola chiave -> (etichetta, collegamento)
-SERVIZI = [(r'\bbandi\b', 'Bandi e avvisi della Regione', '../bandi/'), (r'finanziament|vantaggi economici|atti di concessione', 'Finanziamenti regionali', '../finanziamenti/'), (r'osservatorio|\bopere\b', 'Osservatorio delle opere pubbliche', '../opere/'), (r'servizi sul territorio|mappa dei servizi', 'Servizi sul territorio', '../servizi/'), (r'opere pubbliche|OpenCUP', 'Opere pubbliche (OpenCUP)', '../?pagina=archivio&foglio=Opere_pubbliche_OpenCUP'),
+SERVIZI = [(r'strutture ricettive', 'Strutture ricettive', '../strutture/'), (r'\bbandi\b', 'Bandi e avvisi della Regione', '../bandi/'), (r'finanziament|vantaggi economici|atti di concessione', 'Finanziamenti regionali', '../finanziamenti/'), (r'osservatorio|\bopere\b', 'Osservatorio delle opere pubbliche', '../opere/'), (r'servizi sul territorio|mappa dei servizi', 'Servizi sul territorio', '../servizi/'), (r'opere pubbliche|OpenCUP', 'Opere pubbliche (OpenCUP)', '../?pagina=archivio&foglio=Opere_pubbliche_OpenCUP'),
            (r'\borari\b', 'Orari degli autobus', '../orari/'), (r'autobus|rete|GTFS|fermat', 'Rete degli autobus', '../?pagina=autobus'), (r'meteo', 'Meteo', '../meteo/'),
            (r'catasto', 'Catasto', '../catasto/'), (r'stradario', 'Stradario', '../stradario/'), (r'allert|qualità dell.aria|\baria\b', 'Allerte e qualità dell\'aria', '../?pagina=ambiente'),
            (r'confronto', 'Confronto', '../?pagina=confronto'), (r'mapp', 'Mappe', '../?pagina=mappe'), (r'dossier|scheda', 'Scheda del comune', '../?pagina=comuni'), (r'metodo|fonti|versioni', 'Metodo e fonti', '../?pagina=metodo')]
@@ -32,7 +32,7 @@ def git(*args):
 
 def tipo_di(titolo, autore, corpo):
     t = titolo.lower()
-    if autore.startswith(BOT) or re.match(r'^aggiorna (i dati|i bandi|le opere|la rete|gli orari)', t):
+    if autore.startswith(BOT) or re.match(r'^aggiorna (i dati|i bandi|le opere|la rete|gli orari|le strutture)', t):
         return 'dati'
     if re.match(r'^(corregge|sistema|risolve|ripara|allinea|toglie|mantiene|separa|fa scendere|armonizza)', t) or 'correzion' in t:
         return 'correzione'

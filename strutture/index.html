@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strutture ricettive · Atlante FVG</title>
+<meta name="description" content="Alberghi, bed and breakfast, affittacamere, agriturismi, case vacanze, campeggi e rifugi del Friuli Venezia Giulia dal portale PromoTurismoFVG e dal registro regionale: mappa per comune, filtri, posti letto e prezzi medi stimati.">
+<link rel="canonical" href="https://atlantefvg.it/strutture/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<meta name="theme-color" content="#0B3359">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Atlante FVG">
+<meta property="og:url" content="https://atlantefvg.it/strutture/">
+<meta property="og:title" content="Strutture ricettive · Atlante FVG">
+<meta property="og:description" content="Le strutture ricettive del Friuli Venezia Giulia comune per comune, con scheda ufficiale, posti letto e prezzi medi stimati.">
+<meta property="og:image" content="https://atlantefvg.it/anteprima.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo Atlante FVG con la scritta: i 215 comuni del Friuli Venezia Giulia">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Atlante FVG","item":"https://atlantefvg.it/"},{"@type":"ListItem","position":2,"name":"Strutture ricettive","item":"https://atlantefvg.it/strutture/"}]}</script>
+<script data-goatcounter="https://guidocostalonga.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script src="/consenso.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css">
+<link rel="stylesheet" href="../pagine.css">
+<style>
+  /* Pagina «Strutture ricettive»: stessi colori, caratteri e comandi delle altre pagine autonome (pagine.css) */
+  .contenuto { gap: 16px; }
+  .tot { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+  @media (min-width: 900px) { .tot { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .tot div { background: var(--carta); border: 1px solid var(--linea); border-radius: 12px; padding: 10px 14px; }
+  .tot small { display: block; font-size: 12px; font-weight: 700; color: var(--testo-3); text-transform: uppercase; letter-spacing: .04em; }
+  .tot b { display: block; font-family: var(--serif); font-size: 1.6rem; line-height: 1.15; color: var(--blu); font-variant-numeric: tabular-nums; margin-top: 2px; }
+  .tot span { display: block; font-size: 12px; color: var(--testo-3); }
+  .avviso p { margin: 0; } .avviso .linkbtn { border: 0; background: none; padding: 0; font: inherit; color: var(--blu-medio); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font-weight: 600; }
+  .layout { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; }
+  @media (min-width: 1024px) { .layout { grid-template-columns: 20rem minmax(0, 1fr); } }
+  .colonna { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  /* filtri */
+  .filters { padding: 0; display: flex; flex-direction: column; overflow: hidden; }
+  @media (min-width: 1024px) { .filters { position: sticky; top: 76px; max-height: calc(100vh - 92px); } }
+  .f-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 10px; border-bottom: 1px solid var(--linea); }
+  .f-head h2 { font-size: 1.15rem; }
+  .filters .f-close { display: none; }
+  .f-body { overflow: auto; padding: 12px 16px 6px; flex: 1; overscroll-behavior: contain; }
+  .f-foot { padding: 10px 16px 14px; border-top: 1px solid var(--linea); display: flex; gap: 8px; }
+  .search { position: relative; display: block; }
+  .search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--testo-3); pointer-events: none; }
+  .search input { min-height: 44px; width: 100%; border: 1px solid #CFC7B5; border-radius: 10px; background: #fff; padding: 8px 12px 8px 38px; font: inherit; font-size: 15px; color: var(--testo); }
+  .search input:focus { border-color: var(--blu-chiaro); outline: none; }
+  .hint { font-size: 12px; color: var(--testo-3); margin: 6px 2px 10px; line-height: 1.45; }
+  .fg { border-top: 1px solid var(--linea); }
+  .fg > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 2px; font-size: 14px; font-weight: 700; color: var(--blu); }
+  .fg > summary::-webkit-details-marker { display: none; }
+  .fg > summary .chev { margin-left: auto; transition: transform .2s; color: var(--testo-3); flex: none; }
+  .fg[open] > summary .chev { transform: rotate(180deg); }
+  .fg > summary .badge { background: var(--oro); color: #1F2329; border-radius: 999px; font-size: 12px; font-weight: 700; padding: 1px 8px; }
+  .fg-in { padding: 0 0 12px; }
+  .opts { display: flex; flex-direction: column; gap: 1px; max-height: 15rem; overflow: auto; }
+  .opt { display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 4px 6px; border-radius: 8px; cursor: pointer; font-size: 14px; line-height: 1.3; }
+  .opt:hover { background: var(--blu-tenue); }
+  .opt input { margin: 0; accent-color: var(--blu-chiaro); width: 18px; height: 18px; flex: none; }
+  .opt .lab { flex: 1; min-width: 0; }
+  .opt .num { font-size: 12px; color: var(--testo-3); font-variant-numeric: tabular-nums; }
+  .opt.zero { opacity: .5; }
+  .opt.nz, .opt[hidden] { display: none; }
+  .opt-search { min-height: 40px; width: 100%; border: 1px solid #CFC7B5; border-radius: 10px; background: #fff; padding: 6px 10px; font: inherit; font-size: 14px; margin-bottom: 6px; }
+  .seg { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; padding: 4px 0; }
+  .seg > span { font-size: 14px; }
+  .seg .sw { display: inline-flex; border: 1px solid #CBD8E6; border-radius: 10px; overflow: hidden; background: #fff; }
+  .seg .sw button { border: 0; background: transparent; min-height: 36px; padding: 0 9px; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; color: var(--blu-medio); }
+  .seg .sw button + button { border-left: 1px solid #CBD8E6; }
+  .seg .sw button[aria-pressed="true"] { background: var(--blu); color: #fff; }
+  .range { padding: 6px 0 8px; }
+  .range label.t { display: block; font-size: 13px; font-weight: 600; color: var(--testo-2); margin-bottom: 4px; }
+  .range .rr { display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; align-items: center; }
+  .range input { min-height: 40px; width: 100%; border: 1px solid #CFC7B5; border-radius: 10px; background: #fff; padding: 6px 10px; font: inherit; font-size: 14px; font-variant-numeric: tabular-nums; }
+  .range .dash { color: var(--testo-3); font-size: 13px; }
+  .range .ex { font-size: 12px; color: var(--testo-3); margin-top: 3px; }
+  .btn.primary { background: var(--blu); color: #fff; } .btn.primary:hover { background: var(--blu-fondo); }
+  .btn:not(.primary):not(.rust) { background: #fff; color: var(--blu-medio); border-color: #CBD8E6; } .btn:not(.primary):not(.rust):hover { background: var(--blu-tenue); }
+  .btn.rust { background: var(--blu); color: #fff; }
+  .btn.wide { flex: 1; }
+  .btn svg { width: 16px; height: 16px; flex: none; }
+  .btn[disabled] { opacity: .45; cursor: not-allowed; }
+  /* mappa */
+  .mapframe { position: relative; height: min(56vh, 560px); min-height: 320px; border-radius: 14px; overflow: hidden; border: 1px solid var(--linea); background: #E9E4D8; }
+  #map { height: 100%; width: 100%; }
+  .leaflet-container { font-family: var(--sans); font-size: 13px; }
+  .leaflet-bar { border: 1px solid var(--linea) !important; border-radius: 10px !important; box-shadow: 0 2px 8px rgba(11,51,89,.12) !important; overflow: hidden; }
+  .leaflet-bar a { width: 40px !important; height: 40px !important; line-height: 40px !important; color: var(--blu) !important; font-weight: 700; }
+  .leaflet-control-attribution { font-size: 11px; color: #4a463e; background: rgba(255,255,255,.88) !important; }
+  .leaflet-control-attribution a { color: var(--blu-medio); }
+  .map-top { position: absolute; top: 12px; left: 12px; right: 12px; z-index: 450; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; pointer-events: none; }
+  .map-label, .map-tools { pointer-events: auto; background: rgba(255,255,255,.95); border: 1px solid var(--linea); border-radius: 10px; box-shadow: 0 2px 8px rgba(11,51,89,.12); }
+  .map-label { padding: 8px 12px; max-width: min(340px, 60%); }
+  .map-label small { display: block; color: var(--testo-3); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+  .map-label b { display: block; margin-top: 2px; font-family: var(--serif); font-size: 1rem; color: var(--blu); }
+  .map-label p { margin: 3px 0 0; font-size: 12px; color: var(--testo-3); line-height: 1.4; }
+  .map-tools { display: flex; gap: 2px; padding: 3px; }
+  .tool { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 10px; border: 0; background: transparent; color: var(--blu-medio); border-radius: 8px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .tool:hover { background: var(--blu-tenue); } .tool svg { width: 16px; height: 16px; }
+  .map-caption { position: absolute; left: 12px; bottom: 12px; z-index: 450; background: rgba(255,255,255,.95); border: 1px solid var(--linea); border-radius: 8px; padding: 6px 10px; color: var(--testo-2); font-size: 12px; max-width: calc(100% - 80px); }
+  .map-caption b { color: var(--blu); }
+  .map-off { position: absolute; inset: 0; z-index: 900; display: none; place-items: center; padding: 24px; background: var(--avorio); }
+  .map-off.show { display: grid; }
+  .map-off div { max-width: 26rem; }
+  .map-warn { position: absolute; right: 12px; bottom: 12px; z-index: 460; display: none; max-width: 300px; }
+  .map-warn.show { display: block; }
+  .cpin { display: grid; place-items: center; border-radius: 50%; background: var(--blu); color: #fff; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(7,33,58,.35); font: 700 11px var(--sans); font-variant-numeric: tabular-nums; transition: transform .15s; animation: pop .35s cubic-bezier(.2,1.4,.4,1) both; }
+  .cpin:hover { transform: scale(1.12); }
+  .cpin.r { background: var(--oro); color: #1F2329; }
+  .cpin.m { background: linear-gradient(135deg, var(--blu) 50%, var(--oro) 50%); }
+  .ccl { display: grid; place-items: center; border-radius: 50%; background: var(--blu-fondo); color: #fff; border: 3px solid rgba(247,214,120,.85); box-shadow: 0 3px 10px rgba(7,33,58,.35); font: 700 12px var(--sans); font-variant-numeric: tabular-nums; animation: pop .35s cubic-bezier(.2,1.4,.4,1) both; }
+  @keyframes pop { from { transform: scale(.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .leaflet-popup-content-wrapper { border-radius: 12px; box-shadow: 0 8px 24px rgba(11,51,89,.18); }
+  .leaflet-popup-content { margin: 12px 14px; line-height: 1.45; font-size: 13px; }
+  .pop { min-width: 220px; max-width: 300px; }
+  .pop .tag { font-size: 12px; font-weight: 700; color: var(--testo-3); }
+  .pop h3 { font-size: 1.1rem; margin: 2px 0; }
+  .pop .pos { font-size: 12px; color: var(--testo-3); margin: 0 0 8px; }
+  .pop ul { list-style: none; margin: 0; padding: 0; max-height: 230px; overflow: auto; border-top: 1px solid var(--linea); }
+  .pop li { padding: 7px 0; border-bottom: 1px solid var(--linea); }
+  .pop li button { border: 0; background: none; padding: 0; font: 600 14px var(--serif); text-align: left; cursor: pointer; color: var(--blu); }
+  .pop li button:hover { text-decoration: underline; }
+  .pop .meta { display: block; color: var(--testo-3); font-size: 12px; margin-top: 2px; }
+  .pop .acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .pop .acts .btn { min-height: 36px; padding: 4px 10px; font-size: 13px; }
+  .pop dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; margin: 6px 0 0; font-size: 13px; }
+  .pop dt { color: var(--testo-3); } .pop dd { margin: 0; }
+  /* risultati */
+  .results { padding: 16px; }
+  @media (min-width: 640px) { .results { padding: 20px; } }
+  .r-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; justify-content: space-between; }
+  .r-count h2 { font-size: 1.35rem; }
+  .r-count h2 b { font-variant-numeric: tabular-nums; }
+  .r-count p { margin: 2px 0 0; font-size: 13px; color: var(--testo-3); }
+  .r-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .sel { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--testo-2); font-weight: 600; }
+  .sel select { min-height: 44px; border: 1px solid #CFC7B5; border-radius: 10px; background: #fff; padding: 6px 10px; font: inherit; font-size: 14px; color: var(--testo); }
+  .toggle { display: inline-flex; border: 1px solid #CBD8E6; border-radius: 10px; overflow: hidden; background: #fff; }
+  .toggle button { border: 0; background: transparent; min-height: 42px; padding: 0 12px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; color: var(--blu-medio); }
+  .toggle button + button { border-left: 1px solid #CBD8E6; }
+  .toggle button[aria-pressed="true"] { background: var(--blu); color: #fff; }
+  .toggle svg { width: 16px; height: 16px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #E8C77E; background: #FEF8E3; color: #5C3B08; border-radius: 999px; padding: 3px 4px 3px 12px; font-size: 13px; animation: fadein .2s both; }
+  .chip button { border: 0; background: #F3DFA8; color: #5C3B08; width: 24px; height: 24px; min-height: 24px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; font-size: 14px; line-height: 1; padding: 0; }
+  .chip button:hover { background: var(--oro); }
+  .chip.clear { background: #fff; border: 1px dashed #CBD8E6; color: var(--blu-medio); padding: 3px 12px; cursor: pointer; font: inherit; font-size: 13px; font-weight: 600; }
+  .list { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 10px; margin-top: 14px; }
+  .card { display: flex; flex-direction: column; gap: 5px; text-align: left; width: 100%; border: 1px solid var(--linea); background: var(--carta); border-radius: 14px; padding: 14px 16px; cursor: pointer; font: inherit; color: inherit; transition: border-color .15s, box-shadow .15s, transform .15s; }
+  .card:hover { border-color: #CBD8E6; box-shadow: 0 6px 18px rgba(11,51,89,.10); transform: translateY(-1px); }
+  .card.in { animation: rise .32s cubic-bezier(.2,.8,.3,1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+  .card .top { display: flex; align-items: flex-start; gap: 8px; }
+  .card .h { font-family: var(--serif); font-size: 1.02rem; line-height: 1.3; font-weight: 600; color: var(--blu); flex: 1; min-width: 0; overflow-wrap: anywhere; }
+  .src { flex: none; display: inline-flex; align-items: center; border-radius: 999px; padding: 2px 9px; font-size: 12px; font-weight: 700; border: 1px solid transparent; white-space: nowrap; }
+  .src.P { background: var(--blu-tenue); color: var(--blu); border-color: #CBD8E6; }
+  .src.R { background: #FEF8E3; color: #7A4E0C; border-color: #E8C77E; }
+  .card .tip { font-size: 14px; color: var(--testo-2); }
+  .card .loc { font-size: 13px; color: var(--testo-3); }
+  .card .facts { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; color: var(--testo-2); }
+  .card .facts i { font-style: normal; color: var(--testo-3); }
+  .card .price { font-size: 13px; color: var(--testo-2); border-top: 1px solid var(--linea); padding-top: 6px; margin-top: 2px; }
+  .card .price b { color: var(--blu); }
+  .card .price.na { color: var(--testo-3); font-style: italic; }
+  .card .ids { font-size: 12px; color: var(--testo-3); }
+  .tablewrap { margin-top: 14px; overflow: auto; border: 1px solid var(--linea); border-radius: 12px; background: #fff; max-height: 70vh; }
+  table.res { border-collapse: collapse; width: 100%; min-width: 980px; font-size: 14px; }
+  table.res th { position: sticky; top: 0; background: #F3EFE4; text-align: left; font-size: 12px; font-weight: 700; color: var(--testo-2); padding: 10px; border-bottom: 1px solid var(--linea); z-index: 1; }
+  table.res th button { all: unset; cursor: pointer; display: inline-flex; gap: 4px; align-items: center; color: var(--blu-medio); }
+  table.res td { padding: 9px 10px; border-bottom: 1px solid #EFEADF; vertical-align: top; }
+  table.res tbody tr { cursor: pointer; }
+  table.res tbody tr:hover, table.res tbody tr:focus-visible { background: var(--blu-tenue); }
+  table.res tbody tr.in { animation: fadein .25s both; }
+  table.res td.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  table.res td.name { font-family: var(--serif); font-weight: 600; color: var(--blu); }
+  .na { color: var(--testo-3); font-style: italic; }
+  .empty { padding: 28px 16px; text-align: center; color: var(--testo-3); }
+  .empty b { display: block; font-family: var(--serif); font-size: 1.15rem; color: var(--blu); margin-bottom: 6px; }
+  .pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; font-size: 13px; color: var(--testo-3); }
+  .pager .pg { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .mobile-bar { display: none; }
+  /* finestre */
+  dialog { border: 0; padding: 0; background: transparent; color: var(--testo); max-width: none; max-height: none; }
+  dialog::backdrop { background: rgba(7,33,58,.45); }
+  dialog[open]::backdrop { animation: fadein .2s both; }
+  .drawer { position: fixed; inset: 0 0 0 auto; margin: 0; height: 100%; width: min(560px, 100%); }
+  .drawer .sheet { height: 100%; display: flex; flex-direction: column; background: var(--avorio); border-left: 1px solid var(--linea); box-shadow: -16px 0 40px rgba(7,33,58,.18); }
+  dialog.drawer[open] .sheet { animation: slidein .28s cubic-bezier(.2,.8,.3,1) both; }
+  dialog.drawer.closing .sheet { animation: slideout .2s ease-in both; }
+  dialog.closing::backdrop { animation: fadeout .2s both; }
+  @keyframes slidein { from { transform: translateX(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes slideout { to { transform: translateX(40px); opacity: 0; } }
+  @keyframes fadeout { to { opacity: 0; } }
+  .sheet-h { padding: 16px 20px 14px; border-bottom: 1px solid var(--linea); background: #fff; display: flex; gap: 12px; align-items: flex-start; }
+  .sheet-h .tt { flex: 1; min-width: 0; }
+  .kicker { font-size: 12px; font-weight: 700; color: var(--testo-3); text-transform: uppercase; letter-spacing: .04em; }
+  .sheet-h h2 { font-size: 1.35rem; margin: 4px 0; overflow-wrap: anywhere; }
+  .sheet-h p { margin: 0; color: var(--testo-2); font-size: 14px; }
+  .xbtn { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #CBD8E6; background: #fff; display: grid; place-items: center; cursor: pointer; color: var(--blu); }
+  .xbtn:hover { background: var(--blu-tenue); }
+  .sheet-b { overflow: auto; padding: 4px 20px 24px; flex: 1; }
+  .sec { padding: 14px 0 8px; border-bottom: 1px solid var(--linea); }
+  .sec:last-child { border-bottom: 0; }
+  .sec h3 { font-size: 1rem; margin: 0 0 8px; }
+  .kv { display: grid; grid-template-columns: minmax(120px, 38%) 1fr; gap: 6px 14px; margin: 0; }
+  .kv dt { color: var(--testo-3); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; padding-top: 2px; }
+  .kv dd { margin: 0; font-size: 14px; color: var(--testo-2); overflow-wrap: anywhere; }
+  .kv dd a { word-break: break-all; }
+  .pill { display: inline-flex; border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 700; border: 1px solid transparent; }
+  .pill.ok { background: #E9F4EC; color: #1F5E3A; border-color: #B8D9C4; }
+  .pill.warn { background: #FEF8E3; color: #7A4E0C; border-color: #E8C77E; }
+  .pill.bad { background: #FDF2F2; color: #7E1317; border-color: #E9B8BA; }
+  .pill.neu { background: #EEE9DD; color: #52565E; border-color: var(--linea); }
+  .note { border-left: 4px solid var(--oro); background: #FFFDF5; padding: 8px 12px; border-radius: 8px; font-size: 13px; line-height: 1.5; color: var(--testo-2); margin: 8px 0 6px; }
+  .note.red { border-left-color: var(--rosso); background: #FDF2F2; color: #7E1317; }
+  .price-big { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  .price-big div { flex: 1; min-width: 140px; background: #fff; border: 1px solid var(--linea); border-radius: 12px; padding: 8px 12px; }
+  .price-big small { display: block; font-size: 12px; color: var(--testo-3); }
+  .price-big b { font-family: var(--serif); font-size: 1.35rem; color: var(--blu); font-variant-numeric: tabular-nums; }
+  .sheet-f { padding: 12px 20px; border-top: 1px solid var(--linea); display: flex; gap: 8px; flex-wrap: wrap; background: #fff; }
+  .modal { margin: auto; width: min(920px, calc(100% - 24px)); max-height: calc(100% - 24px); }
+  .modal .sheet { display: flex; flex-direction: column; max-height: calc(100vh - 24px); background: var(--avorio); border: 1px solid var(--linea); border-radius: 14px; box-shadow: 0 8px 24px rgba(11,51,89,.18); overflow: hidden; }
+  dialog.modal[open] .sheet { animation: rise .28s cubic-bezier(.2,.8,.3,1) both; }
+  dialog.modal.closing .sheet { animation: fadeout .18s both; }
+  .info h4 { font-family: var(--serif); font-size: 1.05rem; color: var(--blu); margin: 18px 0 6px; }
+  .info p, .info li { font-size: 14px; line-height: 1.55; color: var(--testo-2); }
+  .info table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 6px 0 10px; background: #fff; }
+  .info th, .info td { border: 1px solid var(--linea); padding: 6px 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+  .info th { background: #F3EFE4; font-weight: 700; }
+  .info th[scope=row] { width: 170px; overflow-wrap: normal; hyphens: auto; }
+  .info .tw { overflow: auto; }
+  .errbar { display: none; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 5000; }
+  .errbar.show { display: block; }
+  #printArea { display: none; }
+  .enter { animation: rise .45s cubic-bezier(.2,.8,.3,1) both; }
+  .enter.d1 { animation-delay: .05s; } .enter.d2 { animation-delay: .1s; } .enter.d3 { animation-delay: .15s; }
+  .segnala { font-size: 13px; color: var(--testo-3); }
+  @media (max-width: 1023px) {
+    .filters { position: fixed; inset: 0; z-index: 2000; max-height: none; border-radius: 0; transform: translateX(-102%); transition: transform .25s cubic-bezier(.2,.8,.3,1); visibility: hidden; }
+    .filters.open { transform: none; visibility: visible; }
+    .filters .xbtn.f-close { display: grid; }
+    .filters .btn.f-close { display: inline-flex; }
+    .mobile-bar { display: flex; position: sticky; bottom: 12px; z-index: 1500; justify-content: center; pointer-events: none; }
+    .mobile-bar .btn { pointer-events: auto; box-shadow: 0 8px 24px rgba(7,33,58,.3); }
+  }
+  @media (max-width: 640px) {
+    .mapframe { height: 46vh; min-height: 280px; }
+    .map-label p { display: none; }
+    .tool span { display: none; }
+    .list { grid-template-columns: 1fr; }
+    .drawer { width: 100%; }
+    .kv { grid-template-columns: 1fr; gap: 2px; } .kv dd { margin-bottom: 8px; }
+    .sel span { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; transition-duration: .001ms !important; } }
+  @media print {
+    @page { size: A4 landscape; margin: 12mm; }
+    body { background: #fff; font-size: 10px; }
+    body > *:not(#printArea) { display: none !important; }
+    #printArea { display: block !important; }
+    #printArea h1 { font-size: 20px; margin: 0 0 4px; }
+    #printArea p { margin: 2px 0; font-size: 10px; color: #333; }
+    #printArea table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+    #printArea th, #printArea td { border: 1px solid #bbb; padding: 3px 5px; text-align: left; vertical-align: top; font-size: 9px; }
+    #printArea th { background: #eee; }
+    #printArea td.n { text-align: right; }
+    #printArea tr { break-inside: avoid; }
+    #printArea thead { display: table-header-group; }
+  }
+</style>
+</head>
+
+<body>
+<header class="testata"><div class="testata-dentro">
+  <a class="marchio" href="../" aria-label="Atlante FVG, pagina iniziale"><img src="../logo.webp" alt="Atlante FVG" width="113" height="40"></a>
+  <details class="menu-mob"><summary>Menù</summary><nav aria-label="Pagine dell'Atlante">
+    <a href="../">Inizio</a><a href="../?pagina=mappe">Mappe</a><a href="../?pagina=confronto">Confronto fra comuni</a><a href="../?pagina=comuni">Comuni</a><a href="../?pagina=archivio">Archivio dei dati</a><a href="../?pagina=autobus">Autobus in tempo reale</a><a href="../orari/">Orari degli autobus</a><a href="../?pagina=ambiente">Allerte e qualità dell'aria</a><a href="../meteo/">Meteo</a><a href="../bandi/">Bandi e avvisi</a><a href="../opere/">Opere pubbliche</a><a href="../pnrr/">PNRR</a><a href="../bilancio-regionale/">Bilancio della Regione</a><a href="../consiglio/">Consiglio regionale</a><a href="../finanziamenti/">Finanziamenti regionali</a><a href="../servizi/">Servizi sul territorio</a><a href="../strutture/" aria-current="page">Strutture ricettive</a><a href="../stradario/">Stradario</a><a href="../catasto/">Catasto</a><a href="../elezioni/">Dati elezioni (riservata)</a><a href="../monitor/">Monitor percezione (riservata)</a><a href="../sondaggi/">Osservatorio sondaggi (riservata)</a><a href="../aggiornamenti/">Cosa è cambiato</a><a href="../?pagina=metodo">Metodo e fonti</a>
+  </nav></details>
+</div></header>
+
+<main class="contenuto" id="app">
+  <nav class="percorso" aria-label="Percorso"><a href="../">Atlante FVG</a> › Strutture ricettive</nav>
+  <section class="intro enter" aria-labelledby="titolo">
+    <h1 id="titolo">Strutture ricettive</h1>
+    <p>Alberghi, bed and breakfast, affittacamere, agriturismi, case vacanze, campeggi, rifugi e le altre strutture ricettive del Friuli Venezia Giulia presenti sul portale ufficiale PromoTurismoFVG e nel registro regionale. Cerca, filtra e apri la scheda ufficiale di ogni struttura.</p>
+    <p class="nota" id="fonte">Lettura dei dati in corso… <span class="rotella" aria-hidden="true"></span></p>
+    <div class="tot" role="group" aria-label="Indicatori sui risultati filtrati">
+      <div><small>Strutture filtrate</small><b id="kN">0</b><span id="kNs">&nbsp;</span></div>
+      <div><small>Posti letto nei dati</small><b id="kPL">0</b><span id="kPLs">&nbsp;</span></div>
+      <div><small>Comuni</small><b id="kC">0</b><span id="kCs">&nbsp;</span></div>
+      <div><small>Tipologie</small><b id="kT">0</b><span id="kTs">&nbsp;</span></div>
+    </div>
+  </section>
+  <div class="avviso enter d1"><p><b>Copertura dei dati.</b> La sezione riporta le strutture del portale ufficiale PromoTurismoFVG e le voci presenti nel solo registro regionale (open data). Non è l'elenco completo di tutte le attività ricettive autorizzate in regione: restano fuori, tra l'altro, le locazioni turistiche brevi tra privati e le strutture che non hanno chiesto di comparire sul portale. I prezzi sono <b>prezzi medi stimati</b> di zona, non tariffe ufficiali. <button class="linkbtn" type="button" id="openInfo">Fonti, metodo e limiti</button></p></div>
+
+  <div class="layout">
+    <aside class="riquadro filters enter d2" id="filters" aria-labelledby="fTitle">
+      <div class="f-head"><h2 id="fTitle">Ricerca e filtri</h2><button class="xbtn f-close" type="button" id="closeFilters" aria-label="Chiudi i filtri"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+      <div class="f-body" id="fBody">
+        <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="sr-only">Ricerca libera</span><input id="q" type="search" placeholder="Nome, indirizzo, località, comune" autocomplete="off"></label>
+        <p class="hint">Cerca anche per ID portale o CIN (Codice identificativo nazionale). Maiuscole e accenti non contano.</p>
+        <div id="fGroups"></div>
+      </div>
+      <div class="f-foot"><button class="btn wide" type="button" id="resetAll">Azzera filtri</button><button class="btn primary wide f-close" type="button" id="applyFilters">Mostra <span id="applyN">0</span></button></div>
+    </aside>
+
+    <div class="colonna">
+      <section class="mapframe enter d2" aria-label="Mappa delle strutture per comune">
+        <div id="map" role="region" aria-label="Mappa interattiva: un segnaposto per comune con il numero di strutture filtrate"></div>
+        <div class="map-top">
+          <div class="map-label"><small>Mappa per comune</small><b id="mapTitle">Strutture nei risultati</b><p>Ogni cerchio è un comune: la posizione è indicativa e non corrisponde all'indirizzo della struttura.</p></div>
+          <div class="map-tools">
+            <button class="tool" type="button" id="home" title="Vista regionale"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9v11h13V9M9.5 20v-6h5v6"/></svg><span>Vista FVG</span></button>
+            <button class="tool" type="button" id="fit" title="Adatta la mappa ai risultati"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Adatta ai risultati</span></button>
+          </div>
+        </div>
+        <div class="map-caption" id="mapCaption"><b>FVG</b> · posizione al centro del comune</div>
+        <div class="map-warn avviso" id="mapWarn" role="status"></div>
+        <div class="map-off" id="mapOff" role="status"><div class="avviso"><b>Mappa non disponibile.</b> La cartografia richiede la connessione a Internet. Elenco, ricerca, filtri, esportazione e stampa funzionano comunque.</div></div>
+      </section>
+
+      <section class="riquadro results enter d3" id="risultati" aria-labelledby="rTitle" tabindex="-1">
+        <div class="r-top">
+          <div class="r-count"><h2 id="rTitle"><b id="rN">0</b> <span id="rWord">strutture</span></h2><p id="rSub" aria-live="polite"></p></div>
+          <div class="r-tools">
+            <label class="sel"><span>Ordina per</span><select id="sort" aria-label="Ordina per">
+              <option value="den">Denominazione</option><option value="com">Comune</option><option value="tip">Tipologia</option><option value="pl">Posti letto</option><option value="cam">Camere, alloggi o piazzole</option><option value="pu">Prezzo per unità</option><option value="pp">Prezzo per persona</option>
+            </select></label>
+            <button class="btn" type="button" id="dir" aria-label="Ordine crescente" title="Inverti l'ordine"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 4v16M8 4 4 8M8 4l4 4M16 20V4M16 20l-4-4M16 20l4-4"/></svg><span id="dirTxt">A → Z</span></button>
+            <div class="toggle" role="group" aria-label="Modalità di visualizzazione">
+              <button type="button" id="vList" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="4" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Elenco</button>
+              <button type="button" id="vTable" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 5h18M3 12h18M3 19h18"/></svg>Tabella</button>
+            </div>
+            <button class="btn" type="button" id="csv" title="Scarica i risultati filtrati in formato CSV, apribile con Excel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg>Esporta CSV</button>
+            <button class="btn" type="button" id="print" title="Stampa o salva in PDF l'elenco filtrato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4v-7h16v7h-3M7 14h10v7H7z"/></svg>Stampa o PDF</button>
+          </div>
+        </div>
+        <div class="chips" id="chips" aria-label="Filtri attivi"></div>
+        <div id="out"></div>
+        <div class="pager" id="pager"></div>
+      </section>
+      <p class="segnala" id="segnala"></p>
+    </div>
+  </div>
+  <div class="mobile-bar"><button class="btn primary" type="button" id="openFilters" aria-controls="filters" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filtri <span id="mfN"></span></button></div>
+</main>
+
+<footer class="piede"><div class="piede-dentro">
+  <div><strong>Atlante FVG</strong><br>I comuni del Friuli Venezia Giulia, con fonte e data di ogni dato.</div>
+  <div><a href="../">Pagina iniziale</a> · <a href="https://www.turismofvg.it/" target="_blank" rel="noopener">PromoTurismoFVG</a> · <a href="https://www.dati.friuliveneziagiulia.it/" target="_blank" rel="noopener">Dati aperti della Regione</a> · <a href="../?pagina=metodo">Metodo e fonti</a></div>
+</div></footer>
+
+<dialog class="drawer" id="detail" aria-labelledby="dTitle">
+  <div class="sheet">
+    <div class="sheet-h"><div class="tt"><div class="kicker" id="dKicker"></div><h2 id="dTitle"></h2><p id="dSub"></p></div><button class="xbtn" type="button" data-close aria-label="Chiudi la scheda"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="sheet-b" id="dBody"></div>
+    <div class="sheet-f" id="dFoot"></div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="info" aria-labelledby="iTitle">
+  <div class="sheet">
+    <div class="sheet-h"><div class="tt"><div class="kicker">Note di metodo</div><h2 id="iTitle">Fonti, metodo e limiti</h2><p>Dalle note del file di partenza, dagli aggiornamenti mensili e dalle verifiche fatte per costruire questa pagina.</p></div><button class="xbtn" type="button" data-close aria-label="Chiudi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="sheet-b info" id="iBody"></div>
+  </div>
+</dialog>
+
+<section id="printArea" aria-hidden="true"></section>
+<div class="errbar errore" id="errbar" role="alert"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+<script>
+"use strict";
+(function(){
+const $=s=>document.querySelector(s);
+function showError(msg){const b=$("#errbar");b.innerHTML="<b>Si è verificato un problema.</b> "+esc(msg)+" Ricarica la pagina; se il problema resta, segnalalo a info@atlantefvg.it.";b.classList.add("show")}
+window.addEventListener("error",e=>{if(e&&e.target&&e.target.tagName==="SCRIPT")return;showError(e.message||"Errore imprevisto nello script.")});
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+
+let SLUG={};
+Promise.all([
+  fetch("../dati/strutture_ricettive.json").then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}),
+  fetch("../dati/comuni_slug.json").then(r=>r.ok?r.json():[]).catch(()=>[])
+]).then(([D,cs])=>{(cs||[]).forEach(c=>{if(c&&c.id)SLUG[c.id]=c.slug});try{avvia(D)}catch(e){console.error(e);showError("La pagina non è riuscita a preparare i dati.")}})
+ .catch(()=>{$("#fonte").innerHTML='<span class="errore" style="display:block">I dati delle strutture ricettive non si sono caricati: ricarica la pagina o consulta direttamente il <a href="https://www.turismofvg.it/tfvgb/booking/search" target="_blank" rel="noopener">portale PromoTurismoFVG</a>.</span>'});
+
+function avvia(D){
+
+/* ---------- Decodifica dei record ---------- */
+const DIC=D.dic||{};
+const R=D.recs.map((o,i)=>{const r={};for(const k in o){const v=o[k];r[k]=(DIC[k]&&typeof v==="number")?DIC[k][v]:v}r._i=i;return r});
+const COM=D.comuni;
+const SRC_LABEL={P:"Portale PromoTurismoFVG",R:"Solo registro regionale"};
+const SRC_SHORT={P:"Portale",R:"Solo registro"};
+const nf=new Intl.NumberFormat("it-IT");
+const fmtN=v=>typeof v==="number"?nf.format(v):"";
+const has=v=>v!==undefined&&v!==null&&v!=="";
+const isNum=v=>typeof v==="number"&&isFinite(v);
+const norm=s=>String(s==null?"":s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/\s+/g," ").trim();
+const collator=new Intl.Collator("it",{sensitivity:"base",numeric:true});
+const isHttp=u=>typeof u==="string"&&/^https?:\/\/[^\s]+$/i.test(u.trim());
+const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+R.forEach(r=>{
+  r._com=(r.istat&&COM[r.istat])?COM[r.istat].nome:r.com;
+  r._hay=norm([r.den,r.ind,r.loc,r.com,r._com,r.cap,r.id,r.cin].filter(has).join(" | "));
+});
+const META=D.meta||{};
+const extr=(D.note.find(x=>x[0]==="Data di estrazione")||[])[1]||"14 ottobre 2026";
+const dataIt=s=>{if(!s)return"";const d=new Date(s+"T12:00:00");return isNaN(d)?s:d.toLocaleDateString("it-IT",{day:"numeric",month:"long",year:"numeric"})};
+const ultimo=META.ultimo_controllo?dataIt(META.ultimo_controllo):"";
+$("#fonte").innerHTML=`Fonti: <a href="https://www.turismofvg.it/tfvgb/booking/search" target="_blank" rel="noopener">portale ufficiale PromoTurismoFVG</a> e <a href="https://www.dati.friuliveneziagiulia.it/" target="_blank" rel="noopener">dati aperti della Regione FVG</a>. Base dati estratta il ${esc(extr)}${ultimo?`, ultimo controllo mensile sulle fonti ufficiali il ${esc(ultimo)}`:""}. Aggiornamento automatico il primo lunedì di ogni mese, solo con dati confermati dalle fonti ufficiali.`;
+{const u="mailto:info@atlantefvg.it?subject="+encodeURIComponent("Segnalazione di errore: strutture ricettive")+"&body="+encodeURIComponent("Pagina: "+location.href+"\nStruttura:\n\nChe cosa non torna:\n");
+ $("#segnala").innerHTML=`Hai trovato un errore? <a href="${u}">Segnalalo per posta</a> oppure <a href="https://wa.me/393283692227?text=${encodeURIComponent("Segnalazione di errore sull'Atlante FVG: pagina Strutture ricettive")}" target="_blank" rel="noopener">via WhatsApp</a>.`}
+
+/* ---------- Definizione dei filtri ---------- */
+// Categorici: la chiave normalizza maiuscole e spazi; l'etichetta mostra il valore originale più frequente
+const CAT=[
+ {k:"src",t:"Provenienza del record",get:r=>r.src,lab:v=>SRC_LABEL[v]||v,open:true},
+ {k:"prov",t:"Provincia",get:r=>r.prov,open:true},
+ {k:"com",t:"Comune",get:r=>r.istat||r.com,lab:v=>COM[v]?COM[v].nome:v,search:true,open:true,hideZero:true},
+ {k:"tip",t:"Tipologia",get:r=>r.tip,open:true},
+ {k:"zona",t:"Zona di prezzo",get:r=>r.zona,na:"Senza zona (solo registro)"},
+ {k:"base",t:"Base del prezzo stimato",get:r=>r.base,na:"Nessuna stima"},
+ {k:"risc",t:"Riscontro nel registro regionale",get:r=>r.risc,na:"Non applicabile (solo registro)"},
+ {k:"sito",t:"Stato del sito web (verifica collegamenti)",get:r=>r.sito},
+];
+const TRI=[
+ {k:"tel",t:"Telefono",get:r=>has(r.tel)},
+ {k:"email",t:"Posta elettronica (email)",get:r=>has(r.email)},
+ {k:"web",t:"Sito web",get:r=>has(r.web)},
+ {k:"cin",t:"CIN",get:r=>has(r.cin)},
+ {k:"scheda",t:"Scheda ufficiale",get:r=>has(r.scheda)},
+ {k:"noteint",t:"Dati integrati da altre fonti",get:r=>has(r.noteint)},
+];
+const RNG=[
+ {k:"pl",t:"Posti letto (capacità persone)",u:""},
+ {k:"cam",t:"Camere, alloggi o piazzole",u:""},
+ {k:"bagni",t:"Bagni",u:""},
+ {k:"plc",t:"Posti letto per camera, alloggio o piazzola",u:"",step:"0.1"},
+ {k:"pu",t:"Prezzo medio stimato per unità a notte (euro)",u:" euro"},
+ {k:"pp",t:"Prezzo medio stimato per persona a notte (euro)",u:" euro"},
+];
+CAT.forEach(f=>{
+  const m=new Map();
+  R.forEach(r=>{const raw=f.get(r);const key=has(raw)?(f.k==="com"?raw:norm(raw)):"__na";r["_c_"+f.k]=key;
+    if(!m.has(key))m.set(key,new Map());const lm=m.get(key);const lb=has(raw)?(f.lab?f.lab(raw):raw):(f.na||"Non indicato");lm.set(lb,(lm.get(lb)||0)+1)});
+  f.opts=[...m.entries()].map(([key,lm])=>({key,label:[...lm.entries()].sort((a,b)=>b[1]-a[1])[0][0],total:[...lm.values()].reduce((a,b)=>a+b,0)}));
+  f.opts.sort((a,b)=>a.key==="__na"?1:b.key==="__na"?-1:(f.k==="src"?a.key.localeCompare(b.key):collator.compare(a.label,b.label)));
+  f.labelOf=new Map(f.opts.map(o=>[o.key,o.label]));
+});
+RNG.forEach(f=>{const v=R.map(r=>r[f.k]).filter(isNum);f.min=Math.min(...v);f.max=Math.max(...v);f.cnt=v.length});
+
+/* ---------- Stato ---------- */
+const S={q:"",cat:{},tri:{},rng:{},sort:"den",dir:1,view:"list",page:1,size:30};
+CAT.forEach(f=>S.cat[f.k]=new Set());TRI.forEach(f=>S.tri[f.k]=null);RNG.forEach(f=>S.rng[f.k]={min:null,max:null});
+
+/* ---------- Costruzione del pannello filtri ---------- */
+const chev='<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+function buildFilters(){
+  let h="";
+  CAT.forEach(f=>{
+    h+=`<details class="fg" ${f.open?"open":""} data-g="${f.k}"><summary>${esc(f.t)}<span class="badge" hidden></span>${chev}</summary><div class="fg-in">`+
+      (f.search?`<input class="opt-search" type="search" placeholder="Cerca un comune…" aria-label="Cerca tra i comuni" data-os="${f.k}">`:"")+
+      `<div class="opts" role="group" aria-label="${esc(f.t)}">`+
+      f.opts.map(o=>`<label class="opt" data-l="${esc(norm(o.label))}"><input type="checkbox" data-c="${f.k}" value="${esc(o.key)}"><span class="lab">${esc(o.label)}</span><span class="num" data-n="${f.k}|${esc(o.key)}">${fmtN(o.total)}</span></label>`).join("")+
+      `</div></div></details>`;
+  });
+  h+=`<details class="fg" open data-g="tri"><summary>Contatti, CIN e scheda<span class="badge" hidden></span>${chev}</summary><div class="fg-in">`+
+    TRI.map(f=>`<div class="seg"><span id="tl_${f.k}">${esc(f.t)}</span><span class="sw" role="group" aria-labelledby="tl_${f.k}">`+
+      [["","Tutti"],["1","Presente"],["0","Assente"]].map(([v,l])=>`<button type="button" data-t="${f.k}" data-v="${v}" aria-pressed="${v===""}">${l}</button>`).join("")+`</span></div>`).join("")+
+    `</div></details>`;
+  h+=`<details class="fg" open data-g="rng"><summary>Valori numerici<span class="badge" hidden></span>${chev}</summary><div class="fg-in">`+
+    RNG.map(f=>`<div class="range"><label class="t" id="rl_${f.k}">${esc(f.t)}</label><div class="rr"><input type="number" inputmode="decimal" step="${f.step||"1"}" data-r="${f.k}" data-m="min" placeholder="min ${fmtN(f.min)}" aria-label="${esc(f.t)}: minimo"><span class="dash" aria-hidden="true">a</span><input type="number" inputmode="decimal" step="${f.step||"1"}" data-r="${f.k}" data-m="max" placeholder="max ${fmtN(f.max)}" aria-label="${esc(f.t)}: massimo"></div><div class="ex">Dato presente per ${fmtN(f.cnt)} record su ${fmtN(R.length)}.</div></div>`).join("")+
+    `<p class="hint">Quando imposti un minimo o un massimo, i record senza quel dato vengono esclusi.</p></div></details>`;
+  $("#fGroups").innerHTML=h;
+}
+buildFilters();
+
+/* ---------- Filtraggio ---------- */
+function passCat(r,k){const s=S.cat[k];return !s.size||s.has(r["_c_"+k])}
+function passTri(r,f){const v=S.tri[f.k];return v===null||f.get(r)===v}
+function passRng(r,k){const g=S.rng[k];if(g.min===null&&g.max===null)return true;const v=r[k];if(!isNum(v))return false;return(g.min===null||v>=g.min)&&(g.max===null||v<=g.max)}
+function passQ(r,terms){for(const t of terms)if(!r._hay.includes(t))return false;return true}
+let FIL=[];
+function compute(){
+  const terms=norm(S.q).split(" ").filter(Boolean);
+  const base=[];
+  for(const r of R){if(!passQ(r,terms))continue;let ok=true;for(const f of TRI)if(!passTri(r,f)){ok=false;break}if(!ok)continue;for(const f of RNG)if(!passRng(r,f.k)){ok=false;break}if(ok)base.push(r)}
+  // conteggi per ciascun filtro categorico, applicando tutti gli altri
+  const counts={};CAT.forEach(f=>counts[f.k]=new Map());
+  const out=[];
+  for(const r of base){
+    let fails=0,failK=null;
+    for(const f of CAT){if(!passCat(r,f.k)){fails++;failK=f.k;if(fails>1)break}}
+    if(fails===0){out.push(r);for(const f of CAT){const m=counts[f.k],key=r["_c_"+f.k];m.set(key,(m.get(key)||0)+1)}}
+    else if(fails===1){const m=counts[failK],key=r["_c_"+failK];m.set(key,(m.get(key)||0)+1)}
+  }
+  FIL=out;return counts;
+}
+function sortList(){
+  const k=S.sort,d=S.dir;
+  const get={den:r=>r.den,com:r=>r._com,tip:r=>r.tip,pl:r=>r.pl,cam:r=>r.cam,pu:r=>r.pu,pp:r=>r.pp}[k];
+  const num=["pl","cam","pu","pp"].includes(k);
+  FIL.sort((a,b)=>{const va=get(a),vb=get(b);const ha=num?isNum(va):has(va),hb=num?isNum(vb):has(vb);
+    if(!ha&&!hb)return collator.compare(a.den||"",b.den||"");if(!ha)return 1;if(!hb)return -1;
+    const c=num?(va-vb):collator.compare(va,vb);return c?c*d:collator.compare(a.den||"",b.den||"")||(a._i-b._i)});
+}
+
+/* ---------- Disegno ---------- */
+function plural(n,s,p){return n===1?s:p}
+function update(opts){
+  opts=opts||{};
+  const counts=compute();sortList();
+  if(!opts.keepPage)S.page=1;
+  // conteggi accanto alle opzioni
+  CAT.forEach(f=>{const m=counts[f.k];document.querySelectorAll(`[data-n^="${f.k}|"]`).forEach(el=>{const key=el.dataset.n.slice(f.k.length+1);const n=m.get(key)||0;el.textContent=fmtN(n);const off=n===0&&!S.cat[f.k].has(key);el.parentElement.classList.toggle("zero",off);if(f.hideZero)el.parentElement.classList.toggle("nz",off)})});
+  // indicatori
+  const n=FIL.length;let pl=0,plc=0;const cs=new Set(),ts=new Set();
+  FIL.forEach(r=>{if(isNum(r.pl)){pl+=r.pl;plc++}cs.add(r.istat||norm(r.com));ts.add(r._c_tip)});
+  setNum("#kN",n);$("#kNs").textContent="su "+fmtN(R.length)+" in archivio";
+  setNum("#kPL",pl);$("#kPLs").textContent="dato presente per "+fmtN(plc)+" "+plural(plc,"struttura","strutture")+" filtrate";
+  setNum("#kC",cs.size);$("#kCs").textContent="su "+fmtN(Object.keys(COM).length)+" rappresentati in archivio";
+  setNum("#kT",ts.size);$("#kTs").textContent="su "+fmtN(CAT[3].opts.length)+" presenti in archivio";
+  $("#rN").textContent=fmtN(n);$("#rWord").textContent=plural(n,"struttura","strutture");
+  const nP=FIL.filter(r=>r.src==="P").length;
+  $("#rSub").textContent=`${fmtN(nP)} dal portale PromoTurismoFVG, ${fmtN(n-nP)} dal solo registro regionale`;
+  $("#applyN").textContent=fmtN(n);
+  renderChips();renderOut(!opts.noAnim);updateMap();
+}
+const numAnim=new Map();
+function setNum(sel,val){const el=$(sel);const from=numAnim.has(sel)?numAnim.get(sel):0;numAnim.set(sel,val);
+  if(reduced()||from===val){el.textContent=fmtN(val);return}
+  const t0=performance.now(),dur=380;(function step(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);el.textContent=fmtN(Math.round(from+(val-from)*e));if(p<1&&numAnim.get(sel)===val)requestAnimationFrame(step)})(t0)}
+function reduced(){return window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches}
+
+function priceTxt(r){
+  if(isNum(r.pu)||isNum(r.pp)){const a=[];if(isNum(r.pu))a.push(`<b>${fmtN(r.pu)} euro</b> per unità`);if(isNum(r.pp))a.push(`<b>${fmtN(r.pp)} euro</b> a persona`);return `<div class="price">Prezzo medio stimato a notte: ${a.join(" · ")}</div>`}
+  return `<div class="price na">Prezzo non disponibile</div>`}
+function idTxt(r){return r.src==="P"?`ID portale ${r.id}`:(has(r.n)?`Registro n. ${r.n}`:"Registro, voce nuova")}
+function locTxt(r){return esc(r.com)+(r.prov?` (${esc(r.prov)})`:"")}
+function renderOut(anim){
+  const out=$("#out");const n=FIL.length;
+  if(!n){out.innerHTML=`<div class="empty"><b>Nessuna struttura corrisponde ai filtri</b>Prova a togliere un filtro o a cambiare la ricerca.<br><br><button class="btn" type="button" data-reset>Azzera filtri</button></div>`;$("#pager").innerHTML="";return}
+  const pages=Math.ceil(n/S.size);if(S.page>pages)S.page=pages;
+  const from=(S.page-1)*S.size,items=FIL.slice(from,from+S.size);
+  const doAnim=anim&&!reduced();
+  if(S.view==="list"){
+    out.innerHTML=`<div class="list">`+items.map((r,i)=>`<button type="button" class="card${doAnim?" in":""}" style="${doAnim?`animation-delay:${Math.min(i,12)*22}ms`:""}" data-open="${r._i}" aria-label="${esc(r.den)}, ${esc(r.tip)}, ${esc(r.com)}: apri la scheda">
+      <span class="top"><span class="h">${esc(r.den)}</span><span class="src ${r.src}">${SRC_SHORT[r.src]}</span></span>
+      <span class="tip">${esc(r.tip)}</span>
+      <span class="loc">${r.ind?esc(r.ind)+" · ":""}${locTxt(r)}</span>
+      <span class="facts">${isNum(r.pl)?`<span><i>Posti letto</i> ${fmtN(r.pl)}</span>`:""}${isNum(r.cam)?`<span><i>Camere, alloggi o piazzole</i> ${fmtN(r.cam)}</span>`:""}${r.src==="R"?`<span class="na">Indirizzo e posti letto non pubblicati</span>`:""}</span>
+      ${r.src==="P"?priceTxt(r):""}
+      <span class="ids">${idTxt(r)}</span></button>`).join("")+`</div>`;
+  }else{
+    const th=(k,l,num)=>{const s=S.sort===k;return `<th scope="col" ${s?`aria-sort="${S.dir>0?"ascending":"descending"}"`:""}>${k?`<button type="button" data-sort="${k}">${l}${s?(S.dir>0?" ▲":" ▼"):""}</button>`:l}</th>`};
+    out.innerHTML=`<div class="tablewrap"><table class="res"><caption class="sr-only">Risultati filtrati, pagina ${S.page}</caption><thead><tr>${th("den","Denominazione")}${th("tip","Tipologia")}${th("com","Comune")}<th scope="col">Provincia</th><th scope="col">Indirizzo</th>${th("pl","Posti letto")}${th("cam","Camere, alloggi, piazzole")}${th("pu","Prezzo unità")}${th("pp","Prezzo persona")}<th scope="col">Provenienza</th><th scope="col">Identificativo</th></tr></thead><tbody>`+
+      items.map((r,i)=>`<tr tabindex="0" data-open="${r._i}" class="${doAnim?"in":""}" style="${doAnim?`animation-delay:${Math.min(i,15)*15}ms`:""}"><td class="name">${esc(r.den)}</td><td>${esc(r.tip)}</td><td>${esc(r.com)}</td><td>${esc(r.prov)}</td><td>${r.ind?esc(r.ind):'<span class="na">Non disponibile</span>'}</td><td class="n">${isNum(r.pl)?fmtN(r.pl):'<span class="na">n. d.</span>'}</td><td class="n">${isNum(r.cam)?fmtN(r.cam):'<span class="na">n. d.</span>'}</td><td class="n">${isNum(r.pu)?fmtN(r.pu)+" euro":'<span class="na">Prezzo non disponibile</span>'}</td><td class="n">${isNum(r.pp)?fmtN(r.pp)+" euro":'<span class="na">Prezzo non disponibile</span>'}</td><td><span class="src ${r.src}">${SRC_SHORT[r.src]}</span></td><td class="n">${idTxt(r)}</td></tr>`).join("")+
+      `</tbody></table></div><p class="hint">Prezzi: prezzi medi stimati a notte, non tariffe ufficiali. «n. d.» indica un dato non disponibile.</p>`;
+  }
+  $("#pager").innerHTML=`<span>Record da ${fmtN(from+1)} a ${fmtN(Math.min(from+S.size,n))} su ${fmtN(n)}</span>
+   <span class="pg"><label class="sel"><span>Per pagina</span><select id="psize" aria-label="Record per pagina">${[30,60,120,240].map(v=>`<option ${v===S.size?"selected":""}>${v}</option>`).join("")}</select></label>
+   <button class="btn" type="button" data-pg="prev" ${S.page<=1?"disabled":""} aria-label="Pagina precedente">‹ Precedente</button><span aria-live="polite">Pagina ${S.page} di ${pages}</span><button class="btn" type="button" data-pg="next" ${S.page>=pages?"disabled":""} aria-label="Pagina successiva">Successiva ›</button></span>`;
+}
+
+/* ---------- Filtri attivi ---------- */
+function activeChips(){
+  const a=[];
+  if(S.q.trim())a.push({l:`Ricerca: «${S.q.trim()}»`,rm:()=>{S.q="";$("#q").value=""}});
+  CAT.forEach(f=>S.cat[f.k].forEach(key=>a.push({l:`${f.t}: ${f.labelOf.get(key)}`,rm:()=>{S.cat[f.k].delete(key);const cb=document.querySelector(`input[data-c="${f.k}"][value="${cssEsc(key)}"]`);if(cb)cb.checked=false}})));
+  TRI.forEach(f=>{if(S.tri[f.k]!==null)a.push({l:`${f.t}: ${S.tri[f.k]?"presente":"assente"}`,rm:()=>{S.tri[f.k]=null;syncTri(f.k)}})});
+  RNG.forEach(f=>{const g=S.rng[f.k];if(g.min!==null||g.max!==null){const p=g.min!==null&&g.max!==null?`da ${fmtN(g.min)} a ${fmtN(g.max)}`:g.min!==null?`almeno ${fmtN(g.min)}`:`al massimo ${fmtN(g.max)}`;
+    a.push({l:`${f.t}: ${p}`,rm:()=>{g.min=g.max=null;document.querySelectorAll(`input[data-r="${f.k}"]`).forEach(i=>i.value="")}})}});
+  return a;
+}
+let CHIPS=[];
+function renderChips(){
+  CHIPS=activeChips();
+  $("#chips").innerHTML=CHIPS.map((c,i)=>`<span class="chip">${esc(c.l)}<button type="button" data-chip="${i}" aria-label="Rimuovi il filtro ${esc(c.l)}">×</button></span>`).join("")+(CHIPS.length>1?`<button type="button" class="chip clear" data-reset>Azzera tutti</button>`:"");
+  $("#mfN").textContent=CHIPS.length?`(${CHIPS.length})`:"";
+  // contatori sui gruppi
+  document.querySelectorAll(".fg").forEach(g=>{const k=g.dataset.g;let c=0;if(k==="tri")c=TRI.filter(f=>S.tri[f.k]!==null).length;else if(k==="rng")c=RNG.filter(f=>S.rng[f.k].min!==null||S.rng[f.k].max!==null).length;else c=S.cat[k].size;const b=g.querySelector(".badge");b.hidden=!c;b.textContent=c})
+}
+function cssEsc(s){return window.CSS&&CSS.escape?CSS.escape(s):String(s).replace(/"/g,'\\"')}
+function syncTri(k){document.querySelectorAll(`[data-t="${k}"]`).forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===(S.tri[k]===null?"":S.tri[k]?"1":"0"))))}
+function resetAll(){S.q="";$("#q").value="";CAT.forEach(f=>S.cat[f.k].clear());document.querySelectorAll("input[data-c]").forEach(i=>i.checked=false);TRI.forEach(f=>{S.tri[f.k]=null;syncTri(f.k)});RNG.forEach(f=>{S.rng[f.k]={min:null,max:null}});document.querySelectorAll("input[data-r]").forEach(i=>i.value="");update()}
+
+/* ---------- Eventi ---------- */
+let qT;$("#q").addEventListener("input",e=>{clearTimeout(qT);qT=setTimeout(()=>{S.q=e.target.value;update()},120)});
+$("#fGroups").addEventListener("change",e=>{const t=e.target;
+  if(t.dataset.c){const s=S.cat[t.dataset.c];t.checked?s.add(t.value):s.delete(t.value);update()}
+});
+function readRanges(){document.querySelectorAll("input[data-r]").forEach(i=>{const raw=String(i.value).trim().replace(",",".");const v=raw===""?null:Number(raw);S.rng[i.dataset.r][i.dataset.m]=(v===null||isNaN(v))?null:v});update()}
+let rT;$("#fGroups").addEventListener("input",e=>{const t=e.target;
+  if(t.dataset.r){clearTimeout(rT);rT=setTimeout(readRanges,180)}
+  if(t.dataset.os){const q=norm(t.value);t.parentElement.querySelectorAll(".opt").forEach(o=>o.hidden=q&&!o.dataset.l.includes(q))}
+});
+$("#fGroups").addEventListener("click",e=>{const b=e.target.closest("[data-t]");if(!b)return;const k=b.dataset.t,v=b.dataset.v;S.tri[k]=v===""?null:v==="1";syncTri(k);update()});
+$("#resetAll").addEventListener("click",resetAll);
+document.addEventListener("click",e=>{
+  const rs=e.target.closest("[data-reset]");if(rs){resetAll();return}
+  const ch=e.target.closest("[data-chip]");if(ch){const c=CHIPS[+ch.dataset.chip];if(c){c.rm();update()}return}
+  const op=e.target.closest("[data-open]");if(op&&!e.target.closest("a")){openDetail(R[+op.dataset.open],op);return}
+  const so=e.target.closest("[data-sort]");if(so){const k=so.dataset.sort;if(S.sort===k)S.dir*=-1;else{S.sort=k;S.dir=["pl","cam","pu","pp"].includes(k)?-1:1}$("#sort").value=k;syncDir();update({noAnim:true});return}
+  const pg=e.target.closest("[data-pg]");if(pg){S.page+=pg.dataset.pg==="next"?1:-1;renderOut(true);$("#risultati").scrollIntoView({behavior:reduced()?"auto":"smooth",block:"start"});return}
+});
+document.addEventListener("keydown",e=>{const tr=e.target.closest&&e.target.closest("tr[data-open]");if(tr&&(e.key==="Enter"||e.key===" ")){e.preventDefault();openDetail(R[+tr.dataset.open],tr)}});
+document.addEventListener("change",e=>{if(e.target.id==="psize"){S.size=+e.target.value;S.page=1;renderOut(true)}});
+$("#sort").addEventListener("change",e=>{S.sort=e.target.value;S.dir=["pl","cam","pu","pp"].includes(S.sort)?-1:1;syncDir();update({noAnim:false})});
+function syncDir(){const num=["pl","cam","pu","pp"].includes(S.sort);$("#dirTxt").textContent=num?(S.dir>0?"Dal minore":"Dal maggiore"):(S.dir>0?"A → Z":"Z → A");$("#dir").setAttribute("aria-label",S.dir>0?"Ordine crescente: inverti":"Ordine decrescente: inverti")}
+$("#dir").addEventListener("click",()=>{S.dir*=-1;syncDir();update()});
+function setView(v){S.view=v;$("#vList").setAttribute("aria-pressed",String(v==="list"));$("#vTable").setAttribute("aria-pressed",String(v==="table"));renderOut(true)}
+$("#vList").addEventListener("click",()=>setView("list"));$("#vTable").addEventListener("click",()=>setView("table"));
+// pannello filtri su smartphone
+const FP=$("#filters");
+function openF(){FP.classList.add("open");$("#openFilters").setAttribute("aria-expanded","true");document.body.style.overflow="hidden";setTimeout(()=>$("#q").focus(),60)}
+function closeF(){FP.classList.remove("open");$("#openFilters").setAttribute("aria-expanded","false");document.body.style.overflow="";$("#openFilters").focus()}
+$("#openFilters").addEventListener("click",openF);$("#closeFilters").addEventListener("click",closeF);$("#applyFilters").addEventListener("click",()=>{closeF();$("#risultati").scrollIntoView({block:"start"})});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&FP.classList.contains("open"))closeF()});
+
+/* ---------- Finestre (scheda e informazioni) ---------- */
+function openDlg(d){if(typeof d.showModal==="function"){d.classList.remove("closing");if(!d.open)d.showModal()}else d.setAttribute("open","")}
+function closeDlg(d){if(!d.open)return;if(reduced()||typeof d.close!=="function"){d.close?d.close():d.removeAttribute("open");return}
+  d.classList.add("closing");setTimeout(()=>{d.classList.remove("closing");d.close()},190)}
+document.querySelectorAll("dialog").forEach(d=>{
+  d.addEventListener("cancel",e=>{e.preventDefault();closeDlg(d)});
+  d.addEventListener("click",e=>{if(e.target===d||e.target.closest("[data-close]"))closeDlg(d)});
+  d.addEventListener("close",()=>{if(d._ret&&document.contains(d._ret))d._ret.focus()});
+});
+function link(u,txt){u=String(u).trim();return isHttp(u)?`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(txt||u)}</a>`:esc(u)}
+function autolink(s){if(!has(s))return"";return esc(s).replace(/https?:\/\/[^\s<>"]+/g,m=>{let u=m,tail="";while(/[).,;:]$/.test(u)){tail=u.slice(-1)+tail;u=u.slice(0,-1)}return `<a href="${u}" target="_blank" rel="noopener noreferrer">${u}</a>${tail}`})}
+function telHref(t){const d=String(t).replace(/[^\d+]/g,"");if(d.length<6)return null;return "tel:"+(d.startsWith("0039")?"+39"+d.slice(4):d)}
+const SITO_CLASS={"Non ancora verificato":"warn","Funzionante":"ok","Corretto con nuovo sito ufficiale":"ok","Non indicato":"neu","Non verificabile automaticamente":"warn","Da verificare":"warn","Rimosso: non funzionante":"bad","Rimosso: link errato":"bad"};
+function kv(rows){const r=rows.filter(x=>x&&has(x[1]));return r.length?`<dl class="kv">${r.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${v}</dd>`).join("")}</dl>`:""}
+function sec(t,body){return body?`<div class="sec"><h3>${esc(t)}</h3>${body}</div>`:""}
+function openDetail(r,ret){
+  const d=$("#detail");d._ret=ret||document.activeElement;
+  $("#dKicker").textContent=SRC_LABEL[r.src];
+  $("#dTitle").textContent=r.den||"Denominazione non indicata";
+  $("#dSub").textContent=[r.tip,r.com&&(r.com+(r.prov?` (${r.prov})`:""))].filter(Boolean).join(" · ");
+  let h="";
+  if(r.src==="R")h+=`<div class="note">${esc(r.nota||"Voce presente nel registro regionale ma non sul portale.")}</div>`;
+  h+=sec("Identificazione",kv([
+    ["Provenienza",esc(SRC_LABEL[r.src])+(has(r.n)?` <span class="na">(file di partenza, foglio «${r.src==="P"?"Strutture":"Solo registro regionale"}», N. ${r.n})</span>`:` <span class="na">(aggiunta con l'aggiornamento mensile)</span>`)],
+    ["Ultimo aggiornamento dalla fonte",r.agg?esc(new Date(r.agg.data+"T12:00:00").toLocaleDateString("it-IT",{day:"numeric",month:"long",year:"numeric"}))+(r.agg.campi&&r.agg.campi[0]!=="nuova"?` <span class="na">(${esc(r.agg.campi.map(c=>({den:"denominazione",ind:"indirizzo",cap:"CAP",loc:"località",tel:"telefono",email:"posta elettronica",web:"sito web",cin:"CIN",cam:"camere",pl:"posti letto",bagni:"bagni"}[c]||c)).join(", "))})</span>`:" <span class=\"na\">(struttura nuova)</span>"):null],
+    ["ID portale",has(r.id)?esc(r.id):null],
+    ["CIN (Codice identificativo nazionale)",has(r.cin)?`<code>${esc(r.cin)}</code>`:(r.src==="P"?'<span class="na">Non indicato nei dati</span>':null)],
+    ["Tipologia",esc(r.tip)],
+  ]));
+  const cmeta=COM[r.istat];
+  h+=sec("Ubicazione",kv([
+    ["Indirizzo",has(r.ind)?esc(r.ind):null],["CAP (Codice di avviamento postale)",has(r.cap)?esc(r.cap):null],["Località",has(r.loc)?esc(r.loc):null],
+    ["Comune",esc(r.com)+(r.src==="R"&&cmeta&&norm(cmeta.nome)!==norm(r.com)?` <span class="na">(associato a ${esc(cmeta.nome)} per la mappa)</span>`:"")],
+    ["Provincia",has(r.prov)?esc(r.prov):null],
+    ["Codice ISTAT del comune",r.src==="P"&&has(r.istat)?esc(r.istat):null],
+    ["Il comune nell'Atlante",SLUG[r.istat]?`<a href="../?comune=${esc(SLUG[r.istat])}">Scheda di ${esc(cmeta?cmeta.nome:r.com)}</a>`:null],
+    ["Posizione sulla mappa",cmeta&&isNum(cmeta.lat)?"Indicativa, al centro del comune: non è la posizione della struttura":"Coordinate comunali non disponibili: la struttura compare solo nell'elenco"],
+  ]));
+  if(r.src==="P")h+=sec("Capacità ricettiva",kv([
+    ["Camere, alloggi o piazzole",isNum(r.cam)?fmtN(r.cam):'<span class="na">Non disponibile</span>'],
+    ["Posti letto (capacità persone)",isNum(r.pl)?fmtN(r.pl):'<span class="na">Non disponibile</span>'],
+    ["Bagni",isNum(r.bagni)?fmtN(r.bagni):'<span class="na">Non disponibile</span>'],
+    ["Posti letto per camera, alloggio o piazzola",isNum(r.plc)?fmtN(r.plc):null],
+    ["Dettaglio ricettività (dal portale)",has(r.dett)?esc(r.dett):null],
+    ["Note integrazioni",has(r.noteint)?autolink(r.noteint):null],
+    ["Fonte integrazioni",has(r.fonteint)?link(r.fonteint):null],
+  ]));
+  // contatti
+  const em=has(r.email)?(EMAIL_RE.test(r.email.trim())?`<a href="mailto:${esc(r.email.trim())}">${esc(r.email)}</a>`:`${esc(r.email)} <span class="na">(formato non valido nei dati: non reso cliccabile)</span>`):null;
+  const th=has(r.tel)?(telHref(r.tel)?`<a href="${esc(telHref(r.tel))}">${esc(r.tel)}</a>`:esc(r.tel)):null;
+  let web=null;
+  if(has(r.web))web=isHttp(r.web)?link(r.web):`${esc(r.web)} <span class="na">(indirizzo senza http o https nei dati: non reso cliccabile)</span>`;
+  else if(r.sito&&r.sito.startsWith("Rimosso"))web=`<span class="na">Rimosso: il collegamento non funzionava e non è stato trovato un sito ufficiale alternativo</span>`;
+  h+=sec("Contatti",kv([["Telefono",th],["Posta elettronica",em],["Sito web",web]])||`<p class="na">Nessun contatto presente nei dati.</p>`);
+  // prezzi
+  if(r.src==="P"){
+    let p="";
+    if(isNum(r.pu)||isNum(r.pp))p+=`<div class="price-big"><div><small>Prezzo medio stimato per unità a notte</small><b>${isNum(r.pu)?fmtN(r.pu)+" euro":"n. d."}</b></div><div><small>Prezzo medio stimato per persona a notte</small><b>${isNum(r.pp)?fmtN(r.pp)+" euro":"n. d."}</b></div></div>`;
+    else p+=`<p class="na">Prezzo non disponibile</p>`;
+    p+=kv([["Base di calcolo",has(r.base)?esc(r.base):null],["Zona di prezzo",has(r.zona)?esc(r.zona):null],["Fonte del prezzo stimato",has(r.fontep)?link(r.fontep):null]]);
+    p+=`<div class="note">Stima di zona, non tariffa dichiarata dalla struttura: il portale regionale non pubblica prezzi. Valori medi, tassa di soggiorno esclusa; in alta stagione i prezzi reali possono essere molto più alti.</div>`;
+    h+=sec("Prezzi medi stimati",p);
+  }else h+=sec("Prezzi medi stimati",`<p class="na">Prezzo non disponibile: il registro regionale non riporta dati per la stima.</p>`);
+  // fonti
+  h+=sec("Fonti e registro",kv([
+    ["Scheda ufficiale",has(r.scheda)?link(r.scheda,"Apri la scheda sul portale PromoTurismoFVG"):(r.src==="R"?'<span class="na">Non disponibile: struttura non presente sul portale</span>':null)],
+    [r.src==="P"?"Fonte dati struttura":"Fonte (dataset open data)",has(r.fonte)?esc(r.fonte):null],
+    ["Riscontro registro regionale (open data)",has(r.risc)?esc(r.risc):null],
+    [r.src==="P"?"Link registro regionale":"Link dataset",has(r.linkreg)?link(r.linkreg):null],
+  ]));
+  // verifica collegamenti
+  let v=kv([["Stato del sito web",`<span class="pill ${SITO_CLASS[r.sito]||"neu"}">${esc(r.sito)}</span>`],[r.src==="P"?"Verifica link (14/10/2026)":"Verifica sito (14/10/2026)",has(r.ver)?esc(r.ver):null]]);
+  if(r.vl)v+=`<div class="note${/Non funzionante|errato/.test(r.vl.esito)?" red":""}"><b>Foglio «Verifica link», riga n. ${esc(r.vl.n)}</b><br>Esito: ${esc(r.vl.esito)}<br>Indirizzo verificato: ${esc(r.vl.url)}${r.vl.dett?"<br>Dettaglio: "+esc(r.vl.dett):""}${r.vl.interv?"<br>Intervento sui dati: "+autolink(r.vl.interv):""}</div>`;
+  h+=sec("Verifica dei collegamenti",v);
+  $("#dBody").innerHTML=h;$("#dBody").scrollTop=0;
+  $("#dFoot").innerHTML=(has(r.scheda)?`<a class="btn primary" href="${esc(r.scheda)}" target="_blank" rel="noopener noreferrer">Scheda ufficiale ↗</a>`:"")+
+    (MAP&&cmeta&&isNum(cmeta.lat)?`<button class="btn" type="button" id="dMap">Mostra il comune sulla mappa</button>`:"")+`<button class="btn" type="button" data-close>Chiudi</button>`;
+  const dm=$("#dMap");if(dm)dm.onclick=()=>{closeDlg(d);focusComune(r.istat)};
+  openDlg(d);
+}
+$("#openInfo").addEventListener("click",e=>{const d=$("#info");d._ret=e.currentTarget;openDlg(d)});
+
+/* ---------- Sezione informativa ---------- */
+function buildInfo(){
+  const note=D.note.filter(x=>x[0]!=="Note metodologiche e fonti");
+  const cnt=k=>R.filter(r=>r.src===k).length;
+  const sites={};R.forEach(r=>{const k=r.sito;sites[k]=sites[k]||{P:0,R:0};sites[k][r.src]++});
+  const par=D.par;
+  const parHead=par.findIndex(r=>r[0]==="Zona");
+  let h=`<h4>In sintesi</h4><ul>
+   <li><b>Base dati:</b> file «Strutture ricettive FVG 2026», estratto il ${esc(extr)}${ultimo?`; ultimo controllo mensile sulle fonti ufficiali il ${esc(ultimo)}`:""}.</li>
+   <li><b>Record attuali:</b> ${fmtN(cnt("P"))} dal portale PromoTurismoFVG e ${fmtN(cnt("R"))} dal solo registro regionale, per un totale di ${fmtN(R.length)}.</li>
+   <li><b>Che cosa non comprende:</b> le strutture che non hanno chiesto di essere visibili sul portale, le locazioni turistiche brevi tra privati e la scheda di prova «Struttura di test» (ID 2540) del portale. Il registro regionale usato è aggiornato al 19 settembre 2024 e non esiste un dataset regionale per case e appartamenti per vacanze.</li>
+   <li><b>Prezzi:</b> sono prezzi medi stimati di zona, calcolati con i parametri del foglio «Parametri prezzi». Non sono prezzi ufficiali né tariffe delle singole strutture. Le voci del solo registro non hanno stima.</li>
+  </ul>
+  <h4>Aggiornamento mensile</h4>
+  <p>Il primo lunedì di ogni mese un programma automatico rilegge le fonti ufficiali e cambia un dato solo quando la fonte lo dice in modo esplicito. Per le strutture del portale rilegge ogni scheda ufficiale (denominazione, indirizzo, telefono, posta elettronica, CIN, camere, letti e bagni) e l'elenco per tipologia, da cui ricava le strutture nuove; una struttura si toglie solo se la sua scheda non esiste più per due controlli di fila. Per il registro regionale confronta gli elenchi aperti della Regione. Quando una scheda non risponde o un dato non è chiaro, resta il valore di prima e il caso finisce nell'elenco «da verificare». Se le fonti rispondono in modo anomalo (per esempio troppe schede mancanti insieme) l'aggiornamento si ferma senza cambiare nulla.</p>
+  ${(META.registro||[]).length?`<div class="tw"><table><thead><tr><th>Controllo</th><th>Esito</th><th>Strutture nuove</th><th>Tolte</th><th>Dati cambiati</th><th>Da verificare</th></tr></thead><tbody>${META.registro.slice().reverse().map(g=>`<tr><td>${esc(dataIt(g.data))}</td><td>${esc(g.esito||"")}</td><td>${fmtN(g.nuove||0)}</td><td>${fmtN(g.tolte||0)}</td><td>${fmtN(g.cambiati||0)}</td><td>${fmtN(g.da_verificare||0)}</td></tr>`).join("")}</tbody></table></div>`:`<p class="nota">Nessun aggiornamento mensile eseguito finora: i dati sono quelli del file di partenza.</p>`}
+  ${(META.da_verificare||[]).length?`<details><summary>Casi da verificare a mano (${fmtN(META.da_verificare.length)})</summary><ul>${META.da_verificare.slice(0,300).map(v=>`<li>${esc(v)}</li>`).join("")}</ul></details>`:""}
+  <h4>Note metodologiche e fonti (foglio «Note e fonti» del file di partenza)</h4><div class="tw"><table><tbody>${note.map(([a,b])=>`<tr><th scope="row">${esc(a)}</th><td>${autolink(b)}</td></tr>`).join("")}</tbody></table></div>
+  <h4>Verifica dei collegamenti (foglio «Verifica link»)</h4><p>${D.vlHead.map(autolink).join("<br>")}</p>
+  <div class="tw"><table><thead><tr><th>Stato del sito web nella pagina</th><th>Portale</th><th>Solo registro</th></tr></thead><tbody>${Object.entries(sites).sort((a,b)=>(b[1].P+b[1].R)-(a[1].P+a[1].R)).map(([k,v])=>`<tr><td><span class="pill ${SITO_CLASS[k]||"neu"}">${esc(k)}</span></td><td>${fmtN(v.P)}</td><td>${fmtN(v.R)}</td></tr>`).join("")}</tbody></table></div>
+  <p>Un sito «Rimosso» non è mai mostrato come funzionante: il vecchio indirizzo compare solo come testo nella scheda, con l'esito della verifica. Le schede ufficiali del portale risultano tutte raggiungibili alla data della verifica.</p>
+  ${D.verFonti&&D.verFonti.length?`<p>Fonti dei prezzi e delle integrazioni verificate:</p><ul>${D.verFonti.map(v=>`<li>${link(v.url)}: ${esc(v.esito)}${v.dett?" ("+esc(v.dett)+")":""}</li>`).join("")}</ul>`:""}
+  <h4>Parametri dei prezzi medi stimati (foglio «Parametri prezzi»)</h4>
+  <div class="tw"><table>${par.map((row,i)=>{const tag=i===parHead?"th":"td";return `<tr>${row.map(c=>`<${tag}>${typeof c==="number"?fmtN(c):autolink(c)}</${tag}>`).join("")}</tr>`}).join("")}</table></div>
+  <h4>Come è stata costruita questa pagina</h4><ul>
+   <li>I dati partono dal file Excel «Strutture ricettive FVG 2026» e cambiano solo con l'aggiornamento mensile sulle fonti ufficiali. La pagina elabora tutto nel browser e non invia dati a nessun server.</li>
+   <li>Le colonne «Prezzo medio stimato» e «Posti letto per camera / alloggio / piazzola» sono formule. Il file non conteneva i valori calcolati salvati: le formule sono state ricalcolate senza modifiche, con i parametri presenti nel foglio «Parametri prezzi». Quando una formula restituisce una cella vuota, il dato resta non disponibile.</li>
+   <li>I segnaposto sulla mappa stanno al centro del comune, non all'indirizzo della struttura. Le coordinate comunali vengono da Wikidata (proprietà P625), associate tramite il codice ISTAT del comune presente nel foglio «Strutture».</li>
+   <li>Il foglio «Solo registro regionale» non ha il codice ISTAT: il comune è associato per nome. Per tre grafie diverse l'associazione è esplicita: ${Object.entries(D.alias||{}).map(([k,v])=>`«${esc(k)}» (${v} ${v===1?"voce":"voci"})`).join(", ")}, ricondotte rispettivamente a San Dorligo della Valle, Sgonico e Doberdò del Lago. Il nome originale resta visibile nella scheda.</li>
+   <li>Nei filtri le opzioni uguali che differiscono solo per maiuscole o spazi sono raggruppate; il testo mostrato resta quello del file.</li>
+  </ul>`;
+  $("#iBody").innerHTML=h;
+}
+buildInfo();
+
+/* ---------- Mappa ---------- */
+let MAP=null,LAYER=null,MARKERS=new Map(),tileOk=0,tileErr=0;
+const HOME=[46.13,13.05],HZ=8;
+function initMap(){
+  if(typeof L==="undefined"){$("#mapOff").classList.add("show");$("#mapCaption").style.display="none";return}
+  MAP=L.map("map",{zoomControl:false,scrollWheelZoom:false,keyboard:true}).setView(HOME,HZ);
+  // Sul sito la cartografia è OpenStreetMap, come nelle altre pagine dell'Atlante. Aperta come file locale la pagina usa Esri,
+  // perché tile.openstreetmap.org blocca le richieste senza sito di provenienza; Esri è anche la riserva se OSM non risponde.
+  const ESRI='Cartografia © <a href="https://www.esri.com" target="_blank" rel="noopener noreferrer">Esri</a> e fornitori dei dati';
+  const OSM={u:"https://tile.openstreetmap.org/{z}/{x}/{y}.png",o:{maxZoom:19,attribution:'© contributori di <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>'}};
+  const PROV=[...(/^https?:$/.test(location.protocol)?[OSM]:[]),
+   {u:"https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",o:{maxZoom:19,attribution:ESRI}},
+   {u:"https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",o:{maxZoom:19,attribution:ESRI}}
+  ];
+  const WD=' · coordinate comunali: <a href="https://www.wikidata.org" target="_blank" rel="noopener noreferrer">Wikidata</a>';
+  let pi=0,tl=null;
+  function setTiles(){if(tl)MAP.removeLayer(tl);tileOk=0;tileErr=0;const P=PROV[pi];
+    tl=L.tileLayer(P.u,Object.assign({},P.o,{attribution:P.o.attribution+WD})).addTo(MAP);
+    tl.on("tileload",()=>{tileOk++;$("#mapWarn").classList.remove("show")});
+    tl.on("tileerror",()=>{tileErr++;if(tileErr>=4&&tileOk===0){if(pi<PROV.length-1){pi++;setTiles()}else{const w=$("#mapWarn");w.textContent="Cartografia non disponibile: controlla la connessione a Internet. I segnaposto, l'elenco e i filtri funzionano comunque.";w.classList.add("show")}}});}
+  setTiles();
+  L.control.zoom({position:"bottomright",zoomInTitle:"Ingrandisci",zoomOutTitle:"Riduci"}).addTo(MAP);
+  MAP.on("focus",()=>MAP.scrollWheelZoom.enable());MAP.on("blur",()=>MAP.scrollWheelZoom.disable());
+  MAP.getContainer().addEventListener("click",()=>MAP.scrollWheelZoom.enable(),{once:false});
+  if(L.markerClusterGroup){
+    LAYER=L.markerClusterGroup({maxClusterRadius:38,showCoverageOnHover:false,spiderfyOnMaxZoom:true,disableClusteringAtZoom:11,
+      iconCreateFunction:c=>{const n=c.getAllChildMarkers().reduce((s,m)=>s+(m.options.count||0),0);const sz=Math.round(30+Math.min(26,Math.log10(n+1)*10));
+        return L.divIcon({className:"",html:`<span class="ccl" style="width:${sz}px;height:${sz}px">${nf.format(n)}</span>`,iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]})}});
+  }else LAYER=L.layerGroup();
+  LAYER.addTo(MAP);
+  $("#home").onclick=()=>MAP.flyTo(HOME,HZ,{duration:reduced()?0:.8});
+  $("#fit").onclick=fitResults;
+}
+function fitResults(){if(!MAP)return;const pts=[];MARKERS.forEach(m=>pts.push(m.getLatLng()));if(!pts.length)return;MAP.flyToBounds(L.latLngBounds(pts).pad(.12),{duration:reduced()?0:.8,maxZoom:12})}
+let BYCOM=new Map(),NOCOORD=0;
+function updateMap(){
+  BYCOM=new Map();NOCOORD=0;
+  FIL.forEach(r=>{const c=COM[r.istat];if(!c||!isNum(c.lat)){NOCOORD++;return}if(!BYCOM.has(r.istat))BYCOM.set(r.istat,[]);BYCOM.get(r.istat).push(r)});
+  const onMap=FIL.length-NOCOORD;
+  $("#mapTitle").textContent=`${fmtN(onMap)} ${plural(onMap,"struttura","strutture")} in ${fmtN(BYCOM.size)} ${plural(BYCOM.size,"comune","comuni")}`;
+  $("#mapCaption").innerHTML=`<b>${fmtN(onMap)}</b> sulla mappa${NOCOORD?` · <b>${fmtN(NOCOORD)}</b> senza coordinate comunali, solo nell'elenco`:""} · posizione al centro del comune`;
+  if(!MAP)return;
+  LAYER.clearLayers();MARKERS=new Map();
+  const ms=[];
+  BYCOM.forEach((list,istat)=>{const c=COM[istat];const n=list.length;const nP=list.filter(r=>r.src==="P").length;
+    const cls=nP===n?"":nP===0?" r":" m";const sz=Math.round(20+Math.min(22,Math.log10(n)*11));
+    const m=L.marker([c.lat,c.lng],{count:n,title:`${c.nome}: ${n} ${plural(n,"struttura","strutture")}`,alt:`${c.nome}: ${n} ${plural(n,"struttura","strutture")}`,keyboard:true,riseOnHover:true,
+      icon:L.divIcon({className:"",html:`<span class="cpin${cls}" style="width:${sz}px;height:${sz}px">${n>999?nf.format(Math.round(n/100)/10)+"k":n}</span>`,iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],popupAnchor:[0,-sz/2]})});
+    m.bindPopup(()=>popupFor(istat),{maxWidth:320,autoPanPadding:[30,60]});
+    MARKERS.set(istat,m);ms.push(m)});
+  if(LAYER.addLayers)LAYER.addLayers(ms);else ms.forEach(m=>LAYER.addLayer(m));
+}
+function popupFor(istat){
+  const c=COM[istat],list=(BYCOM.get(istat)||[]).slice().sort((a,b)=>collator.compare(a.den||"",b.den||""));
+  const el=document.createElement("div");el.className="pop";
+  if(list.length===1){const r=list[0];
+    el.innerHTML=`<div class="tag">${esc(SRC_LABEL[r.src])}</div><h3>${esc(r.den)}</h3><p class="pos">Posizione indicativa: centro del comune</p>
+    <dl><dt>Tipologia</dt><dd>${esc(r.tip)}</dd><dt>Comune</dt><dd>${esc(r.com)}</dd><dt>Provincia</dt><dd>${esc(r.prov)}</dd><dt>Posti letto</dt><dd>${isNum(r.pl)?fmtN(r.pl):'<span class="na">Non disponibile</span>'}</dd></dl>
+    <div class="acts">${has(r.scheda)?`<a class="btn primary" href="${esc(r.scheda)}" target="_blank" rel="noopener noreferrer">Scheda ufficiale ↗</a>`:`<span class="na" style="font-size:11px">Scheda ufficiale non disponibile</span>`}<button class="btn" type="button" data-open="${r._i}">Dettagli</button></div>`;
+    return el}
+  let shown=0;const step=20;
+  el.innerHTML=`<div class="tag">${esc(c.prov||"")} · ${fmtN(list.length)} strutture nei risultati</div><h3>${esc(c.nome)}</h3><p class="pos">Posizione indicativa: centro del comune</p><ul></ul><div class="acts"><button class="btn" type="button" data-more>Mostra altre</button><button class="btn primary" type="button" data-only>Filtra l'elenco su questo comune</button></div>`;
+  const ul=el.querySelector("ul"),more=el.querySelector("[data-more]");
+  function add(){const part=list.slice(shown,shown+step);shown+=part.length;
+    ul.insertAdjacentHTML("beforeend",part.map(r=>`<li><button type="button" data-open="${r._i}">${esc(r.den)}</button><span class="meta">${esc(r.tip)} · ${esc(r.com)} (${esc(r.prov)}) · ${isNum(r.pl)?fmtN(r.pl)+" posti letto":"posti letto non disponibili"}${has(r.scheda)?` · <a href="${esc(r.scheda)}" target="_blank" rel="noopener noreferrer">scheda ufficiale ↗</a>`:" · solo registro"}</span></li>`).join(""));
+    more.hidden=shown>=list.length;if(!more.hidden)more.textContent=`Mostra altre (${fmtN(list.length-shown)})`}
+  add();more.onclick=add;
+  el.querySelector("[data-only]").onclick=()=>{S.cat.com.clear();S.cat.com.add(istat);document.querySelectorAll('input[data-c="com"]').forEach(i=>i.checked=i.value===istat);MAP.closePopup();update();$("#risultati").scrollIntoView({behavior:reduced()?"auto":"smooth"})};
+  return el;
+}
+function focusComune(istat){const m=MARKERS.get(istat);if(!MAP||!m)return;$(".mapframe").scrollIntoView({behavior:reduced()?"auto":"smooth",block:"center"});
+  const go=()=>{if(LAYER.zoomToShowLayer)LAYER.zoomToShowLayer(m,()=>m.openPopup());else{MAP.setView(m.getLatLng(),12);m.openPopup()}};setTimeout(go,reduced()?0:300)}
+
+/* ---------- Esportazione CSV ---------- */
+const CSV_COLS=[
+ ["Provenienza",r=>SRC_LABEL[r.src]],["Foglio Excel",r=>has(r.n)?(r.src==="P"?"Strutture":"Solo registro regionale"):"Aggiornamento mensile"],["N.",r=>r.n],["ID portale",r=>r.id],
+ ["Denominazione",r=>r.den],["Tipologia",r=>r.tip],["Indirizzo",r=>r.ind],["CAP",r=>r.cap],["Località",r=>r.loc],["Comune",r=>r.com],["Provincia",r=>r.prov],
+ ["Cod. ISTAT comune",r=>r.src==="P"?r.istat:null],["CIN",r=>r.cin],["N. camere / alloggi / piazzole",r=>r.cam],["Posti letto (capacità persone)",r=>r.pl],["Bagni",r=>r.bagni],
+ ["Posti letto per camera / alloggio / piazzola",r=>r.plc],["Telefono",r=>r.tel],["Email",r=>r.email],["Sito web",r=>r.web],["Scheda ufficiale",r=>r.scheda],["Zona di prezzo",r=>r.zona],
+ ["Prezzo medio stimato €/notte per unità",r=>r.pu],["Prezzo medio stimato €/persona/notte",r=>r.pp],["Base del prezzo",r=>r.base],["Dettaglio ricettività (dal portale)",r=>r.dett],
+ ["Note integrazioni",r=>r.noteint],["Nota (solo registro)",r=>r.nota],["Fonte dati struttura / dataset open data",r=>r.fonte],["Riscontro registro regionale (open data)",r=>r.risc],
+ ["Link registro regionale / dataset",r=>r.linkreg],["Fonte del prezzo stimato (link)",r=>r.fontep],["Fonte integrazioni (link)",r=>r.fonteint],["Verifica link / sito (14/10/2026)",r=>r.ver],["Stato sito web (classificato)",r=>r.sito]
+];
+function csvCell(v){if(!has(v))return"";if(typeof v==="number")return String(v).replace(".",",");const s=String(v);return /[";\r\n]/.test(s)||/^\s|\s$/.test(s)?`"${s.replace(/"/g,'""')}"`:s}
+$("#csv").addEventListener("click",()=>{
+  try{
+    const lines=[CSV_COLS.map(c=>csvCell(c[0])).join(";")];FIL.forEach(r=>lines.push(CSV_COLS.map(c=>csvCell(c[1](r))).join(";")));
+    const blob=new Blob(["﻿"+lines.join("\r\n")+"\r\n"],{type:"text/csv;charset=utf-8"});
+    const a=document.createElement("a");a.href=URL.createObjectURL(blob);const d=new Date();
+    a.download=`strutture_ricettive_fvg_filtrate_${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}.csv`;
+    document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);
+  }catch(e){showError("Non è stato possibile creare il file CSV.")}
+});
+
+/* ---------- Stampa ---------- */
+function buildPrint(){
+  const f=CHIPS.map(c=>c.l).join(" · ")||"nessun filtro";
+  $("#printArea").innerHTML=`<h1>Strutture ricettive del Friuli Venezia Giulia · Atlante FVG</h1><p>Elenco filtrato: ${fmtN(FIL.length)} strutture. Filtri: ${esc(f)}.</p><p>Fonti: portale PromoTurismoFVG e dati aperti della Regione FVG (base del ${esc(extr)}${ultimo?`, controllo del ${esc(ultimo)}`:""}). Prezzi medi stimati di zona, non tariffe ufficiali. Stampato il ${new Date().toLocaleDateString("it-IT",{day:"numeric",month:"long",year:"numeric"})}.</p>
+  <table><thead><tr><th>N.</th><th>Denominazione</th><th>Tipologia</th><th>Comune (prov.)</th><th>Indirizzo</th><th>Posti letto</th><th>Camere, alloggi, piazzole</th><th>Prezzo unità</th><th>Prezzo persona</th><th>Telefono</th><th>Provenienza</th><th>Identificativo</th></tr></thead><tbody>`+
+  FIL.map((r,i)=>`<tr><td class="n">${i+1}</td><td>${esc(r.den)}</td><td>${esc(r.tip)}</td><td>${locTxt(r)}</td><td>${esc(r.ind||"")}</td><td class="n">${isNum(r.pl)?fmtN(r.pl):"n. d."}</td><td class="n">${isNum(r.cam)?fmtN(r.cam):"n. d."}</td><td class="n">${isNum(r.pu)?fmtN(r.pu)+" euro":"n. d."}</td><td class="n">${isNum(r.pp)?fmtN(r.pp)+" euro":"n. d."}</td><td>${esc(r.tel||"")}</td><td>${SRC_SHORT[r.src]}</td><td>${idTxt(r)}</td></tr>`).join("")+`</tbody></table>`;
+}
+$("#print").addEventListener("click",()=>{buildPrint();window.print()});
+window.addEventListener("beforeprint",buildPrint);
+
+/* ---------- Avvio ---------- */
+try{initMap()}catch(e){$("#mapOff").classList.add("show")}
+try{const sp=new URLSearchParams(location.search);const cs=sp.get("comune");if(cs){const ist=Object.keys(SLUG).find(k=>SLUG[k]===cs);if(ist&&COM[ist]){S.cat.com.add(ist);const cb=document.querySelector(`input[data-c="com"][value="${ist}"]`);if(cb)cb.checked=true}}const q=sp.get("q");if(q){S.q=q;$("#q").value=q}}catch(e){}
+syncDir();update();
+window.__FVG={R,FIL:()=>FIL,MARKERS:()=>MARKERS,BYCOM:()=>BYCOM,S,update,focusComune};
+}
+})();
+</script>
+</body>
+</html>
