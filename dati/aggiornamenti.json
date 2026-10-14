@@ -7,6 +7,30 @@
    "data": "2026-10-14",
    "tipo": "dati",
    "automatico": true,
+   "titolo": "Aggiorna i bandi e gli avvisi della Regione del 14/10/2026",
+   "descrizione": "Bandi: 119 voci (16 con misure contributive), 6 nuove e 2 tolte rispetto a prima.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Bandi e avvisi della Regione",
+     "misura": "voci",
+     "prima": 115,
+     "dopo": 119,
+     "differenza": 4,
+     "collegamento": "../bandi/"
+    }
+   ],
+   "commit": "b175a5cc3a"
+  },
+  {
+   "data": "2026-10-14",
+   "tipo": "dati",
+   "automatico": true,
    "titolo": "Aggiorna i finanziamenti regionali del 14/10/2026",
    "descrizione": "Finanziamenti: 3819 righe lette dal 2026-09-04 al 2026-10-14, 2751 nuove; archivio di 30189 righe in 27 mesi, 0 righe con problemi, 59 finestre non scaricate, 12 arretrate recuperate.",
    "interessa": [
@@ -25,7 +49,7 @@
      "collegamento": "../finanziamenti/"
     }
    ],
-   "commit": "918a322878"
+   "commit": "badff74539"
   },
   {
    "data": "2026-10-13",
