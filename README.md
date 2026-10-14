@@ -187,6 +187,15 @@ licenze in uso sono IODL 2.0 e CC BY 4.0 (verificato sul catalogo regionale il 6
   Pagine viste (`/?pagina=...` e indirizzi delle pagine statiche) ed eventi: `ricerca/comune-scelto` (mai il testo
   scritto), `filtro/...`, `mappa/<indicatore>`, `confronto/<n>-comuni`, `archivio/<foglio>`, `download/<tabella>/<formato>`,
   `condividi/vista`, `segnala-errore/<dove>`, `errore/caricamento`, `errore/programma`. L'informativa è in Metodo e fonti.
+- **Google Analytics 4 (GA4), solo con il consenso**: `consenso.js`, richiamato in ogni pagina subito dopo GoatCounter
+  (`<script src="/consenso.js" defer></script>`, anche nei generatori `pagine_comuni.py`, `porta_meteo.py`, `porta_catasto.py`,
+  `genera_stradario.py`). Mostra il riquadro con «Accetta» e «Rifiuta» di pari evidenza (la X vale come rifiuto) e scarica
+  `gtag.js` solo dopo «Accetta». Consent Mode v2 con tutto negato per impostazione predefinita; con il consenso si concede solo
+  `analytics_storage`; segnali Google e personalizzazione della pubblicità disattivati; cookie di GA4 al massimo 6 mesi.
+  La scelta sta in `localStorage` (chiave `atlante-fvg:consenso`) e vale 6 mesi; «Preferenze sui cookie», aggiunto in fondo a
+  ogni pagina (o qualunque elemento con `data-consenso-apri`), la cambia; la revoca cancella i cookie `_ga` e ricarica la pagina.
+  L'ID di misurazione (`G-380D56PCJN`) è la costante `ID_MISURAZIONE` in cima a `consenso.js`: con il segnaposto `G-XXXXXXXXXX` lo script non fa nulla.
+  Informativa sui cookie: Metodo e fonti, sezione `#cookie` (pagina interattiva e `metodo/`).
 
 ## Grafica e uso sul telefono
 
