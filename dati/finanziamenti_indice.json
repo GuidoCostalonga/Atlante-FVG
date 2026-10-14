@@ -91,10 +91,22 @@
    "atti": 394
   },
   "2025-04": {
-   "righe": 395,
-   "concesso": 7048194.58,
+   "righe": 1347,
+   "concesso": 31758881.53,
+   "erogato": 960.0,
+   "atti": 974
+  },
+  "2025-05": {
+   "righe": 1359,
+   "concesso": 35376994.33,
    "erogato": 0,
-   "atti": 214
+   "atti": 962
+  },
+  "2025-06": {
+   "righe": 243,
+   "concesso": 17854454.98,
+   "erogato": 0,
+   "atti": 203
   },
   "2026-02": {
    "righe": 827,
@@ -139,16 +151,16 @@
    "atti": 369
   },
   "2026-09": {
-   "righe": 878,
-   "concesso": 9514251.79,
+   "righe": 880,
+   "concesso": 9599916.01,
    "erogato": 0,
-   "atti": 643
+   "atti": 645
   },
   "2026-10": {
-   "righe": 151,
-   "concesso": 968193.74,
+   "righe": 346,
+   "concesso": 4888372.68,
    "erogato": 0,
-   "atti": 113
+   "atti": 237
   }
  },
  "errori": [
@@ -164,8 +176,6 @@
   }
  ],
  "mesiMancanti": [
-  "2025-05",
-  "2025-06",
   "2025-07",
   "2025-08",
   "2025-09",
@@ -175,18 +185,6 @@
   "2026-01"
  ],
  "finestreNonScaricate": [
-  "finestra 2025-04-10-2025-04-14 non in cache",
-  "finestra 2025-04-15-2025-04-19 non in cache",
-  "finestra 2025-04-20-2025-04-24 non in cache",
-  "finestra 2025-04-25-2025-04-29 non in cache",
-  "finestra 2025-04-30-2025-05-04 non in cache",
-  "finestra 2025-05-05-2025-05-09 non in cache",
-  "finestra 2025-05-10-2025-05-14 non in cache",
-  "finestra 2025-05-15-2025-05-19 non in cache",
-  "finestra 2025-05-20-2025-05-24 non in cache",
-  "finestra 2025-05-25-2025-05-29 non in cache",
-  "finestra 2025-05-30-2025-06-03 non in cache",
-  "finestra 2025-06-04-2025-06-08 non in cache",
   "finestra 2025-06-09-2025-06-13 non in cache",
   "finestra 2025-06-14-2025-06-18 non in cache",
   "finestra 2025-06-19-2025-06-23 non in cache",
@@ -248,27 +246,15 @@
   "finestra 2026-08-08-2026-08-12 non in cache"
  ],
  "fonte": "https://amministrazionetrasparente.regione.fvg.it/AmministrazioneTrasparente/ricerca.html",
- "generato": "2026-10-07",
+ "generato": "2026-10-14",
  "ultimaLettura": {
-  "data": "2026-10-07",
-  "da": "2024-01-01",
-  "a": "2026-10-07",
+  "data": "2026-10-14",
+  "da": "2026-09-04",
+  "a": "2026-10-14",
   "esito": "letta",
-  "righeLette": 27438,
-  "righeNuove": 27438,
+  "righeLette": 3819,
+  "righeNuove": 2751,
   "problemi": [
-   "finestra 2025-04-10-2025-04-14 non in cache",
-   "finestra 2025-04-15-2025-04-19 non in cache",
-   "finestra 2025-04-20-2025-04-24 non in cache",
-   "finestra 2025-04-25-2025-04-29 non in cache",
-   "finestra 2025-04-30-2025-05-04 non in cache",
-   "finestra 2025-05-05-2025-05-09 non in cache",
-   "finestra 2025-05-10-2025-05-14 non in cache",
-   "finestra 2025-05-15-2025-05-19 non in cache",
-   "finestra 2025-05-20-2025-05-24 non in cache",
-   "finestra 2025-05-25-2025-05-29 non in cache",
-   "finestra 2025-05-30-2025-06-03 non in cache",
-   "finestra 2025-06-04-2025-06-08 non in cache",
    "finestra 2025-06-09-2025-06-13 non in cache",
    "finestra 2025-06-14-2025-06-18 non in cache",
    "finestra 2025-06-19-2025-06-23 non in cache",
@@ -276,13 +262,25 @@
    "finestra 2025-06-29-2025-07-03 non in cache",
    "finestra 2025-07-04-2025-07-08 non in cache",
    "finestra 2025-07-09-2025-07-13 non in cache",
-   "finestra 2025-07-14-2025-07-18 non in cache"
+   "finestra 2025-07-14-2025-07-18 non in cache",
+   "finestra 2025-07-19-2025-07-23 non in cache",
+   "finestra 2025-07-24-2025-07-28 non in cache",
+   "finestra 2025-07-29-2025-08-02 non in cache",
+   "finestra 2025-08-03-2025-08-07 non in cache",
+   "finestra 2025-08-08-2025-08-12 non in cache",
+   "finestra 2025-08-13-2025-08-17 non in cache",
+   "finestra 2025-08-18-2025-08-22 non in cache",
+   "finestra 2025-08-23-2025-08-27 non in cache",
+   "finestra 2025-08-28-2025-09-01 non in cache",
+   "finestra 2025-09-02-2025-09-06 non in cache",
+   "finestra 2025-09-07-2025-09-11 non in cache",
+   "finestra 2025-09-12-2025-09-16 non in cache"
   ]
  },
  "enti": {
   "Comune di Pordenone": {
-   "righe": 1859,
-   "concesso": 44960330.89,
+   "righe": 2002,
+   "concesso": 49222740.87,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -291,20 +289,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 201,
-     "concesso": 8587369.13,
+     "righe": 336,
+     "concesso": 10280492.34,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 458,
-     "concesso": 7108556.25,
+     "righe": 466,
+     "concesso": 9677843.02,
      "erogato": 0.0
     }
    }
   },
   "Comune di Muggia": {
-   "righe": 1130,
-   "concesso": 6659542.45,
+   "righe": 1193,
+   "concesso": 6943964.47,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -313,20 +311,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 189,
-     "concesso": 1120551.68,
+     "righe": 250,
+     "concesso": 1351225.5,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 252,
-     "concesso": 2070939.27,
+     "righe": 254,
+     "concesso": 2124687.47,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI SAVOGNA D'ISONZO": {
-   "righe": 548,
-   "concesso": 4345784.62,
+   "righe": 601,
+   "concesso": 4635408.47,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -335,20 +333,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 60,
-     "concesso": 124324.96,
+     "righe": 109,
+     "concesso": 366350.09,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 175,
-     "concesso": 1207167.19,
+     "righe": 179,
+     "concesso": 1254765.91,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI ARBA": {
-   "righe": 174,
-   "concesso": 1738559.04,
+   "righe": 196,
+   "concesso": 1879748.76,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -357,8 +355,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 27,
-     "concesso": 337083.5,
+     "righe": 49,
+     "concesso": 478273.22,
      "erogato": 0.0
     },
     "2026": {
@@ -369,8 +367,8 @@
    }
   },
   "BCC FINANCING S.P.A": {
-   "righe": 4661,
-   "concesso": 64462685.18,
+   "righe": 5448,
+   "concesso": 74894382.92,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -379,8 +377,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 769,
-     "concesso": 10472915.44,
+     "righe": 1556,
+     "concesso": 20904613.18,
      "erogato": 0.0
     },
     "2026": {
@@ -391,8 +389,8 @@
    }
   },
   "AZIENDA SANITARIA UNIVERSITARIA GIULIANO ISONTINA (ASU GI)": {
-   "righe": 466,
-   "concesso": 27010450.54,
+   "righe": 489,
+   "concesso": 27377975.54,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -401,20 +399,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 44,
-     "concesso": 900666.82,
+     "righe": 59,
+     "concesso": 1110782.32,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 154,
-     "concesso": 19377727.26,
+     "righe": 162,
+     "concesso": 19535136.76,
      "erogato": 0.0
     }
    }
   },
   "AZIENDA SANITARIA FRIULI OCCIDENTALE (AS FO)": {
-   "righe": 659,
-   "concesso": 239289583.2,
+   "righe": 692,
+   "concesso": 253509655.61,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -423,20 +421,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 112,
-     "concesso": 35613860.87,
+     "righe": 138,
+     "concesso": 49645381.26,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 223,
-     "concesso": 37603984.97,
+     "righe": 230,
+     "concesso": 37792536.99,
      "erogato": 0.0
     }
    }
   },
   "Comune di Udine": {
-   "righe": 1189,
-   "concesso": 54110831.15,
+   "righe": 1265,
+   "concesso": 61705669.93,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -445,20 +443,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 136,
-     "concesso": 6724224.81,
+     "righe": 203,
+     "concesso": 14219527.1,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 406,
-     "concesso": 17113747.59,
+     "righe": 415,
+     "concesso": 17213284.08,
      "erogato": 0.0
     }
    }
   },
   "Comune di Tavagnacco": {
-   "righe": 256,
-   "concesso": 1285906.52,
+   "righe": 273,
+   "concesso": 1468939.42,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -467,8 +465,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 42,
-     "concesso": 250374.87,
+     "righe": 59,
+     "concesso": 433407.77,
      "erogato": 0.0
     },
     "2026": {
@@ -479,8 +477,8 @@
    }
   },
   "COMUNE DI FIUME VENETO": {
-   "righe": 743,
-   "concesso": 1074108.53,
+   "righe": 755,
+   "concesso": 1117528.86,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -489,20 +487,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 236,
-     "concesso": 186109.71,
+     "righe": 243,
+     "concesso": 224154.54,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 177,
-     "concesso": 256545.31,
+     "righe": 182,
+     "concesso": 261920.81,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI AZZANO DECIMO": {
-   "righe": 1134,
-   "concesso": 1808987.4,
+   "righe": 1177,
+   "concesso": 1881895.12,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -511,20 +509,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 91,
-     "concesso": 169702.94,
+     "righe": 130,
+     "concesso": 241793.35,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 428,
-     "concesso": 678323.16,
+     "righe": 432,
+     "concesso": 679140.47,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI MANIAGO": {
-   "righe": 130,
-   "concesso": 1514567.83,
+   "righe": 138,
+   "concesso": 1536762.77,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -533,8 +531,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 13,
-     "concesso": 32804.19,
+     "righe": 21,
+     "concesso": 54999.13,
      "erogato": 0.0
     },
     "2026": {
@@ -545,8 +543,8 @@
    }
   },
   "COMUNE DI DUINO-AURISINA": {
-   "righe": 218,
-   "concesso": 248319.54,
+   "righe": 226,
+   "concesso": 293598.54,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -555,20 +553,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 42,
-     "concesso": 27254.84,
+     "righe": 48,
+     "concesso": 52083.84,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 38,
-     "concesso": 60383.83,
+     "righe": 40,
+     "concesso": 80833.83,
      "erogato": 0.0
     }
    }
   },
   "Comune di Rivignano Teor": {
-   "righe": 46,
-   "concesso": 118872.75,
+   "righe": 49,
+   "concesso": 121525.35,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -576,9 +574,14 @@
      "concesso": 81086.7,
      "erogato": 0.0
     },
+    "2025": {
+     "righe": 2,
+     "concesso": 2222.6,
+     "erogato": 0.0
+    },
     "2026": {
-     "righe": 6,
-     "concesso": 37786.05,
+     "righe": 7,
+     "concesso": 38216.05,
      "erogato": 0.0
     }
    }
@@ -606,8 +609,8 @@
    }
   },
   "COMUNE DI MOGGIO UDINESE": {
-   "righe": 68,
-   "concesso": 137085.16,
+   "righe": 70,
+   "concesso": 139585.16,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -616,8 +619,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 2,
-     "concesso": 600.0,
+     "righe": 4,
+     "concesso": 3100.0,
      "erogato": 0.0
     },
     "2026": {
@@ -628,8 +631,8 @@
    }
   },
   "COMUNE DI LIGNANO SABBIADORO": {
-   "righe": 156,
-   "concesso": 1089805.85,
+   "righe": 159,
+   "concesso": 1094970.82,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -638,8 +641,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 6,
-     "concesso": 30508.66,
+     "righe": 9,
+     "concesso": 35673.63,
      "erogato": 0.0
     },
     "2026": {
@@ -650,8 +653,8 @@
    }
   },
   "COMUNE DI GEMONA DEL FRIULI": {
-   "righe": 167,
-   "concesso": 635296.93,
+   "righe": 169,
+   "concesso": 639545.73,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -660,8 +663,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 4,
-     "concesso": 18500.0,
+     "righe": 6,
+     "concesso": 22748.8,
      "erogato": 0.0
     },
     "2026": {
@@ -672,8 +675,8 @@
    }
   },
   "COMUNE DI ROVEREDO IN PIANO": {
-   "righe": 82,
-   "concesso": 846170.39,
+   "righe": 87,
+   "concesso": 872082.09,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -682,8 +685,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 4,
-     "concesso": 95008.07,
+     "righe": 9,
+     "concesso": 120919.77,
      "erogato": 0.0
     },
     "2026": {
@@ -694,8 +697,8 @@
    }
   },
   "COMUNE DI LATISANA": {
-   "righe": 701,
-   "concesso": 22867569.02,
+   "righe": 736,
+   "concesso": 24119230.48,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -704,8 +707,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 100,
-     "concesso": 2231641.19,
+     "righe": 135,
+     "concesso": 3483302.65,
      "erogato": 0.0
     },
     "2026": {
@@ -716,8 +719,8 @@
    }
   },
   "AZIENDA SANITARIA UNIVERSITARIA FRIULI CENTRALE (ASU FC)": {
-   "righe": 305,
-   "concesso": 24478043.0,
+   "righe": 333,
+   "concesso": 25164338.94,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -726,20 +729,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 45,
-     "concesso": 5213117.41,
+     "righe": 69,
+     "concesso": 5795670.0,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 123,
-     "concesso": 6574114.87,
+     "righe": 127,
+     "concesso": 6677858.22,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI SAN GIORGIO DI NOGARO": {
-   "righe": 111,
-   "concesso": 706742.34,
+   "righe": 121,
+   "concesso": 731697.34,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -748,8 +751,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 4,
-     "concesso": 40236.0,
+     "righe": 14,
+     "concesso": 65191.0,
      "erogato": 0.0
     },
     "2026": {
@@ -760,8 +763,8 @@
    }
   },
   "COMUNE DI ARTEGNA": {
-   "righe": 29,
-   "concesso": 198631.02,
+   "righe": 32,
+   "concesso": 208131.02,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -770,8 +773,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 2,
-     "concesso": 6082.82,
+     "righe": 5,
+     "concesso": 15582.82,
      "erogato": 0.0
     },
     "2026": {
@@ -782,13 +785,18 @@
    }
   },
   "MAGNIFICA COMUNITÀ DI MONTAGNA DOLOMITI FRIULANE, CAVALLO E CANSIGLIO": {
-   "righe": 50,
-   "concesso": 176472.92,
+   "righe": 53,
+   "concesso": 203972.92,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 45,
      "concesso": 170783.88,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 3,
+     "concesso": 27500.0,
      "erogato": 0.0
     },
     "2026": {
@@ -821,8 +829,8 @@
    }
   },
   "Comune di Sacile": {
-   "righe": 593,
-   "concesso": 7596800.13,
+   "righe": 614,
+   "concesso": 8186479.87,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -831,8 +839,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 30,
-     "concesso": 1226770.34,
+     "righe": 51,
+     "concesso": 1816450.08,
      "erogato": 0.0
     },
     "2026": {
@@ -843,9 +851,9 @@
    }
   },
   "COMUNE DI MARANO LAGUNARE": {
-   "righe": 84,
-   "concesso": 63075.0,
-   "erogato": 0.0,
+   "righe": 98,
+   "concesso": 70390.0,
+   "erogato": 960.0,
    "anni": {
     "2024": {
      "righe": 44,
@@ -853,25 +861,30 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 19,
-     "concesso": 27255.0,
-     "erogato": 0.0
+     "righe": 32,
+     "concesso": 34045.0,
+     "erogato": 960.0
     },
     "2026": {
-     "righe": 21,
-     "concesso": 6950.0,
+     "righe": 22,
+     "concesso": 7475.0,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI TORVISCOSA": {
-   "righe": 3,
-   "concesso": 21240.0,
+   "righe": 4,
+   "concesso": 22740.0,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 2,
      "concesso": 21000.0,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 1,
+     "concesso": 1500.0,
      "erogato": 0.0
     },
     "2026": {
@@ -882,8 +895,8 @@
    }
   },
   "COMUNE DI PRAVISDOMINI": {
-   "righe": 81,
-   "concesso": 256154.06,
+   "righe": 87,
+   "concesso": 260322.06,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -892,20 +905,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 1,
-     "concesso": 4276.4,
+     "righe": 5,
+     "concesso": 7600.4,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 21,
-     "concesso": 94523.44,
+     "righe": 23,
+     "concesso": 95367.44,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI GRADO": {
-   "righe": 306,
-   "concesso": 2289977.11,
+   "righe": 326,
+   "concesso": 2377823.78,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -914,20 +927,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 68,
-     "concesso": 111945.63,
+     "righe": 86,
+     "concesso": 198250.54,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 66,
-     "concesso": 477975.26,
+     "righe": 68,
+     "concesso": 479517.02,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI PORCIA": {
-   "righe": 88,
-   "concesso": 1026842.62,
+   "righe": 100,
+   "concesso": 1050685.95,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -936,8 +949,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 4,
-     "concesso": 41694.06,
+     "righe": 16,
+     "concesso": 65537.39,
      "erogato": 0.0
     },
     "2026": {
@@ -948,8 +961,8 @@
    }
   },
   "COMUNE DI MORSANO AL TAGLIAMENTO": {
-   "righe": 162,
-   "concesso": 151892.85,
+   "righe": 168,
+   "concesso": 189276.25,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -958,8 +971,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 23,
-     "concesso": 16695.65,
+     "righe": 29,
+     "concesso": 54079.05,
      "erogato": 0.0
     },
     "2026": {
@@ -970,8 +983,8 @@
    }
   },
   "AGENZIA REGIONALE PER IL DIRITTO ALLO STUDIO (ARDIS)": {
-   "righe": 308,
-   "concesso": 74346292.43,
+   "righe": 515,
+   "concesso": 76483893.48,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -980,20 +993,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 2,
-     "concesso": 225675.0,
+     "righe": 208,
+     "concesso": 2343751.05,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 46,
-     "concesso": 13379228.86,
+     "righe": 47,
+     "concesso": 13398753.86,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI SAN DANIELE DEL FRIULI": {
-   "righe": 103,
-   "concesso": 580447.31,
+   "righe": 105,
+   "concesso": 612847.31,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1002,8 +1015,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 15,
-     "concesso": 78457.01,
+     "righe": 17,
+     "concesso": 110857.01,
      "erogato": 0.0
     },
     "2026": {
@@ -1014,8 +1027,8 @@
    }
   },
   "COMUNE DI MALBORGHETTO-VALBRUNA": {
-   "righe": 82,
-   "concesso": 123787.19,
+   "righe": 84,
+   "concesso": 185630.19,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1024,8 +1037,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 2,
-     "concesso": 10348.0,
+     "righe": 4,
+     "concesso": 72191.0,
      "erogato": 0.0
     },
     "2026": {
@@ -1036,8 +1049,8 @@
    }
   },
   "COMUNE DI GORIZIA": {
-   "righe": 210,
-   "concesso": 4064445.81,
+   "righe": 222,
+   "concesso": 4096971.21,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1046,8 +1059,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 4,
-     "concesso": 64879.32,
+     "righe": 16,
+     "concesso": 97404.72,
      "erogato": 0.0
     },
     "2026": {
@@ -1058,8 +1071,8 @@
    }
   },
   "COMUNE DI CORNO DI ROSAZZO": {
-   "righe": 85,
-   "concesso": 145716.43,
+   "righe": 87,
+   "concesso": 151466.43,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1068,8 +1081,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 2,
-     "concesso": 900.0,
+     "righe": 4,
+     "concesso": 6650.0,
      "erogato": 0.0
     },
     "2026": {
@@ -1109,8 +1122,8 @@
    }
   },
   "COMUNE DI CANEVA": {
-   "righe": 157,
-   "concesso": 586539.9,
+   "righe": 174,
+   "concesso": 719419.6,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1119,20 +1132,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 19,
-     "concesso": 13088.88,
+     "righe": 35,
+     "concesso": 145408.58,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 41,
-     "concesso": 240776.7,
+     "righe": 42,
+     "concesso": 241336.7,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI SAN VITO AL TAGLIAMENTO": {
-   "righe": 129,
-   "concesso": 1076913.83,
+   "righe": 133,
+   "concesso": 1084913.83,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1141,8 +1154,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 13,
-     "concesso": 37750.0,
+     "righe": 17,
+     "concesso": 45750.0,
      "erogato": 0.0
     },
     "2026": {
@@ -1214,13 +1227,18 @@
    }
   },
   "COMUNE DI PRATA DI PORDENONE": {
-   "righe": 45,
-   "concesso": 159058.0,
+   "righe": 48,
+   "concesso": 171108.0,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 37,
      "concesso": 133608.0,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 3,
+     "concesso": 12050.0,
      "erogato": 0.0
     },
     "2026": {
@@ -1231,8 +1249,8 @@
    }
   },
   "COMUNE DI MONTEREALE VALCELLINA": {
-   "righe": 49,
-   "concesso": 213173.0,
+   "righe": 52,
+   "concesso": 238673.0,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1241,8 +1259,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 1,
-     "concesso": 80000.0,
+     "righe": 4,
+     "concesso": 105500.0,
      "erogato": 0.0
     },
     "2026": {
@@ -1253,8 +1271,8 @@
    }
   },
   "COMUNE DI TRICESIMO": {
-   "righe": 97,
-   "concesso": 285378.88,
+   "righe": 104,
+   "concesso": 302896.14,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1263,8 +1281,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 1,
-     "concesso": 9000.0,
+     "righe": 8,
+     "concesso": 26517.26,
      "erogato": 0.0
     },
     "2026": {
@@ -1287,8 +1305,8 @@
    }
   },
   "COMUNE DI RAGOGNA": {
-   "righe": 157,
-   "concesso": 136700.79,
+   "righe": 159,
+   "concesso": 150699.39,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1297,8 +1315,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 41,
-     "concesso": 23365.5,
+     "righe": 43,
+     "concesso": 37364.1,
      "erogato": 0.0
     },
     "2026": {
@@ -1309,8 +1327,8 @@
    }
   },
   "COMUNE DI AMPEZZO": {
-   "righe": 49,
-   "concesso": 69357.52,
+   "righe": 62,
+   "concesso": 106061.12,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1319,13 +1337,13 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 16,
-     "concesso": 9283.7,
+     "righe": 18,
+     "concesso": 38283.7,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 14,
-     "concesso": 29526.22,
+     "righe": 25,
+     "concesso": 37229.82,
      "erogato": 0.0
     }
    }
@@ -1360,13 +1378,18 @@
    }
   },
   "COMUNE DI SAN GIORGIO DELLA RICHINVELDA": {
-   "righe": 28,
-   "concesso": 242370.45,
+   "righe": 30,
+   "concesso": 254870.45,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 21,
      "concesso": 173600.0,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 2,
+     "concesso": 12500.0,
      "erogato": 0.0
     },
     "2026": {
@@ -1377,8 +1400,8 @@
    }
   },
   "COMUNE DI PONTEBBA": {
-   "righe": 107,
-   "concesso": 462200.5,
+   "righe": 108,
+   "concesso": 562200.5,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1387,8 +1410,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 23,
-     "concesso": 18002.92,
+     "righe": 24,
+     "concesso": 118002.92,
      "erogato": 0.0
     },
     "2026": {
@@ -1399,8 +1422,8 @@
    }
   },
   "COMUNE DI PAVIA DI UDINE": {
-   "righe": 389,
-   "concesso": 555747.98,
+   "righe": 403,
+   "concesso": 572609.98,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1409,8 +1432,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 121,
-     "concesso": 148468.19,
+     "righe": 135,
+     "concesso": 165330.19,
      "erogato": 0.0
     },
     "2026": {
@@ -1438,8 +1461,8 @@
    }
   },
   "COMUNE DI CASARSA DELLA DELIZIA": {
-   "righe": 172,
-   "concesso": 445621.45,
+   "righe": 194,
+   "concesso": 531058.93,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1448,8 +1471,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 24,
-     "concesso": 18422.87,
+     "righe": 46,
+     "concesso": 103860.35,
      "erogato": 0.0
     },
     "2026": {
@@ -1460,13 +1483,18 @@
    }
   },
   "COMUNE DI ANDREIS": {
-   "righe": 128,
-   "concesso": 85748.47,
+   "righe": 133,
+   "concesso": 89103.83,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 102,
      "concesso": 60561.66,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 5,
+     "concesso": 3355.36,
      "erogato": 0.0
     },
     "2026": {
@@ -1477,8 +1505,8 @@
    }
   },
   "ARLEF - AGENZIA REGIONALE PER LA LINGUA FRIULANA": {
-   "righe": 239,
-   "concesso": 1990846.38,
+   "righe": 243,
+   "concesso": 3165556.38,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1487,8 +1515,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 78,
-     "concesso": 196655.05,
+     "righe": 82,
+     "concesso": 1371365.05,
      "erogato": 0.0
     },
     "2026": {
@@ -1499,8 +1527,8 @@
    }
   },
   "COMUNE DI BUDOIA": {
-   "righe": 137,
-   "concesso": 287060.04,
+   "righe": 152,
+   "concesso": 325139.5,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1509,8 +1537,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 25,
-     "concesso": 21298.95,
+     "righe": 40,
+     "concesso": 59378.41,
      "erogato": 0.0
     },
     "2026": {
@@ -1533,8 +1561,8 @@
    }
   },
   "COMUNE DI TARVISIO": {
-   "righe": 199,
-   "concesso": 366761.13,
+   "righe": 232,
+   "concesso": 428739.33,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1543,20 +1571,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 36,
-     "concesso": 23199.2,
+     "righe": 45,
+     "concesso": 42647.4,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 17,
-     "concesso": 40216.71,
+     "righe": 41,
+     "concesso": 82746.71,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI MARTIGNACCO": {
-   "righe": 353,
-   "concesso": 559311.14,
+   "righe": 366,
+   "concesso": 672568.34,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1565,20 +1593,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 4,
-     "concesso": 52933.42,
+     "righe": 15,
+     "concesso": 155935.62,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 164,
-     "concesso": 229613.36,
+     "righe": 166,
+     "concesso": 239868.36,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI ZOPPOLA": {
-   "righe": 57,
-   "concesso": 1917746.86,
+   "righe": 60,
+   "concesso": 2495145.28,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1587,20 +1615,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 10,
-     "concesso": 173331.59,
+     "righe": 12,
+     "concesso": 740368.59,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 21,
-     "concesso": 559802.07,
+     "righe": 22,
+     "concesso": 570163.49,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI RESIA": {
-   "righe": 60,
-   "concesso": 40491.88,
+   "righe": 63,
+   "concesso": 45691.88,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1609,20 +1637,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 16,
-     "concesso": 11296.6,
+     "righe": 17,
+     "concesso": 12096.6,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 7,
-     "concesso": 12037.74,
+     "righe": 9,
+     "concesso": 16437.74,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI FORNI DI SOPRA": {
-   "righe": 70,
-   "concesso": 242603.84,
+   "righe": 80,
+   "concesso": 326594.73,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1631,8 +1659,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 8,
-     "concesso": 45144.0,
+     "righe": 18,
+     "concesso": 129134.89,
      "erogato": 0.0
     },
     "2026": {
@@ -1643,8 +1671,8 @@
    }
   },
   "COMUNE DI CAMPOFORMIDO": {
-   "righe": 72,
-   "concesso": 697806.53,
+   "righe": 74,
+   "concesso": 750261.89,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1653,8 +1681,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 2,
-     "concesso": 59351.27,
+     "righe": 4,
+     "concesso": 111806.63,
      "erogato": 0.0
     },
     "2026": {
@@ -1665,8 +1693,8 @@
    }
   },
   "COMUNE DI BUJA": {
-   "righe": 493,
-   "concesso": 691368.48,
+   "righe": 538,
+   "concesso": 732179.05,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1675,20 +1703,20 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 121,
-     "concesso": 117562.66,
+     "righe": 163,
+     "concesso": 157092.23,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 129,
-     "concesso": 142404.25,
+     "righe": 132,
+     "concesso": 143685.25,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI FORNI DI SOTTO": {
-   "righe": 21,
-   "concesso": 63394.42,
+   "righe": 22,
+   "concesso": 64894.42,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1697,15 +1725,15 @@
      "erogato": 0.0
     },
     "2026": {
-     "righe": 7,
-     "concesso": 11541.0,
+     "righe": 8,
+     "concesso": 13041.0,
      "erogato": 0.0
     }
    }
   },
   "AGENZIA REGIONALE PER LO SVILUPPO RURALE - ERSA": {
-   "righe": 294,
-   "concesso": 67801290.59,
+   "righe": 322,
+   "concesso": 84903266.08,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1714,8 +1742,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 59,
-     "concesso": 24817038.51,
+     "righe": 87,
+     "concesso": 41919014.0,
      "erogato": 0.0
     },
     "2026": {
@@ -1726,8 +1754,8 @@
    }
   },
   "COMUNE DI SEDEGLIANO": {
-   "righe": 82,
-   "concesso": 83777.93,
+   "righe": 85,
+   "concesso": 94577.93,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1736,8 +1764,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 7,
-     "concesso": 1632.6,
+     "righe": 10,
+     "concesso": 12432.6,
      "erogato": 0.0
     },
     "2026": {
@@ -1748,8 +1776,8 @@
    }
   },
   "COMUNE DI PASIANO DI PORDENONE": {
-   "righe": 100,
-   "concesso": 1278979.53,
+   "righe": 109,
+   "concesso": 1644691.52,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1758,25 +1786,30 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 2,
-     "concesso": 38043.18,
+     "righe": 10,
+     "concesso": 400755.17,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 37,
-     "concesso": 416676.83,
+     "righe": 38,
+     "concesso": 419676.83,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI TRASAGHIS": {
-   "righe": 46,
-   "concesso": 128432.0,
+   "righe": 47,
+   "concesso": 128932.0,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 41,
      "concesso": 102600.0,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 1,
+     "concesso": 500.0,
      "erogato": 0.0
     },
     "2026": {
@@ -1787,8 +1820,8 @@
    }
   },
   "COMUNE DI PAULARO": {
-   "righe": 58,
-   "concesso": 444505.47,
+   "righe": 59,
+   "concesso": 455005.47,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1797,8 +1830,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 5,
-     "concesso": 50363.7,
+     "righe": 6,
+     "concesso": 60863.7,
      "erogato": 0.0
     },
     "2026": {
@@ -1853,8 +1886,8 @@
    }
   },
   "COMUNE DI AVIANO": {
-   "righe": 127,
-   "concesso": 586319.4,
+   "righe": 130,
+   "concesso": 703319.4,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1863,8 +1896,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 4,
-     "concesso": 7194.08,
+     "righe": 7,
+     "concesso": 124194.08,
      "erogato": 0.0
     },
     "2026": {
@@ -1892,8 +1925,8 @@
    }
   },
   "CONSIGLIO REGIONALE F.V.G.": {
-   "righe": 939,
-   "concesso": 4287622.31,
+   "righe": 1090,
+   "concesso": 4867866.05,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1902,13 +1935,13 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 81,
-     "concesso": 291780.58,
+     "righe": 211,
+     "concesso": 748751.64,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 498,
-     "concesso": 2697129.69,
+     "righe": 519,
+     "concesso": 2820402.37,
      "erogato": 0.0
     }
    }
@@ -1936,8 +1969,8 @@
    }
   },
   "COMUNE DI OSOPPO": {
-   "righe": 46,
-   "concesso": 281146.51,
+   "righe": 47,
+   "concesso": 281860.51,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1946,8 +1979,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 2,
-     "concesso": 17745.5,
+     "righe": 3,
+     "concesso": 18459.5,
      "erogato": 0.0
     },
     "2026": {
@@ -1958,8 +1991,8 @@
    }
   },
   "CATT FVG - CENTRO DI ASSISTENZA TECNICA ALLE IMPRESE DEL TERZIARIO": {
-   "righe": 825,
-   "concesso": 23218383.4,
+   "righe": 997,
+   "concesso": 25651041.33,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1968,15 +2001,15 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 110,
-     "concesso": 2017025.6,
+     "righe": 282,
+     "concesso": 4449683.53,
      "erogato": 0.0
     }
    }
   },
   "COMUNE DI RIGOLATO": {
-   "righe": 28,
-   "concesso": 48403.41,
+   "righe": 29,
+   "concesso": 58820.07,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -1985,8 +2018,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 1,
-     "concesso": 3003.0,
+     "righe": 2,
+     "concesso": 13419.66,
      "erogato": 0.0
     },
     "2026": {
@@ -1997,13 +2030,18 @@
    }
   },
   "COMUNITÀ DI MONTAGNA DELLE PREALPI FRIULANE ORIENTALI": {
-   "righe": 10,
-   "concesso": 120740.44,
+   "righe": 11,
+   "concesso": 128740.44,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 9,
      "concesso": 78740.44,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 1,
+     "concesso": 8000.0,
      "erogato": 0.0
     },
     "2026": {
@@ -2014,8 +2052,8 @@
    }
   },
   "COMUNE DI SAN PIER D'ISONZO": {
-   "righe": 125,
-   "concesso": 119845.37,
+   "righe": 126,
+   "concesso": 122345.37,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2024,8 +2062,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 38,
-     "concesso": 25195.25,
+     "righe": 39,
+     "concesso": 27695.25,
      "erogato": 0.0
     },
     "2026": {
@@ -2036,8 +2074,8 @@
    }
   },
   "COMUNE DI AQUILEIA": {
-   "righe": 112,
-   "concesso": 111657.5,
+   "righe": 113,
+   "concesso": 113337.5,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2046,8 +2084,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 1,
-     "concesso": 200.0,
+     "righe": 2,
+     "concesso": 1880.0,
      "erogato": 0.0
     },
     "2026": {
@@ -2119,8 +2157,8 @@
    }
   },
   "COMUNE DI FIUMICELLO VILLA VICENTINA": {
-   "righe": 68,
-   "concesso": 151540.5,
+   "righe": 71,
+   "concesso": 166761.3,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2129,8 +2167,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 3,
-     "concesso": 1800.0,
+     "righe": 6,
+     "concesso": 17020.8,
      "erogato": 0.0
     },
     "2026": {
@@ -2141,8 +2179,8 @@
    }
   },
   "COMUNE DI PREONE": {
-   "righe": 19,
-   "concesso": 12942.6,
+   "righe": 20,
+   "concesso": 13942.6,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2151,8 +2189,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 6,
-     "concesso": 3362.0,
+     "righe": 7,
+     "concesso": 4362.0,
      "erogato": 0.0
     },
     "2026": {
@@ -2163,13 +2201,18 @@
    }
   },
   "COMUNE DI SAN QUIRINO": {
-   "righe": 21,
-   "concesso": 156912.24,
+   "righe": 24,
+   "concesso": 162112.24,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 18,
      "concesso": 138234.24,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 3,
+     "concesso": 5200.0,
      "erogato": 0.0
     },
     "2026": {
@@ -2214,8 +2257,8 @@
    }
   },
   "COMUNE DI CORDOVADO": {
-   "righe": 114,
-   "concesso": 126967.87,
+   "righe": 118,
+   "concesso": 135337.87,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2224,13 +2267,13 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 39,
-     "concesso": 29414.7,
+     "righe": 40,
+     "concesso": 35414.7,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 32,
-     "concesso": 57772.4,
+     "righe": 35,
+     "concesso": 60142.4,
      "erogato": 0.0
     }
    }
@@ -2253,8 +2296,8 @@
    }
   },
   "Comune di Chions": {
-   "righe": 126,
-   "concesso": 398888.02,
+   "righe": 138,
+   "concesso": 472622.12,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2263,8 +2306,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 21,
-     "concesso": 94032.8,
+     "righe": 33,
+     "concesso": 167766.9,
      "erogato": 0.0
     },
     "2026": {
@@ -2275,8 +2318,8 @@
    }
   },
   "COMUNE DI BASILIANO": {
-   "righe": 52,
-   "concesso": 393395.06,
+   "righe": 58,
+   "concesso": 501210.05,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2285,8 +2328,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 36,
-     "concesso": 54000.0,
+     "righe": 42,
+     "concesso": 161814.99,
      "erogato": 0.0
     },
     "2026": {
@@ -2297,8 +2340,8 @@
    }
   },
   "AZIENDA REGIONALE DI COORDINAMENTO PER LA SALUTE (ARCS)": {
-   "righe": 65,
-   "concesso": 4255452.24,
+   "righe": 71,
+   "concesso": 4686590.24,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2307,8 +2350,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 18,
-     "concesso": 780274.81,
+     "righe": 24,
+     "concesso": 1211412.81,
      "erogato": 0.0
     },
     "2026": {
@@ -2319,8 +2362,8 @@
    }
   },
   "ENTE DI DECENTRAMENTO REGIONALE DI UDINE": {
-   "righe": 257,
-   "concesso": 104408509.69,
+   "righe": 335,
+   "concesso": 107754510.8,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2329,8 +2372,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 32,
-     "concesso": 20663248.0,
+     "righe": 110,
+     "concesso": 24009249.11,
      "erogato": 0.0
     },
     "2026": {
@@ -2358,8 +2401,8 @@
    }
   },
   "COMUNE DI FRISANCO": {
-   "righe": 21,
-   "concesso": 32773.3,
+   "righe": 22,
+   "concesso": 34953.3,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2368,8 +2411,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 6,
-     "concesso": 15100.0,
+     "righe": 7,
+     "concesso": 17280.0,
      "erogato": 0.0
     },
     "2026": {
@@ -2380,13 +2423,18 @@
    }
   },
   "COMUNE DI CAVASSO NUOVO": {
-   "righe": 64,
-   "concesso": 55109.76,
+   "righe": 89,
+   "concesso": 70343.58,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 18,
      "concesso": 21067.56,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 25,
+     "concesso": 15233.82,
      "erogato": 0.0
     },
     "2026": {
@@ -2397,13 +2445,18 @@
    }
   },
   "COMUNITÀ DI MONTAGNA DEL NATISONE E TORRE": {
-   "righe": 245,
-   "concesso": 709722.68,
+   "righe": 259,
+   "concesso": 733322.68,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 105,
      "concesso": 409150.95,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 14,
+     "concesso": 23600.0,
      "erogato": 0.0
     },
     "2026": {
@@ -2414,8 +2467,8 @@
    }
   },
   "ENTE DI DECENTRAMENTO REGIONALE DI PORDENONE": {
-   "righe": 48,
-   "concesso": 27954787.49,
+   "righe": 59,
+   "concesso": 36843278.74,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2424,8 +2477,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 5,
-     "concesso": 119874.4,
+     "righe": 16,
+     "concesso": 9008365.65,
      "erogato": 0.0
     }
    }
@@ -2448,8 +2501,8 @@
    }
   },
   "COMUNE DI SANTA MARIA LA LONGA": {
-   "righe": 16,
-   "concesso": 62064.0,
+   "righe": 17,
+   "concesso": 62564.0,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2458,8 +2511,8 @@
      "erogato": 0.0
     },
     "2026": {
-     "righe": 5,
-     "concesso": 11064.0,
+     "righe": 6,
+     "concesso": 11564.0,
      "erogato": 0.0
     }
    }
@@ -2504,25 +2557,35 @@
    }
   },
   "COMUNITÀ SILE": {
-   "righe": 21,
-   "concesso": 46028.0,
+   "righe": 50,
+   "concesso": 107628.0,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 21,
      "concesso": 46028.0,
      "erogato": 0.0
+    },
+    "2025": {
+     "righe": 29,
+     "concesso": 61600.0,
+     "erogato": 0.0
     }
    }
   },
   "ENTE DI DECENTRAMENTO REGIONALE DI GORIZIA": {
-   "righe": 113,
-   "concesso": 16328736.23,
+   "righe": 131,
+   "concesso": 17944980.93,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 44,
      "concesso": 16141855.27,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 18,
+     "concesso": 1616244.7,
      "erogato": 0.0
     },
     "2026": {
@@ -2533,13 +2596,18 @@
    }
   },
   "COMUNE DI TRIVIGNANO UDINESE": {
-   "righe": 1,
-   "concesso": 400.0,
+   "righe": 2,
+   "concesso": 900.0,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 1,
      "concesso": 400.0,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 1,
+     "concesso": 500.0,
      "erogato": 0.0
     }
    }
@@ -2557,8 +2625,8 @@
    }
   },
   "COMUNE DI PREMARIACCO": {
-   "righe": 29,
-   "concesso": 112708.95,
+   "righe": 32,
+   "concesso": 118108.95,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2567,8 +2635,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 3,
-     "concesso": 18348.79,
+     "righe": 6,
+     "concesso": 23748.79,
      "erogato": 0.0
     },
     "2026": {
@@ -2579,25 +2647,35 @@
    }
   },
   "COMUNE DI BUTTRIO": {
-   "righe": 22,
-   "concesso": 75950.0,
+   "righe": 23,
+   "concesso": 92450.0,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 22,
      "concesso": 75950.0,
      "erogato": 0.0
+    },
+    "2025": {
+     "righe": 1,
+     "concesso": 16500.0,
+     "erogato": 0.0
     }
    }
   },
   "COMUNE DI CAPRIVA DEL FRIULI": {
-   "righe": 8,
-   "concesso": 6500.0,
+   "righe": 12,
+   "concesso": 10200.0,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 8,
      "concesso": 6500.0,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 4,
+     "concesso": 3700.0,
      "erogato": 0.0
     }
    }
@@ -2693,8 +2771,8 @@
    }
   },
   "COMUNE DI TRAVESIO": {
-   "righe": 34,
-   "concesso": 916458.75,
+   "righe": 38,
+   "concesso": 1115394.59,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2703,8 +2781,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 10,
-     "concesso": 786769.98,
+     "righe": 14,
+     "concesso": 985705.82,
      "erogato": 0.0
     },
     "2026": {
@@ -2744,13 +2822,18 @@
    }
   },
   "COMUNE DI AIELLO DEL FRIULI": {
-   "righe": 23,
-   "concesso": 30756.0,
+   "righe": 25,
+   "concesso": 31756.0,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 18,
      "concesso": 23256.0,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 2,
+     "concesso": 1000.0,
      "erogato": 0.0
     },
     "2026": {
@@ -2761,13 +2844,18 @@
    }
   },
   "COMUNE DI CORMONS": {
-   "righe": 56,
-   "concesso": 345896.99,
+   "righe": 58,
+   "concesso": 352896.99,
    "erogato": 0.0,
    "anni": {
     "2024": {
      "righe": 46,
      "concesso": 118150.0,
+     "erogato": 0.0
+    },
+    "2025": {
+     "righe": 2,
+     "concesso": 7000.0,
      "erogato": 0.0
     },
     "2026": {
@@ -2800,8 +2888,8 @@
    }
   },
   "COMUNE DI POCENIA": {
-   "righe": 34,
-   "concesso": 48016.0,
+   "righe": 46,
+   "concesso": 60459.0,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2810,8 +2898,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 4,
-     "concesso": 4914.0,
+     "righe": 16,
+     "concesso": 17357.0,
      "erogato": 0.0
     },
     "2026": {
@@ -2822,8 +2910,8 @@
    }
   },
   "COMUNE DI FORGARIA NEL FRIULI": {
-   "righe": 104,
-   "concesso": 190401.89,
+   "righe": 105,
+   "concesso": 198801.89,
    "erogato": 0.0,
    "anni": {
     "2024": {
@@ -2832,8 +2920,8 @@
      "erogato": 0.0
     },
     "2025": {
-     "righe": 4,
-     "concesso": 18199.5,
+     "righe": 5,
+     "concesso": 26599.5,
      "erogato": 0.0
     }
    }
@@ -2953,18 +3041,18 @@
    }
   },
   "COMUNE DI SPILIMBERGO": {
-   "righe": 57,
-   "concesso": 33983.08,
+   "righe": 114,
+   "concesso": 205533.56,
    "erogato": 0.0,
    "anni": {
     "2025": {
-     "righe": 6,
-     "concesso": 2026.0,
+     "righe": 33,
+     "concesso": 90558.48,
      "erogato": 0.0
     },
     "2026": {
-     "righe": 51,
-     "concesso": 31957.08,
+     "righe": 81,
+     "concesso": 114975.08,
      "erogato": 0.0
     }
    }
@@ -2981,26 +3069,55 @@
     }
    }
   },
-  "ENTE DI DECENTRAMENTO REGIONALE DI TRIESTE": {
-   "righe": 3,
-   "concesso": 638900.0,
+  "CAMERA DI COMMERCIO INDUSTRIA ARTIGIANATO E AGRICOLTURA VENEZIA GIULIA": {
+   "righe": 132,
+   "concesso": 173629.0,
    "erogato": 0.0,
    "anni": {
     "2025": {
+     "righe": 132,
+     "concesso": 173629.0,
+     "erogato": 0.0
+    }
+   }
+  },
+  "ENTE DI DECENTRAMENTO REGIONALE DI TRIESTE": {
+   "righe": 4,
+   "concesso": 655888.0,
+   "erogato": 0.0,
+   "anni": {
+    "2025": {
+     "righe": 4,
+     "concesso": 655888.0,
+     "erogato": 0.0
+    }
+   }
+  },
+  "COMUNE DI CHIOPRIS-VISCONE": {
+   "righe": 4,
+   "concesso": 21852.13,
+   "erogato": 0.0,
+   "anni": {
+    "2025": {
+     "righe": 1,
+     "concesso": 12152.13,
+     "erogato": 0.0
+    },
+    "2026": {
      "righe": 3,
-     "concesso": 638900.0,
+     "concesso": 9700.0,
      "erogato": 0.0
     }
    }
   },
   "FVG PLUS S.P.A.": {
-   "righe": 1326,
-   "concesso": 15718058.01,
+   "righe": 1362,
+   "concesso": 16163765.85,
    "erogato": 0.0,
    "anni": {
     "2026": {
-     "righe": 1326,
-     "concesso": 15718058.01,
+     "righe": 1362,
+     "concesso": 16163765.85,
      "erogato": 0.0
     }
    }
@@ -3101,18 +3218,6 @@
     }
    }
   },
-  "COMUNE DI CHIOPRIS-VISCONE": {
-   "righe": 3,
-   "concesso": 9700.0,
-   "erogato": 0.0,
-   "anni": {
-    "2026": {
-     "righe": 3,
-     "concesso": 9700.0,
-     "erogato": 0.0
-    }
-   }
-  },
   "COMUNE DI RONCHIS": {
    "righe": 1,
    "concesso": 500.0,
@@ -3140,55 +3245,55 @@
  },
  "settori": {
   "Altro": {
-   "righe": 10105,
-   "concesso": 199714179.64
+   "righe": 11365,
+   "concesso": 215794361.07
   },
   "Salute e sociale": {
-   "righe": 7063,
-   "concesso": 407336284.55
+   "righe": 7587,
+   "concesso": 436130433.48
   },
   "Casa": {
-   "righe": 1495,
-   "concesso": 19979705.66
+   "righe": 1549,
+   "concesso": 20507164.92
   },
   "Autonomie locali e sicurezza": {
-   "righe": 259,
-   "concesso": 1050633.98
+   "righe": 278,
+   "concesso": 1164250.86
   },
   "Cultura e sport": {
-   "righe": 2755,
-   "concesso": 30380931.48
+   "righe": 2964,
+   "concesso": 32399335.73
   },
   "Lavoro, formazione e istruzione": {
-   "righe": 1240,
-   "concesso": 8791539.66
+   "righe": 1313,
+   "concesso": 10740524.88
   },
   "Infrastrutture, territorio e trasporti": {
-   "righe": 1677,
-   "concesso": 10670019.21
+   "righe": 1905,
+   "concesso": 11370183.96
   },
   "Attività produttive e turismo": {
-   "righe": 247,
-   "concesso": 2460278.74
+   "righe": 269,
+   "concesso": 2611562.63
   },
   "Agricoltura, foreste e pesca": {
-   "righe": 747,
-   "concesso": 69322208.2
+   "righe": 828,
+   "concesso": 86541542.69
   },
   "Istituzioni e organizzazione": {
-   "righe": 1790,
-   "concesso": 126835805.38
+   "righe": 1960,
+   "concesso": 141061689.39
   },
   "Ambiente ed energia": {
-   "righe": 60,
-   "concesso": 1964934.82
+   "righe": 171,
+   "concesso": 2133451.13
   }
  },
  "totali": {
-  "concesso": 878506521.32,
-  "erogato": 0.0,
-  "righe": 27438,
-  "atti": 16547
+  "concesso": 960454500.74,
+  "erogato": 960.0,
+  "righe": 30189,
+  "atti": 18592
  },
  "colonne": [
   "id",
@@ -3219,9 +3324,9 @@
   "comuneIstat"
  ],
  "controlli": {
-  "righeLetteGrezze": 35099,
-  "duplicatiScartati": 7659,
-  "erroriLettura": 2
+  "righeLetteGrezze": 4932,
+  "duplicatiScartati": 1113,
+  "erroriLettura": 0
  },
  "nota": "Una riga è un beneficiario in un atto. Importi concessi ed erogati sono quelli pubblicati dalla fonte e si sommano solo fra loro; stanziamenti e impegni non sono pubblicati. Le persone fisiche compaiono senza nome né codice fiscale. Il territorio è attribuito solo con un criterio documentato, mai dalla sede del beneficiario."
 }
