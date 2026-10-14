@@ -41,7 +41,8 @@ PORTALE = 'https://www.turismofvg.it'
 UA = 'Mozilla/5.0 (compatible; AtlanteFVG/1.0; +https://atlantefvg.it/)'
 OGGI = datetime.date.today().isoformat()
 ESCLUSE = {2540}
-SENZA_ELENCO = False  # solo per le prove (--senza-elenco)  # «Struttura di test» del portale, esclusa anche dal file di partenza
+SENZA_ELENCO = False  # solo per le prove (--senza-elenco)
+FETTA = None  # solo per le prove (--fetta DA A)  # «Struttura di test» del portale, esclusa anche dal file di partenza
 
 # categorie del portale (valore del campo «Cat» della ricerca) e tipologia usata nel file
 CATEGORIE = {1: 'Affittacamere', 2: 'Agriturismo (alloggio)', 3: 'Albergo diffuso', 4: 'Unità abitative / case e appartamenti vacanze',
@@ -347,6 +348,8 @@ def aggiorna_portale(d, rete, limite, esito):
     da_leggere = sorted(set(P) | set(elenco))
     if limite:
         da_leggere = da_leggere[:limite]
+    if FETTA:  # prove in parallelo: solo le schede da FETTA[0] a FETTA[1] (posizioni nell'elenco ordinato)
+        da_leggere = da_leggere[FETTA[0]:FETTA[1]]
     letti, illeggibili, assenti = {}, [], []
     for n, i in enumerate(da_leggere, 1):
         stato, c = scheda(rete, i)
@@ -408,7 +411,10 @@ def aggiorna_portale(d, rete, limite, esito):
             r['web'] = None; r['sito'] = 'Non indicato'; r['ver'] = f'Sito non più indicato dal portale al controllo del {OGGI}'; campi.append('web')
         # ricettività
         nuovo = dict(c['kv']); prima = dict(kv_da_dett(r.get('dett')))
-        if 'Camere' in prima:
+        integrata = re.search(r'ricettività|camere da|posti letto', nota, re.I)  # capacità presa da altre fonti nel file di partenza
+        if integrata and not nuovo:
+            pass
+        elif 'Camere' in prima:
             diversi = [k for k in ('Camere', 'Letti', 'Bagni') if k in prima and prima.get(k) != nuovo.get(k)]
             if diversi:
                 if all(k in nuovo for k in ('Camere', 'Letti', 'Bagni') if k in prima):
@@ -564,11 +570,14 @@ def main():
     ap.add_argument('--prova', action='store_true', help='non scrive nulla')
     ap.add_argument('--limite', type=int, default=0, help='legge solo le prime N schede (prove)')
     ap.add_argument('--solo-registro', action='store_true')
+    ap.add_argument('--fetta', type=int, nargs=2, help='prove: legge solo le schede dalla posizione DA alla posizione A')
     ap.add_argument('--senza-elenco', action='store_true', help='prove: rilegge solo le schede già nel file, senza cercare strutture nuove o tolte')
     ap.add_argument('--pausa', type=float, default=0.8, help='secondi fra una richiesta e l\'altra al portale')
     a = ap.parse_args()
-    global SENZA_ELENCO
-    SENZA_ELENCO = a.senza_elenco
+    global SENZA_ELENCO, FETTA
+    SENZA_ELENCO, FETTA = a.senza_elenco, a.fetta
+    if FETTA and not a.prova:
+        raise SystemExit('--fetta si usa solo con --prova')
     d = carica()
     prima = json.dumps(d['recs'], sort_keys=True, ensure_ascii=False)
     d.setdefault('meta', {})
