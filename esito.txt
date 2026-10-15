@@ -1,0 +1,13 @@
+{
+ "id": "f0b956b54c480133",
+ "modalita": "storico",
+ "esito": "riuscita",
+ "durata": 2040,
+ "totali": {
+  "rilevazioni": 14471,
+  "coda": 4092,
+  "istituti": 1477
+ },
+ "errori": [],
+ "storicoFinito": true
+}
