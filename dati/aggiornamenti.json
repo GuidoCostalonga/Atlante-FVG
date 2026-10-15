@@ -1,8 +1,62 @@
 {
- "generato": "2026-10-14",
+ "generato": "2026-10-15",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-10-15",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i bandi e gli avvisi della Regione del 15/10/2026",
+   "descrizione": "Bandi: 120 voci (16 con misure contributive), 2 nuove e 1 tolte rispetto a prima.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Bandi e avvisi della Regione",
+     "misura": "voci",
+     "prima": 119,
+     "dopo": 120,
+     "differenza": 1,
+     "collegamento": "../bandi/"
+    }
+   ],
+   "commit": "3976885beb"
+  },
+  {
+   "data": "2026-10-15",
+   "tipo": "dati",
+   "automatico": false,
+   "titolo": "Aggiunge la sezione Strutture ricettive con aggiornamento mensile",
+   "descrizione": "* Aggiunge la sezione Strutture ricettive con aggiornamento mensile\n\nNuova pagina strutture/ con la grafica dell'Atlante: 3.184 strutture del\nportale PromoTurismoFVG e 1.013 voci del solo registro regionale, mappa\nper comune, filtri, scheda di dettaglio, esportazione CSV e stampa.\nVoce «Strutture ricettive» nel menù di tutte le pagine e nella pagina\niniziale. Lo script aggiorna_strutture.py e il flusso del primo lunedì\ndel mese aggiornano i dati solo con valori confermati dalle fonti.\n\n\n* Rende robusta la lettura del portale nell'aggiornamento delle strutture\n\nRipete la ricerca quando un server del portale non la conosce, legge le\nschede degli agriturismi anche con le etichette in inglese, non scambia\nil cellulare per la località, riconosce «http://https://» e lascia\nfuori dall'elenco «da verificare» le capacità integrate da altre fonti.\nProva su tutte le 3.184 schede: solo differenze reali (CIN e siti).\n\n\n---------",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "e48f0ddb58"
+  },
+  {
+   "data": "2026-10-14",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge Google Analytics 4 solo dopo il consenso, con banner e informativa sui cookie",
+   "descrizione": "* Aggiunge Google Analytics 4 solo dopo il consenso, con banner e informativa sui cookie\n\nNuovo consenso.js richiamato da tutte le pagine e dai generatori: banner con\nAccetta e Rifiuta di pari evidenza, Consent Mode v2 con tutto negato per\nimpostazione predefinita, gtag.js scaricato solo dopo il consenso, scelta\nvalida 6 mesi e revocabile da «Preferenze sui cookie». Finché l'ID di\nmisurazione è il segnaposto lo script non fa nulla. Aggiorna l'informativa\nin Metodo e fonti (sezione #cookie) e il README; le sitemap cambiano data\nperché le pagine dei comuni sono state rigenerate.\n\n\n* Inserisce l'ID di misurazione GA4 di atlantefvg.it\n\n\n---------",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "d4c0ede508"
+  },
   {
    "data": "2026-10-14",
    "tipo": "dati",
@@ -25,7 +79,7 @@
      "collegamento": "../bandi/"
     }
    ],
-   "commit": "b175a5cc3a"
+   "commit": "3045249711"
   },
   {
    "data": "2026-10-14",

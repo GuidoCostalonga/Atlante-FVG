@@ -1,7 +1,35 @@
 {
  "fonte": "https://www.regione.fvg.it/rafvg/cms/RAFVG/MODULI/bandi_avvisi/",
- "ultima_variazione": "2026-10-14",
+ "ultima_variazione": "2026-10-15",
  "voci": [
+  {
+   "id": "9139",
+   "titolo": "Avviso rilascio provvedimenti multipli di riconoscimento del diritto a derivare acqua da falda, con decreti vari riferiti alle pratiche: UD/IPD/3235/3; PN/IPD/3998/1; PN/IPD/4000/1.",
+   "direzione": "Direzione centrale difesa dell'ambiente energia e sviluppo sostenibile",
+   "pubblicato": "2026-10-15",
+   "scadenza": "2026-10-30",
+   "url": "https://www.regione.fvg.it/rafvg/cms/RAFVG/MODULI/bandi_avvisi/BANDI/9139.html",
+   "contributi": false,
+   "sezione": "regione",
+   "dettaglio": {
+    "verificato": "2026-10-15",
+    "campi": {},
+    "allegati": [
+     {
+      "titolo": "Avviso",
+      "url": "https://www.regione.fvg.it/rafvg/cms/RAFVG/MODULI/bandi_avvisi/strutture/Direzione_centrale_difesa_dellxambiente_energia_e_sviluppo_sostenibile/allegati/20261015_Decreti_Prelievi_Vari_22092026.pdf",
+      "formato": "pdf"
+     }
+    ],
+    "testo": "Provvedimenti di riconoscimento di derivazione d’acqua.\n Con decreto del Responsabile delegato di Posizione Organizzativa del Servizio gestione risorse idriche numero:\n 37381/GRFVG (UD/IPD/3235/3) del 09/07/2026 è stato riconosciuto alla ditta TERMINAL PORTO NOGARO S.R.L., (C.F. 02227510308), con sede in Via Colugna, 187 - 33100 Udine (UD) il diritto di continuare a derivare acqua, fino a tutto il 30/04/2049, per una portata di complessivi moduli massimi 0,20 (20 l/s), per uso antincendio, da falda sotterranea in comune di San Giorgio di Nogaro (UD) mediante un pozzo presente nel terreno censito al Fg. 1 Pcn. 61 per un prelievo massimo annuo complessivo di 4.000;\n 45377/GRFVG (PN/IPD/3998/1) del 24/08/2026 è stato riconosciuto alla ditta QUATTRIN ALESSANDRO, con sede in Via Antonio Canova, 17 - 33080 Zoppola (PN) (C.F. QTTLSN72P15G888H) il diritto a derivare acqua, fino a tutto il 23/08/2066, per una portata di complessivi moduli massimi 0,400, (pari a 40 l/sec) per uso irrigazione colture, da falda sotterranea in comune di Zoppola (PN) mediante un pozzo presente nel terreno censito al Fg. 17 Pcn. 673 e per un prelievo massimo annuo complessivo di mc 2.353;\n 47897/GRFVG (PN/IPD/4000/1) del 08/09/2026 è stato riconosciuto alla ditta LA COMETA SOCIETA’ AGRICOLA SEMPLICE (C.F. 01998180937), con sede in Via Nazario Sauro, 139 - 33070 Brugnera (PN) il diritto a derivare acqua, fino a tutto il 07/09/2066, per una portata di complessivi moduli massimi 0,1083 (10,83 l/s), per uso irrigazione colture, da falda sotterranea in comune di Porcia (PN) mediante un pozzo presente nel terreno censito al Fg. 16 Pcn. 349 e per un prelievo massimo annuo complessivo di mc. annui 16.560;\n Pubblicazione ai sensi dell’art. 46, comma 2, L.R. 29 aprile 2015, n. 11.",
+    "servizio": "Servizio gestione risorse idriche - Sede di Udine",
+    "tag": []
+   },
+   "destinatari": [],
+   "destinatariDa": "titolo",
+   "settore": "Ambiente ed energia",
+   "tipo": "avviso"
+  },
   {
    "id": "Collocamento_mirato/837",
    "titolo": "L. 68/99 - Collocamento mirato di PN - Raccolta adesioni per avviamento numerico presso il Comune di Cordenons (PN)",
@@ -12,7 +40,7 @@
    "contributi": false,
    "sezione": "cm",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -46,7 +74,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -76,7 +104,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -111,7 +139,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -141,7 +169,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -163,6 +191,28 @@
    "tipo": "avviso"
   },
   {
+   "id": "x-bcdb14086a",
+   "titolo": "L.R. 27/2017, articolo 17 comma 2 - Avviso per la presentazione delle operazioni relative alle azioni di accompagnamento finalizzate a favorire la partecipazione degli allievi ai percorsi di istruzione e formazione professionale (Iefp) nell'anno formativo 2026/2027.",
+   "direzione": "Direzione centrale lavoro, formazione, istruzione e famiglia",
+   "pubblicato": "2026-10-13",
+   "scadenza": "2026-11-06",
+   "url": "http://bandiformazione.regione.fvg.it/fop2011/Bandi/Dettaglio.aspx?type=portale&Id=8461",
+   "sito": "bandiformazione.regione.fvg.it",
+   "contributi": false,
+   "sezione": "regione",
+   "dettaglio": {
+    "verificato": "2026-10-15",
+    "campi": {},
+    "allegati": [],
+    "testo": "",
+    "esterno": true
+   },
+   "destinatari": [],
+   "destinatariDa": "titolo",
+   "settore": "Lavoro, formazione e istruzione",
+   "tipo": "avviso"
+  },
+  {
    "id": "9142",
    "titolo": "Bando per la concessione di contributi straordinari a favore degli Enti gestori dei Servizi sociali dei Comuni per l'acquisto, il rinnovo e l'allestimento di autoveicoli destinati allo svolgimento dei servizi e degli interventi territoriali e domiciliari",
    "direzione": "Direzione centrale salute, politiche sociali e disabilità",
@@ -172,7 +222,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -209,7 +259,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -252,7 +302,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -327,7 +377,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -403,7 +453,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -438,7 +488,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -509,7 +559,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -544,7 +594,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -581,7 +631,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -611,7 +661,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {
      "destinatari": "Enti del terzo settore",
      "attivita": "Contributo per la realizzazione di un progetto benessere rivolto alle persone ultrasessantacinquenni che risiedono nei Comuni del territorio montano della regione, con l’obiettivo di garantire l’accesso a un’offerta strutturata di attività motoria in acqua e in palestra, attraverso l’attivazione di un servizio di trasporto dedicato e di una politica tariffaria calmierata.",
@@ -672,7 +722,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -702,7 +752,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {
      "norme": "legge regionale 06 agosto 2025, n. 12, articolo 8 commi dal 148 al 153.",
      "destinatari": "- Comuni del territorio regionali\n- Enti del Terzo Settore aventi sede nel territorio regionale ed iscritti al RUNTS"
@@ -743,7 +793,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -783,7 +833,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -833,7 +883,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -861,7 +911,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -891,7 +941,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -937,7 +987,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -988,7 +1038,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1023,7 +1073,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1063,7 +1113,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {
      "destinatari": "Possono presentare domanda di contributo i soggetti pubblici e i soggetti privati senza scopo di lucro in possesso di autorizzazione alla sperimentazione abitare possibile o domiciliarità innovativa, rilasciata ai sensi delle linee guida approvate con DGR n. 1625/2019.",
      "modalita": "Le domande devono essere redatte utilizzando l’allegato A “fac-simile domanda”, corredato dalla documentazione richiesta e trasmesse entro la data del 30 ottobre 2026 a mezzo PEC all’indirizzo salute@certregione.fvg.it"
@@ -1116,7 +1166,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1135,46 +1185,6 @@
    "tipo": "avviso"
   },
   {
-   "id": "9119",
-   "titolo": "Avviso pubblicazione progetto per la richiesta di rinnovo della concessione per continuare a derivare acqua mediante opera di presa da falda sotterranea in comune di Fiume Veneto (PN) da parte della ditta DDSS sas di Dal Santo A e D & C (PN IPD 3106.1)",
-   "direzione": "Direzione centrale difesa dell'ambiente energia e sviluppo sostenibile",
-   "pubblicato": "2026-09-30",
-   "scadenza": "2026-10-14",
-   "url": "https://www.regione.fvg.it/rafvg/cms/RAFVG/MODULI/bandi_avvisi/BANDI/9119.html",
-   "contributi": false,
-   "sezione": "regione",
-   "dettaglio": {
-    "verificato": "2026-10-14",
-    "campi": {},
-    "allegati": [
-     {
-      "titolo": "Avviso",
-      "url": "https://www.regione.fvg.it/rafvg/cms/RAFVG/MODULI/bandi_avvisi/strutture/Direzione_centrale_difesa_dellxambiente_energia_e_sviluppo_sostenibile/allegati/20260930_3106_DDSS_sas_di_Dal_Santo_Avviso_Pubbl_Progetto.pdf",
-      "formato": "pdf"
-     },
-     {
-      "titolo": "Relazione idrogeologica",
-      "url": "https://www.regione.fvg.it/rafvg/cms/RAFVG/MODULI/bandi_avvisi/strutture/Direzione_centrale_difesa_dellxambiente_energia_e_sviluppo_sostenibile/allegati/20260930_3106_DDSS_sas_di_Dal_Santo_Relazione_Idrogeologica.pdf",
-      "formato": "pdf"
-     },
-     {
-      "titolo": "Relazione rinnovo - Integrazione",
-      "url": "https://www.regione.fvg.it/rafvg/cms/RAFVG/MODULI/bandi_avvisi/strutture/Direzione_centrale_difesa_dellxambiente_energia_e_sviluppo_sostenibile/allegati/20260930_3106_DDSS_sas_di_Dal_Santo_Relazione_Rinnovo-Integrazione.pdf",
-      "formato": "pdf"
-     }
-    ],
-    "testo": "La ditta DDSS sas di Dal Santo A e D & C (C.F. 01003470935), con sede in via Nazario Sauro, 94 - 33080 Fiume Veneto (PN), ha chiesto in data 28 dicembre 2025, il rinnovo della concessione per continuare a derivare acqua mediante la seguente opera di presa da falda sotterranea:\n Portate (l/s) \n Presa \n Comune \n Localizzazione \n Denominazione \n Max \n Uso specifico \n Pz1 \n Fiume Veneto \n Fg. 33 Pcn. 50 \n pozzo 1 \n 0,67 \n potabile \n Le osservazioni di cui all’art. 43, comma 8, della L.R. 11/2015, complete di una copia del documento d'identità del firmatario, potranno essere presentate presso il Servizio gestione risorse idriche all'indirizzo PEC: ambiente@certregione.fvg.it fino al 29 ottobre 2026.\nAi sensi dell’art. 13, comma 5, del Regolamento emanato con D. P. Reg. 11 aprile 2017, n. 077/Pres., la visita locale d’istruttoria non verrà effettuata.\nL’Amministrazione concedente si riserva di effettuare comunque i controlli che riterrà opportuni.\nPubblicazione ai sensi dell’art. 43, comma 8, della LR 29 aprile 2015 n.11",
-    "servizio": "Servizio gestione risorse idriche - Sede di Pordenone",
-    "tag": []
-   },
-   "destinatari": [
-    "comuni"
-   ],
-   "destinatariDa": "titolo",
-   "settore": "Ambiente ed energia",
-   "tipo": "avviso"
-  },
-  {
    "id": "9115",
    "titolo": "Avviso presentazione istanza di concessione finalizzata al mantenimento e utilizzo di uno specchio acqueo per l’ormeggio di un’imbarcazione da diporto presso l’isola della Schiusa, riva sant’Andrea in Comune Amministrativo e Censuario di Grado (GO) 2.8.3-0802",
    "direzione": "Direzione patrimonio, demanio, servizi generali e sistemi informativi",
@@ -1184,7 +1194,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1214,7 +1224,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1244,7 +1254,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1274,7 +1284,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1304,7 +1314,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1335,7 +1345,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -1356,7 +1366,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1386,7 +1396,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1417,7 +1427,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -1438,7 +1448,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1468,7 +1478,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1508,7 +1518,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {
      "modalita": "ore 16:00 del 30 settembre 2026"
     },
@@ -1573,7 +1583,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1603,7 +1613,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "La figura professionale ricercata sarà chiamata a svolgere le funzioni operative di collaboratore/collaboratrice da inserire presso l’Area Tecnica - Settore Esercizio e manutenzione reti. A titolo esemplificativo e non esaustivo, la risorsa avrà il compito di collaborare nelle attività connesse a: \n progettazione, redazione di computi metrici, disegni in ambiente cad;\n direzione lavori, contabilità di cantiere;\n elaborazione e attuazione piani di sicurezza;\n esecuzione di rilievi topografici.\n Requisiti richiesti: \n È preferito il percorso di studi di Geometra o Perito Agrario.\n In alternativa, diploma di scuola media superiore a indirizzo tecnico o titolo di studio equipollente per legge.\n Costituisce criterio preferenziale, ma non escludente, l'esperienza precedente nelle mansioni operative e tecniche oggetto del presente avviso.\n Altri requisiti di ordine generale di cui all’art. 37 del vigente C.C.N.L. per i dipendenti dei Consorzi di Bonifica, quali:\n la cittadinanza italiana o di uno degli Stati dell’Unione Europea (purché in possesso di una adeguata conoscenza della lingua italian\n in caso di assunzione di lavoratori/lavoratrici extracomunitari o apolidi, regolarmente soggiornanti in Italia, si prescinde dal possesso del requisito di cittadinanza italiana o di uno degli Stati dell’Unione Europea.\n il godimento dei diritti civili e politici;\n l’inesistenza di condanne per reati che comportino la perdita dell’elettorato attivo e passivo o il licenziamento di diritto ai sensi del C.C.N.L.\n Altre informazioni: \n • durata del contratto: tempo determinato di 1 anno con possibile successiva conferma a tempo indeterminato;\n • ai fini del trattamento economico è previsto l’inquadramento minimo nell’Area A, parametro 134 con anzianità di servizio nelle funzioni inferiore a 6 anni, oppure 157 con anzianità di servizio pari o superiore a 6 anni. Verrà riconosciuta l’anzianità maturata in attività ritenute analoghe a quelle da svolgere\n Il trattamento economico mensile lordo previsto dal vigente C.C.N.L. è così costituito (Area A - Parametro 134): stipendio base € 2.055,79 per 14 mensilità. I suddetti emolumenti sono sottoposti alle ritenute erariali, assistenziali e previdenziali previste dalla legge.\n Il trattamento economico potrà essere commisurato alla specifica qualificazione professionale e culturale posseduta, anche in considerazione delle condizioni di mercato relative alle specifiche competenze professionali.\n Per ulteriori informazioni si rimanda al sito ufficiale del Consorzio: www.cbcm.it \n Termine presentazione domande è il giorno 15/10/2026.",
@@ -1627,7 +1637,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1657,7 +1667,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1687,7 +1697,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1717,7 +1727,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1748,7 +1758,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -1770,7 +1780,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -1791,7 +1801,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1821,7 +1831,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1851,7 +1861,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1881,7 +1891,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1911,7 +1921,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1941,7 +1951,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -1989,7 +1999,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2019,7 +2029,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2049,7 +2059,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2094,7 +2104,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2124,7 +2134,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2154,7 +2164,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2184,7 +2194,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2215,7 +2225,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -2238,7 +2248,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2273,7 +2283,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2305,7 +2315,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2335,7 +2345,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2380,7 +2390,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {
      "norme": "Legge regionale 4 marzo 2025, n. 3, come modificata dall'articolo 9, comma 71, della legge regionale 12/2025 (in particolare l'articolo 2) \n Delibera della Giunta Regionale n. 599 del 30 aprile 2026"
     },
@@ -2442,7 +2452,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2472,7 +2482,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "D.G.R. 491/2025. Selezioni per il reclutamento di 10 lavoratori dipendenti a tempo pieno e indeterminato con inquadramento nella posizione economico organizzativa “B1” - Operatore Specializzato - del CCNL ANAS per le esigenze connesse alla Divisione Esercizio (rinominata Area Tecnica ai sensi del Provvedimento n. 17/2026) - Codice: L424-86871\n Approvazione graduatoria idonei \n Si riporta in allegato la graduatoria dei candidati che sono risultati idonei a seguito della selezione per la copertura di n.10 (dieci) dipendenti con inquadramento nella posizione economico organizzativa ““B1”, profilo “Operatore Specializzato” del CCNL ANAS per le esigenze connesse alla Divisione Esercizio (rinominata Area Tecnica ai sensi del Provvedimento n. 17/2026)\n https://www.fvgstrade.it/it/29546/selezione-del-personale-operatori-specializzati-esercizio \n Fatto salvo quanto sopra esposto, per eventuali informazioni si prega di scrivere unicamente alla e-mail: selezionefvgstrade@regione.fvg.it",
@@ -2497,7 +2507,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -2520,7 +2530,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2550,7 +2560,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "D.G.R. 491/2025. Selezioni per il reclutamento di 6 lavoratori dipendenti a tempo pieno e indeterminato con inquadramento nella posizione economico organizzativa “B” – Assistente di nucleo - del CCNL ANAS per le esigenze connesse alla Divisione Esercizio [Codice: L424-86869]\n Approvazione graduatoria idonei \n Si riporta in allegato la graduatoria dei candidati che sono risultati idonei a seguito della selezione per la copertura di n.6 (sei) dipendenti con inquadramento nella posizione economico organizzativa “B” (Assistente di Nucleo) del CCNL ANAS per le esigenze connesse alla Divisione Esercizio (rinominata Area Tecnica ai sensi del Provvedimento n. 17/2026).\n https://www.fvgstrade.it/it/29543/selezione-del-personale-assistente-di-nucleo-esercizio \n Fatto salvo quanto sopra esposto, per eventuali informazioni si prega di scrivere unicamente alla e-mail selezionefvgstrade@regione.fvg.it",
@@ -2574,7 +2584,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "La Regione Friuli Venezia Giulia ha avviato due nuovi interventi rivolti alle neo mamme residenti sul territorio regionale. Le domande possono essere presentate online, tramite apposito front end sul sito dell’amministrazione regionale.\n Sostegno alla maternità\n Sostegno per l'autonomia abitativa delle giovani madri",
@@ -2599,7 +2609,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2629,7 +2639,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "D.G.R. 491/2025. Selezione per il reclutamento di 3(tre) dipendenti con inquadramento nella posizione economico organizzativa “B” del CCNL ANAS per le esigenze connesse all’UO Manutenzione Straordinaria Ponti e Viadotti della Divisione Esercizio - ASSISTENTE TECNICO - Friuli Venezia Giulia Strade S.p.A – [Codice: L424-86868] \n Approvazione graduatoria idonei \n Si riporta in allegato la graduatoria dei candidati che sono risultati idonei a seguito della selezione per la copertura di n.3 (tre) dipendenti, con inquadramento nel profilo “Assistente Tecnico” - posizione economico organizzativa “B” del CCNL ANAS - per le esigenze connesse all’UO Manutenzione Straordinaria Ponti e Viadotti della Divisione Esercizio.\n https://www.fvgstrade.it/it/29540/selezione-del-personale-assistente-tecnico-ponti-viadotti \n Fatto salvo quanto sopra esposto, per eventuali informazioni si prega di scrivere unicamente alla e-mail: selezionefvgstrade@regione.fvg.it",
@@ -2653,7 +2663,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2718,7 +2728,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "D.G.R. 491/2025. Selezione per il reclutamento di 3 (tre) dipendenti con inquadramento nella posizione economico organizzativa “A1” del CCNL ANAS per le esigenze connesse alla Divisione Nuove Opere – TECNICO PROFESSIONALE - Friuli Venezia Giulia Strade S.p.A - [Codice: L424-86863]\n Approvazione graduatoria idonei \n Si riporta in allegato la graduatoria dei candidati che sono risultati idonei a seguito della selezione per la copertura di n.3 (tre) dipendenti, con inquadramento nel profilo “Tecnico Professionale” - posizione economico organizzativa “A1” del CCNL ANAS - per le esigenze connesse alla Divisione Nuove Opere (rinominata Area Tecnica ai sensi del Provvedimento n. 17/2026).\n https://www.fvgstrade.it/it/29537/selezione-del-personale-tecnico-professionale-divisione-nuove-opere \n Fatto salvo quanto sopra esposto, per eventuali informazioni si prega di scrivere unicamente alla e-mail selezionefvgstrade@regione.fvg.it",
@@ -2742,7 +2752,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2772,7 +2782,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2802,7 +2812,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2842,7 +2852,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2872,7 +2882,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2902,7 +2912,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2932,7 +2942,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "D.G.R. 491/2025. Selezione per il reclutamento di 1(uno) dipendente con inquadramento nella posizione economico organizzativa “A1” - COORDINATORE AMMINISTRATIVO - del CCNL ANAS da inserire nella U.O. Controllo di Gestione della Divisione Amministrazione e Finanza e Risorse Umane (rinominata U.O. Pianificazione e Controllo di Gestione dell’Area Amministrazione, Finanza e Controllo ai sensi del provvedimento n. 17/2026) - Friuli Venezia Giulia Strade S.p.A – Codice vacancy: L424-86865\n Approvazione graduatoria idonei \n Si riporta in allegato la graduatoria dei candidati che sono risultati idonei a seguito della selezione per la copertura di n. 1 (uno) dipendente, con inquadramento nella posizione economico organizzativa “A1”, profilo “Coordinatore Amministrativo” U.O. Pianificazione e Controllo di Gestione della società Friuli Venezia Giulia Strade.\n https://www.fvgstrade.it/it/29534/selezione-del-personale-coordinatore-amministrativo-amfru \n Si precisa che, in conformità agli orientamenti del Garante del trattamento dei dati personali sulla diffusione di dati ed informazioni personali dei candidati a una selezione pubblica, l’identificazione del singolo candidato avviene attraverso il codice numerico univoco comunicato individualmente a cura del Centro per l’impiego di Trieste -Servizio interventi per i lavoratori e le imprese - Direzione centrale lavoro, formazione, istruzione e famiglia della Regione Autonoma Friuli Venezia Giulia.\n Contatti : per eventuali informazioni scrivere unicamente alla e-mail selezionefvgstrade@regione.fvg.it",
@@ -2956,7 +2966,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -2991,7 +3001,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "D.G.R. 491/2025. Selezione per il reclutamento di 1(uno) dipendente con inquadramento nella posizione economico organizzativa “A1” - COORDINATORE AMMINISTRATIVO - del CCNL ANAS per le esigenze connesse alla Presidenza - Friuli Venezia Giulia Strade S.p.A – Codice vacancy: L424-86864\n Approvazione graduatoria idonei \n Si riporta in allegato la graduatoria dei candidati che sono risultati idonei a seguito della selezione per la copertura di n. 1 (uno) dipendente, con inquadramento nella posizione economico organizzativa “A1”, profilo “Coordinatore Amministrativo” del CCNL ANAS per le esigenze connesse alla Presidenza della società Friuli Venezia Giulia Strade.\n https://www.fvgstrade.it/it/29531/selezione-per-il-reclutamento-di-1-uno-dipendente-a1-coordinatore-amministrativo-del-ccnl-anas-per-le-esigenze-connesse-alla-presidenza \n Si precisa che, in conformità agli orientamenti del Garante del trattamento dei dati personali sulla diffusione di dati ed informazioni personali dei candidati a una selezione pubblica, l’identificazione del singolo candidato avviene attraverso il codice numerico univoco comunicato individualmente a cura del Centro per l’impiego di Trieste -Servizio interventi per i lavoratori e le imprese - Direzione centrale lavoro, formazione, istruzione e famiglia della Regione Autonoma Friuli Venezia Giulia.\n Contatti \n per eventuali informazioni scrivere unicamente alla e-mail selezionefvgstrade@regione.fvg.it",
@@ -3015,7 +3025,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "D.G.R. 1844/2025. Selezione per il reclutamento di n. 1 (uno) dipendente, con inquadramento nel profilo “Responsabile Manutenzione” - posizione economico organizzativa “A” del CCNL ANAS - per le esigenze connesse alla Divisione Esercizio (rinominata Area Tecnica ai sensi del provvedimento n. 17/2026) - Codice: L424-88357\n Approvazione graduatoria idonei \n Si riporta in allegato la graduatoria dei candidati che sono risultati idonei a seguito della selezione per la copertura di n. 1 (uno) dipendente, con inquadramento nel profilo “Responsabile Manutenzione” - posizione economico organizzativa “A” del CCNL ANAS - per le esigenze connesse alla Divisione Esercizio (rinominata Area Tecnica ai sensi del Provvedimento n. 17/2026) per le esigenze connesse alla società Friuli Venezia Giulia Strade.\n https://www.fvgstrade.it/it/29861/selezione-del-personale-responsabile-manutenzione-divisione-esercizio",
@@ -3039,7 +3049,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -3070,7 +3080,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -3091,7 +3101,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "I dispositivi medici sono una gamma molto ampia di prodotti e tecnologie dalle caratteristiche diverse, utilizzati nelle strutture sanitarie per la diagnosi e l’assistenza, o direttamente dal paziente a domicilio, nell’ambito dei percorsi di cura (per esempio siringhe, cateteri, stomie, protesi impiantabili, ferri chirurgici, apparecchiature sanitarie).\n La rilevanza dei DM in ambito sanitario è correlata al loro ampio utilizzo in tutti i processi assistenziali e al crescente impegno economico correlato al loro uso.\n Trattandosi di prodotti che, una volta certificati secondo quanto previsto dalla normativa, non necessitano di un’autorizzazione da parte dell’autorità competente per poter essere immessi nel mercato, sono particolarmente importanti le attività di vigilanza e controllo attuate per monitorare la loro sicurezza e affidabilità",
@@ -3115,7 +3125,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -3159,7 +3169,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -3182,7 +3192,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -3222,7 +3232,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "La Regione concede contributi per la conservazione e valorizzazione di bressane e roccoli. \nI criteri, le modalità ed i termini per la presentazione delle domande di contributo sono descritti nel regolamento attuativo (Decreto n. 023/Pres. del 7 febbraio 2018 e smi.)\nLa domanda deve essere presentata al servizio regionale competente dal 1° gennaio al 31 maggio di ogni anno.",
@@ -3246,7 +3256,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "Con regolamento regionale sono disciplinati i criteri e le modalità per la concessione di contributi per le spese di gestione dei parchi comunali e intercomunali.\nIl regolamento contributivo è stato approvato con D.P.Reg. 114 del 19 settembre 2022.\nLa domanda di contributo (il cui schema è stato approvato con Decreto n. 700/GRFVG del 10 gennaio 2025) è da presentare entro il 31 gennaio di ciascun anno",
@@ -3270,7 +3280,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "Contributi per l'acquisto di arredi e attrezzature, lavori, realizzazione di parcheggi e attività di promozione turistica.\nLa domanda può essere presentata entro il 31 marzo di ogni anno.",
@@ -3294,7 +3304,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "Sono finanziati interventi sulla viabilità forestale, sulle macchine e attrezzature forestali, sull’innovazione della filiera foresta-legno-energia e altre spese per una migliore gestione dei boschi o per il recupero delle aree montane abbandonate.",
@@ -3321,7 +3331,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "L'Amministrazione regionale a concede aiuti per la riduzione del costo dei premi assicurativi a copertura delle perdite dovute a rischi agricoli e rischi di insolvenza.",
@@ -3345,7 +3355,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "Con la Legge regionale 24 maggio 2004 n. 15, l’Amministrazione regionale è autorizzata a concedere contributi per l’istituzione, l’avvio e la realizzazione di servizi di trasporto marittimo e ferroviario delle merci con origine o destinazione nei nodi logistici interni, portuali e di confine siti nel territorio della Regione.",
@@ -3369,7 +3379,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "La Regione Autonoma Friuli Venezia Giulia, nell’ottica di promuovere interventi nel settore del trasporto delle merci al fine di realizzare e ammodernare le infrastrutture e i servizi in ambito regionale, con lo scopo di aumentare la produttività e l’efficienza dell’attività di trasporto delle merci, di sviluppare il trasporto combinato, di ridurre altresì l’inquinamento ambientale e incrementare la sicurezza della circolazione delle merci, è autorizzata a concedere contributi per le finalità indicate dalla Legge regionale 24 marzo 2004, n. 7.",
@@ -3393,7 +3403,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "La Regione Autonoma Friuli Venezia Giulia, con deliberazione giuntale n. 1971 del 20 dicembre 2024 ha confermato anche per l’anno scolastico 2025-2026 il titolo di viaggio agevolato sperimentale denominato “Abbonamento scolastico residenti FVG” che consente un risparmio del 50% sul costo dei corrispondenti titoli di viaggio “Abbonamento scolastico”, “Abbonamento annuale studenti” o “Abbonamento annuale studenti integrato Sacile-Maniago”.\n Le priorità, i criteri e le modalità di accesso a tale titolo di viaggio agevolato sperimentale sono state approvate con deliberazione giuntale n. 1066 del 1 agosto 2025.\n Gli oneri derivanti dall’agevolazione sono interamente coperti con risorse regionali.\n La possibilità di acquisto del titolo di viaggio agevolato sperimentale è correlata a percorsi inerenti al tragitto casa-scuola ed è riservata a studenti residenti in Friuli Venezia Giulia, fino al giorno prima del compimento del ventisettesimo anno di età.\nVerificare di possedere i requisiti.",
@@ -3419,7 +3429,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "È attiva un’agevolazione sperimentale, sostenuta da risorse regionali, che consente ai residenti in Friuli Venezia Giulia di età non inferiore a 65 anni, di acquistare ed utilizzare abbonamenti annuali e a semestrali per i servizi di TPL automobilistico e ferroviario, su tratte interne al territorio regionale, al costo pari al 50% del corrispondente costo intero.",
@@ -3445,7 +3455,7 @@
    "contributi": true,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "Il rilascio dei titoli di viaggio agevolati per i servizi di Trasporto Pubblico Locale (TPL), di cui all'articolo 34 della Legge Regionale 23/2007, rientra tra le funzioni della Regione.\nL'agevolazione prevista dall'articolo 34 della Legge Regionale 23/2007 permette l'acquisto a prezzo ridotto (1,5% del corrispondente abbonamento ordinario).\nVerificare di rientrare fra le categorie aventi diritto.",
@@ -3469,7 +3479,7 @@
    "contributi": false,
    "sezione": "cpi",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -3499,7 +3509,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -3542,7 +3552,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -3566,7 +3576,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -3589,7 +3599,7 @@
    "contributi": false,
    "sezione": "cm",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "Con il 31 dicembre 2024 sono scadute le attestazioni ISEE predentemente presentate dagli utenti iscritti alle liste del Collocamento Mirato, di cui alla Legge 68/99.\nPoichè l'attestazione ISEE può influire significativamente sul punteggio delle graduatorie, si invitano gli utenti iscritti a tali liste a richiedere tempestivamente la nuova attestazione ISEE per l'anno 2025 e a inviarla all'indirizzo e mail del proprio ufficio di riferimento:\n Collocamento Mirato di Gorizia \n collocamentomirato.gorizia@regione.fvg.it \n Collocamento Mirato di Pordenone \n collocamentomirato.pordenone@regione.fvg.it \n Collocamento Mirato di Trieste \n collocamentomirato.trieste@regione.fvg.it \n Collocamento Mirato di Udine \n collocamentomirato.udine@regione.fvg.it",
@@ -3613,7 +3623,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -3635,7 +3645,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -3657,7 +3667,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -3678,7 +3688,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -3718,7 +3728,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [
      {
@@ -3749,7 +3759,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -3771,7 +3781,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -3795,7 +3805,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -3817,7 +3827,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -3839,7 +3849,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
@@ -3861,7 +3871,7 @@
    "contributi": false,
    "sezione": "regione",
    "dettaglio": {
-    "verificato": "2026-10-14",
+    "verificato": "2026-10-15",
     "campi": {},
     "allegati": [],
     "testo": "",
