@@ -51,7 +51,7 @@ PAGINE = [
      ['Come sono fatti i dati dell\'Atlante: versioni e date di aggiornamento, fonti con i collegamenti alla documentazione originale, copertura di ogni gruppo di dati, differenza fra zero e dato non disponibile, avvertenze.']),
 ]
 # pagine fatte a mano o da altri script, da tenere nella sitemap
-PAGINE_FISSE = ('orari', 'bandi', 'opere', 'finanziamenti', 'pnrr', 'bilancio-regionale', 'consiglio', 'servizi', 'strutture', 'meteo', 'stradario', 'catasto', 'aggiornamenti')
+PAGINE_FISSE = ('orari', 'bandi', 'opere', 'finanziamenti', 'pnrr', 'bilancio-regionale', 'consiglio', 'servizi', 'strutture', 'meteo', 'stradario', 'catasto', 'aggiornamenti', 'informativa-monitor')
 ICONA_PAG = {'mappe': 'Esplora le mappe', 'confronto': 'Apri il confronto', 'autobus': 'Apri gli autobus', 'ambiente': 'Apri allerte e aria', 'comuni': 'Apri il registro dei comuni', 'archivio': 'Apri l\'archivio', 'metodo': 'Apri Metodo e fonti'}
 
 e = html.escape
@@ -471,6 +471,7 @@ def pagina_argomento(nome, titolo, descr, testi, db, man):
                   f'<p>Chi scrive a {POSTA} con «Segnala un errore» comunica il proprio indirizzo di posta; chi usa WhatsApp comunica il proprio numero di telefono, e il messaggio passa dal servizio WhatsApp di Meta. Indirizzo e numero servono solo a rispondere alla segnalazione.</p>\n'
                   f'<p>Puoi chiedere l\'accesso ai tuoi dati, la rettifica, la cancellazione, la limitazione, l\'opposizione e la portabilità (articoli da 15 a 22 del GDPR) e presentare reclamo al Garante per la protezione dei dati personali (articolo 77 del GDPR).</p>\n'
                   f'<p>Titolare del trattamento: Guido Costalonga. Per qualsiasi richiesta sui dati: <a href="mailto:{POSTA}">{POSTA}</a>.</p>\n'
+                  '<p>Il Monitor della percezione, sezione riservata dell\'Atlante, ha una propria <a href="../informativa-monitor/">informativa privacy</a>.</p>\n'
                   '<p><button type="button" data-consenso-apri>Preferenze sui cookie</button></p>\n')
         m = re.search(r'<script type="text/html" id="testoAvvertenze">\s*(.*?)\s*</script>', (RADICE / 'index.html').read_text(encoding='utf-8'), re.S)
         if m:
