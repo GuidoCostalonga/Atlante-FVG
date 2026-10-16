@@ -1,8 +1,32 @@
 {
- "generato": "2026-10-15",
+ "generato": "2026-10-16",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-10-16",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i bandi e gli avvisi della Regione del 16/10/2026",
+   "descrizione": "Bandi: 117 voci (17 con misure contributive), 2 nuove e 5 tolte rispetto a prima.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Bandi e avvisi della Regione",
+     "misura": "voci",
+     "prima": 120,
+     "dopo": 117,
+     "differenza": -3,
+     "collegamento": "../bandi/"
+    }
+   ],
+   "commit": "ce5cf30fb0"
+  },
   {
    "data": "2026-10-15",
    "tipo": "dati",
@@ -25,7 +49,7 @@
      "collegamento": "../bandi/"
     }
    ],
-   "commit": "3976885beb"
+   "commit": "1b75d415bd"
   },
   {
    "data": "2026-10-15",
