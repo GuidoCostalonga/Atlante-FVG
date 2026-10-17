@@ -1,8 +1,47 @@
 {
- "generato": "2026-10-16",
+ "generato": "2026-10-17",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-10-17",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i bandi e gli avvisi della Regione del 17/10/2026",
+   "descrizione": "Bandi: 116 voci (17 con misure contributive), 1 nuove e 2 tolte rispetto a prima.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Bandi e avvisi della Regione",
+     "misura": "voci",
+     "prima": 117,
+     "dopo": 116,
+     "differenza": -1,
+     "collegamento": "../bandi/"
+    }
+   ],
+   "commit": "baa2804900"
+  },
+  {
+   "data": "2026-10-16",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Pubblica l'informativa privacy del Monitor della percezione",
+   "descrizione": "Nuova pagina informativa-monitor/ con la grafica delle pagine di testo\ndell'Atlante: descrive il monitor com'è oggi (fonti RSS, Google News e\nBluesky; analisi con Qwen3 4B sul computer di GitHub Actions, senza\nservizi esterni di intelligenza artificiale; dati cifrati nel ramo\nmonitor-dati, conservati 72 ore; impronte anti duplicato 30 giorni;\nGitHub come responsabile, con Data Privacy Framework). Collegata dalla\npagina del monitor e dalla sezione cookie di Metodo e fonti (anche nel\ngeneratore pagine_comuni.py), aggiunta a PAGINE_FISSE e alla sitemap.",
+   "interessa": [
+    {
+     "nome": "Metodo e fonti",
+     "collegamento": "../?pagina=metodo"
+    }
+   ],
+   "valori": [],
+   "commit": "52e0be8d2a"
+  },
   {
    "data": "2026-10-16",
    "tipo": "dati",
@@ -25,7 +64,7 @@
      "collegamento": "../bandi/"
     }
    ],
-   "commit": "ce5cf30fb0"
+   "commit": "c0d1193a5c"
   },
   {
    "data": "2026-10-15",
