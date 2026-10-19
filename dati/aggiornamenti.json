@@ -7,6 +7,30 @@
    "data": "2026-10-19",
    "tipo": "dati",
    "automatico": true,
+   "titolo": "Aggiorna i bandi e gli avvisi della Regione del 19/10/2026",
+   "descrizione": "Bandi: 113 voci (17 con misure contributive), 1 nuove e 3 tolte rispetto a prima.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Bandi e avvisi della Regione",
+     "misura": "voci",
+     "prima": 115,
+     "dopo": 113,
+     "differenza": -2,
+     "collegamento": "../bandi/"
+    }
+   ],
+   "commit": "45e941bc73"
+  },
+  {
+   "data": "2026-10-19",
+   "tipo": "dati",
+   "automatico": true,
    "titolo": "Aggiorna i dati del gruppo 2 del 19/10/2026",
    "descrizione": "Gruppo da aggiornare: 2\nGruppo da aggiornare: 2\nNessun foglio cambiato (13 controllati, uguali alla fonte).\nAutobus: rete aggiornata alla versione 20261012-0018: 7949 fermate e 652 percorsi (prima 7949 fermate e 652 percorsi).\nOrari: versione 20261012-0018, validi dal 20261012 al 20270131, 652 linee e 37878 corse; 651 file di linea riscritti, 0 tolti, indice aggiornato.\nPagine: 215 comuni, 4 province, 7 argomenti; indice delle sitemap con 241 indirizzi in 3 file",
    "interessa": [
@@ -33,7 +57,7 @@
      "collegamento": "../?pagina=autobus"
     }
    ],
-   "commit": "113ec42138"
+   "commit": "4e49330a69"
   },
   {
    "data": "2026-10-18",
