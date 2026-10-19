@@ -1,8 +1,40 @@
 {
- "generato": "2026-10-18",
+ "generato": "2026-10-19",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-10-19",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i dati del gruppo 2 del 19/10/2026",
+   "descrizione": "Gruppo da aggiornare: 2\nGruppo da aggiornare: 2\nNessun foglio cambiato (13 controllati, uguali alla fonte).\nAutobus: rete aggiornata alla versione 20261012-0018: 7949 fermate e 652 percorsi (prima 7949 fermate e 652 percorsi).\nOrari: versione 20261012-0018, validi dal 20261012 al 20270131, 652 linee e 37878 corse; 651 file di linea riscritti, 0 tolti, indice aggiornato.\nPagine: 215 comuni, 4 province, 7 argomenti; indice delle sitemap con 241 indirizzi in 3 file",
+   "interessa": [
+    {
+     "nome": "Rete degli autobus",
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Rete degli autobus (GTFS 20261012-0018)",
+     "misura": "fermate",
+     "prima": 7949,
+     "dopo": 7949,
+     "differenza": 0,
+     "collegamento": "../?pagina=autobus"
+    },
+    {
+     "cosa": "Rete degli autobus (GTFS 20261012-0018)",
+     "misura": "percorsi",
+     "prima": 652,
+     "dopo": 652,
+     "differenza": 0,
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "commit": "113ec42138"
+  },
   {
    "data": "2026-10-18",
    "tipo": "dati",
@@ -25,7 +57,7 @@
      "collegamento": "../bandi/"
     }
    ],
-   "commit": "b40b4bec1a"
+   "commit": "ae7045bedb"
   },
   {
    "data": "2026-10-17",
