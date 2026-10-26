@@ -7,6 +7,30 @@
    "data": "2026-10-26",
    "tipo": "dati",
    "automatico": true,
+   "titolo": "Aggiorna i bandi e gli avvisi della Regione del 26/10/2026",
+   "descrizione": "Bandi: 110 voci (16 con misure contributive), 2 nuove e 3 tolte rispetto a prima.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Bandi e avvisi della Regione",
+     "misura": "voci",
+     "prima": 111,
+     "dopo": 110,
+     "differenza": -1,
+     "collegamento": "../bandi/"
+    }
+   ],
+   "commit": "aff3b30ec8"
+  },
+  {
+   "data": "2026-10-26",
+   "tipo": "dati",
+   "automatico": true,
    "titolo": "Aggiorna i dati del gruppo 3 del 26/10/2026",
    "descrizione": "Gruppo da aggiornare: 3\nGruppo da aggiornare: 3\nNessun foglio cambiato (21 controllati, uguali alla fonte).\nAutobus: nessuna novità (versione 20261012-0018).\nOrari: versione 20261012-0018, validi dal 20261012 al 20270131, 652 linee e 37878 corse; 0 file di linea riscritti, 0 tolti.\nPagine: 215 comuni, 4 province, 7 argomenti; indice delle sitemap con 241 indirizzi in 3 file",
    "interessa": [
@@ -16,7 +40,7 @@
     }
    ],
    "valori": [],
-   "commit": "46b506e663"
+   "commit": "03260593d0"
   },
   {
    "data": "2026-10-26",
