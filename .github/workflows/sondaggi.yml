@@ -6,8 +6,9 @@ name: Osservatorio sondaggi
 # controlli e riscrive archivio.json e stato.json cifrati con la chiave della sezione riservata sondaggi/.
 # La pagina li legge da raw.githubusercontent.com e li apre con la stessa parola d'ordine.
 #
-# Il cron è in UTC: 04:00 UTC è l'ora 6 con l'ora estiva, 05:00 UTC con quella solare. Partono entrambi e il
-# primo passo tiene soltanto quello che cade alle 6 di Roma (l'altro termina subito). «workflow_dispatch» è
+# Il cron è in UTC: 04:00 UTC è l'ora 6 con l'ora estiva, 05:00 UTC con quella solare. GitHub li avvia spesso
+# con ore di ritardo, quindi il primo passo non guarda l'ora: fa un solo giro al giorno (il secondo termina se
+# il ramo dei dati è già stato aggiornato oggi). «workflow_dispatch» è
 # il comando «Aggiorna adesso» del pannello: modalità incrementale (novità), storico (recupero a lotti,
 # riprendibile) o ricontrollo (rilegge le acquisizioni degli ultimi 60 giorni).
 #
@@ -42,16 +43,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 58
     steps:
-      - name: Decide se è il giro giusto (le 6 di Roma) e con quale modalità
+      - name: Decide se il giro va fatto (uno al giorno) e con quale modalità
         id: decidi
         env:
           EVENTO: ${{ github.event_name }}
           MODALITA_INPUT: ${{ github.event.inputs.modalita }}
           LIMITE_INPUT: ${{ github.event.inputs.limite }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          ora_roma=$(TZ=Europe/Rome date +%H)
-          if [ "$EVENTO" = "schedule" ] && [ "$ora_roma" != "06" ]; then
-            echo "Giro delle $ora_roma (Roma): non è quello delle 6, termino."; echo "vai=false" >> "$GITHUB_OUTPUT"; exit 0
+          # GitHub avvia i cron con ritardi anche di ore: non si può contare sull'ora. Dei due giri pianificati
+          # ne resta uno al giorno: se il ramo dei dati è già stato aggiornato oggi (ora di Roma), l'altro termina.
+          if [ "$EVENTO" = "schedule" ]; then
+            ultimo=$(gh api "repos/${{ github.repository }}/commits/sondaggi-dati" --jq '.commit.committer.date' 2>/dev/null || echo "")
+            oggi=$(TZ=Europe/Rome date +%Y-%m-%d)
+            if [ -n "$ultimo" ] && [ "$(TZ=Europe/Rome date -d "$ultimo" +%Y-%m-%d)" = "$oggi" ]; then
+              echo "Archivio già aggiornato oggi ($ultimo): termino."; echo "vai=false" >> "$GITHUB_OUTPUT"; exit 0
+            fi
           fi
           echo "vai=true" >> "$GITHUB_OUTPUT"
           echo "modalita=${MODALITA_INPUT:-incrementale}" >> "$GITHUB_OUTPUT"
