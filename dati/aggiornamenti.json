@@ -1,8 +1,33 @@
 {
- "generato": "2026-10-25",
+ "generato": "2026-10-26",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-10-26",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i dati del gruppo 3 del 26/10/2026",
+   "descrizione": "Gruppo da aggiornare: 3\nGruppo da aggiornare: 3\nNessun foglio cambiato (21 controllati, uguali alla fonte).\nAutobus: nessuna novità (versione 20261012-0018).\nOrari: versione 20261012-0018, validi dal 20261012 al 20270131, 652 linee e 37878 corse; 0 file di linea riscritti, 0 tolti.\nPagine: 215 comuni, 4 province, 7 argomenti; indice delle sitemap con 241 indirizzi in 3 file",
+   "interessa": [
+    {
+     "nome": "Orari degli autobus",
+     "collegamento": "../orari/"
+    }
+   ],
+   "valori": [],
+   "commit": "46b506e663"
+  },
+  {
+   "data": "2026-10-26",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Fa partire il giro quotidiano dei sondaggi anche quando GitHub lo avvia in ritardo",
+   "descrizione": "Un solo giro al giorno in base alla data dell'ultimo aggiornamento del ramo dei dati, invece del controllo sull'ora di Roma che faceva terminare i giri avviati in ritardo.",
+   "interessa": [],
+   "valori": [],
+   "commit": "6051ef5dee"
+  },
   {
    "data": "2026-10-25",
    "tipo": "dati",
@@ -25,7 +50,7 @@
      "collegamento": "../bandi/"
     }
    ],
-   "commit": "fa43624451"
+   "commit": "f2e636ea57"
   },
   {
    "data": "2026-10-23",
