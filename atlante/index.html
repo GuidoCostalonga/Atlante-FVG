@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atlante dei dati</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Atlante dei dati: indicatori di Banca Mondiale, Eurostat, Commissione europea, FAOSTAT, OMS, OCSE, ONU e FMI per 217 paesi e oltre 2.000 regioni europee. Cerca un dato, esplora mappe, andamenti e classifiche, confronta paesi e regioni; per ogni paese, i partner commerciali e i donatori delle matrici bilaterali FAOSTAT.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="stile.css">
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testa" id="testa">
+  <div class="testa__interno">
+    <a class="marchio" href="#/" aria-label="Atlante dei dati, prima pagina">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="19" r="7" fill="var(--r1)"/><circle cx="21" cy="12" r="5" fill="var(--r2)"/><circle cx="23" cy="23" r="3.5" fill="var(--r4)"/></svg>
+      <span>Atlante <b>dei dati</b></span>
+    </a>
+
+    <div class="cerca" id="cerca-globale">
+      <label class="visivo-nascosto" for="cerca">Cerca un indicatore, un paese o una regione</label>
+      <svg class="cerca__icona" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4.5 4.5"/></svg>
+      <input id="cerca" type="search" placeholder="Cerca un dato, un paese, una regione…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="cerca-risultati" aria-autocomplete="list">
+      <kbd class="cerca__tasto" aria-hidden="true">/</kbd>
+      <ul class="combo__lista cerca__risultati" id="cerca-risultati" role="listbox" aria-label="Risultati della ricerca" hidden></ul>
+    </div>
+
+    <nav class="nav" aria-label="Principale">
+      <div class="nav__gruppo">
+        <button class="nav__voce" id="apri-temi" type="button" aria-expanded="false" aria-controls="megamenu">Temi <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5"/></svg></button>
+        <div class="megamenu" id="megamenu" hidden></div>
+      </div>
+      <a class="nav__voce" href="#/confronta">Confronta</a>
+      <div class="nav__gruppo">
+        <button class="nav__voce" id="apri-schede" type="button" aria-expanded="false" aria-controls="tendina-schede">Schede <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5"/></svg></button>
+        <div class="tendina" id="tendina-schede" hidden>
+          <a href="scheda-fvg.html"><strong>Friuli Venezia Giulia in Europa</strong><span>Italia e FVG a confronto con le regioni europee</span></a>
+          <a href="#/t/ITA"><strong>Italia</strong><span>Profilo del paese con gli indicatori in evidenza</span></a>
+          <a href="#/t/EU:ITH4"><strong>Friuli Venezia Giulia</strong><span>Profilo della regione, dati Eurostat</span></a>
+          <a href="#/t/EUU"><strong>Unione europea</strong><span>Aggregato della Banca Mondiale</span></a>
+          <a href="#/t/WLD"><strong>Mondo</strong><span>Aggregato della Banca Mondiale</span></a>
+        </div>
+      </div>
+      <a class="nav__voce" href="#/archivi">Archivi</a>
+      <a class="nav__voce" href="#/partner">Partner</a>
+      <a class="nav__voce" href="#/fonti">Fonti</a>
+    </nav>
+
+    <button class="hamburger" id="apri-menu" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="menu-mobile"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/></svg></button>
+  </div>
+  <div class="menu-mobile" id="menu-mobile" hidden></div>
+</header>
+
+<main id="contenuto" class="pagina" tabindex="-1"><div class="caricamento">Carico i dati…</div></main>
+
+<footer class="pie">
+  <div class="pie__interno">
+    <p><strong>Atlante dei dati</strong> · dati di Banca Mondiale (WDI), Eurostat, Commissione europea, FAOSTAT, OMS, OCSE, ONU e FMI dal repository <a href="https://github.com/GuidoCostalonga/open-data" target="_blank" rel="noopener">open data</a>. Nessun valore è stimato o interpolato: i dati mancanti restano mancanti.</p>
+    <p><a href="#/fonti">Fonti e metodo</a> · <a href="scheda-fvg.html">Scheda Friuli Venezia Giulia</a> · <a href="https://costalonga.org/">costalonga.org</a></p>
+  </div>
+</footer>
+
+<div class="suggerimento" id="suggerimento" role="status" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script src="nucleo.js"></script>
+<script src="grafici.js"></script>
+<script src="partner.js"></script>
+<script src="pagine.js"></script>
+</body>
+</html>

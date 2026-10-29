@@ -1,0 +1,1635 @@
+{
+"agg": "2025-07-24",
+"anni": [
+1973,
+2023
+],
+"ds": "EA",
+"elem": {
+"22040_6110": "Commitment · Value US$",
+"22040_6139": "Commitment · Share of Total US$",
+"22040_6159": "Commitment · Agriculture orientation index US$",
+"22040_6230": "Commitment · Value US$, 2023 prices",
+"22041_6110": "Commitment ODA · Value US$",
+"22041_6230": "Commitment ODA · Value US$, 2023 prices",
+"22042_6110": "Commitment OOF · Value US$",
+"22042_6230": "Commitment OOF · Value US$, 2023 prices",
+"22043_6110": "Commitment Private Grant · Value US$",
+"22043_6230": "Commitment Private Grant · Value US$, 2023 prices",
+"22044_6110": "Commitment Private Sector Instrument · Value US$",
+"22044_6230": "Commitment Private Sector Instrument · Value US$, 2023 prices",
+"22050_6110": "Disbursement · Value US$",
+"22050_6139": "Disbursement · Share of Total US$",
+"22050_6159": "Disbursement · Agriculture orientation index US$",
+"22050_6230": "Disbursement · Value US$, 2023 prices",
+"22051_6110": "Disbursement ODA · Value US$",
+"22051_6230": "Disbursement ODA · Value US$, 2023 prices",
+"22052_6110": "Disbursement OOF · Value US$",
+"22052_6230": "Disbursement OOF · Value US$, 2023 prices",
+"22053_6110": "Disbursement Private Grant · Value US$",
+"22053_6230": "Disbursement Private Grant · Value US$, 2023 prices",
+"22054_6110": "Disbursement Private Sector Instrument · Value US$",
+"22054_6230": "Disbursement Private Sector Instrument · Value US$, 2023 prices"
+},
+"nome": "Investment: Development Flows to Agriculture",
+"oss": 13020275,
+"partner": {
+"10": "Australia",
+"1001": "Adaptation Fund",
+"1003": "Arab Bank for Economic Development in Africa (BADEA)",
+"1006": "African Development Fund (AfDF)",
+"1012": "African Development Bank (AfDB)",
+"1015": "Arab Fund for Economic and Social Development (AFESD)",
+"1017": "Bloomberg Family Foundation",
+"1019": "Arcadia Fund",
+"1020": "Arcus Foundation",
+"1021": "Asian Development Bank (AsDB)",
+"1023": "Asian Infrastructure Investment Bank",
+"1025": "Bill & Melinda Gates Foundation",
+"1026": "Bernard van Leer Foundation",
+"1027": "Central American Bank for Economic Integration (CABEI)",
+"1029": "Carnegie Corporation of New York",
+"1030": "Caribbean Development Bank (CDB)",
+"1031": "Council of Europe Development Bank (CEB)",
+"1033": "Consultative Group on International Agric Research (CGIAR)",
+"1034": "Climate Investment Funds (CIF)",
+"1035": "Charity Projects Ltd (Comic Relief)",
+"1037": "Children's Investment Fund Foundation",
+"104": "Ireland",
+"1040": "Conrad N. Hilton Foundation",
+"1046": "David & Lucile Packard Foundation",
+"1047": "Dutch Postcode Lottery",
+"1048": "European Bank for Reconstruction and Development (EBRD)",
+"1049": "Development Bank of Latin America",
+"105": "Israel",
+"1051": "European Union (EU) Institutions",
+"1053": "Ford Foundation",
+"1054": "Food and Agriculture Organization of the United Nations (FAO)",
+"1056": "Global Environment Facility (GEF)",
+"1058": "Global Fund",
+"1059": "Global Green Growth Institute (GGGI)",
+"106": "Italy",
+"1060": "International Bank for Reconstruction and Development (IBRD)",
+"1061": "Green Climate Fund",
+"1062": "Gatsby Charitable Foundation",
+"1064": "Gordon and Betty Moore Foundation",
+"1065": "H&M Foundation",
+"1068": "Howard G. Buffett Foundation",
+"1075": "International Development Association (IDA)",
+"1078": "Inter-American Development Bank (IDB)",
+"1079": "IDB Invest",
+"108": "Kazakhstan",
+"1080": "John D. & Catherine T. MacArthur Foundation",
+"1084": "International Fund for Agricultural Development (IFAD)",
+"11": "Austria",
+"110": "Japan",
+"1100": "International Labour Organization (ILO)",
+"1101": "IKEA Foundation",
+"1110": "International Finance Corporation (IFC)",
+"1120": "Islamic Development Bank (IsDB)",
+"1121": "Laudes Foundation",
+"1122": "La Caixa Banking Foundation",
+"1124": "MasterCard Foundation",
+"1125": "Margaret A. Cargill Foundation",
+"1127": "MAVA Foundation",
+"1128": "Michael & Susan Dell Foundation",
+"1131": "Montreal Protocol",
+"1133": "Nordic Development Fund (NDF)",
+"1134": "People's Postcode Lottery",
+"1135": "OPEC Fund for International Development (OFID)",
+"1136": "Organization for Security and Co-operation in Europe (OSCE)",
+"1137": "Joint United Nations Programme on HIV/AIDS (UNAIDS)",
+"1139": "United Nations Population Fund (UNFPA)",
+"1141": "United Nations Development Programme (UNDP)",
+"1142": "United Nations Children's Fund (UNICEF)",
+"1143": "United Nations Peacebuilding Fund (UNPBF)",
+"1146": "World Food Programme (WFP)",
+"1149": "United Nations Environment Programme (UNEP)",
+"1151": "Swedish Postcode Lottery",
+"1152": "Oak Foundation",
+"1153": "Omidyar Network Fund, Inc.",
+"1154": "Wellcome Trust",
+"1155": "William & Flora Hewlett Foundation",
+"1156": "World Diabetes Foundation",
+"1158": "Rockefeller Foundation",
+"1159": "McKnight Foundation",
+"1160": "Citi Foundation",
+"1161": "Norwegian Postcode Lottery",
+"117": "Republic of Korea",
+"1171": "Black Sea Trade & Development Bank",
+"1176": "Private Infrastructure Development Group",
+"118": "Kuwait",
+"1180": "International Investment Bank",
+"1182": "UBS Optimus Foundation",
+"1183": "LEGO Foundation",
+"1186": "Open Society Foundations",
+"1187": "Botnar Foundation",
+"1188": "Bezos Earth Fund",
+"119": "Latvia",
+"1190": "WTO - International Trade Centre",
+"1191": "United Nations Industrial Development Organization (UNIDO)",
+"1192": "United Nations Conference on Trade and Development (UNCTAD)",
+"1198": "Joint Sustainable Development Goals Fund",
+"1201": "World Trade Organization",
+"1202": "German Postcode Lottery",
+"1203": "International Centre for Genetic Engineering and Biotechnology",
+"1205": "World Organisation for Animal Health",
+"1207": "Leo M. and Harry B. Helmsley Charitable Trust",
+"1210": "IMF Resilience and Sustainability Trust",
+"1211": "United Nations Economic and Social Commission for Western Asia (UNESCWA)",
+"1212": "Good Ventures Foundation",
+"125": "Liechtenstein",
+"126": "Lithuania",
+"134": "Malta",
+"140": "Monaco",
+"150": "Netherlands (Kingdom of the)",
+"156": "New Zealand",
+"162": "Norway",
+"167": "Czechia",
+"173": "Poland",
+"174": "Portugal",
+"179": "Qatar",
+"183": "Romania",
+"185": "Russian Federation",
+"194": "Saudi Arabia",
+"198": "Slovenia",
+"199": "Slovakia",
+"203": "Spain",
+"210": "Sweden",
+"211": "Switzerland",
+"214": "China, Taiwan Province of",
+"216": "Thailand",
+"223": "Türkiye",
+"225": "United Arab Emirates",
+"229": "United Kingdom of Great Britain and Northern Ireland",
+"231": "United States of America",
+"255": "Belgium",
+"256": "Luxembourg",
+"27": "Bulgaria",
+"33": "Canada",
+"441": "United Nations Economic Commission for Europe (UNECE)",
+"50": "Cyprus",
+"52": "Azerbaijan",
+"54": "Denmark",
+"63": "Estonia",
+"67": "Finland",
+"68": "France",
+"690": "Bilateral Donors",
+"691": "Multilateral Donors",
+"692": "Private Donors",
+"702": "All Donors",
+"79": "Germany",
+"84": "Greece",
+"97": "Hungary",
+"98": "Croatia",
+"99": "Iceland"
+},
+"prod": {
+"10000": "All CRS purposes",
+"307": "Rural Development",
+"308": "Other Agriculture, Forestry and Fishing",
+"30800": "Other Agriculture, Forestry and Fishing",
+"310": "Agriculture, forestry, fishing",
+"311": "Agriculture",
+"31100": "Agriculture, unspecified",
+"31110": "Agricultural policy and administrative management",
+"31120": "Agricultural development",
+"31130": "Agricultural land resources",
+"31140": "Agricultural water resources",
+"31150": "Agricultural inputs",
+"31161": "Food crop production",
+"31162": "Industrial crops/export crops",
+"31163": "Livestock",
+"31164": "Agrarian reform",
+"31165": "Agricultural alternative development",
+"31166": "Agricultural extension",
+"31181": "Agricultural education/training",
+"31182": "Agricultural research",
+"31191": "Agricultural services",
+"31192": "Plant and post-harvest protection and pest control",
+"31193": "Agricultural financial services",
+"31194": "Agricultural co-operatives",
+"31195": "Livestock/veterinary services",
+"312": "Forestry",
+"31200": "Forestry, unspecified",
+"31210": "Forestry policy and administrative management",
+"31220": "Forestry development",
+"31261": "Fuelwood/charcoal",
+"31281": "Forestry education/training",
+"31282": "Forestry research",
+"31291": "Forestry services",
+"313": "Fishing",
+"31300": "Fishing, unspecified",
+"31310": "Fishing policy and administrative management",
+"31320": "Fishery development",
+"31381": "Fishery education/training",
+"31382": "Fishery research",
+"31391": "Fishery services",
+"314": "Agro-industry",
+"32140": "Cottage industries and handicraft",
+"32161": "Agro-industries",
+"32162": "Forest industries",
+"32163": "Textiles, leather and substitutes",
+"32165": "Fertilizer plants",
+"32173": "Modern biofuels manufacturing",
+"32267": "Fertilizer minerals",
+"410": "General Environment Protection",
+"41000": "General Environmental Protection, unspecified",
+"41010": "Environmental policy and administrative management",
+"41020": "Biosphere protection",
+"41030": "Bio-diversity",
+"41040": "Site preservation",
+"41081": "Environmental education/ training",
+"41082": "Environmental research",
+"43040": "Rural development"
+},
+"terr": {
+"ABW": {
+"agg": false,
+"cod": "22",
+"n": "Aruba",
+"oss": 356
+},
+"AFG": {
+"agg": false,
+"cod": "2",
+"n": "Afghanistan",
+"oss": 40814
+},
+"AGO": {
+"agg": false,
+"cod": "7",
+"n": "Angola",
+"oss": 42090
+},
+"AIA": {
+"agg": false,
+"cod": "258",
+"n": "Anguilla",
+"oss": 950
+},
+"ALB": {
+"agg": false,
+"cod": "3",
+"n": "Albania",
+"oss": 38966
+},
+"ARE": {
+"agg": false,
+"cod": "225",
+"n": "United Arab Emirates",
+"oss": 574
+},
+"ARG": {
+"agg": false,
+"cod": "9",
+"n": "Argentina",
+"oss": 53296
+},
+"ARM": {
+"agg": false,
+"cod": "1",
+"n": "Armenia",
+"oss": 35206
+},
+"ATG": {
+"agg": false,
+"cod": "8",
+"n": "Antigua and Barbuda",
+"oss": 7602
+},
+"AZE": {
+"agg": false,
+"cod": "52",
+"n": "Azerbaijan",
+"oss": 28522
+},
+"BDI": {
+"agg": false,
+"cod": "29",
+"n": "Burundi",
+"oss": 50244
+},
+"BEN": {
+"agg": false,
+"cod": "53",
+"n": "Benin",
+"oss": 65331
+},
+"BFA": {
+"agg": false,
+"cod": "233",
+"n": "Burkina Faso",
+"oss": 92574
+},
+"BGD": {
+"agg": false,
+"cod": "16",
+"n": "Bangladesh",
+"oss": 88499
+},
+"BHR": {
+"agg": false,
+"cod": "13",
+"n": "Bahrain",
+"oss": 598
+},
+"BHS": {
+"agg": false,
+"cod": "12",
+"n": "Bahamas",
+"oss": 490
+},
+"BIH": {
+"agg": false,
+"cod": "80",
+"n": "Bosnia and Herzegovina",
+"oss": 37052
+},
+"BLR": {
+"agg": false,
+"cod": "57",
+"n": "Belarus",
+"oss": 12942
+},
+"BLZ": {
+"agg": false,
+"cod": "23",
+"n": "Belize",
+"oss": 22030
+},
+"BMU": {
+"agg": false,
+"cod": "17",
+"n": "Bermuda",
+"oss": 48
+},
+"BOL": {
+"agg": false,
+"cod": "19",
+"n": "Bolivia (Plurinational State of)",
+"oss": 87548
+},
+"BRA": {
+"agg": false,
+"cod": "21",
+"n": "Brazil",
+"oss": 91664
+},
+"BRB": {
+"agg": false,
+"cod": "14",
+"n": "Barbados",
+"oss": 5422
+},
+"BRN": {
+"agg": false,
+"cod": "26",
+"n": "Brunei Darussalam",
+"oss": 8
+},
+"BTN": {
+"agg": false,
+"cod": "18",
+"n": "Bhutan",
+"oss": 35638
+},
+"BWA": {
+"agg": false,
+"cod": "20",
+"n": "Botswana",
+"oss": 30798
+},
+"CAF": {
+"agg": false,
+"cod": "37",
+"n": "Central African Republic",
+"oss": 30003
+},
+"CHL": {
+"agg": false,
+"cod": "40",
+"n": "Chile",
+"oss": 37122
+},
+"CHN": {
+"agg": false,
+"cod": "41",
+"n": "China, mainland",
+"oss": 99054
+},
+"CIV": {
+"agg": false,
+"cod": "107",
+"n": "Côte d'Ivoire",
+"oss": 60920
+},
+"CMR": {
+"agg": false,
+"cod": "32",
+"n": "Cameroon",
+"oss": 72824
+},
+"COG": {
+"agg": false,
+"cod": "46",
+"n": "Congo",
+"oss": 35090
+},
+"COK": {
+"agg": false,
+"cod": "47",
+"n": "Cook Islands",
+"oss": 7400
+},
+"COL": {
+"agg": false,
+"cod": "44",
+"n": "Colombia",
+"oss": 71276
+},
+"COM": {
+"agg": false,
+"cod": "45",
+"n": "Comoros",
+"oss": 21388
+},
+"CPV": {
+"agg": false,
+"cod": "35",
+"n": "Cabo Verde",
+"oss": 35895
+},
+"CRI": {
+"agg": false,
+"cod": "48",
+"n": "Costa Rica",
+"oss": 42260
+},
+"CUB": {
+"agg": false,
+"cod": "49",
+"n": "Cuba",
+"oss": 39938
+},
+"CYM": {
+"agg": false,
+"cod": "36",
+"n": "Cayman Islands",
+"oss": 76
+},
+"CYP": {
+"agg": false,
+"cod": "50",
+"n": "Cyprus",
+"oss": 1676
+},
+"DJI": {
+"agg": false,
+"cod": "72",
+"n": "Djibouti",
+"oss": 18290
+},
+"DMA": {
+"agg": false,
+"cod": "55",
+"n": "Dominica",
+"oss": 14602
+},
+"DOM": {
+"agg": false,
+"cod": "56",
+"n": "Dominican Republic",
+"oss": 44676
+},
+"DZA": {
+"agg": false,
+"cod": "4",
+"n": "Algeria",
+"oss": 34114
+},
+"ECU": {
+"agg": false,
+"cod": "58",
+"n": "Ecuador",
+"oss": 76142
+},
+"EGY": {
+"agg": false,
+"cod": "59",
+"n": "Egypt",
+"oss": 69512
+},
+"ERI": {
+"agg": false,
+"cod": "178",
+"n": "Eritrea",
+"oss": 25656
+},
+"ETH": {
+"agg": false,
+"cod": "238",
+"n": "Ethiopia",
+"oss": 102986
+},
+"FAO_151": {
+"agg": true,
+"cod": "151",
+"n": "Netherlands Antilles (former)",
+"oss": 875
+},
+"FAO_218": {
+"agg": true,
+"cod": "218",
+"n": "Tokelau",
+"oss": 3027
+},
+"FAO_270": {
+"agg": true,
+"cod": "270",
+"n": "Mayotte",
+"oss": 2870
+},
+"FAO_5000": {
+"agg": true,
+"cod": "5000",
+"n": "World",
+"oss": 466655
+},
+"FAO_5100": {
+"agg": true,
+"cod": "5100",
+"n": "Africa",
+"oss": 345713
+},
+"FAO_5101": {
+"agg": true,
+"cod": "5101",
+"n": "Eastern Africa",
+"oss": 251616
+},
+"FAO_5102": {
+"agg": true,
+"cod": "5102",
+"n": "Middle Africa",
+"oss": 137622
+},
+"FAO_5103": {
+"agg": true,
+"cod": "5103",
+"n": "Northern Africa",
+"oss": 141253
+},
+"FAO_5104": {
+"agg": true,
+"cod": "5104",
+"n": "Southern Africa",
+"oss": 95438
+},
+"FAO_5105": {
+"agg": true,
+"cod": "5105",
+"n": "Western Africa",
+"oss": 219098
+},
+"FAO_5200": {
+"agg": true,
+"cod": "5200",
+"n": "Americas",
+"oss": 241491
+},
+"FAO_5203": {
+"agg": true,
+"cod": "5203",
+"n": "Northern America",
+"oss": 48
+},
+"FAO_5204": {
+"agg": true,
+"cod": "5204",
+"n": "Central America",
+"oss": 145007
+},
+"FAO_5206": {
+"agg": true,
+"cod": "5206",
+"n": "Caribbean",
+"oss": 112876
+},
+"FAO_5207": {
+"agg": true,
+"cod": "5207",
+"n": "South America",
+"oss": 193122
+},
+"FAO_528": {
+"agg": true,
+"cod": "528",
+"n": "Southern Africa, unspecified",
+"oss": 3724
+},
+"FAO_530": {
+"agg": true,
+"cod": "530",
+"n": "Central America, unspecified",
+"oss": 4340
+},
+"FAO_5300": {
+"agg": true,
+"cod": "5300",
+"n": "Asia",
+"oss": 307417
+},
+"FAO_5301": {
+"agg": true,
+"cod": "5301",
+"n": "Central Asia",
+"oss": 73260
+},
+"FAO_5302": {
+"agg": true,
+"cod": "5302",
+"n": "Eastern Asia",
+"oss": 122906
+},
+"FAO_5303": {
+"agg": true,
+"cod": "5303",
+"n": "Southern Asia",
+"oss": 200555
+},
+"FAO_5304": {
+"agg": true,
+"cod": "5304",
+"n": "South-eastern Asia",
+"oss": 201222
+},
+"FAO_5305": {
+"agg": true,
+"cod": "5305",
+"n": "Western Asia",
+"oss": 128674
+},
+"FAO_531": {
+"agg": true,
+"cod": "531",
+"n": "Caribbean, unspecified",
+"oss": 25529
+},
+"FAO_5400": {
+"agg": true,
+"cod": "5400",
+"n": "Europe",
+"oss": 104657
+},
+"FAO_5401": {
+"agg": true,
+"cod": "5401",
+"n": "Eastern Europe",
+"oss": 51388
+},
+"FAO_5403": {
+"agg": true,
+"cod": "5403",
+"n": "Southern Europe",
+"oss": 82355
+},
+"FAO_544": {
+"agg": true,
+"cod": "544",
+"n": "Developing countries, unspecified",
+"oss": 160068
+},
+"FAO_5500": {
+"agg": true,
+"cod": "5500",
+"n": "Oceania",
+"oss": 92653
+},
+"FAO_5502": {
+"agg": true,
+"cod": "5502",
+"n": "Melanesia",
+"oss": 72069
+},
+"FAO_5503": {
+"agg": true,
+"cod": "5503",
+"n": "Micronesia",
+"oss": 28364
+},
+"FAO_5504": {
+"agg": true,
+"cod": "5504",
+"n": "Polynesia",
+"oss": 42784
+},
+"FAO_557": {
+"agg": true,
+"cod": "557",
+"n": "Melanesia, unspecified",
+"oss": 1004
+},
+"FAO_5801": {
+"agg": true,
+"cod": "5801",
+"n": "Least Developed Countries (LDCs)",
+"oss": 320262
+},
+"FAO_5802": {
+"agg": true,
+"cod": "5802",
+"n": "Land Locked Developing Countries (LLDCs)",
+"oss": 279602
+},
+"FAO_5803": {
+"agg": true,
+"cod": "5803",
+"n": "Small Island Developing States (SIDS)",
+"oss": 175084
+},
+"FAO_5815": {
+"agg": true,
+"cod": "5815",
+"n": "Low Income Food Deficit Countries (LIFDCs)",
+"oss": 319576
+},
+"FAO_5817": {
+"agg": true,
+"cod": "5817",
+"n": "Net Food Importing Developing Countries (NFIDCs)",
+"oss": 375367
+},
+"FAO_5901": {
+"agg": true,
+"cod": "5901",
+"n": "Bilateral Recipients",
+"oss": 441883
+},
+"FAO_601": {
+"agg": true,
+"cod": "601",
+"n": "Africa, unspecified",
+"oss": 122451
+},
+"FAO_602": {
+"agg": true,
+"cod": "602",
+"n": "Asia, unspecified",
+"oss": 66997
+},
+"FAO_605": {
+"agg": true,
+"cod": "605",
+"n": "Eastern Africa, unspecified",
+"oss": 9943
+},
+"FAO_606": {
+"agg": true,
+"cod": "606",
+"n": "Eastern Asia, unspecified",
+"oss": 32368
+},
+"FAO_607": {
+"agg": true,
+"cod": "607",
+"n": "Southern Asia, unspecified",
+"oss": 16406
+},
+"FAO_608": {
+"agg": true,
+"cod": "608",
+"n": "Western Asia, unspecified",
+"oss": 21218
+},
+"FAO_610": {
+"agg": true,
+"cod": "610",
+"n": "Central Asia, unspecified",
+"oss": 19604
+},
+"FAO_611": {
+"agg": true,
+"cod": "611",
+"n": "Europe, unspecified",
+"oss": 30632
+},
+"FAO_612": {
+"agg": true,
+"cod": "612",
+"n": "Middle Africa, unspecified",
+"oss": 2928
+},
+"FAO_613": {
+"agg": true,
+"cod": "613",
+"n": "Oceania, unspecified",
+"oss": 35298
+},
+"FAO_614": {
+"agg": true,
+"cod": "614",
+"n": "South America, unspecified",
+"oss": 41287
+},
+"FAO_615": {
+"agg": true,
+"cod": "615",
+"n": "Northern Africa, unspecified",
+"oss": 18866
+},
+"FAO_616": {
+"agg": true,
+"cod": "616",
+"n": "Western Africa, unspecified",
+"oss": 9212
+},
+"FAO_617": {
+"agg": true,
+"cod": "617",
+"n": "Micronesia, unspecified",
+"oss": 507
+},
+"FAO_618": {
+"agg": true,
+"cod": "618",
+"n": "Polynesia, unspecified",
+"oss": 140
+},
+"FAO_620": {
+"agg": true,
+"cod": "620",
+"n": "Southern Europe, unspecified",
+"oss": 23260
+},
+"FAO_680": {
+"agg": true,
+"cod": "680",
+"n": "Americas, unspecified",
+"oss": 65716
+},
+"FAO_82": {
+"agg": true,
+"cod": "82",
+"n": "Gibraltar",
+"oss": 137
+},
+"FJI": {
+"agg": false,
+"cod": "66",
+"n": "Fiji",
+"oss": 35169
+},
+"FSM": {
+"agg": false,
+"cod": "145",
+"n": "Micronesia (Federated States of)",
+"oss": 14072
+},
+"GAB": {
+"agg": false,
+"cod": "74",
+"n": "Gabon",
+"oss": 29214
+},
+"GEO": {
+"agg": false,
+"cod": "73",
+"n": "Georgia",
+"oss": 37874
+},
+"GHA": {
+"agg": false,
+"cod": "81",
+"n": "Ghana",
+"oss": 79638
+},
+"GIN": {
+"agg": false,
+"cod": "90",
+"n": "Guinea",
+"oss": 53637
+},
+"GMB": {
+"agg": false,
+"cod": "75",
+"n": "Gambia",
+"oss": 35102
+},
+"GNB": {
+"agg": false,
+"cod": "175",
+"n": "Guinea-Bissau",
+"oss": 40639
+},
+"GNQ": {
+"agg": false,
+"cod": "61",
+"n": "Equatorial Guinea",
+"oss": 15482
+},
+"GRD": {
+"agg": false,
+"cod": "86",
+"n": "Grenada",
+"oss": 14607
+},
+"GTM": {
+"agg": false,
+"cod": "89",
+"n": "Guatemala",
+"oss": 61092
+},
+"GUY": {
+"agg": false,
+"cod": "91",
+"n": "Guyana",
+"oss": 25292
+},
+"HKG": {
+"agg": false,
+"cod": "96",
+"n": "China, Hong Kong SAR",
+"oss": 92
+},
+"HND": {
+"agg": false,
+"cod": "95",
+"n": "Honduras",
+"oss": 65726
+},
+"HRV": {
+"agg": false,
+"cod": "98",
+"n": "Croatia",
+"oss": 10630
+},
+"HTI": {
+"agg": false,
+"cod": "93",
+"n": "Haiti",
+"oss": 55230
+},
+"IDN": {
+"agg": false,
+"cod": "101",
+"n": "Indonesia",
+"oss": 107356
+},
+"IND": {
+"agg": false,
+"cod": "100",
+"n": "India",
+"oss": 127538
+},
+"IRN": {
+"agg": false,
+"cod": "102",
+"n": "Iran (Islamic Republic of)",
+"oss": 19508
+},
+"IRQ": {
+"agg": false,
+"cod": "103",
+"n": "Iraq",
+"oss": 19300
+},
+"ISR": {
+"agg": false,
+"cod": "105",
+"n": "Israel",
+"oss": 1648
+},
+"JAM": {
+"agg": false,
+"cod": "109",
+"n": "Jamaica",
+"oss": 35190
+},
+"JOR": {
+"agg": false,
+"cod": "112",
+"n": "Jordan",
+"oss": 38270
+},
+"KAZ": {
+"agg": false,
+"cod": "108",
+"n": "Kazakhstan",
+"oss": 26514
+},
+"KEN": {
+"agg": false,
+"cod": "114",
+"n": "Kenya",
+"oss": 113926
+},
+"KGZ": {
+"agg": false,
+"cod": "113",
+"n": "Kyrgyzstan",
+"oss": 38308
+},
+"KHM": {
+"agg": false,
+"cod": "115",
+"n": "Cambodia",
+"oss": 71962
+},
+"KIR": {
+"agg": false,
+"cod": "83",
+"n": "Kiribati",
+"oss": 18256
+},
+"KNA": {
+"agg": false,
+"cod": "188",
+"n": "Saint Kitts and Nevis",
+"oss": 5018
+},
+"KOR": {
+"agg": false,
+"cod": "117",
+"n": "Republic of Korea",
+"oss": 3970
+},
+"KWT": {
+"agg": false,
+"cod": "118",
+"n": "Kuwait",
+"oss": 28
+},
+"LAO": {
+"agg": false,
+"cod": "120",
+"n": "Lao People's Democratic Republic",
+"oss": 67533
+},
+"LBN": {
+"agg": false,
+"cod": "121",
+"n": "Lebanon",
+"oss": 36856
+},
+"LBR": {
+"agg": false,
+"cod": "123",
+"n": "Liberia",
+"oss": 35196
+},
+"LBY": {
+"agg": false,
+"cod": "124",
+"n": "Libya",
+"oss": 6050
+},
+"LCA": {
+"agg": false,
+"cod": "189",
+"n": "Saint Lucia",
+"oss": 15192
+},
+"LKA": {
+"agg": false,
+"cod": "38",
+"n": "Sri Lanka",
+"oss": 71844
+},
+"LSO": {
+"agg": false,
+"cod": "122",
+"n": "Lesotho",
+"oss": 27807
+},
+"MAC": {
+"agg": false,
+"cod": "128",
+"n": "China, Macao SAR",
+"oss": 69
+},
+"MAR": {
+"agg": false,
+"cod": "143",
+"n": "Morocco",
+"oss": 71684
+},
+"MDA": {
+"agg": false,
+"cod": "146",
+"n": "Republic of Moldova",
+"oss": 30484
+},
+"MDG": {
+"agg": false,
+"cod": "129",
+"n": "Madagascar",
+"oss": 75524
+},
+"MDV": {
+"agg": false,
+"cod": "132",
+"n": "Maldives",
+"oss": 15143
+},
+"MEX": {
+"agg": false,
+"cod": "138",
+"n": "Mexico",
+"oss": 58073
+},
+"MHL": {
+"agg": false,
+"cod": "127",
+"n": "Marshall Islands",
+"oss": 10352
+},
+"MKD": {
+"agg": false,
+"cod": "154",
+"n": "North Macedonia",
+"oss": 28334
+},
+"MLI": {
+"agg": false,
+"cod": "133",
+"n": "Mali",
+"oss": 87820
+},
+"MLT": {
+"agg": false,
+"cod": "134",
+"n": "Malta",
+"oss": 856
+},
+"MMR": {
+"agg": false,
+"cod": "28",
+"n": "Myanmar",
+"oss": 52246
+},
+"MNE": {
+"agg": false,
+"cod": "273",
+"n": "Montenegro",
+"oss": 16596
+},
+"MNG": {
+"agg": false,
+"cod": "141",
+"n": "Mongolia",
+"oss": 43082
+},
+"MNP": {
+"agg": false,
+"cod": "163",
+"n": "Northern Mariana Islands",
+"oss": 1731
+},
+"MOZ": {
+"agg": false,
+"cod": "144",
+"n": "Mozambique",
+"oss": 95254
+},
+"MRT": {
+"agg": false,
+"cod": "136",
+"n": "Mauritania",
+"oss": 51166
+},
+"MSR": {
+"agg": false,
+"cod": "142",
+"n": "Montserrat",
+"oss": 4631
+},
+"MUS": {
+"agg": false,
+"cod": "137",
+"n": "Mauritius",
+"oss": 22318
+},
+"MWI": {
+"agg": false,
+"cod": "130",
+"n": "Malawi",
+"oss": 71476
+},
+"MYS": {
+"agg": false,
+"cod": "131",
+"n": "Malaysia",
+"oss": 33761
+},
+"NAM": {
+"agg": false,
+"cod": "147",
+"n": "Namibia",
+"oss": 39922
+},
+"NCL": {
+"agg": false,
+"cod": "153",
+"n": "New Caledonia",
+"oss": 2312
+},
+"NER": {
+"agg": false,
+"cod": "158",
+"n": "Niger",
+"oss": 67727
+},
+"NGA": {
+"agg": false,
+"cod": "159",
+"n": "Nigeria",
+"oss": 61570
+},
+"NIC": {
+"agg": false,
+"cod": "157",
+"n": "Nicaragua",
+"oss": 77232
+},
+"NIU": {
+"agg": false,
+"cod": "160",
+"n": "Niue",
+"oss": 6497
+},
+"NPL": {
+"agg": false,
+"cod": "149",
+"n": "Nepal",
+"oss": 76024
+},
+"NRU": {
+"agg": false,
+"cod": "148",
+"n": "Nauru",
+"oss": 6670
+},
+"OMN": {
+"agg": false,
+"cod": "221",
+"n": "Oman",
+"oss": 4064
+},
+"PAK": {
+"agg": false,
+"cod": "165",
+"n": "Pakistan",
+"oss": 67774
+},
+"PAN": {
+"agg": false,
+"cod": "166",
+"n": "Panama",
+"oss": 30836
+},
+"PER": {
+"agg": false,
+"cod": "170",
+"n": "Peru",
+"oss": 96064
+},
+"PHL": {
+"agg": false,
+"cod": "171",
+"n": "Philippines",
+"oss": 90268
+},
+"PLW": {
+"agg": false,
+"cod": "180",
+"n": "Palau",
+"oss": 11612
+},
+"PNG": {
+"agg": false,
+"cod": "168",
+"n": "Papua New Guinea",
+"oss": 45246
+},
+"PRK": {
+"agg": false,
+"cod": "116",
+"n": "Democratic People's Republic of Korea",
+"oss": 10928
+},
+"PRY": {
+"agg": false,
+"cod": "169",
+"n": "Paraguay",
+"oss": 47324
+},
+"PYF": {
+"agg": false,
+"cod": "70",
+"n": "French Polynesia",
+"oss": 2122
+},
+"QAT": {
+"agg": false,
+"cod": "179",
+"n": "Qatar",
+"oss": 16
+},
+"RWA": {
+"agg": false,
+"cod": "184",
+"n": "Rwanda",
+"oss": 72677
+},
+"SAU": {
+"agg": false,
+"cod": "194",
+"n": "Saudi Arabia",
+"oss": 1780
+},
+"SDN": {
+"agg": false,
+"cod": "276",
+"n": "Sudan",
+"oss": 47634
+},
+"SEN": {
+"agg": false,
+"cod": "195",
+"n": "Senegal",
+"oss": 98964
+},
+"SGP": {
+"agg": false,
+"cod": "200",
+"n": "Singapore",
+"oss": 636
+},
+"SHN": {
+"agg": false,
+"cod": "187",
+"n": "Ascension, Saint Helena and Tristan da Cunha",
+"oss": 6603
+},
+"SLB": {
+"agg": false,
+"cod": "25",
+"n": "Solomon Islands",
+"oss": 33728
+},
+"SLE": {
+"agg": false,
+"cod": "197",
+"n": "Sierra Leone",
+"oss": 37720
+},
+"SLV": {
+"agg": false,
+"cod": "60",
+"n": "El Salvador",
+"oss": 48207
+},
+"SOM": {
+"agg": false,
+"cod": "201",
+"n": "Somalia",
+"oss": 30932
+},
+"SRB": {
+"agg": false,
+"cod": "272",
+"n": "Serbia",
+"oss": 35928
+},
+"SSD": {
+"agg": false,
+"cod": "277",
+"n": "South Sudan",
+"oss": 21826
+},
+"STP": {
+"agg": false,
+"cod": "193",
+"n": "Sao Tome and Principe",
+"oss": 22120
+},
+"SUR": {
+"agg": false,
+"cod": "207",
+"n": "Suriname",
+"oss": 20416
+},
+"SVN": {
+"agg": false,
+"cod": "198",
+"n": "Slovenia",
+"oss": 1894
+},
+"SWZ": {
+"agg": false,
+"cod": "209",
+"n": "Eswatini",
+"oss": 25886
+},
+"SYC": {
+"agg": false,
+"cod": "196",
+"n": "Seychelles",
+"oss": 13786
+},
+"SYR": {
+"agg": false,
+"cod": "212",
+"n": "Syrian Arab Republic",
+"oss": 22318
+},
+"TCA": {
+"agg": false,
+"cod": "224",
+"n": "Turks and Caicos Islands",
+"oss": 1526
+},
+"TCD": {
+"agg": false,
+"cod": "39",
+"n": "Chad",
+"oss": 45654
+},
+"TGO": {
+"agg": false,
+"cod": "217",
+"n": "Togo",
+"oss": 42960
+},
+"THA": {
+"agg": false,
+"cod": "216",
+"n": "Thailand",
+"oss": 57440
+},
+"TJK": {
+"agg": false,
+"cod": "208",
+"n": "Tajikistan",
+"oss": 34734
+},
+"TKM": {
+"agg": false,
+"cod": "213",
+"n": "Turkmenistan",
+"oss": 12506
+},
+"TMP": {
+"agg": false,
+"cod": "176",
+"n": "Timor-Leste",
+"oss": 30092
+},
+"TON": {
+"agg": false,
+"cod": "219",
+"n": "Tonga",
+"oss": 23580
+},
+"TTO": {
+"agg": false,
+"cod": "220",
+"n": "Trinidad and Tobago",
+"oss": 5310
+},
+"TUN": {
+"agg": false,
+"cod": "222",
+"n": "Tunisia",
+"oss": 63882
+},
+"TUR": {
+"agg": false,
+"cod": "223",
+"n": "Türkiye",
+"oss": 39608
+},
+"TUV": {
+"agg": false,
+"cod": "227",
+"n": "Tuvalu",
+"oss": 13548
+},
+"TWN": {
+"agg": false,
+"cod": "214",
+"n": "China, Taiwan Province of",
+"oss": 136
+},
+"TZA": {
+"agg": false,
+"cod": "215",
+"n": "United Republic of Tanzania",
+"oss": 111022
+},
+"UGA": {
+"agg": false,
+"cod": "226",
+"n": "Uganda",
+"oss": 93866
+},
+"UKR": {
+"agg": false,
+"cod": "230",
+"n": "Ukraine",
+"oss": 33162
+},
+"URY": {
+"agg": false,
+"cod": "234",
+"n": "Uruguay",
+"oss": 28196
+},
+"UZB": {
+"agg": false,
+"cod": "235",
+"n": "Uzbekistan",
+"oss": 36774
+},
+"VCT": {
+"agg": false,
+"cod": "191",
+"n": "Saint Vincent and the Grenadines",
+"oss": 14918
+},
+"VEN": {
+"agg": false,
+"cod": "236",
+"n": "Venezuela (Bolivarian Republic of)",
+"oss": 21490
+},
+"VGB": {
+"agg": false,
+"cod": "239",
+"n": "British Virgin Islands",
+"oss": 318
+},
+"VNM": {
+"agg": false,
+"cod": "237",
+"n": "Viet Nam",
+"oss": 96710
+},
+"VUT": {
+"agg": false,
+"cod": "155",
+"n": "Vanuatu",
+"oss": 26746
+},
+"WBG": {
+"agg": false,
+"cod": "299",
+"n": "Palestine",
+"oss": 40804
+},
+"WLF": {
+"agg": false,
+"cod": "243",
+"n": "Wallis and Futuna Islands",
+"oss": 5214
+},
+"WSM": {
+"agg": false,
+"cod": "244",
+"n": "Samoa",
+"oss": 27462
+},
+"YEM": {
+"agg": false,
+"cod": "249",
+"n": "Yemen",
+"oss": 31726
+},
+"ZAF": {
+"agg": false,
+"cod": "202",
+"n": "South Africa",
+"oss": 55618
+},
+"ZAR": {
+"agg": false,
+"cod": "250",
+"n": "Democratic Republic of the Congo",
+"oss": 69058
+},
+"ZMB": {
+"agg": false,
+"cod": "251",
+"n": "Zambia",
+"oss": 77654
+},
+"ZWE": {
+"agg": false,
+"cod": "181",
+"n": "Zimbabwe",
+"oss": 61346
+}
+},
+"url": "https://bulks-faostat.fao.org/production/Development_Assistance_to_Agriculture_E_All_Data_(Normalized).zip"
+}

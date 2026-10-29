@@ -1,0 +1,1977 @@
+{
+"agg": "2025-12-23",
+"anni": [
+1986,
+2024
+],
+"ds": "TM",
+"elem": {
+"5607": "Import quantity",
+"5608": "Import quantity",
+"5609": "Import quantity",
+"5610": "Import quantity",
+"5622": "Import value",
+"5907": "Export quantity",
+"5908": "Export quantity",
+"5909": "Export quantity",
+"5910": "Export quantity",
+"5922": "Export value"
+},
+"nome": "Trade: Detailed trade matrix",
+"oss": 52410630,
+"partner": {
+"1": "Armenia",
+"10": "Australia",
+"100": "India",
+"101": "Indonesia",
+"102": "Iran (Islamic Republic of)",
+"103": "Iraq",
+"104": "Ireland",
+"105": "Israel",
+"106": "Italy",
+"107": "Côte d'Ivoire",
+"108": "Kazakhstan",
+"109": "Jamaica",
+"11": "Austria",
+"110": "Japan",
+"111": "Johnston Island",
+"112": "Jordan",
+"113": "Kyrgyzstan",
+"114": "Kenya",
+"115": "Cambodia",
+"116": "Democratic People's Republic of Korea",
+"117": "Republic of Korea",
+"118": "Kuwait",
+"119": "Latvia",
+"12": "Bahamas",
+"120": "Lao People's Democratic Republic",
+"121": "Lebanon",
+"122": "Lesotho",
+"123": "Liberia",
+"124": "Libya",
+"126": "Lithuania",
+"127": "Marshall Islands",
+"128": "China, Macao SAR",
+"129": "Madagascar",
+"13": "Bahrain",
+"130": "Malawi",
+"131": "Malaysia",
+"132": "Maldives",
+"133": "Mali",
+"134": "Malta",
+"135": "Martinique",
+"136": "Mauritania",
+"137": "Mauritius",
+"138": "Mexico",
+"139": "Midway Island",
+"14": "Barbados",
+"140": "Monaco",
+"141": "Mongolia",
+"143": "Morocco",
+"144": "Mozambique",
+"145": "Micronesia (Federated States of)",
+"146": "Republic of Moldova",
+"147": "Namibia",
+"148": "Nauru",
+"149": "Nepal",
+"15": "Belgium-Luxembourg",
+"150": "Netherlands (Kingdom of the)",
+"153": "New Caledonia",
+"154": "North Macedonia",
+"155": "Vanuatu",
+"156": "New Zealand",
+"157": "Nicaragua",
+"158": "Niger",
+"159": "Nigeria",
+"16": "Bangladesh",
+"160": "Niue",
+"162": "Norway",
+"165": "Pakistan",
+"166": "Panama",
+"167": "Czechia",
+"168": "Papua New Guinea",
+"169": "Paraguay",
+"170": "Peru",
+"171": "Philippines",
+"173": "Poland",
+"174": "Portugal",
+"175": "Guinea-Bissau",
+"176": "Timor-Leste",
+"177": "Puerto Rico",
+"178": "Eritrea",
+"179": "Qatar",
+"18": "Bhutan",
+"181": "Zimbabwe",
+"182": "Réunion",
+"183": "Romania",
+"184": "Rwanda",
+"185": "Russian Federation",
+"186": "Serbia and Montenegro",
+"188": "Saint Kitts and Nevis",
+"189": "Saint Lucia",
+"19": "Bolivia (Plurinational State of)",
+"191": "Saint Vincent and the Grenadines",
+"193": "Sao Tome and Principe",
+"194": "Saudi Arabia",
+"195": "Senegal",
+"196": "Seychelles",
+"197": "Sierra Leone",
+"198": "Slovenia",
+"199": "Slovakia",
+"2": "Afghanistan",
+"20": "Botswana",
+"200": "Singapore",
+"201": "Somalia",
+"202": "South Africa",
+"203": "Spain",
+"206": "Sudan (former)",
+"207": "Suriname",
+"208": "Tajikistan",
+"209": "Eswatini",
+"21": "Brazil",
+"210": "Sweden",
+"211": "Switzerland",
+"212": "Syrian Arab Republic",
+"213": "Turkmenistan",
+"214": "China, Taiwan Province of",
+"215": "United Republic of Tanzania",
+"216": "Thailand",
+"217": "Togo",
+"218": "Tokelau",
+"219": "Tonga",
+"220": "Trinidad and Tobago",
+"221": "Oman",
+"222": "Tunisia",
+"223": "Türkiye",
+"225": "United Arab Emirates",
+"226": "Uganda",
+"227": "Tuvalu",
+"228": "USSR",
+"229": "United Kingdom of Great Britain and Northern Ireland",
+"23": "Belize",
+"230": "Ukraine",
+"231": "United States of America",
+"232": "United States Minor Outlying Islands",
+"233": "Burkina Faso",
+"234": "Uruguay",
+"235": "Uzbekistan",
+"236": "Venezuela (Bolivarian Republic of)",
+"237": "Viet Nam",
+"238": "Ethiopia",
+"242": "Wake Island",
+"244": "Samoa",
+"248": "Yugoslav SFR",
+"249": "Yemen",
+"25": "Solomon Islands",
+"250": "Democratic Republic of the Congo",
+"251": "Zambia",
+"255": "Belgium",
+"256": "Luxembourg",
+"26": "Brunei Darussalam",
+"260": "Svalbard and Jan Mayen Islands",
+"27": "Bulgaria",
+"271": "South Georgia and the South Sandwich Islands",
+"272": "Serbia",
+"273": "Montenegro",
+"276": "Sudan",
+"277": "South Sudan",
+"28": "Myanmar",
+"29": "Burundi",
+"299": "Palestine",
+"3": "Albania",
+"31": "Bouvet Island",
+"32": "Cameroon",
+"33": "Canada",
+"34": "Canton and Enderbury Islands",
+"35": "Cabo Verde",
+"37": "Central African Republic",
+"38": "Sri Lanka",
+"39": "Chad",
+"4": "Algeria",
+"40": "Chile",
+"41": "China, mainland",
+"44": "Colombia",
+"45": "Comoros",
+"46": "Congo",
+"47": "Cook Islands",
+"48": "Costa Rica",
+"49": "Cuba",
+"50": "Cyprus",
+"51": "Czechoslovakia",
+"52": "Azerbaijan",
+"53": "Benin",
+"54": "Denmark",
+"55": "Dominica",
+"56": "Dominican Republic",
+"57": "Belarus",
+"58": "Ecuador",
+"59": "Egypt",
+"60": "El Salvador",
+"61": "Equatorial Guinea",
+"62": "Ethiopia PDR",
+"63": "Estonia",
+"64": "Faroe Islands",
+"66": "Fiji",
+"67": "Finland",
+"68": "France",
+"69": "French Guiana",
+"7": "Angola",
+"70": "French Polynesia",
+"72": "Djibouti",
+"73": "Georgia",
+"74": "Gabon",
+"75": "Gambia",
+"79": "Germany",
+"8": "Antigua and Barbuda",
+"80": "Bosnia and Herzegovina",
+"81": "Ghana",
+"83": "Kiribati",
+"84": "Greece",
+"86": "Grenada",
+"87": "Guadeloupe",
+"89": "Guatemala",
+"9": "Argentina",
+"90": "Guinea",
+"91": "Guyana",
+"92": "Heard Island and McDonald Islands",
+"93": "Haiti",
+"95": "Honduras",
+"96": "China, Hong Kong SAR",
+"97": "Hungary",
+"98": "Croatia",
+"99": "Iceland"
+},
+"prod": {
+"1002": "Skins, karakul",
+"1007": "Wool, shoddy",
+"1008": "Hair, carded/combed",
+"1009": "Wool, hair waste",
+"101": "Canary seed",
+"1016": "Goats",
+"1017": "Meat of goat, fresh or chilled",
+"1018": "Edible offal of goat, fresh, chilled or frozen",
+"1021": "Cheese from milk of goats, fresh or processed",
+"1022": "Butter of goat milk",
+"1026": "Skins, wet-salted of goats",
+"1027": "Skins, goat, dry salted",
+"1028": "Skins, goat nes",
+"103": "Mixed grain",
+"1030": "Hair, goat, fine",
+"1031": "Coarse goat hair",
+"1034": "Swine / pigs",
+"1035": "Meat of pig with the bone, fresh or chilled",
+"1036": "Edible offal of pigs, fresh, chilled or frozen",
+"1037": "Fat of pigs",
+"1038": "Meat of pig boneless, fresh or chilled",
+"1039": "Pig meat, cuts, salted, dried or smoked (bacon and ham)",
+"104": "Flour of mixed grain",
+"1040": "Pig, butcher fat",
+"1041": "Sausages and similar products of meat, offal or blood of pig",
+"1042": "Pig meat preparations",
+"1043": "Pig fat, rendered",
+"1045": "Skins, pig, wet salted",
+"1046": "Skins, pig, dry salted",
+"1047": "Skins, pig nes",
+"105": "Bran of mixed grain",
+"1057": "Chickens",
+"1058": "Meat of chickens, fresh or chilled",
+"1059": "Edible offals and liver of chickens and guinea fowl, fresh, chilled or frozen",
+"1060": "Fatty liver preparations",
+"1061": "Poultry meat preparations",
+"1062": "Hen eggs in shell, fresh",
+"1063": "Eggs, liquid",
+"1064": "Eggs, dried",
+"1065": "Fat of poultry",
+"1066": "Poultry fat, rendered",
+"1068": "Ducks",
+"1069": "Meat of ducks, fresh or chilled",
+"1072": "Geese",
+"1073": "Meat of geese, fresh or chilled",
+"1074": "Edible offals and liver of geese, fresh, chilled or frozen",
+"1075": "Edible offals and liver of ducks, fresh, chilled or frozen",
+"1079": "Turkeys",
+"108": "Cereals n.e.c.",
+"1080": "Meat of turkeys, fresh or chilled",
+"1081": "Edible offals and liver of turkey, fresh, chilled or frozen",
+"1083": "Other birds",
+"1089": "Meat of pigeons and other birds n.e.c., fresh, chilled or frozen",
+"109": "Infant food",
+"1091": "Eggs from other birds in shell, fresh, n.e.c.",
+"1096": "Horses",
+"1097": "Horse meat, fresh or chilled",
+"1098": "Edible offals of horses and other equines, fresh, chilled or frozen",
+"110": "Communion wafers, empty cachets of a kind suitable for pharmaceutical use, sealing wafers, rice paper and similar products.",
+"1100": "Hair, horse",
+"1103": "Hides, horse, wet salted",
+"1104": "Hides, dry-salted of horses",
+"1105": "Hides, horse nes",
+"1107": "Asses",
+"1108": "Meat of asses, fresh or chilled",
+"111": "Flour of cereals n.e.c.",
+"1110": "Mules and hinnies",
+"112": "Bran of cereals n.e.c.",
+"1126": "Camels",
+"1127": "Meat of camels, fresh or chilled",
+"1129": "Fat of camels",
+"113": "Cereal preparations",
+"1134": "Hides, wet-salted of camels",
+"114": "Mixes and doughs for the preparation of bakers' wares",
+"1140": "Rabbits and hares",
+"1141": "Meat of rabbits and hares, fresh or chilled",
+"1146": "Skins, rabbit",
+"115": "Food preparations of flour, meal or malt extract",
+"1150": "Other rodents",
+"1157": "Other camelids",
+"116": "Potatoes",
+"1163": "Game meat, fresh, chilled or frozen",
+"1164": "Other meat and edible meat offal, salted, in brine, dried or smoked; edible flours and meals of meat or meat offal",
+"1166": "Other meat of mammals, fresh or chilled",
+"1167": "Offals n.e.c. (excluding mammals), fresh, chilled or frozen",
+"1168": "Animal oils and fats n.e.c.",
+"1169": "Other live animals non food, n.e.c.",
+"117": "Flour, meal, powder, flakes, granules and pellets of potatoes",
+"1171": "Other live animals, n.e.c.",
+"1172": "Meat prepared n.e.c.",
+"1173": "Meat meal",
+"118": "Potatoes, frozen",
+"1181": "Bees",
+"1182": "Natural honey",
+"1183": "Beeswax",
+"1185": "Silk-worm cocoons suitable for reeling",
+"1186": "Raw silk (not thrown)",
+"1187": "Silk waste",
+"1195": "Skins, furs",
+"120": "Potato offals",
+"121": "Tapioca of potatoes",
+"1213": "Other raw skins of other animals, fresh",
+"1214": "Hides, wet salted nes",
+"1215": "Hides nes, dry salted",
+"1216": "Other raw skins of other animals, preserved",
+"1217": "Leather used & waste",
+"1218": "Fine animal hair, n.e.c.",
+"1219": "Hair, coarse nes",
+"122": "Sweet potatoes",
+"1221": "Lard stearine and lard oil",
+"1222": "Degras",
+"1225": "Tallow",
+"1232": "Food preparations n.e.c.",
+"1241": "Liquid margarine",
+"1242": "Margarine and shortening",
+"1243": "Fat preparations n.e.c.",
+"125": "Cassava, fresh",
+"1259": "Feed, food waste preparations",
+"126": "Flour of cassava",
+"127": "Tapioca of cassava",
+"1274": "Animal or vegetable fats and oils and their fractions, chemically modified, except those hydrogenated, inter-esterified, re-esterified or elaidinized; inedible mixtures or preparations of animal or vegetable fats or oils",
+"1275": "hydrogenated oils and fats",
+"1276": "Industrial monocarboxylic fatty acids; acid oils from refining",
+"1277": "Residues of fatty substances",
+"128": "Cassava, dry",
+"129": "Starch of cassava",
+"1293": "Crude organic material n.e.c.",
+"1295": "Spermaceti",
+"1296": "Vegetable waxes (other than triglycerides), whether or not refined or coloured",
+"135": "Yautia",
+"136": "Taro",
+"137": "Yams",
+"149": "Edible roots and tubers with high starch or inulin content, n.e.c., fresh",
+"15": "Wheat",
+"150": "Flour of roots and tubers n.e.c.",
+"151": "Edible roots and tubers with high starch or inulin content, n.e.c., dry",
+"156": "Sugar cane",
+"157": "Sugar beet",
+"16": "Wheat and meslin flour",
+"160": "Refined cane or beet sugar, in solid form, containing added flavouring or colouring matter; maple sugar and maple syrup",
+"161": "Other sugar crops n.e.c.",
+"162": "Raw cane or beet sugar (centrifugal only)",
+"163": "Cane sugar, non-centrifugal",
+"164": "Refined sugar",
+"165": "Molasses",
+"166": "Other fructose and syrup",
+"167": "Sugar and syrups n.e.c.",
+"168": "Sugar confectionery",
+"169": "Beet pulp",
+"17": "Bran of wheat",
+"170": "Bagasse",
+"172": "Glucose and dextrose",
+"173": "Lactose",
+"175": "Isoglucose",
+"176": "Beans, dry",
+"18": "Uncooked pasta, not stuffed or otherwise prepared",
+"181": "Broad beans and horse beans, dry",
+"187": "Peas, dry",
+"19": "Germ of wheat",
+"191": "Chick peas, dry",
+"195": "Cow peas, dry",
+"197": "Pigeon peas, dry",
+"20": "Bread",
+"201": "Lentils, dry",
+"203": "Bambara beans, dry",
+"205": "Vetches",
+"21": "Bulgur",
+"210": "Lupins",
+"211": "Other pulses n.e.c.",
+"212": "Flour of pulses",
+"213": "Bran of pulses",
+"216": "Brazil nuts, in shell",
+"217": "Cashew nuts, in shell",
+"22": "Pastry",
+"220": "Chestnuts, in shell",
+"221": "Almonds, in shell",
+"222": "Walnuts, in shell",
+"223": "Pistachios, in shell",
+"224": "Kola nuts",
+"225": "Hazelnuts, in shell",
+"226": "Areca nuts",
+"229": "Brazil nuts, shelled",
+"230": "Cashew nuts, shelled",
+"231": "Almonds, shelled",
+"232": "Walnuts, shelled",
+"233": "Hazelnuts, shelled",
+"234": "Other nuts (excluding wild edible nuts and groundnuts), in shell, n.e.c.",
+"235": "Prepared nuts",
+"236": "Soya beans",
+"237": "Soya bean oil",
+"238": "Cake of soya beans",
+"239": "Soya sauce",
+"240": "Soya paste",
+"242": "Groundnuts, excluding shelled",
+"243": "Groundnuts, shelled",
+"244": "Groundnut oil",
+"245": "Cake of groundnuts",
+"246": "Prepared groundnuts",
+"247": "Peanut butter",
+"249": "Coconuts, in shell",
+"250": "Coconuts, desiccated",
+"251": "Copra",
+"252": "Coconut oil",
+"253": "Cake of copra",
+"256": "Palm kernels",
+"257": "Palm oil",
+"258": "Oil of palm kernel",
+"259": "Cake of palm kernel",
+"260": "Olives",
+"261": "Olive oil",
+"262": "Olives preserved",
+"263": "Karite nuts (sheanuts)",
+"264": "Butter of karite nuts",
+"265": "Castor oil seeds",
+"266": "Oil of castor beans",
+"267": "Sunflower seed",
+"268": "Sunflower-seed oil, crude",
+"269": "Cake of sunflower seed",
+"27": "Rice",
+"270": "Rape or colza seed",
+"271": "Rapeseed or canola oil, crude",
+"272": "Cake of rapeseed",
+"273": "Olive residues",
+"274": "Oil of olive residues",
+"275": "Tung nuts",
+"276": "Oil of tung nuts",
+"278": "Jojoba oil",
+"28": "Husked rice",
+"280": "Safflower seed",
+"281": "Safflower-seed oil, crude",
+"282": "Cake of safflowerseed",
+"289": "Sesame seed",
+"29": "Rice, milled (husked)",
+"290": "Oil of sesame seed",
+"291": "Cake of sesame seed",
+"292": "Mustard seed",
+"293": "Mustard seed oil, crude",
+"294": "Cake of mustard seed",
+"295": "Flour of mustard seed",
+"296": "Poppy seed",
+"297": "Oil of poppy seed",
+"299": "Melonseed",
+"30": "Rice, paddy (rice milled equivalent)",
+"306": "Vegetable tallow",
+"31": "Rice, milled",
+"311": "Kapokseed in shell",
+"313": "Oil of kapok",
+"314": "Cake of kapok",
+"32": "Rice, broken",
+"329": "Cotton seed",
+"331": "Cottonseed oil",
+"332": "Cake of cottonseed",
+"333": "Linseed",
+"334": "Oil of linseed",
+"335": "Cake of linseed",
+"336": "Hempseed",
+"338": "Cake of hempseed",
+"339": "Other oil seeds, n.e.c.",
+"340": "Other oil of vegetable origin, crude n.e.c.",
+"341": "Cake, oilseeds nes",
+"343": "Flours and meals of oil seeds or oleaginous fruits, except those of mustard",
+"35": "Bran of rice",
+"358": "Cabbages",
+"36": "Oil of rice bran",
+"366": "Artichokes",
+"367": "Asparagus",
+"37": "Cake of rice bran",
+"372": "Lettuce and chicory",
+"373": "Spinach",
+"38": "Flour of rice",
+"388": "Tomatoes",
+"39": "Rice-fermented beverages",
+"390": "Tomato juice",
+"391": "Paste of tomatoes",
+"392": "Tomatoes, peeled (o/t vinegar)",
+"393": "Cauliflowers and broccoli",
+"394": "Pumpkins, squash and gourds",
+"397": "Cucumbers and gherkins",
+"399": "Eggplants (aubergines)",
+"401": "Chillies and peppers, green (Capsicum spp. and Pimenta spp.)",
+"402": "Onions and shallots, green",
+"403": "Onions and shallots, dry (excluding dehydrated)",
+"406": "Green garlic",
+"407": "Leeks and other alliaceous vegetables",
+"41": "Breakfast cereals",
+"414": "Other beans, green",
+"417": "Peas, green",
+"420": "Broad beans and horse beans, green",
+"423": "String beans",
+"426": "Carrots and turnips",
+"430": "Okra",
+"44": "Barley",
+"446": "Green corn (maize)",
+"447": "Sweet corn, frozen",
+"448": "Sweet corn, prepared or preserved",
+"449": "Mushrooms and truffles",
+"45": "Pot barley",
+"450": "Dried mushrooms",
+"451": "Canned mushrooms",
+"459": "Chicory roots",
+"46": "Barley, pearled",
+"460": "Vegetable products, fresh or dry n.e.c.",
+"461": "Locust beans (carobs)",
+"463": "Other vegetables, fresh n.e.c.",
+"465": "Other vegetables and pulses, preserved other than by vinegar, acetic acid or sugar, n.e.c.",
+"466": "Other vegetable juices",
+"469": "Vegetables, dehydrated",
+"47": "Bran of barley",
+"471": "Vegetables, pulses and potatoes, preserved by vinegar or acetic acid",
+"472": "Vegetables preserved nes (o/t vinegar)",
+"473": "Vegetables frozen",
+"474": "Other vegetables provisionally preserved",
+"475": "Vegetables preserved (frozen)",
+"476": "Homogenized vegetable preparations",
+"48": "Barley flour and grits",
+"486": "Bananas",
+"489": "Plantains and cooking bananas",
+"49": "Malt, whether or not roasted",
+"490": "Oranges",
+"491": "Orange juice",
+"492": "Orange juice, concentrated",
+"495": "Tangerines, mandarins, clementines",
+"496": "Juice of tangerine",
+"497": "Lemons and limes",
+"498": "Juice of lemon",
+"499": "Lemon juice, concentrated",
+"50": "Malt extract",
+"507": "Pomelos and grapefruits",
+"509": "Grapefruit juice",
+"51": "Beer of barley, malted",
+"510": "Grapefruit juice, concentrated",
+"512": "Other citrus fruit, n.e.c.",
+"513": "Juice of citrus fruit n.e.c.",
+"514": "Citrus juice, concentrated n.e.c.",
+"515": "Apples",
+"517": "Cider and other fermented beverages",
+"518": "Apple juice",
+"519": "Apple juice, concentrated",
+"521": "Pears",
+"523": "Quinces",
+"526": "Apricots",
+"527": "Apricots, dried",
+"530": "Sour cherries",
+"531": "Cherries",
+"534": "Peaches and nectarines",
+"536": "Plums and sloes",
+"537": "Plums, dried",
+"539": "Juice of plum, concentrated",
+"541": "Other stone fruits",
+"544": "Strawberries",
+"547": "Raspberries",
+"549": "Gooseberries",
+"550": "Currants",
+"552": "Blueberries",
+"554": "Cranberries",
+"558": "Other berries and fruits of the genus vaccinium n.e.c.",
+"56": "Maize (corn)",
+"560": "Grapes",
+"561": "Raisins",
+"562": "Grape juice",
+"563": "Must of grape",
+"564": "Wine",
+"565": "Vermouth and other wine of fresh grapes flavoured with plats or aromatic substances",
+"566": "Grapes, marc",
+"567": "Watermelons",
+"568": "Cantaloupes and other melons",
+"569": "Figs",
+"57": "Germ of maize",
+"570": "Figs, dried",
+"571": "Mangoes, guavas and mangosteens",
+"572": "Avocados",
+"574": "Pineapples",
+"575": "Pineapples, otherwise prepared or preserved",
+"576": "Pineapple juice",
+"577": "Dates",
+"58": "Flour of maize",
+"580": "Juice of pineapples, concentrated",
+"583": "Juice of mango",
+"584": "Mango pulp",
+"587": "Persimmons",
+"59": "Bran of maize",
+"591": "Cashewapple",
+"592": "Kiwi fruit",
+"60": "Oil of maize",
+"600": "Papayas",
+"603": "Other tropical fruits, n.e.c.",
+"604": "Other tropical fruit, dried",
+"61": "Cake of maize",
+"619": "Other fruits, n.e.c.",
+"620": "Other fruit n.e.c., dried",
+"622": "Juice of fruits n.e.c.",
+"623": "Fruit prepared n.e.c.",
+"624": "Flour of fruits",
+"625": "Fruit, nuts, peel, sugar preserved",
+"626": "Homogenized cooked fruit, prepared",
+"628": "Pulp, waste of fruit for feed",
+"630": "Cane tops",
+"633": "Other non-alcoholic caloric beverages",
+"634": "Undenatured ethyl alcohol of an alcoholic strength by volume of less than 80% vol; spirits, liqueurs and other spirituous beverages",
+"635": "Cereal straw, husks, unprepared, ground, pressed, or in the form of pellets",
+"636": "Forage and silage, maize",
+"641": "Forage and silage, alfalfa",
+"646": "Turnips, for forage",
+"647": "Beets for fodder",
+"649": "Swedes for fodder",
+"651": "Other forage products, n.e.c.",
+"652": "Vegetable products for feed n.e.c.",
+"653": "Food wastes",
+"654": "Brewing or distilling dregs and waste",
+"655": "Vegetables and roots fodder",
+"656": "Coffee, green",
+"657": "Coffee, decaffeinated or roasted",
+"658": "Coffee substitutes",
+"659": "Coffee extracts",
+"660": "Coffee husks and skins",
+"661": "Cocoa beans",
+"662": "Cocoa paste not defatted",
+"663": "Cocoa husks and shells",
+"664": "Cocoa butter, fat and oil",
+"665": "Cocoa powder and cake",
+"666": "Chocolate products nes",
+"667": "Tea leaves",
+"671": "Maté leaves",
+"672": "Extracts, essences and concentrates of tea or mate, and preparations with a basis thereof or with a basis of tea or maté",
+"677": "Hop cones",
+"687": "Pepper (Piper spp.), raw",
+"689": "Chillies and peppers, dry (Capsicum spp., Pimenta spp.), raw",
+"692": "Vanilla, raw",
+"693": "Cinnamon and cinnamon-tree flowers, raw",
+"698": "Cloves (whole stems), raw",
+"702": "Nutmeg, mace, cardamoms, raw",
+"71": "Rye",
+"711": "Anise, badian, coriander, cumin, caraway, fennel and juniper berries, raw",
+"72": "Flour of rye",
+"720": "Ginger, raw",
+"723": "Other stimulant, spice and aromatic crops, n.e.c.",
+"73": "Bran of rye",
+"737": "Oil of citronella",
+"748": "Peppermint, spearmint",
+"75": "Oats",
+"753": "Essential oils n.e.c.",
+"754": "Pyrethrum, dried flowers",
+"755": "Pyrethrum extract",
+"76": "Oats, rolled",
+"767": "Cotton lint, ginned",
+"768": "Cotton, carded or combed",
+"769": "Cotton waste",
+"77": "Bran of oats",
+"770": "Cotton linters",
+"771": "Flax, raw or retted",
+"773": "Flax, processed but not spun",
+"774": "Flax, tow and waste",
+"777": "True hemp, raw or retted",
+"778": "Kapok fibre, raw",
+"780": "Jute, raw or retted",
+"782": "Kenaf, and other textile bast fibres, raw or retted",
+"788": "Ramie, raw or retted",
+"789": "Sisal, raw",
+"79": "Millet",
+"80": "Flour of millet",
+"809": "Abaca, manila hemp, raw",
+"81": "Bran of millet",
+"813": "Coir, raw",
+"821": "Other fibre crops, raw, n.e.c.",
+"826": "Unmanufactured tobacco",
+"828": "Cigarettes",
+"829": "Cigars and cheroots",
+"83": "Sorghum",
+"831": "Other manufactured tobacco and manufactured tobacco substitutes; 'homogenized' or 'reconstituted' tobacco; tobacco extracts and essences",
+"836": "Natural rubber in primary forms",
+"837": "Natural rubber in other forms",
+"839": "Balata, gutta-percha, guayule, chicle and similar natural gums in primary forms or in plates, sheets or strip",
+"84": "Flour of sorghum",
+"840": "Feed, compound, cattle",
+"841": "Feed, compound, poultry",
+"842": "Feed, compound, pigs",
+"843": "Dog or cat food, put up for retail sale",
+"845": "Compound feed n.e.c.",
+"846": "Gluten feed and meal",
+"85": "Bran of sorghum",
+"850": "Feed supplements",
+"852": "Feed, other concentrates nes",
+"853": "Vitamins",
+"854": "Feed additives",
+"855": "Feed minerals",
+"857": "Hay, non-leguminous",
+"858": "Hay for forage, from legumes",
+"859": "Hay for forage, from other crops n.e.c.",
+"862": "Lucerne (alfalfa) meal and pellets",
+"866": "Cattle",
+"867": "Meat of cattle with the bone, fresh or chilled",
+"868": "Edible offal of cattle, fresh, chilled or frozen",
+"869": "Cattle fat, unrendered",
+"870": "Meat of cattle boneless, fresh or chilled",
+"871": "Cattle, butcher fat",
+"872": "Bovine meat, salted, dried or smoked",
+"873": "Extracts and juices of meat, fish, crustaceans, molluscs or other aquatic invertebrates",
+"874": "Sausages and similar products of meat, offal or blood of beef and veal",
+"875": "Beef and veal preparations nes",
+"877": "Homogenized meat preparations",
+"878": "Liver preparations",
+"882": "Raw milk of cattle",
+"885": "Cream, fresh",
+"886": "Butter of cow milk",
+"887": "Ghee from cow milk",
+"888": "Skim milk of cows",
+"889": "Whole milk, condensed",
+"89": "Buckwheat",
+"890": "Whey, condensed",
+"891": "Yoghurt",
+"892": "Yoghurt, with additives",
+"893": "Buttermilk, curdled and acidified milk",
+"894": "Whole milk, evaporated",
+"895": "Skim milk, evaporated",
+"896": "Skim milk, condensed",
+"897": "Whole milk powder",
+"898": "Skim milk and whey powder",
+"899": "Buttermilk, dry",
+"90": "Flour of buckwheat",
+"900": "Whey, dry",
+"901": "Cheese from whole cow milk",
+"903": "Whey, fresh",
+"904": "Cheese from skimmed cow milk",
+"905": "Whey cheese",
+"907": "Processed cheese",
+"909": "Dairy products n.e.c.",
+"91": "Bran of buckwheat",
+"910": "Ice cream and other edible ice",
+"919": "Raw hides and skins of cattle",
+"92": "Quinoa",
+"920": "Hides, wet-salted of cattle",
+"921": "Hides, cattle, dry salted",
+"922": "Hides, cattle nes",
+"928": "Skins, wet-salted of calves",
+"929": "Skins, calve, dry salted",
+"930": "Skins, calve nes",
+"94": "Fonio",
+"946": "Buffalo",
+"947": "Meat of buffalo, fresh or chilled",
+"948": "Edible offal of buffalo, fresh, chilled or frozen",
+"953": "Ghee from buffalo milk",
+"958": "Hides, wet-salted of buffalo",
+"959": "Hides, dry-salted of buffalo",
+"97": "Triticale",
+"976": "Sheep",
+"977": "Meat of sheep, fresh or chilled",
+"978": "Edible offal of sheep, fresh, chilled or frozen",
+"979": "Sheep fat, unrendered",
+"982": "Raw milk of sheep",
+"983": "Butter and ghee of sheep milk",
+"984": "Cheese from milk of sheep, fresh or processed",
+"987": "Shorn wool, greasy, including fleece-washed shorn wool",
+"988": "Wool, degreased or carbonized, not carded or combed",
+"994": "Wool grease and lanolin",
+"996": "Skins, wet-salted of sheep",
+"997": "Skins, dry-salted of sheep",
+"998": "Skins, sheep nes",
+"999": "Raw hides and skins of sheep or lambs, with wool"
+},
+"terr": {
+"AFG": {
+"agg": false,
+"cod": "2",
+"n": "Afghanistan",
+"oss": 8072
+},
+"AGO": {
+"agg": false,
+"cod": "7",
+"n": "Angola",
+"oss": 50806
+},
+"ALB": {
+"agg": false,
+"cod": "3",
+"n": "Albania",
+"oss": 85330
+},
+"ARE": {
+"agg": false,
+"cod": "225",
+"n": "United Arab Emirates",
+"oss": 504543
+},
+"ARG": {
+"agg": false,
+"cod": "9",
+"n": "Argentina",
+"oss": 355816
+},
+"ARM": {
+"agg": false,
+"cod": "1",
+"n": "Armenia",
+"oss": 124187
+},
+"ATG": {
+"agg": false,
+"cod": "8",
+"n": "Antigua and Barbuda",
+"oss": 49874
+},
+"AUS": {
+"agg": false,
+"cod": "10",
+"n": "Australia",
+"oss": 765232
+},
+"AUT": {
+"agg": false,
+"cod": "11",
+"n": "Austria",
+"oss": 885146
+},
+"AZE": {
+"agg": false,
+"cod": "52",
+"n": "Azerbaijan",
+"oss": 105649
+},
+"BDI": {
+"agg": false,
+"cod": "29",
+"n": "Burundi",
+"oss": 35969
+},
+"BEL": {
+"agg": false,
+"cod": "255",
+"n": "Belgium",
+"oss": 1034911
+},
+"BEN": {
+"agg": false,
+"cod": "53",
+"n": "Benin",
+"oss": 71813
+},
+"BFA": {
+"agg": false,
+"cod": "233",
+"n": "Burkina Faso",
+"oss": 65200
+},
+"BGD": {
+"agg": false,
+"cod": "16",
+"n": "Bangladesh",
+"oss": 26085
+},
+"BGR": {
+"agg": false,
+"cod": "27",
+"n": "Bulgaria",
+"oss": 410983
+},
+"BHR": {
+"agg": false,
+"cod": "13",
+"n": "Bahrain",
+"oss": 266240
+},
+"BHS": {
+"agg": false,
+"cod": "12",
+"n": "Bahamas",
+"oss": 46473
+},
+"BIH": {
+"agg": false,
+"cod": "80",
+"n": "Bosnia and Herzegovina",
+"oss": 190760
+},
+"BLR": {
+"agg": false,
+"cod": "57",
+"n": "Belarus",
+"oss": 178081
+},
+"BLZ": {
+"agg": false,
+"cod": "23",
+"n": "Belize",
+"oss": 32303
+},
+"BOL": {
+"agg": false,
+"cod": "19",
+"n": "Bolivia (Plurinational State of)",
+"oss": 107383
+},
+"BRA": {
+"agg": false,
+"cod": "21",
+"n": "Brazil",
+"oss": 630955
+},
+"BRB": {
+"agg": false,
+"cod": "14",
+"n": "Barbados",
+"oss": 153770
+},
+"BRN": {
+"agg": false,
+"cod": "26",
+"n": "Brunei Darussalam",
+"oss": 68113
+},
+"BTN": {
+"agg": false,
+"cod": "18",
+"n": "Bhutan",
+"oss": 6448
+},
+"BWA": {
+"agg": false,
+"cod": "20",
+"n": "Botswana",
+"oss": 76822
+},
+"CAF": {
+"agg": false,
+"cod": "37",
+"n": "Central African Republic",
+"oss": 18646
+},
+"CAN": {
+"agg": false,
+"cod": "33",
+"n": "Canada",
+"oss": 970185
+},
+"CHE": {
+"agg": false,
+"cod": "211",
+"n": "Switzerland",
+"oss": 834727
+},
+"CHL": {
+"agg": false,
+"cod": "40",
+"n": "Chile",
+"oss": 348510
+},
+"CHN": {
+"agg": false,
+"cod": "41",
+"n": "China, mainland",
+"oss": 877245
+},
+"CIV": {
+"agg": false,
+"cod": "107",
+"n": "Côte d'Ivoire",
+"oss": 206682
+},
+"CMR": {
+"agg": false,
+"cod": "32",
+"n": "Cameroon",
+"oss": 138051
+},
+"COG": {
+"agg": false,
+"cod": "46",
+"n": "Congo",
+"oss": 53530
+},
+"COK": {
+"agg": false,
+"cod": "47",
+"n": "Cook Islands",
+"oss": 2945
+},
+"COL": {
+"agg": false,
+"cod": "44",
+"n": "Colombia",
+"oss": 241984
+},
+"COM": {
+"agg": false,
+"cod": "45",
+"n": "Comoros",
+"oss": 16939
+},
+"CPV": {
+"agg": false,
+"cod": "35",
+"n": "Cabo Verde",
+"oss": 60187
+},
+"CRI": {
+"agg": false,
+"cod": "48",
+"n": "Costa Rica",
+"oss": 239000
+},
+"CUB": {
+"agg": false,
+"cod": "49",
+"n": "Cuba",
+"oss": 40945
+},
+"CYP": {
+"agg": false,
+"cod": "50",
+"n": "Cyprus",
+"oss": 268998
+},
+"CZE": {
+"agg": false,
+"cod": "167",
+"n": "Czechia",
+"oss": 621707
+},
+"DEU": {
+"agg": false,
+"cod": "79",
+"n": "Germany",
+"oss": 1788505
+},
+"DJI": {
+"agg": false,
+"cod": "72",
+"n": "Djibouti",
+"oss": 9789
+},
+"DMA": {
+"agg": false,
+"cod": "55",
+"n": "Dominica",
+"oss": 38232
+},
+"DNK": {
+"agg": false,
+"cod": "54",
+"n": "Denmark",
+"oss": 853722
+},
+"DOM": {
+"agg": false,
+"cod": "56",
+"n": "Dominican Republic",
+"oss": 101836
+},
+"DZA": {
+"agg": false,
+"cod": "4",
+"n": "Algeria",
+"oss": 96446
+},
+"ECU": {
+"agg": false,
+"cod": "58",
+"n": "Ecuador",
+"oss": 152551
+},
+"EGY": {
+"agg": false,
+"cod": "59",
+"n": "Egypt",
+"oss": 299377
+},
+"ESP": {
+"agg": false,
+"cod": "203",
+"n": "Spain",
+"oss": 1318343
+},
+"EST": {
+"agg": false,
+"cod": "63",
+"n": "Estonia",
+"oss": 302648
+},
+"ETH": {
+"agg": false,
+"cod": "238",
+"n": "Ethiopia",
+"oss": 123102
+},
+"FAO_135": {
+"agg": true,
+"cod": "135",
+"n": "Martinique",
+"oss": 18047
+},
+"FAO_15": {
+"agg": true,
+"cod": "15",
+"n": "Belgium-Luxembourg",
+"oss": 319039
+},
+"FAO_182": {
+"agg": true,
+"cod": "182",
+"n": "Réunion",
+"oss": 15147
+},
+"FAO_186": {
+"agg": true,
+"cod": "186",
+"n": "Serbia and Montenegro",
+"oss": 42446
+},
+"FAO_206": {
+"agg": true,
+"cod": "206",
+"n": "Sudan (former)",
+"oss": 20648
+},
+"FAO_228": {
+"agg": true,
+"cod": "228",
+"n": "USSR",
+"oss": 2434
+},
+"FAO_248": {
+"agg": true,
+"cod": "248",
+"n": "Yugoslav SFR",
+"oss": 23869
+},
+"FAO_62": {
+"agg": true,
+"cod": "62",
+"n": "Ethiopia PDR",
+"oss": 4730
+},
+"FAO_69": {
+"agg": true,
+"cod": "69",
+"n": "French Guiana",
+"oss": 11991
+},
+"FAO_87": {
+"agg": true,
+"cod": "87",
+"n": "Guadeloupe",
+"oss": 17608
+},
+"FIN": {
+"agg": false,
+"cod": "67",
+"n": "Finland",
+"oss": 424843
+},
+"FJI": {
+"agg": false,
+"cod": "66",
+"n": "Fiji",
+"oss": 140240
+},
+"FRA": {
+"agg": false,
+"cod": "68",
+"n": "France",
+"oss": 1911690
+},
+"FRO": {
+"agg": false,
+"cod": "64",
+"n": "Faroe Islands",
+"oss": 19656
+},
+"FSM": {
+"agg": false,
+"cod": "145",
+"n": "Micronesia (Federated States of)",
+"oss": 5670
+},
+"GAB": {
+"agg": false,
+"cod": "74",
+"n": "Gabon",
+"oss": 52538
+},
+"GBR": {
+"agg": false,
+"cod": "229",
+"n": "United Kingdom of Great Britain and Northern Ireland",
+"oss": 1471204
+},
+"GEO": {
+"agg": false,
+"cod": "73",
+"n": "Georgia",
+"oss": 157774
+},
+"GHA": {
+"agg": false,
+"cod": "81",
+"n": "Ghana",
+"oss": 191815
+},
+"GIN": {
+"agg": false,
+"cod": "90",
+"n": "Guinea",
+"oss": 23514
+},
+"GMB": {
+"agg": false,
+"cod": "75",
+"n": "Gambia",
+"oss": 61544
+},
+"GRC": {
+"agg": false,
+"cod": "84",
+"n": "Greece",
+"oss": 653763
+},
+"GRD": {
+"agg": false,
+"cod": "86",
+"n": "Grenada",
+"oss": 40650
+},
+"GTM": {
+"agg": false,
+"cod": "89",
+"n": "Guatemala",
+"oss": 223936
+},
+"GUY": {
+"agg": false,
+"cod": "91",
+"n": "Guyana",
+"oss": 90315
+},
+"HKG": {
+"agg": false,
+"cod": "96",
+"n": "China, Hong Kong SAR",
+"oss": 512903
+},
+"HND": {
+"agg": false,
+"cod": "95",
+"n": "Honduras",
+"oss": 134363
+},
+"HRV": {
+"agg": false,
+"cod": "98",
+"n": "Croatia",
+"oss": 370117
+},
+"HUN": {
+"agg": false,
+"cod": "97",
+"n": "Hungary",
+"oss": 586655
+},
+"IDN": {
+"agg": false,
+"cod": "101",
+"n": "Indonesia",
+"oss": 509702
+},
+"IND": {
+"agg": false,
+"cod": "100",
+"n": "India",
+"oss": 817859
+},
+"IRL": {
+"agg": false,
+"cod": "104",
+"n": "Ireland",
+"oss": 474508
+},
+"IRN": {
+"agg": false,
+"cod": "102",
+"n": "Iran (Islamic Republic of)",
+"oss": 115431
+},
+"IRQ": {
+"agg": false,
+"cod": "103",
+"n": "Iraq",
+"oss": 12573
+},
+"ISL": {
+"agg": false,
+"cod": "99",
+"n": "Iceland",
+"oss": 253221
+},
+"ISR": {
+"agg": false,
+"cod": "105",
+"n": "Israel",
+"oss": 272216
+},
+"ITA": {
+"agg": false,
+"cod": "106",
+"n": "Italy",
+"oss": 1517337
+},
+"JAM": {
+"agg": false,
+"cod": "109",
+"n": "Jamaica",
+"oss": 91467
+},
+"JOR": {
+"agg": false,
+"cod": "112",
+"n": "Jordan",
+"oss": 218769
+},
+"JPN": {
+"agg": false,
+"cod": "110",
+"n": "Japan",
+"oss": 507527
+},
+"KAZ": {
+"agg": false,
+"cod": "108",
+"n": "Kazakhstan",
+"oss": 191808
+},
+"KEN": {
+"agg": false,
+"cod": "114",
+"n": "Kenya",
+"oss": 216558
+},
+"KGZ": {
+"agg": false,
+"cod": "113",
+"n": "Kyrgyzstan",
+"oss": 83221
+},
+"KHM": {
+"agg": false,
+"cod": "115",
+"n": "Cambodia",
+"oss": 77556
+},
+"KIR": {
+"agg": false,
+"cod": "83",
+"n": "Kiribati",
+"oss": 19312
+},
+"KNA": {
+"agg": false,
+"cod": "188",
+"n": "Saint Kitts and Nevis",
+"oss": 20546
+},
+"KOR": {
+"agg": false,
+"cod": "117",
+"n": "Republic of Korea",
+"oss": 511361
+},
+"KWT": {
+"agg": false,
+"cod": "118",
+"n": "Kuwait",
+"oss": 220691
+},
+"LAO": {
+"agg": false,
+"cod": "120",
+"n": "Lao People's Democratic Republic",
+"oss": 21356
+},
+"LBN": {
+"agg": false,
+"cod": "121",
+"n": "Lebanon",
+"oss": 412315
+},
+"LBY": {
+"agg": false,
+"cod": "124",
+"n": "Libya",
+"oss": 25068
+},
+"LCA": {
+"agg": false,
+"cod": "189",
+"n": "Saint Lucia",
+"oss": 49474
+},
+"LKA": {
+"agg": false,
+"cod": "38",
+"n": "Sri Lanka",
+"oss": 311939
+},
+"LSO": {
+"agg": false,
+"cod": "122",
+"n": "Lesotho",
+"oss": 11450
+},
+"LTU": {
+"agg": false,
+"cod": "126",
+"n": "Lithuania",
+"oss": 392920
+},
+"LUX": {
+"agg": false,
+"cod": "256",
+"n": "Luxembourg",
+"oss": 225583
+},
+"LVA": {
+"agg": false,
+"cod": "119",
+"n": "Latvia",
+"oss": 325736
+},
+"MAC": {
+"agg": false,
+"cod": "128",
+"n": "China, Macao SAR",
+"oss": 160401
+},
+"MAR": {
+"agg": false,
+"cod": "143",
+"n": "Morocco",
+"oss": 243854
+},
+"MDA": {
+"agg": false,
+"cod": "146",
+"n": "Republic of Moldova",
+"oss": 202977
+},
+"MDG": {
+"agg": false,
+"cod": "129",
+"n": "Madagascar",
+"oss": 110579
+},
+"MDV": {
+"agg": false,
+"cod": "132",
+"n": "Maldives",
+"oss": 186696
+},
+"MEX": {
+"agg": false,
+"cod": "138",
+"n": "Mexico",
+"oss": 363076
+},
+"MKD": {
+"agg": false,
+"cod": "154",
+"n": "North Macedonia",
+"oss": 187787
+},
+"MLI": {
+"agg": false,
+"cod": "133",
+"n": "Mali",
+"oss": 38801
+},
+"MLT": {
+"agg": false,
+"cod": "134",
+"n": "Malta",
+"oss": 167477
+},
+"MMR": {
+"agg": false,
+"cod": "28",
+"n": "Myanmar",
+"oss": 52551
+},
+"MNE": {
+"agg": false,
+"cod": "273",
+"n": "Montenegro",
+"oss": 114075
+},
+"MNG": {
+"agg": false,
+"cod": "141",
+"n": "Mongolia",
+"oss": 68856
+},
+"MOZ": {
+"agg": false,
+"cod": "144",
+"n": "Mozambique",
+"oss": 62687
+},
+"MRT": {
+"agg": false,
+"cod": "136",
+"n": "Mauritania",
+"oss": 27066
+},
+"MUS": {
+"agg": false,
+"cod": "137",
+"n": "Mauritius",
+"oss": 186535
+},
+"MWI": {
+"agg": false,
+"cod": "130",
+"n": "Malawi",
+"oss": 70561
+},
+"MYS": {
+"agg": false,
+"cod": "131",
+"n": "Malaysia",
+"oss": 633586
+},
+"NAM": {
+"agg": false,
+"cod": "147",
+"n": "Namibia",
+"oss": 107446
+},
+"NCL": {
+"agg": false,
+"cod": "153",
+"n": "New Caledonia",
+"oss": 60401
+},
+"NER": {
+"agg": false,
+"cod": "158",
+"n": "Niger",
+"oss": 72558
+},
+"NGA": {
+"agg": false,
+"cod": "159",
+"n": "Nigeria",
+"oss": 11250
+},
+"NIC": {
+"agg": false,
+"cod": "157",
+"n": "Nicaragua",
+"oss": 133108
+},
+"NLD": {
+"agg": false,
+"cod": "150",
+"n": "Netherlands (Kingdom of the)",
+"oss": 2026807
+},
+"NOR": {
+"agg": false,
+"cod": "162",
+"n": "Norway",
+"oss": 473392
+},
+"NPL": {
+"agg": false,
+"cod": "149",
+"n": "Nepal",
+"oss": 56014
+},
+"NZL": {
+"agg": false,
+"cod": "156",
+"n": "New Zealand",
+"oss": 587168
+},
+"OMN": {
+"agg": false,
+"cod": "221",
+"n": "Oman",
+"oss": 225323
+},
+"PAK": {
+"agg": false,
+"cod": "165",
+"n": "Pakistan",
+"oss": 282362
+},
+"PAN": {
+"agg": false,
+"cod": "166",
+"n": "Panama",
+"oss": 120517
+},
+"PER": {
+"agg": false,
+"cod": "170",
+"n": "Peru",
+"oss": 252243
+},
+"PHL": {
+"agg": false,
+"cod": "171",
+"n": "Philippines",
+"oss": 349704
+},
+"PLW": {
+"agg": false,
+"cod": "180",
+"n": "Palau",
+"oss": 7128
+},
+"PNG": {
+"agg": false,
+"cod": "168",
+"n": "Papua New Guinea",
+"oss": 33584
+},
+"POL": {
+"agg": false,
+"cod": "173",
+"n": "Poland",
+"oss": 757815
+},
+"PRT": {
+"agg": false,
+"cod": "174",
+"n": "Portugal",
+"oss": 603125
+},
+"PRY": {
+"agg": false,
+"cod": "169",
+"n": "Paraguay",
+"oss": 99259
+},
+"PYF": {
+"agg": false,
+"cod": "70",
+"n": "French Polynesia",
+"oss": 102186
+},
+"QAT": {
+"agg": false,
+"cod": "179",
+"n": "Qatar",
+"oss": 190492
+},
+"ROM": {
+"agg": false,
+"cod": "183",
+"n": "Romania",
+"oss": 475981
+},
+"RUS": {
+"agg": false,
+"cod": "185",
+"n": "Russian Federation",
+"oss": 468728
+},
+"RWA": {
+"agg": false,
+"cod": "184",
+"n": "Rwanda",
+"oss": 75643
+},
+"SAU": {
+"agg": false,
+"cod": "194",
+"n": "Saudi Arabia",
+"oss": 313755
+},
+"SDN": {
+"agg": false,
+"cod": "276",
+"n": "Sudan",
+"oss": 20429
+},
+"SEN": {
+"agg": false,
+"cod": "195",
+"n": "Senegal",
+"oss": 152018
+},
+"SGP": {
+"agg": false,
+"cod": "200",
+"n": "Singapore",
+"oss": 800136
+},
+"SLB": {
+"agg": false,
+"cod": "25",
+"n": "Solomon Islands",
+"oss": 21556
+},
+"SLE": {
+"agg": false,
+"cod": "197",
+"n": "Sierra Leone",
+"oss": 5497
+},
+"SLV": {
+"agg": false,
+"cod": "60",
+"n": "El Salvador",
+"oss": 149620
+},
+"SRB": {
+"agg": false,
+"cod": "272",
+"n": "Serbia",
+"oss": 240622
+},
+"STP": {
+"agg": false,
+"cod": "193",
+"n": "Sao Tome and Principe",
+"oss": 17910
+},
+"SUR": {
+"agg": false,
+"cod": "207",
+"n": "Suriname",
+"oss": 24067
+},
+"SVK": {
+"agg": false,
+"cod": "199",
+"n": "Slovakia",
+"oss": 336569
+},
+"SVN": {
+"agg": false,
+"cod": "198",
+"n": "Slovenia",
+"oss": 414679
+},
+"SWE": {
+"agg": false,
+"cod": "210",
+"n": "Sweden",
+"oss": 748715
+},
+"SWZ": {
+"agg": false,
+"cod": "209",
+"n": "Eswatini",
+"oss": 44894
+},
+"SYC": {
+"agg": false,
+"cod": "196",
+"n": "Seychelles",
+"oss": 114848
+},
+"SYR": {
+"agg": false,
+"cod": "212",
+"n": "Syrian Arab Republic",
+"oss": 31533
+},
+"TGO": {
+"agg": false,
+"cod": "217",
+"n": "Togo",
+"oss": 63141
+},
+"THA": {
+"agg": false,
+"cod": "216",
+"n": "Thailand",
+"oss": 777767
+},
+"TJK": {
+"agg": false,
+"cod": "208",
+"n": "Tajikistan",
+"oss": 23946
+},
+"TMP": {
+"agg": false,
+"cod": "176",
+"n": "Timor-Leste",
+"oss": 18360
+},
+"TON": {
+"agg": false,
+"cod": "219",
+"n": "Tonga",
+"oss": 26915
+},
+"TTO": {
+"agg": false,
+"cod": "220",
+"n": "Trinidad and Tobago",
+"oss": 180825
+},
+"TUN": {
+"agg": false,
+"cod": "222",
+"n": "Tunisia",
+"oss": 152801
+},
+"TUR": {
+"agg": false,
+"cod": "223",
+"n": "Türkiye",
+"oss": 850010
+},
+"TUV": {
+"agg": false,
+"cod": "227",
+"n": "Tuvalu",
+"oss": 3324
+},
+"TWN": {
+"agg": false,
+"cod": "214",
+"n": "China, Taiwan Province of",
+"oss": 468549
+},
+"TZA": {
+"agg": false,
+"cod": "215",
+"n": "United Republic of Tanzania",
+"oss": 186475
+},
+"UGA": {
+"agg": false,
+"cod": "226",
+"n": "Uganda",
+"oss": 153076
+},
+"UKR": {
+"agg": false,
+"cod": "230",
+"n": "Ukraine",
+"oss": 403173
+},
+"URY": {
+"agg": false,
+"cod": "234",
+"n": "Uruguay",
+"oss": 157003
+},
+"USA": {
+"agg": false,
+"cod": "231",
+"n": "United States of America",
+"oss": 1667440
+},
+"UZB": {
+"agg": false,
+"cod": "235",
+"n": "Uzbekistan",
+"oss": 53687
+},
+"VCT": {
+"agg": false,
+"cod": "191",
+"n": "Saint Vincent and the Grenadines",
+"oss": 63284
+},
+"VEN": {
+"agg": false,
+"cod": "236",
+"n": "Venezuela (Bolivarian Republic of)",
+"oss": 128588
+},
+"VNM": {
+"agg": false,
+"cod": "237",
+"n": "Viet Nam",
+"oss": 162835
+},
+"VUT": {
+"agg": false,
+"cod": "155",
+"n": "Vanuatu",
+"oss": 17755
+},
+"WBG": {
+"agg": false,
+"cod": "299",
+"n": "Palestine",
+"oss": 14888
+},
+"WSM": {
+"agg": false,
+"cod": "244",
+"n": "Samoa",
+"oss": 25111
+},
+"YEM": {
+"agg": false,
+"cod": "249",
+"n": "Yemen",
+"oss": 57861
+},
+"ZAF": {
+"agg": false,
+"cod": "202",
+"n": "South Africa",
+"oss": 796958
+},
+"ZAR": {
+"agg": false,
+"cod": "250",
+"n": "Democratic Republic of the Congo",
+"oss": 41281
+},
+"ZMB": {
+"agg": false,
+"cod": "251",
+"n": "Zambia",
+"oss": 107230
+},
+"ZWE": {
+"agg": false,
+"cod": "181",
+"n": "Zimbabwe",
+"oss": 103251
+}
+},
+"url": "https://bulks-faostat.fao.org/production/Trade_DetailedTradeMatrix_E_All_Data_(Normalized).zip"
+}
