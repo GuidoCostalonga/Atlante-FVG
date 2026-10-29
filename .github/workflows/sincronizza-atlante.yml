@@ -1,0 +1,85 @@
+name: Sincronizza l'Atlante dei dati
+
+# La base dati dell'Atlante dei dati ha una sola origine: la cartella atlante/ del repository
+# GuidoCostalonga/open-data (ramo main). Questo flusso la copia nella cartella atlante/ del sito, così
+# costalonga.org/atlante e atlantefvg.it/atlante restano sempre uguali.
+# Ogni ora legge l'ultimo commit di open-data che ha toccato atlante/: se è lo stesso già copiato
+# (scritto in .github/origine-atlante.txt) si ferma subito; altrimenti scarica la cartella, la copia,
+# pubblica e chiede a GitHub Pages di ripubblicare il sito. Si può avviare anche a mano da Actions.
+# Le modifiche all'Atlante vanno fatte in open-data: una modifica fatta solo qui verrebbe sovrascritta.
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: sincronizza-atlante
+  cancel-in-progress: false
+
+jobs:
+  sincronizza:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Legge l'ultima modifica dell'Atlante in open-data
+        id: origine
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          sha=$(gh api "repos/GuidoCostalonga/open-data/commits?path=atlante&sha=main&per_page=1" --jq '.[0].sha')
+          if ! [[ "$sha" =~ ^[0-9a-f]{40}$ ]]; then echo "::error::Non riesco a leggere l'ultimo commit di open-data"; exit 1; fi
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "Ultima modifica dell'Atlante in open-data: $sha"
+
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: |
+            .github
+            atlante
+
+      - name: Confronta con l'ultima copia
+        id: confronto
+        run: |
+          if [ "$(cat .github/origine-atlante.txt 2>/dev/null)" = "${{ steps.origine.outputs.sha }}" ]; then
+            echo "L'Atlante è già allineato a open-data."; echo "nuovo=no" >> "$GITHUB_OUTPUT"
+          else echo "nuovo=si" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Scarica la cartella atlante/ di open-data
+        if: steps.confronto.outputs.nuovo == 'si'
+        run: |
+          git clone -q --depth 1 --filter=blob:none --sparse https://github.com/GuidoCostalonga/open-data.git "$RUNNER_TEMP/od"
+          git -C "$RUNNER_TEMP/od" sparse-checkout set atlante
+          # mai svuotare il sito per un errore di scaricamento: servono le pagine e il catalogo
+          for f in index.html nucleo.js pagine.js dati/meta.json dati/partner.json; do
+            [ -s "$RUNNER_TEMP/od/atlante/$f" ] || { echo "::error::Manca atlante/$f in open-data: copia annullata"; exit 1; }
+          done
+
+      - name: Copia e pubblica
+        if: steps.confronto.outputs.nuovo == 'si'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SHA: ${{ steps.origine.outputs.sha }}
+        run: |
+          mkdir -p atlante
+          rsync -a --delete --exclude '__pycache__' "$RUNNER_TEMP/od/atlante/" atlante/
+          echo "$SHA" > .github/origine-atlante.txt
+          git add -A atlante .github/origine-atlante.txt
+          if git diff --cached --quiet; then echo "Nessuna differenza."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "Sincronizza l'Atlante dei dati con open-data (${SHA:0:7})" -m "Origine: https://github.com/GuidoCostalonga/open-data/commit/$SHA"
+          git diff --stat HEAD~1 -- atlante | tail -1 || true
+          # se nel frattempo un altro flusso ha pubblicato, riparte dalla versione nuova
+          pubblicato=no
+          for i in 1 2 3; do
+            if git push; then pubblicato=si; break; fi
+            git fetch -q --depth 50 origin "${GITHUB_REF_NAME}" && git rebase -q "origin/${GITHUB_REF_NAME}"
+          done
+          [ "$pubblicato" = si ] || { echo "::error::Pubblicazione non riuscita dopo tre tentativi"; exit 1; }
+          # chiede a GitHub Pages di ripubblicare il sito
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true

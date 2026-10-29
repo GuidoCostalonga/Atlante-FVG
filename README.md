@@ -28,6 +28,8 @@ filtrabili per provincia, per comune, per testo e colonna per colonna.
 | `anteprima.jpg` | Immagine di anteprima (1200 × 630) mostrata da WhatsApp, Facebook e dagli altri social quando si condivide il collegamento |
 | `CNAME` | Dominio della pagina, atlantefvg.it |
 | `.nojekyll` | Dice a GitHub Pages di servire i file così come sono |
+| `atlante/` | Atlante dei dati (indicatori mondiali ed europei e matrici bilaterali FAOSTAT), pubblicato su atlantefvg.it/atlante. È una copia della cartella `atlante/` di GuidoCostalonga/open-data, identica a costalonga.org/atlante: non va modificata qui |
+| `.github/workflows/sincronizza-atlante.yml` | Ogni ora controlla se l'Atlante dei dati è cambiato in open-data e, se sì, lo copia e ripubblica il sito; l'ultimo commit copiato è in `.github/origine-atlante.txt` |
 
 Ogni file di dati contiene le righe del foglio (`rows`) e, quando il foglio ha una colonna
 del comune, l'indice del comune collegato a ciascuna riga (`k`), nello stesso ordine dei

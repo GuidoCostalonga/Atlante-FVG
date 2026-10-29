@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Friuli Venezia Giulia in Europa</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Italia e Friuli Venezia Giulia a confronto con l’Europa: popolazione, invecchiamento, nascite, province e indicatori nazionali, con i dati Eurostat e Banca Mondiale del repository open data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="stile.css">
+</head>
+<body class="sch">
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testa" id="testa">
+  <div class="testa__interno">
+    <a class="marchio" href="./#/" aria-label="Atlante dei dati, prima pagina">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="19" r="7" fill="var(--r1)"/><circle cx="21" cy="12" r="5" fill="var(--r2)"/><circle cx="23" cy="23" r="3.5" fill="var(--r4)"/></svg>
+      <span>Atlante <b>dei dati</b></span>
+    </a>
+
+    <div class="cerca" id="cerca-globale">
+      <label class="visivo-nascosto" for="cerca">Cerca un indicatore, un paese o una regione</label>
+      <svg class="cerca__icona" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4.5 4.5"/></svg>
+      <input id="cerca" type="search" placeholder="Cerca un dato, un paese, una regione…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="cerca-risultati" aria-autocomplete="list">
+      <kbd class="cerca__tasto" aria-hidden="true">/</kbd>
+      <ul class="combo__lista cerca__risultati" id="cerca-risultati" role="listbox" aria-label="Risultati della ricerca" hidden></ul>
+    </div>
+
+    <nav class="nav" aria-label="Principale">
+      <div class="nav__gruppo">
+        <button class="nav__voce" id="apri-temi" type="button" aria-expanded="false" aria-controls="megamenu">Temi <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5"/></svg></button>
+        <div class="megamenu" id="megamenu" hidden></div>
+      </div>
+      <a class="nav__voce" href="./#/confronta">Confronta</a>
+      <div class="nav__gruppo">
+        <button class="nav__voce" id="apri-schede" type="button" aria-expanded="false" aria-controls="tendina-schede">Schede <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5"/></svg></button>
+        <div class="tendina" id="tendina-schede" hidden>
+          <a href="scheda-fvg.html" aria-current="page"><strong>Friuli Venezia Giulia in Europa</strong><span>Italia e FVG a confronto con le regioni europee</span></a>
+          <a href="./#/t/ITA"><strong>Italia</strong><span>Profilo del paese con gli indicatori in evidenza</span></a>
+          <a href="./#/t/EU:ITH4"><strong>Friuli Venezia Giulia</strong><span>Profilo della regione, dati Eurostat</span></a>
+          <a href="./#/t/EUU"><strong>Unione europea</strong><span>Aggregato della Banca Mondiale</span></a>
+          <a href="./#/t/WLD"><strong>Mondo</strong><span>Aggregato della Banca Mondiale</span></a>
+        </div>
+      </div>
+      <a class="nav__voce" href="./#/archivi">Archivi</a>
+      <a class="nav__voce" href="./#/fonti">Fonti</a>
+    </nav>
+
+    <button class="hamburger" id="apri-menu" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="menu-mobile"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/></svg></button>
+  </div>
+  <div class="menu-mobile" id="menu-mobile" hidden></div>
+</header>
+
+<main class="sch__pagina" id="contenuto" tabindex="-1">
+  <section class="sch__apertura">
+    <p class="sch__occhiello">Scheda · Eurostat e Banca Mondiale</p>
+    <h1>Italia e Friuli Venezia Giulia a confronto con l’Europa</h1>
+    <p class="sch__lede" id="lede">Carico i dati…</p>
+  </section>
+
+  <section class="sch__sezione" aria-labelledby="t-sintesi">
+    <h2 id="t-sintesi">In sintesi</h2>
+    <div class="sch__tessere" id="tessere"></div>
+    <p class="sch__nota" id="nota-tessere"></p>
+  </section>
+
+  <section class="sch__sezione" aria-labelledby="t-eta">
+    <h2 id="t-eta">Una regione che invecchia più della media</h2>
+    <p class="sch__testo" id="testo-eta"></p>
+    <figure class="sch__figura">
+      <div class="sch__grafico" id="g-eta"></div>
+      <figcaption>Quota di popolazione di 65 anni e oltre, % dei residenti al 1° gennaio. Calcolata dall’Atlante su dati Eurostat demo_r_pjanaggr3: classe d’età divisa per totale, stesso territorio e stesso anno.</figcaption>
+    </figure>
+  </section>
+
+  <section class="sch__sezione" aria-labelledby="t-nascite">
+    <h2 id="t-nascite">Nascite e decessi</h2>
+    <p class="sch__testo" id="testo-nascite"></p>
+    <div class="sch__due">
+      <figure class="sch__figura">
+        <div class="sch__grafico sch__grafico--basso" id="g-saldo"></div>
+        <figcaption>Friuli Venezia Giulia: nati vivi e decessi in ciascun anno. Eurostat demo_r_births e demo_r_deaths.</figcaption>
+      </figure>
+      <figure class="sch__figura">
+        <div class="sch__grafico sch__grafico--basso" id="g-figli"></div>
+        <figcaption>Figli per donna (fecondità totale). Eurostat demo_r_find3, disponibile dal 2013.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sch__sezione" aria-labelledby="t-europa">
+    <h2 id="t-europa">Dove si colloca fra le regioni europee</h2>
+    <p class="sch__testo" id="testo-europa"></p>
+    <figure class="sch__figura">
+      <div class="sch__mappa" id="g-mappa"></div>
+      <div class="sch__legenda" id="legenda-mappa"></div>
+      <figcaption>Regioni europee (NUTS 2): quota di popolazione di 65 anni e oltre. Il contorno scuro indica il Friuli Venezia Giulia. Confini GISCO NUTS 2024, © EuroGeographics.</figcaption>
+    </figure>
+    <figure class="sch__figura">
+      <div class="sch__grafico sch__grafico--basso" id="g-sciame"></div>
+      <figcaption>Ogni punto è una regione europea (NUTS 2) con il dato; la linea tratteggiata è la mediana.</figcaption>
+    </figure>
+  </section>
+
+  <section class="sch__sezione" aria-labelledby="t-province">
+    <h2 id="t-province">Le quattro province</h2>
+    <p class="sch__testo" id="testo-province"></p>
+    <div class="sch__tabella" id="tab-province" role="region" aria-label="Indicatori delle province" tabindex="0"></div>
+    <p class="sch__nota">Le province sono i territori NUTS 3 di Eurostat, che per il Friuli Venezia Giulia li denomina Pordenone, Udine, Gorizia e Trieste.</p>
+  </section>
+
+  <section class="sch__sezione" aria-labelledby="t-italia">
+    <h2 id="t-italia">L’Italia fra Unione europea e mondo</h2>
+    <p class="sch__testo" id="testo-italia"></p>
+    <div class="sch__tabella" id="tab-italia" role="region" aria-label="Italia, Unione europea e mondo" tabindex="0"></div>
+    <p class="sch__nota">Dati nazionali della Banca Mondiale (Indicatori di sviluppo mondiale, WDI). Per la popolazione anziana Banca Mondiale ed Eurostat usano basi diverse (popolazione a metà anno e al 1° gennaio), quindi i valori possono differire di qualche decimale.</p>
+  </section>
+
+  <section class="sch__sezione sch__fonti" aria-labelledby="t-fonti">
+    <h2 id="t-fonti">Fonti e metodo</h2>
+    <ul>
+      <li>Eurostat, dataset demo_r_pjanaggr3, demo_r_d3dens, demo_r_births, demo_r_deaths, demo_r_find3, dal repository open data, acquisiti il 24 ottobre 2026.</li>
+      <li>Banca Mondiale, Indicatori di sviluppo mondiale (WDI), aggiornamento della fonte 8 ottobre 2026.</li>
+      <li>Calcolati dall’Atlante e indicati come tali: quote di popolazione per età, saldo naturale (nati meno decessi), posizioni in classifica, mediana delle regioni. Nessun altro valore è stimato o modificato.</li>
+      <li>Posizioni in classifica calcolate fra le regioni NUTS 2 con il dato nell’anno indicato.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="pie__interno">
+    <p><strong>Atlante dei dati</strong> · dati di Banca Mondiale (WDI), Eurostat, Commissione europea, FAOSTAT, OMS, OCSE, ONU e FMI dal repository <a href="https://github.com/GuidoCostalonga/open-data" target="_blank" rel="noopener">open data</a>. Nessun valore è stimato o interpolato: i dati mancanti restano mancanti.</p>
+    <p><a href="./#/fonti">Fonti e metodo</a> · <a href="./#/">Atlante dei dati</a> · <a href="https://costalonga.org/">costalonga.org</a></p>
+  </div>
+</footer>
+
+<div class="suggerimento" id="suggerimento" role="status" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script src="nucleo.js"></script>
+<script>
+// La scheda vive fuori dall'applicazione a pagina unica: la testata (ricerca, menù) porta sempre all'Atlante.
+(function () {
+  const A = window.Atlante;
+  A.vai = (hash) => { location.href = './' + hash; };
+  A.caricaJson('dati/meta.json').then((meta) => {
+    A.META = meta;
+    meta.territori.forEach((t) => { A.T[t.id] = t; if (t.k === 'nuts' && t.l === 0) A.NUTS0[t.p] = t.id; });
+    meta.indicatori.forEach((i) => { A.IND[i.c] = Object.assign({ fam: 'wb' }, i); });
+    meta.regioni.forEach((r, i) => { A.REG[r.k] = Object.assign({ i }, r); });
+    (meta.archivi || []).forEach((a) => { A.ARC[a.f] = a; });
+    A.leggiColori(); A.costruisciIndice(); A.preparaTestata();
+    document.querySelectorAll('#megamenu a, #menu-mobile a').forEach((a) => { const h = a.getAttribute('href'); if (h && h.startsWith('#')) a.setAttribute('href', './' + h); });
+  }).catch(() => { /* la testata resta utilizzabile con i soli collegamenti */ });
+})();
+</script>
+<script src="scheda.js"></script>
+</body>
+</html>
