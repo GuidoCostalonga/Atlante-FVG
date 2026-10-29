@@ -44,6 +44,17 @@ Mappe: Natural Earth 1:50 milioni (paesi, continenti, regioni del mondo) e GISCO
 - **Profili** con indicatori in evidenza, posizione in classifica e andamento degli ultimi trent'anni (file precalcolati in `dati/profili/`).
 - **Scheda Friuli Venezia Giulia**: `scheda-fvg.html`, testi e grafici calcolati dai file di dati al caricamento della pagina; anche qui grafici a linee e mappa si ingrandiscono con rotellina, pizzico e pulsanti.
 
+## Pubblicazione
+
+Questa cartella è l'unica origine dell'Atlante. È pubblicata su due domini, ciascuno dal proprio repository:
+
+| Indirizzo | Repository | Cartella |
+|---|---|---|
+| [costalonga.org/atlante](https://costalonga.org/atlante/) | GuidoCostalonga/GuidoCostalonga.github.io | `atlante/` |
+| [atlantefvg.it/atlante](https://atlantefvg.it/atlante/) | GuidoCostalonga/Atlante-FVG | `atlante/` |
+
+In entrambi i repository il flusso `.github/workflows/sincronizza-atlante.yml` controlla ogni ora l'ultimo commit di `main` che ha toccato `atlante/` qui; se è nuovo copia la cartella, pubblica e chiede a GitHub Pages di ripubblicare il sito (l'ultimo commit copiato è scritto in `.github/origine-atlante.txt`). Ogni aggiornamento della base dati va quindi fatto qui: entro un'ora compare sui due domini. Una modifica fatta direttamente in uno dei due siti verrebbe sovrascritta alla sincronizzazione successiva. La sincronizzazione si può avviare anche a mano dalla scheda Actions di ciascun repository.
+
 ## Aprire il sito
 
 ```
