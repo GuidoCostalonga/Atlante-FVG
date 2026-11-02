@@ -1,8 +1,23 @@
 {
- "generato": "2026-11-01",
+ "generato": "2026-11-02",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-11-02",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna le strutture ricettive del 02/11/2026",
+   "descrizione": "elenco «Affittacamere»: 546 su 546\n  elenco «Agriturismo (alloggio)»: 334 su 334\n  elenco «Albergo diffuso»: 17 su 17\n  elenco «Unità abitative / case e appartamenti vacanze»: 1037 su 1037\n  elenco «Bed & Breakfast»: 439 su 439\n  elenco «Campeggio»: 23 su 23\n  elenco «Country house»: 3 su 3\n  elenco «Marina resort / dry marina»: 15 su 15\n  elenco «Albergo / hotel»: 625 su 625\n  elenco «Residenza turistico-alberghiera»: 41 su 41\n  elenco «Rifugio alpino / escursionistico»: 41 su 41\n  elenco «Villaggio turistico»: 11 su 11\n  elenco «Casa per ferie / struttura sociale»: 59 su 59\nElenco ufficiale: 3190 strutture (completo); nel file: 3184\nStrutture nuove: 13; tolte: 0; con dati cambiati: 22; da verificare: 9\n  nuova: RAMANDOLO CLUB COUNTRY HOUSE (ID portale 1810, Country house, Nimis)\n  nuova: MONTE FERRO (ID portale 4105, Rifugio alpino / escursionistico, Sappada)\n  nuova: BEDULIVO (ID portale 5269, Affittacamere, Aquileia)\n  nuova: TANA DELL'ORSO (ID portale 5358, Agriturismo (alloggio), Forni di Sopra)\n  nuova: LE LAVANDERE COUNTRY HOUSE (ID portale 7744, Country house, Trieste)\n  nuova: CASA ANTONIETTA (ID portale 9906, Unità abitative / case e appartamenti vacanze, Udine)\n  nuova: CASA CAVOUR (ID portale 11397, Unità abitative / case e appartamenti vacanze, San Daniele del Friuli)\n  nuova: CAROLINAHOUSE (ID portale 13709, Unità abitative / case e appartamenti vacanze, Gradisca d'Isonzo)\n  nuova: LA GEMMA DI SELLA (ID portale 15655, Unità abitative / case e appartamenti vacanze, Chiusaforte)\n  nuova: SOLARIE (ID portale 15777, Rifugio alpino / escursionistico, Drenchia)\n  nuova: AL CHIARO' DA LUNA (ID portale 16965, Bed & Breakfast, Torreano)\n  nuova: VILLA RUSSIZ COUNTRY HOUSE (ID portale 18341, Country house, Capriva del Friuli)\n  nuova: FILOXENIA SOCIAL HOUSE (ID portale 19154, Affittacamere, Aviano)\n  cambiato: SILENE (ID portale 19004) cin: «None» → «IT031003B5NTSBNK4Y»\n  cambiato: FUTURA (ID portale 2001) cin: «IT031009B4B4IFQRAU» → «IT031009B4I2L6YCZ4»\n  cambiato: CAVA BUSCADA (ID portale 384) cin: «None» → «IT093019B8PUUGGY53»\n  cambiato: CATTINARA (ID portale 656) ricettività: «Camere: 4; Letti: 8; Bagni: 3» → «Camere: 4; Letti: 8; Bagni: 4»\n  cambiato: ANITA (ID portale 68) cin: «None» → «IT032006B44BU5EDBT»\n  cambiato: TARTINI (ID portale 281) cin: «None» → «IT032006B4MAF7HH8H»\n  cambiato: AL GALLO (ID portale 2142) den: «AL GALLO» → «AL GALLO - PIANO TERRA»\n  cambiato: MANSARDA AL GALLO (ID portale 2641) den: «MANSARDA AL GALLO» → «AL GALLO MANSARDA»\n  cambiato: PETTIROSSO (ID portale 2503) web: «www.bellaitaliadolomiti.com» → «http://www.bellaitaliadolomiti.com»\n  cambiato: DI CRET (ID portale 15711) web: «None» → «http://www.dicret.it»\n  cambiato: LA PALOTE (ID portale 15658) web: «None» → «http://www.lapalote.it»\n  cambiato: LA CESARINA (ID portale 2724) email: «beorchia.rinaldo@libero.it» → «lacesarina@libero.it»\n  cambiato: LA CESARINA (ID portale 2724) web: «None» → «http://www.lacesarina.it»\n  cambiato: FRATELLI NORDIO E DEFFAR (ID portale 368) cin: «None» → «IT030054B8E6D4RMEG»\n  cambiato: JOLANDA (ID portale 1655) web: «www.johotel.it» → «http://www.johotel.it»\n  cambiato: MARINA STELLA RESORT (ID portale 3365) cin: «None» → «IT030069B9SV55DCTR»\n  cambiato: EVEREST EXPERIENCE (ID portale 19113) cin: «None» → «IT030071B58RIH7RVK»\n  cambiato: CHALET NAVAUCE (ID portale 7973) web: «http://www.sorenavauce.it» → «http://sorenavauce.it/ricettivita»\n  cambiato: CASA LATEIS 24 (ID portale 14243) ricettività: «Camere: 2; Letti: 4; Bagni: 1» → «Camere: 2; Letti: 6; Bagni: 1»\n  cambiato: COL GENTILE (ID portale 3059) cin: «IT030110A1YUHRC6JJ» → «IT030110A1GDIE8AKW»\n  cambiato: AL TARCENTINO (ID portale 1310) web: «https://www.altarcentino.com/» → «http://www.altarcentino.com»\n  cambiato: AL TARCENTINO (ID portale 1310) ricettività: «Camere: 14; Letti: 22; Bagni: 14» → «Camere: 39; Letti: 82; Bagni: 39»\n  cambiato: MONTE LUSSARI FAM. MESCHNIK (ID portale 379) den: «MONTE LUSSARI FAM. MESCHNIK» → «MONTE LUSSARI»\n  cambiato: RESIDENCE ANGELA (ID portale 2077) cin: «IT030129B4UK3T4VIF» → «IT030129B4SYFUVWT6»\n  da verificare: ID portale 19051: scheda non letta (pagina non in italiano); dati lasciati come prima\n  da verificare: SAINT MICHEL APP. 3 (ID portale 10622): la scheda non esiste più; si toglie se manca ancora al prossimo controllo\n  da verificare: PADRICIANO SUITE (ID portale 3486): la scheda non esiste più; si toglie se manca ancora al prossimo controllo\n  da verificare: CHIARBOLA (ID portale 3553): la scheda non esiste più; si toglie se manca ancora al prossimo controllo\n  da verificare: MILLY E ALFRED (ID portale 3795): la scheda non esiste più; si toglie se manca ancora al prossimo controllo\n  da verificare: MULINO STEL (ID portale 4868): la scheda non esiste più; si toglie se manca ancora al prossimo controllo\n  da verificare: MUINA (ID portale 3129): la scheda non esiste più; si toglie se manca ancora al prossimo controllo\n  da verificare: CASA NINA (ID portale 5148): la scheda non esiste più; si toglie se manca ancora al prossimo controllo",
+   "interessa": [
+    {
+     "nome": "Strutture ricettive",
+     "collegamento": "../strutture/"
+    }
+   ],
+   "valori": [],
+   "commit": "b306ca9ce3"
+  },
   {
    "data": "2026-11-01",
    "tipo": "dati",
@@ -25,7 +40,7 @@
      "collegamento": "../bandi/"
     }
    ],
-   "commit": "7705e5eaf8"
+   "commit": "63b0863802"
   },
   {
    "data": "2026-10-31",
