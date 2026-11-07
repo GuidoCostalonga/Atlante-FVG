@@ -1,0 +1,13 @@
+{
+ "id": "2c5f6d803a3295d2",
+ "modalita": "incrementale",
+ "esito": "riuscita",
+ "durata": 164,
+ "totali": {
+  "rilevazioni": 14584,
+  "coda": 4134,
+  "istituti": 1482
+ },
+ "errori": [],
+ "storicoFinito": false
+}
