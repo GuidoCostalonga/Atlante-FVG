@@ -1,8 +1,95 @@
 {
- "generato": "2026-11-08",
+ "generato": "2026-11-09",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-11-09",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i dati del gruppo 1 del 09/11/2026",
+   "descrizione": "Gruppo da aggiornare: 1\nGruppo da aggiornare: 1\nFogli aggiornati:\n  Farmacie: 417 righe (prima 417)\n  Enti_locali_anagrafe: 215 righe (prima 215)\n  Amministratori_locali: 3335 righe (prima 3336)\n  Registro degli amministratori: 7 comuni aggiornati\nUguali alla fonte: 15 fogli.\nAutobus: rete aggiornata alla versione 20261101-2330+busone-provisional-20261109: 7944 fermate e 652 percorsi (prima 7949 fermate e 652 percorsi).\nOrari: versione 20261101-2330+busone-provisional-20261109, validi dal 20261101 al 20270228, 652 linee e 46182 corse; 652 file di linea riscritti, 0 tolti, indice aggiornato.\nPagine: 215 comuni, 4 province, 7 argomenti; indice delle sitemap con 241 indirizzi in 3 file",
+   "interessa": [
+    {
+     "nome": "Amministratori locali",
+     "collegamento": "../?pagina=archivio&foglio=Amministratori_locali"
+    },
+    {
+     "nome": "Enti locali anagrafe",
+     "collegamento": "../?pagina=archivio&foglio=Enti_locali_anagrafe"
+    },
+    {
+     "nome": "Farmacie",
+     "collegamento": "../?pagina=archivio&foglio=Farmacie"
+    },
+    {
+     "nome": "Servizi sulla mappa",
+     "collegamento": "../?pagina=mappe"
+    },
+    {
+     "nome": "Rete degli autobus",
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Farmacie",
+     "misura": "righe",
+     "prima": 417,
+     "dopo": 417,
+     "differenza": 0,
+     "collegamento": "../?pagina=archivio&foglio=Farmacie"
+    },
+    {
+     "cosa": "Enti_locali_anagrafe",
+     "misura": "righe",
+     "prima": 215,
+     "dopo": 215,
+     "differenza": 0,
+     "collegamento": "../?pagina=archivio&foglio=Enti_locali_anagrafe"
+    },
+    {
+     "cosa": "Amministratori_locali",
+     "misura": "righe",
+     "prima": 3336,
+     "dopo": 3335,
+     "differenza": -1,
+     "collegamento": "../?pagina=archivio&foglio=Amministratori_locali"
+    },
+    {
+     "cosa": "Rete degli autobus (GTFS 20261101-2330+busone-provisional-20261109)",
+     "misura": "fermate",
+     "prima": 7949,
+     "dopo": 7944,
+     "differenza": -5,
+     "collegamento": "../?pagina=autobus"
+    },
+    {
+     "cosa": "Rete degli autobus (GTFS 20261101-2330+busone-provisional-20261109)",
+     "misura": "percorsi",
+     "prima": 652,
+     "dopo": 652,
+     "differenza": 0,
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "commit": "b5345e8f7c"
+  },
+  {
+   "data": "2026-11-09",
+   "tipo": "funzione",
+   "automatico": false,
+   "titolo": "Aggiunge la pagina delle webcam pubbliche del Friuli Venezia Giulia",
+   "descrizione": "Pagina autonoma che funziona anche senza rete: mappa dei 215 Comuni con\nconfini ISTAT incorporati, 221 webcam censite, viste rapide, mosaico,\npreferiti e condivisione. Collegata dalla sezione delle allerte meteo\ne aggiunta alla sitemap dei servizi.",
+   "interessa": [
+    {
+     "nome": "Rete degli autobus",
+     "collegamento": "../?pagina=autobus"
+    }
+   ],
+   "valori": [],
+   "commit": "9c57d41c69"
+  },
   {
    "data": "2026-11-08",
    "tipo": "dati",
@@ -25,7 +112,7 @@
      "collegamento": "../bandi/"
     }
    ],
-   "commit": "ea2ed0e4ac"
+   "commit": "bd60a06996"
   },
   {
    "data": "2026-11-07",
@@ -2206,8 +2293,8 @@
    "id": "Amministratori_locali",
    "nome": "Amministratori locali",
    "ambito": "Amministratori",
-   "righe": 3336,
-   "consultazione": "2026-10-05",
+   "righe": 3335,
+   "consultazione": "2026-11-09",
    "periodo": null,
    "fonte": "https://elezioniamministratori.regione.fvg.it/distribuzione/json/amministratori_locali.json"
   },
@@ -2216,7 +2303,7 @@
    "nome": "Enti locali anagrafe",
    "ambito": "Enti pubblici",
    "righe": 215,
-   "consultazione": "2026-10-05",
+   "consultazione": "2026-11-09",
    "periodo": null,
    "fonte": "https://elezioniamministratori.regione.fvg.it/distribuzione/json/enti_locali.json"
   },
@@ -2567,7 +2654,7 @@
    "nome": "Farmacie",
    "ambito": "Salute",
    "righe": 417,
-   "consultazione": "2026-10-12",
+   "consultazione": "2026-11-09",
    "periodo": "dati aggiornati dalla fonte al 2026-10-04",
    "fonte": "https://www.dati.friuliveneziagiulia.it/api/views/jbxd-m6xe/rows.csv?accessType=DOWNLOAD"
   },
