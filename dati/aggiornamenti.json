@@ -7,6 +7,30 @@
    "data": "2026-11-09",
    "tipo": "dati",
    "automatico": true,
+   "titolo": "Aggiorna i bandi e gli avvisi della Regione del 09/11/2026",
+   "descrizione": "Bandi: 119 voci (18 con misure contributive), 0 nuove e 2 tolte rispetto a prima.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Bandi e avvisi della Regione",
+     "misura": "voci",
+     "prima": 121,
+     "dopo": 119,
+     "differenza": -2,
+     "collegamento": "../bandi/"
+    }
+   ],
+   "commit": "c8936107d8"
+  },
+  {
+   "data": "2026-11-09",
+   "tipo": "dati",
+   "automatico": true,
    "titolo": "Aggiorna i dati del gruppo 1 del 09/11/2026",
    "descrizione": "Gruppo da aggiornare: 1\nGruppo da aggiornare: 1\nFogli aggiornati:\n  Farmacie: 417 righe (prima 417)\n  Enti_locali_anagrafe: 215 righe (prima 215)\n  Amministratori_locali: 3335 righe (prima 3336)\n  Registro degli amministratori: 7 comuni aggiornati\nUguali alla fonte: 15 fogli.\nAutobus: rete aggiornata alla versione 20261101-2330+busone-provisional-20261109: 7944 fermate e 652 percorsi (prima 7949 fermate e 652 percorsi).\nOrari: versione 20261101-2330+busone-provisional-20261109, validi dal 20261101 al 20270228, 652 linee e 46182 corse; 652 file di linea riscritti, 0 tolti, indice aggiornato.\nPagine: 215 comuni, 4 province, 7 argomenti; indice delle sitemap con 241 indirizzi in 3 file",
    "interessa": [
@@ -73,7 +97,7 @@
      "collegamento": "../?pagina=autobus"
     }
    ],
-   "commit": "b5345e8f7c"
+   "commit": "0a1f998c7b"
   },
   {
    "data": "2026-11-09",
