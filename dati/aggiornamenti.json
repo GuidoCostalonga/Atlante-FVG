@@ -1,8 +1,32 @@
 {
- "generato": "2026-11-10",
+ "generato": "2026-11-11",
  "prima_versione": "2026-10-06",
  "nota": "Registro ricavato dalla storia del repository GuidoCostalonga/Atlante-FVG: ogni voce corrisponde a una modifica pubblicata e verificabile. Prima della prima versione non esiste cronologia.",
  "voci": [
+  {
+   "data": "2026-11-11",
+   "tipo": "dati",
+   "automatico": true,
+   "titolo": "Aggiorna i finanziamenti regionali del 11/11/2026",
+   "descrizione": "Finanziamenti: 4553 righe lette dal 2026-10-02 al 2026-11-11, 3262 nuove; archivio di 41752 righe in 35 mesi, 0 righe con problemi, 11 finestre non scaricate, 12 arretrate recuperate.",
+   "interessa": [
+    {
+     "nome": "Finanziamenti regionali",
+     "collegamento": "../finanziamenti/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Finanziamenti regionali (Amministrazione trasparente)",
+     "misura": "righe in archivio",
+     "prima": 38490,
+     "dopo": 41752,
+     "differenza": 3262,
+     "collegamento": "../finanziamenti/"
+    }
+   ],
+   "commit": "6d9685e979"
+  },
   {
    "data": "2026-11-10",
    "tipo": "dati",
@@ -25,7 +49,7 @@
      "collegamento": "../bandi/"
     }
    ],
-   "commit": "0dc1855762"
+   "commit": "e2644fbc4b"
   },
   {
    "data": "2026-11-09",
