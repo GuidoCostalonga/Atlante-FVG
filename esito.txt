@@ -1,0 +1,13 @@
+{
+ "id": "a72bae6995e881ed",
+ "modalita": "incrementale",
+ "esito": "riuscita",
+ "durata": 134,
+ "totali": {
+  "rilevazioni": 14610,
+  "coda": 4143,
+  "istituti": 1483
+ },
+ "errori": [],
+ "storicoFinito": false
+}
