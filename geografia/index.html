@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geografia del Friuli Venezia Giulia</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+:root {
+  --carta: #ffffff; --carta-2: #f4f6f8; --grafite: #1c2227; --grafite-2: #4e5861; --grafite-3: #7a858f;
+  --filo: #cfd7dd; --focus: #1f5fd6; --ombra: 0 10px 30px rgba(28,36,44,.14), 0 1px 3px rgba(28,36,44,.10);
+  --confini: #c2410c; --acque: #0b8fb0; --rilievo: #7a5a2b; --natura: #1f8f3a; --trasporti: #6250d6;
+  --insediamenti: #c2459a; --servizi: #d63d3d;
+  --f-testo: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --carta: #14181b; --carta-2: #1c2126; --grafite: #eef1f3; --grafite-2: #b7bfc6; --grafite-3: #8a949d;
+    --filo: #3a434b; --focus: #79a8ff; --ombra: 0 10px 30px rgba(0,0,0,.5);
+    --confini: #f08a55; --acque: #3fb8d6; --rilievo: #c9a063; --natura: #4fbf6c; --trasporti: #9c8df5;
+    --insediamenti: #e57cc4; --servizi: #f07272; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { font-family: var(--f-testo); color: var(--grafite); background: var(--carta); display: flex; }
+#pannello { width: 370px; max-width: 100%; height: 100%; display: flex; flex-direction: column;
+  border-right: 1px solid var(--filo); background: var(--carta); z-index: 1100; }
+header { padding: 16px 16px 10px; border-bottom: 1px solid var(--filo); }
+#torna { display: inline-block; margin-bottom: 8px; font-size: .88rem; font-weight: 700; color: var(--focus); text-decoration: none; }
+#torna:hover { text-decoration: underline; }
+h1 { font-size: 1.25rem; margin: 0 0 4px; line-height: 1.2; }
+header p { margin: 0 0 10px; font-size: .9rem; color: var(--grafite-2); }
+#cerca { width: 100%; padding: 9px 12px; font: inherit; color: inherit; background: var(--carta-2);
+  border: 1px solid var(--filo); border-radius: 8px; }
+#cerca:focus-visible, button:focus-visible, summary:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 2px solid var(--focus); outline-offset: 2px; }
+.riga-base { display: flex; gap: 12px; align-items: center; margin-top: 10px; font-size: .88rem; flex-wrap: wrap; }
+.riga-base button { font: inherit; font-size: .85rem; padding: 5px 10px; border-radius: 7px; cursor: pointer;
+  border: 1px solid var(--filo); background: var(--carta-2); color: inherit; }
+#elenco { overflow-y: auto; flex: 1; padding: 4px 10px 20px; }
+details { border-bottom: 1px solid var(--filo); }
+summary { cursor: pointer; padding: 11px 6px; font-weight: 700; display: flex; align-items: center; gap: 9px; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "▸"; color: var(--grafite-3); width: 12px; }
+details[open] > summary::before { content: "▾"; }
+.pallino { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+.conta { margin-left: auto; font-weight: 400; font-size: .82rem; color: var(--grafite-3); }
+.livello { padding: 6px 6px 8px 27px; }
+.livello label { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; font-size: .95rem; line-height: 1.25; }
+.livello input { margin-top: 2px; accent-color: var(--focus); flex: none; width: 16px; height: 16px; }
+.nota { font-size: .78rem; color: var(--grafite-3); margin: 2px 0 0 24px; }
+.nota a { color: var(--focus); }
+.livello select { margin: 5px 0 0 24px; max-width: calc(100% - 24px); font: inherit; font-size: .85rem; padding: 4px;
+  background: var(--carta-2); color: inherit; border: 1px solid var(--filo); border-radius: 6px; }
+.livello.errore .nota { color: var(--servizi); }
+#mappa { flex: 1; height: 100%; background: var(--carta-2); }
+#stato { position: absolute; right: 10px; bottom: 26px; z-index: 900; background: var(--carta); color: var(--grafite-2);
+  padding: 6px 12px; border-radius: 8px; font-size: .85rem; box-shadow: var(--ombra); max-width: 60vw; }
+#apri { display: none; position: absolute; top: 10px; left: 54px; z-index: 950; font: inherit; font-weight: 700;
+  padding: 9px 14px; border-radius: 8px; border: 1px solid var(--filo); background: var(--carta); color: var(--grafite);
+  box-shadow: var(--ombra); cursor: pointer; }
+.leaflet-popup-content { margin: 12px 14px; font-family: var(--f-testo); min-width: min(220px, calc(100vw - 90px)); }
+.leaflet-popup-content h2 { font-size: 1rem; margin: 0 0 2px; }
+.leaflet-popup-content .da { font-size: .78rem; color: #6a747d; margin-bottom: 8px; }
+.leaflet-popup-content table { border-collapse: collapse; font-size: .82rem; width: 100%; }
+.leaflet-popup-content td { padding: 2px 6px 2px 0; vertical-align: top; border-top: 1px solid #e3e8ec; word-break: break-word; }
+.leaflet-popup-content td:first-child { color: #6a747d; white-space: nowrap; max-width: 130px; overflow: hidden; text-overflow: ellipsis; }
+.scheda { max-height: 260px; overflow-y: auto; }
+@media (max-width: 760px) {
+  #pannello { position: absolute; inset: 0 auto 0 0; width: min(370px, 92vw); transform: translateX(-100%);
+    transition: transform .2s; box-shadow: var(--ombra); }
+  body.aperto #pannello { transform: none; }
+  #apri { display: block; }
+  #stato { max-width: 80vw; bottom: 52px; }
+  .livello input { width: 24px; height: 24px; margin-top: 0; }
+  .livello label { gap: 10px; padding: 4px 0; }
+  .nota, .livello select { margin-left: 34px; }
+  .livello select { max-width: calc(100% - 34px); }
+  header input[type=checkbox] { width: 20px; height: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { #pannello { transition: none; } }
+</style>
+</head>
+<body>
+<aside id="pannello" aria-label="Livelli della mappa">
+  <header>
+    <a id="torna" href="/" hidden>← Atlante FVG</a>
+    <h1>Geografia del Friuli Venezia Giulia</h1>
+    <p id="sommario">Caricamento dell'elenco dei livelli…</p>
+    <input id="cerca" type="search" placeholder="Cerca un livello: fiumi, comuni, ciclovie…" aria-label="Cerca un livello">
+    <div class="riga-base">
+      <label><input type="checkbox" id="base" checked> Carta di base OpenStreetMap</label>
+      <button id="spegni" type="button">Spegni tutto</button>
+      <button id="chiudi" type="button" hidden>Chiudi</button>
+    </div>
+  </header>
+  <div id="elenco"></div>
+</aside>
+<button id="apri" type="button">Livelli</button>
+<div id="mappa"></div>
+<div id="stato" role="status" aria-live="polite">Nessun livello caricato</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+"use strict";
+// La pagina è pubblicata anche su altri siti (atlantefvg.it) senza i dati: lì li legge da costalonga.org.
+const ORIGINE = "https://costalonga.org/open-data/geografia-fvg/dati/";
+const CON_DATI = ["costalonga.org", "localhost", "127.0.0.1"].includes(location.hostname);
+const DATI = CON_DATI ? "dati/" : ORIGINE;
+// Sul sito pubblicato stanno solo i file leggeri: quelli integrali si leggono dal deposito.
+const DEPOSITO = "https://raw.githubusercontent.com/GuidoCostalonga/open-data/main/geografia-fvg/dati/";
+const IN_LOCALE = ["localhost", "127.0.0.1"].includes(location.hostname);
+const indirizzo = (percorso) => (percorso.startsWith("integrale/") && !IN_LOCALE ? DEPOSITO : DATI) + percorso;
+const GRUPPI = {
+  confini: "Confini amministrativi", acque: "Acque", rilievo: "Monti e rilievo", natura: "Natura e aree protette",
+  trasporti: "Strade, ferrovie, ciclovie e sentieri", insediamenti: "Centri abitati ed edifici", servizi: "Servizi e luoghi di interesse",
+};
+const SIGLE_FONTE = { REGIONE: "Regione FVG", ISTAT: "ISTAT", ISTAT_CENS: "ISTAT, censimento 2021", ENTI: "unione dei comuni, composizione ufficiale", OSM: "OpenStreetMap", GISCO: "Eurostat GISCO", COPERNICUS: "Copernicus" };
+const ACCESI_ALL_AVVIO = ["province", "comuni"];
+const SOGLIA_PESO_AVVISO = 8e6;
+const CAMPI_NOME = ["NOME", "nome", "name", "COMUNE", "DENOMINAZIONE", "Denominazione", "DEN_UTS", "DEN_REG", "TOPONIMO", "quota"];
+const MAX_CAMPI_SCHEDA = 30;
+
+const mappa = L.map("mappa", { preferCanvas: true, zoomSnap: 0.5 }).setView([46.1, 13.1], 9);
+const cartaBase = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(mappa);
+mappa.attributionControl.addAttribution("Regione FVG (IRDAT), ISTAT, Copernicus");
+const disegno = L.canvas({ padding: 0.3 });
+const attivi = new Map();   // id del livello -> strato Leaflet
+const memoria = new Map();  // percorso del file -> dati GeoJSON già scaricati
+let schede = [];
+
+const colore = (gruppo) => getComputedStyle(document.documentElement).getPropertyValue("--" + gruppo).trim();
+const numero = (n) => n.toLocaleString("it-IT");
+const peso = (b) => b > 1e6 ? (b / 1e6).toFixed(1).replace(".", ",") + " MB" : Math.max(1, Math.round(b / 1e3)) + " kB";
+const pulisci = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function scheda(elemento, livello) {
+  const p = elemento.properties || {};
+  const campoNome = CAMPI_NOME.find((c) => p[c] !== undefined);
+  const titolo = campoNome ? p[campoNome] : livello.titolo;
+  const righe = Object.entries(p).slice(0, MAX_CAMPI_SCHEDA)
+    .map(([k, v]) => `<tr><td title="${pulisci(k)}">${pulisci(k)}</td><td>${pulisci(v)}</td></tr>`).join("");
+  return `<h2>${pulisci(titolo)}</h2><div class="da">${pulisci(livello.titolo)} · ${SIGLE_FONTE[livello.fonte]}</div>` +
+    `<div class="scheda"><table>${righe}</table></div>`;
+}
+
+function strato(dati, livello) {
+  const tinta = colore(livello.gruppo);
+  return L.geoJSON(dati, {
+    renderer: disegno,
+    style: { color: tinta, weight: 1.4, opacity: 0.9, fillColor: tinta, fillOpacity: 0.12 },
+    pointToLayer: (e, ll) => L.circleMarker(ll, { renderer: disegno, radius: 3, color: tinta, weight: 1, fillColor: tinta, fillOpacity: 0.7 }),
+    onEachFeature: (e, s) => s.bindPopup(() => scheda(e, livello), { maxWidth: Math.min(340, innerWidth - 60) }),
+  });
+}
+
+async function scarica(percorso) {
+  if (!memoria.has(percorso)) {
+    const risposta = await fetch(indirizzo(percorso));
+    if (!risposta.ok) throw new Error("file non raggiungibile (" + risposta.status + ")");
+    memoria.set(percorso, await risposta.json());
+  }
+  return memoria.get(percorso);
+}
+
+function aggiornaStato(testo) {
+  let elementi = 0;
+  attivi.forEach((s) => { elementi += s.getLayers().length; });
+  document.getElementById("stato").textContent = testo ||
+    (attivi.size ? `${attivi.size === 1 ? "1 livello acceso" : attivi.size + " livelli accesi"}, ${numero(elementi)} elementi sulla mappa` : "Nessun livello caricato");
+}
+
+async function accendi(livello, riga) {
+  const scelta = riga.querySelector("select");
+  const file = scelta ? livello.leggero[Number(scelta.value)] : livello.leggero[0];
+  aggiornaStato(`Carico «${livello.titolo}»…`);
+  try {
+    const dati = await scarica(file.percorso);
+    spegni(livello);
+    if (!riga.querySelector("input").checked) return aggiornaStato();
+    attivi.set(livello.id, strato(dati, livello).addTo(mappa));
+    riga.classList.remove("errore");
+  } catch (errore) {
+    riga.classList.add("errore");
+    riga.querySelector("input").checked = false;
+    riga.querySelector(".nota").textContent = "Caricamento non riuscito: " + errore.message;
+  }
+  aggiornaStato();
+}
+
+function spegni(livello) {
+  if (attivi.has(livello.id)) { mappa.removeLayer(attivi.get(livello.id)); attivi.delete(livello.id); }
+}
+
+function rigaLivello(livello) {
+  const riga = document.createElement("div");
+  riga.className = "livello";
+  riga.dataset.id = livello.id;
+  riga.dataset.testo = (livello.titolo + " " + livello.id).toLowerCase();
+  const byteLeggero = livello.leggero.reduce((s, f) => s + f.byte, 0);
+  const diviso = livello.leggero.length > 1;
+  const avviso = !diviso && byteLeggero > SOGLIA_PESO_AVVISO ? " Livello pesante: il caricamento richiede qualche secondo." : "";
+  const collegamento = diviso ? "" : ` · <a href="${indirizzo(livello.file[0].percorso)}" download>integrale</a>` +
+    (livello.file.length === 1 && livello.leggero[0].percorso !== livello.file[0].percorso
+      ? ` · <a href="${indirizzo(livello.leggero[0].percorso)}" download>leggero</a>` : "");
+  riga.innerHTML = `<label><input type="checkbox"><span>${pulisci(livello.titolo)}</span></label>` +
+    `<div class="nota">${livello.elementi === 1 ? "1 elemento" : numero(livello.elementi) + " elementi"} · ${diviso ? livello.leggero.length + " parti" : peso(byteLeggero)} · ` +
+    `${SIGLE_FONTE[livello.fonte]}${collegamento}.${avviso}</div>`;
+  if (diviso) {
+    const scelta = document.createElement("select");
+    scelta.setAttribute("aria-label", "Parte da mostrare di " + livello.titolo);
+    livello.leggero.forEach((f, i) => scelta.add(new Option(`${f.parte || "parte " + (i + 1)} (${peso(f.byte)})`, i)));
+    riga.append(scelta);
+    scelta.addEventListener("change", () => { if (riga.querySelector("input").checked) accendi(livello, riga); });
+  }
+  riga.querySelector("input").addEventListener("change", (e) => {
+    if (e.target.checked) accendi(livello, riga); else { spegni(livello); aggiornaStato(); }
+  });
+  return riga;
+}
+
+function componi(indice) {
+  schede = indice.livelli;
+  const elenco = document.getElementById("elenco");
+  for (const [gruppo, nome] of Object.entries(GRUPPI)) {
+    const livelli = schede.filter((l) => l.gruppo === gruppo);
+    if (!livelli.length) continue;
+    const blocco = document.createElement("details");
+    blocco.open = gruppo === "confini";
+    blocco.innerHTML = `<summary><span class="pallino" style="background:var(--${gruppo})"></span>${nome}<span class="conta">${livelli.length}</span></summary>`;
+    livelli.forEach((l) => blocco.append(rigaLivello(l)));
+    elenco.append(blocco);
+  }
+  const totale = schede.reduce((s, l) => s + l.elementi, 0);
+  document.getElementById("sommario").textContent =
+    `${schede.length} livelli e ${numero(totale)} elementi da fonti ufficiali e da OpenStreetMap. Accendi quelli che ti servono e tocca la mappa per leggere i dati.`;
+  ACCESI_ALL_AVVIO.forEach((id) => {
+    const livello = schede.find((l) => l.id === id);
+    const riga = elenco.querySelector(`.livello[data-id="${id}"]`);
+    if (livello && riga) { riga.querySelector("input").checked = true; accendi(livello, riga); }
+  });
+}
+
+document.getElementById("cerca").addEventListener("input", (e) => {
+  const chiave = e.target.value.trim().toLowerCase();
+  document.querySelectorAll("#elenco details").forEach((blocco) => {
+    let visibili = 0;
+    blocco.querySelectorAll(".livello").forEach((r) => { r.hidden = !r.dataset.testo.includes(chiave); if (!r.hidden) visibili++; });
+    blocco.hidden = !visibili;
+    if (chiave) blocco.open = true;
+  });
+});
+document.getElementById("base").addEventListener("change", (e) => e.target.checked ? cartaBase.addTo(mappa) : mappa.removeLayer(cartaBase));
+document.getElementById("spegni").addEventListener("click", () => {
+  document.querySelectorAll("#elenco input:checked").forEach((c) => { c.checked = false; });
+  schede.forEach(spegni); aggiornaStato();
+});
+document.getElementById("torna").hidden = !location.hostname.endsWith("atlantefvg.it");
+const stretto = matchMedia("(max-width: 760px)");
+const adatta = () => { document.getElementById("chiudi").hidden = !stretto.matches; };
+stretto.addEventListener("change", adatta); adatta();
+document.getElementById("apri").addEventListener("click", () => document.body.classList.add("aperto"));
+document.getElementById("chiudi").addEventListener("click", () => document.body.classList.remove("aperto"));
+
+fetch(DATI + "indice.json").then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(componi)
+  .catch((errore) => { document.getElementById("sommario").textContent =
+    "Non riesco a leggere l'elenco dei livelli (" + errore.message + "). La pagina va aperta da un servizio in rete, non come file locale."; });
+</script>
+</body>
+</html>

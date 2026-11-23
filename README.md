@@ -30,6 +30,8 @@ filtrabili per provincia, per comune, per testo e colonna per colonna.
 | `.nojekyll` | Dice a GitHub Pages di servire i file così come sono |
 | `atlante/` | Atlante dei dati (indicatori mondiali ed europei e matrici bilaterali FAOSTAT), pubblicato su atlantefvg.it/atlante. È una copia della cartella `atlante/` di GuidoCostalonga/open-data, identica a costalonga.org/atlante: non va modificata qui |
 | `.github/workflows/sincronizza-atlante.yml` | Ogni ora controlla se l'Atlante dei dati è cambiato in open-data e, se sì, lo copia e ripubblica il sito; l'ultimo commit copiato è in `.github/origine-atlante.txt` |
+| `geografia/index.html` | Mappa della geografia del Friuli Venezia Giulia (confini, acque, rilievo, natura, strade, edifici e servizi), pubblicata su atlantefvg.it/geografia. È una copia di `geografia-fvg/index.html` di GuidoCostalonga/open-data: non va modificata qui. I dati non sono in questo repository: la pagina li legge da costalonga.org/open-data/geografia-fvg |
+| `.github/workflows/sincronizza-geografia.yml` | Ogni sei ore controlla se la pagina della geografia è cambiata in open-data e, se sì, la copia e ripubblica il sito |
 
 Ogni file di dati contiene le righe del foglio (`rows`) e, quando il foglio ha una colonna
 del comune, l'indice del comune collegato a ciascuna riga (`k`), nello stesso ordine dei

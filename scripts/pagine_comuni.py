@@ -242,7 +242,7 @@ def pagina_html(percorso, titolo, descr, briciole, corpo, extra_ld=None):
 {ld_txt}{STILE}
 </head>
 <body>
-<header><a href="{su}">ATLANTE FVG</a> · i comuni del Friuli Venezia Giulia<nav class="menu" aria-label="Menu principale"><a href="{su}comuni/">Comuni</a><a href="{su}provincia/gorizia/">Gorizia</a><a href="{su}provincia/pordenone/">Pordenone</a><a href="{su}provincia/trieste/">Trieste</a><a href="{su}provincia/udine/">Udine</a><a href="{su}mappe/">Mappe</a><a href="{su}metodo/">Metodo e fonti</a></nav></header>
+<header><a href="{su}">ATLANTE FVG</a> · i comuni del Friuli Venezia Giulia<nav class="menu" aria-label="Menu principale"><a href="{su}comuni/">Comuni</a><a href="{su}provincia/gorizia/">Gorizia</a><a href="{su}provincia/pordenone/">Pordenone</a><a href="{su}provincia/trieste/">Trieste</a><a href="{su}provincia/udine/">Udine</a><a href="{su}mappe/">Mappe</a><a href="{su}geografia/">Geografia</a><a href="{su}metodo/">Metodo e fonti</a></nav></header>
 <main>
 <nav class="percorso" aria-label="Percorso"><ol>{bric}</ol></nav>
 {corpo}
