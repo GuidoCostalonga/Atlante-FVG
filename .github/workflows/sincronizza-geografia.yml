@@ -1,0 +1,60 @@
+name: Sincronizza la mappa della geografia
+
+# La pagina geografia/index.html ha una sola origine: geografia-fvg/index.html del repository
+# GuidoCostalonga/open-data (ramo main). Questo flusso la copia qui, così atlantefvg.it/geografia e
+# costalonga.org/open-data/geografia-fvg restano uguali. I dati non vengono copiati: la pagina li
+# legge da costalonga.org (il sito ammette al massimo 1 GB e i dati geografici non ci starebbero).
+# Ogni sei ore scarica la pagina: se è identica alla copia si ferma, altrimenti la pubblica.
+# Le modifiche alla pagina vanno fatte in open-data: una modifica fatta solo qui verrebbe sovrascritta.
+on:
+  schedule:
+    - cron: '41 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: sincronizza-geografia
+  cancel-in-progress: false
+
+jobs:
+  sincronizza:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: |
+            .github
+            geografia
+
+      - name: Scarica la pagina da open-data
+        run: |
+          curl -fsSL --retry 3 -o "$RUNNER_TEMP/index.html" \
+            "https://raw.githubusercontent.com/GuidoCostalonga/open-data/main/geografia-fvg/index.html"
+          # mai sostituire la pagina con un file vuoto o sbagliato
+          grep -q "Geografia del Friuli Venezia Giulia" "$RUNNER_TEMP/index.html" || { echo "::error::Pagina scaricata non valida: copia annullata"; exit 1; }
+
+      - name: Copia e pubblica
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p geografia
+          if cmp -s "$RUNNER_TEMP/index.html" geografia/index.html; then echo "La pagina è già allineata a open-data."; exit 0; fi
+          cp "$RUNNER_TEMP/index.html" geografia/index.html
+          git add geografia/index.html
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "Sincronizza la mappa della geografia con open-data"
+          # se nel frattempo un altro flusso ha pubblicato, riparte dalla versione nuova
+          pubblicato=no
+          for i in 1 2 3; do
+            if git push; then pubblicato=si; break; fi
+            git fetch -q --depth 50 origin "${GITHUB_REF_NAME}" && git rebase -q "origin/${GITHUB_REF_NAME}"
+          done
+          [ "$pubblicato" = si ] || { echo "::error::Pubblicazione non riuscita dopo tre tentativi"; exit 1; }
+          # chiede a GitHub Pages di ripubblicare il sito
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true
