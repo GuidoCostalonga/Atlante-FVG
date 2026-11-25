@@ -7,6 +7,30 @@
    "data": "2026-11-25",
    "tipo": "dati",
    "automatico": true,
+   "titolo": "Aggiorna i bandi e gli avvisi della Regione del 25/11/2026",
+   "descrizione": "Bandi: 113 voci (14 con misure contributive), 6 nuove e 2 tolte rispetto a prima.",
+   "interessa": [
+    {
+     "nome": "Bandi e avvisi della Regione",
+     "collegamento": "../bandi/"
+    }
+   ],
+   "valori": [
+    {
+     "cosa": "Bandi e avvisi della Regione",
+     "misura": "voci",
+     "prima": 109,
+     "dopo": 113,
+     "differenza": 4,
+     "collegamento": "../bandi/"
+    }
+   ],
+   "commit": "4f5390197a"
+  },
+  {
+   "data": "2026-11-25",
+   "tipo": "dati",
+   "automatico": true,
    "titolo": "Aggiorna i finanziamenti regionali del 25/11/2026",
    "descrizione": "Finanziamenti: 1675 righe lette dal 2026-10-16 al 2026-11-25, 327 nuove; archivio di 43950 righe in 35 mesi, 0 righe con problemi, 0 finestre non scaricate, 0 arretrate recuperate.",
    "interessa": [
@@ -25,7 +49,7 @@
      "collegamento": "../finanziamenti/"
     }
    ],
-   "commit": "660df8f668"
+   "commit": "2a51bfb588"
   },
   {
    "data": "2026-11-24",
